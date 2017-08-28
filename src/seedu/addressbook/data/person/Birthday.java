@@ -5,8 +5,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Birthday {
 
     public static final String EXAMPLE = "30,12,1996";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "DD,MM,YYYY";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String MESSAGE_BIRTHDAY_CONSTRAINTS = "Person Birthdays should be: DD,MM,YYYY";
+    public static final String BIRTHDAY_VALIDATION_REGEX = "[0-3][0-9][,][0-1][0-9][,][0-2][0-9][0-9][0-9]";
 
     public final String value;
     private boolean isPrivate;
@@ -20,7 +20,7 @@ public class Birthday {
         String trimmedBirthday = birthday.trim();
         this.isPrivate = isPrivate;
         if (!isValidBirthday(trimmedBirthday)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_BIRTHDAY_CONSTRAINTS);
         }
         this.value = trimmedBirthday;
     }
@@ -29,7 +29,7 @@ public class Birthday {
      * Returns true if a given string is a valid person address.
      */
     public static boolean isValidBirthday(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+        return test.matches(BIRTHDAY_VALIDATION_REGEX);
     }
 
     @Override

@@ -1,28 +1,14 @@
 package seedu.addressbook.parser;
 
-import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import seedu.addressbook.commands.*;
+import seedu.addressbook.data.exception.IllegalValueException;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
-import seedu.addressbook.data.exception.IllegalValueException;
+import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 /**
  * Parses user input.
@@ -41,7 +27,7 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
-
+    public static final Pattern GROUP_DATA_ARGS_FORMAT = Pattern.compile("(?<name>[^/]+)");
     /**
      * Signals that the user input could not be parsed.
      */
@@ -74,6 +60,9 @@ public class Parser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
+
+        case AddGroupCommand.COMMAND_WORD:
+            return prepareAddGroup(arguments);
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
@@ -134,6 +123,28 @@ public class Parser {
             );
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
+        }
+    }
+
+    /**
+     * Parses arguments in the context of the add group command.
+     *
+     * @param args full args string
+     *             @return the prepared command
+     */
+    private Command prepareAddGroup(String args)
+    {
+        final Matcher matcher  = GROUP_DATA_ARGS_FORMAT.matcher(args.trim());
+        // Validate arg string format
+        if(!matcher.matches())
+        {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
+        }
+        try{
+            return new AddGroupCommand(matcher.group("name"));
+        }
+        catch (IllegalValueException ive){
+            return new IncorrectCommand((ive.getMessage()));
         }
     }
 

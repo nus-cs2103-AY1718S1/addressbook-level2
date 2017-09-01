@@ -5,6 +5,10 @@ import java.util.Set;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Block;
+import seedu.addressbook.data.person.Street;
+import seedu.addressbook.data.person.Unit;
+import seedu.addressbook.data.person.Postal;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
@@ -29,6 +33,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_FAILED_ADD = "This add message contains value error by violating syntax";
 
     private final Person toAdd;
 
@@ -46,11 +51,34 @@ public class AddCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+
+        //Now we split this address to the four required components to construct the objects separately
+        String[] addressList = address.split(",");
+        if (!(addressList.length == 4)) {
+            throw new IllegalValueException (MESSAGE_FAILED_ADD);
+        }
+        int block_raw = Integer.parseInt(addressList[0].trim());
+        String street_raw = addressList[1].trim();
+        String unit_raw = addressList[2].trim();
+        int postal_raw = Integer.parseInt(addressList[3].trim());
+        Block block = new Block (block_raw);
+        Street street = new Street (street_raw);
+        Unit unit = new Unit (unit_raw);
+        Postal postal = new Postal (postal_raw);
+
+        //validity check goes here
+        if (!block.isValidBlockObject()||
+                !street.isValidStreetObject()||
+                !unit.isValidUnitObject()||
+                !postal.isValidPostalCodeObject()) {
+            throw new IllegalValueException (MESSAGE_FAILED_ADD);
+        }
+
         this.toAdd = new Person(
                 new Name(name),
                 new Phone(phone, isPhonePrivate),
                 new Email(email, isEmailPrivate),
-                new Address(address, isAddressPrivate),
+                new Address(block, street, unit, postal, isAddressPrivate),
                 new UniqueTagList(tagSet)
         );
     }

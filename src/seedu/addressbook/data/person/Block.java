@@ -3,7 +3,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
  * Represents the Block part of a Person's address.
- * Guarantees: immutable; is valid as declared in {#link #isValidAddressBlock(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidAddressBlock(String)}
  */
 
 public class Block {

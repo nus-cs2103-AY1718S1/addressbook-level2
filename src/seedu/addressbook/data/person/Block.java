@@ -29,7 +29,7 @@ public class Block {
      * A block number is valid is it is a non-zero contiguous array of digits.
      *
      */
-    private static boolean isValidAddressBlock(String blockNumber){
+    public static boolean isValidAddressBlock(String blockNumber){
         return blockNumber.matches(BLOCK_VALIDATION_REGEX);
     }
 

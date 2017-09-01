@@ -31,7 +31,7 @@ public class Unit {
      * A valid unit number is in the form #[FLOOR]-[HOUSE UNIT], where FLOOR and HOUSE UNIT are
      * non-empty contiguous array of digits.
      */
-    private static boolean isValidAddressUnit(String unit){
+    public static boolean isValidAddressUnit(String unit){
         return unit.matches(UNIT_VALIDATION_REGEX);
     }
 

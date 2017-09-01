@@ -30,7 +30,7 @@ public class Postal {
      * Returns true if the postal code given by the user is valid.
      * A postal code is valid if it is a non-empty contiguous array of digits.
      */
-    private boolean isValidAddressPostal(String postalCode){
+    public static boolean isValidAddressPostal(String postalCode){
         return postalCode.matches(POSTAL_VALIDATION_REGEX);
     }
 

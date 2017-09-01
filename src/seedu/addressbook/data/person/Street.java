@@ -34,7 +34,7 @@ public class Street {
      * @param street
      * @return
      */
-    private static boolean isValidAddressStreet(String street){
+    public static boolean isValidAddressStreet(String street){
         return street.matches(STREET_VALIDATION_REGEX);
     }
 

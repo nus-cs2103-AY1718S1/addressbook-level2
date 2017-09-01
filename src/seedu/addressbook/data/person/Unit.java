@@ -21,7 +21,7 @@ public class Unit {
      */
     public Unit(String unit) throws IllegalValueException{
         if(!isValidAddressUnit(unit)){
-            throw new IllegalAccessException(MESSAGE_ADDRESS_UNIT_CONSTRAINTS)
+            throw new IllegalValueException(MESSAGE_ADDRESS_UNIT_CONSTRAINTS);
         }
         this.value = unit;
     }
@@ -44,7 +44,7 @@ public class Unit {
     public boolean equals(Object other){
         return this == other
                 || (other instanceof Unit
-                && (this.value.equals(((Unit)other).value));
+                && (this.value.equals(((Unit)other).value)));
     }
 
     @Override

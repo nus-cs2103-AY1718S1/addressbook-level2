@@ -9,7 +9,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Block {
 
     public static final String BLOCK_VALIDATION_REGEX = "\\p{Digit}+";
-    public static final String MESSAGE_ADDRESS_BLOCK_CONSTRAINTS = "Address block must be a non-zero contiguous array of digits."
+    public static final String MESSAGE_ADDRESS_BLOCK_CONSTRAINTS = "Address block must be a non-zero contiguous array of digits.";
 
     public final String value;
 

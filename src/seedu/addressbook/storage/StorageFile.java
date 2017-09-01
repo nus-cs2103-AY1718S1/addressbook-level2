@@ -29,6 +29,11 @@ public class StorageFile {
     /** Default file path used if the user doesn't provide the file name. */
     public static final String DEFAULT_STORAGE_FILEPATH = "addressbook.xml";
 
+    /** If a storage file already exists upon the starting up of this program, this variable
+     * is true; else, a storage file would not be expected to exist until after the execution of the
+     * first command. */
+    private boolean hasStorageFileBeenCreated;
+
     /* Note: Note the use of nested classes below.
      * More info https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
      */
@@ -97,6 +102,16 @@ public class StorageFile {
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
+        /** If a storage file already exists, but is not found now, then throw an exception
+         * to notify user that the storage file has been deleted. */
+        if(!hasStorageFileBeenCreated){
+            hasStorageFileBeenCreated = true;
+        }else{
+            if(!Files.exists(path)){
+                throw new StorageOperationException("Storage file has been deleted in the midst of operation!");
+            }
+        }
+
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 
@@ -122,12 +137,13 @@ public class StorageFile {
     public AddressBook load() throws StorageOperationException {
 
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
+            hasStorageFileBeenCreated = false;
             return new AddressBook();
         }
 
         try (final Reader fileReader =
                      new BufferedReader(new FileReader(path.toFile()))) {
-
+            hasStorageFileBeenCreated = true;
             final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             final AdaptedAddressBook loaded = (AdaptedAddressBook) unmarshaller.unmarshal(fileReader);
             // manual check for missing elements

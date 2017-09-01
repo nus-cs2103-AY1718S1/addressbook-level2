@@ -14,6 +14,11 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
+    //These cannot be final at this time point, as we haven't figured out how to reverse engineer these objects
+    private  Block block;
+    private Street street;
+    private Unit unit;
+    private Postal postal;
 
     /**
      * Validates given address.
@@ -30,10 +35,56 @@ public class Address {
     }
 
     /**
+     * Initiates and validate the given component objects of the address object
+     * This is another version of the constructor
+     * @param block - block object
+     * @param street - street object
+     * @param unit - unit object
+     * @param postal - postal object
+     * @param isPrivate - isPrivate boolean signalling input
+     * @throws IllegalValueException
+     */
+    public Address(Block block, Street street, Unit unit, Postal postal,
+                   boolean isPrivate) throws IllegalValueException {
+        this.block = block;
+        this.street = street;
+        this.unit = unit;
+        this.postal = postal;
+        if (!block.isValidBlockObject()|
+                !street.isValidStreetObject()|
+                !unit.isValidUnitObject()|
+                !postal.isValidPostalCodeObject()){
+            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        }
+        this.isPrivate = isPrivate;
+        this.value = (block.getBlockNumberValue() + ", " +
+                street.getStreetValue() + ", " +
+                unit.getUnitValue() + ", " +
+                postal.getPostalCodeValue()).trim();
+    }
+
+    /**
      * Returns true if a given string is a valid person address.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
+    }
+
+    //Getter methods for those four objects
+    public Block getBlock() {
+        return block;
+    }
+
+    public Street getStreet() {
+        return street;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public Postal getPostal() {
+        return postal;
     }
 
     @Override

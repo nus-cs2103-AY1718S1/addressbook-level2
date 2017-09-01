@@ -1,5 +1,6 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 import java.util.Objects;
@@ -14,8 +15,13 @@ public class Person implements ReadOnlyPerson {
     private Phone phone;
     private Email email;
     private Address address;
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private Postal postal;
 
     private final UniqueTagList tags;
+
     /**
      * Assumption: Every field must be present and not null.
      */
@@ -24,9 +30,25 @@ public class Person implements ReadOnlyPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.block = address.getBlock();
+        this.street = address.getStreet();
+        this.unit = address.getUnit();
+        this.postal = address.getPostal();
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
+    public Person(Name name, Phone phone, Email email, Block block,
+                  Street street, Unit unit, Postal postal, UniqueTagList tags) throws IllegalValueException{
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.block = block;
+        this.street = street;
+        this.unit = unit;
+        this.postal = postal;
+        this.address = new Address(block, street, unit, postal, false);
+        this.tags = new UniqueTagList(tags);
+    }
     /**
      * Copy constructor.
      */
@@ -57,6 +79,26 @@ public class Person implements ReadOnlyPerson {
     @Override
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
+    }
+
+    @Override
+    public Block getBlock() {
+        return block;
+    }
+
+    @Override
+    public Street getStreet() {
+        return street;
+    }
+
+    @Override
+    public Unit getUnit() {
+        return unit;
+    }
+
+    @Override
+    public Postal getPostal() {
+        return postal;
     }
 
     /**

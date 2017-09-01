@@ -10,6 +10,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Postal {
     private int postalCode;
+    private boolean valid;
     private String value;
 
     private static final String POSTAL_CODE_CONSTRAINTS = "Block number is an 6 digits integer (checking easy";
@@ -21,9 +22,11 @@ public class Postal {
      */
     public Postal ( int inputNumber ) throws IllegalValueException {
         postalCode = inputNumber;
+        valid = false;
         if (!isValidPostalCode(postalCode)){
             throw new IllegalValueException(POSTAL_CODE_CONSTRAINTS);
         }
+        valid = true;
         value = Integer.toString(postalCode);
     }
 
@@ -42,6 +45,14 @@ public class Postal {
      */
     public static boolean isValidPostalCode ( int postalCode ) {
         return ((postalCode >= 100000) && (postalCode <= 999999));
+    }
+
+    /**
+     * to test the validity of this postal code object so that we can retrieve the value of it
+     * @return the validity of this postal code object
+     */
+    public boolean isValidPostalCodeObject () {
+        return valid;
     }
 
     @Override

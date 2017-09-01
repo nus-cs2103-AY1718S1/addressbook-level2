@@ -9,6 +9,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Street {
     private String streetString;
+    private boolean valid;
     private String value;
 
     private static final String STREET_STRING_CONSTRAINTS = "Street string is a string representing the street";
@@ -21,9 +22,11 @@ public class Street {
      */
     public Street ( String inputString ) throws IllegalValueException {
         streetString = inputString;
+        valid = false;
         if (!isValidStreetString(streetString)){
             throw new IllegalValueException(STREET_STRING_CONSTRAINTS);
         }
+        valid = true;
         value = streetString;
     }
 
@@ -42,6 +45,14 @@ public class Street {
      */
     public static boolean isValidStreetString ( String streetString ) {
         return (streetString.matches(STREET_VALIDATION_REGEX));
+    }
+
+    /**
+     * to get the validity of this street object in order to get the valud of it out
+     * @return the validity of this street object
+     */
+    public boolean isValidStreetObject () {
+        return valid;
     }
 
     @Override

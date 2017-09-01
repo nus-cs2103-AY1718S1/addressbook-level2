@@ -9,6 +9,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Block {
     private int blockNumber;
+    private boolean valid;
     private String value;
 
     private static final String BLOCK_NUMBER_CONSTRAINTS = "Block number is an integer between 0 to 10000";
@@ -20,9 +21,11 @@ public class Block {
      */
     public Block ( int inputNumber ) throws IllegalValueException {
         blockNumber = inputNumber;
+        valid = false;
         if (!isValidBlockNumber(blockNumber)){
             throw new IllegalValueException(BLOCK_NUMBER_CONSTRAINTS);
         }
+        valid = true;
         value = Integer.toString(blockNumber);
     }
 
@@ -41,6 +44,14 @@ public class Block {
      */
     public static boolean isValidBlockNumber ( int blockNumber ) {
         return ((blockNumber >= 0) && (blockNumber <= 10000));
+    }
+
+    /**
+     * To give the validity of this object, to retrieve the value of this object
+     * @return the valid boolean signal
+     */
+    public boolean isValidBlockObject () {
+        return valid;
     }
 
     @Override

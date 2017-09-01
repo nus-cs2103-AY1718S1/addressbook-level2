@@ -10,6 +10,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Unit {
     private String unitString;
+    private boolean valid;
     private String value;
 
     private static final String UNIT_STRING_CONSTRAINTS = "Unit string is a string representing the unit";
@@ -22,9 +23,11 @@ public class Unit {
      */
     public Unit ( String inputString ) throws IllegalValueException {
         unitString = inputString;
+        valid = false;
         if (!isValidStreetString(unitString)){
             throw new IllegalValueException(UNIT_STRING_CONSTRAINTS);
         }
+        valid = true;
         value = unitString;
     }
 
@@ -43,6 +46,14 @@ public class Unit {
      */
     public static boolean isValidStreetString ( String unitString ) {
         return (unitString.matches(UNIT_VALIDATION_REGEX));
+    }
+
+    /**
+     * To get the validity of this unit object in order to retrieve value of this unit object
+     * @return the validity of this unit object
+     */
+    public boolean isValidUnitObject () {
+        return valid;
     }
 
     @Override

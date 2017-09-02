@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -32,7 +32,7 @@
   add Valid Name p/12345 valid@email.butNoPrefix a/valid, address
   add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address
   add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
-  
+
   # should catch invalid person data
   add []\[;] p/12345 e/valid@e.mail a/valid, address
   add Valid Name p/not_numbers e/valid@e.mail a/valid, address

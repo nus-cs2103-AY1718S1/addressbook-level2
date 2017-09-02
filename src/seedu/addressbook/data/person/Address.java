@@ -62,7 +62,10 @@ public class Address {
         joiner.add(postalCode.getPostalAddress());
 
         return joiner.toString();
+    }
 
+    public String getFullAddress() {
+        return this.toString();
     }
 
     @Override

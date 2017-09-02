@@ -1,6 +1,8 @@
 # Default storage file for addressbook : don't need to cleanup when running from IDE
-
 addressbook.xml
+
+# Sample storage file (according to the documentation for User Guide)
+mydata.xml
 
 # Compiled classfiles
 bin/

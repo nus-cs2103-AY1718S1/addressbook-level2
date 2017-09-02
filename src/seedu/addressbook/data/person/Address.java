@@ -6,7 +6,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String[])}
  */
-public class Address {
+public class Address extends Contacts{
 
     public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 231534";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be in the following format: " +
@@ -22,9 +22,6 @@ public class Address {
     public final Street street;
     public final Unit unit;
     public final Postal postalCode;
-    private final String value;
-
-    private boolean isPrivate;
 
     /**
      * Validates given address.
@@ -32,8 +29,8 @@ public class Address {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
+        super(validateAndReturnAddress(address), isPrivate);
         String trimmedAddress = address.trim();
-        this.isPrivate = isPrivate;
         String[] splitAddress = trimmedAddress.split(",");
         if (!isValidAddress(splitAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
@@ -42,7 +39,16 @@ public class Address {
         this.street = new Street(splitAddress[ADDRESS_STREET_INDEX].trim());
         this.unit = new Unit(splitAddress[ADDRESS_UNIT_INDEX].trim());
         this.postalCode = new Postal(splitAddress[ADDRESS_POSTAL_CODE_INDEX].trim());
-        this.value = block.value + ", " + street.value + ", " + unit.value + ", " + postalCode.value;
+    }
+
+    private static String validateAndReturnAddress(String address) throws IllegalValueException{
+        String trimmedAddress = address.trim();
+        String[] splitAddress = trimmedAddress.split(",");
+        if (!isValidAddress(splitAddress)) {
+            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        }
+        return splitAddress[ADDRESS_BLOCK_INDEX].trim() + ", " + splitAddress[ADDRESS_STREET_INDEX].trim()
+                + ", " + splitAddress[ADDRESS_UNIT_INDEX].trim() + ", " + splitAddress[ADDRESS_POSTAL_CODE_INDEX].trim();
     }
 
     /**
@@ -54,30 +60,5 @@ public class Address {
                 && Street.isValidAddressStreet(splitAddress[ADDRESS_STREET_INDEX].trim())
                 && Unit.isValidAddressUnit(splitAddress[ADDRESS_UNIT_INDEX].trim())
                 && Postal.isValidAddressPostal(splitAddress[ADDRESS_POSTAL_CODE_INDEX].trim());
-    }
-
-    @Override
-    public String toString() {
-        return getValue();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && this.getValue().equals(((Address) other).getValue())); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return getValue().hashCode();
-    }
-
-    public boolean isPrivate() {
-        return isPrivate;
-    }
-
-    public String getValue() {
-        return value;
     }
 }

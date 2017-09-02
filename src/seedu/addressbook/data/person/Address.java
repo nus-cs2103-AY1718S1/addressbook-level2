@@ -1,5 +1,7 @@
 package seedu.addressbook.data.person;
 
+import java.util.ArrayList;
+
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -8,7 +10,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 231534";
+    public static final String EXAMPLE = "123, Clementi Ave 3";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
@@ -50,17 +52,30 @@ public class Address {
         this.street = street;
         this.unit = unit;
         this.postal = postal;
-        if (!block.isValidBlockObject()|
-                !street.isValidStreetObject()|
-                !unit.isValidUnitObject()|
-                !postal.isValidPostalCodeObject()){
+        // check to make sure no one is in absolute invalid status
+        if (!(block.isValidBlockObject()|block.getBlockNumberValue().isEmpty())|
+                !(street.isValidStreetObject()|street.getStreetValue().isEmpty())|
+                !(unit.isValidUnitObject()|unit.getUnitValue().isEmpty())|
+                !(postal.isValidPostalCodeObject()|postal.getPostalCodeValue().isEmpty())){
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.isPrivate = isPrivate;
-        this.value = (block.getBlockNumberValue() + ", " +
-                street.getStreetValue() + ", " +
-                unit.getUnitValue() + ", " +
-                postal.getPostalCodeValue()).trim();
+        ArrayList<String> valueList = new ArrayList<>();
+        valueList.add(block.getBlockNumberValue());
+        valueList.add(street.getStreetValue());
+        valueList.add(unit.getUnitValue());
+        valueList.add(postal.getPostalCodeValue());
+        String interatedValue = "";
+        for (String valueToAdd: valueList ) {
+            if (!valueToAdd.isEmpty()){
+                interatedValue += valueToAdd+", ";
+            }
+        }
+        interatedValue = interatedValue.trim();
+        if (!interatedValue.isEmpty() && interatedValue.charAt(interatedValue.length()) == ',') {
+            interatedValue = interatedValue.substring(0, interatedValue.length()-1);
+        }
+        this.value = interatedValue;
     }
 
     /**

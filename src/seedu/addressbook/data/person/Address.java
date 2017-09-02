@@ -1,6 +1,9 @@
 package seedu.addressbook.data.person;
 
+import com.sun.deploy.util.StringUtils;
 import seedu.addressbook.data.exception.IllegalValueException;
+
+import java.util.StringJoiner;
 
 /**
  * Represents a Person's address in the address book.
@@ -35,8 +38,10 @@ public class Address {
         this.value = trimmedAddress.split(", ");
 
         // Initialise separate Class objects and store address values in those classes
-
-
+        block = new BlockAddress(this.value);
+        street = new StreetAddress((this.value));
+        unit = new UnitAddress((this.value));
+        postalCode = new PostalAddress((this.value));
     }
 
     /**
@@ -47,8 +52,17 @@ public class Address {
     }
 
     @Override
+    // Reassembles relevant parts of the address into one string before returning it
     public String toString() {
-        return value;
+        StringJoiner joiner = new StringJoiner(", ");
+
+        joiner.add(block.getBlockAddress());
+        joiner.add(street.getStreetAddress());
+        joiner.add(unit.getUnitAddress());
+        joiner.add(postalCode.getPostalAddress());
+
+        return joiner.toString();
+
     }
 
     @Override

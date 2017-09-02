@@ -31,6 +31,27 @@ public class Postal {
     }
 
     /**
+     * This is the second constructor of the postal, as we have to deal with the omitted value of data cases
+     * In this case, the value will be empty String and the object is invalid still to signal there is nothing
+     * @param inputString
+     * @throws IllegalValueException
+     */
+    public Postal ( String inputString ) throws IllegalValueException {
+        if (!inputString.isEmpty()) {
+            postalCode = Integer.parseInt(inputString);
+            valid = false;
+            if (!isValidPostalCode(postalCode)){
+                throw new IllegalValueException(POSTAL_CODE_CONSTRAINTS);
+            }
+            valid = true;
+            value = Integer.toString(postalCode);
+        } else {
+            valid = false;
+            value = "";
+        }
+    }
+
+    /**
      * getter to help retrieve the String version of the postal code
      * @return the string version of the postal code
      */

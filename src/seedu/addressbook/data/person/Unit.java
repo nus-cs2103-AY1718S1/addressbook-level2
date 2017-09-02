@@ -22,17 +22,23 @@ public class Unit {
      * @throws IllegalValueException
      */
     public Unit ( String inputString ) throws IllegalValueException {
-        unitString = inputString;
-        valid = false;
-        if (!isValidStreetString(unitString)){
-            throw new IllegalValueException(UNIT_STRING_CONSTRAINTS);
+        if (!inputString.isEmpty()) {
+            unitString = inputString;
+            valid = false;
+            if (!isValidStreetString(unitString)) {
+                throw new IllegalValueException(UNIT_STRING_CONSTRAINTS);
+            }
+            valid = true;
+            value = unitString;
+        } else {
+            valid = false;
+            value = "";
         }
-        valid = true;
-        value = unitString;
     }
 
     /**
      * getter to help retrieve the String version of the unit
+     * This function may return empty String because this input is omitted
      * @return the unit version of the street
      */
     public String getUnitValue () {

@@ -21,17 +21,23 @@ public class Street {
      * @throws IllegalValueException
      */
     public Street ( String inputString ) throws IllegalValueException {
-        streetString = inputString;
-        valid = false;
-        if (!isValidStreetString(streetString)){
-            throw new IllegalValueException(STREET_STRING_CONSTRAINTS);
+        if (!inputString.isEmpty()) {
+            streetString = inputString;
+            valid = false;
+            if (!isValidStreetString(streetString)) {
+                throw new IllegalValueException(STREET_STRING_CONSTRAINTS);
+            }
+            valid = true;
+            value = streetString;
+        } else {
+            valid = false;
+            value = "";
         }
-        valid = true;
-        value = streetString;
     }
 
     /**
      * getter to help retrieve the String version of the street
+     * This function can return empty String as the street input can be omitted
      * @return the string version of the street
      */
     public String getStreetValue () {

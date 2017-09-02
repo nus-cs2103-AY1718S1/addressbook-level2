@@ -30,7 +30,32 @@ public class Block {
     }
 
     /**
+     * Second constructor to accept String input, which should be the correct constructor to use
+     * In the address String passed in, we can have omitted values
+     * And the input string by address position is a string by itself
+     * @param inputString
+     * @throws IllegalValueException
+     */
+    public Block ( String inputString ) throws IllegalValueException {
+        if (!inputString.isEmpty()){
+            blockNumber = Integer.parseInt(inputString.trim());
+            valid = false;
+            if (!isValidBlockNumber(blockNumber)){
+                throw new IllegalValueException(BLOCK_NUMBER_CONSTRAINTS);
+            }
+            valid = true;
+            value = inputString.trim();
+        }
+        else {
+            // In this case, we don't raise any warnings or exceptions as we believe block input is omitted.
+            valid = false;
+            value = "";
+        }
+    }
+
+    /**
      * getter to help retrieve the String version of the block number
+     * This function can return empty String as the Block input can be omitted (but this object status is invalid)
      * @return the string version of the block number
      */
     public String getBlockNumberValue () {

@@ -2,6 +2,7 @@ package seedu.addressbook.commands;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.ArrayList;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
@@ -35,7 +36,12 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     public static final String MESSAGE_FAILED_ADD = "This add message contains value error by violating syntax";
 
+    public static final String STREET_CHECK_REGEX = "[a-zA-Z0-9 ]+";
+    public static final String UNIT_CHECK_REGEX = "#[0-9]+-[0-9]+";
+
     private final Person toAdd;
+
+
 
     /**
      * Convenience constructor using raw values.
@@ -52,35 +58,17 @@ public class AddCommand extends Command {
             tagSet.add(new Tag(tagName));
         }
 
-        //Now we split this address to the four required components to construct the objects separately
-        String[] addressList = address.split(",");
-        if (!(addressList.length == 4)) {
-            throw new IllegalValueException (MESSAGE_FAILED_ADD);
-        }
-        int block_raw = Integer.parseInt(addressList[0].trim());
-        String street_raw = addressList[1].trim();
-        String unit_raw = addressList[2].trim();
-        int postal_raw = Integer.parseInt(addressList[3].trim());
-        Block block = new Block (block_raw);
-        Street street = new Street (street_raw);
-        Unit unit = new Unit (unit_raw);
-        Postal postal = new Postal (postal_raw);
 
-        //validity check goes here
-        if (!block.isValidBlockObject()||
-                !street.isValidStreetObject()||
-                !unit.isValidUnitObject()||
-                !postal.isValidPostalCodeObject()) {
-            throw new IllegalValueException (MESSAGE_FAILED_ADD);
+        try {
+            this.toAdd = new Person(
+                    new Name(name),
+                    new Phone(phone, isPhonePrivate),
+                    new Email(email, isEmailPrivate),
+                    addressObjectStringGetter(address, isAddressPrivate),
+                    new UniqueTagList(tagSet));
+        } catch (IllegalValueException e) {
+            throw new IllegalValueException(MESSAGE_FAILED_ADD);
         }
-
-        this.toAdd = new Person(
-                new Name(name),
-                new Phone(phone, isPhonePrivate),
-                new Email(email, isEmailPrivate),
-                new Address(block, street, unit, postal, isAddressPrivate),
-                new UniqueTagList(tagSet)
-        );
     }
 
     public AddCommand(Person toAdd) {
@@ -89,6 +77,57 @@ public class AddCommand extends Command {
 
     public ReadOnlyPerson getPerson() {
         return toAdd;
+    }
+
+    /**
+     * To get the address obejct back by a first construction of four components objects
+     * Taking care of the fact that some of the values may be omitted
+     * @param addressString
+     * @param isAddressPrivate
+     * @return the wrapped Address object
+     * @throws Exception
+     */
+    public static Address addressObjectStringGetter ( String addressString, boolean isAddressPrivate ) throws IllegalValueException {
+
+        // Initialization
+        int i = 0;
+        Block block = null;
+        Postal postal = null;
+        Unit unit = null;
+        Street street = null;
+        String[] addressList = addressString.split(",");
+
+        // Check and put input strings components into different objects
+        while (i++ < addressList.length) {
+            //by checking each type characteristics to see to add to each block.
+            try {
+                int parsedInt = Integer.parseInt(addressList[i].trim());
+                if (Block.isValidBlockNumber(parsedInt)) {
+                    block = new Block (parsedInt);
+                } else if (Postal.isValidPostalCode(parsedInt)) {
+                    postal = new Postal (parsedInt);
+                } else {
+                    throw new IllegalValueException(MESSAGE_FAILED_ADD);
+                }
+            } catch (Exception e) {
+                if (addressList[i].trim().matches(UNIT_CHECK_REGEX)) {
+                    unit = new Unit(addressList[i].trim());
+                } else if (addressList[i].trim().matches(STREET_CHECK_REGEX)) {
+                    street = new Street(addressList[i].trim());
+                } else {
+                    throw new IllegalValueException(MESSAGE_FAILED_ADD);
+                }
+            }
+        }
+
+        // Mass check of any components not initialized
+        if ( block == null ) { block = new Block ("");}
+        if ( postal == null ) { postal = new Postal("");}
+        if ( unit==null ) { unit = new Unit("");}
+        if ( street==null ) { street = new Street("");}
+
+        //return the address result
+        return new Address(block, street, unit, postal, isAddressPrivate);
     }
 
     @Override

@@ -113,11 +113,11 @@ class UnitAddress {
         this.unitAddress = fullAddress[UNIT_ADDRESS_INDEX];
     }
 
-    public void setStreetAddress(String[] fullAddress) {
+    public void setUnitAddress(String[] fullAddress) {
         this.unitAddress = fullAddress[UNIT_ADDRESS_INDEX];
     }
 
-    public String getStreetAddress() {
+    public String getUnitAddress() {
         return this.unitAddress;
     }
 }

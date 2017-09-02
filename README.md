@@ -23,3 +23,4 @@
 * **Bug reports, Suggestions** : Post to the base repository's [issue tracker](https://github.com/se-edu/addressbook-level2/issues).
   if you noticed bugs or have suggestions on how to improve.
 * **Contributing** : We welcome pull requests. Follow the process described [here](https://github.com/oss-generic/process).
+* **Usage** : You are free to use this software without restriction, though no warranty is provided.

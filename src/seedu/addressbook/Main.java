@@ -1,5 +1,6 @@
 package seedu.addressbook;
 
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +32,6 @@ public class Main {
 
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
-
 
     public static void main(String... launchArgs) {
         new Main().run(launchArgs);
@@ -78,16 +78,26 @@ public class Main {
         System.exit(0);
     }
 
+    private void isFileExist() throws NoSuchFieldException {
+        if(!Files.exists(storage.path) || !Files.isRegularFile(storage.path)) {
+            throw new NoSuchFieldException(storage.path.toString() + " doea not exist");
+        }
+    }
+
     /** Reads the user command and executes it, until the user issues the exit command.  */
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
+            try {
+                isFileExist();
+            } catch (NoSuchFieldException e) {
+                System.err.println(e.getMessage());
+            }
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);
-
         } while (!ExitCommand.isExit(command));
     }
 

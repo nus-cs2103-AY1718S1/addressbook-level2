@@ -57,3 +57,72 @@ public class Address {
         return isPrivate;
     }
 }
+
+class BlockAddress {
+    private String blockAddress;
+    int BLOCK_ADDRESS_INDEX = 0;
+
+    public BlockAddress(String[] fullAddress) {
+        this.blockAddress = fullAddress[BLOCK_ADDRESS_INDEX];
+    }
+
+    public void setBlockAddress(String[] fullAddress) {
+        this.blockAddress = fullAddress[BLOCK_ADDRESS_INDEX];
+    }
+
+    public String getBlockAddress() {
+        return this.blockAddress;
+    }
+}
+
+
+class StreetAddress {
+    private String streetAddress;
+    int STREET_ADDRESS_INDEX = 1;
+
+    public StreetAddress(String[] fullAddress) {
+        this.streetAddress = fullAddress[STREET_ADDRESS_INDEX];
+    }
+
+    public void setStreetAddress(String[] fullAddress) {
+        this.streetAddress = fullAddress[STREET_ADDRESS_INDEX];
+    }
+
+    public String getStreetAddress() {
+        return this.streetAddress;
+    }
+}
+
+class UnitAddress {
+    private String unitAddress;
+    int UNIT_ADDRESS_INDEX = 2;
+
+    public UnitAddress(String[] fullAddress) {
+        this.unitAddress = fullAddress[UNIT_ADDRESS_INDEX];
+    }
+
+    public void setStreetAddress(String[] fullAddress) {
+        this.unitAddress = fullAddress[UNIT_ADDRESS_INDEX];
+    }
+
+    public String getStreetAddress() {
+        return this.unitAddress;
+    }
+}
+
+class PostalAddress {
+    private String postalAddress;
+    int POSTAL_ADDRESS_INDEX = 3;
+
+    public PostalAddress(String[] fullAddress) {
+        this.postalAddress = fullAddress[POSTAL_ADDRESS_INDEX];
+    }
+
+    public void setPostalAddress(String[] fullAddress) {
+        this.postalAddress = fullAddress[POSTAL_ADDRESS_INDEX];
+    }
+
+    public String getPostalAddress(String[] fullAddress) {
+        return this.postalAddress;
+    }
+}

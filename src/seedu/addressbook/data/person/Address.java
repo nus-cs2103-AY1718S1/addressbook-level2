@@ -149,7 +149,7 @@ class PostalAddress {
         this.postalAddress = fullAddress[POSTAL_ADDRESS_INDEX];
     }
 
-    public String getPostalAddress(String[] fullAddress) {
+    public String getPostalAddress() {
         return this.postalAddress;
     }
 }

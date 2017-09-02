@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/yunpengn/addressbook-level2.svg?branch=master)](https://travis-ci.org/yunpengn/addressbook-level2)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ad7aa7caa7ba4d40aef9440b16ea68d6)](https://www.codacy.com/app/se-edu/addressbook-level2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=se-edu/addressbook-level2&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4b851b2860064c8bb5d99d6c3c332f82)](https://www.codacy.com/app/yunpengn/addressbook-level2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yunpengn/addressbook-level2&amp;utm_campaign=Badge_Grade)
 
 # AddressBook (Level 2)
 * This is a CLI (Command Line Interface) Address Book application **written in OOP fashion**. 

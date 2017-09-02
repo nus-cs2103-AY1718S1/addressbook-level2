@@ -9,7 +9,7 @@ package seedu.addressbook.data.person;
 
 public class Contacts {
     public final String value;
-    private boolean isPrivate;
+    protected boolean isPrivate;
 
     public Contacts(String value, boolean isPrivate){
         this.value = value;

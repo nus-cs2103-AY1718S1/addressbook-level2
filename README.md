@@ -15,7 +15,8 @@
 
 # Contributors
 
-The full list of contributors for se-edu can be found [here](https://se-edu.github.io/docs/Team.html).
+* The full list of contributors for se-edu can be found [here](https://se-edu.github.io/docs/Team.html).
+* [Niu Yunpeng](https://yunpengn.github.io/) who forks the repository to here.
 
 # Contact Us
 

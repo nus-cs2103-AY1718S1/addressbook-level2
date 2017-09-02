@@ -12,8 +12,14 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    public final String[] value;
     private boolean isPrivate;
+
+    // Separated Address Class attributes
+    private BlockAddress block;
+    private StreetAddress street;
+    private UnitAddress unit;
+    private PostalAddress postalCode;
 
     /**
      * Validates given address.
@@ -26,7 +32,11 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        this.value = trimmedAddress.split(", ");
+
+        // Initialise separate Class objects and store address values in those classes
+
+
     }
 
     /**
@@ -58,6 +68,7 @@ public class Address {
     }
 }
 
+// Class for Block part of the a/BLOCK, STREET, UNIT, POSTAL_CODE address format
 class BlockAddress {
     private String blockAddress;
     int BLOCK_ADDRESS_INDEX = 0;
@@ -75,7 +86,7 @@ class BlockAddress {
     }
 }
 
-
+// Class for Street part of the a/BLOCK, STREET, UNIT, POSTAL_CODE address format
 class StreetAddress {
     private String streetAddress;
     int STREET_ADDRESS_INDEX = 1;
@@ -93,6 +104,7 @@ class StreetAddress {
     }
 }
 
+// Class for Unit part of the a/BLOCK, STREET, UNIT, POSTAL_CODE address format
 class UnitAddress {
     private String unitAddress;
     int UNIT_ADDRESS_INDEX = 2;
@@ -110,6 +122,7 @@ class UnitAddress {
     }
 }
 
+// Class for Postal part of the a/BLOCK, STREET, UNIT, POSTAL_CODE address format
 class PostalAddress {
     private String postalAddress;
     int POSTAL_ADDRESS_INDEX = 3;

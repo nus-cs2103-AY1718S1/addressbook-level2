@@ -1,6 +1,5 @@
 package seedu.addressbook.data.person;
 
-import com.sun.deploy.util.StringUtils;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 import java.util.StringJoiner;

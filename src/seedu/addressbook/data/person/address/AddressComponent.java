@@ -22,4 +22,11 @@ public interface AddressComponent {
     default boolean isValidAddress(String address) {
         return address.matches(ADDRESS_VALIDATION_REGEX);
     }
+
+    /**
+     * Gets the value (in String format) of this address component.
+     *
+     * @return the address value in String format.
+     */
+    String getValue();
 }

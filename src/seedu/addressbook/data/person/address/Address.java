@@ -15,7 +15,7 @@ public class Address implements AddressComponent {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should be in the format of "
                                                                + "BLOCK, STREET_NAME, UNIT, POSTAL_CODE";
 
-    public final String value;
+    private final String value;
     private boolean isPrivate;
 
     /**
@@ -35,9 +35,16 @@ public class Address implements AddressComponent {
     /**
      * Returns true if a given string is a valid person address.
      */
+    @Override
     public boolean isValidAddress(String test) {
         /* TODO: Fix this validity check by individually checking block, street, etc. */
         return test.matches(ADDRESS_VALIDATION_REGEX);
+    }
+
+    @Override
+    public String getValue() {
+        /* TODO: Fix this getter by individually checking block, street, etc. */
+        return value;
     }
 
     @Override

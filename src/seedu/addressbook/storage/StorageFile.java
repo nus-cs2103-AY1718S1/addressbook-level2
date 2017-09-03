@@ -100,6 +100,11 @@ public class StorageFile {
             final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            /**
+             * It seems that the FileWriter will simply create a new file at the {@link #path} whenever it is used.
+             * Thus, no exception is expected to occur if the storage file is deleted at runtime.
+             */
             marshaller.marshal(toSave, fileWriter);
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);

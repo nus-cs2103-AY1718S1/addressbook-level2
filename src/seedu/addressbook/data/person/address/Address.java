@@ -2,6 +2,8 @@ package seedu.addressbook.data.person.address;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.HashMap;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -17,9 +19,12 @@ public class Address implements AddressComponent {
                                                                + "BLOCK, STREET_NAME, UNIT, POSTAL_CODE.";
 
     /**
-     * TODO: Replaces this by combination of different components' values.
+     * Stores all the different components of a full address (block number, street name, unit number and postal code)
+     * in a HashMap and the format of (in the <String, AddressComponent> key-value pair.
      */
-    private final String value;
+    private HashMap<String, AddressComponent> components = new HashMap<>();
+
+    private static final String COMPONENT_KEY_BLOCK = "block number";
 
     private boolean isPrivate;
 
@@ -31,10 +36,7 @@ public class Address implements AddressComponent {
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
         this.isPrivate = isPrivate;
-        if (!isValidAddress(trimmedAddress)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
-        }
-        this.value = trimmedAddress;
+        components.put(COMPONENT_KEY_BLOCK, new Block(address));
     }
 
     /**
@@ -48,25 +50,24 @@ public class Address implements AddressComponent {
 
     @Override
     public String getValue() {
-        /* TODO: Fix this getter by individually checking block, street, etc. */
-        return value;
+        return components.get(COMPONENT_KEY_BLOCK).getValue();
     }
 
     @Override
     public String toString() {
-        return value;
+        return getValue();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                    && this.value.equals(((Address) other).value)); // state check
+                    && this.getValue().equals(((Address) other).getValue())); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return getValue().hashCode();
     }
 
     public boolean isPrivate() {

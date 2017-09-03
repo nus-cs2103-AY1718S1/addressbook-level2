@@ -28,9 +28,7 @@ public interface AddressComponent {
      * @param address is the given string.
      * @return true if the given string is valid.
      */
-    default boolean isValidAddress(String address) {
-        return address.matches(ADDRESS_VALIDATION_REGEX);
-    }
+    boolean isValidAddress(String address);
 
     /**
      * Gets the value (in String format) of this address component.

@@ -4,7 +4,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 public class Block implements AddressComponent {
     public static final String EXAMPLE = "123";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Block number should be an integer number.";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Block number should be a positive integer number.";
+    public static final String ADDRESS_VALIDATION_REGEX = "^[1-9]\\d*$";
 
     private final String value;
 
@@ -19,6 +20,11 @@ public class Block implements AddressComponent {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+    }
+
+    @Override
+    public boolean isValidAddress(String address) {
+        return address.matches(ADDRESS_VALIDATION_REGEX);
     }
 
     @Override

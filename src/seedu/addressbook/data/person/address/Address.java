@@ -9,7 +9,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Address implements AddressComponent {
     /**
      * For now, we assume that the user will always input all of the four components of the address.
-     * TODO: Can we remove this pre-assumption?
+     * We also assume that the address input must be in the order of BLOCK, STREET_NAME, UNIT, POSTAL_CODE.
+     * TODO: Can we remove these two pre-assumptions?
      */
     public static final String EXAMPLE = "123, Beach Ave 3, #12-34, 231534";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should be in the format of "

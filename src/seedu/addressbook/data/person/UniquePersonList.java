@@ -11,7 +11,6 @@ import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
 
 
-
 /**
  * A list of persons. Does not allow null elements or duplicates.
  *

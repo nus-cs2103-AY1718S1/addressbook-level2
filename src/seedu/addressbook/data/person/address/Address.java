@@ -1,4 +1,4 @@
-package seedu.addressbook.data.person;
+package seedu.addressbook.data.person.address;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
@@ -45,7 +45,7 @@ public class Address {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                    && this.value.equals(((Address) other).value)); // state check
     }
 
     @Override

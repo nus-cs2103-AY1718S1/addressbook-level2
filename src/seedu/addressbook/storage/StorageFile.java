@@ -93,7 +93,6 @@ public class StorageFile {
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
      */
     public void save(AddressBook addressBook) throws StorageOperationException {
-
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */

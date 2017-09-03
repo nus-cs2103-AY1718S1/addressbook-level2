@@ -16,7 +16,7 @@ public class Address {
      */
     public static final String EXAMPLE = "123, Beach Ave 3, #12-34, 231534";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should be in the format of "
-                                                               + "BLOCK, STREET_NAME, UNIT, POSTAL_CODE.";
+            + "BLOCK, STREET_NAME, UNIT, POSTAL_CODE, where different components are separated by commas.";
 
     /**
      * Stores all the different components of a full address (block number, street name, unit number and postal code)
@@ -24,7 +24,13 @@ public class Address {
      */
     private HashMap<String, AddressComponent> components = new HashMap<>();
 
+    /**
+     * Keys for different components in an address, used by {@link #components}.
+     */
     private static final String COMPONENT_KEY_BLOCK = "block number";
+    private static final String COMPONENT_KEY_STREET = "street name";
+    private static final String COMPONENT_KEY_UNIT= "unit number";
+    private static final String COMPONENT_KEY_POSTAL= "postal code";
 
     private boolean isPrivate;
 
@@ -35,15 +41,21 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
+        setComponents(address);
+    }
+
+    /**
+     * Separates the different components of an address and stores them into respective classes.
+     *
+     * @param address is the whole address (from user input) in string format.
+     * @throws IllegalValueException if given address string is invalid.
+     */
+    private void setComponents(String address) throws IllegalValueException {
         components.put(COMPONENT_KEY_BLOCK, new Block(address));
     }
 
     public String getValue() {
-        return getBlock().getValue();
-    }
-
-    private AddressComponent getBlock() {
-        return components.get(COMPONENT_KEY_BLOCK);
+        return components.get(COMPONENT_KEY_BLOCK).getValue();
     }
 
     @Override

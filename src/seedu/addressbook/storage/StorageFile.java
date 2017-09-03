@@ -119,25 +119,22 @@ public class StorageFile {
      * @throws StorageOperationException if there were errors reading and/or converting data from file.
      */
     public AddressBook load() throws StorageOperationException {
-
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             return new AddressBook();
         }
 
-        try (final Reader fileReader =
-                     new BufferedReader(new FileReader(path.toFile()))) {
-
+        try (final Reader fileReader = new BufferedReader(new FileReader(path.toFile()))) {
             final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             final AdaptedAddressBook loaded = (AdaptedAddressBook) unmarshaller.unmarshal(fileReader);
+
             // manual check for missing elements
             if (loaded.isAnyRequiredFieldMissing()) {
                 throw new StorageOperationException("File data missing some elements");
             }
-            return loaded.toModelType();
 
+            return loaded.toModelType();
         } catch (FileNotFoundException fnfe) {
             throw new AssertionError("A non-existent file scenario is already handled earlier.");
-        // other errors
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {

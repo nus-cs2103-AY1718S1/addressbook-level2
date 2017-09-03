@@ -49,16 +49,16 @@ public class ViewCommandTest {
         ReadOnlyPerson stranger = new Person(new Name("me"),
                                              new Phone("123", true),
                                              new Email("some@hey.go", true),
-                                             new Address("nus", false),
+                                             new Address("21, Kent Ridge, #30-01, 119077", false),
                                              new UniqueTagList(Collections.emptySet()));
-        List<ReadOnlyPerson> listWithExtraPerson
-                = new ArrayList<ReadOnlyPerson>(listWithAllTypicalPersons);
+
+        List<ReadOnlyPerson> listWithExtraPerson = new ArrayList<ReadOnlyPerson>(listWithAllTypicalPersons);
         listWithExtraPerson.add(stranger);
 
-        // empty addressbook
+        // empty addressBook
         assertViewErrorPersonNotInAddressBook(emptyAddressBook, listWithExtraPerson, 1);
 
-        // non-empty addressbook
+        // non-empty addressBook
         assertViewErrorPersonNotInAddressBook(typicalAddressBook, listWithExtraPerson,
                                                             listWithExtraPerson.size());
     }

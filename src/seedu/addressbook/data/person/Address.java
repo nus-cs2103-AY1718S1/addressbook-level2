@@ -16,9 +16,9 @@ public class Address {
     public final String value;
     private boolean isPrivate;
     private Block block;
-    private Street street;
-    private Unit unit;
-    private PostalCode postalCode;
+    //private Street street;
+    //private Unit unit;
+    //private PostalCode postalCode;
 
     /**
      * Validates given address.
@@ -57,6 +57,8 @@ public class Address {
     public int hashCode() {
         return value.hashCode();
     }
+
+    public Block getBlock() {return block;}
 
     public boolean isPrivate() {
         return isPrivate;

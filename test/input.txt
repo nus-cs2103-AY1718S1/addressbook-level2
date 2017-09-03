@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -39,23 +39,38 @@
   add Valid Name p/12345 e/notAnEmail a/valid, address
   add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
 
-  # should add correctly and list non private information
+  # should catch error due to regular expression checkers inside address's detailed components
+  # the number of address components is not 4
   add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
   list
-  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+  # the block number is invalid
+  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/-222, beta street, #12, 110955 t/secretive
   list
-  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+  # the unit number is invalid
+  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street, 12, 110955 t/friends t/school
   list
-  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
+  # the postal code is not 6-digit
+  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street, #12-34, 11003 t/friends
   list
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+
+  # should add correctly and list non private information
+  # take note of all the different tags here
+  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street, #13-24, 119657
+  list
+  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street, #09-24, 146587 t/secretive
+  list
+  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street, #16-32, 239856 t/friends t/school
+  list
+  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street, #54-05, 119845 t/friends
+  list
+  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street, #09-34, 320098 t/tubers t/starchy
   list
 
   # should not allow adding duplicate persons
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street, #09-34, 320098 t/tubers t/starchy
 
 ##########################################################
-# test view/viewall persons command
+# test view/view-all persons command
 ##########################################################
 
   # should catch invalid args format

@@ -44,6 +44,8 @@ Side reading: [Code smell: Primitive Obsession](https://sourcemaking.com/refacto
   <img src="images/AddressClasses.png" width='250'/>
 * Update the user guide and tests to match.
 
+##### [Yunpeng](https://yunpengn.github.io/) has accomplished this LO on September 3rd, 2017.
+
 ------------------------------------------------------------------------------------------------------
 
 ### Follow the Single Responsibility Principle `[LO-SRP]`

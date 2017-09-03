@@ -16,7 +16,7 @@ public class Address {
     public final String value;
     private boolean isPrivate;
     private Block block;
-    //private Street street;
+    private Street street;
     //private Unit unit;
     //private PostalCode postalCode;
 
@@ -59,6 +59,8 @@ public class Address {
     }
 
     public Block getBlock() {return block;}
+
+    public Street getStreet() {return street;}
 
     public boolean isPrivate() {
         return isPrivate;

@@ -13,9 +13,13 @@ public class Address implements AddressComponent {
      */
     public static final String EXAMPLE = "123, Beach Ave 3, #12-34, 231534";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should be in the format of "
-                                                               + "BLOCK, STREET_NAME, UNIT, POSTAL_CODE";
+                                                               + "BLOCK, STREET_NAME, UNIT, POSTAL_CODE.";
 
+    /**
+     * TODO: Replaces this by combination of different components' values.
+     */
     private final String value;
+
     private boolean isPrivate;
 
     /**

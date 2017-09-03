@@ -60,10 +60,25 @@ public class Address {
      * @throws IllegalValueException if given address string is invalid.
      */
     private void setComponents(String address) throws IllegalValueException {
-        components.put(COMPONENT_KEY_BLOCK, new Block(address));
-        components.put(COMPONENT_KEY_STREET, new Street(address));
-        components.put(COMPONENT_KEY_UNIT, new Unit(address));
-        components.put(COMPONENT_KEY_POSTAL_CODE, new PostalCode(address));
+        HashMap<String, String> inputValues = parseInputAddress(address);
+
+        components.put(COMPONENT_KEY_BLOCK, new Block(inputValues.get(COMPONENT_KEY_BLOCK)));
+        components.put(COMPONENT_KEY_STREET, new Street(inputValues.get(COMPONENT_KEY_STREET)));
+        components.put(COMPONENT_KEY_UNIT, new Unit(inputValues.get(COMPONENT_KEY_UNIT)));
+        components.put(COMPONENT_KEY_POSTAL_CODE, new PostalCode(inputValues.get(COMPONENT_KEY_POSTAL_CODE)));
+    }
+
+    /**
+     * Parses the raw input address into respective components of a meaningful address.
+     *
+     * @param address is the user's raw input of the whole address.
+     * @return a HashMap in which each pair is one component of the address.
+     * @throws IllegalValueException if the raw input string is invalid.
+     */
+    private HashMap<String, String> parseInputAddress(String address) throws IllegalValueException {
+        HashMap<String, String> values = new HashMap<>();
+
+        return values;
     }
 
     /**

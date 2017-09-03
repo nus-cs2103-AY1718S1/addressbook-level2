@@ -11,7 +11,7 @@ public interface AddressComponent {
      */
     String EXAMPLE = null;
     String MESSAGE_ADDRESS_CONSTRAINTS = null;
-    String ADDRESS_VALIDATION_REGEX = null;
+    String ADDRESS_VALIDATION_REGEX = ".+";
 
     /**
      * Checks whether the given string is valid to be used as this address component.
@@ -19,5 +19,7 @@ public interface AddressComponent {
      * @param address is the given string.
      * @return true if the given string is valid.
      */
-    boolean isValidAddress(String address);
+    default boolean isValidAddress(String address) {
+        return address.matches(ADDRESS_VALIDATION_REGEX);
+    }
 }

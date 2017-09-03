@@ -95,7 +95,7 @@ public class Address {
     public String getValue() {
         return components.get(COMPONENT_KEY_BLOCK).getValue() + ADDRESS_OUTPUT_DELIMITER
                      + components.get(COMPONENT_KEY_STREET).getValue() + ADDRESS_OUTPUT_DELIMITER
-                     + components.get(COMPONENT_KEY_STREET).getValue() + ADDRESS_OUTPUT_DELIMITER
+                     + components.get(COMPONENT_KEY_UNIT).getValue() + ADDRESS_OUTPUT_DELIMITER
                      + components.get(COMPONENT_KEY_POSTAL_CODE).getValue();
     }
 

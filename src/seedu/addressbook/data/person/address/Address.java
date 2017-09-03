@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid if all address components are valid.
  */
-public class Address implements AddressComponent {
+public class Address {
     /**
      * For now, we assume that the user will always input all of the four components of the address.
      * We also assume that the address input must be in the order of BLOCK, STREET_NAME, UNIT, POSTAL_CODE.
@@ -34,23 +34,16 @@ public class Address implements AddressComponent {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
-        String trimmedAddress = address.trim();
         this.isPrivate = isPrivate;
         components.put(COMPONENT_KEY_BLOCK, new Block(address));
     }
 
-    /**
-     * Returns true if a given string is a valid person address.
-     */
-    @Override
-    public boolean isValidAddress(String test) {
-        /* TODO: Fix this validity check by individually checking block, street, etc. */
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public String getValue() {
+        return getBlock().getValue();
     }
 
-    @Override
-    public String getValue() {
-        return components.get(COMPONENT_KEY_BLOCK).getValue();
+    private AddressComponent getBlock() {
+        return components.get(COMPONENT_KEY_BLOCK);
     }
 
     @Override

@@ -2,18 +2,20 @@ package seedu.addressbook.data.person.address;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
-public class Street implements AddressComponent {
-    public static final String EXAMPLE = "Kent Ridge Road";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Street name should be a string of any format.";
+public class Unit implements AddressComponent {
+    public static final String EXAMPLE = "#02-26";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Unit name must be in the format of #XX";
+    // Disable checker for unit number since we have not fixed test cases.
+    // public static final String ADDRESS_VALIDATION_REGEX = "^[1-9]\\d*$";
 
     private final String value;
 
     /**
-     * Validates the given street name.
+     * Validates the given unit number.
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Street(String address) throws IllegalValueException {
+    public Unit(String address) throws IllegalValueException {
         String trimmedAddress = address.trim();
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);

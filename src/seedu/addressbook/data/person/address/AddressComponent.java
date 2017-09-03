@@ -14,15 +14,6 @@ public interface AddressComponent {
     String ADDRESS_VALIDATION_REGEX = ".+";
 
     /**
-     * Separates different components in the same overall address.
-     *
-     * Notice: output delimiter has a whitespace while the input delimiter does not. The input could be trimmed
-     * anyway. The output must be separated with a whitespace to accord with English grammatical requirement.
-     */
-    String ADDRESS_INPUT_DELIMITER = ",";
-    String ADDRESS_OUTPUT_DELIMITER = ", ";
-
-    /**
      * Checks whether the given string is valid to be used as this address component.
      *
      * @param address is the given string.

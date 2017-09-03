@@ -29,8 +29,17 @@ public class Address {
      */
     private static final String COMPONENT_KEY_BLOCK = "block number";
     private static final String COMPONENT_KEY_STREET = "street name";
-    private static final String COMPONENT_KEY_UNIT= "unit number";
-    private static final String COMPONENT_KEY_POSTAL= "postal code";
+    private static final String COMPONENT_KEY_UNIT = "unit number";
+    private static final String COMPONENT_KEY_POSTAL_CODE = "postal code";
+
+    /**
+     * Separates different components in the same overall address.
+     *
+     * Notice: output delimiter has a whitespace while the input delimiter does not. The input could be trimmed
+     * anyway. The output must be separated with a whitespace to accord with English grammatical requirement.
+     */
+    String ADDRESS_INPUT_DELIMITER = ",";
+    String ADDRESS_OUTPUT_DELIMITER = ", ";
 
     private boolean isPrivate;
 
@@ -52,10 +61,22 @@ public class Address {
      */
     private void setComponents(String address) throws IllegalValueException {
         components.put(COMPONENT_KEY_BLOCK, new Block(address));
+        components.put(COMPONENT_KEY_STREET, new Street(address));
+        components.put(COMPONENT_KEY_UNIT, new Unit(address));
+        components.put(COMPONENT_KEY_POSTAL_CODE, new PostalCode(address));
     }
 
+    /**
+     * Returns the complete address by combination of all components (separated by {@link #ADDRESS_OUTPUT_DELIMITER})
+     * in a reasonable format.
+     *
+     * @return the complete address.
+     */
     public String getValue() {
-        return components.get(COMPONENT_KEY_BLOCK).getValue();
+        return components.get(COMPONENT_KEY_BLOCK).getValue() + ADDRESS_OUTPUT_DELIMITER
+                     + components.get(COMPONENT_KEY_STREET).getValue() + ADDRESS_OUTPUT_DELIMITER
+                     + components.get(COMPONENT_KEY_STREET).getValue() + ADDRESS_OUTPUT_DELIMITER
+                     + components.get(COMPONENT_KEY_POSTAL_CODE).getValue();
     }
 
     @Override

@@ -8,10 +8,10 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Unit {
 
-    public static final String EXAMPLE = "Clementi Ave 3";
+    public static final String EXAMPLE = "#12-34";
     public static final String MESSAGE_UNIT_CONSTRAINTS =
-            "Person unit should be a combination of alphanumerics and spaces, with their initials capitalised";
-    public static final String UNIT_VALIDATION_REGEX = "([A-Z][a-z]+.|[0-9]+)+";
+            "Person unit should start with a hash, the floor number, dash, and the unit number";
+    public static final String UNIT_VALIDATION_REGEX = "#[0-9]+-[0-9]+";
 
     public final String value;
     private boolean isPrivate;

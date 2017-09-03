@@ -18,7 +18,7 @@ public class Address {
     private Block block;
     private Street street;
     private Unit unit;
-    //private PostalCode postalCode;
+    private PostalCode postalCode;
 
     /**
      * Validates given address.
@@ -63,6 +63,8 @@ public class Address {
     public Street getStreet() {return street;}
 
     public Unit getUnit() {return unit;}
+
+    public PostalCode getPostalCode() {return postalCode;}
 
     public boolean isPrivate() {
         return isPrivate;

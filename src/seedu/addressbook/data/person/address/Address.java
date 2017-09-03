@@ -32,14 +32,10 @@ public class Address {
     private static final String COMPONENT_KEY_UNIT = "unit number";
     private static final String COMPONENT_KEY_POSTAL_CODE = "postal code";
 
-    /**
-     * Separates different components in the same overall address.
-     *
-     * Notice: output delimiter has a whitespace while the input delimiter does not. The input could be trimmed
-     * anyway. The output must be separated with a whitespace to accord with English grammatical requirement.
-     */
-    String ADDRESS_INPUT_DELIMITER = ",";
-    String ADDRESS_OUTPUT_DELIMITER = ", ";
+    /** Separates different components in the same overall address. */
+    private final String ADDRESS_INPUT_DELIMITER = ",";
+    /** The output must be separated with an additional whitespace to accord with English grammatical requirement. */
+    private final String ADDRESS_OUTPUT_DELIMITER = ", ";
 
     private boolean isPrivate;
 

@@ -5,8 +5,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Block implements AddressComponent {
     public static final String EXAMPLE = "123";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Block number should be a positive integer number.";
-    // Disable checker for block number since we have not fixed test cases.
-    // public static final String ADDRESS_VALIDATION_REGEX = "^[1-9]\\d*$";
+    // Block number has to be positive integer numeral.
+    public static final String ADDRESS_VALIDATION_REGEX = "^[1-9]\\d*$";
 
     private final String value;
 

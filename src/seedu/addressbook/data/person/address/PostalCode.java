@@ -4,9 +4,9 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 public class PostalCode implements AddressComponent {
     public static final String EXAMPLE = "119627";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Postal code must be a 6 digit number";
-    // Disable checker for unit number since we have not fixed test cases.
-    // public static final String ADDRESS_VALIDATION_REGEX = "^[1-9]\\d*$";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Postal code must be a 6-digit positive integer";
+    // Postal code has to be non-sign 6-digit integer numeral.
+    public static final String ADDRESS_VALIDATION_REGEX = "[1-9]\\d{5}(?!\\d)";
 
     private final String value;
 

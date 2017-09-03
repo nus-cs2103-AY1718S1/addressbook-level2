@@ -73,6 +73,9 @@ Here's a slightly more difficult exercise.
 
 * The current code does not handle the situation where the user deletes the storage file while the
   AddressBook program is running. Use exceptions to handle that situation.
+  
+##### [Yunpeng](https://yunpengn.github.io/) has attempted this LO on September 3rd, 2017.
+However, no exception occurs when the storage is deleted at runtime. Thus, Yunpeng decided to discontinue on this LO.
 
 ------------------------------------------------------------------------------------------------------
 

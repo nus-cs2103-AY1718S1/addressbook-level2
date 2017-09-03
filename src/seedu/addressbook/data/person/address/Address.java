@@ -76,9 +76,18 @@ public class Address {
      * @throws IllegalValueException if the raw input string is invalid.
      */
     private HashMap<String, String> parseInputAddress(String address) throws IllegalValueException {
-        HashMap<String, String> values = new HashMap<>();
+        String[] inputs = address.split(ADDRESS_INPUT_DELIMITER);
+        if (inputs.length != 4) {
+            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        }
 
-        return values;
+        HashMap<String, String> results = new HashMap<>();
+        results.put(COMPONENT_KEY_BLOCK, inputs[0]);
+        results.put(COMPONENT_KEY_STREET, inputs[1]);
+        results.put(COMPONENT_KEY_UNIT, inputs[2]);
+        results.put(COMPONENT_KEY_POSTAL_CODE, inputs[3]);
+
+        return results;
     }
 
     /**

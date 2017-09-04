@@ -29,3 +29,7 @@ test/localrun.bat
 build/
 
 .settings/
+
+# Xcode classpath
+.classpath
+.project

@@ -40,6 +40,8 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
 > items with `...` after them can have multiple instances. Order of parameters are fixed. 
 > 
+> Address field has four components, which are Block, Street, Unit and Postal code, every one of them are optional, which means you can ignore or don't provide anything, except that the `a/` prefix is crucial and must be included.  
+>
 > Put a `p` before the phone / email / address prefixes to mark it as `private`. `private` details can only
 > be seen using the `viewall` command.
 > 

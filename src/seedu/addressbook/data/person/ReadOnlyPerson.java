@@ -12,7 +12,10 @@ public interface ReadOnlyPerson {
     Name getName();
     Phone getPhone();
     Email getEmail();
-    Address getAddress();
+    Block getBlock();
+    Street getStreet();
+    Unit getUnit();
+    PostalCode getPostalCode();
 
     /**
      * Returns a new TagList that is a deep copy of the internal TagList,
@@ -40,7 +43,10 @@ public interface ReadOnlyPerson {
                     && other.getName().equals(this.getName()) // state checks here onwards
                     && other.getPhone().equals(this.getPhone())
                     && other.getEmail().equals(this.getEmail())
-                    && other.getAddress().equals(this.getAddress())
+                    && other.getBlock().equals(this.getBlock())
+                    && other.getStreet().equals(this.getStreet())
+                    && other.getUnit().equals(this.getUnit())
+                    && other.getPostalCode().equals(this.getPostalCode())
                     && other.getTags().equals(this.getTags()));
     }
 

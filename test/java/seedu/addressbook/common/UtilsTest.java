@@ -27,10 +27,12 @@ public class UtilsTest {
         // non empty list with nulls in the middle
         assertTrue(Utils.isAnyNull(new Object(), null, null, "test"));
         assertTrue(Utils.isAnyNull("", null, new Object()));
+        assertTrue(Utils.isAnyNull("", null,null, new Object()));
 
         // non empty list with one null as the last element
         assertTrue(Utils.isAnyNull("", new Object(), null));
         assertTrue(Utils.isAnyNull(new Object(), new Object(), null));
+        assertTrue(Utils.isAnyNull( "", null));
 
         // confirms nulls inside the list are not considered
         List<Object> nullList = Arrays.asList((Object) null);

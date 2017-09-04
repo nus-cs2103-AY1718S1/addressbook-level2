@@ -1,6 +1,9 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.ui.TextUi;
+
+import java.util.StringTokenizer;
 
 /**
  * Represents a Person's address in the address book.
@@ -14,6 +17,10 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
+    private Block block=null;
+    private Street street=null;
+    private Unit unit=null;
+    private PostalCode postalCode=null;
 
     /**
      * Validates given address.
@@ -22,11 +29,42 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
+
+
+        separateAddress(trimmedAddress);
+
+
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+    }
+
+    //separate address into different classes
+    private void separateAddress(String trimmedAddress) {
+        StringTokenizer separator = new StringTokenizer(trimmedAddress, ", ");
+        int count = 0;
+
+        while(separator.hasMoreTokens()) {
+            count++;
+            switch (count) {
+                case 1:
+                    block = new Block(separator.nextToken());
+                    break;
+                case 2:
+                    street = new Street(separator.nextToken());
+                    break;
+                case 3:
+                    unit = new Unit(separator.nextToken());
+                    break;
+                case 4:
+                    postalCode = new PostalCode(separator.nextToken());
+                    break;
+                default:
+                    return;
+            }
+        }
     }
 
     /**

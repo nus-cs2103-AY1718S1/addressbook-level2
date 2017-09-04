@@ -52,6 +52,12 @@ public class StorageFile {
         }
     }
 
+    public static class StorageFileDeletedException extends IllegalValueException {
+        public StorageFileDeletedException(String message) {
+            super(message);
+        }
+    }
+
     private final JAXBContext jaxbContext;
 
     public final Path path;

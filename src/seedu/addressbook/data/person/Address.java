@@ -36,7 +36,8 @@ public class Address {
 
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress, numTokens)) {
-            System.out.println(MESSAGE_ADDRESS_INVALID + AddCommand.MESSAGE_USAGE);
+            System.out.println("|| " + MESSAGE_ADDRESS_INVALID);
+            System.out.println("|| " +AddCommand.MESSAGE_USAGE);
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;

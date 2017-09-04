@@ -98,7 +98,7 @@ public class AddCommand extends Command {
         String[] addressList = addressString.split(",");
 
         // Check and put input strings components into different objects
-        while (i++ < addressList.length) {
+        while (i < addressList.length) {
             //by checking each type characteristics to see to add to each block.
             try {
                 int parsedInt = Integer.parseInt(addressList[i].trim());
@@ -118,6 +118,7 @@ public class AddCommand extends Command {
                     throw new IllegalValueException(MESSAGE_FAILED_ADD);
                 }
             }
+            i++;
         }
 
         // Mass check of any components not initialized

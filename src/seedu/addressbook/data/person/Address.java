@@ -72,7 +72,7 @@ public class Address {
             }
         }
         interatedValue = interatedValue.trim();
-        if (!interatedValue.isEmpty() && interatedValue.charAt(interatedValue.length()) == ',') {
+        if (!interatedValue.isEmpty() && interatedValue.charAt(interatedValue.length()-1) == ',') {
             interatedValue = interatedValue.substring(0, interatedValue.length()-1);
         }
         this.value = interatedValue;

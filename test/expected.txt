@@ -74,13 +74,13 @@
 || Tags names should be alphanumeric
 || ===================================================
 || Enter command: || [Command entered:  add []\[;] p/12345 e/valid@e.mail a/valid, address]
-|| Person names should be spaces or alphabetic characters
+|| This add message contains value error by violating syntax
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/not_numbers e/valid@e.mail a/valid, address]
-|| Person phone numbers should only contain numbers
+|| This add message contains value error by violating syntax
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/notAnEmail a/valid, address]
-|| Person emails should be 2 alphanumeric/period strings separated by '@'
+|| This add message contains value error by violating syntax
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag]
 || Tags names should be alphanumeric

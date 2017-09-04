@@ -1,5 +1,6 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.commands.AddCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.ui.TextUi;
 
@@ -7,12 +8,13 @@ import java.util.StringTokenizer;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String, int)}
  */
 public class Address {
 
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String MESSAGE_ADDRESS_INVALID = "Address entered is invalid";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
@@ -30,19 +32,18 @@ public class Address {
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
 
-
-        separateAddress(trimmedAddress);
-
+        int numTokens = separateAddress(trimmedAddress);
 
         this.isPrivate = isPrivate;
-        if (!isValidAddress(trimmedAddress)) {
+        if (!isValidAddress(trimmedAddress, numTokens)) {
+            System.out.println(MESSAGE_ADDRESS_INVALID + AddCommand.MESSAGE_USAGE);
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
     }
 
     //separate address into different classes
-    private void separateAddress(String trimmedAddress) {
+    private int separateAddress(String trimmedAddress) {
         StringTokenizer separator = new StringTokenizer(trimmedAddress, ", ");
         int count = 0;
 
@@ -62,16 +63,18 @@ public class Address {
                     postalCode = new PostalCode(separator.nextToken());
                     break;
                 default:
-                    return;
+                    return count;
             }
         }
+
+        return count;
     }
 
     /**
      * Returns true if a given string is a valid person address.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public static boolean isValidAddress(String test, int numTokens) {
+        return (test.matches(ADDRESS_VALIDATION_REGEX) && (numTokens == 4));
     }
 
     @Override

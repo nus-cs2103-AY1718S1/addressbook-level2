@@ -17,9 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 /**
  * Represents the file used to store address book data.
@@ -119,7 +117,7 @@ public class StorageFile {
      *    does not exist.
      * @throws StorageOperationException if there were errors reading and/or converting data from file.
      */
-    public AddressBook load() throws StorageOperationException {
+    public AddressBook load() throws StorageOperationException, NoSuchFileException {
 
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             return new AddressBook();
@@ -135,7 +133,8 @@ public class StorageFile {
                 throw new StorageOperationException("File data missing some elements");
             }
             return loaded.toModelType();
-
+        } catch(NoSuchFileException e) {
+            throw new NoSuchFileException("Error locating file");
         } catch (FileNotFoundException fnfe) {
             throw new AssertionError("A non-existent file scenario is already handled earlier.");
         // other errors

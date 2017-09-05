@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 public class Address {
 
     public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should be in format: a/BLOCK, STREET, UNIT, POSTAL_CODE";
+    public static final String ADDRESS_VALIDATION_REGEX = "^([^,]+,){3}[^,]+$"; // Allows anything separated by 3 commas
 
     private final PostalCode street;
     private final Block block;

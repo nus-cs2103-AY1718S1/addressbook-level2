@@ -25,19 +25,27 @@ public class Address {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
-        String trimmedAddress = address.trim();
         this.isPrivate = isPrivate;
-        if (!isValidAddress(trimmedAddress)) {
+        if (!isValidAddress(address)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
     }
 
     /**
      * Returns true if a given string is a valid person address.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public boolean isValidAddress(String addressString) throws IllegalValueException {
+        String[] addressData = getAddressData(addressString);
+        if (addressData.length != 4) {
+            return false;
+        }
+
+        block = new Block(addressData[0]);
+        street = new Street(addressData[1]);
+        unit = new Unit(addressData[2]);
+        postalCode = new PostalCode(addressData[3]);
+        
+        return true;
     }
 
     @Override

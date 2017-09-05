@@ -9,12 +9,7 @@ import javax.xml.bind.annotation.XmlValue;
 
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -37,7 +32,13 @@ public class AdaptedPerson {
     @XmlElement(required = true)
     private AdaptedContactDetail email;
     @XmlElement(required = true)
-    private AdaptedContactDetail address;
+    private AdaptedContactDetail block;
+    @XmlElement(required = true)
+    private AdaptedContactDetail street;
+    @XmlElement(required = true)
+    private AdaptedContactDetail unit;
+    @XmlElement(required = true)
+    private AdaptedContactDetail postalCode;
 
     @XmlElement
     private List<AdaptedTag> tagged = new ArrayList<>();
@@ -45,7 +46,8 @@ public class AdaptedPerson {
     /**
      * No-arg constructor for JAXB use.
      */
-    public AdaptedPerson() {}
+    public AdaptedPerson() {
+    }
 
 
     /**
@@ -64,9 +66,21 @@ public class AdaptedPerson {
         email.isPrivate = source.getEmail().isPrivate();
         email.value = source.getEmail().value;
 
-        address = new AdaptedContactDetail();
-        address.isPrivate = source.getAddress().isPrivate();
-        address.value = source.getAddress().value;
+        block = new AdaptedContactDetail();
+        block.isPrivate = source.getBlock().isPrivate();
+        block.value = source.getBlock().value;
+
+        street = new AdaptedContactDetail();
+        street.isPrivate = source.getStreet().isPrivate();
+        street.value = source.getStreet().value;
+
+        unit = new AdaptedContactDetail();
+        unit.isPrivate = source.getUnit().isPrivate();
+        unit.value = source.getUnit().value;
+
+        postalCode = new AdaptedContactDetail();
+        postalCode.isPrivate = source.getPostalCode().isPrivate();
+        postalCode.value = source.getPostalCode().value;
 
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -76,7 +90,7 @@ public class AdaptedPerson {
 
     /**
      * Returns true if any required field is missing.
-     *
+     * <p>
      * JAXB does not enforce (required = true) without a given XML schema.
      * Since we do most of our validation using the data class constructors, the only extra logic we need
      * is to ensure that every xml element in the document is present. JAXB sets missing elements as null,
@@ -89,8 +103,8 @@ public class AdaptedPerson {
             }
         }
         // second call only happens if phone/email/address are all not null
-        return Utils.isAnyNull(name, phone, email, address)
-                || Utils.isAnyNull(phone.value, email.value, address.value);
+        return Utils.isAnyNull(name, phone, email, block, street, unit, postalCode)
+                || Utils.isAnyNull(phone.value, email.value, block.value, street.value, unit.value, postalCode.value);
     }
 
     /**
@@ -106,8 +120,11 @@ public class AdaptedPerson {
         final Name name = new Name(this.name);
         final Phone phone = new Phone(this.phone.value, this.phone.isPrivate);
         final Email email = new Email(this.email.value, this.email.isPrivate);
-        final Address address = new Address(this.address.value, this.address.isPrivate);
+        final Block block = new Block(this.block.value, this.block.isPrivate);
+        final Street street = new Street(this.street.value, this.street.isPrivate);
+        final Unit unit = new Unit(this.unit.value, this.unit.isPrivate);
+        final PostalCode postalCode = new PostalCode(this.postalCode.value, this.postalCode.isPrivate);
         final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email,  block, street, unit, postalCode, tags);
     }
 }

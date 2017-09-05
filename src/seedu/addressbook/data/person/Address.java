@@ -26,6 +26,8 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+
+        
         this.value = trimmedAddress;
     }
 

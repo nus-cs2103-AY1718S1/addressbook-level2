@@ -80,22 +80,38 @@ public class Address {
     public Block getBlock() {
         return block;
     }
+    public void setBlock(Block inputBlock) {
+        block = inputBlock;
+    }
 
     public Street getStreet() {
         return street;
+    }
+    public void setStreet(Block inputStreet) {
+        block = inputStreet;
     }
 
     public Unit getUnit() {
         return unit;
     }
+    public void setUnit(Block inputUnit) {
+        block = inputUnit;
+    }
 
     public PostalCode getPostalCode() {
         return postalCode;
     }
+    public void setPostalCode(Block inputPostalCode) {
+        block = inputPostalCode;
+    }
+
+    public Address getAddress(){
+        return this;
+    }
 
     @Override
     public int hashCode() {
-        return this.hashCode();
+        return this.toString().hashCode();
     }
 
     public boolean isPrivate() {

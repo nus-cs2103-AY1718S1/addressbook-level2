@@ -59,7 +59,7 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         String arr[] = test.split(",");
-        if(arr.length == 4){
+        if(arr.length == 4 && test.matches(ADDRESS_VALIDATION_REGEX)){
             return true;
         }
         //return test.matches(ADDRESS_VALIDATION_REGEX);

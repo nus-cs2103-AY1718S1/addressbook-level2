@@ -22,11 +22,18 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
+        String[] separated = trimmedAddress.split(",");
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+
+        Block blockNum = new Block(separated[0],true );
+        Street street = new Street(separated[1], true);
+        Unit unit = new Unit(separated[2], true);
+        PostalCode postalCode = new PostalCode(separated[3], true);
+
+        value = blockNum.getBlock() + street.getStreet() + unit.getUnit() + postalCode.getPostalCode();
     }
 
     /**

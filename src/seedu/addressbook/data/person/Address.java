@@ -11,7 +11,7 @@ public class Address {
     public static final String EXAMPLE = "123, some street, some unit number, postal code";
     private static final String MESSAGE_ADDRESS_CONSTRAINTS = "Address has to be in this format: a/BLOCK, STREET, " +
             "UNIT, POSTAL_CODE";
-    private static final String ADDRESS_VALIDATION_REGEX = "\\d{1,5}, .+, \\d{1,6}";
+    private static final String ADDRESS_VALIDATION_REGEX = "\\d+,[A-Za-z,\" 0-9]+[A-Za-z,\"0-9],.+, \\d+";
 
     private final Block blockNumber;
     private final Street streetName;

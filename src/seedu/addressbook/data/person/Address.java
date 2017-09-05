@@ -15,6 +15,11 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
+
     /**
      * Validates given address.
      *
@@ -26,7 +31,46 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+
+        String[] values_temp = trimmedAddress.split(", ");
+        String[] detailed_values = new String[4];
+        for (int i = 0; i < detailed_values.length; i++) {
+            detailed_values[i] = "";
+        }
+        for (int i = 0; i < values_temp.length; i++) {
+            detailed_values[i] = values_temp[i];
+        }
+
+        block = new Block(detailed_values[0]);
+        street = new Street(detailed_values[1]);
+        unit = new Unit(detailed_values[2]);
+        postalCode = new PostalCode(detailed_values[3]);
+
+        this.value = getAddressValue();
+    }
+
+    /**
+     * Set the integrated address value.
+     */
+    public String getAddressValue() {
+        StringBuffer sb = new StringBuffer();
+        if (!block.getValue().equals("")) {
+            sb.append(block.getValue());
+        }
+        if (!street.getValue().equals("")) {
+            sb.append(", ");
+            sb.append(street.getValue());
+        }
+        if (!unit.getValue().equals("")) {
+            sb.append(", ");
+            sb.append(unit.getValue());
+        }
+        if (!postalCode.getValue().equals("")) {
+            sb.append(", ");
+            sb.append(postalCode.getValue());
+        }
+
+        return sb.toString();
     }
 
     /**

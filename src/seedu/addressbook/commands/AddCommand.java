@@ -34,15 +34,13 @@ public class AddCommand extends Command {
     public AddCommand(String name,
                       String phone, boolean isPhonePrivate,
                       String email, boolean isEmailPrivate,
-                      String block, boolean isBlockPrivate,
-                      String street, boolean isStreetPrivate,
-                      String unit, boolean isUnitPrivate,
-                      String postalCode, boolean isPostalCodePrivate,
+                      String address, boolean is AddressPrivate,
                       Set<String> tags) throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+        Address add = 
         this.toAdd = new Person(
                 new Name(name),
                 new Phone(phone, isPhonePrivate),

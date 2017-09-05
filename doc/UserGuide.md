@@ -22,6 +22,9 @@ Please refer to the [Setting up](DeveloperGuide.md#setting-up) section to learn 
 4. Type `java seedu.addressbook.Main`, then <kbd>Enter</kbd> to execute
 5. Now you can interact with the program through the CLI
 
+#### Changes from level 2
+* Informs the user when storage file is read-only instead of crashing
+
 #### Changes from level 1
 What's different from AddressBook-Level1:
 * Support for storing address (`a/`) and tags (`t/`)

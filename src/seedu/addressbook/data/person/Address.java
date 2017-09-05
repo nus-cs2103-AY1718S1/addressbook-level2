@@ -51,6 +51,7 @@ public class Address {
     public String toString() {
         Stream<String> addressStream = Stream.of(block.getValue(), street.getValue(), unit.getValue(), 
                 postalCode.getValue());
+        // Do not display an extra comma in case any of the values are null.
         return addressStream.filter(string -> string != null).collect(Collectors.joining(", "));
     }
 

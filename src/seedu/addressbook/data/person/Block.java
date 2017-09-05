@@ -1,8 +1,12 @@
 package seedu.addressbook.data.person;
 
+/**
+ * Block: part of the Address class
+ */
 public class Block extends AddressComponent{
-    
-    private final static String PARSE_BLOCK_FROM_ADDRESS_REGEX = "^(.*?)(?:,|$)";
+
+    // Substring before the first comma or end of line
+    private final static String PARSE_BLOCK_FROM_ADDRESS_REGEX = "^(.*?)(?:,|$)"; 
     
     public Block(String blockNumber) {
         super(blockNumber);

@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
+import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
@@ -87,7 +88,6 @@ public class Main {
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);
-
         } while (!ExitCommand.isExit(command));
     }
 
@@ -105,11 +105,15 @@ public class Main {
      * @param command user command
      * @return result of the command
      */
-    private CommandResult executeCommand(Command command)  {
+    private CommandResult executeCommand(Command command) {
+        command.setData(addressBook, lastShownList);
+        CommandResult result = command.execute();
         try {
-            command.setData(addressBook, lastShownList);
-            CommandResult result = command.execute();
             storage.save(addressBook);
+            return result;
+        } catch (StorageOperationException e) {
+            ui.showToUser(e.getMessage());
+            ui.showToUser(Messages.MESSAGE_UNABLE_TO_SAVE);
             return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());

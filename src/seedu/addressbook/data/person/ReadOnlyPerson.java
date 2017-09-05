@@ -12,7 +12,10 @@ public interface ReadOnlyPerson {
     Name getName();
     Phone getPhone();
     Email getEmail();
-    Address getAddress();
+    Block getBlock();
+    Street getStreet();
+    Unit getUnit();
+    PostalCode getPostalCode();
 
     /**
      * Returns a new TagList that is a deep copy of the internal TagList,
@@ -40,7 +43,10 @@ public interface ReadOnlyPerson {
                     && other.getName().equals(this.getName()) // state checks here onwards
                     && other.getPhone().equals(this.getPhone())
                     && other.getEmail().equals(this.getEmail())
-                    && other.getAddress().equals(this.getAddress())
+                    && other.getBlock().equals(this.getBlock())
+                    && other.getStreet().equals(this.getStreet())
+                    && other.getUnit().equals(this.getUnit())
+                    && other.getPostalCode().equals(this.getPostalCode())
                     && other.getTags().equals(this.getTags()));
     }
 
@@ -61,11 +67,26 @@ public interface ReadOnlyPerson {
             builder.append(detailIsPrivate);
         }
         builder.append(getEmail())
-                .append(" Address: ");
-        if (getAddress().isPrivate()) {
+                .append(" Block: ");
+        if (getBlock().isPrivate()) {
             builder.append(detailIsPrivate);
         }
-        builder.append(getAddress())
+        builder.append(getBlock())
+                .append(" Street: ");
+        if (getStreet().isPrivate()) {
+            builder.append(detailIsPrivate);
+        }
+        builder.append(getStreet())
+                .append(" Unit: ");
+        if (getUnit().isPrivate()) {
+            builder.append(detailIsPrivate);
+        }
+        builder.append(getUnit())
+                .append(" Postal Code: ");
+        if (getPostalCode().isPrivate()) {
+            builder.append(detailIsPrivate);
+        }
+        builder.append(getPostalCode())
                 .append(" Tags: ");
         for (Tag tag : getTags()) {
             builder.append(tag);
@@ -85,8 +106,17 @@ public interface ReadOnlyPerson {
         if (!getEmail().isPrivate()) {
             builder.append(" Email: ").append(getEmail());
         }
-        if (!getAddress().isPrivate()) {
-            builder.append(" Address: ").append(getAddress());
+        if (!getBlock().isPrivate()) {
+            builder.append(" Block: ").append(getBlock());
+        }
+        if (!getStreet().isPrivate()) {
+            builder.append(" Street: ").append(getStreet());
+        }
+        if (!getUnit().isPrivate()) {
+            builder.append(" Unit: ").append(getUnit());
+        }
+        if (!getPostalCode().isPrivate()) {
+            builder.append(" Postal Code: ").append(getPostalCode());
         }
         builder.append(" Tags: ");
         for (Tag tag : getTags()) {

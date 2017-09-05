@@ -11,6 +11,7 @@ public class Address {
     public static final String EXAMPLE = "123, some street";
     public static final String EXAMPLE = "123, CLementi Ave 3, #12-34, 231543";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String MESSAGE_ADDRESS_INVALID = "The address you entered is invalid";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
@@ -23,10 +24,13 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
+
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
+            System.out.println(MESSAGE_ADDRESS_INVALID);
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+
         this.value = trimmedAddress;
     }
 
@@ -35,6 +39,9 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
+        String [] array = test.split(",");
+
+        return test.matches(ADDRESS_VALIDATION_REGEX) && (array.length==4);
     }
 
     @Override

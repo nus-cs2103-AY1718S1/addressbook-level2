@@ -12,10 +12,10 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final Block blockNumber ;
-    public final Street streetName;
-    public final Unit unitNumber;
-    public final PostalCode postalCode;
+    public  Block blockNumber = new Block();
+    public  Street streetName = new Street();
+    public  Unit unitNumber = new Unit();
+    public  PostalCode postalCode = new PostalCode();
     public final String fullAddress;
 
     private boolean isPrivate;
@@ -33,15 +33,38 @@ public class Address {
         }
 
         final String[] splitAddress = trimmedAddress.split(",");
-        blockNumber = new Block(Integer.parseInt(splitAddress[0].trim()));
-        streetName = new Street(splitAddress[1].trim());
-        unitNumber = new Unit(splitAddress[2].trim());
-        postalCode = new PostalCode(Integer.parseInt(splitAddress[3].trim()));
+        if(splitAddress.length >= 1)
+            blockNumber.setBlockNum(splitAddress[0].trim());
+        if(splitAddress.length >= 2)
+            streetName.setStreetName(splitAddress[1].trim());
+        if(splitAddress.length >= 3)
+            unitNumber.setUnitString(splitAddress[2].trim());
+        if(splitAddress.length == 4)
+        postalCode.setPostalCode(splitAddress[3].trim());
 
-        fullAddress =  blockNumber.getBlockNum() + ", " + streetName.getStreetName() +
-                ", " + unitNumber.getUnitString() + ", " + postalCode.getPostalCode();
+        fullAddress =  convertToString(blockNumber, streetName, unitNumber, postalCode);
 
     }
+
+    private String convertToString(Block block, Street street, Unit unit, PostalCode pCode) {
+        String address = "";
+
+        if(!block.getBlockNum().equals("")) {
+            address += block.getBlockNum();
+        }
+        if(!street.getStreetName().equals("")) {
+           address += ", " + street.getStreetName();
+        }
+        if(!unit.getUnitString().equals("")) {
+            address += ", " + unit.getUnitString();
+        }
+        if(!pCode.getPostalCode().equals("")) {
+            address += ", " + pCode.getPostalCode();
+        }
+
+        return address;
+    }
+
 
     public Block getBlock() {
         return blockNumber;
@@ -58,6 +81,8 @@ public class Address {
     public PostalCode getPostalCode() {
         return postalCode;
     }
+
+    public String getFullAddress() {return fullAddress;}
 
     /**
      * Returns true if a given string is a valid person address.
@@ -89,21 +114,17 @@ public class Address {
 }
 
 class Block {
-    int blockNumber;
+    String blockNumber;
 
     public Block() {
-        blockNumber = 0;
+        blockNumber = "";
     }
 
-    public Block(int number) {
+    public void setBlockNum(String number) {
         blockNumber = number;
     }
 
-    public void setBlockNum(int number) {
-        blockNumber = number;
-    }
-
-    public int getBlockNum() {
+    public String getBlockNum() {
         return blockNumber;
     }
 }
@@ -112,11 +133,7 @@ class Street {
     private String streetName;
 
     public Street() {
-        streetName = null;
-    }
-
-    public Street(String name) {
-        streetName = name;
+        streetName = "";
     }
 
     public void setStreetName(String name) {
@@ -132,11 +149,7 @@ class Unit {
     private String unitString;
 
     public Unit() {
-        unitString = null;
-    }
-
-    public Unit(String unit) {
-        unitString = unit;
+        unitString = "";
     }
 
     public void setUnitString(String unit) {
@@ -149,21 +162,17 @@ class Unit {
 }
 
 class PostalCode {
-    private int postalCode;
+    private String postalCode;
 
     public PostalCode() {
-        postalCode = 0;
+        postalCode = "";
     }
 
-    public PostalCode(int postal) {
+    public void setPostalCode(String postal) {
         postalCode = postal;
     }
 
-    public void setPostalCode(int postal) {
-        postalCode = postal;
-    }
-
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 }

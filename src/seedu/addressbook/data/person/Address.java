@@ -36,7 +36,7 @@ public class Address {
         }
 
 
-
+        
         String[] addressParts = trimmedAddress.split(",");
 
         block = new Block(addressParts[0]);
@@ -46,8 +46,12 @@ public class Address {
 
         String newAddress = block.getBlock() + "," +street.getStreet() + "," + unit.getUnit() +"," + postalCode.getPostalCode();
 
-        //this.value = trimmedAddress;
+
         this.value = newAddress;
+
+
+
+        //this.value = trimmedAddress;
     }
 
     /**

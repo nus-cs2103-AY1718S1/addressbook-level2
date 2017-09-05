@@ -48,6 +48,10 @@ public class Address {
         return true;
     }
 
+    private static String[] getAddressData(String addressString) {
+        return addressString.split(",");
+    }
+    
     @Override
     public String toString() {
         return value;

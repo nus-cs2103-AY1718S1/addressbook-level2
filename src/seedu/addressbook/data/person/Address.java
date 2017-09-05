@@ -10,7 +10,7 @@ public class Address {
 
     public static final String EXAMPLE = "123, CLementi Ave 3, #12-34, 231543";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String MESSAGE_ADDRESS_INVALID = "The address you entered is invalid";
+    public static final String MESSAGE_ADDRESS_INVALID = "The format of address you entered is invalid";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;

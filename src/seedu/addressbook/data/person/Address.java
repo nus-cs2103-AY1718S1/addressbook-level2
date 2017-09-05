@@ -13,7 +13,10 @@ public class Address {
             "UNIT, POSTAL_CODE";
     private static final String ADDRESS_VALIDATION_REGEX = "\\d{1,5}, .+, \\d{1,6}";
 
-    public final String value;
+    private final Block blockNumber;
+    private final Street streetName;
+    private final Unit unit;
+    private final PostalCode postalCode;
     private boolean isPrivate;
 
     /**
@@ -27,7 +30,11 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        String[] splitAddress = trimmedAddress.split("\\s*, \\s*");
+        blockNumber = new Block(splitAddress[0]);
+        streetName = new Street(splitAddress[1]);
+        unit = new Unit(splitAddress[2]);
+        postalCode = new PostalCode(splitAddress[3]);
     }
 
     /**
@@ -37,24 +44,76 @@ public class Address {
         return test.matches(ADDRESS_VALIDATION_REGEX);
     }
 
+    /**
+     * Parses the various Address sub-classes into a String form and returns it.
+     */
     @Override
     public String toString() {
-        return value;
+        return blockNumber.getBlockNumber() + ", " + streetName.getStreetName() + ", " + unit.getUnit() + ", " +
+                postalCode.getPostalCode();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                && this.toString().equals(other.toString())); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return toString().hashCode();
     }
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+}
+
+class Block {
+    private String blockNumber;
+
+    Block(String blockNumber) {
+        this.blockNumber = blockNumber;
+    }
+
+    String getBlockNumber() {
+        return blockNumber;
+    }
+}
+
+class Street {
+    private String streetName;
+
+    Street(String streetName) {
+        this.streetName = streetName;
+    }
+
+    String getStreetName() {
+        return streetName;
+    }
+}
+
+class Unit {
+    private String unit;
+
+    Unit(String unit) {
+        this.unit = unit;
+    }
+
+    String getUnit() {
+        return unit;
+    }
+}
+
+class PostalCode {
+    private String postalCode;
+
+    PostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    String getPostalCode() {
+        return postalCode;
     }
 }

@@ -46,7 +46,10 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return block.getValue() + ", " +
+                street.getValue() + ", " +
+                unit.getValue() + ", " +
+                postalCode.getValue();
     }
 
     @Override

@@ -1,6 +1,5 @@
 package seedu.addressbook;
 
-import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -112,10 +111,6 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-
-        } catch (InvalidStorageFilePathException isfe) {
-            return new CommandResult(isfe.getMessage());
-
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

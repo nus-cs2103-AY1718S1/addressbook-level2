@@ -1,9 +1,5 @@
 package seedu.addressbook;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
@@ -14,6 +10,12 @@ import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
 import seedu.addressbook.ui.TextUi;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+import static seedu.addressbook.common.Messages.MESSAGE_WRITE_FAILED;
 
 
 /**
@@ -111,6 +113,9 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
+        } catch (StorageOperationException e) {
+            ui.showToUser(e.getMessage());
+            return new CommandResult(MESSAGE_WRITE_FAILED);
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

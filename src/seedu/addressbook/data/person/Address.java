@@ -69,4 +69,12 @@ public class Address {
     public boolean isPrivate() {
         return isPrivate;
     }
+
+    public Block getBlock() { return block; }
+
+    public Street getStreet() { return street; }
+
+    public Unit getUnit() { return unit; }
+
+    public PostalCode getPostalCode() { return postalCode; }
 }

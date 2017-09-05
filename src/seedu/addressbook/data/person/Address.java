@@ -41,6 +41,10 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
 
+        storeAddress(trimmedAddress);
+    }
+
+    private void storeAddress(String trimmedAddress) {
         String[] addressSegments = trimmedAddress.split(",");
         int numAddressSegments = addressSegments.length;
 

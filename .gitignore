@@ -20,6 +20,9 @@ hs_err_pid*
 .idea/
 *.iml
 
+# Output Files
+out/
+
 # Temp files used for testing
 test/actual.txt
 test/localrun.bat

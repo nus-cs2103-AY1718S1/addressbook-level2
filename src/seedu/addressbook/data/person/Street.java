@@ -12,8 +12,8 @@ public class Street extends AddressComponent{
         super(streetNumber);
     }
 
-    public static PostalCode getFromAddress(String address) {
-        PostalCode re = new PostalCode(extractValueFromAddress(address, PARSE_STREET_FROM_ADDRESS_REGEX));
+    public static Street getFromAddress(String address) {
+        Street re = new Street(extractValueFromAddress(address, PARSE_STREET_FROM_ADDRESS_REGEX));
         return re;
     }
 }

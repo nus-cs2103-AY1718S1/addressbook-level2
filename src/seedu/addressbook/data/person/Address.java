@@ -15,7 +15,7 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should be in format: a/BLOCK, STREET, UNIT, POSTAL_CODE";
     public static final String ADDRESS_VALIDATION_REGEX = "^([^,]+,){3}[^,]+$"; // Allows anything separated by 3 commas
 
-    private final PostalCode street;
+    private final Street street;
     private final Block block;
     private final Unit unit;
     private final PostalCode postalCode;

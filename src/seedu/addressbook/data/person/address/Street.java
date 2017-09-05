@@ -9,8 +9,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Street {
 
     public static final String EXAMPLE = "Oxley Road";
-    public static final String MESSAGE_STREET_CONSTRAINTS =
-            "Address's street should not be empty";
+    public static final String MESSAGE_STREET_CONSTRAINTS = "Address's street should not be empty";
     public static final String STREET_VALIDATION_REGEX = "[^,]+";
 
     public final String value;
@@ -22,6 +21,10 @@ public class Street {
      */
     public Street(String street) throws IllegalValueException {
         String trimmedStreet = street.trim();
+        if (!isValidStreet(trimmedStreet)) {
+            throw new IllegalValueException(MESSAGE_STREET_CONSTRAINTS);
+        }
+
         this.value = trimmedStreet;
     }
 

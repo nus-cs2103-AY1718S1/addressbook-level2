@@ -21,13 +21,9 @@ public class Address {
             PostalCode.EXAMPLE;
 
     public static final String MESSAGE_ADDRESS_CONSTRAINTS =
-            "Person's block, street, unit and postal code should not contain commas.\n" +
-            Block.MESSAGE_BLOCK_CONSTRAINTS + "\n" +
-            Street.MESSAGE_STREET_CONSTRAINTS + "\n" +
-            Unit.MESSAGE_UNIT_CONSTRAINTS + "\n" +
-            PostalCode.MESSAGE_POSTAL_CODE_CONSTRAINTS + "\n";
+            "Person's block, street, unit and postal code should not contain commas.";
 
-    public static final String ADDRESS_VALIDATION_REGEX = ".+,.+,.+,.+";
+    public static final String ADDRESS_VALIDATION_REGEX = "[^,]+,[^,]+,[^,]+,[^,]+";
 
     public final String value;
     public final Block block;

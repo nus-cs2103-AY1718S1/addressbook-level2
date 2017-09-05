@@ -22,6 +22,9 @@ public class PostalCode {
      */
     public PostalCode(String postalCode) throws IllegalValueException {
         String trimmedPostalCode = postalCode.trim();
+        if (!isValidPostalCode(trimmedPostalCode)) {
+            throw new IllegalValueException(MESSAGE_POSTAL_CODE_CONSTRAINTS);
+        }
         this.value = trimmedPostalCode;
     }
 

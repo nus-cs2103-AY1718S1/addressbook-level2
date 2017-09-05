@@ -20,7 +20,7 @@ public class AddressComponent {
         Matcher m = p.matcher(address);
         if (m.find()) {
             // From javadoc: Capturing groups are indexed from left to right, starting at one.
-            return m.group(1);
+            return m.group(1).trim();
         } else {
             return null;
         }

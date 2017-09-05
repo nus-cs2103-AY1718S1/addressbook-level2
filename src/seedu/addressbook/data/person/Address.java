@@ -15,10 +15,7 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
     public static final String OOP_ADDRESS_VALIDATION_REGEX = "(.*),(.*),(.*),(.*)";
 
-    public final String value;
     private boolean isPrivate;
-
-
     private Block block;
     private Street street;
     private Unit unit;
@@ -37,7 +34,6 @@ public class Address {
         }
         String[] inputAddressArr = splitAddressInputToArr(trimmedAddress);
         initializeAddressItems(inputAddressArr);
-        this.value = trimmedAddress;
     }
 
     /**
@@ -45,7 +41,6 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(OOP_ADDRESS_VALIDATION_REGEX);
-//        return test.matches(ADDRESS_VALIDATION_REGEX);
     }
 
     private String[] splitAddressInputToArr(String inputAddress) {
@@ -66,7 +61,6 @@ public class Address {
     @Override
     public String toString() {
         return block.getValue() + ", " + street.getValue() + ", " + unit.getValue() + ", " + postalCode.getValue();
-//        return value;
     }
 
     @Override
@@ -79,7 +73,7 @@ public class Address {
     private boolean hasSameProperties(Address inputAddress) {
         return inputAddress.getBlock().getValue() == block.getValue()
             && inputAddress.getStreet().getValue() == street.getValue()
-            && inputAddress.getunit().getValue() == unit.getValue()
+            && inputAddress.getUnit().getValue() == unit.getValue()
             &&inputAddress.getPostalCode().getValue() == postalCode.getValue();
     }
 
@@ -91,7 +85,7 @@ public class Address {
         return street;
     }
 
-    public Unit getunit() {
+    public Unit getUnit() {
         return unit;
     }
 
@@ -101,7 +95,7 @@ public class Address {
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.hashCode();
     }
 
     public boolean isPrivate() {

@@ -27,13 +27,18 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-
-        Block blockNum = new Block(separated[0],true );
-        Street street = new Street(separated[1], true);
-        Unit unit = new Unit(separated[2], true);
-        PostalCode postalCode = new PostalCode(separated[3], true);
-
-        value = blockNum.getBlock() + street.getStreet() + unit.getUnit() + postalCode.getPostalCode();
+        int lengthArr = separated.length;
+        switch(lengthArr) {
+            case 4:
+                PostalCode postalCode = new PostalCode(separated[3], true);
+            case 3:
+                Unit unit = new Unit(separated[2], true);
+            case 2:
+                Street street = new Street(separated[1], true);
+            case 1:
+                Block blockNum = new Block(separated[0],true );
+        }
+        value = trimmedAddress;
     }
 
     /**

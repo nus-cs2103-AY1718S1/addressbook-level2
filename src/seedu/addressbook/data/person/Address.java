@@ -2,6 +2,9 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -46,10 +49,9 @@ public class Address {
 
     @Override
     public String toString() {
-        return block.getValue() + ", " +
-                street.getValue() + ", " +
-                unit.getValue() + ", " +
-                postalCode.getValue();
+        Stream<String> addressStream = Stream.of(block.getValue(), street.getValue(), unit.getValue(), 
+                postalCode.getValue());
+        return addressStream.filter(string -> string != null).collect(Collectors.joining(", "));
     }
 
     @Override

@@ -2,6 +2,8 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.Arrays;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -32,7 +34,12 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
-        String[] trimmedAddressArr = trimmedAddress.split(", ");
+        String[] trimmedAddressArr = new String[4];
+        Arrays.fill(trimmedAddressArr, "");
+        String[] tempTrimmedAddressArr = trimmedAddress.split(", ");
+        for (int i = 0; i < tempTrimmedAddressArr.length; i++) {
+            trimmedAddressArr[i] += tempTrimmedAddressArr[i];
+        }
         block = trimmedAddressArr[0];
         street = trimmedAddressArr[1];
         unit = trimmedAddressArr[2];
@@ -48,7 +55,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return block + " " + street + " " + unit + " " + postalCode;
+        return value;
     }
 
     @Override

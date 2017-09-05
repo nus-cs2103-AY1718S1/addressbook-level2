@@ -15,6 +15,11 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
+    private String block;
+    private String street;
+    private String unit;
+    private String postalCode;
+
     /**
      * Validates given address.
      *
@@ -27,6 +32,11 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+        String[] trimmedAddressArr = trimmedAddress.split(", ");
+        block = trimmedAddressArr[0];
+        street = trimmedAddressArr[1];
+        unit = trimmedAddressArr[2];
+        postalCode = trimmedAddressArr[3];
     }
 
     /**
@@ -38,7 +48,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return block + " " + street + " " + unit + " " + postalCode;
     }
 
     @Override
@@ -55,5 +65,21 @@ public class Address {
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+
+    public String getBlock() {
+        return block;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
     }
 }

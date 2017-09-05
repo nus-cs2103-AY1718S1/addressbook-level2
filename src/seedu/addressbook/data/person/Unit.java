@@ -6,7 +6,7 @@ public class Unit{
     public static final String EXAMPLE = "#07-518";
     public static final String MESSAGE_UNIT_CONSTRAINTS =
             "Unit must start with #, followed my 2 integers, then - then 3 integers";
-    public static final String UNIT_VALIDATION_REGEX = "#+[\\d\\.]+-[\\d\\.]+";
+    public static final String UNIT_VALIDATION_REGEX = "#[\\d]+-[\\d]+";
 
 
     public final String value;

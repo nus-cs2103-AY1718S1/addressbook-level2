@@ -141,6 +141,9 @@ public class StorageFile {
             if (loaded.isAnyRequiredFieldMissing()) {
                 throw new StorageOperationException("File data missing some elements");
             }
+            if(loaded.canWrite()!=true){
+                throw new StorageOperationException("File is read-only");
+            }
             return loaded.toModelType();
 
         } catch (FileNotFoundException fnfe) {

@@ -24,3 +24,6 @@ The full list of contributors for se-edu can be found [here](https://se-edu.gith
   if you noticed bugs or have suggestions on how to improve.
 * **Contributing** : We welcome pull requests. Follow the process described [here](https://github.com/oss-generic/process)
 
+# Quote
+> This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+

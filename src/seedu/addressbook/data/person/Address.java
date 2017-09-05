@@ -54,19 +54,21 @@ public class Address {
     
     @Override
     public String toString() {
-        return value;
+        return String.format(MESSAGE_ADDRESS_FORMAT,
+                block.toString(),
+                unit.toString(),
+                unit.toString(),
+                postalCode.toString());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
+                && this.block.equals(((Address) other).block) // state checks
+                && this.unit.equals(((Address) other).unit)
+                && this.unit.equals(((Address) other).unit)
+                && this.postalCode.equals(((Address) other).postalCode));
     }
 
     public boolean isPrivate() {

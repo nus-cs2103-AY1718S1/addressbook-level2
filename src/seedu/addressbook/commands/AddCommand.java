@@ -45,10 +45,10 @@ public class AddCommand extends Command {
                 new Name(name),
                 new Phone(phone, isPhonePrivate),
                 new Email(email, isEmailPrivate),
-                new Block(block, isAddressPrivate),
-                new Street(street, isAddressPrivate),
-                new Unit(unit, isAddressPrivate),
-                new PostalCode(postalCode, isAddressPrivate),
+                new Block(superclassAddress.getBlock().toString(), isAddressPrivate),
+                new Street(superclassAddress.getStreet().toString(), isAddressPrivate),
+                new Unit(superclassAddress.getUnit().toString(), isAddressPrivate),
+                new PostalCode(superclassAddress.getPostalCode().toString(), isAddressPrivate),
                 new UniqueTagList(tagSet)
         );
     }

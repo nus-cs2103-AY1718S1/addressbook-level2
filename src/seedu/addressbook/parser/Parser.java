@@ -127,8 +127,17 @@ public class Parser {
                     matcher.group("email"),
                     isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
 
-                    matcher.group("address"),
-                    isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
+                    matcher.group("block"),
+                    isPrivatePrefixPresent(matcher.group("isBlockPrivate")),
+
+                    matcher.group("street"),
+                    isPrivatePrefixPresent(matcher.group("isStreetPrivate")),
+
+                    matcher.group("unit"),
+                    isPrivatePrefixPresent(matcher.group("isUnitPrivate")),
+
+                    matcher.group("postalCode"),
+                    isPrivatePrefixPresent(matcher.group("isPostalCodePrivate")),
 
                     getTagsFromArgs(matcher.group("tagArguments"))
             );

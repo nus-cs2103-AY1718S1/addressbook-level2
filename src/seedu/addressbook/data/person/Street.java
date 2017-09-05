@@ -2,7 +2,7 @@ package seedu.addressbook.data.person;
 
 public class Street extends AddressComponent{
 
-    private final static String PARSE_STREET_FROM_ADDRESS_REGEX = "a/(?:.*?),(.*?),.*$";
+    private final static String PARSE_STREET_FROM_ADDRESS_REGEX = "^(?:.*?),(.*?)(?:,|$)";
 
     public Street(String streetNumber) {
         super(streetNumber);

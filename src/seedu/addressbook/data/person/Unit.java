@@ -2,7 +2,7 @@ package seedu.addressbook.data.person;
 
 public class Unit extends AddressComponent{
 
-    private final static String PARSE_UNIT_FROM_ADDRESS_REGEX = "a/(?:.*{2}),(.*?),.*$";
+    private final static String PARSE_UNIT_FROM_ADDRESS_REGEX = "^(?:[^,]*,){2}(.*?)(?:,|$)";
 
     public Unit(String unitNumber) {
         super(unitNumber);

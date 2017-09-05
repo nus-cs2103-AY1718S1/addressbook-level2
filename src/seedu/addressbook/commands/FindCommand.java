@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.tag.Tag;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -27,7 +28,7 @@ public class FindCommand extends Command {
         this.keywords = keywords;
     }
 
-    /**
+    /*
      * Returns a copy of keywords in this command.
      */
     public Set<String> getKeywords() {
@@ -50,11 +51,22 @@ public class FindCommand extends Command {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+            final Set<String> tagsInPersonStringForm = turnTagSetIntoStringSet(person.getTags().toSet());
             if (!Collections.disjoint(wordsInName, keywords)) {
+                matchedPersons.add(person);
+            }else if(!Collections.disjoint(tagsInPersonStringForm, keywords)){
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
+    }
+
+    private Set<String> turnTagSetIntoStringSet(Set<Tag> tagsInPerson){
+        Set<String> result = new HashSet<>();
+        for(Tag tag : tagsInPerson){
+            result.add(tag.toStringWithoutBrackets());
+        }
+        return result;
     }
 
 }

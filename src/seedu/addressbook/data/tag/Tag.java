@@ -50,4 +50,8 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    public String toStringWithoutBrackets(){
+        return tagName;
+    }
+
 }

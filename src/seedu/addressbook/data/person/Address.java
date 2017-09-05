@@ -56,7 +56,7 @@ public class Address {
     public String toString() {
         return String.format(MESSAGE_ADDRESS_FORMAT,
                 block.toString(),
-                unit.toString(),
+                street.toString(),
                 unit.toString(),
                 postalCode.toString());
     }
@@ -66,7 +66,7 @@ public class Address {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
                 && this.block.equals(((Address) other).block) // state checks
-                && this.unit.equals(((Address) other).unit)
+                && this.street.equals(((Address) other).street)
                 && this.unit.equals(((Address) other).unit)
                 && this.postalCode.equals(((Address) other).postalCode));
     }

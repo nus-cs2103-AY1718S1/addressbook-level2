@@ -13,6 +13,11 @@ public class Address {
             "UNIT, POSTAL_CODE";
     private static final String ADDRESS_VALIDATION_REGEX = "\\d+,[A-Za-z,\" 0-9]+[A-Za-z,\"0-9],.+, \\d+";
 
+    private static final int BLOCK_NUMBER_INDEX = 0;
+    private static final int STREET_NAME_INDEX = 1;
+    private static final int UNIT_INDEX = 2;
+    private static final int POSTAL_CODE_INDEX = 3;
+
     private final Block blockNumber;
     private final Street streetName;
     private final Unit unit;
@@ -31,10 +36,10 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         String[] splitAddress = trimmedAddress.split("\\s*, \\s*");
-        blockNumber = new Block(splitAddress[0]);
-        streetName = new Street(splitAddress[1]);
-        unit = new Unit(splitAddress[2]);
-        postalCode = new PostalCode(splitAddress[3]);
+        blockNumber = new Block(splitAddress[BLOCK_NUMBER_INDEX]);
+        streetName = new Street(splitAddress[STREET_NAME_INDEX]);
+        unit = new Unit(splitAddress[UNIT_INDEX]);
+        postalCode = new PostalCode(splitAddress[POSTAL_CODE_INDEX]);
     }
 
     /**

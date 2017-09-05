@@ -41,11 +41,11 @@ public class Address {
      * Returns true if a given string is a valid person address.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX) && test.split( " ").length == 4;
+        return test.matches(ADDRESS_VALIDATION_REGEX) && test.split( ", ").length == 4;
     }
 
     private void parseAddress (String address){
-      String[] splitArr = address.split(" ");
+      String[] splitArr = address.split(", ");
       try {
           block = new Block(splitArr[0]);
           street = new Street(splitArr[1]);

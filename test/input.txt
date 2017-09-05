@@ -40,19 +40,43 @@
   add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
 
   # should add correctly and list non private information
-  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street, #01-02, 098111
   list
-  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street, #06-04B, 433222 t/secretive
   list
-  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333B, gamma street, #09-364, 150333 t/friends t/school
   list
-  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
+  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta's street, #24-629, 984444 t/friends
   list
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Esther Potato p/555555 e/esther@not.a.real.potato pa/111, epsilon street, #01-02, 098111 t/tubers t/starchy
   list
 
   # should not allow adding duplicate persons
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Esther Potato p/555555 e/esther@not.a.real.potato pa/111, epsilon street, #01-02, 098111 t/tubers t/starchy
+  
+  # should display invalid address format
+  add invalid address man p/9584731 e/add@add.add a/4, 32, invalid address lane, #05-34, 542345
+  add invalid address man p/9584731 e/add@add.add a/432, invalid address lane, #05-34, Concordia, 542345
+  
+  # should display invalid block format
+  add invalid block man p/9584731 e/block@block.block a/9$9, invalid block street, #05-34, 542345
+  add invalid block man p/9584731 e/block@block.block a/9'9, invalid block street, #05-34, 542345
+  add invalid block man p/9584731 e/block@block.block a/9 9, invalid block street, #05-34, 542345
+  
+  # should display invalid street format
+  add invalid street man p/9584731 e/street@street.street a/99, ha-ha-ha, #05-34, 542345
+  add invalid lane man p/9584731 e/street@street.street a/99, crescent "lalala", #05-34, 542345
+  add invalid crescent man p/9584731 e/street@street.street a/99, invalid?435 street, #05-34, 542345
+  
+  # should display invalid unit format
+  add invalid unit man p/9584731 e/unit@unit.unit a/99, ha ha ha, #05A-34, 542345
+  add invalid unit man p/9584731 e/unit@unit.unit a/99, crescent lalala, #05--34, 542345
+  add invalid unit man p/9584731 e/unit@unit.unit a/99, valid 435 street, 05-34, 542345
+  
+  # should display invalid postal format
+  add invalid postal man p/9584731 e/postal@postal.postal a/99, ha ha ha, #05-34A, 542345A
+  add invalid postal man p/9584731 e/postal@postal.postal a/99, crescent lalala, #05-34C, 542345B
+  add invalid postal man p/9584731 e/postal@postal.postal a/99, valid 435 street, #05-34, $$$$$$
 
 ##########################################################
 # test view/viewall persons command

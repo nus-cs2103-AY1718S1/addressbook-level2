@@ -10,7 +10,7 @@ import seedu.addressbook.data.person.AddressObject.*;
 public class Address {
 
     public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Address must be in the format 'BLOCK, STREET, UNIT, POSTAL CODE'";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
@@ -36,7 +36,7 @@ public class Address {
         }
 
 
-        
+
         String[] addressParts = trimmedAddress.split(",");
 
         block = new Block(addressParts[0]);
@@ -58,7 +58,12 @@ public class Address {
      * Returns true if a given string is a valid person address.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+        String arr[] = test.split(",");
+        if(arr.length == 4){
+            return true;
+        }
+        //return test.matches(ADDRESS_VALIDATION_REGEX);
+        return false;
     }
 
     @Override

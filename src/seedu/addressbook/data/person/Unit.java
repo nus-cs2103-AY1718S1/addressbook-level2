@@ -22,7 +22,7 @@ public class Unit {
      * @throws IllegalValueException if given block string is invalid.
      */
     Unit(String unit) throws IllegalValueException {
-        if(!isValidUnit(unit)){
+        if (!isValidUnit(unit)) {
             throw new IllegalValueException(MESSAGE_UNIT_CONSTRAINTS);
         }
 

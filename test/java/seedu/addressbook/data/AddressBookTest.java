@@ -39,38 +39,38 @@ public class AddressBookTest {
 
     @Before
     public void setUp() throws Exception {
-        tagPrizeWinner   = new Tag("prizewinner");
-        tagScientist     = new Tag("scientist");
+        tagPrizeWinner = new Tag("prizewinner");
+        tagScientist = new Tag("scientist");
         tagMathematician = new Tag("mathematician");
-        tagEconomist     = new Tag("economist");
+        tagEconomist = new Tag("economist");
 
-        aliceBetsy     = new Person(new Name("Alice Betsy"),
-                                    new Phone("91235468", false),
-                                    new Email("alice@nushackers.org", false),
-                                    new Address("1, 8 Computing Drive Singapore, #01-10, 117417", false),
-                                    new UniqueTagList(tagMathematician));
+        aliceBetsy = new Person(new Name("Alice Betsy"),
+                new Phone("91235468", false),
+                new Email("alice@nushackers.org", false),
+                new Address("1, 8 Computing Drive Singapore, #01-10, 117417", false),
+                new UniqueTagList(tagMathematician));
 
-        bobChaplin     = new Person(new Name("Bob Chaplin"),
-                                    new Phone("94321500", false),
-                                    new Email("bob@nusgreyhats.org", false),
-                                    new Address("2, 9 Computing Drive Singapore, #02-10, 117417", false),
-                                    new UniqueTagList(tagMathematician));
+        bobChaplin = new Person(new Name("Bob Chaplin"),
+                new Phone("94321500", false),
+                new Email("bob@nusgreyhats.org", false),
+                new Address("2, 9 Computing Drive Singapore, #02-10, 117417", false),
+                new UniqueTagList(tagMathematician));
 
         charlieDouglas = new Person(new Name("Charlie Douglas"),
-                                    new Phone("98751365", false),
-                                    new Email("charlie@nusgdg.org", false),
-                                    new Address("31, 10 Science Drive, #31-104, 115421", false),
-                                    new UniqueTagList(tagScientist));
+                new Phone("98751365", false),
+                new Email("charlie@nusgdg.org", false),
+                new Address("31, 10 Science Drive, #31-104, 115421", false),
+                new UniqueTagList(tagScientist));
 
-        davidElliot    = new Person(new Name("David Elliot"),
-                                    new Phone("84512575", false),
-                                    new Email("douglas@nuscomputing.com", false),
-                                    new Address("12, 11 Arts Link, #22-318, 122311", false),
-                                    new UniqueTagList(tagEconomist, tagPrizeWinner));
+        davidElliot = new Person(new Name("David Elliot"),
+                new Phone("84512575", false),
+                new Email("douglas@nuscomputing.com", false),
+                new Address("12, 11 Arts Link, #22-318, 122311", false),
+                new UniqueTagList(tagEconomist, tagPrizeWinner));
 
         emptyAddressBook = new AddressBook();
         defaultAddressBook = new AddressBook(new UniquePersonList(aliceBetsy, bobChaplin),
-                                             new UniqueTagList(tagMathematician, tagScientist));
+                new UniqueTagList(tagMathematician, tagScientist));
     }
 
     @Rule

@@ -20,6 +20,7 @@ import seedu.addressbook.data.person.Phone;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
+
 import static seedu.addressbook.util.TestUtil.assertTextFilesEqual;
 import static seedu.addressbook.util.TestUtil.assertFileDoesNotExist;
 
@@ -110,15 +111,15 @@ public class StorageFileTest {
     private AddressBook getTestAddressBook() throws Exception {
         AddressBook ab = new AddressBook();
         ab.addPerson(new Person(new Name("John Doe"),
-                                new Phone("98765432", false),
-                                new Email("johnd@gmail.com", false),
-                                new Address("123, John street, #123-01, 563221", false),
-                                new UniqueTagList(Collections.emptySet())));
+                new Phone("98765432", false),
+                new Email("johnd@gmail.com", false),
+                new Address("123, John street, #123-01, 563221", false),
+                new UniqueTagList(Collections.emptySet())));
         ab.addPerson(new Person(new Name("Betsy Crowe"),
-                                new Phone("1234567", true),
-                                new Email("betsycrowe@gmail.com", false),
-                                new Address("12, Newgate Prison, #12-01, 666666", true),
-                                new UniqueTagList(new Tag("friend"), new Tag("criminal"))));
+                new Phone("1234567", true),
+                new Email("betsycrowe@gmail.com", false),
+                new Address("12, Newgate Prison, #12-01, 666666", true),
+                new UniqueTagList(new Tag("friend"), new Tag("criminal"))));
         return ab;
     }
 }

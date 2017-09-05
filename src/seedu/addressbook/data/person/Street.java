@@ -1,4 +1,5 @@
 package seedu.addressbook.data.person;
+
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -10,7 +11,7 @@ public class Street {
     public static final String EXAMPLE = "Clementi Ave 3";
     public static final String MESSAGE_STREET_CONSTRAINTS =
             "Person address' street should be alphanumeric";
-    
+
     //TODO: better regex validation
     public static final String STREET_VALIDATION_REGEX = "[A-Za-z0-9 ]+";
 
@@ -23,7 +24,7 @@ public class Street {
      * @throws IllegalValueException if given block string is invalid.
      */
     Street(String street) throws IllegalValueException {
-        if(!isValidStreet(street)){
+        if (!isValidStreet(street)) {
             throw new IllegalValueException(MESSAGE_STREET_CONSTRAINTS + " " + street);
         }
 

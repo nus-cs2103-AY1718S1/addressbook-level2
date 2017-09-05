@@ -93,7 +93,7 @@ public class DeleteCommandTest {
      * @param targetVisibleIndex of the person that we want to delete
      */
     private DeleteCommand createDeleteCommand(int targetVisibleIndex, AddressBook addressBook,
-                                                                      List<ReadOnlyPerson> displayList) {
+                                              List<ReadOnlyPerson> displayList) {
 
         DeleteCommand command = new DeleteCommand(targetVisibleIndex);
         command.setData(addressBook, displayList);
@@ -117,7 +117,7 @@ public class DeleteCommandTest {
      * Asserts that the index is not valid for the given display list.
      */
     private void assertDeletionFailsDueToInvalidIndex(int invalidVisibleIndex, AddressBook addressBook,
-                                                                        List<ReadOnlyPerson> displayList) {
+                                                      List<ReadOnlyPerson> displayList) {
 
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
@@ -130,7 +130,7 @@ public class DeleteCommandTest {
      * is not in the address book.
      */
     private void assertDeletionFailsDueToNoSuchPerson(int visibleIndex, AddressBook addressBook,
-                                                                        List<ReadOnlyPerson> displayList) {
+                                                      List<ReadOnlyPerson> displayList) {
 
         String expectedMessage = Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK;
 
@@ -140,7 +140,7 @@ public class DeleteCommandTest {
 
     /**
      * Asserts that the person at the specified index can be successfully deleted.
-     *
+     * <p>
      * The addressBook passed in will not be modified (no side effects).
      *
      * @throws PersonNotFoundException if the selected person is not in the address book

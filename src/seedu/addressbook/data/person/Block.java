@@ -1,4 +1,5 @@
 package seedu.addressbook.data.person;
+
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -11,7 +12,7 @@ public class Block {
     public static final String MESSAGE_BLOCK_CONSTRAINTS =
             "Person address' block should only contain numbers";
     public static final String BLOCK_VALIDATION_REGEX = "\\d+";
-    
+
     public final String value;
 
 
@@ -21,10 +22,10 @@ public class Block {
      * @throws IllegalValueException if given block string is invalid.
      */
     Block(String block) throws IllegalValueException {
-        if(!isValidBlock(block)){
+        if (!isValidBlock(block)) {
             throw new IllegalValueException(MESSAGE_BLOCK_CONSTRAINTS);
         }
-        
+
         this.value = block;
     }
 

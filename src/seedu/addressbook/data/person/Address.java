@@ -12,7 +12,11 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    private final PostalCode street;
+    private final Block block;
+    private final Unit unit;
+    private final PostalCode postalCode;
+    
     private boolean isPrivate;
 
     /**
@@ -26,7 +30,11 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        
+        this.street = Street.getFromAddress(address);
+        this.block= Block.getFromAddress(address);
+        this.unit = Unit.getFromAddress(address);
+        this.postalCode = PostalCode.getFromAddress(address);
     }
 
     /**

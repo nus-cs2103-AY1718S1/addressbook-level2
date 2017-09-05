@@ -40,7 +40,7 @@ public class AddCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        Address add = 
+        Address superclassAddress = new Address(address, isAddressPrivate);
         this.toAdd = new Person(
                 new Name(name),
                 new Phone(phone, isPhonePrivate),

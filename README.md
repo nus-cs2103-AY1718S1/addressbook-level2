@@ -7,7 +7,6 @@
   the main programming language. 
 * It provides a **reasonably well-written** code example that is **significantly bigger** than what students 
   usually write in data structure modules. 
-* This is much better than AddressBook Level 1.
   
 **Useful Links**
 * [User Guide](doc/UserGuide.md) 
@@ -23,7 +22,4 @@ The full list of contributors for se-edu can be found [here](https://se-edu.gith
 * **Bug reports, Suggestions** : Post in our [issue tracker](https://github.com/se-edu/addressbook-level2/issues)
   if you noticed bugs or have suggestions on how to improve.
 * **Contributing** : We welcome pull requests. Follow the process described [here](https://github.com/oss-generic/process)
-
-# Quote
-> This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
 

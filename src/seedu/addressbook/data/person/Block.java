@@ -1,10 +1,18 @@
 package seedu.addressbook.data.person;
 
-public class Block {
-    private String block;
+public class Block{
+    public final String value;
 
-    public Block (String block){
+    /**
+     * Validates given address.
+     */
+    public Block(String block) {
 
-
+        this.value = block;
     }
+
+    public String getBlock(){
+        return this.value;
+    }
+
 }

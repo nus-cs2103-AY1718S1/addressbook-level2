@@ -64,7 +64,7 @@ public class FindCommand extends Command {
     private Set<String> turnTagSetIntoStringSet(Set<Tag> tagsInPerson){
         Set<String> result = new HashSet<>();
         for(Tag tag : tagsInPerson){
-            result.add(tag.toStringWithoutBrackets());
+            result.add(tag.toStringWithoutBrackets().toLowerCase());
         }
         return result;
     }

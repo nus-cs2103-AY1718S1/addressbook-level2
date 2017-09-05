@@ -106,6 +106,7 @@ public class StorageFile {
             marshaller.marshal(toSave, fileWriter);
 
         } catch (IOException ioe) {
+            // See https://stackoverflow.com/questions/10783677/how-to-check-file-permissions-in-java-os-independently#10784086
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");

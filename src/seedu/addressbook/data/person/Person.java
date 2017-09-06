@@ -20,12 +20,18 @@ public class Person implements ReadOnlyPerson {
     private Unit unit;
     private Postal postal;
 
+    //sequence numbers
+    private int sequenceNumber;
+    private static Integer nextSequenceNumber;
+
     private final UniqueTagList tags;
+
 
     /**
      * Assumption: Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+        setSequenceNumber();
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -39,6 +45,7 @@ public class Person implements ReadOnlyPerson {
 
     public Person(Name name, Phone phone, Email email, Block block,
                   Street street, Unit unit, Postal postal, UniqueTagList tags) throws IllegalValueException{
+        setSequenceNumber();
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,6 +61,17 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+    }
+
+    private void setSequenceNumber () {
+        if (nextSequenceNumber == null) {
+            sequenceNumber = 1;
+            nextSequenceNumber = 2;
+        }
+        else {
+            sequenceNumber = nextSequenceNumber;
+            nextSequenceNumber += 1;
+        }
     }
 
     @Override

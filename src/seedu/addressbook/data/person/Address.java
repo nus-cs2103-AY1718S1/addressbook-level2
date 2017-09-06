@@ -2,58 +2,85 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String blockString, String streetString, String unitString, String postalCodeString)}
  */
-public class Address {
+public class Address extends Contact implements Printable {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
 
-    public final String value;
-    private boolean isPrivate;
+    public static String EXAMPLE = "123, Clement Ave 3, #21-34, 213456";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Personal Address should be in a format of Block, Street, Unit, Postal Code";
+
 
     /**
      * Validates given address.
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Address(String address, boolean isPrivate) throws IllegalValueException {
-        String trimmedAddress = address.trim();
-        this.isPrivate = isPrivate;
-        if (!isValidAddress(trimmedAddress)) {
+    public Address(Block block, Street street, Unit unit, PostalCode postalCode, boolean isPrivate) throws IllegalValueException {
+
+        if (!isValidAddress(block.toString(), street.toString(), unit.toString(), postalCode.toString())) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+
+        this.block = block;
+        this.street = street;
+        this.unit = unit;
+        this.postalCode = postalCode;
+
+        setValue(block.toString() + ", " + street.toString() + ", " + unit.toString() + ", " + postalCode.toString());
+        setIsPrivate(isPrivate);
     }
 
     /**
      * Returns true if a given string is a valid person address.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public boolean isValidAddress(String blockString, String streetString, String unitString, String postalCodeString) throws IllegalValueException {
+        Block testBlock = new Block (blockString, false);
+        Street testStreet = new Street (streetString, false);
+        Unit testUnit = new Unit (unitString, false);
+        PostalCode testPostalCode = new PostalCode(postalCodeString, false);
+
+        if (testBlock.isValidBlock(blockString) && testStreet.isValidStreet(streetString)
+                && testUnit.isValidUnit(unitString) && testPostalCode.isValidPostalCode(postalCodeString)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public String toString() {
-        return value;
+        return getValue();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                && this.getValue().equals(((Address) other).getValue())); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        // use this method for custom fields hashing instead of implementing your own
+        return getValue().hashCode();
     }
 
     public boolean isPrivate() {
-        return isPrivate;
+        return getIsPrivate();
+    }
+
+    @Override
+    public String getPrintableString() {
+        return "Address: "+ getValue();
     }
 }

@@ -36,7 +36,8 @@ Format: `help`
 ### Adding a person: `add`
 Adds a person to the address book<br>
 Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...` 
- 
+Address Format: '[p]a/<BLOCK>,<STREET>,<UNIT>,<POSTAL CODE>'
+
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
 > items with `...` after them can have multiple instances. Order of parameters are fixed. 
 > 

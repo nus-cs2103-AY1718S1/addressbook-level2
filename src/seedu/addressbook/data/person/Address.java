@@ -11,8 +11,13 @@ public class Address {
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public enum AddressProperty { BLOCK, STREET, UNIT, POSTAL_CODE }
 
     public final String value;
+    public final Block block;
+    public final Street street;
+    public final Unit unit;
+    public final Postal postal_code;
     private boolean isPrivate;
 
     /**
@@ -27,6 +32,10 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+        this.block = new Block(extractAddressProperty(trimmedAddress, AddressProperty.BLOCK));
+        this.street = new Street(extractAddressProperty(trimmedAddress, AddressProperty.STREET));
+        this.unit = new Unit(extractAddressProperty(trimmedAddress, AddressProperty.UNIT));
+        this.postal_code = new Postal(extractAddressProperty(trimmedAddress, AddressProperty.POSTAL_CODE));
     }
 
     /**
@@ -55,5 +64,19 @@ public class Address {
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+
+    public String extractAddressProperty(String address, AddressProperty addressProperty) {
+        String[] addressArr = address.split(",");
+        if(addressProperty.equals(AddressProperty.BLOCK))
+            return addressArr[0].trim();
+        else if(addressProperty.equals(AddressProperty.STREET))
+            return addressArr[1].trim();
+        else if(addressProperty.equals(AddressProperty.UNIT))
+            return addressArr[2].trim();
+        else if(addressProperty.equals(AddressProperty.POSTAL_CODE))
+            return addressArr[3].trim();
+        else
+            return "";
     }
 }

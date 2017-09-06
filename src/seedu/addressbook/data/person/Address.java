@@ -34,8 +34,20 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+
+        splitAddress(trimmedAddress);
         this.value = trimmedAddress;
-        splitAddress(value);
+
+
+    }
+
+    private void splitAddress(String trimmedAddress) throws IllegalValueException {
+        String[] addressComponents = trimmedAddress.split(",");
+
+        block = new Block(addressComponents[0].trim());
+        street = new Street(addressComponents[1].trim());
+        unit = new Unit(addressComponents[2].trim());
+        postal = new PostalCode(addressComponents[3].trim());
     }
 
     /**
@@ -64,34 +76,6 @@ public class Address {
 
     public boolean isPrivate() {
         return isPrivate;
-    }
-
-    public void splitAddress(String address) throws IllegalValueException {
-        int count = 0;
-
-        for (String info: address.split(",")) {
-            assignInformation(count, info);
-            count++;
-        }
-
-    }
-
-    private void assignInformation(int count, String info) throws IllegalValueException {
-        switch(count) {
-            case 0:
-                block = new Block(info.trim());
-                break;
-            case 1:
-                street = new Street(info.trim());
-                break;
-            case 2:
-                unit = new Unit(info.trim());
-                break;
-            case 3:
-                postal = new PostalCode(info.trim());
-                break;
-            default: break;
-        }
     }
 
 

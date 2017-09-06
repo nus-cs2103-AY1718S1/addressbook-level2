@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +39,8 @@ public class Main {
     private StorageFile storage;
     private AddressBook addressBook;
 
+    public Path path;
+
 
     /**
      * The list of person shown to the user most recently.
@@ -56,7 +60,7 @@ public class Main {
         try {
             checkStorageFileDeleted();
             runCommandLoopUntilExitCommand();
-       } catch (StorageFileDeletedException sfde){
+        } catch (StorageFileDeletedException sfde) {
             throw new RuntimeException(sfde);
         }
         exit();
@@ -100,7 +104,7 @@ public class Main {
     /**
      * Reads the user command and executes it, until the user issues the exit command.
      */
-    private void runCommandLoopUntilExitCommand() {
+    private void runCommandLoopUntilExitCommand() throws StorageFileDeletedException {
         Command command;
         do {
             String userCommandText = ui.getUserCommand();
@@ -152,7 +156,8 @@ public class Main {
     }
 
     private void checkStorageFileDeleted() throws StorageFileDeletedException {
-        if (storage.getPath()==null){
+        path = Paths.get(storage.getPath());
+        if (!Files.exists(path) || !Files.isRegularFile(path)) {
             throw new StorageFileDeletedException("file was deleted");
         }
     }

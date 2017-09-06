@@ -116,6 +116,11 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
+        } catch (StorageOperationException soe) {
+            // Informs the user that the application encounters problem when saving to the storage.
+            ui.showToUser(soe.getMessage(), StorageFile.MESSAGE_PROMPT_SAVE_AS_COMMAND);
+
+            return new CommandResult("");
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
 

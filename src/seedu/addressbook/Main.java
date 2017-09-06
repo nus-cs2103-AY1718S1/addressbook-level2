@@ -1,5 +1,6 @@
 package seedu.addressbook;
 
+import java.nio.file.ReadOnlyFileSystemException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -111,6 +112,8 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
+        } catch (ReadOnlyFileSystemException rofse) {
+            return new CommandResult(rofse.getMessage());
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

@@ -13,10 +13,10 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
-    private Block block;
-    private Street street;
-    private Unit unit;
-    private PostalCode postalCode;
+    private Block block = new Block(0);
+    private Street street = new Street("");
+    private Unit unit = new Unit("");
+    private PostalCode postalCode = new PostalCode(0);
     private boolean isPrivate;
 
     /**
@@ -34,8 +34,8 @@ public class Address {
 
         block.setBlockNumber(Integer.parseInt(splitAddress[0]));
         street.setStreetName(splitAddress[1]);
-        unit.setUnitNum(Integer.parseInt(splitAddress[2]));
-        postalCode.setPostalNum(Integer.parseInt(splitAddress[3]));
+        unit.setUnitNum(splitAddress[2]);
+        postalCode.setPostalNum(Integer.parseInt(splitAddress[3].trim()));
 
 
         this.value = trimmedAddress;

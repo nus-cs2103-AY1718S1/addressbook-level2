@@ -13,7 +13,7 @@ public class Block {
     /**
      * Validates given address block.
      *
-     * @throws IllegalValueException if given address block string is invalid.
+     * Guarantees: immutable; is valid as declared in {@link #isValidBlock(String)}
      */
     public Block(String block, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;

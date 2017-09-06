@@ -13,7 +13,7 @@ public class PostalCode {
     /**
      * Validates given address postal code.
      *
-     * @throws IllegalValueException if given address postal code string is invalid.
+     * Guarantees: immutable; is valid as declared in {@link #isValidPostalCode(String)}
      */
     public PostalCode(String postalCode, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;

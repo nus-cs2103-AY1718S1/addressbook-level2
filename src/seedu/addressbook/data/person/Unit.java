@@ -13,7 +13,7 @@ public class Unit {
     /**
      * Validates given address unit.
      *
-     * @throws IllegalValueException if given address unit string is invalid.
+     * Guarantees: immutable; is valid as declared in {@link #isValidUnit(String)}
      */
     public Unit(String unit, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;

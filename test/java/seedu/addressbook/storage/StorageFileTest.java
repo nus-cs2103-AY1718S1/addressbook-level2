@@ -7,6 +7,7 @@ import java.util.Collections;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.Assert;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 
@@ -65,11 +66,13 @@ public class StorageFileTest {
 
     @Test
     public void load_nonExistantFile_returnsEmptyAddressBook() throws Exception {
-        AddressBook actualAB = getStorage(NON_EXISTANT_FILE_NAME).load();
+        thrown.expect(StorageOperationException.class);
+        getStorage(NON_EXISTANT_FILE_NAME).load();
+        /**
         AddressBook expectedAB = new AddressBook();
 
         assertEquals(actualAB, expectedAB);
-
+        */
         // verify that loading does not result in the file being created
         assertFileDoesNotExist(TEST_DATA_FOLDER + "/" + NON_EXISTANT_FILE_NAME);
     }

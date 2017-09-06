@@ -78,6 +78,13 @@ public class StorageFile {
         if (!isValidPath(path)) {
             throw new InvalidStorageFilePathException("Storage file should end with '.xml'");
         }
+
+        /*
+        if(!isFileReadOnly(path)) {
+            throw new InvalidStorageFilePathException("File is read only.");
+        }
+        */
+
     }
 
     /**
@@ -88,8 +95,8 @@ public class StorageFile {
         return filePath.toString().endsWith(".xml");
     }
 
-
-    private static boolean isFileReadOnly(Path file){
+    /*
+    private boolean isFileReadOnly(Path file) throws InvalidStorageFilePathException {
         if (!file.toFile().canWrite())
         {
             DosFileAttributes dosAttr;
@@ -103,11 +110,12 @@ public class StorageFile {
             }
             catch (IOException e)
             {
-                System.out.println("File is read only.");
+                throw new InvalidStorageFilePathException("File is read only.");
             }
         }
         return false;
     }
+    */
 
     /**
      * Saves all data to this storage file.

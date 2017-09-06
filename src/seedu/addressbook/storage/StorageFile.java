@@ -104,12 +104,15 @@ public class StorageFile {
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
-
-        } catch (IOException ioe) {
+        } catch (FileNotFoundException e) {
+          throw new StorageOperationException("File is read only, please check access rights and try again");
+        }
+        catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
         }
+
     }
 
     /**

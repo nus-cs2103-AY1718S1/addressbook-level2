@@ -43,6 +43,15 @@ public class StorageFile {
     }
 
     /**
+     * Signals that the given file path is read-only and cannot be written to.
+     */
+    public static class ReadOnlyStorageFileException extends Exception {
+        public ReadOnlyStorageFileException(String message) {
+            super(message);
+        }
+    }
+
+    /**
      * Signals that some error has occured while trying to convert and read/write data between the application
      * and the storage file.
      */
@@ -88,15 +97,27 @@ public class StorageFile {
     }
 
     /**
+     * Returns true if the given path is a read-only file
+     */
+    private static boolean isReadOnlyFile(Path filePath) {
+        return !filePath.toFile().canWrite();
+    }
+
+    /**
      * Saves all data to this storage file.
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
+     * @throws ReadOnlyStorageFileException if the storage file is read-only and cannot be written to.
      */
-    public void save(AddressBook addressBook) throws StorageOperationException {
+    public void save(AddressBook addressBook) throws StorageOperationException, ReadOnlyStorageFileException {
 
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
+        if (isReadOnlyFile(path)) {
+            throw new ReadOnlyStorageFileException("Storage file is read-only and cannot be written to");
+        }
+
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 
@@ -138,7 +159,7 @@ public class StorageFile {
 
         } catch (FileNotFoundException fnfe) {
             throw new AssertionError("A non-existent file scenario is already handled earlier.");
-        // other errors
+            // other errors
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {

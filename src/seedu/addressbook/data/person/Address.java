@@ -66,7 +66,7 @@ public class Address {
         return isPrivate;
     }
 
-    public void splitAddress(String address) {
+    public void splitAddress(String address) throws IllegalValueException {
         int count = 0;
 
         for (String info: address.split(",")) {
@@ -76,7 +76,7 @@ public class Address {
 
     }
 
-    private void assignInformation(int count, String info) {
+    private void assignInformation(int count, String info) throws IllegalValueException {
         switch(count) {
             case 0:
                 block = new Block(info.trim());

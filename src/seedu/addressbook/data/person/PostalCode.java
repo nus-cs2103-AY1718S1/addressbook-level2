@@ -10,8 +10,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class PostalCode {
 
     public static final String EXAMPLE = "735654";
-    public static final String MESSAGE_PHONE_CONSTRAINTS = "Person Postal Code number should only contain numbers";
-    public static final String PHONE_VALIDATION_REGEX = "\\d+";
+    public static final String MESSAGE_POSTALCODE_CONSTRAINTS = "Person Postal Code number should only contain numbers";
+    public static final String POSTALCODE_VALIDATION_REGEX = "\\d+";
 
     public final String value;
     private boolean isPrivate;
@@ -20,7 +20,7 @@ public class PostalCode {
         this.isPrivate = isPrivate;
         String trimmedPostalCode = postalCode.trim();
         if (!isValidPostalCode(trimmedPostalCode)) {
-            throw new IllegalValueException(MESSAGE_POSTAL_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_POSTALCODE_CONSTRAINTS);
         }
         this.value = trimmedPostalCode;
     }
@@ -29,7 +29,7 @@ public class PostalCode {
      * Returns true if the given string is a valid postal code.
      */
     public static boolean isValidPostalCode(String test) {
-        return test.matches(POSTAL_VALIDATION_REGEX);
+        return test.matches(POSTALCODE_VALIDATION_REGEX);
     }
 
     @Override

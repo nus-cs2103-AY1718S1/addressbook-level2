@@ -113,7 +113,7 @@ public class Main {
             return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
-            throw new RuntimeException(e);
+            return new CommandResult("WARNING: Your changes was not saved successfully");
         }
     }
 

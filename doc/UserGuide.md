@@ -46,8 +46,8 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/BLOCK, STREET, UNIT, POSTAL_
 > Persons can have any number of tags (including 0)
 
 Examples: 
-* `add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25`
-* `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/311, Clementi Ave 2, #02-25 t/criminal t/friend`
+* `add John Doe p/98765432 e/johnd@gmail.com a/123, Clementi Ave 3, #12-34, 231534`
+* `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/123, Clementi Ave 3, #12-34, 231534 t/criminal t/friend`
 
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>

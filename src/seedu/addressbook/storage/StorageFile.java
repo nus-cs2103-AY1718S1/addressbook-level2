@@ -1,5 +1,6 @@
 package seedu.addressbook.storage;
 
+import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
@@ -29,8 +30,8 @@ public class StorageFile {
     /** Default file path used if the user doesn't provide the file name. */
     public static final String DEFAULT_STORAGE_FILEPATH = "addressbook.xml";
     /** Prompts the user to use saveAs command when encountering file IO problems. */
-    public static final String MESSAGE_PROMPT_SAVE_AS_COMMAND = "Please use the saveas command to change to a "
-            + "new storage path";
+    public static final String MESSAGE_PROMPT_SAVE_AS_COMMAND = "Please use the saveas command to change to "
+            + "another storage path.";
 
     /* Note: Note the use of nested classes below.
      * More info https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
@@ -152,8 +153,16 @@ public class StorageFile {
         }
     }
 
+    /**
+     * Instantiates a commandResult when the {@link #save(AddressBook)} fails.
+     *
+     * @return a commandResult that represents the failure of storage to the specific file path.
+     */
+    public CommandResult saveFailureCommandResult() {
+        return new CommandResult(MESSAGE_PROMPT_SAVE_AS_COMMAND);
+    }
+
     public String getPath() {
         return path.toString();
     }
-
 }

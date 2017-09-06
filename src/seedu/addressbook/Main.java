@@ -118,9 +118,8 @@ public class Main {
             return result;
         } catch (StorageOperationException soe) {
             // Informs the user that the application encounters problem when saving to the storage.
-            ui.showToUser(soe.getMessage(), StorageFile.MESSAGE_PROMPT_SAVE_AS_COMMAND);
-
-            return new CommandResult("");
+            ui.showToUser(soe.getMessage());
+            return storage.saveFailureCommandResult();
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
 

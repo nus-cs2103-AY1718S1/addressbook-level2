@@ -5,7 +5,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Street {
     public static final String EXAMPLE = "Clementi Ave 3";
     public static final String MESSAGE_STREET_CONSTRAINTS = "Person Address Streets can be in any format";
-    public static final String STREET_VALIDATION_REGEX = ",+";
+    public static final String STREET_VALIDATION_REGEX = ".+";
 
     public final String value;
     private boolean isPrivate;
@@ -13,7 +13,7 @@ public class Street {
     /**
      * Validates given address street.
      *
-     * @throws IllegalValueException if given address street string is invalid.
+     * Guarantees: immutable; is valid as declared in {@link #isValidStreet(String)}
      */
     public Street(String street, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;

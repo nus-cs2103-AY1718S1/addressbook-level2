@@ -52,6 +52,12 @@ public class StorageFile {
         }
     }
 
+    public static class StorageFileDeletedException extends IllegalValueException {
+        public StorageFileDeletedException(String message) {
+            super(message);
+        }
+    }
+
     private final JAXBContext jaxbContext;
 
     public final Path path;
@@ -109,6 +115,8 @@ public class StorageFile {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
+        }catch (IOException ioe) {
+            throw new StorageOperationException("Error writing to file: " + path);
         }
     }
 

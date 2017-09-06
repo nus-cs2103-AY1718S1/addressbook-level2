@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import com.sun.org.apache.regexp.internal.RE;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
@@ -109,8 +110,11 @@ public class Main {
         try {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
+            storage.checkIfReadOnly();
             storage.save(addressBook);
             return result;
+        } catch (StorageFile.ReadOnlyException roe){
+            return new CommandResult(roe.getMessage());
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

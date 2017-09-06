@@ -4,8 +4,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 public class Unit {
     public static final String EXAMPLE = "#12-34";
-    public static final String MESSAGE_UNIT_CONSTRAINTS = "Person Address Unit should start with #";
-    public static final String UNIT_VALIDATION_REGEX = "#";
+    public static final String MESSAGE_UNIT_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String UNIT_VALIDATION_REGEX = ".+";
 
     public final String value;
     private boolean isPrivate;

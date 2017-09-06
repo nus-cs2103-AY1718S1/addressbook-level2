@@ -4,9 +4,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 public class PostalCode {
     public static final String EXAMPLE = "231534";
-    public static final String MESSAGE_POSTAL_CODE_CONSTRAINTS =
-            "Person address postal code should only contain numbers";
-    public static final String POSTAL_CODE_VALIDATION_REGEX = "\\d+";
+    public static final String MESSAGE_POSTAL_CODE_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String POSTAL_CODE_VALIDATION_REGEX = ".+";
 
     public final String value;
     private boolean isPrivate;

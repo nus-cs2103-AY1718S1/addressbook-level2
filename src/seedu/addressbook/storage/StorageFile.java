@@ -106,7 +106,8 @@ public class StorageFile {
             marshaller.marshal(toSave, fileWriter);
 
         } catch (IOException ioe) {
-            throw new StorageOperationException("Error writing to file: " + path);
+            //throw new StorageOperationException("Error writing to file: " + path);
+            System.out.println("|| Error writing to file: " + path + ". Entries will not be saved.");
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
         }
@@ -140,6 +141,7 @@ public class StorageFile {
             throw new AssertionError("A non-existent file scenario is already handled earlier.");
         // other errors
         } catch (IOException ioe) {
+
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error parsing file data format");

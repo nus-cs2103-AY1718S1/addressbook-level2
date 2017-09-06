@@ -85,6 +85,8 @@ public class Main {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
+            if (result == null)
+                continue;
             recordResult(result);
             ui.showResultToUser(result);
 
@@ -113,7 +115,10 @@ public class Main {
             return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
-            throw new RuntimeException(e);
+            if (!e.getMessage().equals(storage.getReadonlyException())) {
+                throw new RuntimeException(e);
+            }
+            return null;
         }
     }
 

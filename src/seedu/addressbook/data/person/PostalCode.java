@@ -1,5 +1,9 @@
 package seedu.addressbook.data.person;
 
+/**
+ * Represents a postal code in an Address
+ */
+
 public class PostalCode {
     private String postalCode;
 

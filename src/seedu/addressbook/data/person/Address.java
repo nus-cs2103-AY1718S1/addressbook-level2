@@ -34,6 +34,12 @@ public class Address {
         initializeAddress(trimmedAddress);
     }
 
+    /**
+     * Initializes the classes that constitute an Address
+     *
+     * @param fullAddress String address
+     */
+
     public void initializeAddress(String fullAddress) {
         this.block = new Block (fullAddress);
         this.street = new Street (fullAddress);
@@ -62,6 +68,12 @@ public class Address {
                 || this.equalsTo(other); // state check:
     }
 
+    /**
+     * Checks if an object is equals to this object
+     *
+     * @param other object to be compared to
+     * @return true if object are equal
+     */
     public boolean equalsTo(Object other) {
         if (other instanceof Address) {
             Address toBeCompared = (Address) other;

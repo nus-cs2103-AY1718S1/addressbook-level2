@@ -52,6 +52,16 @@ public class StorageFile {
         }
     }
 
+    /**
+     * Signals that some error has occured while trying to convert and write data between the application
+     * and the storage file.
+     */
+    public static class StorageWriteException extends StorageOperationException {
+        public StorageWriteException(String message){
+            super(message);
+        }
+    }
+    
     private final JAXBContext jaxbContext;
 
     public final Path path;
@@ -106,7 +116,7 @@ public class StorageFile {
             marshaller.marshal(toSave, fileWriter);
 
         } catch (IOException ioe) {
-            throw new StorageOperationException("Error writing to file: " + path);
+            throw new StorageWriteException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
         }

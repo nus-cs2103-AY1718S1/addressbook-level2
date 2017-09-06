@@ -18,6 +18,11 @@ public class SaveAsCommand extends Command {
         this.newPath = newPath.trim();
     }
 
+    /**
+     * Updates the StorageFile object being used to be directed to the new path.
+     *
+     * @param storage is the reference to the StorageFile object being used.
+     */
     public CommandResult execute(StorageFile storage) {
         try {
             storage = new StorageFile(newPath);

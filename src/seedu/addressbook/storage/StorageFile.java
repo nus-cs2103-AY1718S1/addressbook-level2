@@ -41,6 +41,8 @@ public class StorageFile {
             super(message);
         }
     }
+    public static final String READONLY_EXCEPTION = "The addressbook is now readonly! Please change the permission" +
+            " of the file in order to use this programme";
 
     /**
      * Signals that some error has occured while trying to convert and read/write data between the application
@@ -106,6 +108,9 @@ public class StorageFile {
             marshaller.marshal(toSave, fileWriter);
 
         } catch (IOException ioe) {
+            if (!path.toFile().canWrite()){
+                throw new StorageOperationException(READONLY_EXCEPTION);
+            }
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
@@ -151,5 +156,6 @@ public class StorageFile {
     public String getPath() {
         return path.toString();
     }
+    public String getReadonlyException() {return READONLY_EXCEPTION;}
 
 }

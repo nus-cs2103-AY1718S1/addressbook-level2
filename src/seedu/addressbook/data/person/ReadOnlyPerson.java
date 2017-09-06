@@ -94,4 +94,17 @@ public interface ReadOnlyPerson {
         }
         return builder.toString();
     }
+
+    default String getAddressAsTextHidePrivate() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName());
+        final Address address = getAddress();
+        if (!getAddress().isPrivate()) {
+            builder.append(" Block: ").append(address.block);
+            builder.append(" Street: ").append(address.street);
+            builder.append(" Unit: ").append(address.unit);
+            builder.append(" Postal Code: ").append(address.postalCode);
+        }
+        return builder.toString();
+    }
 }

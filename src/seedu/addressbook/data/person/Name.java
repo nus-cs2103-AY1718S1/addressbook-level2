@@ -1,8 +1,11 @@
 package seedu.addressbook.data.person;
 
+import oracle.jrockit.jfr.StringConstantPool;
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -51,6 +54,44 @@ public class Name implements Printable{
         return "Name: "+ toString();
     }
 
+    /**
+     * Returns true of the other name is very similar to this name.
+     * Two names are considered similar if they are the same after changing both to lowercase strings
+     * and then change the orders if possible
+     */
+    public boolean isSimilar(Name other) {
+        String[] nameStrings = fullName.split(" ");
+        String[] othersNameStrings = other.fullName.split(" ");
+
+        if (nameStrings.length != othersNameStrings.length) {
+            return true;
+        }
+
+        ArrayList<String> nameLists = new ArrayList<>();
+        ArrayList<String> othersNameLists = new ArrayList<>();
+
+        for (String s: nameStrings) {
+            nameLists.add(s.trim().toLowerCase());
+        }
+        for (String s: othersNameStrings) {
+            othersNameLists.add(s.trim().toLowerCase());
+        }
+
+        for (int i = 0; i < nameLists.size(); i++){
+            String testExistenceString = nameLists.get(i);
+            boolean flag = false;
+            for (int j = 0; j < othersNameLists.size(); j++){
+                if (testExistenceString.equals(othersNameLists.get(j))){
+                    flag = true;
+                }
+            }
+            if (flag == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return fullName;
@@ -67,5 +108,6 @@ public class Name implements Printable{
     public int hashCode() {
         return fullName.hashCode();
     }
+
 
 }

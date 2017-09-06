@@ -1,5 +1,6 @@
 package seedu.addressbook.data;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.addressbook.util.TestUtil.getSize;
@@ -32,6 +33,9 @@ public class AddressBookTest {
     private Person bobChaplin;
     private Person charlieDouglas;
     private Person davidElliot;
+
+    private Name aliceSimilarName;
+    private Name aliceNotSimilarName;
 
     private AddressBook defaultAddressBook;
     private AddressBook emptyAddressBook;
@@ -71,10 +75,20 @@ public class AddressBookTest {
         emptyAddressBook = new AddressBook();
         defaultAddressBook = new AddressBook(new UniquePersonList(aliceBetsy, bobChaplin),
                                              new UniqueTagList(tagMathematician, tagScientist));
+
+        aliceSimilarName = new Name("BETSY alice");
+        aliceNotSimilarName = new Name("Brandon Stark");
     }
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void test_isNameSimilarOrNot() {
+        Name aliceName = aliceBetsy.getName();
+        assertTrue(aliceName.isSimilar(aliceSimilarName));
+        assertFalse(aliceName.isSimilar(aliceNotSimilarName));
+    }
 
     @Test
     public void addPerson_emptyAddressBook() throws Exception {

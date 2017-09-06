@@ -32,7 +32,7 @@ public class Address {
         this.unit = new Unit(addressComponents[2], isPrivate);
         this.postalCode = new PostalCode(addressComponents[3], isPrivate);
 
-        value = new String(this.block.toString() + ", " + this.street.toString() + ", " +
+        this.value = new String(this.block.toString() + ", " + this.street.toString() + ", " +
         this.unit.toString() + ", " + this.postalCode);
     }
 

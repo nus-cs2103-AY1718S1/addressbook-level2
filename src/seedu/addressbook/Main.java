@@ -111,7 +111,10 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-        } catch (Exception e) {
+        } catch (StorageOperationException e) {
+            return new CommandResult("Storage File Not accessible");
+        }
+        catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);
         }

@@ -13,20 +13,36 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
+    public final String block;
+    public final String street;
+    public final String unit;
+    public final String postalCode;
     private boolean isPrivate;
 
     /**
      * Validates given address.
      *
-     * @throws IllegalValueException if given address string is invalid.
+     * @throws IllegalValueException if given address string is invalid, or there isn't 4 inputs for address
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
-        String trimmedAddress = address.trim();
-        this.isPrivate = isPrivate;
-        if (!isValidAddress(trimmedAddress)) {
+        String[] trimmedAddress = address.trim().split(",");
+
+        if(trimmedAddress.length != 4) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        else {
+            block = trimmedAddress[0].trim();
+            street = trimmedAddress[1].trim();
+            unit = trimmedAddress[2].trim();
+            postalCode = trimmedAddress[3].trim();
+        }
+
+
+        this.isPrivate = isPrivate;
+        if (!isValidAddress(address.trim())) {
+            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        }
+        this.value = address.trim();
     }
 
     /**

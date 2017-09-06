@@ -112,7 +112,8 @@ public class Main {
             storage.save(addressBook);
             return result;
         } catch(StorageOperationException soe) {
-            return new CommandResult("StorageOperationException: Storage file is read-only.");
+            return new CommandResult("StorageOperationException: Cannot write to file. " +
+                    "Storage file is read-only.");
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

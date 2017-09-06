@@ -72,9 +72,10 @@ public class Main {
         }
     }
 
-    /** Prints the Goodbye message and exits. */
+    /** Prints the tagging changes and then print Goodbye message and exits. */
     private void exit() {
         ui.showGoodbyeMessage();
+        ui.showTaggingChangesInformation(this.addressBook.passTaggingSessionInformation());
         System.exit(0);
     }
 

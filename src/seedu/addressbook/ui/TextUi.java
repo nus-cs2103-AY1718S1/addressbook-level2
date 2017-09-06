@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 import seedu.addressbook.commands.CommandResult;
+import seedu.addressbook.data.Tagging;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.ui.Formatter;
 
@@ -136,8 +137,16 @@ public class TextUi {
         showToUser(formatter.getIndexedListForViewing(list));
     }
 
-
-
-
+    public void showTaggingChangesInformation(Tagging taggingInfoSession) {
+        if (taggingInfoSession == null){
+            return;
+        }
+        ArrayList<String> taggingChangesStringToShow = taggingInfoSession.passTaggingrecordStringList();
+        if (!(taggingChangesStringToShow.size() == 0)) {
+            for (String record : taggingChangesStringToShow) {
+                out.println(formatter.showToUserMessage(record)); // No formatter needed - format controlled by tagging class for now
+            }
+        }
+    }
 
 }

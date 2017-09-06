@@ -24,7 +24,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
-
+    private Tagging taggingInfoSession;
     /**
      * Creates an empty address book.
      */
@@ -55,8 +55,9 @@ public class AddressBook {
      */
     private void syncTagsWithMasterList(Person person) {
         final UniqueTagList personTags = person.getTags();
-        allTags.mergeFrom(personTags);
+        allTags.mergeFrom(personTags); //this should contain all the tags from any person, so merge
 
+        //Following two segments update the tags with the master list.
         // Create map with values = tag object references in the master list
         final Map<Tag, Tag> masterTagObjects = new HashMap<>();
         for (Tag tag : allTags) {
@@ -127,5 +128,31 @@ public class AddressBook {
                 || (other instanceof AddressBook // instanceof handles nulls
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
+    }
+
+    /**
+     * Delete a single tag from a person
+     * Deleting multiple needs loops
+     * @param person - the person of concern
+     * @param tagToDelete - the tag to be deleted
+     */
+    public boolean deleteTagFromPerson(Person person, Tag tagToDelete) {
+        taggingInfoSession.addDeletionTaggingRecord(person, tagToDelete);
+        return person.deleteTagFromPerson(tagToDelete);
+    }
+
+    /**
+     * Add a single tag to this person
+     * @param person
+     * @param tagToAdd
+     * @return true if the addition update the persons unique tags list
+     */
+    public boolean addTagToPerson(Person person, Tag tagToAdd) {
+        taggingInfoSession.addAdditionTaggingRecord(person, tagToAdd);
+        return person.addTagToPerson(tagToAdd);
+    }
+
+    public Tagging passTaggingSessionInformation () {
+        return taggingInfoSession;
     }
 }

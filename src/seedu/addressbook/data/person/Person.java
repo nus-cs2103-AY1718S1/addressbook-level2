@@ -2,7 +2,9 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.tag.Tag;
 
+import java.util.HashSet;
 import java.util.Objects;
 
 /**
@@ -142,6 +144,20 @@ public class Person implements ReadOnlyPerson {
     @Override
     public String toString() {
         return getAsTextShowAll();
+    }
+
+    public boolean deleteTagFromPerson (Tag tag) {
+        return this.tags.deleteTag(tag);
+    }
+
+    public boolean addTagToPerson (HashSet<Tag> toBeConstructed) {
+        UniqueTagList tagListToMerge = new UniqueTagList(toBeConstructed);
+        this.tags.mergeFrom(tagListToMerge);
+        return true;
+    }
+
+    public boolean addTagToPerson (Tag tag) {
+        return this.tags.addTag(tag);
     }
 
 }

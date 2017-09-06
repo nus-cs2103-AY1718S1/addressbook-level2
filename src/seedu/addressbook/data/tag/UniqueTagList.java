@@ -138,4 +138,36 @@ public class UniqueTagList implements Iterable<Tag> {
                         && this.internalList.equals(((UniqueTagList) other).internalList));
     }
 
+    /**
+     * remove a single tag from the unique tag lists, if there is no such appearance return false
+     * adding a tag can just use the merge function in unique tag list class
+     * @param tagToDelete - tag object to be deleted
+     * @return true if the deletion is a success (uniqueness ensures the first occurrence checking suffices.
+     */
+    public boolean deleteTag(Tag tagToDelete) {
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).equals(tagToDelete)) {
+                internalList.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Largely coincide with the merge from method, expect that this method only add a single tag
+     * If the tag is not present before adding, the add proceeds, and return true
+     * @param tagToAdd - a tag object to be added
+     * @return false if the tag to add is already contained in the internal list
+     */
+    public boolean addTag (Tag tagToAdd) {
+        final Set<Tag> alreadyInside = this.toSet();
+        if (!alreadyInside.contains(tagToAdd)) {
+            internalList.add(tagToAdd);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

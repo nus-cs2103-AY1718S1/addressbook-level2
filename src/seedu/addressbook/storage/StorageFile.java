@@ -108,7 +108,8 @@ public class StorageFile {
             hasStorageFileBeenCreated = true;
         }else{
             if(!Files.exists(path)){
-                throw new StorageOperationException("Storage file has been deleted in the midst of operation!");
+                throw new StorageOperationException("Storage file has been deleted in the midst of operation! " +
+                        "A new storage file will be created.");
             }
         }
 

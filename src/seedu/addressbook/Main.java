@@ -1,5 +1,6 @@
 package seedu.addressbook;
 
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -76,6 +77,13 @@ public class Main {
     private void exit() {
         ui.showGoodbyeMessage();
         System.exit(0);
+    }
+
+    /** Check the existence of storage file */
+    private void isFileExist() throws NoSuchFieldException {
+        if(!Files.exists(storage.path) || !Files.isRegularFile(storage.path)) {
+            throw new NoSuchFieldException(storage.path.toString() + " does not exist");
+        }
     }
 
     /** Reads the user command and executes it, until the user issues the exit command.  */

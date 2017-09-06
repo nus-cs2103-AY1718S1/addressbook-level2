@@ -25,6 +25,8 @@
 || viewall: Views all the details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
+|| saveas: Changes where the storage file is located. The file name must end in .xml for it to be acceptable to the programParameters: NEW_PATH
+|| Example: saveas addressbook_new.xml
 || help: Shows program usage instructions.
 || Example: help
 || exit: Exits the program.

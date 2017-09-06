@@ -7,7 +7,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
+    public static final String EXAMPLE = "123, some street, #12-34, 123456";
 
     private Block block;
     private Street street;

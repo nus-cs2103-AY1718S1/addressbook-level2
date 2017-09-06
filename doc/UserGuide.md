@@ -46,7 +46,7 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > Persons can have any number of tags (including 0)
 
 Examples: 
-* `add John Doe p/98765432 e/johnd@gmail.com a/123, John street,  #01-01, 123456`
+* `add John Doe p/98765432 e/johnd@gmail.com a/123, John street, #01-01, 123456`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/456, Newgate Prison, #10, 456789 t/criminal t/friend`
 
 ### Listing all persons : `list`

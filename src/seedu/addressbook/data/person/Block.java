@@ -7,12 +7,12 @@ public class Block {
     private String block;
 
     public Block(String inputBlock){
+        block = new String(inputBlock);
+    }
+    public void setBlock(String inputBlock){
         block = inputBlock;
     }
-    public void editBlock(String inputBlock){
-        block = inputBlock;
-    }
-    public String getBlock(){
+    public String getValue(){
         return block;
     }
 }

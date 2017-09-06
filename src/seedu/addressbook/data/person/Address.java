@@ -1,6 +1,12 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static seedu.addressbook.common.Messages.MESSAGE_INVALID_ADDRESS_FORMAT;
 
 /**
  * Represents a Person's address in the address book.
@@ -16,13 +22,22 @@ public class Address {
                                                             + PostalCode.MESSAGE_POSTALCODE_CONSTRAINTS;
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
+    public static final Pattern ADDRESS_ARGS_FORMAT =
+                            Pattern.compile("(?<block>[^,]+)"
+                                        + "(?<street>[^,]+)"
+                                        + "(?<unit>[^,]+)"
+                                        + "(?<postalcode>[^,]+)");
+
+    public final Block _block;
+    public final Street _street;
+    public final Unit _unit;
+    public final PostalCode _postalcode;
     public final String value;
     private boolean isPrivate;
 
     /**
-     * Validates given address.
+     * Separates into block, street, unit and postal code
      *
-     * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
@@ -30,7 +45,16 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        final Matcher matcher = ADDRESS_ARGS_FORMAT.matcher(address.trim());
+//        try {
+            _block = new Block (matcher.group("block"));
+            _street = new Street (matcher.group("street"));
+            _unit = new Unit (matcher.group("unit"));
+            _postalcode = new PostalCode (matcher.group("postalcode"));
+//        } catch (IllegalValueException ive) {
+//            new IncorrectCommand(MESSAGE_INVALID_ADDRESS_FORMAT);
+//        }
+        this.value = _block.toString() + ", " + _street.toString() + ", " + _unit.toString() + ", " + _postalcode.toString();
     }
 
     /**
@@ -39,6 +63,11 @@ public class Address {
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
     }
+
+    public Block getBlock() { return _block; }
+    public Street getStreet() { return _street; }
+    public Unit getUnit() { return _unit; }
+    public PostalCode getPostalcode() { return _postalcode; }
 
     @Override
     public String toString() {

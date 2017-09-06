@@ -38,7 +38,6 @@ public class Address {
         splitAddress(trimmedAddress);
         this.value = trimmedAddress;
 
-
     }
 
     /**

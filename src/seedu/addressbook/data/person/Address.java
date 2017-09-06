@@ -75,6 +75,11 @@ public class Address {
     }
 }
 
+/**
+ * Helper class for {@link Address}.
+ * Represents the Block portion of an address.
+ * Note: BlockNumber is stored as a String.
+ */
 class Block {
     private String blockNumber;
 
@@ -87,6 +92,11 @@ class Block {
     }
 }
 
+/**
+ * Helper class for {@link Address}.
+ * Represents the Street portion of an address.
+ * Note: StreetName is stored as a String.
+ */
 class Street {
     private String streetName;
 
@@ -99,6 +109,11 @@ class Street {
     }
 }
 
+/**
+ * Helper class for {@link Address}.
+ * Represents the Unit portion of an address.
+ * Note: Unit number is stored as a String.
+ */
 class Unit {
     private String unit;
 
@@ -111,6 +126,11 @@ class Unit {
     }
 }
 
+/**
+ * Helper class for {@link Address}.
+ * Represents the PostalCode portion of an address.
+ * Note: PostalCode is stored as a String.
+ */
 class PostalCode {
     private String postalCode;
 

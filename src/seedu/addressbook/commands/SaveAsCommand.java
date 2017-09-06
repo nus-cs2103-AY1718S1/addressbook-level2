@@ -18,6 +18,15 @@ public class SaveAsCommand extends Command {
 
     @Override
     public CommandResult execute() {
+        return new CommandResult("");
+    }
 
+    /**
+     * Checks whether a given command is a saveAs command.
+     *
+     * @param command is the command given to check.
+     */
+    public static boolean isSaveAs(Command command) {
+        return command instanceof SaveAsCommand; // instanceof returns false if it is null
     }
 }

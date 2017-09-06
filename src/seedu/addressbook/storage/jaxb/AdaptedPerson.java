@@ -9,12 +9,7 @@ import javax.xml.bind.annotation.XmlValue;
 
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -66,7 +61,7 @@ public class AdaptedPerson {
 
         address = new AdaptedContactDetail();
         address.isPrivate = source.getAddress().isPrivate();
-        address.value = source.getAddress().value;
+        address.value = source.getAddress().toString();
 
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -88,9 +83,9 @@ public class AdaptedPerson {
                 return true;
             }
         }
-        // second call only happens if phone/email/address are all not null
+        // second call only happens if phone/email/block/street/ are all not null
         return Utils.isAnyNull(name, phone, email, address)
-                || Utils.isAnyNull(phone.value, email.value, address.value);
+                || Utils.isAnyNull(phone.value, email.value, address.value); //value is private, why it can be directed accessed?
     }
 
     /**
@@ -103,10 +98,12 @@ public class AdaptedPerson {
         for (AdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
+        String[] splitAddressToComponents = address.value.split(", ");
         final Name name = new Name(this.name);
         final Phone phone = new Phone(this.phone.value, this.phone.isPrivate);
         final Email email = new Email(this.email.value, this.email.isPrivate);
-        final Address address = new Address(this.address.value, this.address.isPrivate);
+        final Address address = new Address(new Block(splitAddressToComponents[0], this.address.isPrivate), new Street(splitAddressToComponents[1], this.address.isPrivate),
+                new Unit(splitAddressToComponents[2], this.address.isPrivate), new PostalCode(splitAddressToComponents[3], this.address.isPrivate), this.address.isPrivate);
         final UniqueTagList tags = new UniqueTagList(personTags);
         return new Person(name, phone, email, address, tags);
     }

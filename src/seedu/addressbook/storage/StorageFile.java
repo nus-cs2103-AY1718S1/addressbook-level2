@@ -52,12 +52,16 @@ public class StorageFile {
         }
     }
 
+    /**
+     * Signals that some error has occured while trying to convert and write data between the application
+     * and the storage file.
+     */
     public static class StorageWriteException extends StorageOperationException {
         public StorageWriteException(String message){
             super(message);
         }
     }
-
+    
     private final JAXBContext jaxbContext;
 
     public final Path path;

@@ -89,7 +89,7 @@ public class Main {
             recordResult(result);
             ui.showResultToUser(result);
 
-        } while (!ExitCommand.isExit(command));
+        } while (!ExitCommand.isSuccessfulExit(command));
     }
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
@@ -114,6 +114,9 @@ public class Main {
             return result;
         } catch (StorageOperationException e) {
             ui.showToUser(e.getMessage());
+            if (command instanceof ExitCommand) {
+                ((ExitCommand) command).setSaveFailureState();
+            }
             return new CommandResult(String.format(MESSAGE_ERROR_SAVE_FAILED_WRITE_PROTECTED, storage.getPath()));
         } catch (Exception e) {
             ui.showToUser(e.getMessage());

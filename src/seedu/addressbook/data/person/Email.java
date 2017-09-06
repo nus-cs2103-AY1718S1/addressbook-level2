@@ -62,4 +62,8 @@ public class Email extends Contact implements Printable{
         return value.hashCode();
     }
 
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
 }

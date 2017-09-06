@@ -17,7 +17,7 @@ public class Address extends Contact implements Printable{
     public final String value;
     private boolean isPrivate;
     //These cannot be final at this time point, as we haven't figured out how to reverse engineer these objects
-    private  Block block;
+    private Block block;
     private Street street;
     private Unit unit;
     private Postal postal;
@@ -126,6 +126,10 @@ public class Address extends Contact implements Printable{
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
     }
 
 }

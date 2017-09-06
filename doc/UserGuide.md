@@ -45,7 +45,8 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > 
 > Persons can have any number of tags (including 0)
 > Addresses are further split into multiple subclasses
-> mainly `Block` `Street` `Unit` and `Postal`.
+> mainly `Block` `Street` `Unit` and `Postal`. The input of
+> each subclass must be seperated by a ", ".
 
 Examples: 
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`

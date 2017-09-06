@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import seedu.addressbook.commands.AddCommand;
+import seedu.addressbook.commands.AddressCommand;
 import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.DeleteCommand;
@@ -68,6 +69,12 @@ public class ParserTest {
     public void parse_helpCommand_parsedCorrectly() {
         final String input = "help";
         parseAndAssertCommandType(input, HelpCommand.class);
+    }
+
+    @Test
+    public void parse_addressCommand_parsedCorrectly() {
+        final String input = "address";
+        parseAndAssertCommandType(input, AddressCommand.class);
     }
 
     @Test

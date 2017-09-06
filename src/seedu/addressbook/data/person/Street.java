@@ -6,6 +6,4 @@ public class Street {
     public Street(String street){
         streetName = street;
     }
-
-
 }

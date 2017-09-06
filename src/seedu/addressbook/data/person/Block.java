@@ -6,6 +6,4 @@ public class Block {
     public Block(String blockNum){
         blkNumber = blockNum;
     }
-
-
 }

@@ -6,10 +6,18 @@ package seedu.addressbook.commands;
  */
 public class IncorrectCommand extends Command {
 
-    public final String feedbackToUser;
+    private String feedbackToUser;
 
     public IncorrectCommand(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
+    }
+
+    public String getFeedbackToUser(){
+        return  feedbackToUser;
+    }
+
+    public void setFeedbackToUser( String feedback){
+        this.feedbackToUser =  feedback;
     }
 
     @Override

@@ -11,8 +11,13 @@ public class Address {
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String ADDRESS_COMMA_SEPARATOR_REGEX = ", ";
 
-    public final String value;
+    // address of Person stored with respective classes
+    public Block block;
+    public Street street;
+    public Unit unit;
+    public PostalCode postalCode;
     private boolean isPrivate;
 
     /**
@@ -26,8 +31,23 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        initializeAddress(trimmedAddress);
     }
+
+    /**
+     * Initializes the classes that constitute an Address
+     *
+     * @param fullAddress String address
+     */
+
+    public void initializeAddress(String fullAddress) {
+        this.block = new Block (fullAddress);
+        this.street = new Street (fullAddress);
+        this.unit = new Unit (fullAddress);
+        this.postalCode = new PostalCode(fullAddress);
+    }
+
+
 
     /**
      * Returns true if a given string is a valid person address.
@@ -38,19 +58,36 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return block + ADDRESS_COMMA_SEPARATOR_REGEX + street + ADDRESS_COMMA_SEPARATOR_REGEX + unit
+                + ADDRESS_COMMA_SEPARATOR_REGEX + postalCode;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                || this.equalsTo(other); // state check:
+    }
+
+    /**
+     * Checks if an object is equals to this object
+     *
+     * @param other object to be compared to
+     * @return true if object are equal
+     */
+    public boolean equalsTo(Object other) {
+        if (other instanceof Address) {
+            Address toBeCompared = (Address) other;
+            return this.block.equals(toBeCompared.block)
+                    && this.street.equals(toBeCompared.street)
+                    && this.unit.equals(toBeCompared.unit)
+                    && this.unit.equals(toBeCompared.postalCode);
+        }
+        return false;
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.toString().hashCode();
     }
 
     public boolean isPrivate() {

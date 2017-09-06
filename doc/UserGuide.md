@@ -132,5 +132,7 @@ Example:
 
 > The file name must end in `.xml` for it to be acceptable to the program.
 >
+> The file must not be read-only.
+>
 > When running the program inside IntelliJ, you can set command line parameters 
   before running the program.

@@ -4,6 +4,7 @@
 
   # should recognise invalid command
   sfdfd
+  add Giang p/1231313 e/dtrngg@yahoo.com a/123,Street,sas
 
 ##########################################################
 # commands using list index before any listing created

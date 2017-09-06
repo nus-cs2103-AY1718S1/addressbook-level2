@@ -30,6 +30,9 @@
 || exit: Exits the program.
 || Example: exit
 || ===================================================
+|| Enter command: || [Command entered:  add Giang p/1231313 e/dtrngg@yahoo.com a/123,Street,sas]
+|| Invalid Address format! Please follow a/BLOCK, STREET, UNIT, POSTAL_CODE
+|| ===================================================
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid
 || ===================================================

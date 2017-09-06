@@ -46,7 +46,7 @@ public class TextUi {
         this(System.in, System.out);
     }
 
-    public TextUi(InputStream in, PrintStream out) {
+    private TextUi(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
     }
@@ -129,7 +129,7 @@ public class TextUi {
         if (resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
-        showToUser(result.feedbackToUser, DIVIDER);
+        showToUser(result.getFeedbackToUser(), DIVIDER);
     }
 
     /**

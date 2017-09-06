@@ -9,12 +9,15 @@ import java.util.Objects;
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String blockString, String streetString, String unitString, String postalCodeString)}
  */
-public class Address extends Contact implements Printable {
+public class Address {
 
     private Block block;
     private Street street;
     private Unit unit;
     private PostalCode postalCode;
+
+    private String value;
+    private boolean isPrivate;
 
     public static String EXAMPLE = "123, Clement Ave 3, #21-34, 213456";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Personal Address should be in a format of Block, Street, Unit, Postal Code";
@@ -36,8 +39,8 @@ public class Address extends Contact implements Printable {
         this.unit = unit;
         this.postalCode = postalCode;
 
-        setValue(block.toString() + ", " + street.toString() + ", " + unit.toString() + ", " + postalCode.toString());
-        setIsPrivate(isPrivate);
+        this.value = block.toString() + ", " + street.toString() + ", " + unit.toString() + ", " + postalCode.toString();
+        this.isPrivate = isPrivate;
     }
 
     /**
@@ -59,28 +62,23 @@ public class Address extends Contact implements Printable {
 
     @Override
     public String toString() {
-        return getValue();
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.getValue().equals(((Address) other).getValue())); // state check
+                && this.value.equals(((Address) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return getValue().hashCode();
+        return value.hashCode();
     }
 
     public boolean isPrivate() {
-        return getIsPrivate();
-    }
-
-    @Override
-    public String getPrintableString() {
-        return "Address: "+ getValue();
+        return isPrivate;
     }
 }

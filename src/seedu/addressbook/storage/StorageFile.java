@@ -33,7 +33,7 @@ public class StorageFile {
     private static final String MESSAGE_PROMPT_SAVE_AS_COMMAND = "Please use the saveas command to change to "
             + "another storage path.";
     /** Tells the user the specified storage path in invalid. */
-    private static final String MESSAGE_INVALID_STORAGE_PATH = "Storage file should end with '.xml'";
+    public static final String MESSAGE_INVALID_STORAGE_PATH = "Storage file should end with '.xml'";
 
     /* Note: Note the use of nested classes below.
      * More info https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html

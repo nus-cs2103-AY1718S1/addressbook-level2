@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
+import seedu.addressbook.commands.SaveAsCommand;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
@@ -111,9 +112,20 @@ public class Main {
      * @return result of the command
      */
     private CommandResult executeCommand(Command command)  {
+        CommandResult result;
+
         try {
             command.setData(addressBook, lastShownList);
-            CommandResult result = command.execute();
+
+            // Needs to pass the storage the command if the command is saveAs (since it changes the file path)
+            if(SaveAsCommand.isSaveAs(command)) {
+                // TODO: This is "bad" software engineering practice, though we have no choice.
+                SaveAsCommand saveAsCommand = (SaveAsCommand)(command);
+                result = saveAsCommand.execute(storage);
+            } else {
+                result = command.execute();
+            }
+
             storage.save(addressBook);
             return result;
         } catch (StorageOperationException soe) {

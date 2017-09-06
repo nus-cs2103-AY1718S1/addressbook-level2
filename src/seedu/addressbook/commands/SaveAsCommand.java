@@ -1,5 +1,7 @@
 package seedu.addressbook.commands;
 
+import seedu.addressbook.storage.StorageFile;
+
 public class SaveAsCommand extends Command {
     public static final String COMMAND_WORD = "saveas";
 
@@ -16,9 +18,13 @@ public class SaveAsCommand extends Command {
         this.newPath = newPath.trim();
     }
 
-    @Override
-    public CommandResult execute() {
-        return new CommandResult("");
+    public CommandResult execute(StorageFile storage) {
+        try {
+            storage = new StorageFile(newPath);
+            return new CommandResult(MESSAGE_SUCCESS);
+        } catch (StorageFile.InvalidStorageFilePathException isfpe) {
+            return new CommandResult(StorageFile.MESSAGE_INVALID_STORAGE_PATH);
+        }
     }
 
     /**

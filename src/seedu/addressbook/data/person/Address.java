@@ -2,6 +2,8 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.StringJoiner;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -12,8 +14,14 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    public final String[] value;
     private boolean isPrivate;
+
+    // Separated Address Class attributes
+    private BlockAddress block;
+    private StreetAddress street;
+    private UnitAddress unit;
+    private PostalAddress postalCode;
 
     /**
      * Validates given address.
@@ -26,7 +34,13 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        this.value = trimmedAddress.split(", ");
+
+        // Initialise separate Class objects and store address values in those classes
+        block = new BlockAddress(this.value);
+        street = new StreetAddress((this.value));
+        unit = new UnitAddress((this.value));
+        postalCode = new PostalAddress((this.value));
     }
 
     /**
@@ -37,8 +51,20 @@ public class Address {
     }
 
     @Override
+    // Reassembles relevant parts of the address into one string before returning it
     public String toString() {
-        return value;
+        StringJoiner joiner = new StringJoiner(", ");
+
+        joiner.add(block.getBlockAddress());
+        joiner.add(street.getStreetAddress());
+        joiner.add(unit.getUnitAddress());
+        joiner.add(postalCode.getPostalAddress());
+
+        return joiner.toString();
+    }
+
+    public String getFullAddress() {
+        return this.toString();
     }
 
     @Override
@@ -55,5 +81,77 @@ public class Address {
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+}
+
+// Class for Block part of the a/BLOCK, STREET, UNIT, POSTAL_CODE address format
+class BlockAddress {
+    private String blockAddress;
+    int BLOCK_ADDRESS_INDEX = 0;
+
+    public BlockAddress(String[] fullAddress) {
+        this.blockAddress = fullAddress[BLOCK_ADDRESS_INDEX];
+    }
+
+    public void setBlockAddress(String[] fullAddress) {
+        this.blockAddress = fullAddress[BLOCK_ADDRESS_INDEX];
+    }
+
+    public String getBlockAddress() {
+        return this.blockAddress;
+    }
+}
+
+// Class for Street part of the a/BLOCK, STREET, UNIT, POSTAL_CODE address format
+class StreetAddress {
+    private String streetAddress;
+    int STREET_ADDRESS_INDEX = 1;
+
+    public StreetAddress(String[] fullAddress) {
+        this.streetAddress = fullAddress[STREET_ADDRESS_INDEX];
+    }
+
+    public void setStreetAddress(String[] fullAddress) {
+        this.streetAddress = fullAddress[STREET_ADDRESS_INDEX];
+    }
+
+    public String getStreetAddress() {
+        return this.streetAddress;
+    }
+}
+
+// Class for Unit part of the a/BLOCK, STREET, UNIT, POSTAL_CODE address format
+class UnitAddress {
+    private String unitAddress;
+    int UNIT_ADDRESS_INDEX = 2;
+
+    public UnitAddress(String[] fullAddress) {
+        this.unitAddress = fullAddress[UNIT_ADDRESS_INDEX];
+    }
+
+    public void setUnitAddress(String[] fullAddress) {
+        this.unitAddress = fullAddress[UNIT_ADDRESS_INDEX];
+    }
+
+    public String getUnitAddress() {
+        return this.unitAddress;
+    }
+}
+
+// Class for Postal part of the a/BLOCK, STREET, UNIT, POSTAL_CODE address format
+class PostalAddress {
+    private String postalAddress;
+    int POSTAL_ADDRESS_INDEX = 3;
+
+    public PostalAddress(String[] fullAddress) {
+        this.postalAddress = fullAddress[POSTAL_ADDRESS_INDEX];
+    }
+
+    public void setPostalAddress(String[] fullAddress) {
+        this.postalAddress = fullAddress[POSTAL_ADDRESS_INDEX];
+    }
+
+    public String getPostalAddress() {
+        return this.postalAddress;
     }
 }

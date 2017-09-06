@@ -99,4 +99,18 @@ public interface ReadOnlyPerson {
         }
         return builder.toString();
     }
+
+
+    /**
+     * Returns a concatenated version of the printable strings of each object.
+     * @Param printables, a bunch of printables that are ready for display
+     */
+    default String getPrintableString(Printable... printables){
+        String result = "";
+        for (Printable p: printables) {
+            result += p.getPrintableString() + ", ";
+        }
+        return result.substring(0, result.length()-1);
+    }
+
 }

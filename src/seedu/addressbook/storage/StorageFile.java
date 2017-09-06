@@ -52,6 +52,13 @@ public class StorageFile {
         }
     }
 
+    /**
+     * Signals inability to save due to storage file being read-only.
+     */
+    public static class ReadOnlyException extends Exception {
+        public ReadOnlyException (String message) { super(message);}
+    }
+
     private final JAXBContext jaxbContext;
 
     public final Path path;
@@ -88,11 +95,20 @@ public class StorageFile {
     }
 
     /**
+     * @throws
+     */
+    public void checkIfReadOnly() throws ReadOnlyException {
+        if (!this.path.toFile().canWrite()){
+            throw new ReadOnlyException("Error! Storage file is read-only. Please check your file settings");
+        }
+    }
+
+    /**
      * Saves all data to this storage file.
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
      */
-    public void save(AddressBook addressBook) throws StorageOperationException {
+    public void save(AddressBook addressBook) throws StorageOperationException, ReadOnlyException {
 
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html

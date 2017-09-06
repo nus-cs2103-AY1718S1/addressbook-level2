@@ -41,15 +41,6 @@ public class Address {
 
     }
 
-    private void splitAddress(String trimmedAddress) throws IllegalValueException {
-        String[] addressComponents = trimmedAddress.split(",");
-
-        block = new Block(addressComponents[0].trim());
-        street = new Street(addressComponents[1].trim());
-        unit = new Unit(addressComponents[2].trim());
-        postal = new PostalCode(addressComponents[3].trim());
-    }
-
     /**
      * Returns true if a given string is a valid person address.
      */
@@ -78,5 +69,13 @@ public class Address {
         return isPrivate;
     }
 
+    private void splitAddress(String trimmedAddress) throws IllegalValueException {
+        String[] addressComponents = trimmedAddress.split(",");
+
+        block = new Block(addressComponents[0].trim());
+        street = new Street(addressComponents[1].trim());
+        unit = new Unit(addressComponents[2].trim());
+        postal = new PostalCode(addressComponents[3].trim());
+    }
 
 }

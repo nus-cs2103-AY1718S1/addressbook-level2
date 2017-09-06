@@ -111,7 +111,20 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-        } catch (Exception e) {
+        }
+        // Without this exception,
+        //
+        // Exception in thread "main" java.lang.RuntimeException:
+        // seedu.addressbook.storage.StorageFile$StorageOperationException: Error writing to file: addressbook.xml
+        //
+        // will show when addressbook.xml is set to read only mode.
+        // Catch the StorageOperationException by returning a CommandResult informing the user.
+
+        catch (StorageOperationException readModeOn){
+            return new CommandResult("File not in writable mode. Please remove read only restriction" +
+                    " on addressBook.xml before using the application");
+        }
+        catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);
         }

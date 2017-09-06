@@ -28,8 +28,8 @@ public class Address extends Contact {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
+        super(isPrivate);
         String trimmedAddress = address.trim();
-        this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
@@ -48,6 +48,7 @@ public class Address extends Contact {
      */
     public Address(Block block, Street street, Unit unit, Postal postal,
                    boolean isPrivate) throws IllegalValueException {
+        super(isPrivate);
         this.block = block;
         this.street = street;
         this.unit = unit;
@@ -119,7 +120,4 @@ public class Address extends Contact {
         return value.hashCode();
     }
 
-    public boolean isPrivate() {
-        return isPrivate;
-    }
 }

@@ -10,5 +10,14 @@ public class SaveAsCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "The path to the storage file has been changed.";
 
+    private String newPath = null;
 
+    public SaveAsCommand(String newPath) {
+        this.newPath = newPath.trim();
+    }
+
+    @Override
+    public CommandResult execute() {
+
+    }
 }

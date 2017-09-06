@@ -1,4 +1,4 @@
-package seedu.addressbook.data.person;
+package seedu.addressbook.data.person.Address;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
@@ -10,10 +10,15 @@ public class Address {
 
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String ADDRESS_VALIDATION_REGEX = "(.+, ){3}.+";
 
     public final String value;
     private boolean isPrivate;
+
+    private final Block block;
+    private final Street street;
+    private final Unit unit;
+    private final PostalCode postal_code;
 
     /**
      * Validates given address.
@@ -27,6 +32,12 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+
+        String[] subAddress = trimmedAddress.split(",");
+        this.block = new Block(subAddress[0]);
+        this.street = new Street(subAddress[1]);
+        this.unit = new Unit(subAddress[2]);
+        this.postal_code = new PostalCode(subAddress[3]);
     }
 
     /**

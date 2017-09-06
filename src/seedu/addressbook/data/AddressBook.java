@@ -1,10 +1,7 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
+import seedu.addressbook.data.group.Group;
+import seedu.addressbook.data.group.UniqueGroupList;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
@@ -12,6 +9,11 @@ import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
@@ -24,6 +26,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private final UniqueGroupList listOfGroups;
 
     /**
      * Creates an empty address book.
@@ -31,6 +34,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        listOfGroups = new UniqueGroupList();
     }
 
     /**
@@ -40,9 +44,10 @@ public class AddressBook {
      * @param persons external changes to this will not affect this address book
      * @param tags external changes to this will not affect this address book
      */
-    public AddressBook(UniquePersonList persons, UniqueTagList tags) {
+    public AddressBook(UniquePersonList persons, UniqueTagList tags, UniqueGroupList groups) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        this.listOfGroups = new UniqueGroupList(groups);
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -71,6 +76,11 @@ public class AddressBook {
         person.setTags(new UniqueTagList(commonTagReferences));
     }
 
+    public void addGroup(Group toAdd) throws UniqueGroupList.DuplicateGroupException
+    {
+        listOfGroups.add(toAdd);
+
+    }
     /**
      * Adds a person to the address book.
      * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
@@ -100,11 +110,12 @@ public class AddressBook {
     }
 
     /**
-     * Clears all persons and tags from the address book.
+     * Clears all persons, tags and groups from the address book.
      */
     public void clear() {
         allPersons.clear();
         allTags.clear();
+        listOfGroups.clear();
     }
 
     /**

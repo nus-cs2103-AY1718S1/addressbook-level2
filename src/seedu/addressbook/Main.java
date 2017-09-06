@@ -105,13 +105,17 @@ public class Main {
      * @param command user command
      * @return result of the command
      */
-    private CommandResult executeCommand(Command command)  {
+    private CommandResult executeCommand(Command command) {
         try {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-        } catch (Exception e) {
+        }catch(StorageOperationException soe) {
+            return new CommandResult("StorageOperationException: Error locating file, please make sure " +
+                    "file is not read only");
+
+        }catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);
         }

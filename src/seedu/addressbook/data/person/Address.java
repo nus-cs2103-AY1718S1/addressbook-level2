@@ -8,8 +8,12 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = Block.EXAMPLE + ", ";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should contain block, street, unit and postal code: ";
+    public static final String EXAMPLE = Block.EXAMPLE + ", " + Street.EXAMPLE + ", " + Unit.EXAMPLE + "," + PostalCode.EXAMPLE;
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should contain block, street, unit and postal code: \n"
+                                                            + Block.MESSAGE_BLOCK_CONSTRAINTS + "\n"
+                                                            + Street.MESSAGE_STREET_CONSTRAINTS + "\n"
+                                                            + Unit.MESSAGE_UNIT_CONSTRAINTS + "\n"
+                                                            + PostalCode.MESSAGE_POSTALCODE_CONSTRAINTS;
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;

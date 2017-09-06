@@ -1,6 +1,10 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.address.Block;
+import seedu.addressbook.data.person.address.Street;
+import seedu.addressbook.data.person.address.Unit;
+import seedu.addressbook.data.person.address.PostalCode;
 
 /**
  * Represents a Person's address in the address book.
@@ -8,11 +12,15 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String EXAMPLE = "a/123, Clementi Ave 3, #12-34, 231534";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses format: a/BLOCK, STREET, UNIT, POSTAL_CODE";
+    public static final String ADDRESS_VALIDATION_REGEX = "(.*),(.*),(.*),(.*)";
 
     public final String value;
+    public Block block;
+    public Street street;
+    public Unit unit;
+    public PostalCode postalCode;
     private boolean isPrivate;
 
     /**
@@ -22,10 +30,18 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
+
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+
+        String[] splitAddress = trimmedAddress.split(",");
+        block = new Block(splitAddress[0]);
+        street = new Street(splitAddress[1]);
+        unit = new Unit(splitAddress[2]);
+        postalCode = new PostalCode(splitAddress[3]);
+
         this.value = trimmedAddress;
     }
 

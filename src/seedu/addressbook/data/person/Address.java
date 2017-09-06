@@ -11,6 +11,11 @@ public class Address {
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    
+    private static final int ADDRESS_BLOCK_INDEX = 0;
+    private static final int ADDRESS_STREET_INDEX = 1;
+    private static final int ADDRESS_UNIT_INDEX = 2;
+    private static final int ADDRESS_POSTAL_CODE_INDEX = 3;
 
     public final String value;
     private boolean isPrivate;
@@ -22,11 +27,23 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
+        String[] splitAddress = trimmedAddress.split(",");
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        int lengthArr = splitAddress.length;
+        switch(lengthArr) {
+            case 4:
+                PostalCode postalCode = new PostalCode(splitAddress[ADDRESS_POSTAL_CODE_INDEX], true);
+            case 3:
+                Unit unit = new Unit(splitAddress[ADDRESS_UNIT_INDEX], true);
+            case 2:
+                Street street = new Street(splitAddress[ADDRESS_STREET_INDEX], true);
+            case 1:
+                Block blockNum = new Block(splitAddress[ADDRESS_BLOCK_INDEX],true );
+        }
+        value = trimmedAddress;
     }
 
     /**

@@ -33,6 +33,7 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+
         this.value = trimmedAddress;
         String[] addressSplit = trimmedAddress.split(",");
         block = new Block(addressSplit[0]);

@@ -12,6 +12,8 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
+    // I understand that I should remove this value but until I understand the rest of the code base
+    // that makes use of this value. I will make changes.
     public final String value;
     private boolean isPrivate;
 

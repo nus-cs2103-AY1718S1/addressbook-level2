@@ -9,14 +9,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -97,6 +90,13 @@ public class StorageFile {
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
+
+        // Check for Read Only file and throws exception if file cannot be written to
+        File targetFile = path.toFile();
+        if (!targetFile.canWrite()) {
+            throw new StorageOperationException("Error writing to read only file: " + path);
+        }
+
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 

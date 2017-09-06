@@ -15,10 +15,10 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
-    private BlockNum block;
-    private Street street;
-    private Unit unit;
-    private PostalCode postalCode;
+    private BlockNum block = new BlockNum();
+    private Street street = new Street();
+    private Unit unit = new Unit();
+    private PostalCode postalCode = new PostalCode();
 
     /**
      * Validates given address.
@@ -34,7 +34,18 @@ public class Address {
         this.value = trimmedAddress;
         String[] splittedAddress = trimmedAddress.split(",");
         for (int i = 0; i < splittedAddress.length; i++){
-            if ()
+            if (i == 0){
+                this.block.setValue(splittedAddress[0]);
+            }
+            if (i == 1){
+                this.street.setValue(splittedAddress[1]);
+            }
+            if (i == 2){
+                this.unit.setValue(splittedAddress[2]);
+            }
+            if (i == 3){
+                this.postalCode.setValue(splittedAddress[3]);
+            }
         }
     }
 

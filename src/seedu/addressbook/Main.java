@@ -111,8 +111,8 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-        } catch (StorageOperationException e){
-            return new CommandResult("Read-only File");
+        } catch (InvalidStorageFilePathException e){
+            return new CommandResult( "Addressbook path is set as a read-only file");
         }
         catch (Exception e) {
             ui.showToUser(e.getMessage());

@@ -85,7 +85,7 @@ public class StorageFile {
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
      */
-    public void save(AddressBook addressBook) throws StorageOperationException {
+    public void save(AddressBook addressBook) throws StorageOperationException, InvalidStorageFilePathException {
 
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
@@ -99,7 +99,7 @@ public class StorageFile {
             marshaller.marshal(toSave, fileWriter);
 
         } catch (FileNotFoundException fnfe){
-            throw new StorageOperationException("Read-only file");
+            throw new InvalidStorageFilePathException("Read-only file");
         }
         catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);

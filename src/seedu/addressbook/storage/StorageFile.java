@@ -64,6 +64,15 @@ public class StorageFile {
     }
 
     /**
+     * @throws StorageOperationException if the given file read-only
+     */
+    public void checkIfReadOnly() throws StorageOperationException {
+        if (!path.toFile().canWrite()) {
+            throw new StorageOperationException("Error writing to read-only file: " + path);
+        }
+    }
+
+    /**
      * @throws InvalidStorageFilePathException if the given file path is invalid
      */
     public StorageFile(String filePath) throws InvalidStorageFilePathException {

@@ -10,7 +10,7 @@ public class Address {
 
     public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 231534";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person address should be in the following format:" +
-            " BLOCK, STREET, UNIT, POSTAL_CODE";
+            " BLOCK, STREET, UNIT, POSTAL CODE";
     public static final String ADDRESS_VALIDATION_REGEX = "(^\\d+)[,]{1}\\s{1}.+[,]{1}\\s{1}[#]{1}[0-9]+" +
             "[-]{1}[0-9]+[,]{1}\\s{1}[0-9]+$";
 

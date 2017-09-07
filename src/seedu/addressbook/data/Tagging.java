@@ -3,6 +3,7 @@ package seedu.addressbook.data;
 import java.util.ArrayList;
 
 import seedu.addressbook.data.person.Person;
+import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.ui.TextUi;
 
@@ -13,13 +14,13 @@ public class Tagging {
         Taggings = new ArrayList<>();
     }
 
-    public void addAdditionTaggingRecord (Person person, Tag tagToChange) {
-        TaggingRecord recordOfAddition = new TaggingRecord(true, person.toString(), tagToChange);
+    public void addAdditionTaggingRecord (ReadOnlyPerson person, Tag tagToChange) {
+        TaggingRecord recordOfAddition = new TaggingRecord(true, person.getName().toString(), tagToChange);
         Taggings.add(recordOfAddition);
     }
 
-    public void addDeletionTaggingRecord (Person person, Tag tagToChange) {
-        TaggingRecord recordOfDeletion = new TaggingRecord(false, person.toString(), tagToChange);
+    public void addDeletionTaggingRecord (ReadOnlyPerson person, Tag tagToChange) {
+        TaggingRecord recordOfDeletion = new TaggingRecord(false, person.getName().toString(), tagToChange);
         Taggings.add(recordOfDeletion);
     }
 
@@ -27,7 +28,7 @@ public class Tagging {
      * To give an array list of strings representation of the tagging records.
      * @return an arraylist ready to be passed to UI
      */
-    public ArrayList<String> passTaggingrecordStringList () {
+    public ArrayList<String> passTaggingRecordStringList () {
         ArrayList<String> recordStringList = new ArrayList<>();
         for (TaggingRecord record: Taggings) {
             recordStringList.add(record.TaggingRecordToString());

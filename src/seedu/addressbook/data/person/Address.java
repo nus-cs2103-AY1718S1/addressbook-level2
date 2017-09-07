@@ -14,10 +14,8 @@ public class Address extends Contact implements Printable{
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
-    private boolean isPrivate;
     //These cannot be final at this time point, as we haven't figured out how to reverse engineer these objects
-    private  Block block;
+    private Block block;
     private Street street;
     private Unit unit;
     private Postal postal;
@@ -60,7 +58,6 @@ public class Address extends Contact implements Printable{
                 !(postal.isValidPostalCodeObject()|postal.getPostalCodeValue().isEmpty())){
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.isPrivate = isPrivate;
         ArrayList<String> valueList = new ArrayList<>();
         valueList.add(block.getBlockNumberValue());
         valueList.add(street.getStreetValue());

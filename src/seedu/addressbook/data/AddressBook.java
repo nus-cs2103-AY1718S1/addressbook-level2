@@ -31,6 +31,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        taggingInfoSession = new Tagging();
     }
 
     /**
@@ -43,6 +44,7 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        taggingInfoSession = new Tagging();
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -136,9 +138,13 @@ public class AddressBook {
      * @param person - the person of concern
      * @param tagToDelete - the tag to be deleted
      */
-    public boolean deleteTagFromPerson(Person person, Tag tagToDelete) {
-        taggingInfoSession.addDeletionTaggingRecord(person, tagToDelete);
-        return person.deleteTagFromPerson(tagToDelete);
+    public boolean deleteTagFromPerson(ReadOnlyPerson person, Tag tagToDelete) {
+        if(allTags.contains(tagToDelete)) {
+            taggingInfoSession.addDeletionTaggingRecord(person, tagToDelete);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -147,9 +153,13 @@ public class AddressBook {
      * @param tagToAdd
      * @return true if the addition update the persons unique tags list
      */
-    public boolean addTagToPerson(Person person, Tag tagToAdd) {
-        taggingInfoSession.addAdditionTaggingRecord(person, tagToAdd);
-        return person.addTagToPerson(tagToAdd);
+    public boolean addTagToPerson(ReadOnlyPerson person, Tag tagToAdd) {
+        if (!allTags.contains(tagToAdd)){
+            taggingInfoSession.addAdditionTaggingRecord(person, tagToAdd);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Tagging passTaggingSessionInformation () {

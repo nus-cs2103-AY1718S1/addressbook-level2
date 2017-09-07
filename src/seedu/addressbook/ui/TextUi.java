@@ -141,7 +141,7 @@ public class TextUi {
         if (taggingInfoSession == null){
             return;
         }
-        ArrayList<String> taggingChangesStringToShow = taggingInfoSession.passTaggingrecordStringList();
+        ArrayList<String> taggingChangesStringToShow = taggingInfoSession.passTaggingRecordStringList();
         if (!(taggingChangesStringToShow.size() == 0)) {
             for (String record : taggingChangesStringToShow) {
                 out.println(formatter.showToUserMessage(record)); // No formatter needed - format controlled by tagging class for now

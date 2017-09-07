@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,11 +16,13 @@ import seedu.addressbook.commands.AddCommand;
 import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.DeleteCommand;
+import seedu.addressbook.commands.EditCommand;
 import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
+import seedu.addressbook.commands.SortCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
@@ -81,6 +84,9 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
 
+        case EditCommand.COMMAND_WORD:
+            return prepareEdit(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -90,6 +96,9 @@ public class Parser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
+            
         case ViewCommand.COMMAND_WORD:
             return prepareView(arguments);
 
@@ -175,6 +184,88 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
     }
+
+    /**
+     * Parses arguments in the context of the edit person command.
+     * Parses the index out the parses the rest out as a hash map using the parseEditArgumentsAsHashMap function
+     * @param args - a String to be parsed
+     * @return the correct arguments to be passed to the edit command
+     */
+    private static Command prepareEdit(String args) {
+        // First step: trim the input String
+        args = args.trim();
+        try {
+            // Second step: get the index and sliced the rest as a String args whole
+            int indexConcerned = Integer.parseInt(args.substring(0, 1));
+            String nextParsedArgs = args.substring(2);
+            HashMap<String, String> nextParsedHashMap = parseEditArgumentsAsHashMap(nextParsedArgs);
+
+            // Third step: return to the EditCommand mechanism operations
+            return new EditCommand(indexConcerned, nextParsedHashMap);
+        } catch (StringIndexOutOfBoundsException e){
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        } catch (NumberFormatException f){
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * This function use the String args passed in and try to find the hashing between keys
+     * defined and the values the users want to update
+     * Definition for keys and values:
+     * "n/" the key for updating name, value of which will be used to construct Name object
+     * "e/" the key for updating email, value of which will be used to construct Email object
+     * "p/" the key for updating phone number, value of which will be used to construct Phone object
+     * "a/" the key for updating address, value of which will be again parsed by address class (to four components)
+     * "t/" the key for adding tags
+     * "T/" the key for deleting tags
+     * @param args, the string input argument to be fragmented
+     * @return the hashMap of key value pair
+     */
+    private static HashMap<String, String> parseEditArgumentsAsHashMap (String args) {
+        //First Step: trim the string, initialization
+        args = args.trim();
+        HashMap<String, String> resultParsedHashMap = new HashMap<>();
+
+        //Second Step: split the string and use loop to record relevant updating information
+        String[] splitBySlashArray = args.split("/");
+        int i = 1;
+        String keyInConcern = splitBySlashArray[0];
+        while ( i < splitBySlashArray.length) {
+            if (i != splitBySlashArray.length - 1) {
+                String valueForKey = splitBySlashArray[i].substring(0, splitBySlashArray[i].length() - 1).trim();
+
+                // Take special care for tags - to edit the valueForKey with previous record
+                if (keyInConcern.equals("t") || keyInConcern.equals("T")) {
+                    if (resultParsedHashMap.get(keyInConcern) != null) {
+                        valueForKey = resultParsedHashMap.get(keyInConcern)+","+valueForKey;
+                    }
+                }
+
+                String keyUpdate = splitBySlashArray[i].substring(splitBySlashArray[i].length()-1);
+                resultParsedHashMap.put(keyInConcern, valueForKey);
+                keyInConcern = keyUpdate;
+
+                i++; //updating to the next i
+
+            } else {
+                String valueForKey = splitBySlashArray[i].trim();
+
+                // Take special care for tags - to edit the valueForKey with previous record
+                if (keyInConcern.equals("t") || keyInConcern.equals("T")) {
+                    if (resultParsedHashMap.get(keyInConcern) != null) {
+                        valueForKey = resultParsedHashMap.get(keyInConcern)+","+valueForKey;
+                    }
+                }
+                resultParsedHashMap.put(keyInConcern, valueForKey);
+                break;
+            }
+
+        }
+
+        return resultParsedHashMap;
+    }
+
 
     /**
      * Parses arguments in the context of the view command.

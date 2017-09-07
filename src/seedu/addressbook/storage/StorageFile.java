@@ -1,5 +1,6 @@
 package seedu.addressbook.storage;
 
+import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
@@ -28,6 +29,11 @@ public class StorageFile {
 
     /** Default file path used if the user doesn't provide the file name. */
     public static final String DEFAULT_STORAGE_FILEPATH = "addressbook.xml";
+    /** Prompts the user to use saveAs command when encountering file IO problems. */
+    private static final String MESSAGE_PROMPT_SAVE_AS_COMMAND = "Please use the saveas command to change to "
+            + "another storage path.";
+    /** Tells the user the specified storage path in invalid. */
+    public static final String MESSAGE_INVALID_STORAGE_PATH = "Storage file should end with '.xml'";
 
     /* Note: Note the use of nested classes below.
      * More info https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
@@ -54,7 +60,7 @@ public class StorageFile {
 
     private final JAXBContext jaxbContext;
 
-    public final Path path;
+    private Path path;
 
     /**
      * @throws InvalidStorageFilePathException if the default path is invalid
@@ -75,7 +81,7 @@ public class StorageFile {
 
         path = Paths.get(filePath);
         if (!isValidPath(path)) {
-            throw new InvalidStorageFilePathException("Storage file should end with '.xml'");
+            throw new InvalidStorageFilePathException(MESSAGE_INVALID_STORAGE_PATH);
         }
     }
 
@@ -93,18 +99,19 @@ public class StorageFile {
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
      */
     public void save(AddressBook addressBook) throws StorageOperationException {
-
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
-        try (final Writer fileWriter =
-                     new BufferedWriter(new FileWriter(path.toFile()))) {
-
+        try (final Writer fileWriter = new BufferedWriter(new FileWriter(path.toFile()))) {
             final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(toSave, fileWriter);
 
+            /**
+             * It seems that the FileWriter will simply create a new file at the {@link #path} whenever it is used.
+             * Thus, no exception is expected to occur if the storage file is deleted at runtime.
+             */
+            marshaller.marshal(toSave, fileWriter);
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
@@ -148,8 +155,24 @@ public class StorageFile {
         }
     }
 
+    /**
+     * Instantiates a commandResult when the {@link #save(AddressBook)} fails.
+     * See https://stackoverflow.com/questions/10783677/how-to-check-file-permissions-in-java-os-independently#10784086
+     *
+     * @return a commandResult that represents the failure of storage to the specific file path.
+     */
+    public CommandResult saveFailureCommandResult() {
+        return new CommandResult(MESSAGE_PROMPT_SAVE_AS_COMMAND);
+    }
+
     public String getPath() {
         return path.toString();
     }
 
+    public void setPath(String filePath) throws InvalidStorageFilePathException {
+        path = Paths.get(filePath);
+        if (!isValidPath(path)) {
+            throw new InvalidStorageFilePathException(MESSAGE_INVALID_STORAGE_PATH);
+        }
+    }
 }

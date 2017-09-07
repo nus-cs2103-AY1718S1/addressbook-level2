@@ -40,7 +40,7 @@ Side reading: [Code smell: Primitive Obsession](https://sourcemaking.com/refacto
 
 * Assume the address is entered in the following format `a/BLOCK, STREET, UNIT, POSTAL_CODE` <br>
   e.g. `a/123, Clementi Ave 3, #12-34, 231534`
-* Split the `Address` class as follows. Note: the filled diamond symbol &#9670; means an `Address` _consists of_ `Block`, `Street`, etc.<br>
+* Split the `Address` class as follows.<br>Note: the filled diamond symbol &#9670; means an `Address` _consists of_ `Block`, `Street`, etc.<br>
   <img src="images/AddressClasses.png" width='250'/>
 * Update the user guide and tests to match.
 
@@ -72,6 +72,11 @@ Here's a slightly more difficult exercise.
 ##### Exercise: Handle 'file readonly' situation 
 
 * The current code does not handle the situation where the user accidentally makes the storage file _read only_ while the AddressBook program is running. Use exceptions to handle that situation better. e.g. instead of crashing, the program can inform the user of the problem.
+  
+##### [Yunpeng](https://yunpengn.github.io/)'s first attempt
+* Yunpeng has attempted this LO for the 1st time on September 3rd, 2017. However, no exception occurs when the storage is deleted at runtime. Thus, Yunpeng decided to discontinue (temporarily) on this LO.
+* This LO was updated from 'deleted' situation to 'file read-only' situation.
+* Yunpeng decided to attemp this LO again on September 6th, 2017.
 
 ------------------------------------------------------------------------------------------------------
 

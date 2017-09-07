@@ -12,6 +12,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -97,20 +98,40 @@ public class StorageFile {
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
+        try { // check for Write permissions first
+            hasValidWritePermissions(path);
+        } catch (InvalidWritePermissionException e) {
+            throw new StorageOperationException("No Write permission to file: " + path);
+        }
+
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
-
             final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
-
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
         }
     }
+
+    /**
+     * Checks if a file in a given filePath has write to permissions.
+     *
+     * @param filePath to be written to
+     * @throws InvalidWritePermissionException if user does not have write permissions to given file
+     */
+    private static void hasValidWritePermissions(Path filePath) throws InvalidWritePermissionException {
+        // refer to http://javarevisited.blogspot.sg/2012/01/how-to-file-permission-in-java-with.html
+        File fileToWriteTo = new File(filePath.toString());
+        if (!fileToWriteTo.canWrite()) { // does not have write permissions
+            throw new InvalidWritePermissionException();
+        }
+    }
+
+
 
     /**
      * Loads data from this storage file.
@@ -152,4 +173,6 @@ public class StorageFile {
         return path.toString();
     }
 
+    private static class InvalidWritePermissionException extends Exception {
+    }
 }

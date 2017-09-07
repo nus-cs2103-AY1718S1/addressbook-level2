@@ -111,6 +111,11 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
+        } catch (StorageOperationException e) {
+            ui.showToUser(e.getMessage());
+            CommandResult result = new CommandResult("Please ensure storage file " +
+                    "has Write to permissions before continuing.");
+            return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

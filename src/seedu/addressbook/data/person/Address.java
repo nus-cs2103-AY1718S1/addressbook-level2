@@ -14,6 +14,7 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
+    private String[] addressStringSplitUp;
 
     /**
      * Validates given address.
@@ -21,12 +22,20 @@ public class Address {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
+
         String trimmedAddress = address.trim();
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+        addressStringSplitUp = trimmedAddress.split(", ");
+        Block block = new Block(addressStringSplitUp[0]);
+        Street street = new Street(addressStringSplitUp[1]);
+        Unit unit = new Unit(addressStringSplitUp[2]);
+        PostalCode postalCode = new PostalCode(addressStringSplitUp[3]);
+        //Test calling getBlock() from Block class.
+        // System.out.println(block.getBlock());
     }
 
     /**
@@ -56,4 +65,48 @@ public class Address {
     public boolean isPrivate() {
         return isPrivate;
     }
+}
+
+
+class Block{
+    String block;
+    public Block(String block){
+
+        this.block = block ;
+    }
+    public String getBlock(){
+        return this.block;
+    }
+
+}
+
+class Street{
+    String street;
+    public Street(String street){
+        this.street = street;
+    }
+    public String getStreet(){
+        return this.street;
+    }
+}
+
+class Unit{
+    String unit;
+    public Unit(String unit){
+        this.unit=unit ;
+    }
+    public String getStreet() {
+        return this.unit;
+    }
+}
+
+class PostalCode{
+    String postalCode;
+    public PostalCode(String postalCode){
+        this.postalCode = postalCode;
+    }
+    public String getPostalCode(){
+        return this.postalCode;
+    }
+
 }

@@ -20,6 +20,7 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.DosFileAttributes;
 
 /**
  * Represents the file used to store address book data.
@@ -77,6 +78,13 @@ public class StorageFile {
         if (!isValidPath(path)) {
             throw new InvalidStorageFilePathException("Storage file should end with '.xml'");
         }
+
+        /*
+        if(!isFileReadOnly(path)) {
+            throw new StorageOperationException("File is read only.");
+        }
+        */
+
     }
 
     /**
@@ -86,6 +94,28 @@ public class StorageFile {
     private static boolean isValidPath(Path filePath) {
         return filePath.toString().endsWith(".xml");
     }
+
+    /*
+    private boolean isFileReadOnly(Path file) throws InvalidStorageFilePathException {
+        if (!file.toFile().canWrite())
+        {
+            DosFileAttributes dosAttr;
+            try
+            {
+                dosAttr = Files.readAttributes(file, DosFileAttributes.class);
+                if(dosAttr.isReadOnly())
+                {
+                    return true;
+                }
+            }
+            catch (IOException e)
+            {
+                throw new InvalidStorageFilePathException("File is read only.");
+            }
+        }
+        return false;
+    }
+    */
 
     /**
      * Saves all data to this storage file.

@@ -25,7 +25,7 @@ public class SaveAsCommand extends Command {
      */
     public CommandResult execute(StorageFile storage) {
         try {
-            storage = new StorageFile(newPath);
+            storage.setPath(newPath);
             return new CommandResult(MESSAGE_SUCCESS);
         } catch (StorageFile.InvalidStorageFilePathException isfpe) {
             return new CommandResult(StorageFile.MESSAGE_INVALID_STORAGE_PATH);

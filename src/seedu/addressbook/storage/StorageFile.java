@@ -60,7 +60,7 @@ public class StorageFile {
 
     private final JAXBContext jaxbContext;
 
-    public final Path path;
+    private Path path;
 
     /**
      * @throws InvalidStorageFilePathException if the default path is invalid
@@ -157,6 +157,7 @@ public class StorageFile {
 
     /**
      * Instantiates a commandResult when the {@link #save(AddressBook)} fails.
+     * See https://stackoverflow.com/questions/10783677/how-to-check-file-permissions-in-java-os-independently#10784086
      *
      * @return a commandResult that represents the failure of storage to the specific file path.
      */
@@ -166,5 +167,12 @@ public class StorageFile {
 
     public String getPath() {
         return path.toString();
+    }
+
+    public void setPath(String filePath) throws InvalidStorageFilePathException {
+        path = Paths.get(filePath);
+        if (!isValidPath(path)) {
+            throw new InvalidStorageFilePathException(MESSAGE_INVALID_STORAGE_PATH);
+        }
     }
 }

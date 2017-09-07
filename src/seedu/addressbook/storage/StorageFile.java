@@ -117,6 +117,9 @@ public class StorageFile {
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
         }
+        if(loaded.canWrite()!=true){
+            throw new StorageOperationException("File is read-only");
+        }
     }
 
     /**

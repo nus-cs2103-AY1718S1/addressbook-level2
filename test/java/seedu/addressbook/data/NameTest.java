@@ -31,7 +31,7 @@ public class NameTest {
 
         /** Names with different order */
         name5 = new Name("EMMA");
-        name6 = new Name("EAM");
+        name6 = new Name("EAMM");
     }
 
     @Rule

@@ -24,7 +24,7 @@ public class NameTest {
 
     @Test
     public void isSimilar() {
-        assertTrue(isSimilar(name1, name2));
+        assertTrue(name1.isSimilar(name2));
     }
 
 }

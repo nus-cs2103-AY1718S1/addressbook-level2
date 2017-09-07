@@ -1,5 +1,6 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.person.address.Address;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -22,6 +23,9 @@ public interface ReadOnlyPerson {
 
     /**
      * Returns true if both persons have the same identity fields (name and telephone).
+     *
+     * Notice: default method is Java 8 new feature. It allows to add non-abstract methods to interface without
+     * modifying the existing implementation of the interface.
      */
     default boolean isSamePerson(ReadOnlyPerson other) {
         return (other == this)

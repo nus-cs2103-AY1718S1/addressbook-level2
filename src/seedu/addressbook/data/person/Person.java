@@ -1,5 +1,6 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.person.address.Address;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 import java.util.Objects;
@@ -9,13 +10,17 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Person implements ReadOnlyPerson {
-
+    /**
+     * Stores personal information here, every person may have these four kinds of information.
+     */
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
 
+    /** Stores the tags of this person as a UniqueTagList. */
     private final UniqueTagList tags;
+
     /**
      * Assumption: Every field must be present and not null.
      */

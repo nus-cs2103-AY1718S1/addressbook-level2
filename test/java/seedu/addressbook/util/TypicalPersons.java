@@ -2,7 +2,7 @@ package seedu.addressbook.util;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.address.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
@@ -19,14 +19,25 @@ public class TypicalPersons {
 
     public TypicalPersons() {
         try {
-            amy = new Person(new Name("Amy Buck"), new Phone("91119111", false), new Email("ab@gmail.com", false),
-                    new Address("1 Clementi Road", false), new UniqueTagList());
-            bill = new Person(new Name("Bill Clint"), new Phone("92229222", false), new Email("bc@gmail.com", false),
-                    new Address("2 Clementi Road", true), new UniqueTagList());
+            amy = new Person(new Name("Amy Buck"), new Phone("91119111", false),
+                              new Email("ab@gmail.com", false),
+                              new Address("112, 395C Ben Road, #03-045, 119767", false),
+                              new UniqueTagList());
+
+            bill = new Person(new Name("Bill Clint"), new Phone("92229222", false),
+                               new Email("bc@gmail.com", false),
+                               new Address("98, 33G Ohm Road, #01-09, 198545", true),
+                               new UniqueTagList());
+
             candy = new Person(new Name("Candy Destiny"), new Phone("93339333", true),
-                    new Email("cd@gmail.com", false), new Address("3 Clementi Road", true), new UniqueTagList());
-            dan = new Person(new Name("Dan Smith"), new Phone("1234556", true), new Email("ss@tt.com", true),
-                    new Address("NUS", true), new UniqueTagList(new Tag("Test")));
+                                new Email("cd@gmail.com", false),
+                                new Address("32, 55G Abc Road, #54-09, 119823", true),
+                                new UniqueTagList());
+
+            dan = new Person(new Name("Dan Smith"), new Phone("1234556", true),
+                              new Email("ss@tt.com", true),
+                              new Address("44, Define Road, #01, 145239", true),
+                              new UniqueTagList(new Tag("Test")));
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";

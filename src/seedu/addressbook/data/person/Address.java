@@ -13,6 +13,10 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
+    public Block block;
+    public Unit unit;
+    public Street street;
+    public PostalCode post;
     private boolean isPrivate;
 
     /**
@@ -22,11 +26,19 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
+
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+
+        String[] splitAddress = AddressSplitter(trimmedAddress);
+
+        block = new Block(splitAddress[0]);
+        street = new Street(splitAddress[1]);
+        unit = new Unit(splitAddress[2]);
+        post = new PostalCode(Integer.parseInt(splitAddress[3]));
     }
 
     /**
@@ -51,6 +63,25 @@ public class Address {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    /**
+     * fullAddress[0] : BLOCK
+     * fullAddress[1] : STREET
+     * fullAddress[2] : UNIT
+     * fullAddress[3] : POSTALCODE
+     */
+
+    public String[] AddressSplitter(String address){
+        String[] fullAddress = new String[4];
+        int counter = 0;
+        for(String token: address.split(", ")){
+            fullAddress[counter] = token;
+            counter++;
+        }
+
+        return fullAddress;
+
     }
 
     public boolean isPrivate() {

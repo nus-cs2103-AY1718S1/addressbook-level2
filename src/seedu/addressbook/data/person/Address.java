@@ -1,6 +1,8 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  * Represents a Person's address in the address book.
@@ -14,6 +16,11 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
+
+    public Block block;
+    public Street street;
+    public Unit unit;
+    public PostalCode postalCode;
 
     /**
      * Validates given address.

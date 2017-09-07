@@ -124,6 +124,7 @@ Address book data are saved in the hard disk automatically after any command tha
 There is no need to save manually.
 
 #### Changing the save location
+##### 1. Before you run the application
 Address book data are saved in a file called `addressbook.xml` in the project root folder.
 You can change the location by specifying the file path as a program argument.
 
@@ -134,3 +135,10 @@ Example:
 >
 > When running the program inside IntelliJ, you can set command line parameters 
   before running the program.
+
+##### 2. When you are running the application : `saveas`
+Changes the path to the storage file.<br>
+Format: `saveas NEW_PATH`
+
+Examples:
+* `saveas addressbook-new.xml`

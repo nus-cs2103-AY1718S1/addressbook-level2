@@ -46,6 +46,7 @@ public class AddCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+        Person.nextSequenceNumber++;
         this.toAdd = new Person(
                 new Name(name),
                 new Phone(phone, isPhonePrivate),

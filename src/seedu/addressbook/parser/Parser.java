@@ -76,25 +76,30 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
+            Parser parserAdd =  new Parser();
+            return parserAdd.prepareAdd(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
+            Parser parserDelete =  new Parser();
+            return parserDelete.prepareDelete(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            Parser parserFind =  new Parser();
+            return parserFind.prepareFind(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
         case ViewCommand.COMMAND_WORD:
-            return prepareView(arguments);
+            Parser parserView =  new Parser();
+            return parserView.prepareView(arguments);
 
         case ViewAllCommand.COMMAND_WORD:
-            return prepareViewAll(arguments);
+            Parser parserViewAll =  new Parser();
+            return parserViewAll.prepareViewAll(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

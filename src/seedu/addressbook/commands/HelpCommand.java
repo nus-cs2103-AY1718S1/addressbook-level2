@@ -22,6 +22,7 @@ public class HelpCommand extends Command {
                         + "\n\n" + FindCommand.MESSAGE_USAGE
                         + "\n\n" + ListCommand.MESSAGE_USAGE
                         + "\n\n" + SortCommand.MESSAGE_USAGE
+                        + "\n\n" + EditCommand.MESSAGE_USAGE
                         + "\n\n" + ViewCommand.MESSAGE_USAGE
                         + "\n\n" + ViewAllCommand.MESSAGE_USAGE
                         + "\n\n" + HelpCommand.MESSAGE_USAGE

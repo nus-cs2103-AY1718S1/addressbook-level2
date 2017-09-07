@@ -99,6 +99,10 @@ public class AddressBook {
         allPersons.remove(toRemove);
     }
 
+    public ReadOnlyPerson getPerson(ReadOnlyPerson toGet) throws PersonNotFoundException{
+        return allPersons.get(toGet);
+    }
+
     /**
      * Clears all persons and tags from the address book.
      */

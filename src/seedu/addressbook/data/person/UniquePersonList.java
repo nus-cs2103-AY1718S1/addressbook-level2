@@ -122,6 +122,14 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    public ReadOnlyPerson get(ReadOnlyPerson toGet) throws PersonNotFoundException{
+        final int indexOfPerson = internalList.indexOf(toGet);
+        if(indexOfPerson == -1){
+            throw new PersonNotFoundException();
+        }
+        return internalList.get(indexOfPerson);
+    }
+
     /**
      * Clears all persons in list.
      */

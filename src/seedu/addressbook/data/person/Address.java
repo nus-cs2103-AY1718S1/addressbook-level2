@@ -30,29 +30,21 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
-        String[] AddressParts = address.split(", ");
+        String[] AddressDetails = address.split(", ");
         this.isPrivate = isPrivate;
-        if (!isValidAddress(trimmedAddress)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
-        }
-        if(AddressParts.length==4) {
-            this.block = new Block(AddressParts[0]);
-            this.street = new Street(AddressParts[1]);
-            this.unit = new Unit(AddressParts[2]);
-            this.postalcode = new PostalCode(AddressParts[3]);
+
+        if (AddressDetails.length==4) {
+            this.block = new Block(AddressDetails[0]);
+            this.street = new Street(AddressDetails[1]);
+            this.unit = new Unit(AddressDetails[2]);
+            this.postalcode = new PostalCode(AddressDetails[3]);
             this.value = trimmedAddress;
         }
-        else{
+        else {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
     }
 
-    /**
-     * Returns true if a given string is a valid person address.
-     */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
-    }
 
     @Override
     public String toString() {

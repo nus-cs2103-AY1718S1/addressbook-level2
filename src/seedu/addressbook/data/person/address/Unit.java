@@ -5,7 +5,7 @@ public class Unit {
     public Unit(String unit) {
         unitNumber = unit;
     }
-    public String getUnit(){
+    public String getUnit() {
         return unitNumber;
     }
 }

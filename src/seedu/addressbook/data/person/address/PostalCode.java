@@ -4,10 +4,10 @@ public class PostalCode {
 
     private String postalCodeNumber;
 
-    public PostalCode(String postalCode){
+    public PostalCode(String postalCode) {
         postalCodeNumber = postalCode;
     }
-    public String getPostalCode(){
+    public String getPostalCode() {
         return postalCodeNumber;
     }
 }

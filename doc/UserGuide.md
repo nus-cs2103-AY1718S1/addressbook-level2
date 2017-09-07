@@ -44,25 +44,27 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > be seen using the `viewall` command.
 > 
 > Persons can have any number of tags (including 0)
+>
+> Address has to follow the format:  block, street, unit postal code
 
 Examples: 
-* `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
+* `add John Doe p/98765432 e/johnd@gmail.com a/John 123, Clementi Ave 3, #01-234, 120123`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
 ### Editing a person: `edit`
-Edits a person on the address book. Private details cannot be edited.<br>
+Edits a person on the address book based on the index of that person. Private details cannot be edited. Ony can edit 1 parameter at a time.<br>
 Format: `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` 
  
 > Words in `UPPER_CASE` are the parameters, 
-> items with `...` after them can have multiple instances. Order of parameters do not need to be fixed. 
+> items with `...` after them can have multiple instances. 
 > 
 > Persons can have any number of tags (including 0)
 >
-> There is no need to list out all the parameters again if you want to change only 1 or a few parameters.
+> Editing name needs n/ (e.g. first example below) and address has to follow the format as mentioned in adding address.
 
 Examples: 
-* `edit 1 n/John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
-* `edit 2 n/Betsy Crowe p/1234567 e/betsycrowe@gmail.com a/Newgate Prison t/criminal t/friend`
+* `edit 1 n/John Doe`
+* `edit 2 t/criminal t/friend`
 
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>

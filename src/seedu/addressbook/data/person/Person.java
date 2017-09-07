@@ -15,6 +15,9 @@ public class Person implements ReadOnlyPerson {
     private Email email;
     private Address address;
 
+    public static int nextSequenceNumber;
+    private int sequenceNumber;
+
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.

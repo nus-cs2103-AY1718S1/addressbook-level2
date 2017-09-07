@@ -64,7 +64,7 @@ public class Person implements ReadOnlyPerson {
      */
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);
-    }
+    } //tag is private therefore this method cannot be changed to static
 
     @Override
     public boolean equals(Object other) {

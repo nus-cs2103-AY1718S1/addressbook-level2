@@ -19,10 +19,11 @@ public class Address {
     private Unit unit;
     private PostalCode postalCode;
 
-    private final int INDEX_BLOCK = 0;
-    private final int INDEX_STREET = 1;
-    private final int INDEX_UNIT = 2;
-    private final int INDEX_POSTALCODE = 3;
+    private static final int INDEX_BLOCK = 0;
+    private static final int INDEX_STREET = 1;
+    private static final int INDEX_UNIT = 2;
+    private static final int INDEX_POSTALCODE = 3;
+    private static final int NUMBER_OF_ADDRESS_SUBCLASSES = 4;
 
     /**
      * Validates given address.
@@ -55,17 +56,25 @@ public class Address {
      * Returns true if a given string is a valid person address.
      */
     public static boolean isValidAddress(String test) {
-        String[] splitAddress = test.split(",");
-        String trimmedAddress = test.trim();
 
+        String trimmedAddress = test.trim();
+        boolean isBlankAddress = isAddressEmpty(test);
+
+        return test.matches(ADDRESS_VALIDATION_REGEX)
+                && isBlankAddress
+                && !trimmedAddress.isEmpty();
+    }
+
+    private static boolean isAddressEmpty(String address) {
+        String[] splitAddress = address.split(",");
         int emptyCount = 0;
 
-        for (int i = 0; i < splitAddress.length; i++){
-            if (splitAddress[i].isEmpty()){
+        for (String splitAddres : splitAddress) {
+            if (splitAddres.isEmpty()) {
                 emptyCount++;
             }
         }
-        return test.matches(ADDRESS_VALIDATION_REGEX) && emptyCount != splitAddress.length && !trimmedAddress.isEmpty();
+        return emptyCount != NUMBER_OF_ADDRESS_SUBCLASSES;
     }
 
     @Override

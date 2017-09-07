@@ -5,6 +5,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.sort;
+
 /**
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -61,13 +63,21 @@ public class Name {
     }
 
     public boolean isSimilar(Name other) {
+        char[] list1 = this.toString().toLowerCase().toCharArray();
+        char[] list2 = other.toString().toLowerCase().toCharArray();
+        Arrays.sort(list1);
+        Arrays.sort(list2);
+
         if(this.toString().toLowerCase().equals(other.toString().toLowerCase())) {
             return true;
         } else if (this.toString().toLowerCase().contains(other.toString().toLowerCase()) ||
                 other.toString().toLowerCase().contains(this.toString().toLowerCase())) {
             return true;
+        } else if(Arrays.equals(list1, list2)) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
 }

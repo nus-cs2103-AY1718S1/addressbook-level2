@@ -8,6 +8,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Address {
 
     public static final String EXAMPLE = "123, some street, #12-34, 123456";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS =
+            "Person address must incude a block, street, unit and postal code, seperated by a ','";
 
     private Block block;
     private Street street;
@@ -26,6 +28,10 @@ public class Address {
         String[] addressComponents = address.split(", ");
 
         this.isPrivate = isPrivate;
+
+        if (addressComponents.length != 4) {
+            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        }
 
         this.block = new Block(addressComponents[0], isPrivate);
         this.street = new Street(addressComponents[1], isPrivate);

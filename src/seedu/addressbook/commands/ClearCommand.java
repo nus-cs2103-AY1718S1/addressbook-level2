@@ -1,5 +1,7 @@
 package seedu.addressbook.commands;
 
+import seedu.addressbook.data.person.Person;
+
 /**
  * Clears the address book.
  */
@@ -11,7 +13,9 @@ public class ClearCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
-    public ClearCommand() {}
+    public ClearCommand() {
+        Person.nextSequenceNumber = 0;
+    }
 
 
     @Override

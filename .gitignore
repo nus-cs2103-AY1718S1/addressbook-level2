@@ -2,6 +2,9 @@
 
 addressbook.xml
 
+#read-only storage file for addressbook : only meant for testing purposes
+addressbook2.xml
+
 # Compiled classfiles
 bin/
 *.class

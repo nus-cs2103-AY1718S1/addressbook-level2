@@ -60,4 +60,11 @@ public class Name {
         return fullName.hashCode();
     }
 
+    public boolean isSimilar(Name other) {
+        if(this.toString().toLowerCase().equals(other.toString().toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
+
 }

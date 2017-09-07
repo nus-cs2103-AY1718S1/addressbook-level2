@@ -14,12 +14,15 @@ public class Address {
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
-    public static final String ADDRESS_DIAMOND_FORMAT_REGEX = "(?<block>[\\w\\s]+),(?<street>[\\w\\s]+)," +
+    public static final String ADDRESS_DIAMOND_VALIDATION_REGEX = "(?<block>[\\w\\s]+),(?<street>[\\w\\s]+)," +
             "(?<unit>[#\\-\\w\\s]+),(?<postalCode>[\\w\\s]+)";
     
     public final String value;
     private boolean isPrivate;
-    public final Block block = new Block();
+    private final Block block = new Block();
+    //private final Street street = new Street();
+    //private final Unit unit = new Unit();
+    //private final Postalcode postalCode = new Postalcode();
 
     /**
      * Validates given address.
@@ -32,17 +35,13 @@ public class Address {
         
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
-        }
+        } 
         
-        if(isAddressInDiamondFormat(trimmedAddress)) {
-            Pattern pattern = Pattern.compile(ADDRESS_DIAMOND_FORMAT_REGEX);
-            Matcher matcher = pattern.matcher(trimmedAddress);
-            if (matcher.find()) {
-                this.block.setBlockNumber(matcher.group("block");
-                //Street street = new Street(matcher.group("street"), this.isPrivate);
-            }
-        } else {
-            
+        Pattern pattern = Pattern.compile(ADDRESS_DIAMOND_VALIDATION_REGEX);
+        Matcher matcher = pattern.matcher(trimmedAddress);
+        if (matcher.find()) {
+            this.block.setBlockNumber(matcher.group("block");
+            //Street street = new Street(matcher.group("street"), this.isPrivate);
         }
         
         this.value = trimmedAddress;
@@ -52,15 +51,7 @@ public class Address {
      * Returns true if a given string is a valid person address.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
-    }
-    
-    /**
-     * Returns true if a given string is a valid diamond format address
-     * @return
-     */
-    public static boolean isAddressInDiamondFormat(String address) { 
-        return address.matches(ADDRESS_DIAMOND_FORMAT_REGEX);
+        return test.matches(ADDRESS_DIAMOND_VALIDATION_REGEX);
     }
     
     @Override
@@ -85,7 +76,7 @@ public class Address {
     }
 }
 
-class Block {
+public class Block {
 
     public static final String EXAMPLE = "123";
     public static final String MESSAGE_BLOCK_CONSTRAINTS = "Block can be in any format";
@@ -95,7 +86,7 @@ class Block {
     private boolean isPrivate;
 
     public Block(){
-        
+        this.isPrivate = false;
     }
     
     /**
@@ -110,6 +101,16 @@ class Block {
         this.blockNumber = trimmedBlockNumber;
     }
 
+    /**
+     * Sets the values of the members 
+     * @param blockNumber
+     * @param isPrivate
+     */
+    public void setValues(String blockNumber, boolean isPrivate) {
+        this.blockNumber = blockNumber;
+        this.isPrivate = isPrivate;
+    }
+    
     /**
      * Returns true if a given string is a valid block number.
      */

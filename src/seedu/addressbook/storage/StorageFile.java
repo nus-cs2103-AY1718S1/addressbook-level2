@@ -81,7 +81,7 @@ public class StorageFile {
 
         /*
         if(!isFileReadOnly(path)) {
-            throw new InvalidStorageFilePathException("File is read only.");
+            throw new StorageOperationException("File is read only.");
         }
         */
 

@@ -47,10 +47,14 @@ public class SortCommand extends Command {
 
             allNewPersons.sort(new SortPerson());
 
-            for (Person newPerson: allNewPersons) {
-                addressBook.addPerson(newPerson);
+            for (int i = 0; i < allNewPersons.size(); i++) {
+                addressBook.addPerson(allNewPersons.get(i));
             }
-            return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
+
+            List<ReadOnlyPerson> allNowPersons = addressBook.getAllPersons().immutableListView();
+
+            return new CommandResult(getMessageForPersonEditShownSummary(allNowPersons), allNowPersons);
+
         } catch (UniquePersonList.PersonNotFoundException e) {
             return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
         } catch(DuplicateDataException e) {

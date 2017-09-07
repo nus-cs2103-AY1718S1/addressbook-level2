@@ -27,6 +27,7 @@ public class Person implements ReadOnlyPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.sequenceNumber = nextSequenceNumber;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 

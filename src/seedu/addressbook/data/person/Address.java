@@ -1,6 +1,9 @@
 package seedu.addressbook.data.person;
 
+import com.sun.prism.shader.DrawCircle_ImagePattern_AlphaTest_Loader;
 import seedu.addressbook.data.exception.IllegalValueException;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  * Represents a Person's address in the address book.
@@ -11,9 +14,12 @@ public class Address {
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
-
+    public static final String ADDRESS_DIAMOND_FORMAT_REGEX = "(?<block>[\\w\\s]+),(?<street>[\\w\\s]+)," +
+            "(?<unit>[#\\-\\w\\s]+),(?<postalCode>[\\w\\s]+)";
+    
     public final String value;
     private boolean isPrivate;
+    public final Block block = new Block();
 
     /**
      * Validates given address.
@@ -23,9 +29,22 @@ public class Address {
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
         this.isPrivate = isPrivate;
+        
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+        
+        if(isAddressInDiamondFormat(trimmedAddress)) {
+            Pattern pattern = Pattern.compile(ADDRESS_DIAMOND_FORMAT_REGEX);
+            Matcher matcher = pattern.matcher(trimmedAddress);
+            if (matcher.find()) {
+                this.block.setBlockNumber(matcher.group("block");
+                //Street street = new Street(matcher.group("street"), this.isPrivate);
+            }
+        } else {
+            
+        }
+        
         this.value = trimmedAddress;
     }
 
@@ -35,7 +54,15 @@ public class Address {
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
     }
-
+    
+    /**
+     * Returns true if a given string is a valid diamond format address
+     * @return
+     */
+    public static boolean isAddressInDiamondFormat(String address) { 
+        return address.matches(ADDRESS_DIAMOND_FORMAT_REGEX);
+    }
+    
     @Override
     public String toString() {
         return value;
@@ -56,4 +83,53 @@ public class Address {
     public boolean isPrivate() {
         return isPrivate;
     }
+}
+
+class Block {
+
+    public static final String EXAMPLE = "123";
+    public static final String MESSAGE_BLOCK_CONSTRAINTS = "Block can be in any format";
+    public static final String BLOCK_VALIDATION_REGEX = "\\s";
+
+    private String blockNumber;
+    private boolean isPrivate;
+
+    public Block(){
+        
+    }
+    
+    /**
+     * Validates block number
+     * @param blockNumber block part of address
+     * @param isPrivate private if address is private
+     * @throws IllegalValueException if given block number string is invalid.
+     */
+    public Block(String blockNumber, boolean isPrivate) {
+        String trimmedBlockNumber = blockNumber.trim();
+        this.isPrivate = isPrivate;
+        this.blockNumber = trimmedBlockNumber;
+    }
+
+    /**
+     * Returns true if a given string is a valid block number.
+     */
+    public static void setBlockNumber(){
+        
+    }
+    
+}
+
+class Street {
+    private String streetName;
+    private boolean isPrivate;
+}
+
+class Unit {
+    private String unitNumber;
+    private boolean isPrivate;
+}
+
+class Postalcode {
+    private String postalcodeNumber;
+    private boolean isPrivate;
 }

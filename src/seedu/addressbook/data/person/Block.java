@@ -25,9 +25,9 @@ public class Block {
         this.value = blockNumber;
     }
 
-    /** Returns true is the given block number is a valid block number.
+    /**
+     * Returns true is the given block number is a valid block number.
      * A block number is valid is it is a non-zero contiguous array of digits.
-     *
      */
     public static boolean isValidAddressBlock(String blockNumber){
         return blockNumber.matches(BLOCK_VALIDATION_REGEX);

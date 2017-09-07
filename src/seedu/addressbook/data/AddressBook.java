@@ -99,8 +99,15 @@ public class AddressBook {
         allPersons.remove(toRemove);
     }
 
-    public ReadOnlyPerson getPerson(ReadOnlyPerson toGet) throws PersonNotFoundException{
-        return allPersons.get(toGet);
+    /**
+     * Returns the reference to a particular person within the master list.
+     *
+     * @param toGetReference the person whose reference in the master list is to be returned
+     * @return the reference of the person in the master list
+     * @throws PersonNotFoundException if the person does not exist
+     */
+    public ReadOnlyPerson getPerson(ReadOnlyPerson toGetReference) throws PersonNotFoundException{
+        return allPersons.get(toGetReference);
     }
 
     /**

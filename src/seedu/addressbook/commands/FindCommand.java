@@ -61,6 +61,13 @@ public class FindCommand extends Command {
         return matchedPersons;
     }
 
+
+    /**
+     * Retrieves all tags in tagsInPerson and return a list of tags in their String form
+     *
+     * @param tagsInPerson the set of tags to be converted into a set of String
+     * @return a set of String
+     */
     private Set<String> turnTagSetIntoStringSet(Set<Tag> tagsInPerson){
         Set<String> result = new HashSet<>();
         for(Tag tag : tagsInPerson){

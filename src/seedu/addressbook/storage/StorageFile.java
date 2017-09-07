@@ -29,9 +29,7 @@ public class StorageFile {
     /** Default file path used if the user doesn't provide the file name. */
     public static final String DEFAULT_STORAGE_FILEPATH = "addressbook.xml";
 
-    /** If a storage file already exists upon the starting up of this program, this variable
-     * is true; else, a storage file would not be expected to exist until after the execution of the
-     * first command. */
+    /** Represents whether a storage file exists or not. */
     private boolean hasStorageFileBeenCreated;
 
     /* Note: Note the use of nested classes below.
@@ -102,8 +100,6 @@ public class StorageFile {
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
-        /** If a storage file already exists, but is not found now, then throw an exception
-         * to notify user that the storage file has been deleted. */
         if(!hasStorageFileBeenCreated){
             hasStorageFileBeenCreated = true;
         }else{

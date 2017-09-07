@@ -262,6 +262,12 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    /**
+     * Parses arguments in the context of the edit persons command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
     private static Command prepareEdit(String args){
         String trimmedArgs = args.trim();
         String[] splitArgs = trimmedArgs.split("\\p{Space}+", 3);
@@ -273,10 +279,10 @@ public class Parser {
         // Extracting and validating arguments for EditCommand class
         String field = splitArgs[EditCommand.EDIT_COMMAND_FIELD].trim().toLowerCase();
         try {
-            int index = parseArgsAsDisplayedIndex(splitArgs[EditCommand.EDIT_COMMAND_INDEX]);
+            int targetIndex = parseArgsAsDisplayedIndex(splitArgs[EditCommand.EDIT_COMMAND_INDEX]);
             String newInformation = splitArgs[EditCommand.EDIT_COMMAND_NEW_INFORMATION].trim();
             validateInformationWithField(field, newInformation);
-            return new EditCommand(index, field, newInformation);
+            return new EditCommand(targetIndex, field, newInformation);
         }catch(ParseException pse){
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditCommand.MESSAGE_USAGE));
@@ -288,6 +294,12 @@ public class Parser {
 
     }
 
+    /**
+     * Checks if the argument given by users is either "name", "phone" or "email", case-insensitive.
+     *
+     * @param field argument given by users
+     * @return trueif the argument is valid
+     */
     private static boolean isFieldValid(String field){
         String lowerCasedField = field.toLowerCase();
         if(lowerCasedField.equals(Messages.EDIT_COMMAND_NAME)
@@ -298,9 +310,17 @@ public class Parser {
         return false;
     }
 
+    /**
+     * Validates the new information given by the user depending on the field that is to be changed.
+     *
+     * @param field the field to be changed
+     * @param newInformation the new information given by the user
+     * @return true if the new information is valid with respect to the field
+     * @throws IllegalValueException if the new information is not valid with respect to the field
+     */
     private static boolean validateInformationWithField(String field, String newInformation) throws IllegalValueException{
         boolean result = true;
-        String messageToReturn = "default value";
+        String messageToReturn = "default value";   //Dummy value
         if(field.equals(Messages.EDIT_COMMAND_NAME)){
             if(!Name.isValidName(newInformation)){
                 result = false;

@@ -43,6 +43,15 @@ public class EditCommand extends Command {
         }
     }
 
+
+    /**
+     * Performs the actual editing of a person's information within the master list.
+     *
+     * @param person the reference to the target within the master list.
+     * @param field the field of the target to be edited.
+     * @param newInformation the new value to insert into the field
+     * @throws IllegalValueException already handled in prepareEdit.
+     */
     private void executeEdit(Person person, String field, String newInformation) throws IllegalValueException{
         if(field.equals(Messages.EDIT_COMMAND_NAME)){
             Name name = new Name(newInformation);

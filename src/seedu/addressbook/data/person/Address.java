@@ -41,6 +41,13 @@ public class Address extends Contacts implements Printable{
         this.postalCode = new Postal(splitAddress[ADDRESS_POSTAL_CODE_INDEX].trim());
     }
 
+    /**
+     * Validates and returns the address as a String.
+     *
+     * @param address the address to be validated
+     * @return a String of the validated address
+     * @throws IllegalValueException if the address is not valid
+     */
     private static String validateAndReturnAddress(String address) throws IllegalValueException{
         String trimmedAddress = address.trim();
         String[] splitAddress = trimmedAddress.split(",");

@@ -12,6 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.addressbook.commands.AddCommand;
+import seedu.addressbook.commands.SortCommand;
+import seedu.addressbook.commands.EditCommand;
 import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.DeleteCommand;
@@ -22,7 +24,11 @@ import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.Email;
+import seedu.addressbook.data.person.Name;
+import seedu.addressbook.data.person.Phone;
 
 /**
  * Parses user input.
@@ -64,7 +70,7 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
-    public Command parseCommand(String userInput) {
+    public static Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -75,33 +81,39 @@ public class Parser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
+            case EditCommand.COMMAND_WORD:
+                return prepareEdit(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
+            case SortCommand.COMMAND_WORD:
+                return new SortCommand();
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            case AddCommand.COMMAND_WORD:
+                return prepareAdd(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            case DeleteCommand.COMMAND_WORD:
+                return prepareDelete(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
-        case ViewCommand.COMMAND_WORD:
-            return prepareView(arguments);
+            case FindCommand.COMMAND_WORD:
+                return prepareFind(arguments);
 
-        case ViewAllCommand.COMMAND_WORD:
-            return prepareViewAll(arguments);
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ViewCommand.COMMAND_WORD:
+                return prepareView(arguments);
 
-        case HelpCommand.COMMAND_WORD: // Fallthrough
-        default:
-            return new HelpCommand();
+            case ViewAllCommand.COMMAND_WORD:
+                return prepareViewAll(arguments);
+
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+
+            case HelpCommand.COMMAND_WORD: // Fallthrough
+            default:
+                return new HelpCommand();
         }
     }
 
@@ -111,7 +123,7 @@ public class Parser {
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareAdd(String args) {
+    private static Command prepareAdd(String args) {
         final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
         if (!matcher.matches()) {
@@ -165,7 +177,7 @@ public class Parser {
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareDelete(String args) {
+    private static Command prepareDelete(String args) {
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
             return new DeleteCommand(targetIndex);
@@ -182,7 +194,7 @@ public class Parser {
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareView(String args) {
+    private static Command prepareView(String args) {
 
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
@@ -201,7 +213,7 @@ public class Parser {
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareViewAll(String args) {
+    private static Command prepareViewAll(String args) {
 
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
@@ -222,7 +234,7 @@ public class Parser {
      * @throws ParseException if no region of the args string could be found for the index
      * @throws NumberFormatException the args string region is not a valid number
      */
-    private int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
+    private static int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
         final Matcher matcher = PERSON_INDEX_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new ParseException("Could not find index number to parse");
@@ -237,7 +249,7 @@ public class Parser {
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareFind(String args) {
+    private static Command prepareFind(String args) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -245,10 +257,91 @@ public class Parser {
         }
 
         // keywords delimited by whitespace
-        final String[] keywords = matcher.group("keywords").split("\\s+");
+        final String[] keywords = matcher.group("keywords").toLowerCase().split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
 
+    /**
+     * Parses arguments in the context of the edit persons command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private static Command prepareEdit(String args){
+        String trimmedArgs = args.trim();
+        String[] splitArgs = trimmedArgs.split("\\p{Space}+", 3);
+        if(splitArgs.length != 3 || !isFieldValid(splitArgs[EditCommand.EDIT_COMMAND_FIELD])){
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE));
+        }
+
+        // Extracting and validating arguments for EditCommand class
+        String field = splitArgs[EditCommand.EDIT_COMMAND_FIELD].trim().toLowerCase();
+        try {
+            int targetIndex = parseArgsAsDisplayedIndex(splitArgs[EditCommand.EDIT_COMMAND_INDEX]);
+            String newInformation = splitArgs[EditCommand.EDIT_COMMAND_NEW_INFORMATION].trim();
+            validateInformationWithField(field, newInformation);
+            return new EditCommand(targetIndex, field, newInformation);
+        }catch(ParseException pse){
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE));
+        }catch(NumberFormatException nfe){
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }catch(IllegalValueException ive){
+            return new IncorrectCommand(ive.getMessage());
+        }
+
+    }
+
+    /**
+     * Checks if the argument given by users is either "name", "phone" or "email", case-insensitive.
+     *
+     * @param field argument given by users
+     * @return trueif the argument is valid
+     */
+    private static boolean isFieldValid(String field){
+        String lowerCasedField = field.toLowerCase();
+        if(lowerCasedField.equals(Messages.EDIT_COMMAND_NAME)
+                || lowerCasedField.equals(Messages.EDIT_COMMAND_EMAIL)
+                || lowerCasedField.equals(Messages.EDIT_COMMAND_PHONE)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Validates the new information given by the user depending on the field that is to be changed.
+     *
+     * @param field the field to be changed
+     * @param newInformation the new information given by the user
+     * @return true if the new information is valid with respect to the field
+     * @throws IllegalValueException if the new information is not valid with respect to the field
+     */
+    private static boolean validateInformationWithField(String field, String newInformation) throws IllegalValueException{
+        boolean result = true;
+        String messageToReturn = "default value";   //Dummy value
+        if(field.equals(Messages.EDIT_COMMAND_NAME)){
+            if(!Name.isValidName(newInformation)){
+                result = false;
+                messageToReturn = Name.MESSAGE_NAME_CONSTRAINTS;
+            }
+        }else if(field.equals(Messages.EDIT_COMMAND_PHONE)){
+            if(!Phone.isValidPhone(newInformation)){
+                result = false;
+                messageToReturn = Phone.MESSAGE_PHONE_CONSTRAINTS;
+            }
+        }else{
+            if(!Email.isValidEmail(newInformation)){
+                result = false;
+                messageToReturn = Email.MESSAGE_EMAIL_CONSTRAINTS;
+            }
+        }
+        if(!result){
+            throw new IllegalValueException(messageToReturn);
+        }else{
+            return result;
+        }
+    }
 
 }

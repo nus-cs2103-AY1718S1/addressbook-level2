@@ -23,7 +23,7 @@ import seedu.addressbook.ui.TextUi;
 public class Main {
 
     /** Version info of the program. */
-    public static final String VERSION = "AddessBook Level 2 - Version 1.0";
+    public static final String VERSION = "AddressBook Level 2 - Version 1.0";
 
     private TextUi ui;
     private StorageFile storage;
@@ -83,7 +83,7 @@ public class Main {
         Command command;
         do {
             String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
+            command = Parser.parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);
@@ -106,14 +106,23 @@ public class Main {
      * @return result of the command
      */
     private CommandResult executeCommand(Command command)  {
+        CommandResult result = null;
         try {
             command.setData(addressBook, lastShownList);
-            CommandResult result = command.execute();
+            result = command.execute();
             storage.save(addressBook);
             return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
-            throw new RuntimeException(e);
+            try{
+                this.storage = initializeStorage(new String[0]);
+                storage.save(addressBook);
+                return result;
+            }catch(Exception e2){
+                //Got idea from https://stackoverflow.com/questions/41007524/avoid-nested-try-catch-blocks
+                //Using a nested try-catch block seems to be clearer.
+               throw new RuntimeException("If this happens, then some other issue if the problem.");
+            }
         }
     }
 

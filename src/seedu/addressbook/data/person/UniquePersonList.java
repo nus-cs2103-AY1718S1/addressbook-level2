@@ -123,6 +123,21 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns the reference to a Person within the internal list.
+     *
+     * @param toGetReference the Person whose reference within the internal list is to be returned
+     * @return the reference to toGetReference within the internal list
+     * @throws PersonNotFoundException if no such person could be found in the list.
+     */
+    public ReadOnlyPerson get(ReadOnlyPerson toGetReference) throws PersonNotFoundException{
+        final int indexOfPerson = internalList.indexOf(toGetReference);
+        if(indexOfPerson == -1){
+            throw new PersonNotFoundException();
+        }
+        return internalList.get(indexOfPerson);
+    }
+
+    /**
      * Clears all persons in list.
      */
     public void clear() {
@@ -139,5 +154,12 @@ public class UniquePersonList implements Iterable<Person> {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && this.internalList.equals(((UniquePersonList) other).internalList));
+    }
+
+    /**
+     * Returns a shallow copy of the internal list.
+     */
+    public List<ReadOnlyPerson> getNewPersonList(){
+        return new ArrayList<>(internalList);
     }
 }

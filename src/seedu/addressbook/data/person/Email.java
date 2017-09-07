@@ -13,9 +13,6 @@ public class Email extends Contact implements Printable{
             "Person emails should be 2 alphanumeric/period strings separated by '@'";
     public static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
 
-    public final String value;
-    private boolean isPrivate;
-
     /**
      * Validates given email.
      *
@@ -60,10 +57,6 @@ public class Email extends Contact implements Printable{
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    public boolean isPrivate() {
-        return isPrivate;
     }
 
 }

@@ -12,8 +12,7 @@ public class Phone extends Contact implements Printable{
     public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
     public static final String PHONE_VALIDATION_REGEX = "\\d+";
 
-    public final String value;
-    private boolean isPrivate;
+
 
     /**
      * Validates given phone number.
@@ -59,10 +58,6 @@ public class Phone extends Contact implements Printable{
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    public boolean isPrivate() {
-        return isPrivate;
     }
 
 }

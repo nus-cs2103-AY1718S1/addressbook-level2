@@ -169,4 +169,14 @@ public class TextUi {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
     }
 
+    /**
+     * Informs user about the storage file being read-only
+     * @param message message to print
+     */
+    public void showReadonlyMessageToUser(String... message){
+        for (String m : message) {
+            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
+        }
+        out.println(DIVIDER);
+    }
 }

@@ -112,6 +112,7 @@ public class Main {
             storage.save(addressBook);
             return result;
         }catch(StorageOperationException soe) {
+            ui.showToUser(soe.getMessage());
             return new CommandResult("StorageOperationException: Error locating file, please make sure " +
                     "file is not read only");
 

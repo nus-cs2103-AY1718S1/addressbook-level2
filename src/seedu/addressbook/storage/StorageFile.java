@@ -88,9 +88,18 @@ public class StorageFile {
     }
 
     /**
+     * Returns true if path file is read only.
+     * The file path is considered acceptable only if it is readable and writable.
+     */
+    private boolean isFileReadOnly(){
+        return !path.toFile().canWrite();
+    }
+
+    /**
      * Saves all data to this storage file.
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
+     * @throws StorageOperationException if storage file is read-only.
      */
     public void save(AddressBook addressBook) throws StorageOperationException {
 
@@ -104,6 +113,9 @@ public class StorageFile {
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
+            if(isFileReadOnly()) {
+                throw new StorageOperationException("File name: " +path+ " is read only. Please change file to become writable.");
+            }
 
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
@@ -118,6 +130,7 @@ public class StorageFile {
      * @return an {@link AddressBook} containing the data in the file, or an empty {@link AddressBook} if it
      *    does not exist.
      * @throws StorageOperationException if there were errors reading and/or converting data from file.
+     * @throws StorageOperationException if storage file is read-only.
      */
     public AddressBook load() throws StorageOperationException {
 
@@ -131,6 +144,9 @@ public class StorageFile {
             final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             final AdaptedAddressBook loaded = (AdaptedAddressBook) unmarshaller.unmarshal(fileReader);
             // manual check for missing elements
+            if(isFileReadOnly()) {
+                throw new StorageOperationException("File name: " +path+ " is read only. Please change file to become writable.");
+            }
             if (loaded.isAnyRequiredFieldMissing()) {
                 throw new StorageOperationException("File data missing some elements");
             }

@@ -52,6 +52,10 @@ public class StorageFile {
         }
     }
 
+    public static class ReadOnlyModificationException extends RuntimeException {
+        public ReadOnlyModificationException(String message) { super(message); }
+    }
+
     private final JAXBContext jaxbContext;
 
     public final Path path;
@@ -109,6 +113,8 @@ public class StorageFile {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
+        } catch (ReadOnlyModificationException rome) {
+            throw new ReadOnlyModificationException("Error attempting to modify read-only document");
         }
     }
 
@@ -145,6 +151,8 @@ public class StorageFile {
             throw new StorageOperationException("Error parsing file data format");
         } catch (IllegalValueException ive) {
             throw new StorageOperationException("File contains illegal data values; data type constraints not met");
+        } catch (ReadOnlyModificationException rome) {
+            throw new ReadOnlyModificationException("Error attempting to modify read-only document");
         }
     }
 

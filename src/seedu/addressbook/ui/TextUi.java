@@ -16,6 +16,8 @@ import java.util.Scanner;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
+import javax.sound.sampled.Line;
+
 /**
  * Text UI of the application.
  */
@@ -177,6 +179,6 @@ public class TextUi {
         for (String m : message) {
             out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
         }
-        out.println(DIVIDER);
+        out.println(LINE_PREFIX + DIVIDER);
     }
 }

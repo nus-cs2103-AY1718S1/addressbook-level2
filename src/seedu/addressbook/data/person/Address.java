@@ -12,7 +12,16 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    private final int BLOCK_INDEX = 0;
+    private final int STREET_INDEX = 1;
+    private final int UNIT_INDEX = 2;
+    private final int POSTALCODE_INDEX = 3;
+
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
+
     private boolean isPrivate;
 
     /**
@@ -26,7 +35,24 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+
+        String[] splitAddress = address.split(",");
+        int numComponents = splitAddress.length;
+
+        if (numComponents > BLOCK_INDEX) {
+            this.block = new Block(splitAddress[BLOCK_INDEX]);
+        }
+        if (numComponents > STREET_INDEX) {
+            this.street = new Street(splitAddress[STREET_INDEX]);
+        }
+        if (numComponents > UNIT_INDEX) {
+            this.unit = new Unit(splitAddress[UNIT_INDEX]);
+        }
+        if (numComponents > POSTALCODE_INDEX) {
+            this.postalCode = new PostalCode(splitAddress[POSTALCODE_INDEX]);
+        }
+
+
     }
 
     /**
@@ -38,19 +64,34 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+
+        String combinedAddress = "";
+
+        if (block != null) {
+            combinedAddress += block.getValue();
+        }
+        if (street != null) {
+            combinedAddress += "," + street.getValue();
+        }
+        if (unit != null) {
+            combinedAddress += "," + unit.getValue();
+        }
+        if (postalCode != null) {
+            combinedAddress += "," + postalCode.getValue();
+        }
+        return combinedAddress;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                && this.toString().equals(((Address) other).toString())); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.toString().hashCode();
     }
 
     public boolean isPrivate() {

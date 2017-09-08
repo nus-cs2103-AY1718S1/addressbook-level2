@@ -87,6 +87,7 @@ public class Main {
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);
+            //comment to test bugs
 
         } while (!ExitCommand.isExit(command));
     }

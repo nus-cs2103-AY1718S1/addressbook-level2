@@ -8,11 +8,22 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String EXAMPLE = "123, some street, #13-01, 123456";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be in the following format: "
+            + "block Number, street name, unit number, postal code";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
+    private static final int BLOCK_INDEX = 0;
+    private static final int STREET_INDEX = 1;
+    private static final int UNIT_INDEX = 2;
+    private static final int POSTAL_CODE_INDEX = 3;
+
     public final String value;
+
+    private final Block block;
+    private final Street street;
+    private final Unit unit;
+    private final PostalCode postalCode;
     private boolean isPrivate;
 
     /**
@@ -26,7 +37,13 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        String[] splitAddress = trimmedAddress.split(",");
+        block = new Block(splitAddress[BLOCK_INDEX]);
+        street = new Street(splitAddress[STREET_INDEX]);
+        unit = new Unit(splitAddress[UNIT_INDEX]);
+        postalCode = new PostalCode((splitAddress[POSTAL_CODE_INDEX]));
+        this.value = block.getBlockNumber() + " ," + street.getStreetName()
+                + " ," + unit.getUnitNumber() + " ," + postalCode.getPostalCode();
     }
 
     /**

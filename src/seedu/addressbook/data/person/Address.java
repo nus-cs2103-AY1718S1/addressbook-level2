@@ -7,18 +7,19 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
-    /*
+
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
     private boolean isPrivate;
-    */
+    
     private Block block;
     private Street street;
     private Unit unit;
     private PostalCode postalCode;
+
 
 
 
@@ -32,7 +33,7 @@ public class Address {
         String streetString = street.toString();
         String unitString = unit.toString();
         String postalCodeString = PostalCode.toString();
-        String trimmedAddress = (adressString + " " + streetString + " " + unitString + " " + postalCodeString + " ").trim();
+        String trimmedAddress = (addressString + " " + streetString + " " + unitString + " " + postalCodeString + " ").trim();
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);

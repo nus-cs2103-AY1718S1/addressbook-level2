@@ -73,72 +73,72 @@ public class Address {
     public boolean isPrivate() {
         return isPrivate;
     }
-}
 
-/**
- * Helper class for {@link Address}.
- * Represents the Block portion of an address.
- * Note: BlockNumber is stored as a String.
- */
-class Block {
-    private String blockNumber;
+    /**
+     * Helper class for {@link Address}.
+     * Represents the Block portion of an address.
+     * Note: BlockNumber is stored as a String.
+     */
+    class Block {
+        private String blockNumber;
 
-    Block(String blockNumber) {
-        this.blockNumber = blockNumber;
+        Block(String blockNumber) {
+            this.blockNumber = blockNumber;
+        }
+
+        String getBlockNumber() {
+            return blockNumber;
+        }
     }
 
-    String getBlockNumber() {
-        return blockNumber;
-    }
-}
+    /**
+     * Helper class for {@link Address}.
+     * Represents the Street portion of an address.
+     * Note: StreetName is stored as a String.
+     */
+    class Street {
+        private String streetName;
 
-/**
- * Helper class for {@link Address}.
- * Represents the Street portion of an address.
- * Note: StreetName is stored as a String.
- */
-class Street {
-    private String streetName;
+        Street(String streetName) {
+            this.streetName = streetName;
+        }
 
-    Street(String streetName) {
-        this.streetName = streetName;
-    }
-
-    String getStreetName() {
-        return streetName;
-    }
-}
-
-/**
- * Helper class for {@link Address}.
- * Represents the Unit portion of an address.
- * Note: Unit number is stored as a String.
- */
-class Unit {
-    private String unit;
-
-    Unit(String unit) {
-        this.unit = unit;
+        String getStreetName() {
+            return streetName;
+        }
     }
 
-    String getUnit() {
-        return unit;
+    /**
+     * Helper class for {@link Address}.
+     * Represents the Unit portion of an address.
+     * Note: Unit number is stored as a String.
+     */
+    class Unit {
+        private String unit;
+
+        Unit(String unit) {
+            this.unit = unit;
+        }
+
+        String getUnit() {
+            return unit;
+        }
     }
-}
 
-/**
- * Helper class for {@link Address}.
- * Represents the PostalCode portion of an address.
- * Note: PostalCode is stored as a String.
- */
-class PostalCode {
-    private String postalCode;
+    /**
+     * Helper class for {@link Address}.
+     * Represents the PostalCode portion of an address.
+     * Note: PostalCode is stored as a String.
+     */
+    class PostalCode {
+        private String postalCode;
 
-    PostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
+        PostalCode(String postalCode) {
+            this.postalCode = postalCode;
+        }
 
-    String getPostalCode() {
-        return postalCode;
+        String getPostalCode() {
+            return postalCode;
+        }
     }
 }

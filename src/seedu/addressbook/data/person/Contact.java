@@ -14,6 +14,11 @@ public class Contact {
     }
 
     @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
     public int hashCode() {
         return value.hashCode();
     }

@@ -23,6 +23,7 @@ import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.personToAdd;
 
 /**
  * Parses user input.
@@ -81,7 +82,8 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
+/*            return prepareAdd(arguments);*/
+            return prepareAdd();
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -136,6 +138,34 @@ public class Parser {
                     isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
 
                     getTagsFromArgs(matcher.group("tagArguments"))
+            );
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
+    }
+
+    /*
+    *   Creates a new 'personToAdd' object labelled 'newguy'
+    *   The constructor of 'personToAdd' will prompt the user for input
+    *   and initialize it as the attributes of newguy.
+    *   These attributes are then extracted by its getter methods and passed into AddCommand
+     */
+    private Command prepareAdd() {
+        personToAdd newguy = new personToAdd();
+        try {
+            return new AddCommand(
+                    newguy.getName(),
+
+                    newguy.getPhone(),
+                    newguy.getPhonePrivacy(),
+
+                    newguy.getEmail(),
+                    newguy.getEmailPrivacy(),
+
+                    newguy.getAddress(),
+                    newguy.getAddressPrivacy(),
+
+                    newguy.getTags()
             );
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());

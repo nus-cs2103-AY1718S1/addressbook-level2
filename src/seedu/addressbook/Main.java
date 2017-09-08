@@ -3,7 +3,6 @@ package seedu.addressbook;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.io.File;
 
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
@@ -15,7 +14,6 @@ import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
 import seedu.addressbook.ui.TextUi;
-
 
 
 /**
@@ -30,8 +28,6 @@ public class Main {
     private TextUi ui;
     private StorageFile storage;
     private AddressBook addressBook;
-
-    File f = new File("C:\\addressbook-lvl2\\addressbook.xml");
 
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
@@ -115,25 +111,10 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-        }catch(Exception e){
-            ui.showToUser("File is set as read-only! , proceeding to change permission");
-            f.setWritable(true,true);
-        }
-       // catch (Exception e) {
-            //ui.showToUser(e.getMessage());
-            //throw new RuntimeException(e);
-        //}
-        try {
-            command.setData(addressBook, lastShownList);
-            CommandResult result = command.execute();
-            storage.save(addressBook);
-            return result;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);
         }
-
     }
 
     /**

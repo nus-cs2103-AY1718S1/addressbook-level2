@@ -138,7 +138,8 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Comparator used to compare two persons
+     * Compares two persons and return a positive number if the name of first
+     * person is lexicographically bigger than the second person, and vice versa.
      */
     public Comparator<Person> comparePersons = new Comparator<Person>(){
         public int compare(Person firstPerson, Person secondPerson){

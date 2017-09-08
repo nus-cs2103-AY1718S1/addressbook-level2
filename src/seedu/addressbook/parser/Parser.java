@@ -30,9 +30,14 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Parser {
 
     public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    //^^^ .(any character) + (one or more times)
+    //^^^ (?<name>X) X as a named capturing group
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+            //^^^ \\S (non-whitespace character) + (one or more times)
+            //^^^ \\s+ (whitespace character one or more) \\S (non-whitespace+) * (0 or more times)
+            //^^^ only the first word is accessible via <keywords>, the rest are not captured
 
     public static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"

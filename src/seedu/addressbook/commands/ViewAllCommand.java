@@ -15,7 +15,8 @@ public class ViewAllCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the non-private details of the person "
             + "identified by the index number in the last shown person listing.\n"
             + "Parameters: INDEX\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 1"
+            + "\n";
 
     public static final String MESSAGE_VIEW_PERSON_DETAILS = "Viewing person: %1$s";
 

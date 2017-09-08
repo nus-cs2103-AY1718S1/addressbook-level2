@@ -28,10 +28,10 @@ public class Address {
                                         + "(?<unit>[^,]+)"
                                         + "(?<postalcode>[^,]+)");
 
-    public final Block _block;
-    public final Street _street;
-    public final Unit _unit;
-    public final PostalCode _postalcode;
+    private final Block _block;
+    private final Street _street;
+    private final Unit _unit;
+    private final PostalCode _postalcode;
     public final String value;
     private boolean isPrivate;
 

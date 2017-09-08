@@ -38,12 +38,12 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         String[] splitAddress = trimmedAddress.split(",");
-        block = new Block(splitAddress[BLOCK_INDEX]);
-        street = new Street(splitAddress[STREET_INDEX]);
-        unit = new Unit(splitAddress[UNIT_INDEX]);
-        postalCode = new PostalCode((splitAddress[POSTAL_CODE_INDEX]));
-        this.value = block.getBlockNumber() + " ," + street.getStreetName()
-                + " ," + unit.getUnitNumber() + " ," + postalCode.getPostalCode();
+        block = new Block(splitAddress[BLOCK_INDEX].trim());
+        street = new Street(splitAddress[STREET_INDEX].trim());
+        unit = new Unit(splitAddress[UNIT_INDEX].trim());
+        postalCode = new PostalCode(splitAddress[POSTAL_CODE_INDEX].trim());
+        this.value = block.getBlockNumber() + ", " + street.getStreetName()
+                + ", " + unit.getUnitNumber() + ", " + postalCode.getPostalCode();
     }
 
     /**

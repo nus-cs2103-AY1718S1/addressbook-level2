@@ -15,6 +15,7 @@ import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
 import seedu.addressbook.ui.TextUi;
 
+import static seedu.addressbook.common.Messages.MESSAGE_ERROR_SAVE_FAILED_WRITE_PROTECTED;
 
 /**
  * Entry point of the Address Book application.
@@ -88,7 +89,7 @@ public class Main {
             recordResult(result);
             ui.showResultToUser(result);
 
-        } while (!ExitCommand.isExit(command));
+        } while (!ExitCommand.isSuccessfulExit(command));
     }
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
@@ -111,6 +112,12 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
+        } catch (StorageOperationException e) {
+            ui.showToUser(e.getMessage());
+            if (command instanceof ExitCommand) {
+                ((ExitCommand) command).setSaveFailureState();
+            }
+            return new CommandResult(String.format(MESSAGE_ERROR_SAVE_FAILED_WRITE_PROTECTED, storage.getPath()));
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

@@ -1,5 +1,6 @@
 package seedu.addressbook.commands;
 
+import seedu.addressbook.ui.TextUi;
 
 /**
  * Shows help instructions.
@@ -17,14 +18,14 @@ public class HelpCommand extends Command {
     public CommandResult execute() {
         return new CommandResult(
                 AddCommand.MESSAGE_USAGE
-                + "\n" + DeleteCommand.MESSAGE_USAGE
-                + "\n" + ClearCommand.MESSAGE_USAGE
-                + "\n" + FindCommand.MESSAGE_USAGE
-                + "\n" + ListCommand.MESSAGE_USAGE
-                + "\n" + ViewCommand.MESSAGE_USAGE
-                + "\n" + ViewAllCommand.MESSAGE_USAGE
-                + "\n" + HelpCommand.MESSAGE_USAGE
-                + "\n" + ExitCommand.MESSAGE_USAGE
+                + TextUi.LINE_SPACE + DeleteCommand.MESSAGE_USAGE
+                + TextUi.LINE_SPACE + ClearCommand.MESSAGE_USAGE
+                + TextUi.LINE_SPACE + FindCommand.MESSAGE_USAGE
+                + TextUi.LINE_SPACE + ListCommand.MESSAGE_USAGE
+                + TextUi.LINE_SPACE + ViewCommand.MESSAGE_USAGE
+                + TextUi.LINE_SPACE + ViewAllCommand.MESSAGE_USAGE
+                + TextUi.LINE_SPACE + HelpCommand.MESSAGE_USAGE
+                + TextUi.LINE_SPACE + ExitCommand.MESSAGE_USAGE
         );
     }
 }

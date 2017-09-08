@@ -5,6 +5,7 @@ package seedu.addressbook.commands;
  */
 public class ExitCommand extends Command {
 
+    private boolean isSaveFileSuccess = true;
     public static final String COMMAND_WORD = "exit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits the program.\n"
@@ -16,7 +17,22 @@ public class ExitCommand extends Command {
         return new CommandResult(MESSAGE_EXIT_ACKNOWEDGEMENT);
     }
 
-    public static boolean isExit(Command command) {
-        return command instanceof ExitCommand; // instanceof returns false if it is null
+    public static boolean isSuccessfulExit(Command command) {
+        return (command instanceof ExitCommand  // instanceof returns false if it is null
+                && ((ExitCommand) command).isSuccessfulSave()); // isSuccessfulSave() returns true if file saved - pass
+    }
+
+    /**
+     * @return true if file is successfully saved without errors.
+     */
+    private boolean isSuccessfulSave() {
+        return isSaveFileSuccess;
+    }
+    
+    /**
+     * Switches the command instance state to a failure.
+     */
+    public void setSaveFailureState() {
+        isSaveFileSuccess = false;
     }
 }

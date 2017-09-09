@@ -12,7 +12,6 @@ public class Phone extends Contact{
     public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
     public static final String PHONE_VALIDATION_REGEX = "\\d+";
 
-    public final String value;
     private boolean isPrivate;
 
     /**

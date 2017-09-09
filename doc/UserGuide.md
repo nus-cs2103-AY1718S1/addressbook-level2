@@ -44,10 +44,11 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > be seen using the `viewall` command.
 > 
 > Persons can have any number of tags (including 0)
+> Block, street, unit and postal code in address string must be separated by comma.
 
 Examples: 
-* `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
-* `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
+* `add John Doe p/98765432 e/johnd@gmail.com a/123, Backer Street, #01-01, 213456`
+* `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/45, Newgate Prison, #01-02, 345678 t/criminal t/friend`
 
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>

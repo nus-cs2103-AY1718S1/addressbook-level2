@@ -106,6 +106,13 @@ public class AddressBook {
         allPersons.clear();
         allTags.clear();
     }
+    public void editEmailBook(int index, String newEmail){
+        allPersons.editEmail(index, newEmail);
+    }
+    public void editPhoneBook(int index, String newPhone){ allPersons.editPhone(index, newPhone); }
+    public void editAddressBook(int index, String newAddress){
+        allPersons.editAddress(index, newAddress);
+    }
 
     /**
      * Returns a new UniquePersonList of all persons in the address book at the time of the call.

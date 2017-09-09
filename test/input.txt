@@ -87,6 +87,24 @@
   viewall 5
 
 ##########################################################
+# test sort command
+##########################################################
+  # adding person to test sort
+  add Aalpha Mario p/12396321 e/alpha.as.heck@alpha.com pa/123, sesame street, 523251 t/alpha
+
+  # should return invalid command
+  sort abc
+  
+  # sort should not change the address book original list
+  list
+  sort
+  list
+
+  # sort save should change the original list
+  sort save
+  list
+
+##########################################################
 # test find persons command
 ##########################################################
 

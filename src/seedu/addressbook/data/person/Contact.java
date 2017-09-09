@@ -8,8 +8,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * @author Niu Yunpeng
  */
 public class Contact {
-    public static final String MESSAGE_CONSTRAINTS = "Contact information can be in any format.";
-    public static final String VALIDATION_REGEX = ".+";
+    private static final String MESSAGE_CONSTRAINTS = "Contact information can be in any format.";
+    private static final String VALIDATION_REGEX = ".+";
 
     public final String value;
     private boolean isPrivate;

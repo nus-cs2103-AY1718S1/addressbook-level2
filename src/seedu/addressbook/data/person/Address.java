@@ -11,8 +11,9 @@ import java.util.regex.Matcher;
 public class Address {
 
     public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be in proper format";
+    public static final String ADDRESS_VALIDATION_REGEX = "(\\d+), ([\\w\\s]+), (#[\\w\\s-]+), (\\d+)";
+    public static final Pattern ADDRESS_DATA_ARGS_FORMAT = Pattern.compile(ADDRESS_VALIDATION_REGEX);
 
     public final String value;
     private boolean isPrivate;
@@ -34,7 +35,16 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+
+        final Matcher matcher = ADDRESS_DATA_ARGS_FORMAT.matcher(value.trim());
+        if (matcher.matches()) {
+            block = new Block(matcher.group(1));
+            street = new Street(matcher.group(2));
+            unit = new Unit(matcher.group(3));
+            postalCode = new PostalCode(matcher.group(4));
+        }
     }
+
 
     /**
      * Returns true if a given string is a valid person address.

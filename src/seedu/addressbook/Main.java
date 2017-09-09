@@ -101,6 +101,7 @@ public class Main {
 
     /**
      * Executes the command and returns the result.
+     * Returns error message if storage xml file is read only
      *
      * @param command user command
      * @return result of the command

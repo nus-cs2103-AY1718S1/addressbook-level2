@@ -39,4 +39,6 @@ public class Group {
                 || (other instanceof Group // instanceof handles nulls
                 && this.group.equals(((Group) other).group)); // state check
     }
+
+    public boolean isPrivate() { return isPrivate; }
 }

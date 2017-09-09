@@ -33,7 +33,7 @@ public class Address {
         }
         this.value = trimmedAddress;
 
-        String[] splitAddress = AddressSplitter(trimmedAddress);
+        String[] splitAddress = splitAddress(trimmedAddress);
 
         block = new Block(splitAddress[0]);
         street = new Street(splitAddress[1]);
@@ -72,7 +72,7 @@ public class Address {
      * fullAddress[3] : POSTALCODE
      */
 
-    public String[] AddressSplitter(String address){
+    public String[] splitAddress(String address){
         String[] fullAddress = new String[4];
         int counter = 0;
         for(String token: address.split(", ")){

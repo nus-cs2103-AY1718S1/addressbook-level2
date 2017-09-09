@@ -9,9 +9,9 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Phone extends Contact {
 
     public Phone(String email, boolean isPrivate) throws IllegalValueException {
-        EXAMPLE = "123456789";
-        MESSAGE_CONSTRAINTS = "Person phone numbers should only contain numbers";
-        VALIDATION_REGEX = "\\d+";
+        setContactConstants("123456789",
+                "Person phone numbers should only contain numbers",
+                "\\d+");
         setContact(email, isPrivate);
     }
 

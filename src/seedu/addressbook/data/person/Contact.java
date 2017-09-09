@@ -9,7 +9,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public abstract class Contact {
 	public static String EXAMPLE;
-	public static String MESSAGE_CONSTRAINTS = "Invalid Contact format";
+	public static String MESSAGE_CONSTRAINT = "Invalid Contact format";
 	public static String VALIDATION_REGEX;
 
 	public String value;
@@ -24,7 +24,7 @@ public abstract class Contact {
 		this.isPrivate = isPrivate;
 		String trimmedContact = contact.trim();
 		if (!isValidContact(contact)) {
-			throw new IllegalValueException(MESSAGE_CONSTRAINTS);
+			throw new IllegalValueException(MESSAGE_CONSTRAINT);
 		}
 
 		this.value = trimmedContact;
@@ -36,6 +36,12 @@ public abstract class Contact {
 	public static boolean isValidContact(String contact) {
 		return contact.matches(VALIDATION_REGEX);
 	};
+
+	public void setContactConstants(String example, String constraints, String regex) {
+		EXAMPLE = example;
+		MESSAGE_CONSTRAINT = constraints;
+		VALIDATION_REGEX = regex;
+	}
 
 	@Override
 	public String toString() {

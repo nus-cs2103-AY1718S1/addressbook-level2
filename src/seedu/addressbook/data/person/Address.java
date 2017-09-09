@@ -9,9 +9,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Address extends Contact {
 
     public Address(String email, boolean isPrivate) throws IllegalValueException {
-        EXAMPLE = "123, some street";
-        MESSAGE_CONSTRAINTS = "Person addresses can be in any format";
-        VALIDATION_REGEX = ".+";
+        setContactConstants("123, some street",
+                "Person addresses can be in any format", ".+");
         setContact(email, isPrivate);
     }
 

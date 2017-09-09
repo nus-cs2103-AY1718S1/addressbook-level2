@@ -9,9 +9,9 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Email extends Contact {
 
     public Email(String email, boolean isPrivate) throws IllegalValueException {
-        EXAMPLE = "valid@e.mail";
-        MESSAGE_CONSTRAINTS = "Person emails should be 2 alphanumeric/period strings separated by '@'";
-        VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
+        setContactConstants("valid@e.mail",
+                "Person emails should be 2 alphanumeric/period strings separated by '@'",
+                "[\\w\\.]+@[\\w\\.]+");
         setContact(email, isPrivate);
     }
 

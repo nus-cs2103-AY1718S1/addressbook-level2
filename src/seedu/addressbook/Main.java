@@ -1,5 +1,7 @@
 package seedu.addressbook;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -34,13 +36,29 @@ public class Main {
 
 
     public static void main(String... launchArgs) {
-        new Main().run(launchArgs);
+        try {
+            new Main().run(launchArgs);
+        } catch (NoSuchFieldException e) {
+            System.err.println(e.getMessage());
+        } catch (StorageOperationException e) {
+            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     /** Runs the program until termination.  */
-    public void run(String[] launchArgs) {
+    public void run(String[] launchArgs) throws NoSuchFieldException, StorageOperationException, IOException {
         start(launchArgs);
-        runCommandLoopUntilExitCommand();
+        try {
+            runCommandLoopUntilExitCommand();
+        } catch (NoSuchFieldException e) {
+            throw new NoSuchFieldException(e.getMessage());
+        } catch (StorageOperationException e) {
+            throw new StorageFile.StorageOperationException(e.getMessage());
+        } catch (IOException e) {
+            throw new IOException(e.getMessage());
+        }
         exit();
     }
 
@@ -78,16 +96,29 @@ public class Main {
         System.exit(0);
     }
 
+    /** Check the existence of storage file */
+    private void fileExistCheck() throws NoSuchFieldException {
+        if(!Files.exists(storage.path) || !Files.isRegularFile(storage.path)) {
+            throw new NoSuchFieldException(storage.path.toString() + " does not exist");
+        }
+    }
+
     /** Reads the user command and executes it, until the user issues the exit command.  */
-    private void runCommandLoopUntilExitCommand() {
+    private void runCommandLoopUntilExitCommand() throws NoSuchFieldException, StorageOperationException, IOException{
         Command command;
         do {
-            String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
-
+            try{
+                String userCommandText = ui.getUserCommand();
+                fileExistCheck();
+                command = new Parser().parseCommand(userCommandText);
+                CommandResult result = executeCommand(command);
+                recordResult(result);
+                ui.showResultToUser(result);
+            } catch (NoSuchFieldException e) {
+                throw new NoSuchFieldException(e.getMessage());
+            } catch (IOException e) {
+                throw new IOException(e.getMessage());
+            }
         } while (!ExitCommand.isExit(command));
     }
 
@@ -105,15 +136,16 @@ public class Main {
      * @param command user command
      * @return result of the command
      */
-    private CommandResult executeCommand(Command command)  {
+    private CommandResult executeCommand(Command command) throws IOException, StorageOperationException {
         try {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-        } catch (Exception e) {
-            ui.showToUser(e.getMessage());
-            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new IOException(e.getMessage());
+        } catch (StorageOperationException e) {
+            throw new StorageFile.StorageOperationException(e.getMessage());
         }
     }
 

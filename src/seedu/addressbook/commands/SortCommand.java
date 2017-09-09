@@ -28,7 +28,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SUCCESS = "All persons sorted successfully...";
     public static final String MESSAGE_INVALID_INPUT = "Invalid Input.\n"
             + "Accepted Field Values: NAME, PHONE, EMAIL, ADDRESS \n"
-            + "Accepted Order Values: ASC, DESC"
+            + "Accepted Order Values: ASC, DESC";
 
     public final String field;
     public final String order;

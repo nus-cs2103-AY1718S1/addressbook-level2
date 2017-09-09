@@ -7,9 +7,31 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+import seedu.addressbook.data.AddressBook;
 
 public class UtilsTest {
+    @Test
+    public void util_isAnyNull() {
+        // empty list
+        assertNoNull();
 
+        // only one object
+        assertHasNull(null);
+
+        // multiple object
+        assertHasNull(1, null, "abc");
+
+        AddressBook myBook = null;
+        assertHasNull(myBook);
+    }
+
+    private void assertHasNull(Object... items) {
+        assertTrue(Utils.isAnyNull(items));
+    }
+
+    private void assertNoNull(Object... items) {
+        assertFalse(Utils.isAnyNull(items));
+    }
 
     @Test
     public void elementsAreUnique() throws Exception {

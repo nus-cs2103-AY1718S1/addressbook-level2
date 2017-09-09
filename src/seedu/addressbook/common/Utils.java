@@ -13,6 +13,12 @@ public class Utils {
      * Returns true if any of the given items are null.
      */
     public static boolean isAnyNull(Object... items) {
+        // If only a null value is passed in, return true since it represents null.
+        // This cannot be handled by the loop below (since for-each will throw exception on null pointer).
+        if(items == null) {
+            return true;
+        }
+
         for (Object item : items) {
             if (item == null) {
                 return true;

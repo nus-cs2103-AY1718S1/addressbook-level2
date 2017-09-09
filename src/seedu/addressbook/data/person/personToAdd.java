@@ -106,6 +106,7 @@ public class personToAdd {
 					}
 					break;
 				case 4:
+				    if (input.isEmpty()) break;
 					for (String onetag: input.split(",")) {
 						tags.add(onetag.trim());
 					}

@@ -64,6 +64,7 @@ public class Person implements ReadOnlyPerson {
         return new UniqueTagList(tags);
     }
 
+    @Override
     public int getSequenceNumber() {
         return this.sequenceNumber;
     }

@@ -1,18 +1,27 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String EXAMPLE = "123, some street, some unit, some postal code";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Addresses in BLOCK, STREET, UNIT, POSTAL CODE format";
+    public static final Pattern ADDRESS_VALIDATION_REGEX =
+            Pattern.compile("(?<block>[^,]+)"
+                + " ,\\s+(?<street>[^,]+)"
+                + " ,\\s+(?<unit>[^,]+)"
+                + " ,\\s+(?<postalCode>[^,]+)");
 
     public final String value;
+    private final Block block;
+    private final Street street;
+    private final Unit unit;
+    private final PostalCode postalCode;
     private boolean isPrivate;
 
     /**
@@ -23,17 +32,15 @@ public class Address {
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
         this.isPrivate = isPrivate;
-        if (!isValidAddress(trimmedAddress)) {
+        final Matcher matcher = ADDRESS_VALIDATION_REGEX.matcher(trimmedAddress);
+        if (!matcher.matches()) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
-    }
-
-    /**
-     * Returns true if a given string is a valid person address.
-     */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+        this.block = new Block(matcher.group("block"));
+        this.street = new Street(matcher.group("street"));
+        this.unit = new Unit(matcher.group("unit"));
+        this.postalCode = new PostalCode(matcher.group("postalCode"));
     }
 
     @Override

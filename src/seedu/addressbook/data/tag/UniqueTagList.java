@@ -81,6 +81,14 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
+     * Returns a new Set that is a deep copy of all tags in this list.
+     * This set is mutable and change-insulated against the internal list.
+     */
+    public List<Tag> toList() {
+        return new ArrayList<>(internalList);
+    }
+
+    /**
      * Returns true if the list contains an equivalent Tag as the given argument.
      */
     public boolean contains(Tag toCheck) {

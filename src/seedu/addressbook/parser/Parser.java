@@ -3,25 +3,11 @@ package seedu.addressbook.parser;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -40,7 +26,6 @@ public class Parser {
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
-
 
     /**
      * Signals that the user input could not be parsed.
@@ -90,6 +75,9 @@ public class Parser {
             case ListCommand.COMMAND_WORD:
                 return new ListCommand();
 
+            case SortCommand.COMMAND_WORD:
+                return prepareSort(arguments);
+
             case ViewCommand.COMMAND_WORD:
                 return prepareView(arguments);
 
@@ -136,6 +124,37 @@ public class Parser {
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
+    }
+
+    public static final ArrayList<String> ACCEPTED_FIELD_PARAMETERS = new ArrayList<>(Arrays.asList(
+            "name", "phone", "email", "address"));
+
+    public static final ArrayList<String> ACCEPTED_ORDER_PARAMETERS = new ArrayList<>(Arrays.asList(
+            "asc", "desc"));
+
+    /**
+     * Parses arguments in the context of the sort command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareSort(String args) {
+        // Remove white space at the beginning
+        args = args.substring(1);
+
+//        System.out.println("Argument log: Arguments are:" + args);
+        String[] processedArgs = args.split(" ");
+//        System.out.println(Integer.toString(processedArgs.length));
+
+        if (processedArgs.length != 2) {
+            System.out.println("Invalid Input.");
+            return new HelpCommand();
+        }
+
+        String sortField = processedArgs[0];
+        String sortOrdering = processedArgs[1];
+
+        return new SortCommand(sortField, sortOrdering);
     }
 
     /**

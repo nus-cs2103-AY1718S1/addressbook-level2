@@ -34,7 +34,8 @@ public class CommandResult {
     }
 
     /**
-     * Getter method for feedbackToUser string
+     * Returns a message string to be shown to the user.
+     * Contains a description of the execution result.
      * 
      * @return feedback string to be displayed to the user
      */

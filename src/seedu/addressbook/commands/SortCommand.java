@@ -2,6 +2,9 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -17,9 +20,29 @@ public class SortCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
 
+    private static List SortCommand(List<ReadOnlyPerson> allPersons) {
+        List<ReadOnlyPerson> toBeDisplayed = new ArrayList<ReadOnlyPerson>(allPersons);
+        ObjectComparator comparator = new ObjectComparator();
+        Collections.sort(toBeDisplayed, comparator);
+        return toBeDisplayed;
+    }
+
+
     @Override
     public CommandResult execute() {
         List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
-        return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
+        List<ReadOnlyPerson> toBeDisplayed = SortCommand(allPersons);
+        return new CommandResult(getMessageForPersonListShownSummary(allPersons), toBeDisplayed);
     }
+}
+
+
+ class ObjectComparator implements Comparator<ReadOnlyPerson> {
+
+    public int compare(ReadOnlyPerson obj1, ReadOnlyPerson obj2) {
+        String person1 = obj1.getName().toString();
+        String person2 = obj2.getName().toString();
+        return person1.compareToIgnoreCase(person2);
+    }
+
 }

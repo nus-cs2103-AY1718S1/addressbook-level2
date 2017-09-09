@@ -37,7 +37,10 @@ public abstract class Contact {
 		return contact.matches(VALIDATION_REGEX);
 	};
 
-	public void setContactConstants(String example, String constraints, String regex) {
+	/**
+	 * Sets values for EXAMPLE, MESSAGE_CONSTRAINTS and VALIDATION_REGEX for Contact instance
+	 */
+	public static void setContactConstants(String example, String constraints, String regex) {
 		EXAMPLE = example;
 		MESSAGE_CONSTRAINT = constraints;
 		VALIDATION_REGEX = regex;

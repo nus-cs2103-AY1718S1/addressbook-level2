@@ -60,6 +60,7 @@ public class Address {
         sj.add(blockNumber.getBlockNumber());
         sj.add(streetName.getStreetName());
         sj.add(unit.getUnit());
+        sj.add(postalCode.getPostalCode());
         return sj.toString();
     }
 

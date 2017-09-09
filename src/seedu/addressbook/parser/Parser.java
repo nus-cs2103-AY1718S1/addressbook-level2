@@ -151,6 +151,10 @@ public class Parser {
     *   These attributes are then extracted by its getter methods and passed into AddCommand
      */
     private Command prepareAdd(String args) {
+        if (!args.isEmpty()) {
+            System.out.println("Did you mean 'add'?");
+            System.out.println("Extra arguments discarded");
+        }
         personToAdd newguy = new personToAdd();
         try {
             return new AddCommand(

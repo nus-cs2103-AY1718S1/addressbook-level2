@@ -32,7 +32,7 @@ public class PersonTest {
      */
     @Test
     public void person_sequenceNumber_incremental() {
-        assertEquals(1, aliceBetsy.getSequenceNumber());
-        assertEquals(2,bobChaplin.getSequenceNumber());
+        // Notice: We cannot individually test their sequenceNumbers, because we do not when this test will be called.
+        assertEquals(1, bobChaplin.getSequenceNumber() - aliceBetsy.getSequenceNumber());
     }
 }

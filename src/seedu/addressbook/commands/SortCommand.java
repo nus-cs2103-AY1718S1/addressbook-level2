@@ -2,11 +2,13 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
 /**
- * Lists all persons in the address book to the user.
+ * Sorts all persons in the address book by alphabetical order and lists to the user.
  */
 public class SortCommand extends Command {
 
@@ -19,7 +21,8 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
-        return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
+        List<ReadOnlyPerson> allPersons = new ArrayList<>(addressBook.getAllPersons().immutableListView());
+        allPersons.sort(Comparator.comparing(o -> o.getName().fullName));
+        return new CommandResult(getMessageForSortedPersonListShownSummary(allPersons), allPersons);
     }
 }

@@ -1,5 +1,6 @@
 package seedu.addressbook.data.person;
 
+import java.util.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -7,6 +8,11 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
+
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
 
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
@@ -20,6 +26,31 @@ public class Address {
      *
      * @throws IllegalValueException if given address string is invalid.
      */
+    public Address(String address, boolean isPrivate)
+            throws IllegalValueException{
+
+        Scanner sc = new Scanner(address).useDelimiter("\\s*,\\s*");
+        this.block = new Block(sc.next());
+        this.street = new Street(sc.next());
+        this.unit = new Unit(sc.next());
+
+        String output = block.getBlock()+", "+street.getStreet()+", "+unit.getUnit();
+        if (sc.hasNext()){
+            this.postalCode = new PostalCode(sc.next());
+            output = output +", "+ postalCode.getPostalCode();
+        }
+        /*
+        if (sc.hasNext()){
+            //Invalid Format
+        }*/
+
+        this.value = output;
+        if (!isValidAddress(value)) {
+            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        }
+
+    }
+    /*
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
         this.isPrivate = isPrivate;
@@ -28,6 +59,7 @@ public class Address {
         }
         this.value = trimmedAddress;
     }
+    */
 
     /**
      * Returns true if a given string is a valid person address.

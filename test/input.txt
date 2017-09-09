@@ -55,6 +55,19 @@
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
 
 ##########################################################
+# test sort command
+##########################################################
+
+  # add name out of order
+  add AAAAA p/000000 e/aaaaa@gmail.com a/valid, address
+
+  # names should be in sorted order
+  sort
+
+  # names should be in order of creation
+  list
+
+##########################################################
 # test view/viewall persons command
 ##########################################################
 
@@ -67,10 +80,10 @@
   # should catch invalid index
   view -1
   view 0
-  view 6
+  view 7
   viewall -1
   viewall 0
-  viewall 6
+  viewall 7
 
   # should show all non private for both view and viewall
   view 1

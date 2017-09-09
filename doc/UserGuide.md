@@ -110,6 +110,19 @@ Examples:
 * `find Betsy`<br> 
   `viewall 1`<br>
   Views all details of the 1st person in the results of the `find` command.
+  
+### View all details of a person : `sort`
+Sorts all persons in address book by field in ascending or descending order.<br>
+Format: `sort FIELD ORDER`<br>
+**FIELD** Parameters: NAME, PHONE, EMAIL, ADDRESS <br>
+**ORDER** Parameters: ASC, DESC <br>
+
+> Returns a message successful prompt if sorting is successful.
+
+Examples: 
+* `sort name asc`<br>
+* `sort address desc`<br>
+
 
 ### Clearing all entries : `clear`
 Clears all entries from the address book.<br>

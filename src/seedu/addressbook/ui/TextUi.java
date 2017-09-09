@@ -5,7 +5,6 @@ import static seedu.addressbook.common.Messages.MESSAGE_INIT_FAILED;
 import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE;
 import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
 import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
-import static seedu.addressbook.ui.Formatter.getIndexedListItem;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -22,16 +21,7 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
  */
 public class TextUi {
 
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
-    private static final String LINE_PREFIX = "|| ";
-
-    /** A platform independent line separator. */
-    private static final String LINE_SEPARATOR = System.lineSeparator();
-
     private static final String DIVIDER = "===================================================";
-
-    /** Format of indexed list item */
-    private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
 
     /** Offset required to convert between 1-indexing and 0-indexing.  */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
@@ -79,7 +69,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        out.print(Formatter.getUserCommandPrompt());
+        out.print(Formatter.userCommandPromptFormatted());
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
@@ -87,7 +77,7 @@ public class TextUi {
             fullInputLine = in.nextLine();
         }
 
-        showToUser(Formatter.getUserCommandResponse(fullInputLine));
+        showToUser(Formatter.userCommandResponseFormatted(fullInputLine));
         return fullInputLine;
     }
 

@@ -26,11 +26,11 @@ public class Formatter {
         return (LINE_PREFIX + message.replace("\n", LINE_SEPARATOR + LINE_PREFIX));
     }
 
-    public static String getUserCommandPrompt() {
+    public static String userCommandPromptFormatted() {
         return LINE_PREFIX + "Enter command: ";
     }
 
-    public static String getUserCommandResponse(String fullInputLine) {
+    public static String userCommandResponseFormatted(String fullInputLine) {
         return "[Command entered:" + fullInputLine + "]";
     }
 

@@ -28,7 +28,6 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Parses user input.
  */
 public class Parser {
-
     public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
@@ -54,9 +53,11 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    public Parser() {}
+    public Parser() {
+
+    }
 
     /**
      * Parses user input into command for execution.

@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import seedu.addressbook.commands.AddCommand;
 import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.Command;
@@ -42,7 +43,7 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
-
+    public static final Pattern SORT_ARGS_FORMAT = Pattern.compile("save");
     /**
      * Signals that the user input could not be parsed.
      */
@@ -92,7 +93,7 @@ public class Parser {
             return new ListCommand();
 
         case SortCommand.COMMAND_WORD:
-            return new SortCommand();
+            return prepareSort(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return prepareView(arguments);
@@ -252,6 +253,19 @@ public class Parser {
         final String[] keywords = matcher.group("keywords").split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
+    }
+
+    private Command prepareSort(String args) {
+        if(args.equals("")) {
+            return new SortCommand(false);
+        }
+        final Matcher matcher = SORT_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortCommand.MESSAGE_USAGE));
+        }
+
+        return new SortCommand(true);
     }
 
 

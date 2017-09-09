@@ -1,5 +1,8 @@
 package seedu.addressbook.data.person;
 
+/*
+ * Represents a contact detail of a person.  
+ */
 public class Contact {
 
     public final String value;

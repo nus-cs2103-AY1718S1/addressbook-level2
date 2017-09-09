@@ -7,9 +7,10 @@ public class Contact {
     public final String value;
     private boolean isPrivate;
 
-    public Contact(String value, boolean isPrivate){
+    public Contact(String contact, boolean isPrivate) {
         this.isPrivate = isPrivate;
-        this.value = value;
+        String trimmedContact = contact.trim();
+        this.value = trimmedContact;
     }
 
 

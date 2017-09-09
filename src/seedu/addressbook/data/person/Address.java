@@ -13,9 +13,9 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Addresses in BLOCK, STREET, UNIT, POSTAL CODE format";
     public static final Pattern ADDRESS_VALIDATION_REGEX =
             Pattern.compile("(?<block>[^,]+)"
-                + " ,\\s+(?<street>[^,]+)"
-                + " ,\\s+(?<unit>[^,]+)"
-                + " ,\\s+(?<postalCode>[^,]+)");
+                + ",[\\s+](?<street>[^,]+)"
+                + ",[\\s+](?<unit>[^,]+)"
+                + ",[\\s+](?<postalCode>[^,]+)");
 
     public final String value;
     private final Block block;

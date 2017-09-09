@@ -48,21 +48,25 @@ public class Address {
         String[] addressSegments = trimmedAddress.split(",");
         int numAddressSegments = addressSegments.length;
 
-        if(numAddressSegments > BLOCK_INDEX) {
+        if(hasAddressSegment(numAddressSegments, BLOCK_INDEX)) {
             block = new Block(addressSegments[BLOCK_INDEX].trim());
         }
 
-        if(numAddressSegments > POSTAL_CODE_INDEX) {
+        if(hasAddressSegment(numAddressSegments, POSTAL_CODE_INDEX)) {
             postalCode = new PostalCode(addressSegments[POSTAL_CODE_INDEX].trim());
         }
 
-        if(numAddressSegments > STREET_INDEX) {
+        if(hasAddressSegment(numAddressSegments, STREET_INDEX)) {
             street = new Street(addressSegments[STREET_INDEX].trim());
         }
 
-        if(numAddressSegments > UNIT_INDEX) {
+        if(hasAddressSegment(numAddressSegments, UNIT_INDEX)) {
             unit = new Unit(addressSegments[UNIT_INDEX].trim());
         }
+    }
+
+    private boolean hasAddressSegment(int numAddressSegments, int segmentIndex) {
+        return numAddressSegments > segmentIndex;
     }
 
     /**

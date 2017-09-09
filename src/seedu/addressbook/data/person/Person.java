@@ -18,6 +18,10 @@ public class Person implements ReadOnlyPerson {
     private Address address;
 
     private final UniqueTagList tags;
+    
+    /**
+     * The unique sequence number at which indicates when Person was created
+     */
     private final int sequenceNumber;
     
     /**

@@ -15,11 +15,9 @@ public class UtilsTest {
         // empty list
         assertNoNull();
 
-        // only one object
-        assertHasNull(null);
-
         // multiple object
         assertHasNull(1, null, "abc");
+        assertNoNull(true, 12, 34);
 
         AddressBook myBook = null;
         assertHasNull(myBook);

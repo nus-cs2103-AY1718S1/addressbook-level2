@@ -139,6 +139,12 @@
   # listing indexes get updated on next request
   delete 1
   list
+##########################################################
+# test edit command
+##########################################################
+  # edits
+  edit 2 p/333333 a/333, delta street
+  list
 
 ##########################################################
 # test clear command

@@ -290,6 +290,15 @@
 || 
 || 2 persons listed!
 || ===================================================
+|| Enter command: || [Command entered:  edit 2 p/333333 a/333, delta street]
+|| SUCCESSFULLY EDITED PHONE ADDRESS
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 333333 Address: 333, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!
 || ===================================================

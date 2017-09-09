@@ -61,6 +61,6 @@ public class EditCommand extends Command {
             addressBook.editAddressBook(Target_Index, address);
             MESSAGE = MESSAGE + "ADDRESS ";
         }
-        return new CommandResult(MESSAGE);
+        return new CommandResult(MESSAGE.trim());
     }
 }

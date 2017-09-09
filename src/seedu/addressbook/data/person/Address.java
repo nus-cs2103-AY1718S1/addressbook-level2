@@ -14,9 +14,13 @@ public class Address {
     private Unit unit;
     private PostalCode postalCode;
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String EXAMPLE = "123, some street, #11-11, 101010";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Please enter address in this format:\n"
+                                                + "Block, street, unit, postal code\n"
+                                                + "Postal code may be omitted";
+                                                //"Person addresses can be in any format";
+    //public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String ADDRESS_VALIDATION_REGEX = "(.+,)(.+,)(.+,)(.*)";
 
     public final String value;
     private boolean isPrivate;
@@ -26,28 +30,30 @@ public class Address {
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Address(String address, boolean isPrivate)
-            throws IllegalValueException{
+    public Address(String address, boolean isPrivate)   throws IllegalValueException{
+        String trimmedAddress = address.trim();
+        this.isPrivate = isPrivate;
+        if (!isValidAddress(trimmedAddress)) {
+            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        }
+        //this.value = trimmedAddress;
 
-        Scanner sc = new Scanner(address).useDelimiter("\\s*,\\s*");
+        Scanner sc = new Scanner(trimmedAddress).useDelimiter("\\s*,\\s*");
         this.block = new Block(sc.next());
         this.street = new Street(sc.next());
         this.unit = new Unit(sc.next());
 
-        String output = block.getBlock()+", "+street.getStreet()+", "+unit.getUnit();
+        String output = block.getBlock()+", "+street.getStreet()+", "+unit.getUnit()+", ";
         if (sc.hasNext()){
             this.postalCode = new PostalCode(sc.next());
-            output = output +", "+ postalCode.getPostalCode();
+            output = output + postalCode.getPostalCode();
         }
-        /*
-        if (sc.hasNext()){
-            //Invalid Format
-        }*/
+        else
+            this.postalCode = null;
+
+        //String output = block.getBlock()+", "+street.getStreet()+", "+unit.getUnit()+", "+postalCode.getPostalCode();
 
         this.value = output;
-        if (!isValidAddress(value)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
-        }
 
     }
     /*

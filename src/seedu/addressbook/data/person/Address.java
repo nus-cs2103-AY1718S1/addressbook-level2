@@ -16,7 +16,6 @@ public class Address {
     private Unit unit;
     private PostalCode postalCode;
 
-    private String value;
     private boolean isPrivate;
 
     public static String EXAMPLE = "123, Clement Ave 3, #21-34, 213456";
@@ -38,8 +37,6 @@ public class Address {
         this.street = street;
         this.unit = unit;
         this.postalCode = postalCode;
-
-        this.value = block.toString() + ", " + street.toString() + ", " + unit.toString() + ", " + postalCode.toString();
         this.isPrivate = isPrivate;
     }
 
@@ -62,20 +59,20 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return block.toString() + ", " + street.toString() + ", " + unit.toString() + ", " + postalCode.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                && this.toString().equals(((Address) other).toString())); // state check
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return value.hashCode();
+        return this.toString().hashCode();
     }
 
     public boolean isPrivate() {

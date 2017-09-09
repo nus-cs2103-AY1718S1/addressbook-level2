@@ -2,6 +2,8 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.StringJoiner;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -54,8 +56,11 @@ public class Address {
      */
     @Override
     public String toString() {
-        return blockNumber.getBlockNumber() + ", " + streetName.getStreetName() + ", " + unit.getUnit() + ", " +
-                postalCode.getPostalCode();
+        StringJoiner sj = new StringJoiner(", ");
+        sj.add(blockNumber.getBlockNumber());
+        sj.add(streetName.getStreetName());
+        sj.add(unit.getUnit());
+        return sj.toString();
     }
 
     @Override

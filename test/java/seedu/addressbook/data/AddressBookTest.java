@@ -6,6 +6,7 @@ import static seedu.addressbook.util.TestUtil.getSize;
 import static seedu.addressbook.util.TestUtil.isEmpty;
 import static seedu.addressbook.util.TestUtil.isIdentical;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -176,6 +177,25 @@ public class AddressBookTest {
         UniqueTagList tagsToCheck = new UniqueTagList(tagMathematician, tagScientist);
 
         assertTrue(isIdentical(allTags, tagsToCheck));
+    }
+    
+    @Test
+    public void sequenceNumberTest() throws Exception {
+        Person.resetSequenceNumber();
+        setUp();
+        emptyAddressBook.addPerson(aliceBetsy);
+        emptyAddressBook.addPerson(bobChaplin);
+        emptyAddressBook.removePerson(bobChaplin);
+        emptyAddressBook.addPerson(charlieDouglas);
+        emptyAddressBook.clear();
+        emptyAddressBook.addPerson(davidElliot);
+        
+        Assert.assertEquals(0, aliceBetsy.getSequenceNumber());
+        Assert.assertEquals(1, bobChaplin.getSequenceNumber());
+        Assert.assertEquals(2, charlieDouglas.getSequenceNumber());
+        Assert.assertEquals(3, davidElliot.getSequenceNumber());
+
+
     }
 
     /**

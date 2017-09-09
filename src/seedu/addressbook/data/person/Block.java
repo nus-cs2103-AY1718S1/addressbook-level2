@@ -31,7 +31,7 @@ public class Block {
     }
 
     /**
-     * Returns true if the given string is a valid person name.
+     * Returns true if the given string is a valid Block string.
      */
     public boolean isValidBlock(String test) {
         return test.matches(BLOCK_VALIDATION_REGEX);

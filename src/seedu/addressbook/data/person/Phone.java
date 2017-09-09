@@ -26,7 +26,7 @@ public class Phone extends Contact {
     /**
      * Returns true if the given string is a valid person phone number.
      */
-    public static boolean isValidPhone(String test) {
+    private static boolean isValidPhone(String test) {
         return test.matches(PHONE_VALIDATION_REGEX);
     }
 

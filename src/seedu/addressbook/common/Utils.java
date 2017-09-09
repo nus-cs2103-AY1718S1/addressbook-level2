@@ -3,6 +3,7 @@ package seedu.addressbook.common;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Utility methods
@@ -33,5 +34,17 @@ public class Utils {
             }
         }
         return true;
+    }
+
+    /**
+     * Converts all strings in a collection to lowercase.
+     *
+     * @param toLowercase source collection
+     * @return string collection with all lowercase elements
+     */
+    public static Collection<String> getLowercaseCollection(Collection<String> toLowercase) {
+        return toLowercase.stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
     }
 }

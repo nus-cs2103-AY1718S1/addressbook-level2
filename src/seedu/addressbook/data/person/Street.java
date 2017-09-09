@@ -9,7 +9,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Street {
 
     public static final String EXAMPLE = "Clementi Ave 3";
-    public static final String MESSAGE_STREET_CONSTRAINTS = "Street can be in any format";
+    public static final String MESSAGE_STREET_CONSTRAINTS = "Street can be in any format but should not contain comma";
     public static final String STREET_VALIDATION_REGEX = ".+";
 
     private final String value;

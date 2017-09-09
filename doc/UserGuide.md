@@ -135,5 +135,3 @@ Example:
 >
 > When running the program inside IntelliJ, you can set command line parameters 
   before running the program.
-
-> When storage file (addressbook.xml) is deleted during the run time, exception will be thrown and program will stop

@@ -2,6 +2,10 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+/**
+ * Represents a Person's address street in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidStreet(String)}
+ */
 public class Street {
 
     public static final String EXAMPLE = "Clementi Ave 3";

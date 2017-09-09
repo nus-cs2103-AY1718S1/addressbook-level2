@@ -76,20 +76,21 @@ public class Address {
     public String toString() {
         String address = "";
 
+        final String segmentEndString = ", ";
         if(block != null) {
-            address += block.toString() + ", ";
+            address += block.toString() + segmentEndString;
         }
 
         if(street != null) {
-            address += street.toString() + ", ";
+            address += street.toString() + segmentEndString;
         }
 
         if(unit != null) {
-            address += unit.toString() + ", ";
+            address += unit.toString() + segmentEndString;
         }
 
         if(postalCode != null) {
-            address += postalCode.toString() + ", ";
+            address += postalCode.toString() + segmentEndString;
         }
 
         return address.substring(0, address.length() - 2);

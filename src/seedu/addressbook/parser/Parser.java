@@ -82,8 +82,8 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-/*            return prepareAdd(arguments);*/
-            return prepareAdd();
+            return prepareAdd(arguments);
+/*            return prepareAdd();*/
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -118,7 +118,7 @@ public class Parser {
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareAdd(String args) {
+/*    private Command prepareAdd(String args) {
         final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
         if (!matcher.matches()) {
@@ -142,7 +142,7 @@ public class Parser {
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
-    }
+    }*/
 
     /*
     *   Creates a new 'personToAdd' object labelled 'newguy'
@@ -150,7 +150,7 @@ public class Parser {
     *   and initialize it as the attributes of newguy.
     *   These attributes are then extracted by its getter methods and passed into AddCommand
      */
-    private Command prepareAdd() {
+    private Command prepareAdd(String args) {
         personToAdd newguy = new personToAdd();
         try {
             return new AddCommand(

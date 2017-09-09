@@ -14,14 +14,12 @@ import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
 import seedu.addressbook.ui.TextUi;
-Testing
 
 /**
  * Entry point of the Address Book application.
  * Initializes the application and starts the interaction with the user.
  */
 public class Main {
-    Test Test
     /** Version info of the program. */
     public static final String VERSION = "AddressBook Level 2 - Version 1.0";
 

@@ -61,6 +61,9 @@ public class Person implements ReadOnlyPerson {
 
     /**
      * Replaces this person's tags with the tags in the argument tag list.
+     *
+     * @apiNote (reserved for LO W5.5b): This method cannot be converted into a static method, because each object of
+     * the Person class has different tags and tags cannot be shared between them.
      */
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);

@@ -139,20 +139,15 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareSort(String args) {
-        // Remove white space at the beginning
-        args = args.substring(1);
 
-//        System.out.println("Argument log: Arguments are:" + args);
         String[] processedArgs = args.split(" ");
-//        System.out.println(Integer.toString(processedArgs.length));
 
-        if (processedArgs.length != 2) {
-            System.out.println("Invalid Input.");
-            return new HelpCommand();
+        if (processedArgs.length != 3) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        String sortField = processedArgs[0];
-        String sortOrdering = processedArgs[1];
+        String sortField = processedArgs[1];
+        String sortOrdering = processedArgs[2];
 
         return new SortCommand(sortField, sortOrdering);
     }

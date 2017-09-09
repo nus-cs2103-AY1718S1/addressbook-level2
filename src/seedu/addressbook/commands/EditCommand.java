@@ -8,7 +8,7 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a person's particulars in the address book. "
-            + "Can edit any particulars from a contact by prefixing p/ or e/ or a/ in front of the particulars\n"
+            + "Can edit any particulars from a contact\n"
             + "Parameters: index p/PHONE e/EMAIL a/ADDRESS (ALL DETAILS CAN BE EDITED AT ONCE OR SEPARATELY\n"
             + "Example: " + COMMAND_WORD
             + " 1 p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25";

@@ -29,6 +29,9 @@
 || Example: help
 || exit: Exits the program.
 || Example: exit
+|| edit: Edits a person's particulars in the address book. Can edit any particulars from a contact
+|| Parameters: index p/PHONE e/EMAIL a/ADDRESS (ALL DETAILS CAN BE EDITED AT ONCE OR SEPARATELY
+|| Example: edit 1 p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid

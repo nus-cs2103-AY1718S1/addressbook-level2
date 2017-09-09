@@ -88,7 +88,7 @@ public class Main {
     }
 
     /** Check the existence of storage file */
-    private void isFileExist() throws NoSuchFieldException {
+    private void fileExistCheck() throws NoSuchFieldException {
         if(!Files.exists(storage.path) || !Files.isRegularFile(storage.path)) {
             throw new NoSuchFieldException(storage.path.toString() + " does not exist");
         }
@@ -100,7 +100,7 @@ public class Main {
         do {
             try{
                 String userCommandText = ui.getUserCommand();
-                isFileExist();
+                fileExistCheck();
                 command = new Parser().parseCommand(userCommandText);
                 CommandResult result = executeCommand(command);
                 recordResult(result);

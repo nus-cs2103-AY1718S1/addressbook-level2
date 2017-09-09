@@ -108,9 +108,10 @@ public class StorageFile {
         } catch (FileNotFoundException fnfe) {
             throw new InvalidStorageFilePathException("Error locating file " + path +
                     ". Please ensure that the file is not read-only.");
-        }
-        catch (IOException ioe) {
+
+        } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
+
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
         }

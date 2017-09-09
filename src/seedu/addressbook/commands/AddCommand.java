@@ -34,6 +34,11 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
+    private final int BLOCK_POSITION = 0;
+    private final int STREET_POSITION = 1;
+    private final int UNIT_POSITION = 2;
+    private final int POSTAL_CODE_POSITION = 3;
+
     private final Person toAdd;
 
     /**
@@ -55,8 +60,8 @@ public class AddCommand extends Command {
                 new Name(name),
                 new Phone(phone, isPhonePrivate),
                 new Email(email, isEmailPrivate),
-                new Address(new Block(splitAddressToComponents[0], isAddressPrivate), new Street(splitAddressToComponents[1], isAddressPrivate),
-                        new Unit(splitAddressToComponents[2], isAddressPrivate), new PostalCode(splitAddressToComponents[3], isAddressPrivate), isAddressPrivate),
+                new Address(new Block(splitAddressToComponents[BLOCK_POSITION], isAddressPrivate), new Street(splitAddressToComponents[STREET_POSITION], isAddressPrivate),
+                        new Unit(splitAddressToComponents[UNIT_POSITION], isAddressPrivate), new PostalCode(splitAddressToComponents[POSTAL_CODE_POSITION], isAddressPrivate), isAddressPrivate),
                 new UniqueTagList(tagSet)
         );
     }

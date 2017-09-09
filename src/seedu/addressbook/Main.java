@@ -1,5 +1,6 @@
 package seedu.addressbook;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
@@ -39,16 +40,24 @@ public class Main {
             new Main().run(launchArgs);
         } catch (NoSuchFieldException e) {
             System.err.println(e.getMessage());
+        } catch (StorageOperationException e) {
+            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
     }
 
     /** Runs the program until termination.  */
-    public void run(String[] launchArgs) throws NoSuchFieldException {
+    public void run(String[] launchArgs) throws NoSuchFieldException, StorageOperationException, IOException {
         start(launchArgs);
         try {
             runCommandLoopUntilExitCommand();
         } catch (NoSuchFieldException e) {
             throw new NoSuchFieldException(e.getMessage());
+        } catch (StorageOperationException e) {
+            throw new StorageFile.StorageOperationException(e.getMessage());
+        } catch (IOException e) {
+            throw new IOException(e.getMessage());
         }
         exit();
     }
@@ -95,7 +104,7 @@ public class Main {
     }
 
     /** Reads the user command and executes it, until the user issues the exit command.  */
-    private void runCommandLoopUntilExitCommand() throws NoSuchFieldException {
+    private void runCommandLoopUntilExitCommand() throws NoSuchFieldException, StorageOperationException, IOException{
         Command command;
         do {
             try{
@@ -107,6 +116,8 @@ public class Main {
                 ui.showResultToUser(result);
             } catch (NoSuchFieldException e) {
                 throw new NoSuchFieldException(e.getMessage());
+            } catch (IOException e) {
+                throw new IOException(e.getMessage());
             }
         } while (!ExitCommand.isExit(command));
     }
@@ -125,15 +136,16 @@ public class Main {
      * @param command user command
      * @return result of the command
      */
-    private CommandResult executeCommand(Command command)  {
+    private CommandResult executeCommand(Command command) throws IOException, StorageOperationException {
         try {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-        } catch (Exception e) {
-            ui.showToUser(e.getMessage());
-            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new IOException(e.getMessage());
+        } catch (StorageOperationException e) {
+            throw new StorageFile.StorageOperationException(e.getMessage());
         }
     }
 

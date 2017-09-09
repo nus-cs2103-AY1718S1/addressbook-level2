@@ -84,7 +84,7 @@ public class Address {
      * Represents the Block portion of an address.
      * Note: BlockNumber is stored as a String.
      */
-    class Block {
+    private class Block {
         private String blockNumber;
 
         Block(String blockNumber) {
@@ -101,7 +101,7 @@ public class Address {
      * Represents the Street portion of an address.
      * Note: StreetName is stored as a String.
      */
-    class Street {
+    private class Street {
         private String streetName;
 
         Street(String streetName) {
@@ -118,7 +118,7 @@ public class Address {
      * Represents the Unit portion of an address.
      * Note: Unit number is stored as a String.
      */
-    class Unit {
+    private class Unit {
         private String unit;
 
         Unit(String unit) {
@@ -135,7 +135,7 @@ public class Address {
      * Represents the PostalCode portion of an address.
      * Note: PostalCode is stored as a String.
      */
-    class PostalCode {
+    private class PostalCode {
         private String postalCode;
 
         PostalCode(String postalCode) {

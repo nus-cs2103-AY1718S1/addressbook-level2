@@ -33,8 +33,8 @@ public class SortCommand extends Command {
     public final String field;
     public final String order;
 
-    // Constructor will force lower case
-    public SortCommand(String field, String order) throws IllegalValueException {
+
+    public SortCommand(String field, String order) {
         this.field = field.toLowerCase();
         this.order = order.toLowerCase();
     }
@@ -42,20 +42,22 @@ public class SortCommand extends Command {
     /**
      * a copy of user input fields and order.
      */
-    public String getfield() {
+    public String getField() {
         return this.field;
     }
-    public String getorder() { return this.order; }
+    public String getOrder() { return this.order; }
 
     @Override
     public CommandResult execute() {
+//        System.out.println(getField() + "\n");
+//        System.out.println(getOrder() + "\n");
 
         // Check for inappropriate field parameters. If input is invalid, return invalid input message
-        if (!ACCEPTED_FIELD_PARAMETERS.contains(getfield()) || !ACCEPTED_ORDER_PARAMETERS.contains(getorder())) {
+        if (!ACCEPTED_FIELD_PARAMETERS.contains(getField()) || !ACCEPTED_ORDER_PARAMETERS.contains(getOrder())) {
             return new CommandResult(MESSAGE_INVALID_INPUT);
         }
 
-        addressBook.sortBy(getfield(), getorder());
+        addressBook.sortBy(getField(), getOrder());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

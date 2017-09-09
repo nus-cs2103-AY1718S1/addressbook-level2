@@ -61,6 +61,6 @@ public class Name {
     }
 
     public int compareTo(Name compareTarget){
-        return this.toString().compareTo(compareTarget.toString());
+        return this.toString().compareToIgnoreCase(compareTarget.toString());
     }
 }

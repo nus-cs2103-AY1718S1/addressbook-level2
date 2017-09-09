@@ -42,6 +42,12 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    public static final Pattern PERSON_EDIT_ARGS_FORMAT =
+            Pattern.compile("(?<targetIndex>[\\d+]+)" + " (?<name>[^/]+)"
+                    + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
+                    + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
+                    + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
+                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags);
 
     /**
      * Signals that the user input could not be parsed.
@@ -50,8 +56,8 @@ public class Parser {
         ParseException(String message) {
             super(message);
         }
-    }
 
+    }
     /**
      * Used for initial separation of command word and args.
      */
@@ -101,7 +107,7 @@ public class Parser {
             return new ExitCommand();
 
         case EditCommand.COMMAND_WORD:
-            return new EditCommand();
+            return prepareEdit(arguments);
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
@@ -110,19 +116,19 @@ public class Parser {
     }
 
     /**
-     * Parses arguments in the context of the add person command.
-     *
+     * Parses arguments in the context of the edit person command.
      * @param args full command args string
-     * @return the prepared command
+     * @return the prepared edit command
      */
-    private Command prepareAdd(String args) {
-        final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim());
-        // Validate arg string format
-        if (!matcher.matches()) {
+    private Command prepareEdit(String args) {
+        final Matcher matcher = PERSON_EDIT_ARGS_FORMAT.matcher(args.trim());
+
+        if(!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+
         try {
-            return new AddCommand(
+            return new EditCommand(Integer.parseInt(matcher.group("targetIndex")),
                     matcher.group("name"),
 
                     matcher.group("phone"),
@@ -138,6 +144,38 @@ public class Parser {
             );
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
+        }
+    }
+
+    /**
+     * Parses arguments in the context of the add person command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareAdd(String args) {
+        final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim());
+            // Validate arg string format
+            if (!matcher.matches()) {
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            }
+            try {
+                return new AddCommand(
+                        matcher.group("name"),
+
+                        matcher.group("phone"),
+                        isPrivatePrefixPresent(matcher.group("isPhonePrivate")),
+
+                        matcher.group("email"),
+                        isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
+
+                        matcher.group("address"),
+                        isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
+
+                        getTagsFromArgs(matcher.group("tagArguments"))
+                );
+            } catch (IllegalValueException ive) {
+                return new IncorrectCommand(ive.getMessage());
         }
     }
 

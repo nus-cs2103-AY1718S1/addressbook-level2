@@ -43,7 +43,9 @@ public class Address {
     /**
      * Returns true if a given string is a valid person address.
      */
-    public boolean isValidAddress(String blockString, String streetString, String unitString, String postalCodeString) throws IllegalValueException {
+    public boolean isValidAddress(String blockString, String streetString,
+                                  String unitString, String postalCodeString) throws IllegalValueException {
+
         Block testBlock = new Block (blockString, false);
         Street testStreet = new Street (streetString, false);
         Unit testUnit = new Unit (unitString, false);

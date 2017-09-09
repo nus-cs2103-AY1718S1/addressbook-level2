@@ -61,6 +61,13 @@ public class Person implements ReadOnlyPerson {
     }
     
     public int getSequenceNumber(){ return sequenceNumber; }
+    
+    /*
+     * Resets sequence count to 0
+     */
+    public static void resetSequenceNumber(){
+        nextSequenceNumber = 0;
+    }
 
     @Override
     public UniqueTagList getTags() {

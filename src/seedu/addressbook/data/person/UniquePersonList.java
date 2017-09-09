@@ -2,6 +2,7 @@ package seedu.addressbook.data.person;
 
 import java.util.*;
 
+import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
 
@@ -150,10 +151,10 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      *  Sorts person list by valid field (name, phone, email, address) and order (asc, desc) by
-     *  using the relevant Comparator. Note that the try catch statement is redundant, but acts
+     *  using the relevant Comparator. Note that the default statement is redundant, but acts
      *  as a fail safe in case the checks in SortCommand.java fails.
      */
-    public void sortBy(String field, String order) {
+    public HelpCommand sortBy(String field, String order) {
         //sortyBy first chooses the right comparator
         Comparator<Person> comparator = null;
         switch (field) {
@@ -174,12 +175,7 @@ public class UniquePersonList implements Iterable<Person> {
                 break;
 
             default:
-                try {
-                    System.out.println("An error occured");
-                    throw new Exception("Invalid field parameter entered...\n");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                return new HelpCommand();
         }
 
         //sortBy then chooses the right ordering
@@ -201,6 +197,7 @@ public class UniquePersonList implements Iterable<Person> {
                 }
         }
 
+        return null;
     }
 
     /**

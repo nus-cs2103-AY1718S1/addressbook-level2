@@ -1,7 +1,13 @@
 package seedu.addressbook.commands;
 
-//Inspiration and guidance from Mr Henry Ang
+//Inspiration and guidance from Group mate Henry Ang
 
+import seedu.addressbook.data.person.ReadOnlyPerson;
+
+import java.util.List;
+/**
+ * Sorts current address book list in lexicographic order and lists it
+ */
 public class SortCommand extends Command{
 
     public static final String COMMAND_WORD = "sort";
@@ -15,6 +21,8 @@ public class SortCommand extends Command{
     @Override
     public CommandResult execute() {
         addressBook.sort();
-        return new CommandResult(MESSAGE_SUCCESS);
+        List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
+        return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
+        //return new CommandResult(MESSAGE_SUCCESS);
     }
 }

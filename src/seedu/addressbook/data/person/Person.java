@@ -9,17 +9,23 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Person implements ReadOnlyPerson {
-
+    
+    private static int nextSequenceNumber = 0;
+    
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
 
     private final UniqueTagList tags;
+    private final int sequenceNumber;
+    
     /**
      * Assumption: Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+        this.sequenceNumber = nextSequenceNumber;
+        Person.nextSequenceNumber++;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -53,6 +59,8 @@ public class Person implements ReadOnlyPerson {
     public Address getAddress() {
         return address;
     }
+    
+    public int getSequenceNumber(){ return sequenceNumber; }
 
     @Override
     public UniqueTagList getTags() {

@@ -1,5 +1,9 @@
 package seedu.addressbook.data.person.address;
 
+/**
+ * Represents a Person's address postal code segment in the address book.
+ * Guarantees: immutable;
+ */
 public class PostalCode {
 	private final String value;
 

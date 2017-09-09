@@ -1,5 +1,9 @@
 package seedu.addressbook.data.person.address;
 
+/**
+ * Represents a Person's address street segment in the address book.
+ * Guarantees: immutable;
+ */
 public class Street {
 	private final String value;
 

@@ -1,5 +1,9 @@
 package seedu.addressbook.data.person.address;
 
+/**
+ * Represents a Person's address block segment in the address book.
+ * Guarantees: immutable;
+ */
 public class Block {
 	private final String value;
 

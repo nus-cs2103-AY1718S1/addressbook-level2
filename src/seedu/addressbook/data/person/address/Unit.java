@@ -1,5 +1,9 @@
 package seedu.addressbook.data.person.address;
 
+/**
+ * Represents a Person's address unit segment in the address book.
+ * Guarantees: immutable;
+ */
 public class Unit {
 	private final String value;
 

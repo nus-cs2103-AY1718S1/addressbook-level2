@@ -7,12 +7,12 @@ public class Contact {
 
     public final String value;
     private boolean isPrivate;
-    
+
     Contact(String value, boolean isPrivate) {
         this.value = value;
         this.isPrivate = isPrivate;
     }
-    
+
     @Override
     public String toString() {
         return value;

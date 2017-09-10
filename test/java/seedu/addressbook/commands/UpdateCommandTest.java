@@ -23,7 +23,7 @@ public class UpdateCommandTest {
     }
 
     @Test
-    public void updateName() throws Exception {
+    public void updateCommand_updateName_reflectChanges() throws Exception {
         Person firstPerson = persons[0];
         UpdateCommand command = new UpdateCommand(1, "Amy Steven",
                 null, false, null, false,

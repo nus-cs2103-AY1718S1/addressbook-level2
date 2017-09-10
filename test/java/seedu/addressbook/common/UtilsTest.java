@@ -32,22 +32,16 @@ public class UtilsTest {
         assertIsNotNull(1, new Integer(1));
 
         // some null, some not
-        assertIsNotNull("abc", null);
-        assertIsNotNull( null,"abc");
+        assertIsNull("abc", null);
+        assertIsNull( null,"abc");
     }
 
     private void assertIsNotNull(Object... items) {
-        for (Object item : items) {
-            if (Utils.isAnyNull(item) == false) {
-                assertFalse(Utils.isAnyNull(item));
-            };
-        }
+        assertFalse(Utils.isAnyNull(items));
     }
 
     private void assertIsNull(Object... items) {
-        for (Object item : items) {
-            assertTrue(Utils.isAnyNull(item));
-        }
+        assertTrue(Utils.isAnyNull(items));
     }
 
 

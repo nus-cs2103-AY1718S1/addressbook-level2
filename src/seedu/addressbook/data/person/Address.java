@@ -41,9 +41,4 @@ public class Address extends Contact {
                 && this.getValue().equals(((Address) other).getValue())); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return getValue().hashCode();
-    }
-
 }

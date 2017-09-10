@@ -4,11 +4,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 public class Contact {
 
-    private String value;
+    public String value;
     private boolean isPrivate;
-
-    public Contact() {
-    }
 
     public Contact(String contact, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
@@ -19,11 +16,16 @@ public class Contact {
        return test.matches(regex);
     }
 
-    public String toString(String contact) {
-        return contact;
+    public String toString() {
+        return value;
     }
 
-    public int hashCode(String contact) {
-        return contact.hashCode();
+    public int hashCode() {
+        return value.hashCode();
     }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
 }

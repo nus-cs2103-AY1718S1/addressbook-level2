@@ -1,9 +1,6 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -135,7 +132,16 @@ public class AddressBook {
      * @param newDetails is the new details of target
      */
     public void editPerson(Person target, Person newDetails) throws DuplicatePersonException {
-        allPersons.noDuplicate(newDetails);
+        List<ReadOnlyPerson> allPersonsList = allPersons.immutableListView();
+        List<Person> otherPersonsList = new ArrayList<>();
+        for(ReadOnlyPerson person : allPersonsList) {
+            if(!person.equals(target)) {
+                otherPersonsList.add((Person) person);
+            }
+        }
+        UniquePersonList otherPersons = new UniquePersonList(otherPersonsList);
+
+        otherPersons.noDuplicate(newDetails);
         target.setName(newDetails.getName());
         target.setPhone(newDetails.getPhone());
         target.setEmail(newDetails.getEmail());

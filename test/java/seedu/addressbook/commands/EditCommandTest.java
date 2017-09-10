@@ -117,16 +117,35 @@ public class EditCommandTest {
 
 	@Test
 	public void execute_validInput_personIsEdited() throws IllegalValueException {
-		assertEditSuccessful(1, Name.EXAMPLE + " I", Phone.EXAMPLE, true,
+		assertEditSuccessful(1, Name.EXAMPLE, Phone.EXAMPLE, true,
 				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
 				addressBook, listWithSurnameDoe);
-		assertEditSuccessful(listWithSurnameDoe.size(), Name.EXAMPLE + " II", Phone.EXAMPLE, true,
+		assertEditSuccessful(listWithSurnameDoe.size(), Name.EXAMPLE + " I", Phone.EXAMPLE, true,
 				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
 				addressBook, listWithSurnameDoe);
 		int middleIndex = (listWithSurnameDoe.size() / 2) + 1;
-		assertEditSuccessful(middleIndex, Name.EXAMPLE + " III", Phone.EXAMPLE, true,
+		assertEditSuccessful(middleIndex, Name.EXAMPLE + " II", Phone.EXAMPLE, true,
 				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
 				addressBook, listWithSurnameDoe);
+	}
+
+	@Test
+	public void execute_validInput_personIsEditedWithSameNameAndNumber() throws IllegalValueException {
+		int targetVisibleIndex = 1;
+		assertEditSuccessful(targetVisibleIndex,
+				listWithSurnameDoe.get(targetVisibleIndex -
+						TextUi.DISPLAYED_INDEX_OFFSET).getName().toString(),
+				listWithSurnameDoe.get(targetVisibleIndex -
+						TextUi.DISPLAYED_INDEX_OFFSET).getPhone().toString(),
+				true, Email.EXAMPLE, false,
+				Address.EXAMPLE, true, EMPTY_STRING_LIST, addressBook, listWithSurnameDoe);
+
+		targetVisibleIndex = 3;
+		assertEditSuccessful(targetVisibleIndex,
+				listWithEveryone.get(targetVisibleIndex - TextUi.DISPLAYED_INDEX_OFFSET).getName().toString(),
+				listWithEveryone.get(targetVisibleIndex - TextUi.DISPLAYED_INDEX_OFFSET).getPhone().toString(),
+				true, Email.EXAMPLE, false,
+				Address.EXAMPLE, true, EMPTY_STRING_LIST, addressBook, listWithEveryone);
 	}
 
 	/**
@@ -240,8 +259,6 @@ public class EditCommandTest {
 			tagSet.add(new Tag(tagName));
 		}
 
-		List<ReadOnlyPerson> listClone = new ArrayList<>();
-
 		Person newDetails = new Person(new Name(name), new Phone(phone, isPhonePrivate),
 				new Email(email, isEmailPrivate), new Address(address, isAddressPrivate),
 				new UniqueTagList(tagSet));
@@ -249,7 +266,8 @@ public class EditCommandTest {
 		AddressBook expectedAddressBook = new AddressBook();
 		UniquePersonList allPersonClone = addressBook.getAllPersons();
 
-		for(ReadOnlyPerson person : allPersonClone.immutableListView()) {
+		List<ReadOnlyPerson> cloneList = allPersonClone.immutableListView();
+		for(ReadOnlyPerson person : cloneList) {
 			if(person.equals(targetPerson)) {
 				expectedAddressBook.addPerson(newDetails);
 			} else {

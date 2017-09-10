@@ -122,6 +122,9 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Sorts the list lexicographically, ignoring case differences.
+     */
     public void sort() {
         Collections.sort(internalList);
     }

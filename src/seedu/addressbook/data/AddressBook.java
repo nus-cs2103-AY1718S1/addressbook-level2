@@ -99,6 +99,10 @@ public class AddressBook {
         allPersons.remove(toRemove);
     }
 
+    /**
+     * Replaces the list of all persons in address book with the given list.
+     * @param updatedList
+     */
     public void replace(UniquePersonList updatedList) {
         allPersons = updatedList;
     }

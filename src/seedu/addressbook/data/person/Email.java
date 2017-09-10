@@ -58,4 +58,6 @@ public class Email {
     public boolean isPrivate() {
         return isPrivate;
     }
+
+    public void setPrivate(boolean isPrivate) { this.isPrivate = isPrivate; }
 }

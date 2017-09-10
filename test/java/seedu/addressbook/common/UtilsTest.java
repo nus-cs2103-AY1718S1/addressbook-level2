@@ -36,15 +36,15 @@ public class UtilsTest {
         assertNotUnique(null, "a", "b", null);
 
         // some objects null
-        assertHasNull("a", "abc", "c", null);
+        assertHasNull(null, "abc", "c", null);
         assertHasNull("a", "a", null);
-        assertHasNull( null);
         assertHasNull(null, null);
+        assertHasNull((Object)null);
         assertHasNull(null, null, "2");
 
         // All objects not null
-        assertHasNull("a", "abc", "c", "s");
-        assertHasNull("a", "a", "null");
+        assertNotNull("a", "abc", "c", "s");
+        assertNotNull("a", "a", "null");
         assertNotNull("");
     }
 
@@ -56,8 +56,8 @@ public class UtilsTest {
         assertFalse(Utils.elementsAreUnique(Arrays.asList(objects)));
     }
 
-    private void assertNotNull(Object... objects) { assertFalse(Utils.isAnyNull(Arrays.asList(objects)));}
+    private void assertNotNull(Object... objects) { assertFalse(Utils.isAnyNull(objects));}
 
-    private void assertHasNull(Object... objects) { assertTrue(Utils.isAnyNull(Arrays.asList(objects)));}
+    private void assertHasNull(Object... objects) { assertTrue(Utils.isAnyNull(objects));}
 
 }

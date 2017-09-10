@@ -113,10 +113,17 @@ public class StorageFile {
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
+
+        try {
+            this.checkReadOnly();
+
+        } catch (ReadOnlyFileException e) {
+            throw new StorageOperationException("The file is read-only:" + path);
+        }
+
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 
-            this.checkReadOnly();
             final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -126,8 +133,6 @@ public class StorageFile {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
-        } catch (ReadOnlyFileException e) {
-            throw new StorageOperationException("The file is read-only:" + path);
         }
     }
 

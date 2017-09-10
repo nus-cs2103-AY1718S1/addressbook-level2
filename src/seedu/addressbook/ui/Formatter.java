@@ -72,7 +72,8 @@ public class Formatter {
      * @return formatted welcome string
      */
     public static String getWelcomeFormatted(String version, String storageFileInfo) {
-        return basicFormat(DIVIDER, DIVIDER, MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo, DIVIDER);
+        return basicFormat(DIVIDER, DIVIDER, MESSAGE_WELCOME, version
+                , MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo, DIVIDER);
     }
 
     /**

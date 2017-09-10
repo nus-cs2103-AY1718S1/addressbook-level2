@@ -52,7 +52,7 @@ public class AddressBook {
      *  - exists in the master list {@link #allTags}
      *  - points to a Tag object in the master list
      */
-    private void syncTagsWithMasterList(Person person) {
+    private void syncTagsWithMasterList(ReadOnlyPerson person) {
         final UniqueTagList personTags = person.getTags();
         allTags.mergeFrom(personTags);
 
@@ -117,6 +117,7 @@ public class AddressBook {
         }
 
         toUpdate.addTags(tagList);
+        syncTagsWithMasterList(toUpdate);
     }
 
     /**

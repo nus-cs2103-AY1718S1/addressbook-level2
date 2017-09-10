@@ -21,7 +21,7 @@ public class UpdateCommand extends Command {
             + "Parameters: INDEX [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 Smith p/86492434 e/someguy@gmail.com";
 
-    public static final String MESSAGE_SUCCESS = "Person updated: %1$s";
+    private static final String MESSAGE_SUCCESS = "Person updated: %1$s";
 
     private final Name name;
     private final Phone phone;

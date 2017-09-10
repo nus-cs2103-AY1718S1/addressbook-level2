@@ -247,6 +247,7 @@ public class Parser {
     private ArrayList<Integer> parseArgsAsDisplayedIndices(String args) throws ParseException, NumberFormatException {
         ArrayList<Integer> rangeIndices = new ArrayList<>();
 
+        // Check if args string has 2 tokens
         ArrayList<String> tokens = Parser.extractTwoTokens(args.trim());
         if (tokens == null) {
             throw new ParseException("Invalid index range to parse");
@@ -254,7 +255,8 @@ public class Parser {
 
         final int extractedStartIndex = Integer.parseInt(tokens.get(0)); // use standard libraries to parse
         final int extractedEndIndex = Integer.parseInt(tokens.get(1));
-        if (!(extractedEndIndex >= extractedStartIndex) && (extractedStartIndex >= 1) && (extractedEndIndex >= 1))
+        // Check if endIndex is higher than
+        if (!((extractedEndIndex >= extractedStartIndex) && (extractedStartIndex >= 1) && (extractedEndIndex >= 1)))
             throw new ParseException("Invalid index range to parse");
         else {
             rangeIndices.add(extractedStartIndex);

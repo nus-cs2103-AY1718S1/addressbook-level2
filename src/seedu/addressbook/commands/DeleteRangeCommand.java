@@ -4,6 +4,7 @@ package seedu.addressbook.commands;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
+import seedu.addressbook.ui.TextUi;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,9 @@ public class DeleteRangeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1" + " 2";
 
     public static final String MESSAGE_DELETE_RANGE_SUCCESS = "Deleted Range: ";
+
+    /** A decorative prefix added to the beginning of lines printed by AddressBook */
+    private static final String LINE_PREFIX = "|| ";
 
     private ArrayList<Integer> targetVisibleIndices;
 
@@ -43,6 +47,7 @@ public class DeleteRangeCommand extends Command {
             } catch (UniquePersonList.PersonNotFoundException pnfe) {
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }
+            System.out.println(LINE_PREFIX + "Person of index " + i + " deleted");
         }
 
         return new CommandResult((MESSAGE_DELETE_RANGE_SUCCESS + startIndex + " to " + endIndex));

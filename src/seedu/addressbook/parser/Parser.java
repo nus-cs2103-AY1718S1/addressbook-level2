@@ -137,7 +137,7 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareUpdate(String args) {
-        return new UpdateCommand();
+        return new UpdateCommand(1);
     }
 
     /**

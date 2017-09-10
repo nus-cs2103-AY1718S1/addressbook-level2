@@ -1,15 +1,16 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.tag.UniqueTagList.DuplicateTagException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
@@ -98,7 +99,7 @@ public class AddressBook {
     }
 
     public void updatePerson(ReadOnlyPerson toUpdate, Name name, Phone phone,
-                              Email email, Address address, UniqueTagList tagList) {
+                              Email email, Address address, UniqueTagList tagList) throws DuplicateTagException {
         if (name != null) {
             toUpdate.setName(name);
         }
@@ -114,6 +115,8 @@ public class AddressBook {
         if (address != null) {
             toUpdate.setEmail(email);
         }
+
+        toUpdate.addTags(tagList);
     }
 
     /**

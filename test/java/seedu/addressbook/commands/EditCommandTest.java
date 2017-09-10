@@ -1,21 +1,68 @@
 package seedu.addressbook.commands;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import seedu.addressbook.common.Messages;
+import seedu.addressbook.data.AddressBook;
+
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Phone;
+
+import seedu.addressbook.data.person.*;
+import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.util.TestUtil;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
 
 public class EditCommandTest {
 	private static final Set<String> EMPTY_STRING_LIST = Collections.emptySet();
+
+	private AddressBook emptyAddressBook;
+	private AddressBook addressBook;
+
+	private List<ReadOnlyPerson> emptyDisplayList;
+	private List<ReadOnlyPerson> listWithEveryone;
+	private List<ReadOnlyPerson> listWithSurnameDoe;
+
+	@Before
+	public void setUp() throws Exception {
+		Person johnDoe = new Person(new Name("John Doe"), new Phone("61234567", false),
+				new Email("john@doe.com", false), new Address("395C Ben Road", false), new UniqueTagList());
+		Person janeDoe = new Person(new Name("Jane Doe"), new Phone("91234567", false),
+				new Email("jane@doe.com", false), new Address("33G Ohm Road", false), new UniqueTagList());
+		Person samDoe = new Person(new Name("Sam Doe"), new Phone("63345566", false),
+				new Email("sam@doe.com", false), new Address("55G Abc Road", false), new UniqueTagList());
+		Person davidGrant = new Person(new Name("David Grant"), new Phone("61121122", false),
+				new Email("david@grant.com", false), new Address("44H Define Road", false),
+				new UniqueTagList());
+
+		emptyAddressBook = TestUtil.createAddressBook();
+		addressBook = TestUtil.createAddressBook(johnDoe, janeDoe, davidGrant, samDoe);
+
+		emptyDisplayList = TestUtil.createList();
+
+		listWithEveryone = TestUtil.createList(johnDoe, janeDoe, davidGrant, samDoe);
+		listWithSurnameDoe = TestUtil.createList(johnDoe, janeDoe, samDoe);
+	}
+
+	@Test
+	public void execute_invalidIndex_returnsInvalidIndexMessage() {
+		assertEditFailsDueToInvalidIndex(0, Name.EXAMPLE, Phone.EXAMPLE, true,
+				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
+				addressBook, listWithEveryone);
+		assertEditFailsDueToInvalidIndex(-1, Name.EXAMPLE, Phone.EXAMPLE, true,
+				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
+				addressBook, listWithEveryone);
+		assertEditFailsDueToInvalidIndex(listWithEveryone.size() + 1, Name.EXAMPLE,
+				Phone.EXAMPLE, true, Email.EXAMPLE, false, Address.EXAMPLE,
+				true, EMPTY_STRING_LIST, addressBook, listWithEveryone);
+	}
 
 	@Test
 	public void editCommand_invalidName_throwsException() {
@@ -63,6 +110,51 @@ public class EditCommandTest {
 			assertConstructingInvalidEditCmdThrowsException(1, Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
 					true, Address.EXAMPLE, false, tagsToAdd);
 		}
+	}
+
+	private void assertEditFailsDueToInvalidIndex(int targetVisibleIndex,
+												  String name,
+												  String phone, boolean isPhonePrivate,
+												  String email, boolean isEmailPrivate,
+												  String address, boolean isAddressPrivate,
+												  Set<String> tags, AddressBook addressBook,
+												  List<ReadOnlyPerson> displayList) {
+
+		String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+
+		try {
+			EditCommand command = createEditCommand(targetVisibleIndex, name, phone, isPhonePrivate, email,
+					isEmailPrivate, address, isAddressPrivate, tags, addressBook, displayList);
+			assertCommandBehaviour(command, expectedMessage, addressBook, addressBook);
+		} catch (Exception e) {
+			return;
+		}
+	}
+
+	private EditCommand createEditCommand(int targetVisibleIndex,
+										  String name,
+										  String phone, boolean isPhonePrivate,
+										  String email, boolean isEmailPrivate,
+										  String address, boolean isAddressPrivate,
+										  Set<String> tags, AddressBook addressBook,
+										  List<ReadOnlyPerson> displayList) throws IllegalValueException {
+		try {
+			EditCommand command = new EditCommand(targetVisibleIndex, name, phone, isPhonePrivate, email,
+					isEmailPrivate, address, isAddressPrivate, tags);
+			command.setData(addressBook, displayList);
+			return command;
+		} catch (IllegalValueException ive) {
+			throw ive;
+		}
+	}
+
+	private void assertCommandBehaviour(EditCommand editCommand, String expectedMessage,
+										AddressBook expectedAddressBook, AddressBook actualAddressBook) {
+
+		CommandResult result = editCommand.execute();
+
+		assertEquals(expectedMessage, result.feedbackToUser);
+		assertEquals(expectedAddressBook.getAllPersons(), actualAddressBook.getAllPersons());
 	}
 
 	private void assertConstructingInvalidEditCmdThrowsException(int index, String name, String phone,

@@ -1,6 +1,10 @@
 package seedu.addressbook.commands;
 
 
+import seedu.addressbook.common.Messages;
+import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.UniquePersonList;
+
 import java.util.ArrayList;
 
 /**
@@ -15,6 +19,8 @@ public class DeleteRangeCommand extends Command {
             + "Parameters: STARTINDEX ENDINDEX\n"
             + "Example: " + COMMAND_WORD + " 1" + " 2";
 
+    public static final String MESSAGE_DELETE_RANGE_SUCCESS = "Deleted Range: ";
+
     private ArrayList<Integer> targetVisibleIndices;
 
     public DeleteRangeCommand(ArrayList<Integer> targetVisibleIndices) {
@@ -27,9 +33,18 @@ public class DeleteRangeCommand extends Command {
         int endIndex = targetVisibleIndices.get(1);
 
         for (int i=startIndex;i<=endIndex;i++) {
+            this.setTargetIndex(i);
+            try {
+                final ReadOnlyPerson target = getTargetPerson();
+                addressBook.removePerson(target);
 
+            } catch (IndexOutOfBoundsException ie) {
+                return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            } catch (UniquePersonList.PersonNotFoundException pnfe) {
+                return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+            }
         }
 
-        return null;
+        return new CommandResult((MESSAGE_DELETE_RANGE_SUCCESS + startIndex + " to " + endIndex));
     }
 }

@@ -256,15 +256,19 @@ public class Parser {
         final int extractedEndIndex = Integer.parseInt(tokens.get(1));
         if (!(extractedEndIndex >= extractedStartIndex) && (extractedStartIndex >= 1) && (extractedEndIndex >= 1))
             throw new ParseException("Invalid index range to parse");
+        else {
+            rangeIndices.add(extractedStartIndex);
+            rangeIndices.add(extractedEndIndex);
+        }
 
         return rangeIndices;
     }
 
     private static ArrayList<String> extractTwoTokens(String rawArgs) {
+        final Scanner SCANNER_RANGE = new Scanner(rawArgs);
+        ArrayList<String> tokens = new ArrayList<>();
 
         if (Parser.hasTwoTokens(rawArgs)) {
-            final Scanner SCANNER_RANGE = new Scanner(rawArgs);
-            ArrayList<String> tokens = new ArrayList<>();
 
             while (SCANNER_RANGE.hasNext()) {
                 tokens.add(SCANNER_RANGE.next());

@@ -7,7 +7,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Represents the general structure of contact information.
  */
 public class Contact {
-    public String value;
+    private String value;
     private boolean isPrivate;
 
 

@@ -9,7 +9,33 @@ import java.util.List;
 import org.junit.Test;
 
 public class UtilsTest {
+    @Test
+    public void isAnyNull() {
+        // empty list
+        assertFalse(Utils.isAnyNull());
 
+        // Any non-empty list
+        assertFalse(Utils.isAnyNull(new Object(), new Object()));
+        assertFalse(Utils.isAnyNull("test"));
+        assertFalse(Utils.isAnyNull(""));
+
+        // non empty list with just one null at the beginning
+        assertTrue(Utils.isAnyNull((Object) null));
+        assertTrue(Utils.isAnyNull(null, "", new Object()));
+        assertTrue(Utils.isAnyNull(null, new Object(), new Object()));
+
+        // non empty list with nulls in the middle
+        assertTrue(Utils.isAnyNull(new Object(), null, null, "test"));
+        assertTrue(Utils.isAnyNull("", null, new Object()));
+
+        // non empty list with one null as the last element
+        assertTrue(Utils.isAnyNull("", new Object(), null));
+        assertTrue(Utils.isAnyNull(new Object(), new Object(), null));
+
+        // confirms nulls inside the list are not considered
+        List<Object> nullList = Arrays.asList((Object) null);
+        assertFalse(Utils.isAnyNull(nullList));
+    }
 
     @Test
     public void elementsAreUnique() throws Exception {
@@ -42,5 +68,30 @@ public class UtilsTest {
 
     private void assertNotUnique(Object... objects) {
         assertFalse(Utils.elementsAreUnique(Arrays.asList(objects)));
+    }
+
+    @Test
+    public void testingForNulls() throws Exception{
+        Object A = new Object();
+        Object B = new Object();
+        Object C = new Object();
+
+        // empty parameters
+        assertFalse(Utils.isAnyNull());
+
+        // non-empty parameter with no nulls
+        assertFalse(Utils.isAnyNull(A));
+        assertFalse(Utils.isAnyNull(A,B));
+        assertFalse(Utils.isAnyNull(A,B,C));
+
+        // non-empty parameter with A null at start
+        assertTrue(Utils.isAnyNull(null, B, C));
+
+        // non-empty parameter with A null in the middle
+        assertTrue(Utils.isAnyNull(A, null, C));
+
+        // non-empty parameter with A null at the end
+        assertTrue(Utils.isAnyNull(A, B, null));
+
     }
 }

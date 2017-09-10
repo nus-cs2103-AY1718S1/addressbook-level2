@@ -4,12 +4,34 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Test;
 
 public class UtilsTest {
 
+    @Test
+    public void isAnyNull () throws Exception {
+        // empty list
+        assertContainsNoNull();
+
+        // lists of items containing null objects
+        assertContainsNull(1, null);
+        assertContainsNull(2, "Calvin", null, null );
+        assertContainsNull(3, null, "Wyn", null, null);
+
+        // all items are not null objects
+        assertContainsNoNull(1, 2, 3);
+        assertContainsNoNull(1, "Calvin", "Wyn");
+        assertContainsNoNull("Calvin", "Wyn", "Wei Hong");
+    }
+
+    private void assertContainsNoNull(Object... objects) {
+        assertFalse(Utils.isAnyNull((objects)));
+    }
+
+    private void assertContainsNull(Object... objects) {
+        assertTrue(Utils.isAnyNull(objects));
+    }
 
     @Test
     public void elementsAreUnique() throws Exception {

@@ -8,6 +8,7 @@ import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.exception.ReadOnlyDataException;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
@@ -84,10 +85,14 @@ public class Main {
         do {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
-
+            try {
+                CommandResult result = executeCommand(command);
+                recordResult(result);
+                ui.showResultToUser(result);
+            } catch (ReadOnlyDataException e) {
+                System.out.println("|| "+e.getMessage());
+                System.out.println("|| Please change the permission of the addressbook.xml to read and write");
+            }
         } while (!ExitCommand.isExit(command));
     }
 
@@ -105,7 +110,7 @@ public class Main {
      * @param command user command
      * @return result of the command
      */
-    private CommandResult executeCommand(Command command)  {
+    private CommandResult executeCommand(Command command) throws ReadOnlyDataException {
         try {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
@@ -113,7 +118,7 @@ public class Main {
             return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
-            throw new RuntimeException(e);
+            throw new ReadOnlyDataException(e.getMessage());
         }
     }
 

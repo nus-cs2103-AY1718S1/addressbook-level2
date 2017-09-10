@@ -28,6 +28,7 @@ public class UpdateCommandTest {
     public void updateCommand_updateName_reflectChanges() throws Exception {
         Person firstPerson = persons[0];
 
+        // Notice the offset of targetVisibleIndex is 1.
         UpdateCommand command = new UpdateCommand(1, "Amy Steven",
                 null, false, null, false,
                 null, false, Collections.emptySet());
@@ -43,6 +44,7 @@ public class UpdateCommandTest {
         Set<String> new_tags = new HashSet<>();
         new_tags.add("another");
 
+        // Notice the offset of targetVisibleIndex is 1.
         UpdateCommand command = new UpdateCommand(4, null,
                 null, false, null, false,
                 null, false, new_tags);

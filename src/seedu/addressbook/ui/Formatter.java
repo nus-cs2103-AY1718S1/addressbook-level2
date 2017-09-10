@@ -4,6 +4,9 @@ import java.util.List;
 
 import static seedu.addressbook.common.Messages.*;
 
+/**
+ * A Formatter class to formatting all output message
+ */
 public class Formatter {
 
     /** A decorative prefix added to the beginning of lines printed by AddressBook */
@@ -25,7 +28,7 @@ public class Formatter {
 
 
     public Formatter() {
-        
+
     }
 
     /**

@@ -19,7 +19,9 @@ public interface ReadOnlyPerson {
      * changes on the returned list will not affect the person's internal tags.
      */
     UniqueTagList getTags();
-
+    default String ToString() {
+        return getName()+"";
+    }
     /**
      * Returns true if both persons have the same identity fields (name and telephone).
      */

@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -80,6 +81,25 @@ public class StorageFile {
     }
 
     /**
+     * Signals that the storage file is read-only.
+     */
+    public static class CannotWriteFileException extends Exception {
+        public CannotWriteFileException() {
+
+        }
+    }
+
+    /**
+     * @param file to check before storage
+     * @throws CannotWriteFileException if the file cannot be written to
+     */
+    private static void checkCanWrite(File file) throws CannotWriteFileException {
+        if (!file.canWrite()) {
+            throw new CannotWriteFileException();
+        }
+    }
+
+    /**
      * Returns true if the given path is acceptable as a storage file.
      * The file path is considered acceptable if it ends with '.xml'
      */
@@ -100,11 +120,15 @@ public class StorageFile {
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 
+            checkCanWrite(this.path.toFile());
+
             final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
 
+        } catch (CannotWriteFileException cwfe) {
+            throw new StorageOperationException("Storage file " + path + " is now read-only");
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {

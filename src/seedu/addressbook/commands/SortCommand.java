@@ -1,10 +1,10 @@
 package seedu.addressbook.commands;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.common.Messages;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+
 
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
@@ -18,7 +18,13 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute() {
+        if (addressBook.isEmpty()){
+            return new CommandResult(Messages.MESSAGE_EMPTY_ADDRESSBOOK);
+        }
         addressBook.executeSort();
-        return new CommandResult(MESSAGE_SORT_SUCCESS);
+
+        List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
+        return new CommandResult(MESSAGE_SORT_SUCCESS + "\n" +
+                getMessageForPersonListShownSummary(allPersons), allPersons);
     }
 }

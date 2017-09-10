@@ -129,6 +129,10 @@ public class AddressBook {
                         && this.allTags.equals(((AddressBook) other).allTags));
     }
 
+    public boolean isEmpty() {
+        return allPersons.isEmpty();
+    }
+
     public void executeSort() {
         allPersons.executeSort();
     }

@@ -107,8 +107,8 @@ public class Main {
         }
     }
 
-    private void showChanges(boolean isAddOrDelete){
-        if(isAddOrDelete) {
+    private void showChanges(boolean isAddOrDelete) {
+        if (isAddOrDelete) {
         processCommand(new ListCommand());
         }
     }

@@ -12,6 +12,18 @@ public class UtilsTest {
 
 
     @Test
+    // assertTrue statement should return True
+    public void hasNull(Object... items) {
+        assertTrue(Utils.isAnyNull("dummyString", 1, 2, 3, null, "hello world?"));
+    }
+
+    @Test
+    // assertFalse statement should return False
+    public void hasNoNull(Object... items) {
+        assertFalse(Utils.isAnyNull("dummyString", 1, 2, 3, "hell world?", "no null value"));
+    }
+
+    @Test
     public void elementsAreUnique() throws Exception {
         // empty list
         assertAreUnique();

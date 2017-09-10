@@ -48,6 +48,13 @@ public class UtilsTest {
         assertFalse(newUtils.isAnyNull(hashTest,arrayListTest));
     }
 
+    @Test
+    public void isAnyNullTrue() throws Exception {
+        Utils newUtils = new Utils();
+        assertTrue(newUtils.isAnyNull(null,null,new ArrayList<Integer>()));
+    }
+
+
     private void assertAreUnique(Object... objects) {
         assertTrue(Utils.elementsAreUnique(Arrays.asList(objects)));
     }

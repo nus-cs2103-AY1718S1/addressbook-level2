@@ -15,10 +15,21 @@ public class DeleteRangeCommand extends Command {
             + "Parameters: STARTINDEX ENDINDEX\n"
             + "Example: " + COMMAND_WORD + " 1" + " 2";
 
-    private ArrayList<String> targetVisibleIndices;
+    private ArrayList<Integer> targetVisibleIndices;
+
+    public DeleteRangeCommand(ArrayList<Integer> targetVisibleIndices) {
+        this.targetVisibleIndices = targetVisibleIndices;
+    }
 
     @Override
     public CommandResult execute() {
+        int startIndex = targetVisibleIndices.get(0);
+        int endIndex = targetVisibleIndices.get(1);
+
+        for (int i=startIndex;i<=endIndex;i++) {
+
+        }
+
         return null;
     }
 }

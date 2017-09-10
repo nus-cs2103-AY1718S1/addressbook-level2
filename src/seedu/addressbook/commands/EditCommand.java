@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             tagSet.add(new Tag(tagName));
         }
         toEdit = new Person(
-                (name == null) ? null : new Name(name),
+                new Name(name),
                 (phone == null) ? null : new Phone(phone, isPhonePrivate),
                 (email == null) ? null : new Email(email, isEmailPrivate),
                 (address == null) ? null : new Address(address, isAddressPrivate),
@@ -57,8 +57,6 @@ public class EditCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS, modifiedPerson));
         } catch (UniquePersonList.PersonNotFoundException pnfe) {
             return new CommandResult(MESSAGE_PERSON_NOT_FOUND);
-        } catch (UniquePersonList.DuplicatePersonException dpe) {
-            return new CommandResult(MESSAGE_DUPLICATE_PERSON);
         }
     }
 

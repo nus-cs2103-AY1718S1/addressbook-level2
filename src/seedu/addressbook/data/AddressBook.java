@@ -85,11 +85,15 @@ public class AddressBook {
      * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
      * and updates the Tag objects in the person to point to those in {@link #allTags}.
      */
-    public Person editPerson(Person toEdit) throws PersonNotFoundException, DuplicatePersonException {
+    public Person editPerson(Person toEdit) throws PersonNotFoundException {
         Person person = findPerson(toEdit);
         allPersons.remove(person);
         modifyDifferences(person, toEdit);
-        allPersons.add(person);
+        try {
+            allPersons.add(person);
+        } catch (DuplicatePersonException dpe) {
+            // This will not happen because person has been removed.
+        }
         syncTagsWithMasterList(person);
         return person;
     }

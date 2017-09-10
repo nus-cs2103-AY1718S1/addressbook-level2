@@ -52,6 +52,14 @@ public class StorageFile {
         }
     }
 
+    /**
+     * Signals that the given file is read-only while trying to write.
+     */
+    public static class ReadOnlyFileException extends Exception {
+        public ReadOnlyFileException() {
+        }
+    }
+
     private final JAXBContext jaxbContext;
 
     public final Path path;
@@ -88,6 +96,14 @@ public class StorageFile {
     }
 
     /**
+     * @throws ReadOnlyFileException if the file is read only
+     */
+    private void checkReadOnly() throws ReadOnlyFileException {
+        if (!this.path.toFile().canWrite())
+            throw new ReadOnlyFileException();
+    }
+
+    /**
      * Saves all data to this storage file.
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
@@ -97,6 +113,14 @@ public class StorageFile {
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
+
+        try {
+            this.checkReadOnly();
+
+        } catch (ReadOnlyFileException e) {
+            throw new StorageOperationException("The file is read-only:" + path);
+        }
+
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 

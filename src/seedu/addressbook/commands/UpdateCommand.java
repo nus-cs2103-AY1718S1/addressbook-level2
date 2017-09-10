@@ -5,6 +5,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.tag.UniqueTagList.DuplicateTagException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -60,6 +61,8 @@ public class UpdateCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS, target));
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } catch (DuplicateTagException dte) {
+            return new CommandResult("");
         }
     }
 

@@ -53,4 +53,7 @@ public class TypicalPersons {
         return ab;
     }
 
+    public Person[] getTypicalPersonsUnsorted() {
+        return new Person[]{dan, bill, candy, amy};
+    }
 }

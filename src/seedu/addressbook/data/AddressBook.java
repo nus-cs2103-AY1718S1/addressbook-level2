@@ -116,6 +116,7 @@ public class AddressBook {
             toUpdate.setEmail(email);
         }
 
+        // Use addTags rather than setTags for better UX (user experience)
         toUpdate.addTags(tagList);
         syncTagsWithMasterList(toUpdate);
     }

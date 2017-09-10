@@ -22,6 +22,8 @@ public class UpdateCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 Smith p/86492434 e/someguy@gmail.com";
 
     private static final String MESSAGE_SUCCESS = "Person updated: %1$s";
+    private static final String MESSAGE_DUPLICATE_TAG = "Trying to add duplicate tags to the same person.\n"
+            + "Person not updated: %1$s";
 
     private final Name name;
     private final Phone phone;
@@ -57,12 +59,15 @@ public class UpdateCommand extends Command {
             if (!addressBook.containsPerson(target)) {
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }
-            addressBook.updatePerson(target, name, phone, email, address, tagList);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, target));
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        try {
+            addressBook.updatePerson(target, name, phone, email, address, tagList);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, target));
         } catch (DuplicateTagException dte) {
-            return new CommandResult("");
+            return new CommandResult(String.format(MESSAGE_DUPLICATE_TAG, target));
         }
     }
 

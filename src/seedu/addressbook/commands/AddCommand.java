@@ -17,7 +17,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Contact details can be marked private by prepending 'p' to the prefix.\n"
-            + "Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]b/BLOCK  [p]s/STREET  [p]u/UNIT  [p]pc/POSTALCODE  [t/TAG]...\n"
+            + "Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]b/BLOCK [p]s/STREET [p]u/UNIT [p]pc/POSTALCODE [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
             + " John Doe p/98765432 e/johnd@gmail.com b/311 s/Clementi Ave 2 u/#02-25 pc/123456 t/friends t/owesMoney";
 

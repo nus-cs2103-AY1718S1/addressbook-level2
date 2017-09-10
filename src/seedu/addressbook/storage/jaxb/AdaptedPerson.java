@@ -42,6 +42,9 @@ public class AdaptedPerson {
     @XmlElement
     private List<AdaptedTag> tagged = new ArrayList<>();
 
+    @XmlElement
+    private AdaptedContactDetail sequenceNumber;
+
     /**
      * No-arg constructor for JAXB use.
      */
@@ -68,10 +71,15 @@ public class AdaptedPerson {
         address.isPrivate = source.getAddress().isPrivate();
         address.value = source.getAddress().value;
 
+        sequenceNumber = new AdaptedContactDetail();
+        sequenceNumber.value = new String("" + source.getSequenceNumber());
+
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new AdaptedTag(tag));
         }
+
+
     }
 
     /**

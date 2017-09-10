@@ -5,6 +5,7 @@
         <phone isPrivate="false">98765432</phone>
         <email isPrivate="false">johnd@gmail.com</email>
         <address isPrivate="false">John street, block 123, #01-01</address>
+        <sequenceNumber isPrivate="false">1</sequenceNumber>
     </persons>
     <persons>
         <name>Betsy Crowe</name>
@@ -13,6 +14,7 @@
         <address isPrivate="true">Newgate Prison</address>
         <tagged>friend</tagged>
         <tagged>criminal</tagged>
+        <sequenceNumber isPrivate="false">2</sequenceNumber>
     </persons>
     <tags>friend</tags>
     <tags>criminal</tags>

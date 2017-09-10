@@ -13,6 +13,7 @@ public class Address {
             " BLOCK, STREET, UNIT, POSTAL CODE";
     public static final String ADDRESS_VALIDATION_REGEX = "(^\\d+)[,]{1}\\s{1}.+[,]{1}\\s{1}[#]{1}[0-9]+" +
             "[-]{1}[0-9]+[,]{1}\\s{1}[0-9]+$";
+
     public static final int BLOCK_INDEX = 0;
     public static final int STREET_INDEX = 1;
     public static final int UNIT_INDEX = 2;

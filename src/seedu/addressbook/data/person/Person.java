@@ -15,11 +15,17 @@ public class Person implements ReadOnlyPerson {
     private Email email;
     private Address address;
 
+
+    public static int nextSequenceNumber = 1;
+    private int sequenceNumber;
+
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+        sequenceNumber = Person.nextSequenceNumber;
+        Person.nextSequenceNumber += 1;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -32,6 +38,10 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+    }
+
+    public void resetSequence() {
+        nextSequenceNumber = 1;
     }
 
     @Override

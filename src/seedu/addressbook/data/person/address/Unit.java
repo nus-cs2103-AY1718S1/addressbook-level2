@@ -12,7 +12,7 @@ public class Unit {
     private static final String MESSAGE_UNIT_CONSTRAINTS = "Address's unit should not be empty";
     private static final String UNIT_VALIDATION_REGEX = "[^,]+";
 
-    private final String value;
+    private final String unit;
 
     /**
      * Validates given unit.
@@ -25,7 +25,7 @@ public class Unit {
             throw new IllegalValueException(MESSAGE_UNIT_CONSTRAINTS);
         }
 
-        this.value = trimmedUnit;
+        this.unit = trimmedUnit;
     }
 
     /**
@@ -37,18 +37,18 @@ public class Unit {
 
     @Override
     public String toString() {
-        return value;
+        return unit;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Unit // instanceof handles nulls
-                && this.value.equals(((Unit) other).value)); // state check
+                && this.unit.equals(((Unit) other).unit)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return unit.hashCode();
     }
 }

@@ -13,7 +13,7 @@ public class PostalCode {
             "Address's postal code should be a number";
     private static final String POSTAL_CODE_VALIDATION_REGEX = "[0-9]+";
 
-    private final String value;
+    private final String postalCode;
 
     /**
      * Validates given postal code.
@@ -25,7 +25,7 @@ public class PostalCode {
         if (!isValidPostalCode(trimmedPostalCode)) {
             throw new IllegalValueException(MESSAGE_POSTAL_CODE_CONSTRAINTS);
         }
-        this.value = trimmedPostalCode;
+        this.postalCode = trimmedPostalCode;
     }
 
     /**
@@ -37,18 +37,18 @@ public class PostalCode {
 
     @Override
     public String toString() {
-        return value;
+        return postalCode;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PostalCode // instanceof handles nulls
-                && this.value.equals(((PostalCode) other).value)); // state check
+                && this.postalCode.equals(((PostalCode) other).postalCode)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return postalCode.hashCode();
     }
 }

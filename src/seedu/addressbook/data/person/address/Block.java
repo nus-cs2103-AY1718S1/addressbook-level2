@@ -13,7 +13,7 @@ public class Block {
             "Address's block should begin with a number";
     private static final String BLOCK_VALIDATION_REGEX = "[0-9]+[^,]+";
 
-    private final String value;
+    private final String block;
 
     /**
      * Validates given block.
@@ -26,7 +26,7 @@ public class Block {
             throw new IllegalValueException(MESSAGE_BLOCK_CONSTRAINTS);
         }
 
-        this.value = trimmedBlock;
+        this.block = trimmedBlock;
     }
 
     /**
@@ -38,18 +38,18 @@ public class Block {
 
     @Override
     public String toString() {
-        return value;
+        return block;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Block // instanceof handles nulls
-                && this.value.equals(((Block) other).value)); // state check
+                && this.block.equals(((Block) other).block)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return block.hashCode();
     }
 }

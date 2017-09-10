@@ -15,6 +15,8 @@ public class Person implements ReadOnlyPerson {
     private Email email;
     private Address address;
 
+    private int sequenceNumber; // Sequence number of the Person instance
+    private static int nextSequenceNumber; // Static variable to keep track of our sequence number so far
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.
@@ -25,6 +27,8 @@ public class Person implements ReadOnlyPerson {
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        sequenceNumber = nextSequenceNumber;
+        nextSequenceNumber++;
     }
 
     /**

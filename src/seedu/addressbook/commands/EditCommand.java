@@ -16,6 +16,8 @@ import static seedu.addressbook.commands.DeleteCommand.MESSAGE_DELETE_PERSON_SUC
 public class EditCommand extends Command {
 
 	public static final String COMMAND_WORD = "edit";
+	public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Edited Person: %1$s";
+
 	private Person newDetails;
 
 	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a person in the address book. "
@@ -40,21 +42,19 @@ public class EditCommand extends Command {
 		newDetails = new Person(new Name(name), new Phone(phone, isPhonePrivate),
 				new Email(email, isEmailPrivate), new Address(address, isAddressPrivate), new UniqueTagList(tagSet));
 	}
-	/*
+
 	@Override
 	public CommandResult execute() {
 		try {
 			final Person target = (Person) getTargetPerson();
-			addressBook.removePerson(target);
 			addressBook.editPerson(target, newDetails);
 			return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
 
 		} catch (IndexOutOfBoundsException ie) {
 			return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-		} catch (UniquePersonList.PersonNotFoundException pnfe) {
-			return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
-		}
+		} //catch (UniquePersonList.PersonNotFoundException pnfe) {
+			//return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+		//}
 	}
-	*/
 }
 

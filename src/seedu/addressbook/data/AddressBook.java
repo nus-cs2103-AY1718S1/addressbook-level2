@@ -128,4 +128,17 @@ public class AddressBook {
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
     }
+
+    /**
+     * sets the details of target to the details in newDetails
+     * @param target is the person to be edited
+     * @param newDetails is the new details of target
+     */
+    public void editPerson(Person target, Person newDetails) {
+        target.setName(newDetails.getName());
+        target.setPhone(newDetails.getPhone());
+        target.setEmail(newDetails.getEmail());
+        target.setAddress(newDetails.getAddress());
+        target.setTags(newDetails.getTags());
+    }
 }

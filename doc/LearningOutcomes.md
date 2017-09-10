@@ -58,7 +58,7 @@ The exercise in the `LO-ImplementClass` section is somewhat related to SRP as we
 Here's a slightly more difficult exercise.
 
 * `TextUi` class has more than one responsibility. 
-  Try to extract out the responsibility of Formatting text for display (e.g. adding decorations) in to a 
+  Try to extract out the responsibility of Formatting text for display (e.g. adding decorations) into a 
   separate class named `Formatter`.
 
 ------------------------------------------------------------------------------------------------------

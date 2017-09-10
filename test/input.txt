@@ -107,6 +107,15 @@
   find Charlie Betsy
 
 ##########################################################
+# test update person command
+##########################################################
+
+  # should catch invalid args format
+  update
+  # should update the name correctly
+  # update 1 Adam Smith
+
+##########################################################
 # test delete person command
 ##########################################################
 

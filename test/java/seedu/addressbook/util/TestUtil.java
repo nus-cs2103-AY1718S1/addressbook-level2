@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import seedu.addressbook.data.Birthday;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
@@ -111,7 +112,8 @@ public class TestUtil {
     public static Person generateTestPerson() {
         try {
             return new Person(new Name(Name.EXAMPLE), new Phone(Phone.EXAMPLE, false),
-                    new Email(Email.EXAMPLE, true), new Address(Address.EXAMPLE, false), new UniqueTagList());
+                    new Email(Email.EXAMPLE, true), new Address(Address.EXAMPLE, false),
+                    new Birthday(Birthday.EXAMPLE, false), new UniqueTagList());
         } catch (IllegalValueException e) {
             fail("test person data should be valid by definition");
             return null;

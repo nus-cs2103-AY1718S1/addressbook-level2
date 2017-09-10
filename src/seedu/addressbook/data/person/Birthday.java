@@ -3,9 +3,10 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 public class Birthday {
-    public static final String EXAMPLE = "18/8/1988";
-    public static final String MESSAGE_BIRTHDAY_CONSTRAINTS = "Person birthday should be in date formate";
-    public static final String BIRTHDAY_VALIDATION_REGEX = "\\\\d{4}/[01]\\\\d/[0-3]\\\\d";
+    public static final String EXAMPLE = "19880818";
+    public static final String MESSAGE_BIRTHDAY_CONSTRAINTS = "Person birthday should be in date format";
+    public static final String BIRTHDAY_VALIDATION_REGEX = "\\d+";
+            //\\\\d{4}/[01]\\\\d/[0-3]\\\\d"
 
     public final String value;
     private boolean isPrivate;

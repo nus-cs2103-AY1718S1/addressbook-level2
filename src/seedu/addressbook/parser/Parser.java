@@ -166,7 +166,22 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        return new UpdateCommand(targetIndex);
+        try {
+            return new UpdateCommand(targetIndex, matcher.group("name"),
+
+                                      matcher.group("phone"),
+                                      isPrivatePrefixPresent(matcher.group("isPhonePrivate")),
+
+                                      matcher.group("email"),
+                                      isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
+
+                                      matcher.group("address"),
+                                      isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
+
+                                      getTagsFromArgs(matcher.group("tagArguments")));
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
     }
 
     /**

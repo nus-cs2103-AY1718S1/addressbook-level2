@@ -57,6 +57,8 @@ public class Person implements ReadOnlyPerson {
         return address;
     }
 
+    public int getSequenceNumber() { return sequenceNumber;}
+
     @Override
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
@@ -69,6 +71,9 @@ public class Person implements ReadOnlyPerson {
         tags.setTags(replacement);
     } //tag is private therefore this method cannot be changed to static
 
+    public void setSequenceNumber() {
+        this.sequenceNumber = nextSequenceNumber ++;
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

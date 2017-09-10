@@ -14,7 +14,7 @@ public class EditCommand extends Command{
             + "Example: " + COMMAND_WORD + " 1"
             + "John Newname p/99999999 e/newemail@gmail.com a/123, New Address Ave 3, #12-34, 231534 t/newTag";
 
-    public static final String MESSAGE_UPDATE_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDITED_PERSON_SUCCESS = "Edited Person: %1$s";
 
     public EditCommand(int targetVisibleIndex) {
         super(targetVisibleIndex);

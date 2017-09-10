@@ -1,6 +1,5 @@
 package seedu.addressbook.data.person;
 
-import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 /**
@@ -9,10 +8,10 @@ import seedu.addressbook.data.tag.UniqueTagList;
  */
 public interface WriteOnlyPerson {
 
-    void setName();
-    void setPhone();
-    void setEmail();
-    void setAddress();
-    void setTags();
+    void setName(Name replacement);
+    void setPhone(Phone replacement);
+    void setEmail(Email replacement);
+    void setAddress(Address replacement);
+    void setTags(UniqueTagList replacement);
 
 }

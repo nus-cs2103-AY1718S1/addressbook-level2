@@ -51,6 +51,11 @@
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
 
+
+  #will be used to check sort later
+  add Aman Black p/114111 e/aman@gmail.com a/121, alpha square
+  list
+
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
 
@@ -85,6 +90,16 @@
   viewall 3
   viewall 4
   viewall 5
+
+
+##########################################################
+# test sort persons command
+##########################################################
+  
+  #sort by name and show list
+  sort
+      
+
 
 ##########################################################
 # test find persons command

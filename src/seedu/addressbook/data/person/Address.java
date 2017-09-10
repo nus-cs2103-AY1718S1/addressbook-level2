@@ -14,10 +14,7 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
-    private Block blockNumber;
-    private Street streetName;
-    private Unit unitNumber;
-    private PostalCode postalNumber;
+
     /**
      * Validates given address.
      *
@@ -29,12 +26,6 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        String[] subAddress = trimmedAddress.split(",");
-        blockNumber = new Block(subAddress[0]);
-        streetName = new Street(subAddress[1]);
-        unitNumber = new Unit(subAddress[2]);
-
-        postalNumber = new PostalCode(subAddress[3]);
         this.value = trimmedAddress;
     }
 
@@ -47,7 +38,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return blockNumber + ", " + streetName + ", " + unitNumber + ", " + postalNumber;
+        return value;
     }
 
     @Override

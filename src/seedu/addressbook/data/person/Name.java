@@ -60,12 +60,4 @@ public class Name {
         return fullName.hashCode();
     }
 
-
-    public int compareTo(Name task) {
-
-        int result = this.fullName.compareTo(task.fullName);
-
-        return result;
-    }
-
 }

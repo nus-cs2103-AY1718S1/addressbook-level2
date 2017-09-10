@@ -14,27 +14,11 @@ public class UtilsTest {
         // empty list
         assertFalse(Utils.isAnyNull());
 
-        // Any non-empty list
-        assertFalse(Utils.isAnyNull(new Object(), new Object()));
-        assertFalse(Utils.isAnyNull("test"));
-        assertFalse(Utils.isAnyNull(""));
-
-        // non empty list with just one null at the beginning
+        // non empty list with null
         assertTrue(Utils.isAnyNull((Object) null));
-        assertTrue(Utils.isAnyNull(null, "", new Object()));
-        assertTrue(Utils.isAnyNull(null, new Object(), new Object()));
+        assertTrue(Utils.isAnyNull(1, 2, (Object)null));
+        assertTrue(Utils.isAnyNull((Object)null, 2, 3));
 
-        // non empty list with nulls in the middle
-        assertTrue(Utils.isAnyNull(new Object(), null, null, "test"));
-        assertTrue(Utils.isAnyNull("", null, new Object()));
-
-        // non empty list with one null as the last element
-        assertTrue(Utils.isAnyNull("", new Object(), null));
-        assertTrue(Utils.isAnyNull(new Object(), new Object(), null));
-
-        // confirms nulls inside the list are not considered
-        List<Object> nullList = Arrays.asList((Object) null);
-        assertFalse(Utils.isAnyNull(nullList));
     }
 
     @Test

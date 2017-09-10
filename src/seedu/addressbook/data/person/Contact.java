@@ -4,7 +4,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
  * A superclass to be inherited by Address, Email and Phone.
- * Represents the general structure of contact information. 
+ * Represents the general structure of contact information.
  */
 public class Contact {
     public String value;

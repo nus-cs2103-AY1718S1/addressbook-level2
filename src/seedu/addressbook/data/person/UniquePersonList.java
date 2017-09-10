@@ -147,6 +147,6 @@ public class UniquePersonList implements Iterable<Person> {
      * Sorts all persons in list by alphabetical order
      */
     public void executeSort() {
-        internalList.sort(Comparator.comparing(person -> person.getName().toString()));
+        internalList.sort(Comparator.comparing(person -> person.getName().toString().toLowerCase()));
     }
 }

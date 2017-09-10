@@ -5,6 +5,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 /**
  * A superclass for Email, Address, Phone in the addressbook.
  * Implementations should guarantee: value is present and isPrivate is provided.
+ * is valid as declared in {@link #isValidContact(String, String)}
  */
 public class Contact {
 

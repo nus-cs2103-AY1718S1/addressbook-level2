@@ -24,11 +24,15 @@ public class UtilsTest {
         assertNotNull("", "abc", "a", "abc");
         assertNotNull(1, new Integer(1));
 
-        //objects with null
-        assertNull(null);
+        //objects with 1 null
+        assertNull((Object) null);
+        assertNull(1, new Integer(1), null);
         assertNull(null, 1, new Integer(1));
+
+        //objects with multiple nulls
         assertNull(null, null);
         assertNull(null, "a", "b", null);
+        assertNull("a", null, "b", null, "c", null);
     }
 
 
@@ -66,10 +70,14 @@ public class UtilsTest {
     }
 
     private void assertNotNull(Object... objects) {
-        assertFalse(Utils.isAnyNull(Arrays.asList(objects)));
+        assertFalse(Utils.isAnyNull(objects));
     }
 
     private void assertNull(Object... objects) {
-        assertTrue(Utils.isAnyNull(Arrays.asList(objects)));
+        for(Object object: objects) {
+            if(object == null) {
+                assertTrue(Utils.isAnyNull(objects));
+            }
+        }
     }
 }

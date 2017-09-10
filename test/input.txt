@@ -32,7 +32,7 @@
   add Valid Name p/12345 valid@email.butNoPrefix a/valid, address, valid, address
   add Valid Name p/12345 e/valid@email.butNoAddressPrefix a/valid, address, valid, address
   add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address, valid, address t/goodTag noPrefixTag
-  
+
   # should catch invalid person data
   add []\[;] p/12345 e/valid@e.mail a/valid, address, valid, address
   add Valid Name p/not_numbers e/valid@e.mail a/valid, address, valid, address
@@ -53,6 +53,12 @@
 
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street, #02-01, 456789 t/tubers t/starchy
+
+  # should not allow invalid address format
+  add Fiona Fire p/5148132 e/fiona@fire.com a/123 Adam Road #01-01 123456
+  add Fiona Fire p/5148132 e/fiona@fire.com a/ Adam Road, #01-01, 123456
+  add Fiona Fire p/5148132 e/fiona@fire.com a/123, Adam Road, #01-01
+  add Fiona Fire p/5148132 e/fiona@fire.com a/123 Adam Road #01-01 123456
 
 ##########################################################
 # test view/viewall persons command

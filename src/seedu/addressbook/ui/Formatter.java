@@ -107,7 +107,7 @@ public class Formatter {
         return message;
     }
 
-    public String formatting(String m) {
+    public String formatLine(String m) {
         return LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX);
     }
 

@@ -112,6 +112,9 @@ public class EditCommandTest {
 		}
 	}
 
+	/**
+	 * Asserts that the index is not valid for the given display list.
+	 */
 	private void assertEditFailsDueToInvalidIndex(int targetVisibleIndex,
 												  String name,
 												  String phone, boolean isPhonePrivate,
@@ -131,6 +134,23 @@ public class EditCommandTest {
 		}
 	}
 
+	/**
+	 * Creates new edit command
+	 *
+	 * @param targetVisibleIndex index of person to be edited
+	 * @param name new name value
+	 * @param phone new phone value
+	 * @param isPhonePrivate privacy settings of new phone value
+	 * @param email new email value
+	 * @param isEmailPrivate privacy settings of new email value
+	 * @param address new address value
+	 * @param isAddressPrivate privacy settings of new address value
+	 * @param tags new set of tags
+	 * @param addressBook Addressbook instance for this edit command
+	 * @param displayList list to find person to be edited from.
+	 * @return returns the newly created command
+	 * @throws IllegalValueException
+	 */
 	private EditCommand createEditCommand(int targetVisibleIndex,
 										  String name,
 										  String phone, boolean isPhonePrivate,
@@ -148,6 +168,9 @@ public class EditCommandTest {
 		}
 	}
 
+	/**
+	 * Executes the command, and checks that the execution was what we had expected.
+	 */
 	private void assertCommandBehaviour(EditCommand editCommand, String expectedMessage,
 										AddressBook expectedAddressBook, AddressBook actualAddressBook) {
 
@@ -157,12 +180,17 @@ public class EditCommandTest {
 		assertEquals(expectedAddressBook.getAllPersons(), actualAddressBook.getAllPersons());
 	}
 
+	/**
+	 * Asserts that attempting to construct an edit command with the supplied
+	 * invalid data throws an IllegalValueException
+	 */
 	private void assertConstructingInvalidEditCmdThrowsException(int index, String name, String phone,
-																 boolean isPhonePrivate, String email, boolean isEmailPrivate, String address,
+																 boolean isPhonePrivate, String email,
+																 boolean isEmailPrivate, String address,
 																 boolean isAddressPrivate, Set<String> tags) {
 		try {
-			new EditCommand(index, name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate,
-					tags);
+			new EditCommand(index, name, phone, isPhonePrivate, email, isEmailPrivate,
+					address, isAddressPrivate, tags);
 		} catch (IllegalValueException e) {
 			return;
 		}

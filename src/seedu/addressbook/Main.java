@@ -15,6 +15,8 @@ import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
 import seedu.addressbook.ui.TextUi;
 
+import static seedu.addressbook.parser.Parser.parseCommand;
+
 
 /**
  * Entry point of the Address Book application.
@@ -83,7 +85,7 @@ public class Main {
         Command command;
         do {
             String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
+            command = parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);

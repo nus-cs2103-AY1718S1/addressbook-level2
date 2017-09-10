@@ -4,13 +4,17 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
 
     public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person address need to " +
+            "contain a block, street, unit and postal code, all separated by a ','";
+
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private Postal_Code postCode;
 
     public final String value;
     private boolean isPrivate;
@@ -21,19 +25,23 @@ public class Address {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
-        String trimmedAddress = address.trim();
+        String[] addressComponents = address.split(",");
         this.isPrivate = isPrivate;
-        if (!isValidAddress(trimmedAddress)) {
+
+        if (addressComponents.length != 4) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
-    }
 
-    /**
-     * Returns true if a given string is a valid person address.
-     */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+        this.block = new Block(addressComponents[0], isPrivate);
+
+        this.street = new Street(addressComponents[1], isPrivate);
+
+        this.unit = new Unit(addressComponents[2], isPrivate);
+
+        this.postCode = new Postal_Code(addressComponents[3], isPrivate);
+
+        this.value = new String(this.block.toString() + ", " + this.street.toString()
+            + ", " + this.unit.toString() + ", " + this.postCode);
     }
 
     @Override

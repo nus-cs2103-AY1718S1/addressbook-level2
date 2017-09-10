@@ -107,6 +107,36 @@
   find Charlie Betsy
 
 ##########################################################
+# test update persons command
+##########################################################
+
+  # should catch invalid args format
+  update wrong args wrong args
+  update Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address
+  update Valid Name p/12345 valid@email.butNoPrefix a/valid, address
+  update Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address
+  update Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
+
+  # should catch invalid person data
+  update []\[;] p/12345 e/valid@e.mail a/valid, address
+  update Valid Name p/not_numbers e/valid@e.mail a/valid, address
+  update Valid Name p/12345 e/notAnEmail a/valid, address
+  update Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
+
+  list
+  # no such person
+  update Random name p/11111 e/valid@valid.com a/valid, address, t/valid
+
+  # no change is made
+  update Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+
+  #should be updated
+  update Adam Brown pp/1111112 pe/adam@gmail.com a/111, alpha street
+  list
+  view 5
+
+
+##########################################################
 # test delete person command
 ##########################################################
 

@@ -20,6 +20,7 @@ import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
+import seedu.addressbook.commands.UpdateCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
@@ -40,6 +41,9 @@ public class Parser {
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+
+    public static final boolean ADD_COMMAND = true;
+    public static final boolean UPDATD_COMMAND = false;
 
 
     /**
@@ -76,7 +80,7 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
+            return prepareAddOrUpdate(ADD_COMMAND,arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -89,6 +93,9 @@ public class Parser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case UpdateCommand.COMMAND_WORD:
+            return prepareAddOrUpdate(UPDATD_COMMAND,arguments);
 
         case ViewCommand.COMMAND_WORD:
             return prepareView(arguments);
@@ -106,32 +113,51 @@ public class Parser {
     }
 
     /**
-     * Parses arguments in the context of the add person command.
+     * Parses arguments in the context of the add person command or update person command.
      *
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareAdd(String args) {
+    private Command prepareAddOrUpdate(boolean isAddCommand, String args) {
         final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
-        if (!matcher.matches()) {
+        if (!matcher.matches() && isAddCommand) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        } else if (!matcher.matches() && !isAddCommand) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
         }
         try {
-            return new AddCommand(
-                    matcher.group("name"),
+            if (isAddCommand) {
+                return new AddCommand(
+                        matcher.group("name"),
 
-                    matcher.group("phone"),
-                    isPrivatePrefixPresent(matcher.group("isPhonePrivate")),
+                        matcher.group("phone"),
+                        isPrivatePrefixPresent(matcher.group("isPhonePrivate")),
 
-                    matcher.group("email"),
-                    isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
+                        matcher.group("email"),
+                        isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
 
-                    matcher.group("address"),
-                    isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
+                        matcher.group("address"),
+                        isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
 
-                    getTagsFromArgs(matcher.group("tagArguments"))
-            );
+                        getTagsFromArgs(matcher.group("tagArguments"))
+                );
+            } else {
+                return new UpdateCommand(
+                        matcher.group("name"),
+
+                        matcher.group("phone"),
+                        isPrivatePrefixPresent(matcher.group("isPhonePrivate")),
+
+                        matcher.group("email"),
+                        isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
+
+                        matcher.group("address"),
+                        isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
+
+                        getTagsFromArgs(matcher.group("tagArguments"))
+                );
+            }
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }

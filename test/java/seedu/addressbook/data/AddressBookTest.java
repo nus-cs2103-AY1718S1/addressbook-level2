@@ -117,6 +117,28 @@ public class AddressBookTest {
         assertFalse(isTagObjectInAddressBookList(tagPrizeWinner, defaultAddressBook));
     }
 
+
+    @Test
+    public void updatePerson_someTagsNotInTagList() throws Exception {
+
+        davidElliot.setTags(new UniqueTagList(tagMathematician));
+        defaultAddressBook.addPerson(davidElliot);
+        assertFalse(isTagObjectInAddressBookList(tagEconomist, defaultAddressBook));
+        assertFalse(isTagObjectInAddressBookList(tagPrizeWinner, defaultAddressBook));
+
+        davidElliot.setTags(new UniqueTagList(tagEconomist, tagPrizeWinner));
+        defaultAddressBook.updatePerson(davidElliot);
+
+        assertTrue(isTagObjectInAddressBookList(tagEconomist, defaultAddressBook));
+        assertTrue(isTagObjectInAddressBookList(tagPrizeWinner, defaultAddressBook));
+    }
+
+    @Test
+    public void updatePerson_personNotExistInList_throwsPersonNonExistException() throws Exception {
+        thrown.expect(AddressBook.PersonNonExistException.class);
+        emptyAddressBook.updatePerson(aliceBetsy);
+    }
+
     @Test
     public void containsPerson() throws Exception {
         UniquePersonList personsWhoShouldBeIn = new UniquePersonList(aliceBetsy, bobChaplin);

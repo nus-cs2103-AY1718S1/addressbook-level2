@@ -110,6 +110,7 @@ public class AddressBook {
                 each.setAddress(toUpdate.getAddress());
                 each.setEmail(toUpdate.getEmail());
                 each.setPhone(toUpdate.getPhone());
+                each.setTags(toUpdate.getTags());
                 isPersonExist = true;
             }
         }

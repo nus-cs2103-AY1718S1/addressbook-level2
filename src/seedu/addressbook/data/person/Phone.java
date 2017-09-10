@@ -9,10 +9,10 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Phone {
 
     public static final String EXAMPLE = "123456789";
-    public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
-    public static final String PHONE_VALIDATION_REGEX = "\\d+";
+    private static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
+    private static final String PHONE_VALIDATION_REGEX = "\\d+";
 
-    public final String value;
+    private final String value;
     private boolean isPrivate;
 
     /**
@@ -32,7 +32,7 @@ public class Phone {
     /**
      * Returns true if the given string is a valid person phone number.
      */
-    public static boolean isValidPhone(String test) {
+    private static boolean isValidPhone(String test) {
         return test.matches(PHONE_VALIDATION_REGEX);
     }
 

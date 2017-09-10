@@ -1,34 +1,21 @@
 package seedu.addressbook.storage.jaxb;
 
-import java.util.ArrayList;
-import java.util.List;
+import seedu.addressbook.common.Utils;
+import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.*;
+import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.UniqueTagList;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlValue;
-
-import seedu.addressbook.common.Utils;
-import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
-import seedu.addressbook.data.tag.Tag;
-import seedu.addressbook.data.tag.UniqueTagList;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * JAXB-friendly adapted person data holder class.
  */
 public class AdaptedPerson {
-
-    private static class AdaptedContactDetail {
-        @XmlValue
-        public String value;
-        @XmlAttribute(required = true)
-        public boolean isPrivate;
-    }
 
     @XmlElement(required = true)
     private String name;
@@ -38,7 +25,6 @@ public class AdaptedPerson {
     private AdaptedContactDetail email;
     @XmlElement(required = true)
     private AdaptedContactDetail address;
-
     @XmlElement
     private List<AdaptedTag> tagged = new ArrayList<>();
 
@@ -46,7 +32,6 @@ public class AdaptedPerson {
      * No-arg constructor for JAXB use.
      */
     public AdaptedPerson() {}
-
 
     /**
      * Converts a given Person into this class for JAXB use.
@@ -58,15 +43,15 @@ public class AdaptedPerson {
 
         phone = new AdaptedContactDetail();
         phone.isPrivate = source.getPhone().isPrivate();
-        phone.value = source.getPhone().value;
+        phone.value = source.getPhone().toString();
 
         email = new AdaptedContactDetail();
         email.isPrivate = source.getEmail().isPrivate();
-        email.value = source.getEmail().value;
+        email.value = source.getEmail().toString();
 
         address = new AdaptedContactDetail();
         address.isPrivate = source.getAddress().isPrivate();
-        address.value = source.getAddress().value;
+        address.value = source.getAddress().toString();
 
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -109,5 +94,12 @@ public class AdaptedPerson {
         final Address address = new Address(this.address.value, this.address.isPrivate);
         final UniqueTagList tags = new UniqueTagList(personTags);
         return new Person(name, phone, email, address, tags);
+    }
+
+    private static class AdaptedContactDetail {
+        @XmlValue
+        public String value;
+        @XmlAttribute(required = true)
+        public boolean isPrivate;
     }
 }

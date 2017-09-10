@@ -9,11 +9,11 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Email {
 
     public static final String EXAMPLE = "valid@e.mail";
-    public static final String MESSAGE_EMAIL_CONSTRAINTS =
+    private static final String MESSAGE_EMAIL_CONSTRAINTS =
             "Person emails should be 2 alphanumeric/period strings separated by '@'";
-    public static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
+    private static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
 
-    public final String value;
+    private final String value;
     private boolean isPrivate;
 
     /**
@@ -33,7 +33,7 @@ public class Email {
     /**
      * Returns true if the given string is a valid person email.
      */
-    public static boolean isValidEmail(String test) {
+    private static boolean isValidEmail(String test) {
         return test.matches(EMAIL_VALIDATION_REGEX);
     }
 

@@ -25,7 +25,6 @@ public class Address {
 
     private static final String ADDRESS_VALIDATION_REGEX = "[^,]+,[^,]+,[^,]+,[^,]+";
 
-    public final String value;
     private final Block block;
     private final Street street;
     private final Unit unit;
@@ -50,8 +49,6 @@ public class Address {
         this.street = new Street(addressParts[1]);
         this.unit = new Unit(addressParts[2]);
         this.postalCode = new PostalCode(addressParts[3]);
-
-        this.value = trimmedAddress;
     }
 
     /**

@@ -1,5 +1,7 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.exception.IllegalValueException;
+
 /**
  * Created by Philemon1 on 11/9/2017.
  */
@@ -7,11 +9,22 @@ public class Contact {
 
     public final String value;
     private boolean isPrivate;
+    public static  String example;
+    public static  String constraintsMessage;
+    public static  String validationRegex;
 
-
-    public Contact(String value, boolean isPrivate) {
-        this.value = value;
+    public Contact(String value, boolean isPrivate, String example, String constraints, String validationRegex) throws IllegalValueException {
+        this.validationRegex = validationRegex;
+        this.constraintsMessage = constraints;
         this.isPrivate = isPrivate;
+        this.example = example;
+
+        String trimmedValue = value.trim();
+        if (!isValidValue(trimmedValue)) {
+            throw new IllegalValueException(constraintsMessage);
+        }
+
+        this.value = value;
     }
 
     @Override
@@ -33,6 +46,10 @@ public class Contact {
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+
+    public static boolean isValidValue(String test) {
+        return test.matches(validationRegex);
     }
 
 

@@ -15,11 +15,18 @@ public class Person implements ReadOnlyPerson {
     private Email email;
     private Address address;
 
+    //assign sequence number to a person
+    private int sequenceNumber;
+    //nextSequence number will always have an increment by 1 when a new person is added
+    private static int nextSequenceNumber = 1;
+
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+        sequenceNumber = nextSequenceNumber;
+        nextSequenceNumber++;
         this.name = name;
         this.phone = phone;
         this.email = email;

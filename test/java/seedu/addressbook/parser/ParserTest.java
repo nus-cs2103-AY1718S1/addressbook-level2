@@ -1,6 +1,7 @@
 package seedu.addressbook.parser;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
@@ -97,6 +98,7 @@ public class ParserTest {
         final String[] inputs = { "delete", "delete " };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+        parseAndAssertIsNotAddOrDelete(inputs);
     }
 
     @Test
@@ -104,6 +106,7 @@ public class ParserTest {
         final String[] inputs = { "delete notAnumber ", "delete 8*wh12", "delete 1 2 3 4 5" };
         final String resultMessage = MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+        parseAndAssertIsNotAddOrDelete(inputs);
     }
 
     @Test
@@ -112,6 +115,7 @@ public class ParserTest {
         final String input = "delete " + testIndex;
         final DeleteCommand result = parseAndAssertCommandType(input, DeleteCommand.class);
         assertEquals(result.getTargetIndex(), testIndex);
+        parseAndAssertIsAddOrDelete(input);
     }
 
     @Test
@@ -217,6 +221,7 @@ public class ParserTest {
         };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+        parseAndAssertIsNotAddOrDelete(inputs);
     }
 
     @Test
@@ -245,6 +250,7 @@ public class ParserTest {
         };
         for (String input : inputs) {
             parseAndAssertCommandType(input, IncorrectCommand.class);
+            parseAndAssertIsNotAddOrDelete(input);
         }
     }
 
@@ -254,6 +260,7 @@ public class ParserTest {
         final String input = convertPersonToAddCommandString(testPerson);
         final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
         assertEquals(result.getPerson(), testPerson);
+        parseAndAssertIsAddOrDelete(input);
     }
 
     @Test
@@ -267,6 +274,7 @@ public class ParserTest {
 
         final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
         assertEquals(result.getPerson(), testPerson);
+        parseAndAssertIsAddOrDelete(input);
     }
 
     private static Person generateTestPerson() {
@@ -310,6 +318,27 @@ public class ParserTest {
     }
 
     /**
+     * Asserts that parsing the given inputs will return isAddOrDelete == TRUE
+     */
+
+    private void parseAndAssertIsAddOrDelete(String... inputs) {
+        for (String input : inputs) {
+            parser.parseCommand(input);
+            assertTrue(parser.getIsAddOrDelete());
+        }
+    }
+
+    /**
+     * Asserts that parsing the given inputs will return isAddOrDelete == FALSE
+     */
+
+    private void parseAndAssertIsNotAddOrDelete(String... inputs) {
+        for (String input : inputs) {
+            parser.parseCommand(input);
+            assertFalse(parser.getIsAddOrDelete());
+        }
+    }
+    /**
      * Parses input and asserts the class/type of the returned command object.
      *
      * @param input to be parsed
@@ -321,4 +350,6 @@ public class ParserTest {
         assertTrue(result.getClass().isAssignableFrom(expectedCommandClass));
         return (T) result;
     }
+
+
 }

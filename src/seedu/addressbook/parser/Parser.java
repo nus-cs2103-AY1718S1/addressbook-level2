@@ -57,7 +57,7 @@ public class Parser {
     public void setAddOrDelete(){
         isAddOrDelete = TRUE;
     }
-
+    public boolean getIsAddOrDelete(){ return isAddOrDelete; }
     /**
      * Used for initial separation of command word and args.
      */

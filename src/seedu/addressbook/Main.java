@@ -81,12 +81,15 @@ public class Main {
     /** Reads the user command and executes it, until the user issues the exit command.  */
     private void runCommandLoopUntilExitCommand() {
         Command command;
+        Parser parser;
         do {
             String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
+            parser = new Parser();
+            command = parser.parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);
+            showChanges(parser.getIsAddOrDelete());
 
         } while (!ExitCommand.isExit(command));
     }
@@ -99,6 +102,11 @@ public class Main {
         }
     }
 
+    private void showChanges(boolean isAddOrDelete){
+        if(isAddOrDelete) {
+        System.out.print("Meow\n");
+        }
+    }
     /**
      * Executes the command and returns the result.
      *

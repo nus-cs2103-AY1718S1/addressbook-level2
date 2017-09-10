@@ -10,6 +10,17 @@ import org.junit.Test;
 
 public class UtilsTest {
 
+    @Test
+    public void isAnyNullTest() throws Exception {
+        //test case 1: parameters with null
+        assertTrue(Utils.isAnyNull("asdsa", null));
+
+        //test case 2: parameters without null
+        assertFalse(Utils.isAnyNull("asdsa"));
+
+        //test case 3: no parameters
+        assertFalse(Utils.isAnyNull());
+    }
 
     @Test
     public void elementsAreUnique() throws Exception {

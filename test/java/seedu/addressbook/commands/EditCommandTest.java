@@ -9,12 +9,11 @@ import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 import seedu.addressbook.data.person.*;
+
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.ui.TextUi;
 import seedu.addressbook.util.TestUtil;
-
-import seedu.addressbook.commands.EditCommand;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -46,7 +45,6 @@ public class EditCommandTest {
 				new Email("david@grant.com", false), new Address("44H Define Road", false),
 				new UniqueTagList());
 
-		emptyAddressBook = TestUtil.createAddressBook();
 		addressBook = TestUtil.createAddressBook(johnDoe, janeDoe, davidGrant, samDoe);
 
 		emptyDisplayList = TestUtil.createList();
@@ -66,6 +64,9 @@ public class EditCommandTest {
 		assertEditFailsDueToInvalidIndex(listWithEveryone.size() + 1, Name.EXAMPLE,
 				Phone.EXAMPLE, true, Email.EXAMPLE, false, Address.EXAMPLE,
 				true, EMPTY_STRING_LIST, addressBook, listWithEveryone);
+		assertEditFailsDueToInvalidIndex(1, Name.EXAMPLE, Phone.EXAMPLE, true,
+				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
+				addressBook, emptyDisplayList);
 	}
 
 	@Test

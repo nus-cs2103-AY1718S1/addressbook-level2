@@ -1,10 +1,6 @@
 package seedu.addressbook.ui;
 
-import static seedu.addressbook.common.Messages.MESSAGE_GOODBYE;
-import static seedu.addressbook.common.Messages.MESSAGE_INIT_FAILED;
-import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE;
 import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
-import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -84,30 +80,21 @@ public class TextUi {
 
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        showToUser(
-                DIVIDER,
-                DIVIDER,
-                MESSAGE_WELCOME,
-                version,
-                MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-                storageFileInfo,
-                DIVIDER);
+        showToUser(Formatter.getWelcomeFormatted(version, storageFileInfo));
     }
 
     public void showGoodbyeMessage() {
-        showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+        showToUser(Formatter.getGoodbyeFormatted());
     }
 
 
     public void showInitFailedMessage() {
-        showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);
+        showToUser(Formatter.getInitFailedFormatted());
     }
 
     /** Shows message(s) to the user */
-    public void showToUser(String... message) {
-        for (String m : message) {
-            out.println(Formatter.basicFormat(m));
-        }
+    public void showToUser(String message) {
+        out.println(message);
     }
 
     /**
@@ -119,7 +106,7 @@ public class TextUi {
         if (resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
-        showToUser(result.feedbackToUser, DIVIDER);
+        showToUser(Formatter.getResultFormatted(result.feedbackToUser));
     }
 
     /**

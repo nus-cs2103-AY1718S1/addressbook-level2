@@ -8,7 +8,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Contact {
 
     protected boolean isPrivate;
-    protected String value;
+    public String value;
 
 
     @Override

@@ -122,6 +122,10 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    public void sort() {
+        Collections.sort(internalList);
+    }
+
     /**
      * Clears all persons in list.
      */

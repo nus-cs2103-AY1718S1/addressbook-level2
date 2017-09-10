@@ -8,11 +8,16 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String EXAMPLE = "123 (block), some street, some unit, some postal code";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS =
+            "Person addresses should have block no., street, unit and postal code separated by ', '";
+    public static final String ADDRESS_VALIDATION_REGEX = "\\d*,\\s.+\\s#\\d+-\\d+,\\s\\d{6}";
 
     public final String value;
+    private final Block block;
+    private final Street street;
+    private final Unit unit;
+    private final PostalCode postalCode;
     private boolean isPrivate;
 
     /**
@@ -27,6 +32,12 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+
+        String[] splitAddress = trimmedAddress.split(",");
+        this.block = new Address.Block(splitAddress[0].trim());
+        this.street = new Address.Street(splitAddress[1].trim());
+        this.unit = new Address.Unit(splitAddress[2].trim());
+        this.postalCode = new Address.PostalCode(splitAddress[3].trim());
     }
 
     /**
@@ -55,5 +66,57 @@ public class Address {
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+
+    /**
+     * Represents a Peron's block in the address book.
+     */
+    private class Block {
+
+        private final String storedBlockNo;
+
+        public Block(String blockNo) {
+            this.storedBlockNo = blockNo;
+        }
+
+    }
+
+    /**
+     * Represents a Person's street in the address book.
+     */
+    private class Street {
+
+        private final String storedStreet;
+
+        public Street(String street) {
+            this.storedStreet = street;
+        }
+
+    }
+
+    /**
+     * Represents a Person's unit in the address book.
+     */
+    private class Unit {
+
+        private final String storedUnitNo;
+
+        public Unit(String unitNo) {
+            this.storedUnitNo = unitNo;
+        }
+
+    }
+
+    /**
+     * Represents a Person's postal code in the address book.
+     */
+    private class PostalCode {
+
+        private final String storedPostalCode;
+
+        public PostalCode(String postalCode) {
+            this.storedPostalCode = postalCode;
+        }
+
     }
 }

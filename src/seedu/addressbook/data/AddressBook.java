@@ -34,6 +34,16 @@ public class AddressBook {
     }
 
     /**
+     * Signals that an operation that try's to update a person who does not exist in the list
+     */
+    public static class PersonNonExistException extends Exception {
+        public PersonNonExistException() {
+            super("Person does not exist in AddressBook");
+        }
+    }
+
+
+    /**
      * Constructs an address book with the given data.
      * Also updates the tag list with any missing tags found in any person.
      *
@@ -81,6 +91,36 @@ public class AddressBook {
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
         syncTagsWithMasterList(toAdd);
+    }
+
+
+    /**
+     * Updates a person's info in the address book.
+     * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
+     * and updates the Tag objects in the person to point to those in {@link #allTags}.
+     *
+     * @throws PersonNonExistException if the person does not exist in the addressbook.
+     */
+    public void updatePerson(Person toUpdate) throws PersonNonExistException{
+
+        boolean isPersonExist = false;
+
+        for (Person each : allPersons) {
+            if (each.getName().equals(toUpdate.getName())) {
+                each.setAddress(toUpdate.getAddress());
+                each.setEmail(toUpdate.getEmail());
+                each.setPhone(toUpdate.getPhone());
+                each.setTags(toUpdate.getTags());
+                isPersonExist = true;
+            }
+        }
+
+        if (!isPersonExist) {
+            throw new PersonNonExistException();
+        }
+
+        syncTagsWithMasterList(toUpdate);
+
     }
 
     /**

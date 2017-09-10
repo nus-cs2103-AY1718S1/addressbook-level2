@@ -55,6 +55,39 @@
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
 
 ##########################################################
+# test update person command, setup state for futuer tests
+##########################################################
+
+  # should catch invalid args format
+  update wrong args wrong args
+  update Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address
+  update Valid Name p/12345 valid@email.butNoPrefix a/valid, address
+  update Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address
+  update Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
+
+  # should catch invalid person data
+  update []\[;] p/12345 e/valid@e.mail a/valid, address
+  update Valid Name p/not_numbers e/valid@e.mail a/valid, address
+  update Valid Name p/12345 e/notAnEmail a/valid, address
+  update Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
+
+  # should update correctly and list non private information
+  update Adam Brown p/121111 e/adamchanged@gmail.com a/111, alpha street
+  list
+  update Betsy Choo pp/212222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+  list
+  update Charlie Dickson pp/333233 e/charlie.d@nus.edu.sg a/3323, gamma street t/friends t/school
+  list
+  update Dickson Ee p/544444 pe/dickson@nus.edu.sg pa/444, delta street t/friends
+  list
+  update Esther Potato p/955555 e/esther@not.a.real.potato pa/5515, epsilon street t/tubers t/starchy
+  list
+
+  # should not allow updating Non-exist persons
+  update unknown Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+
+
+##########################################################
 # test view/viewall persons command
 ##########################################################
 

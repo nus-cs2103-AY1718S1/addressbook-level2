@@ -18,19 +18,31 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Parses user input.
  */
 public class Parser {
+    private static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
-    public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    // one or more keywords separated by whitespace
+    private static final Pattern KEYWORDS_ARGS_FORMAT =
+            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)");
 
-    public static final Pattern KEYWORDS_ARGS_FORMAT =
-            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
-
-    public static final Pattern PERSON_DATA_ADD_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
+    // '/' forward slashes are reserved for delimiter prefixes
+    private static final Pattern PERSON_DATA_ADD_ARGS_FORMAT =
             Pattern.compile("(?<name>[^/]+)"
                     + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    /**
+     * Different from {@link #PERSON_DATA_ADD_ARGS_FORMAT} in a few points:
+     * 1. The first argument is the index number from last visible listing (rather than name);
+     * 2. All contact details are optional.
+     */
+    private static final Pattern PERSON_DATA_UPDATE_ARGS_FORMAT =
+            Pattern.compile("(?<name>[^/]+)"
+                    + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
+                    + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
+                    + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
+                    + "(?<tagArguments>(?: t/[^/]+)*)");
 
     /**
      * Signals that the user input could not be parsed.
@@ -137,6 +149,8 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareUpdate(String args) {
+        final Matcher matcher = PERSON_DATA_UPDATE_ARGS_FORMAT.matcher(args.trim());
+
         return new UpdateCommand(1);
     }
 

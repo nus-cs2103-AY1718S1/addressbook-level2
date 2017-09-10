@@ -134,11 +134,13 @@ public class AddressBook {
      * @param target is the person to be edited
      * @param newDetails is the new details of target
      */
-    public void editPerson(Person target, Person newDetails) {
+    public void editPerson(Person target, Person newDetails) throws DuplicatePersonException {
+        allPersons.noDuplicate(newDetails);
         target.setName(newDetails.getName());
         target.setPhone(newDetails.getPhone());
         target.setEmail(newDetails.getEmail());
         target.setAddress(newDetails.getAddress());
         target.setTags(newDetails.getTags());
+        syncTagsWithMasterList(target);
     }
 }

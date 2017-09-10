@@ -17,31 +17,36 @@ public class UtilsTest {
     @Test
     public void elementsNotUnique() throws Exception{
         assertNotUnique("ab","ab",null);
+        assertNotUnique(null,"abc","ab","abc");
     }
 
     @Test
-    public void anyNullElements(){
+    public void noNullElements() throws Exception{
         // empty list
-        assertFalse(Utils.isAnyNull());
+        assertNoNull();
 
         // only one object
-        assertTrue(Utils.isAnyNull((Object) null));
-        assertFalse(Utils.isAnyNull(1));
-        assertFalse(Utils.isAnyNull(""));
-        assertFalse(Utils.isAnyNull("abc"));
+        assertNoNull(1);
+        assertNoNull("");
+        assertNoNull("abc");
 
         // all objects unique
-        assertFalse(Utils.isAnyNull("abc", "ab", "a"));
-        assertFalse(Utils.isAnyNull(1, 2));
+        assertNoNull("abc", "ab", "a");
+        assertNoNull(1, 2);
 
         // some identical objects
-        assertFalse(Utils.isAnyNull("abc", "abc"));
-        assertFalse(Utils.isAnyNull("abc", "", "abc", "ABC"));
-        assertFalse(Utils.isAnyNull("", "abc", "a", "abc"));
-        assertFalse(Utils.isAnyNull(1, new Integer(1)));
-        assertTrue(Utils.isAnyNull(null, 1, new Integer(1)));
-        assertTrue(Utils.isAnyNull("abc", null, "ab"));
-        assertTrue(Utils.isAnyNull("cda", "a", "b", null));
+        assertNoNull("abc", "abc");
+        assertNoNull("abc", "", "abc", "ABC");
+        assertNoNull("", "abc", "a", "abc");
+        assertNoNull(1, new Integer(1));
+    }
+
+    @Test
+    public void haveNullElements() throws Exception{
+        assertExistNull((Object)null);
+        assertExistNull(null, 1, new Integer(1));
+        assertExistNull("abc", null, "ab");
+        assertExistNull("cda", "a", "b", null);
     }
 
     private void assertAreUnique(Object... objects) {
@@ -50,5 +55,13 @@ public class UtilsTest {
 
     private void assertNotUnique(Object... objects) {
         assertFalse(Utils.elementsAreUnique(Arrays.asList(objects)));
+    }
+
+    private void assertExistNull(Object... objects) {
+        assertTrue(Utils.isAnyNull(objects));
+    }
+
+    private void assertNoNull(Object... objects){
+        assertFalse(Utils.isAnyNull(objects));
     }
 }

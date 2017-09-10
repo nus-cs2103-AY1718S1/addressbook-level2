@@ -38,14 +38,14 @@ public class UtilsTest {
     @Test
     public void isAnyNull() throws Exception {
         //only one object
-        assertIsNotNull("abc");
-        assertIsNotNull(1);
-        assertIsNotNull(new Integer(1));
+        assertNotNull("abc");
+        assertNotNull(1);
+        assertNotNull(new Integer(1));
 
         //more than one objects
-        assertIsNotNull("abc", new Integer(1));
-        assertIsNotNull("abc", 1);
-        assertIsNotNull(new Integer(1), 1);
+        assertNotNull("abc", new Integer(1));
+        assertNotNull("abc", 1);
+        assertNotNull(new Integer(1), 1);
 
     }
 
@@ -57,6 +57,6 @@ public class UtilsTest {
         assertFalse(Utils.elementsAreUnique(Arrays.asList(objects)));
     }
 
-    private void assertIsNotNull(Object... objects) { assertFalse(Utils.isAnyNull(Arrays.asList(objects))); }
+    private void assertNotNull(Object... objects) { assertFalse(Utils.isAnyNull(Arrays.asList(objects))); }
 
 }

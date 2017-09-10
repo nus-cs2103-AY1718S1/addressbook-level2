@@ -36,7 +36,7 @@ public class SortCommandTest {
         SortCommand sortCommand = new SortCommand();
         sortCommand.setData(typicalAddressBook, listWithAllTypicalPersons);
         CommandResult expectedResult = sortCommand.execute();
-        
+
         sortCommand.setData(typicalAddressBook, listWithAllTypicalPersonsUnsorted);
         CommandResult result = sortCommand.execute();
         assertEquals(expectedResult.feedbackToUser , result.feedbackToUser);

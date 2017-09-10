@@ -47,13 +47,13 @@ public class AddressBookTest {
         aliceBetsy     = new Person(new Name("Alice Betsy"),
                                     new Phone("91235468", false),
                                     new Email("alice@nushackers.org", false),
-                                    new Address("8,Computing Drive, 0, 123456", false),
+                                    new Address("8, Computing Drive, 0, 123456", false),
                                     new UniqueTagList(tagMathematician));
 
         bobChaplin     = new Person(new Name("Bob Chaplin"),
                                     new Phone("94321500", false),
                                     new Email("bob@nusgreyhats.org", false),
-                                    new Address("9,Computing Drive, 0, 123456", false),
+                                    new Address("9, Computing Drive, 0, 123456", false),
                                     new UniqueTagList(tagMathematician));
 
         charlieDouglas = new Person(new Name("Charlie Douglas"),

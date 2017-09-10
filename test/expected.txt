@@ -7,7 +7,7 @@
 || ===================================================
 || Enter command: || [Command entered:  sfdfd]
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/BLOCK, STREET, UNIT, POSTALCODE  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
@@ -49,19 +49,19 @@
 || Enter command: || [Command entered:  add wrong args wrong args]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/BLOCK, STREET, UNIT, POSTALCODE  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address, valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/BLOCK, STREET, UNIT, POSTALCODE  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 valid@email.butNoPrefix a/valid, address, valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/BLOCK, STREET, UNIT, POSTALCODE  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoAddressPrefix a/valid, address, valid, address]
@@ -141,16 +141,16 @@
 || This person already exists in the address book
 || ===================================================
 || Enter command: || [Command entered:  add Fiona Fire p/5148132 e/fiona@fire.com a/123 Adam Road #01-01 123456]
-|| New person added: Fiona Fire Phone: 5148132 Email: fiona@fire.com Address: 123 Adam Road #01-01 123456 Tags: 
+|| Invalid address entered
 || ===================================================
 || Enter command: || [Command entered:  add Fiona Fire p/5148132 e/fiona@fire.com a/ Adam Road, #01-01, 123456]
-|| This person already exists in the address book
+|| Invalid address entered
 || ===================================================
 || Enter command: || [Command entered:  add Fiona Fire p/5148132 e/fiona@fire.com a/123, Adam Road, #01-01]
-|| This person already exists in the address book
+|| Invalid address entered
 || ===================================================
 || Enter command: || [Command entered:  add Fiona Fire p/5148132 e/fiona@fire.com a/123 Adam Road #01-01 123456]
-|| This person already exists in the address book
+|| Invalid address entered
 || ===================================================
 || Enter command: || [Command entered:  view]
 || Invalid command format! 
@@ -283,9 +283,8 @@
 || 	3. Betsy Choo Tags: [secretive]
 || 	4. Dickson Ee Phone: 444444 Address: 444, delta street, #03-01, 345678 Tags: [friends]
 || 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
-|| 	6. Fiona Fire Phone: 5148132 Email: fiona@fire.com Address: 123 Adam Road #01-01 123456 Tags: 
 || 
-|| 6 persons listed!
+|| 5 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 4]
 || Deleted Person: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street, #03-01, 345678 Tags: [friends]
@@ -295,9 +294,8 @@
 || 	2. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street, #12-34, 123456 Tags: 
 || 	3. Betsy Choo Tags: [secretive]
 || 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
-|| 	5. Fiona Fire Phone: 5148132 Email: fiona@fire.com Address: 123 Adam Road #01-01 123456 Tags: 
 || 
-|| 5 persons listed!
+|| 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || Deleted Person: Valid Name Phone: 12345 Email: valid@email.butNoAddressPrefix Address: valid, address, valid, address Tags: 
@@ -306,9 +304,8 @@
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street, #12-34, 123456 Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
-|| 	4. Fiona Fire Phone: 5148132 Email: fiona@fire.com Address: 123 Adam Road #01-01 123456 Tags: 
 || 
-|| 4 persons listed!
+|| 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

@@ -14,17 +14,29 @@ public class Person implements ReadOnlyPerson {
     private Phone phone;
     private Email email;
     private Address address;
+    private int sequenceNumber;
+    private static int nextSequenceNumber;
 
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.
      */
+//    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+//        this.name = name;
+//        this.phone = phone;
+//        this.email = email;
+//        this.address = address;
+//        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+//    }
+
     public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.sequenceNumber=nextSequenceNumber;
+        nextSequenceNumber++;
     }
 
     /**
@@ -32,6 +44,14 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+    }
+//    public Person(ReadOnlyPerson source) {
+//        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags(),source.getSequenceNumber());
+//    }
+
+    public Person getPerson(ReadOnlyPerson source) {
+        Person person=new Person(source);
+       return person;
     }
 
     @Override
@@ -54,6 +74,10 @@ public class Person implements ReadOnlyPerson {
         return address;
     }
 
+    public int getSequenceNumber() {
+        return sequenceNumber;
+    }
+
     @Override
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
@@ -65,6 +89,22 @@ public class Person implements ReadOnlyPerson {
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);
     }
+
+    //setter methods
+    public void setName(Name name) {
+        this.name=name;
+    }
+
+    public void setPhone(Phone phone) {this.phone=phone; }
+
+    public void setEmail(Email email) {
+        this.email=email;
+    }
+
+    public void setAddress(Address address) {
+        this.address=address;
+    }
+
 
     @Override
     public boolean equals(Object other) {

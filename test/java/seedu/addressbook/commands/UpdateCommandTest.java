@@ -8,6 +8,8 @@ import seedu.addressbook.util.TypicalPersons;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,11 +27,28 @@ public class UpdateCommandTest {
     @Test
     public void updateCommand_updateName_reflectChanges() throws Exception {
         Person firstPerson = persons[0];
+
         UpdateCommand command = new UpdateCommand(1, "Amy Steven",
                 null, false, null, false,
                 null, false, Collections.emptySet());
         command.setData(addressBook, Arrays.asList(persons));
         command.execute();
+
         assertEquals("Amy Steven", firstPerson.getName().toString());
+    }
+
+    @Test
+    public void updateCommand_updateTags_reflectTagSetChanges() throws Exception {
+        Person firstPerson = persons[3];
+        Set<String> new_tags = new HashSet<>();
+        new_tags.add("another");
+
+        UpdateCommand command = new UpdateCommand(4, null,
+                null, false, null, false,
+                null, false, new_tags);
+        command.setData(addressBook, Arrays.asList(persons));
+        command.execute();
+
+        assertEquals(2, firstPerson.getTags().toSet().size());
     }
 }

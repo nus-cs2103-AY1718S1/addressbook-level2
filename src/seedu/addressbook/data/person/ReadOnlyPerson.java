@@ -8,11 +8,18 @@ import seedu.addressbook.data.tag.UniqueTagList;
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 public interface ReadOnlyPerson {
-
+    // Getter methods for different attributes.
     Name getName();
     Phone getPhone();
     Email getEmail();
     Address getAddress();
+
+    // Setter methods for different attributes.
+    void setName(Name name);
+    void setPhone(Phone phone);
+    void setEmail(Email email);
+    void setAddress(Address address);
+    void setTags(UniqueTagList tags);
 
     /**
      * Returns a new TagList that is a deep copy of the internal TagList,

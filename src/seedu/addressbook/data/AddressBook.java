@@ -99,7 +99,21 @@ public class AddressBook {
 
     public void updatePerson(ReadOnlyPerson toUpdate, Name name, Phone phone,
                               Email email, Address address, UniqueTagList tagList) {
+        if (name != null) {
+            toUpdate.setName(name);
+        }
 
+        if (phone != null) {
+            toUpdate.setPhone(phone);
+        }
+
+        if (email != null) {
+            toUpdate.setEmail(email);
+        }
+
+        if (address != null) {
+            toUpdate.setEmail(email);
+        }
     }
 
     /**

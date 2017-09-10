@@ -3,7 +3,13 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
 
 /**
@@ -27,16 +33,14 @@ public class UniquePersonList implements Iterable<Person> {
      * Signals that an operation targeting a specified person in the list would fail because
      * there is no such matching person in the list.
      */
-    public static class PersonNotFoundException extends Exception {
-    }
+    public static class PersonNotFoundException extends Exception {}
 
     private final List<Person> internalList = new ArrayList<>();
 
     /**
      * Constructs empty person list.
      */
-    public UniquePersonList() {
-    }
+    public UniquePersonList() {}
 
     /**
      * Constructs a person list with the given persons.
@@ -135,7 +139,7 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
-                && this.internalList.equals(((UniquePersonList) other).internalList));
+                        && this.internalList.equals(((UniquePersonList) other).internalList));
     }
 
     /**

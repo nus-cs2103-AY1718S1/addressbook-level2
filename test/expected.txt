@@ -30,7 +30,7 @@
 || One or multiple contact details of that person can be updated at one time.
 || Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: INDEX [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: update 1 p/86492434 e/someguy@gmail.com
+|| Example: update 1 Smith p/86492434 e/someguy@gmail.com
 || help: Shows program usage instructions.
 || Example: help
 || exit: Exits the program.

@@ -3,9 +3,10 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
- *
+ * Represents a person's Street in his address.
+ * Guarantees: immutable; is valid as declared in {@link #isValidBlock(String)}
  */
-class Block {
+public class Block {
 
     public static final String EXAMPLE = "123";
     public static final String MESSAGE_BLCOK_CONSTRAINTS = "Block should only contain numbers";
@@ -46,8 +47,4 @@ class Block {
         // uses block number as hash code
         return Integer.parseInt(value);
     }
-
-
-
-
 }

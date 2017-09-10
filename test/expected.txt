@@ -19,6 +19,8 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| sort: Sorts all persons in the address book alphabetically and display them as a list with index numbers.
+|| Example: sort
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
@@ -289,6 +291,24 @@
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  add Amy Pek p/858135 e/amypek@live.sg a/123, watata drive t/retard]
+|| New person added: Amy Pek Phone: 858135 Email: amypek@live.sg Address: 123, watata drive Tags: [retard]
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	3. Amy Pek Phone: 858135 Email: amypek@live.sg Address: 123, watata drive Tags: [retard]
+|| 
+|| 3 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort]
+|| 	1. Amy Pek Phone: 858135 Email: amypek@live.sg Address: 123, watata drive Tags: [retard]
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| Addressbook has been successfully sorted in alphabetical order.
+|| 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

@@ -22,7 +22,7 @@ public class Utils {
     }
 
     /**
-     * Returns true if every element the given collection are unique by {@link Object#equals(Object)}.
+     * Returns true if every element in the given collection are unique by {@link Object#equals(Object)}.
      */
     public static boolean elementsAreUnique(Collection<?> items) {
         final Set<Object> testSet = new HashSet<>();

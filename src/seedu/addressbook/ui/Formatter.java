@@ -23,6 +23,11 @@ public class Formatter {
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
 
+
+    public Formatter() {
+        
+    }
+
     /**
      * Returns true if the user input line should be ignored.
      * Input should be ignored if it is parsed as a comment, is only whitespace, or is empty.
@@ -33,7 +38,6 @@ public class Formatter {
     public boolean shouldIgnore(String rawInputLine) {
         return rawInputLine.trim().isEmpty() || isCommentLine(rawInputLine);
     }
-
 
     /**
      * Returns true if the user input line is a comment line.

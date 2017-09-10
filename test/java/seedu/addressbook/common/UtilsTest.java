@@ -3,7 +3,9 @@ package seedu.addressbook.common;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.Test;
@@ -35,6 +37,23 @@ public class UtilsTest {
         assertNotUnique(null, null);
         assertNotUnique(null, "a", "b", null);
     }
+    
+    @Test
+    public void isAnyNullFalse() throws Exception {
+        Utils newUtils = new Utils();
+        ArrayList<Integer> arrayListTest = new ArrayList<Integer>();
+        arrayListTest.add(5);
+        HashSet<Integer> hashTest = new HashSet<Integer>();
+        hashTest.add(2);
+        assertFalse(newUtils.isAnyNull(hashTest,arrayListTest));
+    }
+
+    @Test
+    public void isAnyNullTrue() throws Exception {
+        Utils newUtils = new Utils();
+        assertTrue(newUtils.isAnyNull(null,null,new ArrayList<Integer>()));
+    }
+
 
     private void assertAreUnique(Object... objects) {
         assertTrue(Utils.elementsAreUnique(Arrays.asList(objects)));

@@ -25,6 +25,12 @@
 || viewall: Views all the details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
+|| update: Updates the contact details of one existing person in the AddressBook.
+|| The person is identified by the index number in the last shown person listing.
+|| One or multiple contact details of that person can be updated at one time.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: INDEX [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: update 1 p/86492434 e/someguy@gmail.com
 || help: Shows program usage instructions.
 || Example: help
 || exit: Exits the program.

@@ -12,8 +12,11 @@ import java.util.Comparator;
 public interface ReadOnlyPerson {
 
     Name getName();
+
     Phone getPhone();
+
     Email getEmail();
+
     Address getAddress();
 
     /**
@@ -28,8 +31,8 @@ public interface ReadOnlyPerson {
     default boolean isSamePerson(ReadOnlyPerson other) {
         return (other == this)
                 || (other != null
-                    && other.getName().equals(this.getName())
-                    && other.getPhone().equals(this.getPhone()));
+                && other.getName().equals(this.getName())
+                && other.getPhone().equals(this.getPhone()));
     }
 
     /**
@@ -39,11 +42,11 @@ public interface ReadOnlyPerson {
     default boolean hasSameData(ReadOnlyPerson other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                    && other.getName().equals(this.getName()) // state checks here onwards
-                    && other.getPhone().equals(this.getPhone())
-                    && other.getEmail().equals(this.getEmail())
-                    && other.getAddress().equals(this.getAddress())
-                    && other.getTags().equals(this.getTags()));
+                && other.getName().equals(this.getName()) // state checks here onwards
+                && other.getPhone().equals(this.getPhone())
+                && other.getEmail().equals(this.getEmail())
+                && other.getAddress().equals(this.getAddress())
+                && other.getTags().equals(this.getTags()));
     }
 
     /**
@@ -97,20 +100,20 @@ public interface ReadOnlyPerson {
         return builder.toString();
     }
 
-        /**
-         * Comparator for comparing persons.
-         */
-        Comparator<ReadOnlyPerson> READ_ONLY_PERSON_COMPARATOR = new Comparator<ReadOnlyPerson>() {
+    /**
+     * Comparator for comparing persons.
+     */
+    Comparator<ReadOnlyPerson> READ_ONLY_PERSON_COMPARATOR = new Comparator<ReadOnlyPerson>() {
 
-            /**
-             * Compares two persons by name
-             *
-             * @param person1 first person
-             * @param person2 second person to be compared to first
-             * @return int value of compareTo. Negative if person1 should come before person2 in an ordering
-             */
-            public int compare(ReadOnlyPerson person1, ReadOnlyPerson person2) {
-                return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
-            }
-        };
-    }
+        /**
+         * Compares two persons by name
+         *
+         * @param person1 first person
+         * @param person2 second person to be compared to first
+         * @return int value of compareTo. Negative if person1 should come before person2 in an ordering
+         */
+        public int compare(ReadOnlyPerson person1, ReadOnlyPerson person2) {
+            return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
+        }
+    };
+}

@@ -1,7 +1,7 @@
 package seedu.addressbook.commands;
 
-import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.common.Messages;
+import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        if (addressBook.isEmpty()){
+        if (addressBook.isEmpty()) {
             return new CommandResult(Messages.MESSAGE_EMPTY_ADDRESSBOOK);
         }
         addressBook.executeSort();

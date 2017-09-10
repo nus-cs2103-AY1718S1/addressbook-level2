@@ -188,7 +188,7 @@ public class Parser {
      * Returns true if the private prefix is present for a contact detail in the add command's arguments string.
      */
     private static boolean isPrivatePrefixPresent(String matchedPrefix) {
-        return matchedPrefix.equals("p");
+        return matchedPrefix != null && matchedPrefix.equals("p");
     }
 
     /**

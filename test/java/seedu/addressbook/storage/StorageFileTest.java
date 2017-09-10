@@ -24,7 +24,7 @@ import static seedu.addressbook.util.TestUtil.assertTextFilesEqual;
 import static seedu.addressbook.util.TestUtil.assertFileDoesNotExist;
 
 public class StorageFileTest {
-    private static final String TEST_DATA_FOLDER = "test/data/StorageFileTest";
+    private static final String TEST_DATA_FOLDER = "data/StorageFileTest";
     private static final String NON_EXISTANT_FILE_NAME = "ThisFileDoesNotExist.xml";
 
     @Rule
@@ -117,7 +117,7 @@ public class StorageFileTest {
         ab.addPerson(new Person(new Name("Betsy Crowe"),
                                 new Phone("1234567", true),
                                 new Email("betsycrowe@gmail.com", false),
-                                new Address("0, Newgate Prison, Cell 123, 000000", true),
+                                new Address("0, Newgate Prison, 123, 000000", true),
                                 new UniqueTagList(new Tag("friend"), new Tag("criminal"))));
         return ab;
     }

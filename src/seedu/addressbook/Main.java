@@ -1,5 +1,6 @@
 package seedu.addressbook;
 
+import java.nio.file.ReadOnlyFileSystemException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +47,7 @@ public class Main {
 
     /**
      * Sets up the required objects, loads up the data from the storage file, and prints the welcome message.
-     *
+     *f
      * @param launchArgs arguments supplied by the user at program launch
      *
      */
@@ -82,11 +83,22 @@ public class Main {
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
-            String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
+            try {
+                String userCommandText = ui.getUserCommand();
+                command = new Parser().parseCommand(userCommandText);
+                CommandResult result = executeCommand(command);
+                recordResult(result);
+                ui.showResultToUser(result);
+            } catch (ReadOnlyFileSystemException e) {
+                throw new ReadOnlyFileSystemException();
+            }
+
+
+//            String userCommandText = ui.getUserCommand();
+//            command = new Parser().parseCommand(userCommandText);
+//            CommandResult result = executeCommand(command);
+//            recordResult(result);
+//            ui.showResultToUser(result);
 
         } while (!ExitCommand.isExit(command));
     }

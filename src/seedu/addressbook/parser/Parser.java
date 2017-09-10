@@ -54,10 +54,10 @@ public class Parser {
         }
     }
 
-    public void setAddOrDelete(){
+    public void setAddOrDeleteToTrue() {
         isAddOrDelete = TRUE;
     }
-    public boolean getIsAddOrDelete(){ return isAddOrDelete; }
+    public boolean getIsAddOrDelete() { return isAddOrDelete; }
     /**
      * Used for initial separation of command word and args.
      */
@@ -83,11 +83,9 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            setAddOrDelete();
             return prepareAdd(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            setAddOrDelete();
             return prepareDelete(arguments);
 
         case ClearCommand.COMMAND_WORD:
@@ -141,6 +139,7 @@ public class Parser {
 
                     getTagsFromArgs(matcher.group("tagArguments"))
             );
+            setAddOrDeleteToTrue();
             return toAdd;
 
         } catch (IllegalValueException ive) {
@@ -179,6 +178,7 @@ public class Parser {
     private Command prepareDelete(String args) {
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
+            setAddOrDeleteToTrue();
             return new DeleteCommand(targetIndex);
         } catch (ParseException pe) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));

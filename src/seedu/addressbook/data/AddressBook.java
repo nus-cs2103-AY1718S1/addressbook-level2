@@ -103,17 +103,21 @@ public class AddressBook {
      */
     public void updatePerson(Person toUpdate) throws PersonNonExistException{
 
-        if (!containsPerson(toUpdate)) {
-            throw new PersonNonExistException();
-        }
+        boolean isPersonExist = false;
 
         for (Person each : allPersons) {
             if (each.getName().equals(toUpdate.getName())) {
                 each.setAddress(toUpdate.getAddress());
                 each.setEmail(toUpdate.getEmail());
                 each.setPhone(toUpdate.getPhone());
+                isPersonExist = true;
             }
         }
+
+        if (!isPersonExist) {
+            throw new PersonNonExistException();
+        }
+
         syncTagsWithMasterList(toUpdate);
 
     }

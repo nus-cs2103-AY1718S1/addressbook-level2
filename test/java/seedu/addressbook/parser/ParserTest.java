@@ -35,12 +35,8 @@ import seedu.addressbook.data.tag.UniqueTagList;
 
 public class ParserTest {
 
-    private Parser parser;
-
     @Before
-    public void setUp() {
-        parser = new Parser();
-    }
+    public void setUp() {}
 
     /*
      * Note how the names of the test methods does not follow the normal naming convention.
@@ -317,7 +313,7 @@ public class ParserTest {
      * @return the parsed command object
      */
     private <T extends Command> T parseAndAssertCommandType(String input, Class<T> expectedCommandClass) {
-        final Command result = parser.parseCommand(input);
+        final Command result = Parser.parseCommand(input);
         assertTrue(result.getClass().isAssignableFrom(expectedCommandClass));
         return (T) result;
     }

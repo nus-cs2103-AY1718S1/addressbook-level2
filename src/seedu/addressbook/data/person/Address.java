@@ -20,10 +20,10 @@ public class Address {
     public static final int POSTAL_INDEX = 3;
 
     public final String value;
-    public Block blockNum;
-    public Street streetName;
-    public Unit unitNum;
-    public PostalCode postalCode;
+    private Block blockNum;
+    private Street streetName;
+    private Unit unitNum;
+    private PostalCode postalCode;
     private boolean isPrivate;
 
     /**

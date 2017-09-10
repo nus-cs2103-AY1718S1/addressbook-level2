@@ -62,7 +62,7 @@ public class UtilsTest {
     }
 
     private void assertNotNull(Object... objects) {
-        assertFalse(Utils.isAnyNull(Arrays.asList(objects)));
+        assertFalse(Utils.isAnyNull(objects));
     }
 
     private void assertNull(Object... objects) {

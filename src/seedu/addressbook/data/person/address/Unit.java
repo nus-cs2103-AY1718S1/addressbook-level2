@@ -9,10 +9,10 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Unit {
 
     public static final String EXAMPLE = "38";
-    public static final String MESSAGE_UNIT_CONSTRAINTS = "Address's unit should not be empty";
-    public static final String UNIT_VALIDATION_REGEX = "[^,]+";
+    private static final String MESSAGE_UNIT_CONSTRAINTS = "Address's unit should not be empty";
+    private static final String UNIT_VALIDATION_REGEX = "[^,]+";
 
-    public final String value;
+    private final String value;
 
     /**
      * Validates given unit.
@@ -31,7 +31,7 @@ public class Unit {
     /**
      * Returns true if a given string is a valid unit.
      */
-    public static boolean isValidUnit(String test) {
+    private static boolean isValidUnit(String test) {
         return test.matches(Unit.UNIT_VALIDATION_REGEX);
     }
 

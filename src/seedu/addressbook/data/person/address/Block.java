@@ -9,11 +9,11 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Block {
 
     public static final String EXAMPLE = "123";
-    public static final String MESSAGE_BLOCK_CONSTRAINTS =
+    private static final String MESSAGE_BLOCK_CONSTRAINTS =
             "Address's block should begin with a number";
-    public static final String BLOCK_VALIDATION_REGEX = "[0-9]+[^,]+";
+    private static final String BLOCK_VALIDATION_REGEX = "[0-9]+[^,]+";
 
-    public final String value;
+    private final String value;
 
     /**
      * Validates given block.
@@ -32,7 +32,7 @@ public class Block {
     /**
      * Returns true if a given string is a valid block.
      */
-    public static boolean isValidBlock(String test) {
+    private static boolean isValidBlock(String test) {
         return test.matches(Block.BLOCK_VALIDATION_REGEX);
     }
 

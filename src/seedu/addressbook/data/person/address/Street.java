@@ -9,10 +9,10 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Street {
 
     public static final String EXAMPLE = "Oxley Road";
-    public static final String MESSAGE_STREET_CONSTRAINTS = "Address's street should not be empty";
-    public static final String STREET_VALIDATION_REGEX = "[^,]+";
+    private static final String MESSAGE_STREET_CONSTRAINTS = "Address's street should not be empty";
+    private static final String STREET_VALIDATION_REGEX = "[^,]+";
 
-    public final String value;
+    private final String value;
 
     /**
      * Validates given street.
@@ -31,7 +31,7 @@ public class Street {
     /**
      * Returns true if a given string is a valid street.
      */
-    public static boolean isValidStreet(String test) {
+    private static boolean isValidStreet(String test) {
         return test.matches(Street.STREET_VALIDATION_REGEX);
     }
 

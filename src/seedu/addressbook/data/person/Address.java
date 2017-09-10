@@ -20,16 +20,16 @@ public class Address {
             Unit.EXAMPLE + ", " +
             PostalCode.EXAMPLE;
 
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS =
+    private static final String MESSAGE_ADDRESS_CONSTRAINTS =
             "Person's block, street, unit and postal code should not contain commas.";
 
-    public static final String ADDRESS_VALIDATION_REGEX = "[^,]+,[^,]+,[^,]+,[^,]+";
+    private static final String ADDRESS_VALIDATION_REGEX = "[^,]+,[^,]+,[^,]+,[^,]+";
 
     public final String value;
-    public final Block block;
-    public final Street street;
-    public final Unit unit;
-    public final PostalCode postalCode;
+    private final Block block;
+    private final Street street;
+    private final Unit unit;
+    private final PostalCode postalCode;
     private boolean isPrivate;
 
     /**
@@ -57,7 +57,7 @@ public class Address {
     /**
      * Returns true if a given string is a valid person address.
      */
-    public static boolean isValidAddress(String test) {
+    private static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
     }
 

@@ -9,11 +9,11 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class PostalCode {
 
     public static final String EXAMPLE = "123456";
-    public static final String MESSAGE_POSTAL_CODE_CONSTRAINTS =
+    private static final String MESSAGE_POSTAL_CODE_CONSTRAINTS =
             "Address's postal code should be a number";
-    public static final String POSTAL_CODE_VALIDATION_REGEX = "[0-9]+";
+    private static final String POSTAL_CODE_VALIDATION_REGEX = "[0-9]+";
 
-    public final String value;
+    private final String value;
 
     /**
      * Validates given postal code.
@@ -31,7 +31,7 @@ public class PostalCode {
     /**
      * Returns true if a given string is a valid postal code.
      */
-    public static boolean isValidPostalCode(String test) {
+    private static boolean isValidPostalCode(String test) {
         return test.matches(PostalCode.POSTAL_CODE_VALIDATION_REGEX);
     }
 

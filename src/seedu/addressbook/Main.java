@@ -32,7 +32,6 @@ public class Main {
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
 
-
     public static void main(String... launchArgs) {
         new Main().run(launchArgs);
     }

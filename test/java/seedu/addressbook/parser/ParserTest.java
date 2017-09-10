@@ -1,41 +1,56 @@
 package seedu.addressbook.parser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import org.junit.Before;
+import org.junit.Test;
+import seedu.addressbook.commands.*;
+import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.*;
+import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.UniqueTagList;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
-import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
-import seedu.addressbook.data.tag.Tag;
-import seedu.addressbook.data.tag.UniqueTagList;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 public class ParserTest {
 
     private Parser parser;
+
+    private static Person generateTestPerson() {
+        try {
+            return new Person(
+                    new Name(Name.EXAMPLE),
+                    new Phone(Phone.EXAMPLE, true),
+                    new Email(Email.EXAMPLE, false),
+                    new Address(Address.EXAMPLE, true),
+                    new UniqueTagList(new Tag("tag1"), new Tag("tag2"), new Tag("tag3"))
+            );
+        } catch (IllegalValueException ive) {
+            throw new RuntimeException("test person data should be valid by definition");
+        }
+    }
+
+    /*
+     * Note how the names of the test methods does not follow the normal naming convention.
+     * That is because our coding standard allows a different naming convention for test methods.
+     */
+
+    private static String convertPersonToAddCommandString(ReadOnlyPerson person) {
+        String addCommand = "add "
+                + person.getName().fullName
+                + (person.getPhone().isPrivate() ? " pp/" : " p/") + person.getPhone()
+                + (person.getEmail().isPrivate() ? " pe/" : " e/") + person.getEmail()
+                + (person.getAddress().isPrivate() ? " pa/" : " a/") + person.getAddress();
+        for (Tag tag : person.getTags()) {
+            addCommand += " t/" + tag.tagName;
+        }
+        return addCommand;
+    }
 
     @Before
     public void setUp() {
@@ -43,8 +58,7 @@ public class ParserTest {
     }
 
     /*
-     * Note how the names of the test methods does not follow the normal naming convention.
-     * That is because our coding standard allows a different naming convention for test methods.
+     * Tests for 0-argument commands =======================================================================
      */
 
     @Test
@@ -60,10 +74,6 @@ public class ParserTest {
         parseAndAssertCommandType(input, HelpCommand.class);
     }
 
-    /*
-     * Tests for 0-argument commands =======================================================================
-     */
-
     @Test
     public void parse_helpCommand_parsedCorrectly() {
         final String input = "help";
@@ -76,6 +86,10 @@ public class ParserTest {
         parseAndAssertCommandType(input, ClearCommand.class);
     }
 
+    /*
+     * Tests for ingle index argument commands ===============================================================
+     */
+
     @Test
     public void parse_listCommand_parsedCorrectly() {
         final String input = "list";
@@ -87,10 +101,6 @@ public class ParserTest {
         final String input = "exit";
         parseAndAssertCommandType(input, ExitCommand.class);
     }
-
-    /*
-     * Tests for ingle index argument commands ===============================================================
-     */
 
     @Test
     public void parse_deleteCommandNoArgs_errorMessage() {
@@ -144,6 +154,10 @@ public class ParserTest {
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
+    /*
+     * Tests for find persons by keyword in name command ===================================================
+     */
+
     @Test
     public void parse_viewAllCommandArgsIsNotSingleNumber_errorMessage() {
         final String[] inputs = { "viewall notAnumber ", "viewall 8*wh12", "viewall 1 2 3 4 5" };
@@ -159,10 +173,6 @@ public class ParserTest {
         assertEquals(result.getTargetIndex(), testIndex);
     }
 
-    /*
-     * Tests for find persons by keyword in name command ===================================================
-     */
-
     @Test
     public void parse_findCommandInvalidArgs_errorMessage() {
         // no keywords
@@ -174,6 +184,10 @@ public class ParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
+
+    /*
+     * Tests for add person command ==============================================================================
+     */
 
     @Test
     public void parse_findCommandValidArgs_parsedCorrectly() {
@@ -197,10 +211,6 @@ public class ParserTest {
                 parseAndAssertCommandType(input, FindCommand.class);
         assertEquals(keySet, result.getKeywords());
     }
-
-    /*
-     * Tests for add person command ==============================================================================
-     */
 
     @Test
     public void parse_addCommandInvalidArgs_errorMessage() {
@@ -267,32 +277,6 @@ public class ParserTest {
 
         final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
         assertEquals(result.getPerson(), testPerson);
-    }
-
-    private static Person generateTestPerson() {
-        try {
-            return new Person(
-                new Name(Name.EXAMPLE),
-                new Phone(Phone.EXAMPLE, true),
-                new Email(Email.EXAMPLE, false),
-                new Address(Address.EXAMPLE, true),
-                new UniqueTagList(new Tag("tag1"), new Tag("tag2"), new Tag("tag3"))
-            );
-        } catch (IllegalValueException ive) {
-            throw new RuntimeException("test person data should be valid by definition");
-        }
-    }
-
-    private static String convertPersonToAddCommandString(ReadOnlyPerson person) {
-        String addCommand = "add "
-                + person.getName().fullName
-                + (person.getPhone().isPrivate() ? " pp/" : " p/") + person.getPhone().value
-                + (person.getEmail().isPrivate() ? " pe/" : " e/") + person.getEmail().value
-                + (person.getAddress().isPrivate() ? " pa/" : " a/") + person.getAddress().value;
-        for (Tag tag : person.getTags()) {
-            addCommand += " t/" + tag.tagName;
-        }
-        return addCommand;
     }
 
     /*

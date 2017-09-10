@@ -22,6 +22,9 @@ Please refer to the [Setting up](DeveloperGuide.md#setting-up) section to learn 
 4. Type `java seedu.addressbook.Main`, then <kbd>Enter</kbd> to execute
 5. Now you can interact with the program through the CLI
 
+#### Changes from level 2
+* Address is split into block, street, unit, and postal code
+
 #### Changes from level 1
 What's different from AddressBook-Level1:
 * Support for storing address (`a/`) and tags (`t/`)
@@ -35,7 +38,7 @@ Format: `help`
  
 ### Adding a person: `add`
 Adds a person to the address book<br>
-Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...` 
+Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/BLOCK, STREET, UNIT, POSTAL_CODE [t/TAG]...` 
  
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
 > items with `...` after them can have multiple instances. Order of parameters are fixed. 

@@ -28,7 +28,7 @@ public class UpdateCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "person info updated added: %1$s";
+    public static final String MESSAGE_SUCCESS = "person info updated: %1$s";
     public static final String MESSAGE_NONEXIST_PERSON = "This person does not exist in the AddressBook";
 
     private final Person toUpdate;

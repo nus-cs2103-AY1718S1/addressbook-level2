@@ -23,7 +23,6 @@ public class DeleteCommand extends Command {
 
     public DeleteCommand(int targetVisibleIndex) {
         super(targetVisibleIndex);
-        Person.nextSequenceNumber--;
     }
 
 

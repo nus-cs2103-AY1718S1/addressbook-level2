@@ -9,8 +9,12 @@ import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 import seedu.addressbook.data.person.*;
+import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.ui.TextUi;
 import seedu.addressbook.util.TestUtil;
+
+import seedu.addressbook.commands.EditCommand;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -112,6 +116,20 @@ public class EditCommandTest {
 		}
 	}
 
+	@Test
+	public void execute_validInput_personIsEdited() throws IllegalValueException {
+		assertEditSuccessful(1, Name.EXAMPLE, Phone.EXAMPLE, true,
+				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
+				addressBook, listWithSurnameDoe);
+		assertEditSuccessful(listWithSurnameDoe.size(), Name.EXAMPLE, Phone.EXAMPLE, true,
+				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
+				addressBook, listWithSurnameDoe);
+		int middleIndex = (listWithSurnameDoe.size() / 2) + 1;
+		assertEditSuccessful(middleIndex, Name.EXAMPLE, Phone.EXAMPLE, true,
+				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
+				addressBook, listWithSurnameDoe);
+	}
+
 	/**
 	 * Asserts that the index is not valid for the given display list.
 	 */
@@ -149,7 +167,7 @@ public class EditCommandTest {
 	 * @param addressBook Addressbook instance for this edit command
 	 * @param displayList list to find person to be edited from.
 	 * @return returns the newly created command
-	 * @throws IllegalValueException
+	 * @throws IllegalValueException when there is invalid data
 	 */
 	private EditCommand createEditCommand(int targetVisibleIndex,
 										  String name,
@@ -199,5 +217,42 @@ public class EditCommandTest {
 				"An edit command was successfully constructed with invalid input: %d %s %s %s %s %s %s %s %s",
 				index, name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate, tags);
 		fail(error);
+	}
+
+	/**
+	 * Asserts that the person at the specified index can be successfully deleted.
+	 *
+	 * The addressBook passed in will not be modified (no side effects).
+	 *
+	 * @throws IllegalValueException when there is invalid data.
+	 */
+	private void assertEditSuccessful(int targetVisibleIndex, String name,
+									  String phone, boolean isPhonePrivate,
+									  String email, boolean isEmailPrivate,
+									  String address, boolean isAddressPrivate,
+									  Set<String> tags,
+									  AddressBook addressBook,
+									  List<ReadOnlyPerson> displayList) throws IllegalValueException {
+
+		Person targetPerson = (Person) displayList.get(targetVisibleIndex - TextUi.DISPLAYED_INDEX_OFFSET);
+
+		final Set<Tag> tagSet = new HashSet<>();
+		for (String tagName : tags) {
+			tagSet.add(new Tag(tagName));
+		}
+
+		Person newDetails = new Person(new Name(name), new Phone(phone, isPhonePrivate),
+				new Email(email, isEmailPrivate), new Address(address, isAddressPrivate),
+				new UniqueTagList(tagSet));
+
+		AddressBook expectedAddressBook = TestUtil.clone(addressBook);
+		expectedAddressBook.editPerson(targetPerson, newDetails);
+		String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, targetPerson);
+
+		AddressBook actualAddressBook = TestUtil.clone(addressBook);
+		EditCommand command = createEditCommand(targetVisibleIndex, name, phone, isPhonePrivate, email,
+					isEmailPrivate, address, isAddressPrivate, tags, addressBook, displayList);
+
+		assertCommandBehaviour(command, expectedMessage, expectedAddressBook, actualAddressBook);
 	}
 }

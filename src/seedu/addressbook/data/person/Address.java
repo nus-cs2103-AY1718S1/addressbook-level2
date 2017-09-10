@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
+    public static final String EXAMPLE = "123, Clem, #12-02, 1234";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be in proper format";
     public static final String ADDRESS_VALIDATION_REGEX = "(\\d+), ([\\w\\s]+), (#[\\w\\s-]+), (\\d+)";
     public static final Pattern ADDRESS_DATA_ARGS_FORMAT = Pattern.compile(ADDRESS_VALIDATION_REGEX);

@@ -11,8 +11,6 @@ import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
-import javax.naming.Name;
-
 /**
  * Represents the entire address book. Contains the data of the address book.
  *

@@ -56,6 +56,7 @@ public class UpdateCommand extends Command {
             if (!addressBook.containsPerson(target)) {
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }
+            addressBook.updatePerson(target, name, phone, email, address, tagList);
             return new CommandResult(String.format(MESSAGE_SUCCESS, target));
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

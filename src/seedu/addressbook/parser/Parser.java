@@ -33,10 +33,10 @@ public class Parser {
 
     public static final Pattern EDIT_DATA_ARGS_FORMAT =
             Pattern.compile("(?<name>[^/]+)"
-                    + "\\s*((?<isPhonePrivate>p?)p/(?<phone>[^/]+))?"
+                    + " ((?<isPhonePrivate>p?)p/(?<phone>[^/]+))?"
                     + "\\s*((?<isEmailPrivate>p?)e/(?<email>[^/]+))?"
                     + "\\s*((?<isAddressPrivate>p?)a/(?<address>[^/]+))?"
-                    + "\\s*(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+                    + "(\\s*t/(?<tagArguments>[^/]+))*"); // variable number of tags
 
 
     /**
@@ -183,7 +183,7 @@ public class Parser {
      */
     private static Set<String> getTagsFromArgs(String tagArguments) throws IllegalValueException {
         // no tags
-        if (tagArguments.isEmpty()) {
+        if (tagArguments == null || tagArguments.isEmpty()) {
             return Collections.emptySet();
         }
         // replace first delimiter prefix, then split

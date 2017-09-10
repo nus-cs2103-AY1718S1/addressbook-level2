@@ -11,7 +11,7 @@ public class Block {
     public static final String EXAMPLE = "123";
     private static final String MESSAGE_BLOCK_CONSTRAINTS =
             "Address's block should begin with a number";
-    private static final String BLOCK_VALIDATION_REGEX = "[0-9]+[^,]+";
+    private static final String BLOCK_VALIDATION_REGEX = "[0-9]+[^,]*";
 
     private final String block;
 

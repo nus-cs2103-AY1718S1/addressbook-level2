@@ -11,7 +11,7 @@ public class Address {
     public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 345678";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS =
             "Person addresses should consist of Block, Street, Unit and Postal code that are separated with comma";
-    public static final String ADDRESS_VALIDATION_REGEX = "[\\w\\s]+,[\\w\\s]+,[\\w\\s]+,[\\w\\s]+";
+    public static final String ADDRESS_VALIDATION_REGEX = "[^,]+,[^,]+,[^,]+,[^,]+";
     public static final String COMMA_SPACE = ", ";
 
     private Block block;

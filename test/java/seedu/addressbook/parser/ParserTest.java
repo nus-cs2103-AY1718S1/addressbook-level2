@@ -14,12 +14,7 @@ import org.junit.Test;
 
 import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -291,7 +286,18 @@ public class ParserTest {
      */
 
     @Test
+    public void parse_sortCommandInvalidArgs_errorMessage() {
+        final String[] inputs = {"sort"};
+        final String resultMessage =
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
 
+    @Test
+    public void parse_sortCommandValidArgs_parsedCorrectly() {
+        final String input = "sort phone asc";
+        parseAndAssertCommandType(input, SortCommand.class);
+    }
 
     /*
      * Utility methods ====================================================================================

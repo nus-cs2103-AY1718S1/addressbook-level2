@@ -36,9 +36,4 @@ public class Street {
                 || (other instanceof Street
                 && this.value.equals(((Street) other).value));
     }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
 }

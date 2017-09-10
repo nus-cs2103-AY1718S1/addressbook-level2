@@ -36,15 +36,4 @@ public class Block {
                 || (other instanceof Block
                 && this.value.equals(((Block) other).value));
     }
-
-    /**
-     * Returns the hash code of the Block
-     *
-     * @return hash code of the block
-     */
-    @Override
-    public int hashCode() {
-        // uses block number as hash code
-        return Integer.parseInt(value);
-    }
 }

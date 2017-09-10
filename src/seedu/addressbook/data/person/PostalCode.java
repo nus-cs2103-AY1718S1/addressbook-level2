@@ -4,7 +4,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
  * Represents a person's Street in his address.
- * Guarantees: immutable; is valid as declared in {@link #isValidBlock(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPostalCode(String)}
  */
 public class PostalCode {
 
@@ -16,12 +16,12 @@ public class PostalCode {
 
     public PostalCode(String postalCode) throws IllegalValueException {
         String trimmedPostalCode = postalCode.trim();
-        if (!isValidBlock(trimmedPostalCode))
+        if (!isValidPostalCode(trimmedPostalCode))
             throw new IllegalValueException(MESSAGE_POSTAL_CODE_CONSTRAINTS);
         this.value = trimmedPostalCode;
     }
 
-    private boolean isValidBlock(String test) {
+    private boolean isValidPostalCode(String test) {
         return test.matches(POSTAL_CODE_VALIDATION_REGEX);
     }
 
@@ -35,16 +35,5 @@ public class PostalCode {
         return this == other
                 || (other instanceof PostalCode
                 && this.value.equals(((PostalCode) other).value));
-    }
-
-    /**
-     * Returns the hash code of the Block
-     *
-     * @return hash code of the block
-     */
-    @Override
-    public int hashCode() {
-        // uses block number as hash code
-        return Integer.parseInt(value);
     }
 }

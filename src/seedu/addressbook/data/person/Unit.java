@@ -4,7 +4,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
  * Represents a person's Street in his address.
- * Guarantees: immutable; is valid as declared in {@link #isValidBlock(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidUnit(String)}
  */
 public class Unit {
 
@@ -17,12 +17,12 @@ public class Unit {
 
     public Unit(String unit) throws IllegalValueException {
         String trimmedUnit = unit.trim();
-        if (!isValidBlock(trimmedUnit))
+        if (!isValidUnit(trimmedUnit))
             throw new IllegalValueException(MESSAGE_UNIT_CONSTRAINTS);
         this.value = trimmedUnit;
     }
 
-    private boolean isValidBlock(String test) {
+    private boolean isValidUnit(String test) {
         return test.matches(UNIT_VALIDATION_REGEX);
     }
 
@@ -36,10 +36,5 @@ public class Unit {
         return this == other
                 || (other instanceof Unit
                 && this.value.equals(((Unit) other).value));
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
     }
 }

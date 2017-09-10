@@ -119,6 +119,9 @@
   # should update the name correctly
   update 1 Adam Smith
 
+  # should add one more tag
+  update 2 t/school
+
 ##########################################################
 # test delete person command
 ##########################################################

@@ -15,6 +15,9 @@ public class Person implements ReadOnlyPerson {
     private Email email;
     private Address address;
 
+    private int sequenceNumber;
+    private static int nextSequenceNumber = 1;
+
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.
@@ -25,6 +28,7 @@ public class Person implements ReadOnlyPerson {
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.sequenceNumber = nextSequenceNumber++;
     }
 
     /**
@@ -59,8 +63,15 @@ public class Person implements ReadOnlyPerson {
         return new UniqueTagList(tags);
     }
 
+    public int getSequenceNumber() {
+        return sequenceNumber;
+    }
+
     /**
      * Replaces this person's tags with the tags in the argument tag list.
+     *
+     * @apiNote (reserved for LO W5.5b): This method cannot be converted into a static method, because each object of
+     * the Person class has different tags and tags cannot be shared between them.
      */
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);

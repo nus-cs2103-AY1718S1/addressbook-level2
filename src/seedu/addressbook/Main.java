@@ -13,6 +13,7 @@ import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
+import seedu.addressbook.ui.Formatter;
 import seedu.addressbook.ui.TextUi;
 
 
@@ -27,6 +28,7 @@ public class Main {
 
     /** Components of the application, can be seen approximately as a MVC framework. */
     private TextUi ui;
+    private Formatter formatter;
     private StorageFile storage;
     private AddressBook addressBook;
 
@@ -57,11 +59,12 @@ public class Main {
     private void start(String[] launchArgs) {
         try {
             this.ui = new TextUi();
+            this.formatter = new Formatter();
             this.storage = initializeStorage(launchArgs);
             this.addressBook = storage.load();
-            ui.showWelcomeMessage(VERSION, storage.getPath());
+            formatter.showWelcomeMessage(VERSION, storage.getPath());
         } catch (InvalidStorageFilePathException | StorageOperationException e) {
-            ui.showInitFailedMessage();
+            formatter.showInitFailedMessage();
 
             /*
              * ==============NOTE TO STUDENTS=========================================================================
@@ -78,7 +81,7 @@ public class Main {
 
     /** Prints the Goodbye message and exits. */
     private void exit() {
-        ui.showGoodbyeMessage();
+        formatter.showGoodbyeMessage();
         System.exit(0);
     }
 
@@ -117,7 +120,7 @@ public class Main {
             storage.save(addressBook);
             return result;
         } catch (Exception e) {
-            ui.showToUser(e.getMessage());
+            formatter.showToUser(e.getMessage());
 
             // Notice: Here we throw an "unchecked" exception, do not need declaration in method signature.
             throw new RuntimeException(e);

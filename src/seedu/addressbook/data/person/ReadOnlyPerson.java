@@ -3,6 +3,8 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
+import java.util.Comparator;
+
 /**
  * A read-only immutable interface for a Person in the addressbook.
  * Implementations should guarantee: details are present and not null, field values are validated.
@@ -94,4 +96,21 @@ public interface ReadOnlyPerson {
         }
         return builder.toString();
     }
-}
+
+        /**
+         * Comparator for comparing persons.
+         */
+        Comparator<ReadOnlyPerson> READ_ONLY_PERSON_COMPARATOR = new Comparator<ReadOnlyPerson>() {
+
+            /**
+             * Compares two persons by name
+             *
+             * @param person1 first person
+             * @param person2 second person to be compared to first
+             * @return int value of compareTo. Negative if person1 should come before person2 in an ordering
+             */
+            public int compare(ReadOnlyPerson person1, ReadOnlyPerson person2) {
+                return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
+            }
+        };
+    }

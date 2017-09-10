@@ -38,11 +38,12 @@ public class Parser {
      * 2. All contact details are optional.
      */
     private static final Pattern PERSON_DATA_UPDATE_ARGS_FORMAT =
+            // '(p)p/', '(p)e/' and '(p)a/' are all optional
             Pattern.compile("(?<targetIndex>[0-9]+)"
-                    + "(?<name>[^/]*)"
-                    + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
-                    + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
-                    + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
+                    + "(?<name>([^/]+)?)"
+                    + "( (?<isPhonePrivate>p?)p/(?<phone>[^/]+))?"
+                    + "( (?<isEmailPrivate>p?)e/(?<email>[^/]+))?"
+                    + "( (?<isAddressPrivate>p?)a/(?<address>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)");
 
     /**

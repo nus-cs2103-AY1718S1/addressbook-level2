@@ -38,7 +38,8 @@ public class Parser {
      * 2. All contact details are optional.
      */
     private static final Pattern PERSON_DATA_UPDATE_ARGS_FORMAT =
-            Pattern.compile("(?<name>[^/]+)"
+            Pattern.compile("(?<targetIndex>[0-9]+)"
+                    + "(?<name>[^/]*)"
                     + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
@@ -56,7 +57,7 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     public Parser() {}
 
@@ -151,7 +152,20 @@ public class Parser {
     private Command prepareUpdate(String args) {
         final Matcher matcher = PERSON_DATA_UPDATE_ARGS_FORMAT.matcher(args.trim());
 
-        return new UpdateCommand(1);
+        // Validate arg string format
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+        }
+
+        // Attempts to parse the index number of the specified person first
+        final int targetIndex;
+        try {
+            targetIndex = Integer.parseInt(matcher.group("targetIndex"));
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        return new UpdateCommand(targetIndex);
     }
 
     /**

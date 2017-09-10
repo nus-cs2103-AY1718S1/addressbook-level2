@@ -41,11 +41,15 @@ public class UtilsTest {
         assertNotNull("abc");
         assertNotNull(1);
         assertNotNull(new Integer(1));
+        assertNull((Object) null);
 
         //more than one objects
         assertNotNull("abc", new Integer(1));
         assertNotNull("abc", 1);
         assertNotNull(new Integer(1), 1);
+        assertNull("abc", null);
+        assertNull(null, null);
+
 
     }
 
@@ -58,5 +62,9 @@ public class UtilsTest {
     }
 
     private void assertNotNull(Object... objects) { assertFalse(Utils.isAnyNull(Arrays.asList(objects))); }
+
+    private void assertNull(Object... objects) {
+        assertTrue(Utils.isAnyNull(objects));
+    }
 
 }

@@ -118,14 +118,17 @@ Format: `update INDEX [NAME] [[p]p/PHONE_NUMBER] [[p]e/EMAIL] [[p]a/ADDRESS] [t/
 > Only the index number (shown in the most recent listing) is compulsory, the else parameters are all optional.
 > 
 > If you want to update one attribute of contact details, you must specify whether it is private as well. You 
-  should *not* simple omit the `p` there.<br> For example, if the email address is previously private, it will become 
-  public if you update its value without specifying whether it is still private.<br>
+  should *not* simple omit the `p` there.<br> For example, if the email address is previously private, it will 
+  become public if you update its value without specifying whether it is still private.<br>
 > 
 > Using this command, you can only add more tags to the person. Deleting an existing tag is not supported.<br>
 > 
 > Meanwhile, error messages will be shown and the person will not be updated if you want to add a tag to the 
   person which he already obtains. For example, if John already has a tag called "friends" and you want to add
   "friends" to him again, you will see the error messages.
+> 
+> If the person is successfully updated, the command result should be similar to `add`. In other words, you 
+  will be able to see private information indicated with `(private)`.
 
 Examples:
 * `update 2 Tom Smith`<br>

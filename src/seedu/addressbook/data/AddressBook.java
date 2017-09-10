@@ -1,10 +1,5 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
@@ -13,12 +8,17 @@ import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Represents the entire address book. Contains the data of the address book.
  *
  * Guarantees:
- *  - Every tag found in every person will also be found in the tag list.
- *  - The tags in each person point to tag objects in the master list. (== equality)
+ * - Every tag found in every person will also be found in the tag list.
+ * - The tags in each person point to tag objects in the master list. (== equality)
  */
 public class AddressBook {
 
@@ -50,8 +50,8 @@ public class AddressBook {
 
     /**
      * Ensures that every tag in this person:
-     *  - exists in the master list {@link #allTags}
-     *  - points to a Tag object in the master list
+     * - exists in the master list {@link #allTags}
+     * - points to a Tag object in the master list
      */
     private void syncTagsWithMasterList(Person person) {
         final UniqueTagList personTags = person.getTags();
@@ -127,5 +127,13 @@ public class AddressBook {
                 || (other instanceof AddressBook // instanceof handles nulls
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
+    }
+
+    public boolean isEmpty() {
+        return allPersons.isEmpty();
+    }
+
+    public void executeSort() {
+        allPersons.executeSort();
     }
 }

@@ -20,6 +20,7 @@
 
   # address book should be emptied
   clear
+  sort
   list
 
 ##########################################################
@@ -139,6 +140,17 @@
   # listing indexes get updated on next request
   delete 1
   list
+
+##########################################################
+# test sort command
+##########################################################
+# last active view: [1] betsy [2] diskson
+
+  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+  list
+
+  # should sort successfully
+  sort
 
 ##########################################################
 # test clear command

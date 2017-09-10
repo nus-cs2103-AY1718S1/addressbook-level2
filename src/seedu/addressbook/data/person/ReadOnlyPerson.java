@@ -3,6 +3,8 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
+import java.util.Comparator;
+
 /**
  * A read-only immutable interface for a Person in the addressbook.
  * Implementations should guarantee: details are present and not null, field values are validated.
@@ -26,8 +28,8 @@ public interface ReadOnlyPerson {
     default boolean isSamePerson(ReadOnlyPerson other) {
         return (other == this)
                 || (other != null
-                    && other.getName().equals(this.getName())
-                    && other.getPhone().equals(this.getPhone()));
+                        && other.getName().equals(this.getName())
+                        && other.getPhone().equals(this.getPhone()));
     }
 
     /**
@@ -37,11 +39,11 @@ public interface ReadOnlyPerson {
     default boolean hasSameData(ReadOnlyPerson other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                    && other.getName().equals(this.getName()) // state checks here onwards
-                    && other.getPhone().equals(this.getPhone())
-                    && other.getEmail().equals(this.getEmail())
-                    && other.getAddress().equals(this.getAddress())
-                    && other.getTags().equals(this.getTags()));
+                        && other.getName().equals(this.getName()) // state checks here onwards
+                        && other.getPhone().equals(this.getPhone())
+                        && other.getEmail().equals(this.getEmail())
+                        && other.getAddress().equals(this.getAddress())
+                        && other.getTags().equals(this.getTags()));
     }
 
     /**
@@ -94,4 +96,21 @@ public interface ReadOnlyPerson {
         }
         return builder.toString();
     }
+
+    /**
+     * Comparator for comparing persons.
+     */
+    Comparator<ReadOnlyPerson> READ_ONLY_PERSON_COMPARATOR = new Comparator<ReadOnlyPerson>() {
+
+        /**
+         * Compares two persons by name
+         *
+         * @param person1 first person
+         * @param person2 second person to be compared to first
+         * @return int value of compareTo. Negative if person1 should come before person2 in an ordering
+         */
+        public int compare(ReadOnlyPerson person1, ReadOnlyPerson person2) {
+            return person1.getName().toString().compareToIgnoreCase(person2.getName().toString());
+        }
+    };
 }

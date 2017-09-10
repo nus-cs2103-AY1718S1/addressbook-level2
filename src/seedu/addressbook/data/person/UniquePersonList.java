@@ -1,15 +1,15 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.common.Utils;
+import seedu.addressbook.data.exception.DuplicateDataException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-
-import seedu.addressbook.common.Utils;
-import seedu.addressbook.data.exception.DuplicateDataException;
-
 
 
 /**
@@ -55,6 +55,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Constructs a list from the items in the given collection.
+     *
      * @param persons a collection of persons
      * @throws DuplicatePersonException if the {@code persons} contains duplicate persons
      */
@@ -100,8 +101,8 @@ public class UniquePersonList implements Iterable<Person> {
      * Adds a person to the list.
      *
      * @throws DuplicatePersonException if the person to add is a duplicate of an existing person in the list.
-     *    The @link{ReadOnlyPerson#isSamePerson} method is used for this comparison,
-     *    which defines a weaker notion of equality.
+     *                                  The @link{ReadOnlyPerson#isSamePerson} method is used for this comparison,
+     *                                  which defines a weaker notion of equality.
      */
     public void add(Person toAdd) throws DuplicatePersonException {
         if (contains(toAdd)) {
@@ -139,5 +140,19 @@ public class UniquePersonList implements Iterable<Person> {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && this.internalList.equals(((UniquePersonList) other).internalList));
+    }
+
+    /**
+     * Check if list is empty
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    /**
+     * Sorts all persons in list by alphabetical order
+     */
+    public void executeSort() {
+        internalList.sort(Comparator.comparing(person -> person.getName().toString().toLowerCase()));
     }
 }

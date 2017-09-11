@@ -1,7 +1,5 @@
 package seedu.addressbook.ui;
 
-import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
-
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -75,15 +73,7 @@ public class TextUi {
 
 
     public void showWelcomeMessage(String version, String storageFilePath) {
-        String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        showToUser(
-                DIVIDER,
-                DIVIDER,
-                MESSAGE_WELCOME,
-                version,
-                MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-                storageFileInfo,
-                DIVIDER);
+        showToUser(Formatter.getWelcomeMessage(version, storageFilePath));
     }
 
     public void showGoodbyeMessage() {

@@ -3,6 +3,7 @@ package seedu.addressbook.ui;
 import static seedu.addressbook.common.Messages.MESSAGE_GOODBYE;
 import static seedu.addressbook.common.Messages.MESSAGE_INIT_FAILED;
 import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE;
+import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
 import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 
 /**
@@ -30,6 +31,12 @@ public class Formatter {
     //===================================== Message Constants ===========================================
     private static final String MESSAGE_PROMPT_USER_INPUT = "Enter command: ";
     private static final String MESSAGE_FEEDBACK_COMMAND_ECHO = "[Command entered:%1$s]";
+    private static final String MESSAGE_FEEDBACK_WELCOME_MESSAGE = DIVIDER + "\n" + DIVIDER
+            + "\n" + MESSAGE_WELCOME
+            + "\n" + "%1$s"
+            + "\n" + MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE
+            + "\n" + "%2$s"
+            + "\n" + DIVIDER;
 
     public static String getUserInputPrompt() {
         return MESSAGE_PROMPT_USER_INPUT;
@@ -37,5 +44,11 @@ public class Formatter {
     
     public static String getUserCommandEcho(String userCommand) {
         return String.format(MESSAGE_FEEDBACK_COMMAND_ECHO, userCommand);
+    }
+    
+    public static String getWelcomeMessage(String version, String storageFilePath) {
+        return String.format(MESSAGE_FEEDBACK_WELCOME_MESSAGE,
+                version,
+                String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath));
     }
 }

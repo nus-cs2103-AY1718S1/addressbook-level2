@@ -87,7 +87,7 @@ public class Person implements ReadOnlyPerson {
      * @see #nextSequenceNumber
      * @return the new sequence number of the class level variable nextSequenceNumber
      */
-    public int getNextSequenceNumber() {
+    private int getNextSequenceNumber() {
         return nextSequenceNumber++;
     }
     

@@ -1,12 +1,12 @@
 package seedu.addressbook.commands;
 
+import seedu.addressbook.common.Utils;
+import seedu.addressbook.data.person.ReadOnlyPerson;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import seedu.addressbook.data.person.ReadOnlyPerson;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -20,6 +20,8 @@ public class FindCommand extends Command {
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
+
+    private static final int FIND_DISTANCE_TOLERANCE = 3;
 
     private final Set<String> keywords;
 
@@ -41,7 +43,8 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Retrieves all persons in the address book whose names contain some of the specified keywords.
+     * Retrieves all persons in the address book whose names contain some of the specified keywords,
+     * within a levenshtein distance of {@link #FIND_DISTANCE_TOLERANCE}.
      *
      * @param keywords for searching
      * @return list of persons found
@@ -49,12 +52,31 @@ public class FindCommand extends Command {
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
-            final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            if (doesPersonsNameContainAnyKeyword(person, keywords)) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
+    }
+
+    /**
+     * Returns whether a person's name contains some of the specified keywords, within a levenshtein
+     * distance of {@link #FIND_DISTANCE_TOLERANCE}.
+     *
+     * @param person   to search
+     * @param keywords for searching
+     * @return whether person's name contains keywords
+     */
+    private boolean doesPersonsNameContainAnyKeyword(ReadOnlyPerson person, Set<String> keywords) {
+        final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+        for (String a : wordsInName) {
+            for (String b : keywords) {
+                if (Utils.levenshteinDistance(a, b) < FIND_DISTANCE_TOLERANCE) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

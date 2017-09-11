@@ -42,6 +42,9 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public UniquePersonList() {}
 
+    public void Sort() {
+        Collections.sort(internalList);
+    }
     /**
      * Constructs a person list with the given persons.
      */

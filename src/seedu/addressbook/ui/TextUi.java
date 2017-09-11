@@ -69,7 +69,7 @@ public class TextUi {
             fullInputLine = in.nextLine();
         }
 
-        showToUser("[Command entered:" + fullInputLine + "]");
+        showToUser(Formatter.getUserCommandEcho(fullInputLine));
         return fullInputLine;
     }
 

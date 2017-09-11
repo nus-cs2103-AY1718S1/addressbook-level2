@@ -5,6 +5,9 @@ import static seedu.addressbook.common.Messages.MESSAGE_INIT_FAILED;
 import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE;
 import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 
+/**
+ * Text formatter utility class for text UI.
+ */
 public class Formatter {
 
 
@@ -26,9 +29,13 @@ public class Formatter {
 
     //===================================== Message Constants ===========================================
     private static final String MESSAGE_PROMPT_USER_INPUT = "Enter command: ";
+    private static final String MESSAGE_FEEDBACK_COMMAND_ECHO = "[Command entered:%1$s]";
 
     public static String getUserInputPrompt() {
         return MESSAGE_PROMPT_USER_INPUT;
     }
     
+    public static String getUserCommandEcho(String userCommand) {
+        return String.format(MESSAGE_FEEDBACK_COMMAND_ECHO, userCommand);
+    }
 }

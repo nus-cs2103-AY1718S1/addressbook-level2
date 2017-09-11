@@ -1,10 +1,6 @@
 package seedu.addressbook.commands;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
@@ -47,10 +43,11 @@ public class FindCommand extends Command {
      * @return list of persons found
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
+        final Set<String> keywordsLowerCase = new HashSet<> (Arrays.asList(keywords.toString().toLowerCase().split(",\\s|\\[|\\]")));
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
-            final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            final Set<String> wordsInName = new HashSet<>(person.getName().lowerNameCase());
+            if (!Collections.disjoint(wordsInName, keywordsLowerCase)) {
                 matchedPersons.add(person);
             }
         }

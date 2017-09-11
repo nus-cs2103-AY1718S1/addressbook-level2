@@ -1,4 +1,4 @@
-package seedu.addressbook.data.person;
+package seedu.addressbook.data.person.address;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
@@ -8,11 +8,16 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 123456";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS =
+            "Person addresses must be in format of a/block-number, street-name, unit-number, postal-code";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
+    public String value;
     private boolean isPrivate;
 
     /**
@@ -22,18 +27,29 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
-        this.isPrivate = isPrivate;
-        if (!isValidAddress(trimmedAddress)) {
+        String[] addressComponents = trimmedAddress.split(",");
+        if(!isValidAddress(trimmedAddress, addressComponents)){
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+
+        String blockComponent = addressComponents[0];
+        String streetComponent = addressComponents[1];
+        String unitComponent = addressComponents[2];
+        String postalCodeComponent = addressComponents[3];
+
+        this.isPrivate = isPrivate;
+        this.block = new Block(blockComponent);
+        this.street = new Street(streetComponent);
+        this.unit = new Unit(unitComponent);
+        this.postalCode = new PostalCode(postalCodeComponent);
         this.value = trimmedAddress;
     }
 
     /**
      * Returns true if a given string is a valid person address.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public static boolean isValidAddress(String test, String[] addressComponents) {
+        return test.matches(ADDRESS_VALIDATION_REGEX) && addressComponents.length == 4;
     }
 
     @Override

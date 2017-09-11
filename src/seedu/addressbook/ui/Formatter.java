@@ -1,5 +1,10 @@
 package seedu.addressbook.ui;
 
+import static seedu.addressbook.common.Messages.MESSAGE_GOODBYE;
+import static seedu.addressbook.common.Messages.MESSAGE_INIT_FAILED;
+import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE;
+import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
+
 public class Formatter {
 
 

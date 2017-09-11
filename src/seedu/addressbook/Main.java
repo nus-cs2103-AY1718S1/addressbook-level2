@@ -107,7 +107,7 @@ public class Main {
      */
     private CommandResult executeCommand(Command command)  {
         try {
-            command.setData(addressBook, lastShownList);
+            command.setReadOnlyData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;

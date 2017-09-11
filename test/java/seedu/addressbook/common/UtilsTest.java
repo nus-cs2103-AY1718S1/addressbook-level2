@@ -18,6 +18,8 @@ public class UtilsTest {
         assertFalse(Utils.isAnyNull(new Object(), new Object()));
         assertFalse(Utils.isAnyNull("test"));
         assertFalse(Utils.isAnyNull(""));
+        assertFalse(Utils.isAnyNull(new Object()));
+        assertFalse(Utils.isAnyNull(new Object(),"test"));
 
         // non empty list with just one null at the beginning
         assertTrue(Utils.isAnyNull((Object) null));

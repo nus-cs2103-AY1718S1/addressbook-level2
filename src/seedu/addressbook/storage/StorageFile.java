@@ -57,6 +57,14 @@ public class StorageFile {
     public final Path path;
 
     /**
+     * returns true if the file is in read only mode
+     */
+    public boolean CheckReadOnly(){
+        return  !path.toFile().canWrite();
+    }
+
+
+    /**
      * @throws InvalidStorageFilePathException if the default path is invalid
      */
     public StorageFile() throws InvalidStorageFilePathException {
@@ -99,6 +107,9 @@ public class StorageFile {
          */
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
+            if(CheckReadOnly()) {
+                throw new StorageOperationException("Error: File is in read only mode.");
+            }
 
             final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
             final Marshaller marshaller = jaxbContext.createMarshaller();

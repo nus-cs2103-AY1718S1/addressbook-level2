@@ -7,9 +7,20 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class UtilsTest {
+    @Test
+    public void isAnyNull() throws Exception {
+        String[] test1 = {"hi,", "this", "should", "fail", null};
+        String[] test2 = {"hi,", "this", "should", "pass"};
 
+        // has one null object
+        assertHasNull(test1);
+
+        //has no null object
+        assertHasNoNull(test2);
+    }
 
     @Test
     public void elementsAreUnique() throws Exception {
@@ -40,7 +51,9 @@ public class UtilsTest {
         assertTrue(Utils.elementsAreUnique(Arrays.asList(objects)));
     }
 
-    private void assertNotUnique(Object... objects) {
-        assertFalse(Utils.elementsAreUnique(Arrays.asList(objects)));
-    }
+    private void assertNotUnique(Object... objects) { assertFalse(Utils.elementsAreUnique(Arrays.asList(objects))); }
+
+    private void assertHasNull(Object... objects) { assertEquals(true, Utils.isAnyNull(objects)); }
+
+    private void assertHasNoNull(Object... objects) { assertEquals(false, Utils.isAnyNull(objects)); }
 }

@@ -104,6 +104,8 @@
   # find multiple with same keyword
   find Dickson
   # find multiple with some keywords
+  find dickson
+  # find multiple with some keywords
   find Charlie Betsy
 
 ##########################################################

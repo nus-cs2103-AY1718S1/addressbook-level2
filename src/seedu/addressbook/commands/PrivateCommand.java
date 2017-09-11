@@ -13,9 +13,10 @@ public class PrivateCommand extends Command {
     public static final String COMMAND_WORD = "private";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sets the indexed person's details to private. If not detail to be set private is not "
-            + "satisfied, all details will be set private.\n"
+            + ": Sets the indexed person's details to private. If no detail is specified, "
+            + "all details will be set private.\n"
             + "Parameters: INDEX [DETAIL]\n"
+            + "Details: phone, email, address\n"
             + "Example: " + COMMAND_WORD + " 1 " + "email";
 
     public static final String MESSAGE_SINGLE_PRIVATE_SUCCESS = "%1$s's %2$s is now private.";

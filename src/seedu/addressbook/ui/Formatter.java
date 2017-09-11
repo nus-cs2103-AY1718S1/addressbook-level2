@@ -72,18 +72,18 @@ public class Formatter {
     }
 
     /**
-     * Gets a single formatted string for multiple lines from a truncated line.
+     * Returns a single formatted string for multiple lines from a truncated line.
      * 
      * @param longLine a long string to be truncated into smaller strings
      * @return a formatted string with words reaching no more than the maximum screen width per line.
      */
     private static String getTruncatedLines(String longLine) {
-        StringTokenizer tokenizer = new StringTokenizer(longLine, " ");
+        StringTokenizer wordsRemaining = new StringTokenizer(longLine, " ");
         StringBuilder output = new StringBuilder(longLine.length());
         output.append(LINE_PREFIX);
         int lineLength = 0;
-        while (tokenizer.hasMoreTokens()) {
-            String currentWord = tokenizer.nextToken();
+        while (wordsRemaining.hasMoreTokens()) {
+            String currentWord = wordsRemaining.nextToken();
             
             if (lineLength + currentWord.length() > MAX_CONSOLE_WIDTH) {
                 output.append(getLineEnding() + SUBLINE_PREFIX);
@@ -121,15 +121,11 @@ public class Formatter {
         return MESSAGE_FEEDBACK_INIT_FAILED;
     }
     
-    public static String getFormattedFeedbackMessage(String message) {
-        return String.format(MESSAGE_FORMATTED_FEEDBACK, message.replace("\n", LS + LINE_PREFIX));
-    }
-    
     public static String getCommandResultMessage(String feedbackMessage) {
         return String.format(MESSAGE_FEEDBACK_COMMAND_RESULT, feedbackMessage);
     }
 
-    /** Formats a list of strings as a viewable indexed list. */
+    /** Returns a formatted list of strings as a viewable indexed list. */
     public static String getIndexedListForViewing(List<String> listItems) {
         final StringBuilder formatted = new StringBuilder();
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
@@ -141,7 +137,7 @@ public class Formatter {
     }
 
     /**
-     * Formats a string as a viewable indexed list item.
+     * Returns a formatted string as a viewable indexed list item.
      *
      * @param visibleIndex visible index for this listing
      */

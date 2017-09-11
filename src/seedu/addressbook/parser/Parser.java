@@ -184,7 +184,7 @@ public class Parser {
             if (args.equals("")) {
                 return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             }
-            final int targetIndex = parseEditArgsAsDisplayedIndex(args.substring(0, 2));
+            final int targetIndex = parseArgsAsDisplayedIndex(args.substring(0, 2));
             if (!isEditArgValid(args)) {
                 return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             } else {
@@ -192,6 +192,8 @@ public class Parser {
             }
         } catch (ParseException pe) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
     }
 
@@ -257,13 +259,13 @@ public class Parser {
      * @return the parsed index number
      * @throws ParseException if no region of the args string could be found for the index
      */
-    private static int parseEditArgsAsDisplayedIndex(String args) throws ParseException {
-        final Matcher matcher = PERSON_INDEX_ARGS_FORMAT.matcher(args.trim());
-        if (!matcher.matches()) {
-            throw new ParseException("Could not find index number to parse");
-        }
-        return Integer.parseInt(matcher.group("targetIndex"));
-    }
+//    private static int parseEditArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
+//        final Matcher matcher = PERSON_INDEX_ARGS_FORMAT.matcher(args.trim());
+//        if (!matcher.matches()) {
+//            throw new ParseException("Could not find index number to parse");
+//        }
+//        return Integer.parseInt(matcher.group("targetIndex"));
+//    }
 
     /**
      * Checks arguments in the context of the edit command.
@@ -280,13 +282,13 @@ public class Parser {
             if (splitArg.length > 1) {
                 for (int i = 1; i < splitArg.length - 1; i++) {
 
-                    if (isEditPrefixValid(splitArg[1].substring(0, 2))==false) {
+                    if (isEditPrefixValid(splitArg[1].substring(0, 2)) == false) {
                         isValid = false;
                     }
                     if (splitArg[1].substring(0, 2).equals("n/") || splitArg[1].substring(0, 2).equals("a/") || splitArg[1].substring(0, 2).equals("t/")) {
                         isValid = true;
                     }
-}
+                }
             }
         }
         return isValid;

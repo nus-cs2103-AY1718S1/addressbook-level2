@@ -53,6 +53,10 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
+### Listing all persons in sorted (A-Z) order: `sortedlist`
+Shows a list of all persons in the address book in sorted order.<br>
+Format: `sortedlist`
+
 ### Finding all persons containing any keyword in their name: `find`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`

@@ -116,9 +116,8 @@ public class AddressBook {
      */
     public void printAllPersons(){
         UniquePersonList PersonList= getAllPersons();
-        Iterator<Person> itr = PersonList.iterator();
-        while(itr.hasNext()){
-            System.out.println(itr.hasNext());
+        for( ReadOnlyPerson i :PersonList.immutableListView()){
+            System.out.println(i);
         }
     }
 

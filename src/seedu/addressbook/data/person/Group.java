@@ -8,7 +8,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Group {
 
-    public static final String MESSAGE_GROUP_CONSTRAINTS = "Person's group should be spaces or alphabetic characters";
+    public static final String EXAMPLE = "work";
+    public static final String MESSAGE_GROUP_CONSTRAINTS = "Person's group can only be friends, family or work!";
     public final String groupName;
     private static final String WORK = "work";
     private static final String FAMILY = "family";

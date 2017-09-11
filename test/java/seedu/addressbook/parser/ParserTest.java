@@ -305,7 +305,7 @@ public class ParserTest {
     private void parseAndAssertIncorrectWithMessage(String feedbackMessage, String... inputs) {
         for (String input : inputs) {
             final IncorrectCommand result = parseAndAssertCommandType(input, IncorrectCommand.class);
-            assertEquals(result.feedbackToUser, feedbackMessage);
+            assertEquals(result.getFeed, feedbackMessage);
         }
     }
 

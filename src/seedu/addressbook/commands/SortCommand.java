@@ -15,7 +15,8 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(){
-        return null;
+        addressBook.sortPeople();
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
 

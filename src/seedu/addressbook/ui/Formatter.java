@@ -73,7 +73,7 @@ public class Formatter {
         return String.format(MESSAGE_FEEDBACK_COMMAND_RESULT, feedbackMessage);
     }
 
-    /** Formats a list of strings as a viewable indexed list. */
+    /** Returns a formatted list of strings as a viewable indexed list. */
     public static String getIndexedListForViewing(List<String> listItems) {
         final StringBuilder formatted = new StringBuilder();
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
@@ -85,7 +85,7 @@ public class Formatter {
     }
 
     /**
-     * Formats a string as a viewable indexed list item.
+     * Returns a formatted string as a viewable indexed list item.
      *
      * @param visibleIndex visible index for this listing
      */

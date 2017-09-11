@@ -47,6 +47,38 @@ public class Address {
         return test.matches(ADDRESS_VALIDATION_REGEX);
     }
 
+    public Block getBlock(){
+        return block;
+    }
+
+    public Street getStreet(){
+        return street;
+    }
+
+    public Unit getUnit(){
+        return unit;
+    }
+
+    public PostalCode getPostalCode() {
+        return postalCode;
+    }
+
+    public void setBlock(Block block){
+        this.block = block;
+    }
+
+    public void setStreet(Street street){
+        this.street = street;
+    }
+
+    public void setUnit(Unit unit){
+        this.unit = unit;
+    }
+
+    public void setPostalCode(PostalCode postalCode) {
+        this.postalCode = postalCode;
+    }
+
     @Override
     public String toString() {
         return value;

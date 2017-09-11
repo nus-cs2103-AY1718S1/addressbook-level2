@@ -38,7 +38,10 @@ public class UtilsTest {
 
     @Test
     public void isAnyNull() throws Exception {
+        // Array has null values
         assertHasNull(new String[]{"a", "b", null});
+
+        // Array does not have null values
         assertHasNoNull(new String[]{"d"});
     }
 

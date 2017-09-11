@@ -104,10 +104,14 @@ public class UniquePersonList implements Iterable<Person> {
      *    which defines a weaker notion of equality.
      */
     public void add(Person toAdd) throws DuplicatePersonException {
-        if (contains(toAdd)) {
+        noDuplicate(toAdd);
+        internalList.add(toAdd);
+    }
+
+    public void noDuplicate(Person person) throws DuplicatePersonException {
+        if (contains(person)) {
             throw new DuplicatePersonException();
         }
-        internalList.add(toAdd);
     }
 
     /**

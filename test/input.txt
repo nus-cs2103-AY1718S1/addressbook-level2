@@ -32,7 +32,7 @@
   add Valid Name p/12345 valid@email.butNoPrefix a/valid, address
   add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address
   add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
-  
+
   # should catch invalid person data
   add []\[;] p/12345 e/valid@e.mail a/valid, address
   add Valid Name p/not_numbers e/valid@e.mail a/valid, address
@@ -139,6 +139,45 @@
   # listing indexes get updated on next request
   delete 1
   list
+
+##########################################################
+# test edit command
+##########################################################
+
+  # create recent list
+  list
+
+  # should catch invalid args format
+  add wrong args wrong args
+  edit 1 Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address
+  edit 2 Valid Name p/12345 valid@email.butNoPrefix a/valid, address
+  edit 1 Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address
+  edit 2 Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
+
+  # should catch invalid person data
+  edit 1 []\[;] p/12345 e/valid@e.mail a/valid, address
+  edit 2 Valid Name p/not_numbers e/valid@e.mail a/valid, address
+  edit 1 Valid Name p/12345 e/notAnEmail a/valid, address
+  edit 2 Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
+
+  # should catch invalid index
+  edit 3 Darrin Ee p/22222 e/benchoo@nus.edu.sg a/222, beta street t/unsecretive
+  edit 1000000 Darrin Ee p/22222 e/benchoo@nus.edu.sg a/222, beta street t/unsecretive
+  edit 0 Darrin Ee p/22222 e/benchoo@nus.edu.sg a/222, beta street t/unsecretive
+
+  # prevent creation of duplicate person with same number through edit command.
+  edit 1 Dickson Ee p/444444 pe/liver@gmail.com a/442, delta street t/friends
+
+  # allows editing of person with same name and number as change
+  edit 2 Dickson Ee p/44444 pe/liver@gmail.com a/442, delta street t/friends
+  edit 1 Betsy Choo p/22222 e/benchoo@nus.edu.sg a/222, beta street t/unsecretive
+
+  # change name
+  edit 1 Betsy Ee p/22222 e/benchoo@nus.edu.sg a/222, beta street t/unsecretive
+
+  # find the changed name
+  find Ee
+  find Choo
 
 ##########################################################
 # test clear command

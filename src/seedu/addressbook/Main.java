@@ -88,6 +88,7 @@ public class Main {
             recordResult(result);
             ui.showResultToUser(result);
 
+
         } while (!ExitCommand.isExit(command));
     }
 

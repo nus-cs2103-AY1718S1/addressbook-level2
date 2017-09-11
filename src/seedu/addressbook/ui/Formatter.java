@@ -37,6 +37,7 @@ public class Formatter {
             + "\n" + MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE
             + "\n" + "%2$s"
             + "\n" + DIVIDER;
+    private static final String MESSAGE_FEEDBACK_GOODBYE_MESSAGE = MESSAGE_GOODBYE + "\n" + DIVIDER + "\n" + DIVIDER;
 
     public static String getUserInputPrompt() {
         return MESSAGE_PROMPT_USER_INPUT;
@@ -50,5 +51,9 @@ public class Formatter {
         return String.format(MESSAGE_FEEDBACK_WELCOME_MESSAGE,
                 version,
                 String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath));
+    }
+    
+    public static String getGoodbyeMessage() {
+        return MESSAGE_FEEDBACK_GOODBYE_MESSAGE;
     }
 }

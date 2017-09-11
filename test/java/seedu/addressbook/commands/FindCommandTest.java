@@ -25,7 +25,7 @@ public class FindCommandTest {
         //same word, same case: matched
         assertFindCommandBehavior(new String[]{"Amy"}, Arrays.asList(td.amy));
 
-        //same word, different case: not matched
+        //same word, different case: matched
         assertFindCommandBehavior(new String[]{"aMy"}, Collections.emptyList());
 
         //partial word: not matched

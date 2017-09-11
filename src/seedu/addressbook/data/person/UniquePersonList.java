@@ -110,6 +110,11 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.add(toAdd);
     }
 
+    public void getWriteOnlyPerson(WriteOnlyPerson toEdit) throws PersonNotFoundException {
+        final boolean person
+                internalList.get()
+    }
+
     /**
      * Removes the equivalent person from the list.
      *

@@ -82,7 +82,7 @@ public class TextUi {
 
 
     public void showInitFailedMessage() {
-        showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);
+        showToUser(Formatter.getInitFailedMessage());
     }
 
     /** Shows message(s) to the user */

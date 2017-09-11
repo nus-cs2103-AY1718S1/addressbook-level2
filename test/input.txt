@@ -141,6 +141,19 @@
   list
 
 ##########################################################
+# test edit command
+##########################################################
+
+  # should catch PersonNotFoundException
+  edit bob p/123456
+
+  # should edit correctly
+  edit Dickson Ee p/123456
+  edit Dickson Ee e/e0000@u.nus.edu
+  edit Dickson Ee pa/PGPR, NUS
+  edit Dickson Ee t/classmates
+
+##########################################################
 # test clear command
 ##########################################################
 

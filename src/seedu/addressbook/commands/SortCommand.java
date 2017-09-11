@@ -5,6 +5,9 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
 
+/**
+ * Sorts all persons in the addressbook by alphabetical order and returns the list to the user.
+ */
 public class SortCommand extends Command{
 
     public static final String COMMAND_WORD = "sort";

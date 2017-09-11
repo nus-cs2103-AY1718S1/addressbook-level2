@@ -1,16 +1,25 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.exception.IllegalValueException;
+
 /**
  * Superclass of Email, Phone and Address
  */
 public class Contact {
-    public static final String EXAMPLE = "Phone Email Address";
     public final String value;
-    private boolean isPrivate;
+    protected boolean isPrivate;
 
-    public Contact(String value, boolean isPrivate) {
-        this.value = value;
+    public Contact(String value, boolean isPrivate, String message, String contactValidationRegex) throws IllegalValueException {
+        String trimmedContact = value.trim();
         this.isPrivate = isPrivate;
+        if (!isValidContact(trimmedContact, contactValidationRegex)) {
+            throw new IllegalValueException(message);
+        }
+        this.value = trimmedContact;
+    }
+
+    public static boolean isValidContact(String test, String regex) {
+        return test.matches(regex);
     }
 
     @Override

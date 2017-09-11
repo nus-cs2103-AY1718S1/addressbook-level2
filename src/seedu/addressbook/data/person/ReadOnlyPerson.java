@@ -13,6 +13,7 @@ public interface ReadOnlyPerson {
     Phone getPhone();
     Email getEmail();
     Address getAddress();
+    int getSeq();
 
     /**
      * Returns a new TagList that is a deep copy of the internal TagList,
@@ -70,6 +71,7 @@ public interface ReadOnlyPerson {
         for (Tag tag : getTags()) {
             builder.append(tag);
         }
+        //builder.append(" number:").append(getSeq());
         return builder.toString().trim();
     }
 

@@ -15,13 +15,20 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
+    private PostalCode postalCode;
+    private Block block;
+    private Street street;
+    private Unit unit;
+
     /**
      * Validates given address.
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Address(String address, boolean isPrivate) throws IllegalValueException {
-        String trimmedAddress = address.trim();
+    public Address(Block block, Street street, Unit unit, PostalCode postalCode,
+                   boolean isPrivate) throws IllegalValueException {
+        String trimmedAddress = block.toString().trim() + street.toString().trim()
+                + unit.toString().trim() + postalCode.toString().trim();
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);

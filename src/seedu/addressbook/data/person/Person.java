@@ -16,6 +16,10 @@ public class Person implements ReadOnlyPerson {
     private Address address;
 
     private final UniqueTagList tags;
+
+    private static final String PHONE_PREFIX = "p";
+    private static final String EMAIL_PREFIX = "e";
+    private static final String ADDRESS_PREFIX = "a";
     /**
      * Assumption: Every field must be present and not null.
      */
@@ -82,6 +86,32 @@ public class Person implements ReadOnlyPerson {
     @Override
     public String toString() {
         return getAsTextShowAll();
+    }
+
+    public void unprivateContact(String contactType){
+        switch (contactType) {
+            case PHONE_PREFIX:
+                unprivatePhone();
+                break;
+            case EMAIL_PREFIX:
+                unprivateEmail();
+                break;
+            case ADDRESS_PREFIX:
+                unprivateAddress();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void unprivatePhone(){ this.phone.unprivate(); }
+
+    public void unprivateEmail(){
+        this.email.unprivate();
+    }
+
+    public void unprivateAddress(){
+        this.email.unprivate();
     }
 
 }

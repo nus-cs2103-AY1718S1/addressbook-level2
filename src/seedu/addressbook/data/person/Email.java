@@ -11,6 +11,7 @@ public class Email {
     public static final String EXAMPLE = "valid@e.mail";
     public static final String MESSAGE_EMAIL_CONSTRAINTS =
             "Person emails should be 2 alphanumeric/period strings separated by '@'";
+    public static final String UNPRIVATE_EMAIL_MESSAGE = "Email address is not private";
     public static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
 
     public final String value;
@@ -57,5 +58,13 @@ public class Email {
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+
+    public void unprivate(){
+        if (!this.isPrivate){
+            System.out.println(UNPRIVATE_EMAIL_MESSAGE);
+            return;
+        }
+        this.isPrivate = false;
     }
 }

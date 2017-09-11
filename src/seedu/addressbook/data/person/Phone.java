@@ -10,6 +10,7 @@ public class Phone {
 
     public static final String EXAMPLE = "123456789";
     public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
+    public static final String UNPRIVATE_PHONE_MESSAGE = "Phone number is not private";
     public static final String PHONE_VALIDATION_REGEX = "\\d+";
 
     public final String value;
@@ -55,5 +56,13 @@ public class Phone {
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+
+    public void unprivate(){
+        if (!this.isPrivate){
+            System.out.println(UNPRIVATE_PHONE_MESSAGE);
+            return;
+        }
+        this.isPrivate = false;
     }
 }

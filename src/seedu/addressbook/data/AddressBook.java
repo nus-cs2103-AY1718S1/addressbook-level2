@@ -100,6 +100,15 @@ public class AddressBook {
     }
 
     /**
+     * Publicise the contact information of the indexed person from the address book.
+     *
+     * @throws PersonNotFoundException if no such Person could be found.
+     */
+    public void unprivatePerson(int targetIndex, String contactType) throws PersonNotFoundException{
+        allPersons.unprivate(targetIndex, contactType);
+    }
+
+    /**
      * Clears all persons and tags from the address book.
      */
     public void clear() {

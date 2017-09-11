@@ -1,0 +1,38 @@
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'checkstyle'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    project.ext {
+        checkstyleVersion = '7.1.2'
+    }
+
+    checkstyle {
+        toolVersion = "$checkstyleVersion"
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src']
+            }
+        }
+        test {
+            java {
+                srcDirs = ['test/java']
+            }
+        }
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.12'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+}

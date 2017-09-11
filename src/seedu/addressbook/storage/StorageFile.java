@@ -98,9 +98,6 @@ public class StorageFile {
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
-        if(!path.toFile().canWrite()) {
-            throw new ReadOnlyBufferException();
-        }
         
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
@@ -114,8 +111,6 @@ public class StorageFile {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
-        } catch (ReadOnlyBufferException robe) {
-            throw new ReadOnlyBufferException();
         }
     }
 

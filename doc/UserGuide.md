@@ -49,6 +49,20 @@ Examples:
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
+### Adding a person: `edit`
+Edits the phone number, email, or address of an existing person in the Address Book<br>
+Format: `edit NAME p/PHONE_NUMBER` or `edit NAME e/EMAIL` or `edit NAME a/ADDRESS` 
+ 
+> Words in `UPPER_CASE` are the parameters 
+> 
+> This command only takes in NAME and one additional parameter:
+> PHONE_NUMBER, EMAIL, or ADDRESS
+
+Examples: 
+* `edit John Doe p/98765432`
+* `edit Betsy Crowe e/betsycrowe@gmail.com`
+* `edit James Chow a/Blk 551 Tampines St 53 #11-213`
+
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`

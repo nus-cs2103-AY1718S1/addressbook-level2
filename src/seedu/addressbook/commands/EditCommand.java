@@ -9,8 +9,11 @@ import seedu.addressbook.data.person.*;
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits details of an existing person in the Address Book.\n"
-            + "Parameters: NAME p/PHONE(Optional) e/EMAIL(Optional) a/ADDRESS(Optional)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the phone number, email, or address "
+            + "of an existing person in the Address Book.\n"
+            + "Parameters: NAME p/PHONE \n"
+            + "OR NAME e/EMAIL\n"
+            + "OR NAME a/ADDRESS\n"
             + "Example: " + COMMAND_WORD
             + " John Doe p/98765432";
 

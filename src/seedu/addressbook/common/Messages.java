@@ -14,5 +14,6 @@ public class Messages {
     public static final String MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE = "Launch command format: " +
             "java seedu.addressbook.Main [STORAGE_FILE_PATH]";
     public static final String MESSAGE_WELCOME = "Welcome to your Address Book!";
+    public static final String MESSAGE_EDITED = "Edited by Pei Jun Wei";
     public static final String MESSAGE_USING_STORAGE_FILE = "Using storage file : %1$s";
 }

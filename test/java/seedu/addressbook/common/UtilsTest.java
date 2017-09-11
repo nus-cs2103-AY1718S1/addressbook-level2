@@ -18,21 +18,28 @@ public class UtilsTest {
         assertFalse(Utils.isAnyNull(new Object(), new Object()));
         assertFalse(Utils.isAnyNull("test"));
         assertFalse(Utils.isAnyNull(""));
+        assertFalse(Utils.isAnyNull(new Integer(10)));
+        assertFalse(Utils.isAnyNull(new Double(0.525)));
+        assertFalse(Utils.isAnyNull(new Boolean(true)));
+        assertFalse(Utils.isAnyNull(new Integer(1), new Double(0.1), new Boolean(false)));
 
         // non empty list with just one null at the beginning
         assertTrue(Utils.isAnyNull((Object) null));
         assertTrue(Utils.isAnyNull(null, "", new Object()));
         assertTrue(Utils.isAnyNull(null, new Object(), new Object()));
+        assertTrue(Utils.isAnyNull(null, new Integer(1), new Double(0.1), new Boolean(false)));
 
         // non empty list with nulls in the middle
         assertTrue(Utils.isAnyNull(new Object(), null, null, "test"));
         assertTrue(Utils.isAnyNull("", null, new Object()));
         assertTrue(Utils.isAnyNull(new Object(), null, new Object()));
+        assertTrue(Utils.isAnyNull(new Integer(1), new Double(0.1), null, new Boolean(false)));
 
         // non empty list with one null as the last element
         assertTrue(Utils.isAnyNull("", new Object(), null));
         assertTrue(Utils.isAnyNull(new Object(), new Object(), null));
         assertTrue(Utils.isAnyNull("", "", null));
+        assertTrue(Utils.isAnyNull(new Integer(1), new Double(0.1), new Boolean(false), null));
 
         // non empty list with all null elements
         assertTrue(Utils.isAnyNull(null, null, null));

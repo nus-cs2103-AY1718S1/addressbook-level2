@@ -75,6 +75,11 @@ public class Address {
         private String get() {
             return block;
         }
+
+        @Override
+        public String toString() {
+            return block;
+        }
     }
 
     private class Street {
@@ -83,6 +88,11 @@ public class Address {
             street = s;
         }
         private String get() {
+            return street;
+        }
+
+        @Override
+        public String toString() {
             return street;
         }
     }
@@ -95,6 +105,11 @@ public class Address {
         private String get() {
             return unit;
         }
+
+        @Override
+        public String toString() {
+            return unit;
+        }
     }
 
     private class PostalCode {
@@ -103,6 +118,11 @@ public class Address {
             postalCode = p;
         }
         private String get() {
+            return postalCode;
+        }
+
+        @Override
+        public String toString() {
             return postalCode;
         }
     }

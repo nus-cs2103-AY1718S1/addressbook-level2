@@ -12,6 +12,9 @@
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
+|| edit: Edits a person in the address book. New contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: INDEX NEW_NAME [p]p/NEW_PHONE [p]e/NEW_EMAIL [p]a/NEW_ADDRESS  [t/NEW_TAG]...
+|| Example: edit 1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || Clears address book permanently.
 || Example: clear
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
@@ -289,6 +292,82 @@
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  add wrong args wrong args]
+|| Invalid command format! 
+|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address]
+|| Invalid command format! 
+|| edit: Edits a person in the address book. New contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: INDEX NEW_NAME [p]p/NEW_PHONE [p]e/NEW_EMAIL [p]a/NEW_ADDRESS  [t/NEW_TAG]...
+|| Example: edit 1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 2 Valid Name p/12345 valid@email.butNoPrefix a/valid, address]
+|| Invalid command format! 
+|| edit: Edits a person in the address book. New contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: INDEX NEW_NAME [p]p/NEW_PHONE [p]e/NEW_EMAIL [p]a/NEW_ADDRESS  [t/NEW_TAG]...
+|| Example: edit 1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address]
+|| Invalid command format! 
+|| edit: Edits a person in the address book. New contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: INDEX NEW_NAME [p]p/NEW_PHONE [p]e/NEW_EMAIL [p]a/NEW_ADDRESS  [t/NEW_TAG]...
+|| Example: edit 1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 2 Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag]
+|| Tags names should be alphanumeric
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 []\[;] p/12345 e/valid@e.mail a/valid, address]
+|| Person names should be spaces or alphabetic characters
+|| ===================================================
+|| Enter command: || [Command entered:  edit 2 Valid Name p/not_numbers e/valid@e.mail a/valid, address]
+|| Person phone numbers should only contain numbers
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Valid Name p/12345 e/notAnEmail a/valid, address]
+|| Person emails should be 2 alphanumeric/period strings separated by '@'
+|| ===================================================
+|| Enter command: || [Command entered:  edit 2 Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag]
+|| Tags names should be alphanumeric
+|| ===================================================
+|| Enter command: || [Command entered:  edit 3 Darrin Ee p/22222 e/benchoo@nus.edu.sg a/222, beta street t/unsecretive]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1000000 Darrin Ee p/22222 e/benchoo@nus.edu.sg a/222, beta street t/unsecretive]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  edit 0 Darrin Ee p/22222 e/benchoo@nus.edu.sg a/222, beta street t/unsecretive]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Dickson Ee p/444444 pe/liver@gmail.com a/442, delta street t/friends]
+|| This person already exists in the address book
+|| ===================================================
+|| Enter command: || [Command entered:  edit 2 Dickson Ee p/44444 pe/liver@gmail.com a/442, delta street t/friends]
+|| Edited Person: Dickson Ee Phone: 44444 Email: (private) liver@gmail.com Address: 442, delta street Tags: [friends]
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Betsy Choo p/22222 e/benchoo@nus.edu.sg a/222, beta street t/unsecretive]
+|| Edited Person: Betsy Choo Phone: 22222 Email: benchoo@nus.edu.sg Address: 222, beta street Tags: [unsecretive]
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Betsy Ee p/22222 e/benchoo@nus.edu.sg a/222, beta street t/unsecretive]
+|| Edited Person: Betsy Ee Phone: 22222 Email: benchoo@nus.edu.sg Address: 222, beta street Tags: [unsecretive]
+|| ===================================================
+|| Enter command: || [Command entered:  find Ee]
+|| 	1. Betsy Ee Phone: 22222 Email: benchoo@nus.edu.sg Address: 222, beta street Tags: [unsecretive]
+|| 	2. Dickson Ee Phone: 44444 Address: 442, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  find Choo]
+|| 
+|| 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

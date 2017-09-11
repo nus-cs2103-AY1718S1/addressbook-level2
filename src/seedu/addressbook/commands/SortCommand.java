@@ -34,15 +34,18 @@ public class SortCommand extends Command {
         List<ReadOnlyPerson> toBeDisplayed = SortCommand(allPersons);
         return new CommandResult(getMessageForPersonListShownSummary(allPersons), toBeDisplayed);
     }
-}
 
+    private static class ObjectComparator implements Comparator<ReadOnlyPerson> {
 
- class ObjectComparator implements Comparator<ReadOnlyPerson> {
+        public int compare(ReadOnlyPerson obj1, ReadOnlyPerson obj2) {
+            String person1 = obj1.getName().toString();
+            String person2 = obj2.getName().toString();
+            return person1.compareToIgnoreCase(person2);
+        }
 
-    public int compare(ReadOnlyPerson obj1, ReadOnlyPerson obj2) {
-        String person1 = obj1.getName().toString();
-        String person2 = obj2.getName().toString();
-        return person1.compareToIgnoreCase(person2);
     }
 
 }
+
+
+

@@ -1,6 +1,5 @@
 package seedu.addressbook.ui;
 
-import java.util.Collections;
 import java.util.List;
 
 import static seedu.addressbook.common.Messages.MESSAGE_GOODBYE;
@@ -15,17 +14,13 @@ import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 public class Formatter {
 
 
-    /** The maximum console width in number of monospaced characters, not inclusive of LINE_PREFIX */
-    public static final int MAX_CONSOLE_WIDTH = 72;
-    //TODO: Add maximum line cutter (truncate help text to next line e.g. help etc if values are too long)
-    
     /** A decorative prefix added to the beginning of lines printed by AddressBook */
     private static final String LINE_PREFIX = "|| ";
 
     /** A platform independent line separator. */
     private static final String LS = System.lineSeparator();
 
-    private static final String DIVIDER = String.join("", Collections.nCopies(MAX_CONSOLE_WIDTH, "="));
+    private static final String DIVIDER = "===================================================";
 
     /** Format of indexed list item */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";

@@ -15,13 +15,24 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
+
     /**
      * Validates given address.
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Address(String address, boolean isPrivate) throws IllegalValueException {
-        String trimmedAddress = address.trim();
+    public Address(Block block, Street street, Unit unit, PostalCode postalCode,
+                   boolean isPrivate) throws IllegalValueException {
+        this.block = block;
+        this.street = street;
+        this.unit = unit;
+        this.postalCode = postalCode;
+        String trimmedAddress = block.toString().trim() + street.toString().trim()
+                + unit.toString().trim() + postalCode.toString().trim();
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
@@ -34,6 +45,38 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
+    }
+
+    public Block getBlock(){
+        return block;
+    }
+
+    public Street getStreet(){
+        return street;
+    }
+
+    public Unit getUnit(){
+        return unit;
+    }
+
+    public PostalCode getPostalCode() {
+        return postalCode;
+    }
+
+    public void setBlock(Block block){
+        this.block = block;
+    }
+
+    public void setStreet(Street street){
+        this.street = street;
+    }
+
+    public void setUnit(Unit unit){
+        this.unit = unit;
+    }
+
+    public void setPostalCode(PostalCode postalCode) {
+        this.postalCode = postalCode;
     }
 
     @Override

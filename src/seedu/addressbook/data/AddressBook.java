@@ -128,4 +128,21 @@ public class AddressBook {
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
     }
+
+    public void privatise(ReadOnlyPerson target, String targetDetail) {
+        switch (targetDetail) {
+            case "address":
+                allPersons.privatiseAddress(target);
+                break;
+            case "phone":
+                allPersons.privatisePhone(target);
+                break;
+            case "email":
+                allPersons.privatiseEmail(target);
+                break;
+            case "":
+                allPersons.privatiseAll(target);
+        }
+    }
+
 }

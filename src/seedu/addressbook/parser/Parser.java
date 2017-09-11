@@ -3,6 +3,7 @@ package seedu.addressbook.parser;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
+import java.awt.print.PrinterAbortException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,17 +12,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -41,7 +32,9 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
-
+    public static final Pattern PERSON_PRIVATE_ARGS_FORMAT =
+            Pattern.compile("(?<targetIndex>[^/ ]+)"
+                    + " ?(?<targetDetail>.*?)");
     /**
      * Signals that the user input could not be parsed.
      */
@@ -96,12 +89,36 @@ public class Parser {
         case ViewAllCommand.COMMAND_WORD:
             return prepareViewAll(arguments);
 
+        case PrivateCommand.COMMAND_WORD:
+            return preparePrivate(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
             return new HelpCommand();
+        }
+    }
+
+    /**
+     * Parses arguments in the context of the private command
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command preparePrivate(String args) {
+        final Matcher matcher = PERSON_PRIVATE_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrivateCommand.MESSAGE_USAGE));
+        }
+        try {
+            int targetIndex = Integer.parseInt(matcher.group("targetIndex"));
+            return new PrivateCommand(
+                    targetIndex,
+                    matcher.group("targetDetail")
+            );
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(nfe.getMessage());
         }
     }
 

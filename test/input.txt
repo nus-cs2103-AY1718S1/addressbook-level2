@@ -40,15 +40,15 @@
   add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
 
   # should add correctly and list non private information
-  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+  add Esther Potato p/111111 e/adam@gmail.com a/111, alpha street
   list
-  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+  add Charlie Dickson pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
   list
-  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+  add  Betsy Choo pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
   list
   add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
   list
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Adam Brown p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
 
   # should not allow adding duplicate persons
@@ -107,6 +107,16 @@
   find Charlie Betsy
 
 ##########################################################
+# test sort command
+##########################################################
+
+  # edited the add testcase such that all the names are not in alphabetical order
+  list
+
+  sort
+
+
+##########################################################
 # test delete person command
 ##########################################################
 
@@ -148,10 +158,11 @@
   clear
   list
 
+
 ##########################################################
 # test exit command
 ##########################################################
 
-  # exits properly
-  exit
-  list
+   # exits properly
+   exit
+   list

@@ -111,6 +111,29 @@ Examples:
   `viewall 1`<br>
   Views all details of the 1st person in the results of the `find` command.
 
+### Editing a person: `edit`
+Edits a person that is already in the address book<br>
+Format: `edit INDEX NEW_NAME [p]p/NEW_PHONE_NUMBER [p]e/NEW_EMAIL [p]a/NEW_ADDRESS [t/NEW_TAG]...` 
+ 
+> Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
+> items with `...` after them can have multiple instances. Order of parameters are fixed. 
+> 
+> Put a `p` before the phone / email / address prefixes to mark it as `private`. `private` details can only
+> be seen using the `viewall` command.
+> 
+> Persons can have any number of tags (including 0)
+> 
+> Edits the person at the specified `INDEX`. The index refers to the index number shown in the most recent 
+    listing.
+>
+> The `NEW_NAME` and `NEW_PHONE_NUMBER` cannot be equivalent to those of another person in the address book other 
+than those of the person to be edited.
+
+
+Examples: 
+* `edit 1 John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
+* `edit 4 Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
+
 ### Clearing all entries : `clear`
 Clears all entries from the address book.<br>
 Format: `clear`  

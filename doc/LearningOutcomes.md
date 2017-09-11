@@ -41,7 +41,7 @@ Side reading: [Code smell: Primitive Obsession](https://sourcemaking.com/refacto
 * Assume the address is entered in the following format `a/BLOCK, STREET, UNIT, POSTAL_CODE` <br>
   e.g. `a/123, Clementi Ave 3, #12-34, 231534`
 * Split the `Address` class as follows. Note: the filled diamond symbol &#9670; means an `Address` _consists of_ `Block`, `Street`, etc.<br>
-  <img src="images/AddressClasses.png" width='250'/>
+  ![](images/AddressClasses.png)
 * Update the user guide and tests to match.
 
 ------------------------------------------------------------------------------------------------------
@@ -89,7 +89,7 @@ in multiple `*Command` classes.
 ##### Exercise: Extract a `Contact` class 
 
 * Extract commonalities from `Phone`, `Email` and `Address` classes into a parent class called `Contact`.<br>
-<img src="images/ContactClassHierarchy.png" width='250' />
+![](images/ContactClassHierarchy.png)
 
 ------------------------------------------------------------------------------------------------------
 
@@ -97,7 +97,7 @@ in multiple `*Command` classes.
 
 Note how the `Person` class implements the `ReadOnlyPerson` interface so that clients who don't need write access to
 `Person` objects can access `Person` objects through the `ReadOnlyPerson` interface instead.
-<img src="images/ReadOnlyPersonUsage.png" width='600' />
+![](images/ReadOnlyPersonUsage.png)
 
 ##### References
 
@@ -106,7 +106,7 @@ Note how the `Person` class implements the `ReadOnlyPerson` interface so that cl
 ##### Exercise: Add a `Printable` interface 
 
 * Add a `Printable` interface as follows.<br>
-  <img src="images/PrintableInterface.png" width='400' />
+  ![](images/PrintableInterface.png)
 * `Override` the `getPrintableString` in classes `Name`, `Phone`, `Email`, and `Address` so that each produces a printable
   string representation of the object. e.g. `Name: John Smith`, `Phone: 12349862`
 * Add the following method in a suitable place of some other class. 
@@ -202,11 +202,11 @@ The current design does not have any association classes.
 * To support (ii) above, implement an Association Class called `Tagging` as given in the diagram below. <br>
   Each `Tagging` object will represent an adding or deleting of a tag for a specific person that happened
   during that session.<br>
-  <img src="images/TaggingClass.png" width='400' />
+  ![](images/TaggingClass.png)
 
   > Note that if the list of `Tagging`s is kept as a class-level variable the `Tagging` class, 
     the diagram would be like this:<br>
-  <img src="images/TaggingsInTagging.png" width='400' />
+  ![](images/TaggingsInTagging.png)
 
 ------------------------------------------------------------------------------------------------------
 

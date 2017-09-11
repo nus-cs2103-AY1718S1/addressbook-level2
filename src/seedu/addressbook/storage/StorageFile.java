@@ -115,8 +115,6 @@ public class StorageFile {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
-        }catch (IOException ioe) {
-            throw new StorageOperationException("Error writing to file: " + path);
         }
     }
 

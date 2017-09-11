@@ -35,7 +35,7 @@ public class Formatter {
 
 
     //===================================== Message Constants ===========================================
-    private static final String MESSAGE_PROMPT_USER_INPUT = "Enter command: ";
+    private static final String MESSAGE_PROMPT_USER_INPUT = LINE_PREFIX + "Enter command: ";
     private static final String MESSAGE_FEEDBACK_COMMAND_ECHO = "[Command entered:%1$s]";
     private static final String MESSAGE_FEEDBACK_WELCOME_MESSAGE = DIVIDER + "\n" + DIVIDER
             + "\n" + MESSAGE_WELCOME

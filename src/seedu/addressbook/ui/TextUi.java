@@ -59,7 +59,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        showToUser(Formatter.getUserInputPrompt());
+        out.print(Formatter.getUserInputPrompt());
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines

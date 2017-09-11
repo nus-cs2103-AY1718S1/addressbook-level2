@@ -35,17 +35,19 @@ public class Address {
         splitAddress(value);
 
     }
+
     /**
      * Split given address into block, unit, street and postal code.
-     *
      */
-    public void splitAddress(String value){
+    public void splitAddress(String value) {
         String[] values = value.split(",");
 
-        block = new Block(values[Block.BLOCK_VALUE_NO]);
-        postalCode = new PostalCode(Integer.parseInt(values[PostalCode.POSTAL_CODE_VALUE_NO].trim()));
-        unit = new Unit(values[Unit.UNIT_VALUE_NO]);
-        street = new Street(values[Street.STREET_VALUE_NO]);
+        if (values.length >= 4) {
+            block = new Block(values[Block.BLOCK_VALUE_NO]);
+            postalCode = new PostalCode(Integer.parseInt(values[PostalCode.POSTAL_CODE_VALUE_NO].trim()));
+            unit = new Unit(values[Unit.UNIT_VALUE_NO]);
+            street = new Street(values[Street.STREET_VALUE_NO]);
+        }
     }
 
 

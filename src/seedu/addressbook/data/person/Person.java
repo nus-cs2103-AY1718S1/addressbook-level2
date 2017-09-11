@@ -1,6 +1,9 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.person.contact.Phone;
+import seedu.addressbook.data.person.contact.Email;
+import seedu.addressbook.data.person.contact.Address;
 
 import java.util.Objects;
 

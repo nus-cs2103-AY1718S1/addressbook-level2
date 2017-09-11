@@ -1,35 +1,22 @@
 package seedu.addressbook.parser;
 
-import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import seedu.addressbook.commands.*;
+import seedu.addressbook.data.exception.IllegalValueException;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
-import seedu.addressbook.data.exception.IllegalValueException;
+import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 /**
  * Parses user input.
  */
 public class Parser {
 
-    public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("^[1-9]\\d*$");
+    public static final Pattern PASSWORD_ARGS_FORMAT = Pattern.compile("^(\\d+\\p{L}+|\\p{L}+\\d+)+$");
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
@@ -94,6 +81,7 @@ public class Parser {
             return prepareView(arguments);
 
         case ViewAllCommand.COMMAND_WORD:
+            System.out.println("check whether reach here @ parseCommand");
             return prepareViewAll(arguments);
 
         case ExitCommand.COMMAND_WORD:
@@ -204,8 +192,12 @@ public class Parser {
     private Command prepareViewAll(String args) {
 
         try {
+            System.out.println("check whether reach here @viewall start");
             final int targetIndex = parseArgsAsDisplayedIndex(args);
-            return new ViewAllCommand(targetIndex);
+            final String inputPassword = parseArgsAsDisplayedPassword(args);
+            System.out.println("targetIndex: " + targetIndex); //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            System.out.println("inputPassword: " + inputPassword);//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            return new ViewAllCommand(targetIndex, inputPassword);//check back here again later************************************************************************************************<<<<
         } catch (ParseException pe) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ViewAllCommand.MESSAGE_USAGE));
@@ -223,14 +215,34 @@ public class Parser {
      * @throws NumberFormatException the args string region is not a valid number
      */
     private int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
-        final Matcher matcher = PERSON_INDEX_ARGS_FORMAT.matcher(args.trim());
+        final String userIndex = args.split(" ")[1];
+        System.out.println(userIndex.trim());
+        final Matcher matcher = PERSON_INDEX_ARGS_FORMAT.matcher(userIndex.trim());
+        System.out.println("check whether reach here: parseaefsdisplayIndex: " + args.trim());
         if (!matcher.matches()) {
+            System.out.println("check whether reach here: matcher.matches");
             throw new ParseException("Could not find index number to parse");
         }
-        return Integer.parseInt(matcher.group("targetIndex"));
+        System.out.println("CHECK: " + matcher.group(0));
+        return Integer.parseInt(matcher.group(0));
     }
-
-
+    /**
+     * @param args arg string to parse as password string.
+     *
+     *
+     */
+    private String parseArgsAsDisplayedPassword(String args) throws ParseException, NumberFormatException{
+        final String userPassword = args.split(" ")[2];
+        System.out.println(userPassword.trim());
+        final Matcher matcher = PASSWORD_ARGS_FORMAT.matcher(userPassword.trim());
+        System.out.println(userPassword.trim());
+        if(!matcher.matches()){
+            System.out.println(userPassword.trim());
+            throw new ParseException("Password is of wrong format, no symbols should be included");
+        }
+        System.out.println("CHECK PASSWORD: " + matcher.group(1));
+        return matcher.group(1);
+    }
     /**
      * Parses arguments in the context of the find person command.
      *

@@ -41,7 +41,7 @@ public class Command {
      */
     public CommandResult execute(){
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
-    };
+    }
 
     /**
      * Supplies the data the command will operate on.
@@ -57,6 +57,7 @@ public class Command {
      * @throws IndexOutOfBoundsException if the target index is out of bounds of the last viewed listing
      */
     protected ReadOnlyPerson getTargetPerson() throws IndexOutOfBoundsException {
+        System.out.println("ReadonlyPerson: " + getTargetIndex());
         return relevantPersons.get(getTargetIndex() - DISPLAYED_INDEX_OFFSET);
     }
 

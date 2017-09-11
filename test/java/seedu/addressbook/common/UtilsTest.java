@@ -8,6 +8,10 @@ import java.util.List;
 
 import org.junit.Test;
 
+/**
+ * UtilsTest is a test file to test Utils.java using jUnit4
+ */
+
 public class UtilsTest {
 
     @Test

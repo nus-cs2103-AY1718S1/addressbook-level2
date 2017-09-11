@@ -1,9 +1,6 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -112,6 +109,17 @@ public class AddressBook {
      */
     public UniquePersonList getAllPersons() {
         return new UniquePersonList(allPersons);
+    }
+
+    /**
+     * Prints all person in current list
+     */
+    public void printAllPersons(){
+        UniquePersonList PersonList= getAllPersons();
+        Iterator<Person> itr = PersonList.iterator();
+        while(itr.hasNext()){
+            System.out.println(itr.hasNext());
+        }
     }
 
     /**

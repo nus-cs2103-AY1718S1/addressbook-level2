@@ -15,10 +15,10 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
-    private PostalCode postalCode;
     private Block block;
     private Street street;
     private Unit unit;
+    private PostalCode postalCode;
 
     /**
      * Validates given address.
@@ -27,6 +27,10 @@ public class Address {
      */
     public Address(Block block, Street street, Unit unit, PostalCode postalCode,
                    boolean isPrivate) throws IllegalValueException {
+        this.block = block;
+        this.street = street;
+        this.unit = unit;
+        this.postalCode = postalCode;
         String trimmedAddress = block.toString().trim() + street.toString().trim()
                 + unit.toString().trim() + postalCode.toString().trim();
         this.isPrivate = isPrivate;

@@ -113,6 +113,20 @@ Examples:
   `viewall 1`<br>
   Views all details of the 1st person in the results of the `find` command.
 
+### Edit a single person : `edit`
+Edit a single person's record after the listing (using previous list index)  
+Examples:
+* `edit 1 n/Ben`<br>
+  Edits this person (indexed 1 in the previous list) to change his name to Ben
+* `edit 1 t/Friend T/Enemy`<br>
+  Edits this person (indexed 1 in the previous list) to add one friend tag and delete on enemy tag if it exists
+
+### Sort this address book : `sort`
+Sort this addressBook by their names (by alphabetical order)
+Example:  
+* `sort`<br>
+  Sort and list the addressBook current record.
+
 ### Clearing all entries : `clear`
 Clears all entries from the address book.<br>
 Format: `clear`  

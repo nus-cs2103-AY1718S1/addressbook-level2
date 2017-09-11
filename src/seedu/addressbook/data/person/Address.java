@@ -13,6 +13,8 @@ public class Address {
                                                             + "'BLOCK, STREET, UNIT, POSTAL CODE' format";
     public static final String MESSAGE_ADDRESS_FORMAT = "%1$s, %2$s, %3$s, %4$s";
 
+    public static final int PARAMETERS_LENGTH = 4;
+    
     public Block block;
     public Street street;
     public Unit unit;
@@ -37,7 +39,7 @@ public class Address {
      */
     public boolean isValidAddress(String addressString) throws IllegalValueException {
         String[] addressData = getAddressData(addressString);
-        if (addressData.length != 4) {
+        if (addressData.length != PARAMETERS_LENGTH) {
             return false;
         }
 

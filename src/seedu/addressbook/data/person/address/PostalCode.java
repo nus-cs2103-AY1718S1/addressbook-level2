@@ -22,7 +22,7 @@ public class PostalCode {
     }
 
     /**
-     * Returns true if the given string is a valid person name.
+     * Returns true if the given string is a postal code.
      */
     public static boolean isValidPostalCode(String test) {
         return test.matches(POSTALCODE_VALIDATION_REGEX);

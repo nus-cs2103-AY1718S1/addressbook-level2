@@ -23,7 +23,7 @@ public class Unit {
     }
 
     /**
-     * Returns true if the given string is a valid person name.
+     * Returns true if the given string is a valid unit number.
      */
     public static boolean isValidUnit(String test) {
         return test.matches(UNIT_VALIDATION_REGEX);

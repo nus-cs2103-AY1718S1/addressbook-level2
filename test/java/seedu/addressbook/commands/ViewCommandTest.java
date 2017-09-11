@@ -17,6 +17,7 @@ import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.Phone;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.address.Address;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.util.TestUtil;
 import seedu.addressbook.util.TypicalPersons;

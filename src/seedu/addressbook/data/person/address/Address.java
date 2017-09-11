@@ -8,13 +8,10 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 123456";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS =
+            "Person addresses must be in format of a/block-number, street-name, unit-number, postal-code";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
-
-    public static final int ADDRESS_DATA_BLOCK_ORDER = 0;
-    public static final int ADDRESS_DATA_STREET_ORDER = 1;
-    public static final int ADDRESS_DATA_UNIT_ORDER = 2;
 
     private Block block;
     private Street street;
@@ -31,22 +28,28 @@ public class Address {
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
         String[] addressComponents = trimmedAddress.split(",");
-        this.isPrivate = isPrivate;
-        this.block = new Block(extractBlockFromAddressString(addressComponents[0]));
-        this.street = new Street(extractStreetFromAddressString(addressComponents[1]));
-        this.unit = new Unit(extractUnitFromAddressString(addressComponents[2]));
-        this.postalCode = new PostalCode(extractPostalCodeFromAddressString(addressComponents[3]));
-        if(!isValidAddress(trimmedAddress)){
+        if(!isValidAddress(trimmedAddress, addressComponents)){
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+
+        String blockComponent = addressComponents[0];
+        String streetComponent = addressComponents[1];
+        String unitComponent = addressComponents[2];
+        String postalCodeComponent = addressComponents[3];
+
+        this.isPrivate = isPrivate;
+        this.block = new Block(blockComponent);
+        this.street = new Street(streetComponent);
+        this.unit = new Unit(unitComponent);
+        this.postalCode = new PostalCode(postalCodeComponent);
         this.value = trimmedAddress;
     }
 
     /**
      * Returns true if a given string is a valid person address.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public static boolean isValidAddress(String test, String[] addressComponents) {
+        return test.matches(ADDRESS_VALIDATION_REGEX) && addressComponents.length == 4;
     }
 
     @Override
@@ -68,28 +71,5 @@ public class Address {
 
     public boolean isPrivate() {
         return isPrivate;
-    }
-
-    public String extractBlockFromAddressString(String encoded){
-        return encoded.trim();
-    }
-
-    public String extractStreetFromAddressString(String encoded){
-        return encoded.trim();
-    }
-
-    public String extractUnitFromAddressString(String encoded){
-        return encoded.trim();
-    }
-
-    public String extractPostalCodeFromAddressString(String encoded){
-        return encoded.trim();
-    }
-
-    public static int ordinalIndexOf(String str, String substr, int n) {
-        int pos = str.indexOf(substr);
-        while (--n > 0 && pos != -1)
-            pos = str.indexOf(substr, pos + 1);
-        return pos;
     }
 }

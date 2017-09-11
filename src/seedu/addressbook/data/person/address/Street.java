@@ -11,7 +11,7 @@ public class Street {
 
     public Street(String street) {
         String trimmedStreet = street.trim();
-        this.value = street;
+        this.value = trimmedStreet;
     }
 
 

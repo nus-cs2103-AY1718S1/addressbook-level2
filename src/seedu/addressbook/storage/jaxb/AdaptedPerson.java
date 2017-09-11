@@ -48,7 +48,8 @@ public class AdaptedPerson {
     /**
      * No-arg constructor for JAXB use.
      */
-    public AdaptedPerson() {}
+    public AdaptedPerson() {
+    }
 
 
     /**
@@ -82,7 +83,7 @@ public class AdaptedPerson {
 
     /**
      * Returns true if any required field is missing.
-     *
+     * <p>
      * JAXB does not enforce (required = true) without a given XML schema.
      * Since we do most of our validation using the data class constructors, the only extra logic we need
      * is to ensure that every xml element in the document is present. JAXB sets missing elements as null,
@@ -114,6 +115,6 @@ public class AdaptedPerson {
         final Email email = new Email(this.email.value, this.email.isPrivate);
         final Address address = new Address(this.address.value, this.address.isPrivate);
         final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Person(name, phone, email, address, tags,seq);
+        return new Person(name, phone, email, address, tags, seq);
     }
 }

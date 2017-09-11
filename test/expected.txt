@@ -1,7 +1,7 @@
 || ===================================================
 || ===================================================
 || Welcome to your Address Book!
-|| AddessBook Level 2 - Version 1.0
+|| AddressBook Level 2 - Version 1.0
 || Launch command format: java seedu.addressbook.Main [STORAGE_FILE_PATH]
 || Using storage file : addressbook.xml
 || ===================================================
@@ -25,6 +25,10 @@
 || viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
+|| private: Sets the indexed person's details to private. If no detail is specified, all details will be set private.
+|| Parameters: INDEX [DETAIL]
+|| Details: phone, email, address
+|| Example: private 1 email
 || help: Shows program usage instructions.
 || Example: help
 || exit: Exits the program.

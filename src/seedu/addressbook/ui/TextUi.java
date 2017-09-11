@@ -17,7 +17,7 @@ import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 /**
- * Text UI of the application.
+ * Text UI of the application. Subclass of Formatter to access the String formats of Formatter.
  */
 public class TextUi extends Formatter{
 

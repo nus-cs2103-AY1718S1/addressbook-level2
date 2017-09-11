@@ -1,5 +1,9 @@
 package seedu.addressbook.ui;
 
+
+/**
+ * String Formats for the AddressBook, superclass of TextUI.
+ */
 public class Formatter {
 
     /** A decorative prefix added to the beginning of lines printed by AddressBook */

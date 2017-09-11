@@ -8,7 +8,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Block {
     private final String value;
     private static final String BLOCK_VALIDATION_REGEX = "^[a-zA-Z0-9]*$";
-    private static final String MESSAGE_BLOCK_CONSTRAINTS = "Person address block must be in an alphanumeric format without special characters";
+    private static final String MESSAGE_BLOCK_CONSTRAINTS = "Person address block must be in an "
+                                                        + "alphanumeric format without special characters";
 
     /**
      * Block Constructor

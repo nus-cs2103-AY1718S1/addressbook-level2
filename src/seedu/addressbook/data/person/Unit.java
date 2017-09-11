@@ -8,7 +8,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Unit {
     private final String value;
     private static final String UNIT_VALIDATION_REGEX = "#[\\d]+-[a-zA-Z0-9]+";
-    private static final String MESSAGE_UNIT_CONSTRAINTS = "Person address unit must be in #[n]-[alphanumeric] format. n - number";
+    private static final String MESSAGE_UNIT_CONSTRAINTS = "Person address unit must be in #[n]-[alphanumeric] format. "
+                                                        + "n - number";
 
     /**
      * Unit Constructor

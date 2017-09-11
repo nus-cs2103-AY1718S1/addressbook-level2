@@ -10,8 +10,8 @@ import java.io.Console;
 public class Street {
     private final String value;
     private static final String STREET_VALIDATION_REGEX = "^[a-zA-Z0-9 ']*$";
-    private static final String MESSAGE_STREET_CONSTRAINTS = "Person address street must contain only alphanumeric " + 
-            "characters or spaces and apostrophes, without special characters";
+    private static final String MESSAGE_STREET_CONSTRAINTS = "Person address street must contain only alphanumeric "
+                                                + "characters or spaces and apostrophes, without special characters";
 
     /**
      * Street Constructor

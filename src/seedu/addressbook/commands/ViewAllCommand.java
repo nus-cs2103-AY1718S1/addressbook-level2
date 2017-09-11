@@ -1,7 +1,9 @@
 package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
+import seedu.addressbook.data.Password.PasswordStorage;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+
 
 
 /**
@@ -14,8 +16,8 @@ public class ViewAllCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the non-private details of the person "
             + "identified by the index number in the last shown person listing.\n"
-            + "Parameters: INDEX\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX PASSWORD\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PasswordStorage.getExamplePassword();//Might have a problem.  
 
     public static final String MESSAGE_VIEW_PERSON_DETAILS = "Viewing person: %1$s";
 

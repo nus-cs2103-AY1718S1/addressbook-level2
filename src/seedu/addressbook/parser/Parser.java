@@ -11,17 +11,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -77,6 +67,9 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return prepareSort();
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -158,6 +151,15 @@ public class Parser {
         return new HashSet<>(tagStrings);
     }
 
+
+    /**
+     * Prepares in the context of the sort person command.
+     *
+     * @return the prepared command
+     */
+    private Command prepareSort(){
+        return new SortCommand();
+    }
 
     /**
      * Parses arguments in the context of the delete person command.

@@ -1,5 +1,6 @@
 package seedu.addressbook.util;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -15,6 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.Test;
+import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
@@ -146,4 +149,23 @@ public class TestUtil {
     public static void assertFileDoesNotExist(String filePath) {
         assertTrue(Files.notExists(Paths.get(filePath)));
     }
+
+    @Test
+    public void isAnyNull() throws Exception {
+        assertHasNull((Object)null);
+        assertHasNull("Hello", null, "World");
+
+        assertHasNoNull();
+        assertHasNoNull("Hello", "World", ":)");
+    }
+
+    private void assertHasNoNull(Object... items) {
+        assertFalse(Utils.isAnyNull(items));
+    }
+
+    private void assertHasNull(Object... items) {
+        assertTrue(Utils.isAnyNull(items));
+    }
+
+
 }

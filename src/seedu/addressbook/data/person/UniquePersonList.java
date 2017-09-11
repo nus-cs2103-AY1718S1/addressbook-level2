@@ -39,6 +39,13 @@ public class UniquePersonList implements Iterable<Person> {
         privatiseEmail(target);
     }
 
+    public void publicAll(ReadOnlyPerson target) {
+        int targetIndex = getTargetIndex(target.getName());
+        internalList.get(targetIndex).getAddress().setPrivate(false);
+        internalList.get(targetIndex).getEmail().setPrivate(false);
+        internalList.get(targetIndex).getPhone().setPrivate(false);
+    }
+
     public int getTargetIndex(Name targetName) {
         for (int i=0;i<internalList.size();i++) {
             if (internalList.get(i).getName().equals(targetName)) {

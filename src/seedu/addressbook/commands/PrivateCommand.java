@@ -2,7 +2,6 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.person.ReadOnlyPerson;
-import seedu.addressbook.data.person.UniquePersonList;
 
 /**
  *  Sets a person's details to be private
@@ -11,6 +10,8 @@ import seedu.addressbook.data.person.UniquePersonList;
 public class PrivateCommand extends Command {
 
     public static final String COMMAND_WORD = "private";
+
+    private static final String SECRET_PASSWORD = "UNDO";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets the indexed person's details to private. If no detail is specified, "
@@ -21,6 +22,8 @@ public class PrivateCommand extends Command {
 
     public static final String MESSAGE_SINGLE_PRIVATE_SUCCESS = "%1$s's %2$s is now private.";
     public static final String MESSAGE_ALL_PRIVATE_SUCCESS = "%1$s's details are now all private";
+    public static final String MESSAGE_PUBLIC_SUCCESS = "Password accepted. %1$s's details are now all public.";
+    public static final String MESSAGE_COMMAND_FAIL = "Detail word is not accepted, please re-try.";
 
     private static String targetDetail = "";
 
@@ -37,10 +40,10 @@ public class PrivateCommand extends Command {
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }
             addressBook.privatise(target,targetDetail);
-            String returnMessage = targetDetail.equals("") ?
-                    String.format(MESSAGE_ALL_PRIVATE_SUCCESS,target.getName()) :
-                    String.format(MESSAGE_SINGLE_PRIVATE_SUCCESS,target.getName(),targetDetail);
-            return new CommandResult(returnMessage);
+            if (targetDetail.equals(SECRET_PASSWORD)) {
+                return addressBook.publicise(target);
+            }
+            return addressBook.privatise(target, targetDetail);
         } catch (IndexOutOfBoundsException ie){
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

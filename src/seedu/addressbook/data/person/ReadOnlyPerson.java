@@ -2,6 +2,9 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.person.contact.Phone;
+import seedu.addressbook.data.person.contact.Email;
+import seedu.addressbook.data.person.contact.Address;
 
 /**
  * A read-only immutable interface for a Person in the addressbook.

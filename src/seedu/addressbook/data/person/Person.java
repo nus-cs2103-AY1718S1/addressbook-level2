@@ -10,6 +10,9 @@ import java.util.Objects;
  */
 public class Person implements ReadOnlyPerson {
 
+    private static int nextSequenceNumber = 1;
+    private int sequenceNumber;
+
     private Name name;
     private Phone phone;
     private Email email;
@@ -25,6 +28,8 @@ public class Person implements ReadOnlyPerson {
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+
+        sequenceNumber = nextSequenceNumber++;
     }
 
     /**

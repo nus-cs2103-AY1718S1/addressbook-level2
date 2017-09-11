@@ -29,6 +29,7 @@
 || Example: help
 || exit: Exits the program.
 || Example: exit
+|| sort: Sorts all people by alphabetical orderNo parameter needed.
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid

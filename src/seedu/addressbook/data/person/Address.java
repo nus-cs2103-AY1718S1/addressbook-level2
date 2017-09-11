@@ -11,6 +11,7 @@ public class Address {
     public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 231534";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should be in the following format: " +
             "BLOCK, STREET, UNIT, POSTAL_CODE";
+    // matches [any number], [any alphanumeric with space], #[any number]-[any number], [any 6 digit number]
     public static final String ADDRESS_VALIDATION_REGEX = "\\d+, [\\w\\d\\s]+, #\\d+-\\d+, \\d{6}$";
 
     public final Block block;

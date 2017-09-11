@@ -204,17 +204,19 @@
 || Parameters: KEYWORD [MORE_KEYWORDS]...
 || Example: find alice bob charlie
 || ===================================================
-|| Enter command: || [Command entered:  find bet]
+|| Enter command: || [Command entered:  find betty]
+|| 	1. Betsy Choo Tags: [secretive]
 || 
-|| 0 persons listed!
+|| 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find 23912039120]
 || 
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find betsy]
+|| 	1. Betsy Choo Tags: [secretive]
 || 
-|| 0 persons listed!
+|| 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Betsy]
 || 	1. Betsy Choo Tags: [secretive]

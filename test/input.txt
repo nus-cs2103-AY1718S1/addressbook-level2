@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -96,8 +96,12 @@
   find bet
   # does not match if none have keyword
   find 23912039120
-  # matching should be case-sensitive
+  # matching should be case-insensitive
   find betsy
+  # matching should be case-insensitive
+  find bEtSy
+  # matching should be case-insensitive
+  find BETSY
 
   # find unique keyword
   find Betsy

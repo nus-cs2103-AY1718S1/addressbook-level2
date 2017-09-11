@@ -8,7 +8,7 @@ import java.util.List;
 
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the address book to the user in alphabetical order.
  */
 public class SortCommand extends Command {
 
@@ -16,7 +16,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts all people in the address book in alphabetical order and then display "
-            + "all persons in the address book as a list with index numbers.\n"
+            + "the list with index numbers.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final Comparator<Person> ALPHABETICAL_COMPARATOR

@@ -85,8 +85,8 @@ public class AddressBook {
     /**
      * Returns true if an equivalent person exists in the address book.
      */
-    public Person editPerson(Person toEdit, String arg) throws IllegalValueException {
-        {
+    public Person editPerson(Person toEdit, String arg, int targetIndex) throws IllegalValueException {
+
             String[] splitArg = arg.split(" ");
             final Set<Tag> tagSet = new HashSet<>();
             for (int i = 0; i < splitArg.length; i++) {
@@ -115,8 +115,9 @@ public class AddressBook {
                 }
 
             }
+        allPersons.edit(toEdit,targetIndex-1);
 
-        }
+
         return toEdit;
     }
 

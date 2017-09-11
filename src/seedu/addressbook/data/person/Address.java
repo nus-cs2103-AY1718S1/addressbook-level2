@@ -34,11 +34,11 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
-        String[] addressSplit = trimmedAddress.split(",");
-        block = new Block(addressSplit[0]);
-        street = new Street(addressSplit[1]);
-        unit = new Unit(addressSplit[2]);
-        postalCode = new PostalCode(addressSplit[3]);
+//        String[] addressSplit = trimmedAddress.split(",");
+//        block = new Block(addressSplit[0]);
+//        street = new Street(addressSplit[1]);
+//        unit = new Unit(addressSplit[2]);
+//        postalCode = new PostalCode(addressSplit[3]);
     }
 
     /**

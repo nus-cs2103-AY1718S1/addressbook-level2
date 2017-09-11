@@ -194,6 +194,8 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         } catch (NumberFormatException nfe) {
             return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 

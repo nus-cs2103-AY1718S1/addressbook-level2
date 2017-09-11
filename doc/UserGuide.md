@@ -52,7 +52,7 @@ Examples:
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
 ### Editing a person: `edit`
-Edits a person on the address book based on the index of that person. Private details cannot be edited. Ony can edit 1 parameter at a time.<br>
+Edits a person on the address book based on the index of that person on the list. Private details cannot be edited. Ony can edit 1 parameter at a time.<br>
 Format: `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` 
  
 > Words in `UPPER_CASE` are the parameters, 

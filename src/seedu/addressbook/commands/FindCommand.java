@@ -47,7 +47,10 @@ public class FindCommand extends Command {
 
         Set<String> lowKeywords = new HashSet<String>();
         Iterator<String> itr = keywords.iterator();
-        lowKeywords.add(itr.next().toLowerCase());
+
+        while(itr.hasNext()) {
+            lowKeywords.add(itr.next().toLowerCase());
+        }
 
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());

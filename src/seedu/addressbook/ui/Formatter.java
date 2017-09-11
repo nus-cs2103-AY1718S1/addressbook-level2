@@ -22,5 +22,13 @@ public class Formatter {
     /** Offset required to convert between 1-indexing and 0-indexing.  */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
 
+    //TODO: Add maximum line cutter (truncate help text to next line e.g. help etc if values are too long)
 
+    //===================================== Message Constants ===========================================
+    private static final String MESSAGE_PROMPT_USER_INPUT = "Enter command: ";
+
+    public static String getUserInputPrompt() {
+        return MESSAGE_PROMPT_USER_INPUT;
+    }
+    
 }

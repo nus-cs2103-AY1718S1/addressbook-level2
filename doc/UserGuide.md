@@ -44,6 +44,11 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > be seen using the `viewall` command.
 > 
 > Persons can have any number of tags (including 0)
+>
+> Three items will show after successful execution of add command
+> i) List of persons added prior the latest person
+> ii) Number of person added prior the latest person
+> iii) Detail of the latest person added
 
 Examples: 
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`

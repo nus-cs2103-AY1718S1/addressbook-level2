@@ -65,6 +65,19 @@ public class Person implements ReadOnlyPerson {
     }
 
     /**
+     * Returns a concatenated version of the printable strings of each object.
+     */
+    public String getPrintableString(Printable... printables){
+        String output="";
+
+        for(Printable p:printables){
+            output+=p.getPrintableString()+" ";
+        }
+
+        return output;
+    }
+
+    /**
      * Replaces this person's tags with the tags in the argument tag list.
      */
     public void setTags(UniqueTagList replacement) {
@@ -87,6 +100,8 @@ public class Person implements ReadOnlyPerson {
     @Override
     public String toString() {
         return getAsTextShowAll();
+        //Using LO Interface Segregation Principle
+        //return getPrintableString(name,phone,email,address,birthday);
     }
 
 }

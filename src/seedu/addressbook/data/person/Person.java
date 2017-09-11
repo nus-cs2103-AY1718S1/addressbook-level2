@@ -15,6 +15,10 @@ public class Person implements ReadOnlyPerson {
     private Email email;
     private Address address;
 
+    private int sequenceNumber;
+
+    private static int nextSequenceNumber = 1;
+
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.
@@ -25,6 +29,7 @@ public class Person implements ReadOnlyPerson {
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        setSequenceNumber(getNextSequenceNumber());
     }
 
     /**
@@ -66,6 +71,26 @@ public class Person implements ReadOnlyPerson {
         tags.setTags(replacement);
     }
 
+    /**
+     * Sets the sequence number for the Person instance
+     * 
+     * @see #sequenceNumber
+     * @param number the number to be set to the Person instance variable sequenceNumber
+     */
+    private void setSequenceNumber(int number) {
+        sequenceNumber = number;
+    }
+
+    /**
+     * Returns the new sequence number to be set for a new person instance and increments by 1.
+     * 
+     * @see #nextSequenceNumber
+     * @return the new sequence number of the class level variable nextSequenceNumber
+     */
+    public int getNextSequenceNumber() {
+        return nextSequenceNumber++;
+    }
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

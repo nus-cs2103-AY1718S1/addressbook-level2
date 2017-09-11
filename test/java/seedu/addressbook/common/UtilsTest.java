@@ -8,7 +8,36 @@ import java.util.List;
 
 import org.junit.Test;
 
+/**
+ * UtilsTest is a test file to test Utils.java using jUnit4
+ */
+
 public class UtilsTest {
+
+    @Test
+    public void isAnyNull() throws Exception {
+
+        //objects without null
+        assertNotNull(1);
+        assertNotNull("");
+        assertNotNull("abc");
+        assertNotNull("abc", "ab", "a");
+        assertNotNull(1, 2);
+        assertNotNull("abc", "abc");
+        assertNotNull("abc", "", "abc", "ABC");
+        assertNotNull("", "abc", "a", "abc");
+        assertNotNull(1, new Integer(1));
+
+        //objects with 1 null
+        assertNull((Object) null);
+        assertNull(1, new Integer(1), null);
+        assertNull(null, 1, new Integer(1));
+
+        //objects with multiple nulls
+        assertNull(null, null);
+        assertNull(null, "a", "b", null);
+        assertNull("a", null, "b", null, "c", null);
+    }
 
 
     @Test
@@ -17,7 +46,7 @@ public class UtilsTest {
         assertAreUnique();
 
         // only one object
-        assertAreUnique((Object) null);
+        assertAreUnique(null, "asd");
         assertAreUnique(1);
         assertAreUnique("");
         assertAreUnique("abc");
@@ -42,5 +71,17 @@ public class UtilsTest {
 
     private void assertNotUnique(Object... objects) {
         assertFalse(Utils.elementsAreUnique(Arrays.asList(objects)));
+    }
+
+    private void assertNotNull(Object... objects) {
+        assertFalse(Utils.isAnyNull(objects));
+    }
+
+    private void assertNull(Object... objects) {
+        for(Object object: objects) {
+            if(object == null) {
+                assertTrue(Utils.isAnyNull(objects));
+            }
+        }
     }
 }

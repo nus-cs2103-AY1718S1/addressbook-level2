@@ -12,7 +12,8 @@ public class Email extends Contact {
 
     public static final String EXAMPLE = "valid@e.mail";
     public static final String MESSAGE_EMAIL_CONSTRAINTS =
-            "Person emails should be 2 alphanumeric/period strings separated by '@'";
+            "Person emails should be an alphanumeric/symbol string before an '@' and an alphanumeric/period string after,"
+                    + " adhering to the RFC5322 internet message format for emails as prescribed by IETF.";
     public static final Pattern EMAIL_VALIDATION_REGEX = 
             Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x" +
                     "0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?" +

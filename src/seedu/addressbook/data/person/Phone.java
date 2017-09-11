@@ -11,7 +11,8 @@ import java.util.regex.Pattern;
 public class Phone extends Contact {
 
     public static final String EXAMPLE = "123456789";
-    public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
+    public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers or follow "
+                                                        + "the E164 phone number format prescribed by ITU.";
     public static final Pattern PHONE_VALIDATION_REGEX = Pattern.compile("^\\+?[1-9]\\d{1,14}$");
 
     /**

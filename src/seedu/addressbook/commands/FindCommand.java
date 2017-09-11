@@ -53,10 +53,10 @@ public class FindCommand extends Command {
         keywords.addAll(Arrays.asList(keywordsIntermediate));
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final List<String> wordsIntermediate= person.getName().getWordsInName();
-            ListIterator<String> iterator = wordsIntermediate.listIterator();
-            while (iterator.hasNext())
+            ListIterator<String> wordIterator = wordsIntermediate.listIterator();
+            while (wordIterator.hasNext())
             {
-                iterator.set(iterator.next().toLowerCase());
+                wordIterator.set(wordIterator.next().toLowerCase());
             }
             final Set<String> wordsInName = new HashSet<>(wordsIntermediate);
             if (!Collections.disjoint(wordsInName, keywords)) {

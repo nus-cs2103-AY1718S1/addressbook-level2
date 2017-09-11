@@ -17,7 +17,6 @@ import seedu.addressbook.data.person.Phone;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.UniqueTagList;
-import seedu.addressbook.ui.TextUi;
 import seedu.addressbook.util.TestUtil;
 
 public class DeleteByNameCommandTest {
@@ -70,8 +69,8 @@ public class DeleteByNameCommandTest {
                                           List<ReadOnlyPerson> displayList) throws PersonNotFoundException {
 
         ReadOnlyPerson targetPerson = null;
-        for (ReadOnlyPerson person : displayList){
-            if (person.getName().toString().equals(name)){
+        for (ReadOnlyPerson person : displayList) {
+            if (person.getName().toString().equals(name)) {
                 targetPerson = person;
             }
         }
@@ -85,7 +84,8 @@ public class DeleteByNameCommandTest {
      * Asserts that the person at the specified index cannot be deleted, because that person
      * is not in the address book.
      */
-    private void assertDeletionFailsDueToNoSuchPerson(String name, AddressBook addressBook, List<ReadOnlyPerson> displayList) {
+    private void assertDeletionFailsDueToNoSuchPerson(String name, AddressBook addressBook,
+                                                      List<ReadOnlyPerson> displayList) {
 
         String expectedMessage = Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK;
 

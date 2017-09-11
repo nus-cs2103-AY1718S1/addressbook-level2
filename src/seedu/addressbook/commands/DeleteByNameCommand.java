@@ -27,20 +27,20 @@ public class DeleteByNameCommand extends Command {
             boolean found = false;
             ReadOnlyPerson target = null;
             for (ReadOnlyPerson person : addressBook.getAllPersons()) {
-                if (person.getName().toString().equals(personToBeDeleted)){
+                if (person.getName().toString().equals(personToBeDeleted)) {
                     target = person;
                     found = true;
                     break;
                 }
             }
-            if (found){
+            if (found) {
                 addressBook.removePerson(target);
                 return new CommandResult(String.format(MESSAGE_DELETE_PERSON_BY_NAME_SUCCESS, target));
             }  else {
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }
 
-        }catch (IndexOutOfBoundsException ie) {
+        } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
         } catch (PersonNotFoundException pnfe) {
             return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);

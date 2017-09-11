@@ -3,8 +3,10 @@ package seedu.addressbook.common;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import org.junit.Test;
 
@@ -35,6 +37,14 @@ public class UtilsTest {
         // confirms nulls inside the list are not considered
         List<Object> nullList = Arrays.asList((Object) null);
         assertFalse(Utils.isAnyNull(nullList));
+
+        //non empty list with no single null
+        assertNoNull("a","b","c","d");
+        assertNoNull("abc","cba","bac");
+
+        //non empty list with at least one null
+        assertHasNull(null,"a","abc");
+        assertHasNull("abc","a","cba",null);
     }
 
     @Test
@@ -69,4 +79,8 @@ public class UtilsTest {
     private void assertNotUnique(Object... objects) {
         assertFalse(Utils.elementsAreUnique(Arrays.asList(objects)));
     }
+
+    private void assertNoNull(Object... objects) { assertFalse(Utils.isAnyNull(objects));}
+
+    private void assertHasNull(Object... objects) { assertTrue(Utils.isAnyNull(objects));}
 }

@@ -33,10 +33,10 @@ public class Address {
         }
 
         String[] splitAddress = trimmedAddress.split(", ");
-        block = new Block(splitAddress[0]);
-        street = new Street(splitAddress[1]);
-        unit = new Unit(splitAddress[2]);
-        postalCode = new PostalCode(splitAddress[3]);
+        block = new Block(splitAddress[Block.ADDRESS_INDEX]);
+        street = new Street(splitAddress[Street.ADDRESS_INDEX]);
+        unit = new Unit(splitAddress[Unit.ADDRESS_INDEX]);
+        postalCode = new PostalCode(splitAddress[PostalCode.ADDRESS_INDEX]);
     }
 
     /**
@@ -68,6 +68,8 @@ public class Address {
     }
 
     private class Block {
+        public static final int ADDRESS_INDEX = 0;
+
         private final String block;
         private Block(String b) {
             block = b;
@@ -83,6 +85,8 @@ public class Address {
     }
 
     private class Street {
+        public static final int ADDRESS_INDEX = 1;
+
         private final String street;
         private Street(String s) {
             street = s;
@@ -98,6 +102,8 @@ public class Address {
     }
 
     private class Unit {
+        public static final int ADDRESS_INDEX = 2;
+
         private final String unit;
         private Unit(String u) {
             unit = u;
@@ -113,6 +119,8 @@ public class Address {
     }
 
     private class PostalCode {
+        public static final int ADDRESS_INDEX = 3;
+
         private final String postalCode;
         private PostalCode(String p) {
             postalCode = p;

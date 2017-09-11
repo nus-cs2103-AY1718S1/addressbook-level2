@@ -66,6 +66,15 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Editing a person : `edit`
+Edits the specified filed of specified person to new value. Irreversible.<br>
+Format: `edit INDEX FIELD NEWVALUE`
+
+Examples: 
+* `list`<br>
+`edit 2 Name Yang`<br>
+Edits the 2nd person's name as Yang.
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`

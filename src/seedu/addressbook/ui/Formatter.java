@@ -44,6 +44,7 @@ public class Formatter {
             + "\n" + DIVIDER;
     private static final String MESSAGE_FEEDBACK_GOODBYE_MESSAGE = MESSAGE_GOODBYE + "\n" + DIVIDER + "\n" + DIVIDER;
     private static final String MESSAGE_FEEDBACK_INIT_FAILED = MESSAGE_INIT_FAILED + "\n" + DIVIDER + "\n" + DIVIDER;
+    private static final String MESSAGE_FEEDBACK_COMMAND_RESULT = "%1$s" + "\n" + DIVIDER;
 
     public static String getUserInputPrompt() {
         return MESSAGE_PROMPT_USER_INPUT;
@@ -66,4 +67,9 @@ public class Formatter {
     public static String getInitFailedMessage() {
         return MESSAGE_FEEDBACK_INIT_FAILED;
     }
+    
+    public static String getCommandResultMessage(String feedbackMessage) {
+        return String.format(MESSAGE_FEEDBACK_COMMAND_RESULT, feedbackMessage);
+    }
+
 }

@@ -35,7 +35,7 @@ Format: `help`
  
 ### Adding a person: `add`
 Adds a person to the address book<br>
-Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...` 
+Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/BLOCK, STREET, UNIT, POSTAL_CODE [t/TAG]...` 
  
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
 > items with `...` after them can have multiple instances. Order of parameters are fixed. 
@@ -57,14 +57,17 @@ Format: `list`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
+> The search is not case sensitive, the order of the keywords does not matter, only the name is searched, 
 and persons matching at least one keyword will be returned (i.e. `OR` search).
+> Individual characters can be used to search for names which contains them.
 
 Examples: 
 * `find John`<br>
-  Returns `John Doe` but not `john`
+  Returns `John Doe`
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
+* `find j`<br>
+  Returns Any person having names with `j`, `josh`, or `Raj`
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>

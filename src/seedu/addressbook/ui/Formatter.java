@@ -2,6 +2,9 @@ package seedu.addressbook.ui;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
 
 import static seedu.addressbook.common.Messages.MESSAGE_GOODBYE;
 import static seedu.addressbook.common.Messages.MESSAGE_INIT_FAILED;
@@ -17,7 +20,7 @@ public class Formatter {
 
     /** The maximum console width in number of monospaced characters, not inclusive of LINE_PREFIX */
     public static final int MAX_CONSOLE_WIDTH = 72;
-    //TODO: Add maximum line cutter (truncate help text to next line e.g. help etc if values are too long)
+    private static final String SUBLINE_PREFIX = "    ";
     
     /** A decorative prefix added to the beginning of lines printed by AddressBook */
     private static final String LINE_PREFIX = "|| ";
@@ -48,6 +51,54 @@ public class Formatter {
     private static final String MESSAGE_FEEDBACK_COMMAND_RESULT = "%1$s" + "\n" + DIVIDER;
     private static final String MESSAGE_FORMATTED_FEEDBACK = LINE_PREFIX + "%1$s";
 
+    /**
+     * Returns a formatted string collection obtained from a big string into several,
+     * smaller strings that can be shown to the user directly.
+     * 
+     * @param longString A very long string possibly separated by line breaks.
+     * @return An array of line strings that can be shown to the user.
+     */
+    public static Queue<String> getFormattedLines(String longString) {
+        String[] lines = longString.split("\n");
+        Queue<String> formattedLines = new LinkedList<>();
+        for (String line: lines) {
+            if (line.length() > MAX_CONSOLE_WIDTH) {
+                formattedLines.add(getTruncatedLines(line));
+            } else {
+                formattedLines.add(LINE_PREFIX + line);
+            }
+        }
+        return formattedLines;
+    }
+
+    /**
+     * Gets a single formatted string for multiple lines from a truncated line.
+     * 
+     * @param longLine a long string to be truncated into smaller strings
+     * @return a formatted string with words reaching no more than the maximum screen width per line.
+     */
+    private static String getTruncatedLines(String longLine) {
+        StringTokenizer tokenizer = new StringTokenizer(longLine, " ");
+        StringBuilder output = new StringBuilder(longLine.length());
+        output.append(LINE_PREFIX);
+        int lineLength = 0;
+        while (tokenizer.hasMoreTokens()) {
+            String currentWord = tokenizer.nextToken();
+            
+            if (lineLength + currentWord.length() > MAX_CONSOLE_WIDTH) {
+                output.append(getLineEnding() + SUBLINE_PREFIX);
+                lineLength = SUBLINE_PREFIX.length();
+            }
+            output.append(currentWord + " ");
+            lineLength += currentWord.length() + 1;
+        }
+        return output.toString();
+    }
+    
+    private static String getLineEnding() {
+        return LS + LINE_PREFIX;
+    }
+    
     public static String getUserInputPrompt() {
         return MESSAGE_PROMPT_USER_INPUT;
     }

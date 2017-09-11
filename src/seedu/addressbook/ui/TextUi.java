@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.Queue;
 
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -88,7 +89,10 @@ public class TextUi {
     /** Shows message(s) to the user */
     public void showToUser(String... message) {
         for (String m : message) {
-            out.println(Formatter.getFormattedFeedbackMessage(m));
+            Queue<String> formattedLines = Formatter.getFormattedLines(m);
+            while (!formattedLines.isEmpty()) {
+                out.println(formattedLines.remove());
+            }
         }
     }
 

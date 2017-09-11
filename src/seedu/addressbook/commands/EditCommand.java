@@ -11,7 +11,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the phone number, email, or address "
             + "of an existing person in the Address Book.\n"
-            + "Parameters: NAME p/PHONE \n"
+            + "Parameters: NAME p/PHONE\n"
             + "OR NAME e/EMAIL\n"
             + "OR NAME a/ADDRESS\n"
             + "Example: " + COMMAND_WORD

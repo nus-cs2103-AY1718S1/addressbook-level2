@@ -290,6 +290,29 @@
 || 
 || 2 persons listed!
 || ===================================================
+|| Enter command: || [Command entered:  edit Betsy Choo k/INVALID]
+|| Invalid command format! 
+|| edit: Edits the phone number, email, or address of an existing person in the Address Book.
+|| Parameters: NAME p/PHONE
+|| OR NAME e/EMAIL
+|| OR NAME a/ADDRESS
+|| Example: edit John Doe p/98765432
+|| ===================================================
+|| Enter command: || [Command entered:  edit Betsy Choo e/not an email]
+|| The parameters supplied seem to be incorrect!
+|| ===================================================
+|| Enter command: || [Command entered:  edit Elon Musk p/62353535]
+|| This person doesn't exist in the address book, use the 'add' command to add a new person!
+|| ===================================================
+|| Enter command: || [Command entered:  edit Betsy Choo p/62353535]
+|| Person edited: Betsy Choo Phone: (private) 62353535 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
+|| ===================================================
+|| Enter command: || [Command entered:  edit Betsy Choo e/newEmail@domain.com]
+|| Person edited: Betsy Choo Phone: (private) 62353535 Email: (private) newEmail@domain.com Address: (private) 222, beta street Tags: [secretive]
+|| ===================================================
+|| Enter command: || [Command entered:  edit Betsy Choo a/My New Address Street #12-213]
+|| Person edited: Betsy Choo Phone: (private) 62353535 Email: (private) newEmail@domain.com Address: (private) My New Address Street #12-213 Tags: [secretive]
+|| ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!
 || ===================================================

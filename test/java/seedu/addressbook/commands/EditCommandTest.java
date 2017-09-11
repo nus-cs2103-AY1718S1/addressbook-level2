@@ -77,7 +77,7 @@ public class EditCommandTest {
 	}
 
 	@Test
-	public void addCommand_invalidPhone_throwsException() {
+	public void editCommand_invalidPhone_throwsException() {
 		final String[] invalidNumbers = { "", " ", "1234-5678", "[]\\[;]", "abc", "a123", "+651234" };
 		for (String number : invalidNumbers) {
 			assertConstructingInvalidEditCmdThrowsException(1, Name.EXAMPLE, number, false, Email.EXAMPLE, true,
@@ -86,7 +86,7 @@ public class EditCommandTest {
 	}
 
 	@Test
-	public void addCommand_invalidEmail_throwsException() {
+	public void editCommand_invalidEmail_throwsException() {
 		final String[] invalidEmails = { "", " ", "def.com", "@", "@def", "@def.com", "abc@",
 				"@invalid@email", "invalid@email!", "!invalid@email" };
 		for (String email : invalidEmails) {
@@ -96,7 +96,7 @@ public class EditCommandTest {
 	}
 
 	@Test
-	public void addCommand_invalidAddress_throwsException() {
+	public void editCommand_invalidAddress_throwsException() {
 		final String[] invalidAddresses = { "", " " };
 		for (String address : invalidAddresses) {
 			assertConstructingInvalidEditCmdThrowsException(1, Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
@@ -105,7 +105,7 @@ public class EditCommandTest {
 	}
 
 	@Test
-	public void addCommand_invalidTags_throwsException() {
+	public void editCommand_invalidTags_throwsException() {
 		final String[][] invalidTags = { { "" }, { " " }, { "'" }, { "[]\\[;]" }, { "validTag", "" },
 				{ "", " " } };
 		for (String[] tags : invalidTags) {

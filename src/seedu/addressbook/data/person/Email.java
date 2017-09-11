@@ -21,11 +21,4 @@ public class Email extends Contact {
     public Email(String email, boolean isPrivate) throws IllegalValueException {
         super(email, isPrivate, MESSAGE_EMAIL_CONSTRAINTS, EMAIL_VALIDATION_REGEX);
     }
-
-    /**
-     * Returns true if the given string is a valid person email.
-     */
-    public static boolean isValidEmail(String test) {
-        return test.matches(EMAIL_VALIDATION_REGEX);
-    }
 }

@@ -20,11 +20,4 @@ public class Phone extends Contact{
     public Phone(String phone, boolean isPrivate) throws IllegalValueException {
         super(phone, isPrivate, MESSAGE_PHONE_CONSTRAINTS, PHONE_VALIDATION_REGEX);
     }
-
-    /**
-     * Returns true if the given string is a valid person phone number.
-     */
-    public static boolean isValidPhone(String test) {
-        return test.matches(PHONE_VALIDATION_REGEX);
-    }
 }

@@ -20,11 +20,4 @@ public class Address extends Contact{
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         super(address, isPrivate, MESSAGE_ADDRESS_CONSTRAINTS, ADDRESS_VALIDATION_REGEX);
     }
-
-    /**
-     * Returns true if a given string is a valid person address.
-     */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
-    }
 }

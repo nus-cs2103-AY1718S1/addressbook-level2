@@ -3,6 +3,7 @@ package seedu.addressbook.parser;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,17 +12,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -40,7 +31,6 @@ public class Parser {
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
-
 
     /**
      * Signals that the user input could not be parsed.
@@ -89,6 +79,9 @@ public class Parser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return prepareSort(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return prepareView(arguments);
@@ -145,6 +138,22 @@ public class Parser {
     }
 
     /**
+     * Checks the string for a valid argument to sort,
+     * @param argument
+     * @return argument if it is valid, othwerwise, throws ParseException
+     */
+    private static String getArgFromCommand(String argument) throws ParseException {
+        String argLowerCase = argument.toLowerCase();
+
+        switch (argLowerCase) {
+            case SortCommand.COMMAND_ARG_NAME: case SortCommand.COMMAND_ARG_PHONE: case SortCommand.COMMAND_ARG_EMAIL:
+                return argument;
+            default: throw new ParseException("Unable to sort by : " + argument + "\n");
+        }
+    }
+
+
+    /**
      * Extracts the new person's tags from the add command's tag arguments string.
      * Merges duplicate tag strings.
      */
@@ -173,6 +182,24 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         } catch (NumberFormatException nfe) {
             return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+    }
+
+    /**
+     * Parses arguments in the context of the sort person command.
+     *
+     * @param args  full command args string
+     * @return the prepared command
+     */
+
+    private Command prepareSort(String args) {
+        try {
+            String commandArg = getArgFromCommand(args.trim());
+            return new SortCommand(commandArg);
+
+        } catch (ParseException pe) {
+            return new IncorrectCommand(pe.getMessage() +
+                    SortCommand.MESSAGE_USAGE);
         }
     }
 

@@ -6,11 +6,27 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class UtilsTest {
 
-
+    @Test
+    public void isAnyNull() throws Exception{
+        //has at least 1 null obj
+        assertAreNull((Object)null);
+        assertAreNull((Object) null, null, null);
+        assertAreNull((Object) null, 1, 2, 3);
+        //has no null obj
+        assertAreNotNull(1);
+        assertAreNotNull(1,2,3);
+    }
+    private void assertAreNull(Object... item) {
+        assertTrue(Utils.isAnyNull(item));
+    }
+    private void assertAreNotNull(Object... item) {
+        assertFalse(Utils.isAnyNull(item));
+    }
     @Test
     public void elementsAreUnique() throws Exception {
         // empty list

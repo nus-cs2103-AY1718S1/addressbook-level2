@@ -23,7 +23,7 @@ import seedu.addressbook.ui.TextUi;
 public class Main {
 
     /** Version info of the program. */
-    public static final String VERSION = "AddessBook Level 2 - Version 1.0";
+    public static final String VERSION = "AddressBook Level 2 - Version 1.0";
 
     private TextUi ui;
     private StorageFile storage;
@@ -55,7 +55,7 @@ public class Main {
             this.ui = new TextUi();
             this.storage = initializeStorage(launchArgs);
             this.addressBook = storage.load();
-            ui.showWelcomeMessage(VERSION, storage.getPath());
+            ui.showWelcomeMessAage(VERSION, storage.getPath());
 
         } catch (InvalidStorageFilePathException | StorageOperationException e) {
             ui.showInitFailedMessage();

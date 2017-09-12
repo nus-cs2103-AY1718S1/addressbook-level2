@@ -72,13 +72,6 @@ public class SortableCommand extends Command {
         
         ArrayList<ReadOnlyPerson> sortedPersons = new ArrayList<>(unsortedPersons);
 
-        // Trivial port: If there is a sort argument that is undefined, return an empty result set.
-        for (String argument : sortArguments) {
-            if (!isValidSortArgument(argument)) {
-                return new ArrayList<>();
-            }
-        }
-
         // Using a multi-argument comparator, we implement sort by x then by y then by z... efficiently.
         sortedPersons.sort((person1, person2) -> {
             int c = 0;

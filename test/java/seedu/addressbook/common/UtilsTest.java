@@ -1,12 +1,12 @@
 package seedu.addressbook.common;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UtilsTest {
     @Test
@@ -35,6 +35,8 @@ public class UtilsTest {
         // confirms nulls inside the list are not considered
         List<Object> nullList = Arrays.asList((Object) null);
         assertFalse(Utils.isAnyNull(nullList));
+
+
     }
 
     @Test

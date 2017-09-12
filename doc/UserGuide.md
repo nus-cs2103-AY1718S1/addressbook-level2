@@ -42,16 +42,31 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > 
 > Put a `p` before the phone / email / address prefixes to mark it as `private`. `private` details can only
 > be seen using the `viewall` command.
-> 
+>
+> Note that address must be in the following format:`a/BLOCK, STREET, UNIT, POSTAL_CODE`
+
 > Persons can have any number of tags (including 0)
 
 Examples: 
-* `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
-* `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
+* `add John Doe p/98765432 e/johnd@gmail.com a/123, Clementi Ave 3, #12-34, 231534`
+* `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/College of Alice and Peter Tan,
+8 College Avenue East, #11-55, 138615 t/criminal t/friend`
 
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`
+
+### Sorts all the people by the alphabetical order of their names
+Displays the name details of all the people.<br>
+Format: `sort`
+
+Examples:
+* `sort`<br>
+  List out all the names in AddressBook in alphabetical order.
+
+### Add and list all persons : `add&list`
+Add a person to the AddressBook(see add for further information) and shows a list of all persons in the address book.<br>
+Format: `add&list`
 
 ### Finding all persons containing any keyword in their name: `find`
 Finds persons whose names contain any of the given keywords.<br>
@@ -100,7 +115,10 @@ Examples:
 Displays all details (including private details) of the specified person.<br>
 Format: `viewall INDEX`
 
-> Views all details of the person at the specified `INDEX`. 
+
+
+
+> Views all details of the person at the specified `INDEX`.
   The index refers to the index number shown in the most recent listing.
 
 Examples: 

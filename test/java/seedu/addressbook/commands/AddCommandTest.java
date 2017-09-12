@@ -125,7 +125,8 @@ public class AddCommandTest {
 
         assertTrue(people.contains(p));
         assertEquals(1, people.immutableListView().size());
-        assertFalse(result.getRelevantPersons().isPresent());
+        assertTrue(result.getRelevantPersons().isPresent());
+        assertTrue(result.getRelevantPersonsFeedback().isPresent());
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, p), result.feedbackToUser);
     }
 

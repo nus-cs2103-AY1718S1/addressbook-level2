@@ -126,10 +126,17 @@ public class TextUi {
      */
     public void showResultToUser(CommandResult result) {
         final Optional<List<? extends ReadOnlyPerson>> resultPersons = result.getRelevantPersons();
-        if (resultPersons.isPresent()) {
+        final Optional<String> resultSecondaryFeedback = result.getRelevantPersonsFeedback();
+        if (resultSecondaryFeedback.isPresent()) {
+            showToUser(result.feedbackToUser);
             showPersonListView(resultPersons.get());
-        }
-        showToUser(result.feedbackToUser, DIVIDER);
+            showToUser(resultSecondaryFeedback.get(), DIVIDER);
+        } else {
+            if (resultPersons.isPresent()) {
+                showPersonListView(resultPersons.get());
+            }
+            showToUser(result.feedbackToUser, DIVIDER);
+        }        
     }
 
     /**

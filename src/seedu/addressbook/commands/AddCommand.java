@@ -1,6 +1,7 @@
 package seedu.addressbook.commands;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.addressbook.data.exception.IllegalValueException;
@@ -13,9 +14,10 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.ui.TextUi;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the address book and lists the persons in the addressbook
  */
 public class AddCommand extends Command {
 
@@ -67,10 +69,12 @@ public class AddCommand extends Command {
     public CommandResult execute() {
         try {
             addressBook.addPerson(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
+            String feedbackToUser = String.format(MESSAGE_SUCCESS, toAdd);
+            String relevantPersonsFeedback = getMessageForPersonListShownSummary(allPersons);
+            return new CommandResult(feedbackToUser, allPersons, relevantPersonsFeedback);
         } catch (UniquePersonList.DuplicatePersonException dpe) {
             return new CommandResult(MESSAGE_DUPLICATE_PERSON);
         }
     }
-
 }

@@ -122,12 +122,12 @@
   delete 3
 
   # should catch attempt to delete something already deleted
-  delete 2
-  delete 2
+  delete 4
+  delete 4
 
   # should catch attempt to view something already deleted
-  view 2
-  viewall 2
+  view 4
+  viewall 4
 
   # should have deleted based on last active view's index
   list

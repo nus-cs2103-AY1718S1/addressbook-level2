@@ -33,11 +33,15 @@ public class SortCommandTest {
                 new UniqueTagList());
 
         addressBook = TestUtil.createAddressBook(johnDoe, janeDoe, davidGrant, samDoe);
-
         unsortedList = TestUtil.createList(johnDoe, janeDoe, davidGrant, samDoe);
+
+        // List in alphabetical order of name
         alphabeticalList = TestUtil.createList(davidGrant, janeDoe, johnDoe, samDoe);
+
+        // List in increasing order of name length
         lengthList = TestUtil.createList(samDoe, johnDoe, janeDoe, davidGrant);
 
+        // Sorting commands for test, 0 for alphabetical order, 1 for order in length
         alphabeticalSort = createSortCommand(0, addressBook, unsortedList);
         lengthSort = createSortCommand(1, addressBook, unsortedList);
     }
@@ -56,6 +60,13 @@ public class SortCommandTest {
         return command;
     }
 
+    /**
+     * Executes the command, and checks that the execution was what we had expected.
+     * @param sortCommand type of sort command to be tested
+     * @param actualList the expected result
+     * @param supposedToBeTrue whether the comparison between the expected and actual outputs is supposed to be
+     *                         true or false
+     */
     private void assertCommandBehaviour(SortCommand sortCommand,
                                             List<ReadOnlyPerson> actualList, boolean supposedToBeTrue) {
         final CommandResult result = sortCommand.execute();

@@ -1,6 +1,9 @@
 package seedu.addressbook.commands;
 
+import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
+
+import java.util.List;
 
 /**
  * Sort records in the AddressBook
@@ -13,7 +16,7 @@ public class SortCommand extends Command{
             + "Example: " + COMMAND_WORD
             + " asc";
 
-    public static final String MESSAGE_SUCCESS = "Successfully Sorted";
+    public static final String MESSAGE_SUCCESS = "Successfully Sorted!";
     public static final String MESSAGE_FAILURE = "Unable to sort.";
 
     private final String order;
@@ -27,7 +30,8 @@ public class SortCommand extends Command{
     public CommandResult execute() {
         try {
             addressBook.sortBook(order);
-            return new CommandResult(String.format(MESSAGE_SUCCESS));
+            List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
+            return new CommandResult(getMessageForPersonListShownSummaryAfterSort(allPersons), allPersons);
         } catch (Exception e) {
             return new CommandResult(MESSAGE_FAILURE);
         }

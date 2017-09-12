@@ -49,6 +49,23 @@ public class AddCommandTest {
                     Block.EXAMPLE, false, Street.EXAMPLE, false, Unit.EXAMPLE, false, PostalCode.EXAMPLE, false, EMPTY_STRING_LIST);
         }
     }
+    @Test
+    public void addCommand_invalidUnit_throwsException() {
+        final String[] invalidUnit = { "", " ", "#a", "1-2", "#a-"};
+        for (String unit : invalidUnit) {
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, unit, false,
+                    Block.EXAMPLE, false, Street.EXAMPLE, false, Unit.EXAMPLE, false, PostalCode.EXAMPLE, false, EMPTY_STRING_LIST);
+        }
+    }
+    @Test
+    public void addCommand_invalidPostalCode_throwsException() {
+        final String[] invalidPostalCodes = { "", " ", "abv", "123sdf", "12345", "1234567"};
+        for (String postalCode : invalidPostalCodes) {
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, postalCode, false,
+                    Block.EXAMPLE, false, Street.EXAMPLE, false, Unit.EXAMPLE, false, PostalCode.EXAMPLE, false, EMPTY_STRING_LIST);
+        }
+    }
+
 
     @Test
     public void addCommand_invalidTags_throwsException() {

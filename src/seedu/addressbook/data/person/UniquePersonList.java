@@ -121,20 +121,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Sorts all persons in list by their name in lexicographical order
      */
     public void sort() {
-        Collections.sort(internalList, new Comparator<Person>() {
-            @Override
-            public int compare(Person o1, Person o2) {
-                String o1Name = o1.getName().toString();
-                String o2Name = o2.getName().toString();
-
-                if (o1Name.compareTo(o2Name) < 0)
-                    return -1;
-                else if (o1Name.compareTo(o2Name) > 0)
-                    return 1;
-                else
-                    return 0;
-            }
-        });
+        Collections.sort(internalList, new sortByPerson());
     }
 
     /**

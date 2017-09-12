@@ -89,7 +89,7 @@ public class Person implements ReadOnlyPerson, Comparable<Person> {
         if (this.name.fullName.compareTo(person.name.fullName) == 0) 
             return 0;
         else
-            return this.name.fullName.compareTo(person.name.fullName) > 0 ? 1:-1;
+            return this.name.fullName.compareToIgnoreCase(person.name.fullName) > 0 ? 1:-1;
     }
 
 }

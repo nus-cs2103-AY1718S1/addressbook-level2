@@ -77,7 +77,7 @@ public class Parser {
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
 
-        case FindByNameIgnoreCase.COMMAND_WORD:
+        case FindNameCommand.COMMAND_WORD:
             return prepareFindName(arguments);
 
         case ListCommand.COMMAND_WORD:
@@ -252,7 +252,7 @@ public class Parser {
         // keywords delimited by whitespace
         final String[] keywords = matcher.group("keywords").split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-        return new FindByNameIgnoreCase(keywordSet.toString().toLowerCase());
+        return new FindNameCommand(keywordSet);
     }
 
 

@@ -9,7 +9,7 @@ import java.util.Set;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
-public class FindByNameIgnoreCase extends Command{
+public class FindNameCommand extends Command{
     public static final String COMMAND_WORD = "findName";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
@@ -19,8 +19,9 @@ public class FindByNameIgnoreCase extends Command{
 
 
     private String keywords;
-    public FindByNameIgnoreCase(String keywords){
-        this.keywords = keywords;
+    private String modifiedKeywords;
+    public FindNameCommand(Set<String> keywords){
+        this.keywords = keywords.toString().toLowerCase();
     }
     public CommandResult execute() {
         final List<ReadOnlyPerson> personsFound = getPersonsWithNameContainingAnyKeywordIgnoreCase(keywords);

@@ -97,7 +97,10 @@ public interface ReadOnlyPerson {
         return builder.toString();
     }
 
-    public static Comparator compareByName = new Comparator<ReadOnlyPerson>() {
+    /**
+     * Compares two ReadOnlyPerson objects by name
+     */
+    public static Comparator<ReadOnlyPerson> compareByName = new Comparator<ReadOnlyPerson>() {
         @Override
         public int compare(ReadOnlyPerson p1, ReadOnlyPerson p2) {
             return p1.getName().compareTo(p2.getName());

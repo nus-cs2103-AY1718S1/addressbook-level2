@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlValue;
 
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.exception.SequenceNumberOverflowException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -38,6 +39,8 @@ public class AdaptedPerson {
     private AdaptedContactDetail email;
     @XmlElement(required = true)
     private AdaptedContactDetail address;
+    @XmlElement(required = true)
+    private int sequenceNumber;
 
     @XmlElement
     private List<AdaptedTag> tagged = new ArrayList<>();
@@ -55,6 +58,7 @@ public class AdaptedPerson {
      */
     public AdaptedPerson(ReadOnlyPerson source) {
         name = source.getName().fullName;
+        sequenceNumber = source.getSequenceNumber();
 
         phone = new AdaptedContactDetail();
         phone.isPrivate = source.getPhone().isPrivate();
@@ -98,7 +102,7 @@ public class AdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Person toModelType() throws IllegalValueException {
+    public Person toModelType() throws IllegalValueException, SequenceNumberOverflowException {
         final List<Tag> personTags = new ArrayList<>();
         for (AdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());

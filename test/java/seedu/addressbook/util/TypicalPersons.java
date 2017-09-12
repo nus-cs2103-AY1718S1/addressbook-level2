@@ -2,6 +2,7 @@ package seedu.addressbook.util;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.exception.SequenceNumberOverflowException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -30,6 +31,8 @@ public class TypicalPersons {
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
+        } catch (SequenceNumberOverflowException snoe) {
+            assert false : "not possible";
         }
     }
 
@@ -39,6 +42,8 @@ public class TypicalPersons {
                 ab.addPerson(new Person(p));
             }
         } catch (IllegalValueException e) {
+            assert false : "not possible";
+        } catch (SequenceNumberOverflowException snoe) {
             assert false : "not possible";
         }
     }

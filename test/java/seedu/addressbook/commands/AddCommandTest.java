@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.exception.SequenceNumberOverflowException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -87,6 +88,8 @@ public class AddCommandTest {
             new AddCommand(name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate,
                     tags);
         } catch (IllegalValueException e) {
+            return;
+        } catch (SequenceNumberOverflowException snoe) {
             return;
         }
         String error = String.format(

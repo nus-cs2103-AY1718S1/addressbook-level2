@@ -10,6 +10,7 @@ import org.junit.Test;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.exception.SequenceNumberOverflowException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -63,7 +64,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_targetPersonNotInAddressBook_returnsPersonNotFoundMessage()
-            throws IllegalValueException {
+            throws IllegalValueException, SequenceNumberOverflowException {
         Person notInAddressBookPerson = new Person(new Name("Not In Book"), new Phone("63331444", false),
                 new Email("notin@book.com", false), new Address("156D Grant Road", false), new UniqueTagList());
         List<ReadOnlyPerson> listWithPersonNotInAddressBook = TestUtil.createList(notInAddressBookPerson);

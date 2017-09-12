@@ -24,6 +24,7 @@ import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.exception.SequenceNumberOverflowException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -280,6 +281,8 @@ public class ParserTest {
             );
         } catch (IllegalValueException ive) {
             throw new RuntimeException("test person data should be valid by definition");
+        } catch (SequenceNumberOverflowException snoe) {
+            throw new RuntimeException("number of test persons should be smaller than max_int");
         }
     }
 

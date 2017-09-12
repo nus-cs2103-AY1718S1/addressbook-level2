@@ -2,6 +2,7 @@ package seedu.addressbook.storage.jaxb;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.exception.SequenceNumberOverflowException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.data.person.Person;
@@ -73,7 +74,7 @@ public class AdaptedAddressBook {
      * Converts this jaxb-friendly {@code AdaptedAddressBook} object into the corresponding(@code AddressBook} object.
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public AddressBook toModelType() throws IllegalValueException {
+    public AddressBook toModelType() throws IllegalValueException, SequenceNumberOverflowException {
         final List<Tag> tagList = new ArrayList<>();
         final List<Person> personList = new ArrayList<>();
         for (AdaptedTag tag : tags) {

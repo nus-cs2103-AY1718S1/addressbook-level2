@@ -1,5 +1,6 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.exception.SequenceNumberOverflowException;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 import java.util.Objects;
@@ -14,24 +15,35 @@ public class Person implements ReadOnlyPerson {
     private Phone phone;
     private Email email;
     private Address address;
+    private int sequenceNumber;
+    private static int nextSequenceNumber = 1;
 
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) throws SequenceNumberOverflowException {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.sequenceNumber = getAndIncrementSequenceNumber();
     }
 
     /**
      * Copy constructor.
      */
-    public Person(ReadOnlyPerson source) {
+    public Person(ReadOnlyPerson source) throws SequenceNumberOverflowException {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+    }
+    
+    private static int getAndIncrementSequenceNumber() throws SequenceNumberOverflowException {
+        nextSequenceNumber += 1;
+        if (nextSequenceNumber < 0) {
+            throw new SequenceNumberOverflowException("The total number of insertions exceeded max: " + Integer.MAX_VALUE);
+        }
+        return nextSequenceNumber - 1;
     }
 
     @Override
@@ -58,6 +70,9 @@ public class Person implements ReadOnlyPerson {
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
     }
+    
+    @Override
+    public int getSequenceNumber() { return sequenceNumber; }
 
     /**
      * Replaces this person's tags with the tags in the argument tag list.

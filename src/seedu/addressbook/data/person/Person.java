@@ -16,6 +16,7 @@ public class Person implements ReadOnlyPerson {
     private Address address;
 
     private final UniqueTagList tags;
+
     /**
      * Assumption: Every field must be present and not null.
      */

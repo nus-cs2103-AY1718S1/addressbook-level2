@@ -33,13 +33,13 @@ public class DeleteCommandTest {
     @Before
     public void setUp() throws Exception {
         Person johnDoe = new Person(new Name("John Doe"), new Phone("61234567", false),
-                new Email("john@doe.com", false), new Address("395C Ben Road", false), new UniqueTagList());
+                new Email("john@doe.com", false), new Address("395, Ben Road, #395-01, 560395", false), new UniqueTagList());
         Person janeDoe = new Person(new Name("Jane Doe"), new Phone("91234567", false),
-                new Email("jane@doe.com", false), new Address("33G Ohm Road", false), new UniqueTagList());
+                new Email("jane@doe.com", false), new Address("33, Ohm Road, #33-33, 533333", false), new UniqueTagList());
         Person samDoe = new Person(new Name("Sam Doe"), new Phone("63345566", false),
-                new Email("sam@doe.com", false), new Address("55G Abc Road", false), new UniqueTagList());
+                new Email("sam@doe.com", false), new Address("55, Abc Road, #55-55, 5555", false), new UniqueTagList());
         Person davidGrant = new Person(new Name("David Grant"), new Phone("61121122", false),
-                new Email("david@grant.com", false), new Address("44H Define Road", false),
+                new Email("david@grant.com", false), new Address("44, Define Road 3, #44-44, 4444", false),
                 new UniqueTagList());
 
         emptyAddressBook = TestUtil.createAddressBook();
@@ -65,7 +65,7 @@ public class DeleteCommandTest {
     public void execute_targetPersonNotInAddressBook_returnsPersonNotFoundMessage()
             throws IllegalValueException {
         Person notInAddressBookPerson = new Person(new Name("Not In Book"), new Phone("63331444", false),
-                new Email("notin@book.com", false), new Address("156D Grant Road", false), new UniqueTagList());
+                new Email("notin@book.com", false), new Address("44, Define Road 3, #44-44, 4444", false), new UniqueTagList());
         List<ReadOnlyPerson> listWithPersonNotInAddressBook = TestUtil.createList(notInAddressBookPerson);
 
         assertDeletionFailsDueToNoSuchPerson(1, addressBook, listWithPersonNotInAddressBook);
@@ -93,7 +93,7 @@ public class DeleteCommandTest {
      * @param targetVisibleIndex of the person that we want to delete
      */
     private DeleteCommand createDeleteCommand(int targetVisibleIndex, AddressBook addressBook,
-                                                                      List<ReadOnlyPerson> displayList) {
+                                              List<ReadOnlyPerson> displayList) {
 
         DeleteCommand command = new DeleteCommand(targetVisibleIndex);
         command.setData(addressBook, displayList);
@@ -109,7 +109,7 @@ public class DeleteCommandTest {
 
         CommandResult result = deleteCommand.execute();
 
-        assertEquals(expectedMessage, result.feedbackToUser);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedAddressBook.getAllPersons(), actualAddressBook.getAllPersons());
     }
 
@@ -117,7 +117,7 @@ public class DeleteCommandTest {
      * Asserts that the index is not valid for the given display list.
      */
     private void assertDeletionFailsDueToInvalidIndex(int invalidVisibleIndex, AddressBook addressBook,
-                                                                        List<ReadOnlyPerson> displayList) {
+                                                      List<ReadOnlyPerson> displayList) {
 
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
@@ -130,7 +130,7 @@ public class DeleteCommandTest {
      * is not in the address book.
      */
     private void assertDeletionFailsDueToNoSuchPerson(int visibleIndex, AddressBook addressBook,
-                                                                        List<ReadOnlyPerson> displayList) {
+                                                      List<ReadOnlyPerson> displayList) {
 
         String expectedMessage = Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK;
 
@@ -140,7 +140,7 @@ public class DeleteCommandTest {
 
     /**
      * Asserts that the person at the specified index can be successfully deleted.
-     *
+     * <p>
      * The addressBook passed in will not be modified (no side effects).
      *
      * @throws PersonNotFoundException if the selected person is not in the address book

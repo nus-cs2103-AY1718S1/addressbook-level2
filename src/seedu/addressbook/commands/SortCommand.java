@@ -19,14 +19,21 @@ public class SortCommand extends Command{
 
     private final String parameter;
 
-    public String getParameter() {
-        return parameter;
-    }
-
     public SortCommand(String parameter) {
         this.parameter = parameter;
     }
 
+    /**
+     * Returns a copy of the parameter in this command.
+     */
+    public String getParameter() {
+        return parameter;
+    }
+
+    /**
+     * Sorts the persons in the address book based on the parameter chosen
+     * @return A success message if sorting works
+     */
     @Override
     public CommandResult execute() {
         addressBook.sortByParameter(parameter);

@@ -133,9 +133,9 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Removes the equivalent person from the list.
+     * Chooses which sorting algorithm to call based on the input parameter
      *
-     * @throws PersonNotFoundException if no such person could be found in the list.
+     * @throws InvalidParameterException if no valid parameter was passed into the array
      */
     public void sort(String parameter) throws InvalidParameterException {
         switch (parameter) {
@@ -153,6 +153,12 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Sorts the persons in the list by name using quick sort
+     * @param min The lower index
+     * @param max The upper index
+     * @throws IndexOutOfBoundsException if min or max happens to exceed the range of the internalList
+     */
     private void quickSortByName(int min, int max) throws IndexOutOfBoundsException {
         if (internalList.size() == 0) {
             return;
@@ -188,6 +194,12 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Sorts the persons in the list by phone using quick sort
+     * @param min The lower index
+     * @param max The upper index
+     * @throws IndexOutOfBoundsException if min or max happens to exceed the range of the internalList
+     */
     private void quickSortByPhone(int min, int max) throws IndexOutOfBoundsException {
         if (internalList.size() == 0) {
             return;
@@ -223,6 +235,12 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Sorts the persons in the list by email using quick sort
+     * @param min The lower index
+     * @param max The upper index
+     * @throws IndexOutOfBoundsException if min or max happens to exceed the range of the internalList
+     */
     private void quickSortByEmail(int min, int max) throws IndexOutOfBoundsException {
         if (internalList.size() == 0) {
             return;

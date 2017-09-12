@@ -116,6 +116,7 @@
   edit 1 p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
 
   # should edit correctly and list non private information
+  list
   edit 1 p/666666
   list
   edit 2 n/Issac Newton

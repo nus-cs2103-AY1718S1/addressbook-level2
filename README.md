@@ -15,7 +15,7 @@
 
 # Contributors
 
-Affalen, Halinx, Vanessa Lim Shi Min, Xavier Xie and SE-EDU Project Team.
+SE-EDU Project Team and Hailin.
 
 # Contact Us
 

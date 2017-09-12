@@ -26,7 +26,6 @@ public class Address {
     private static final int ADDRESS_UNIT_INDEX = 2;
     private static final int ADDRESS_POSTAL_CODE_INDEX = 3;
 
-    public final String value;
     private boolean isPrivate;
 
     private Block block;
@@ -52,29 +51,32 @@ public class Address {
             postalCode = new PostalCode(addressData[ADDRESS_POSTAL_CODE_INDEX]);
 
             this.isPrivate = isPrivate;
-            this.value = trimmedAddress;
 
         } catch (IllegalValueException error) {
             throw new IllegalValueException(error.getMessage());
         }
-
+    
+    }
+    
+    public String getValue(){
+        return block.toString() + ", " + street.toString() + ", " + unit.toString() + ", " + postalCode.toString();
     }
 
     @Override
     public String toString() {
-        return value;
+        return this.getValue();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                && this.getValue().equals(((Address) other).getValue())); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.getValue().hashCode();
     }
 
     public boolean isPrivate() {

@@ -25,24 +25,31 @@ public class SortCommand extends Command {
             + "Example: " + COMMAND_WORD + "[name/phone/email]";
 
     public static PersonComparator sortType;
+    final List<ReadOnlyPerson> preSortedList = new ArrayList<ReadOnlyPerson>();
+
 
     public SortCommand(PersonComparator sortType){
         this.sortType = sortType;
     }
 
-    private List<ReadOnlyPerson> getPreSortedList(){
-        final List<ReadOnlyPerson> preSortedList = new ArrayList<ReadOnlyPerson>();
+    public void createPreSortedList(){
+        preSortedList.clear();
         preSortedList.addAll(addressBook.getAllPersons().immutableListView());
-
-        return preSortedList;
     }
 
 
     @Override
     public CommandResult execute() {
-        List<ReadOnlyPerson> persons = getPreSortedList();
-        persons.sort(PersonComparator.getComparator(sortType));
+
+        List<ReadOnlyPerson> persons = getSortedList();
         return new CommandResult(getMessageForPersonListShownSummary(persons), persons);
+    }
+
+    public List<ReadOnlyPerson> getSortedList(){
+        createPreSortedList();
+        preSortedList.sort(PersonComparator.getComparator(sortType));
+        List<ReadOnlyPerson> sortedPersons = preSortedList;
+        return sortedPersons;
     }
 
     public enum PersonComparator implements Comparator<ReadOnlyPerson> {

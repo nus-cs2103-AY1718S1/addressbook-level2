@@ -31,18 +31,18 @@ public class SortableCommand extends Command {
                                         Email.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD),
                                         Address.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD)));
     
-    public static final String SORT_USAGE = "[SORT_ARGUMENTS: '" +    Name.PREFIX + "', '"
-                                                                    + Phone.PREFIX + "', '"
-                                                                    + Email.PREFIX + "', '"
-                                                                    + Address.PREFIX + "'," +
-                                                                "'" + Name.PREFIX.concat(SORT_DESCENDING_POSTFIX_WORD) + "', '"
-                                                                    + Phone.PREFIX.concat(SORT_DESCENDING_POSTFIX_WORD) + "', '"
-                                                                    + Email.PREFIX.concat(SORT_DESCENDING_POSTFIX_WORD) + "', '"
-                                                                    + Address.PREFIX.concat(SORT_DESCENDING_POSTFIX_WORD) + "'," +
-                                                                "'" + Name.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD) + "', '"
-                                                                    + Phone.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD) + "', '"
-                                                                    + Email.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD) + "', '"
-                                                                    + Address.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD) + "']";
+    public static final String SORT_USAGE = "[" + Name.PREFIX + "] " +
+                                            "[" + Phone.PREFIX + "] " +
+                                            "[" + Email.PREFIX + "] " + 
+                                            "[" + Address.PREFIX + "] " +
+                                            "[" + Name.PREFIX.concat(SORT_DESCENDING_POSTFIX_WORD) + "] " +
+                                            "[" + Phone.PREFIX.concat(SORT_DESCENDING_POSTFIX_WORD) + "] " +
+                                            "[" + Email.PREFIX.concat(SORT_DESCENDING_POSTFIX_WORD) + "] " +
+                                            "[" + Address.PREFIX.concat(SORT_DESCENDING_POSTFIX_WORD) + "] " +
+                                            "[" + Name.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD) + "] " +
+                                            "[" + Phone.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD) + "] " +
+                                            "[" + Email.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD) + "] " +
+                                            "[" + Address.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD) + "]";
     
     private final List<String> sortArguments;
     

@@ -20,6 +20,7 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.ReadOnlyFileSystemException;
 
 /**
  * Represents the file used to store address book data.
@@ -109,6 +110,8 @@ public class StorageFile {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
+        } catch (ReadOnlyFileSystemException rofse) {
+            throw new StorageOperationException("File is read-only");
         }
     }
 

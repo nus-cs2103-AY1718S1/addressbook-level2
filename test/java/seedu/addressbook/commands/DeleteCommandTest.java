@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import seedu.addressbook.common.Formatter;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
@@ -148,7 +149,7 @@ public class DeleteCommandTest {
     private void assertDeletionSuccessful(int targetVisibleIndex, AddressBook addressBook,
                                           List<ReadOnlyPerson> displayList) throws PersonNotFoundException {
 
-        ReadOnlyPerson targetPerson = displayList.get(targetVisibleIndex - TextUi.DISPLAYED_INDEX_OFFSET);
+        ReadOnlyPerson targetPerson = displayList.get(targetVisibleIndex - Formatter.DISPLAYED_INDEX_OFFSET);
 
         AddressBook expectedAddressBook = TestUtil.clone(addressBook);
         expectedAddressBook.removePerson(targetPerson);

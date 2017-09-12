@@ -43,15 +43,24 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute() throws IllegalValueException {
-        //same word, same case: matched
+    public void execute() throws Exception {
+        assertSortSuccess(addressBook, personList, expectedDisplayList);
+        assertSortSuccess(emptyAddressBook, emptyPersonList, emptyPersonList);
+    }
+
+
+    /**
+     *
+     */
+    private void assertSortSuccess(AddressBook addressBook, List<ReadOnlyPerson> relevantPersons,
+                                   List<ReadOnlyPerson> expectedDisplayList ) {
         SortCommand newCommand = new SortCommand();
-        newCommand.setData(addressBook, personList);
+        newCommand.setData(addressBook, relevantPersons);
+
         CommandResult result = newCommand.execute();
-
         List<? extends ReadOnlyPerson> displayedPersonList = result.getRelevantPersons().get();
-        assertResultVerified(displayedPersonList, expectedDisplayList);
 
+        assertResultVerified(displayedPersonList, expectedDisplayList);
     }
 
     /**

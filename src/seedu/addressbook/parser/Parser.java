@@ -31,6 +31,9 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    public static final Pattern SORT_ARGS_FORMAT =
+            Pattern.compile("[0-1]");
+
 
     /**
      * Signals that the user input could not be parsed.
@@ -90,7 +93,7 @@ public class Parser {
             return new ExitCommand();
 
         case SortCommand.COMMAND_WORD:
-            return new SortCommand();
+            return prepareSort(arguments);
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
@@ -243,5 +246,21 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
-
+    /**
+     *
+     * Parses arguments in the context of sort command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareSort(String args) {
+        final String trimArgs = args.trim();
+        final Matcher matcher = SORT_ARGS_FORMAT.matcher(trimArgs);
+        if(!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortCommand.MESSAGE_USAGE));
+        }
+        final int comparatorOption = Integer.parseInt(trimArgs);
+        return new SortCommand(comparatorOption);
+    }
 }

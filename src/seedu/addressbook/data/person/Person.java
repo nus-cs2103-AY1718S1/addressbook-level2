@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Person implements ReadOnlyPerson {
 
     private Name name;
+    private DateOfBirth dateOfBirth;
     private Phone phone;
     private Email email;
     private Address address;
@@ -19,8 +20,9 @@ public class Person implements ReadOnlyPerson {
     /**
      * Assumption: Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+    public Person(Name name, DateOfBirth date, Phone phone, Email email, Address address, UniqueTagList tags) {
         this.name = name;
+        this.dateOfBirth = date;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -31,12 +33,17 @@ public class Person implements ReadOnlyPerson {
      * Copy constructor.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+        this(source.getName(), source.getDateOfBirth(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
     }
 
     @Override
     public Name getName() {
         return name;
+    }
+
+    @Override
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
     }
 
     @Override
@@ -76,7 +83,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, dateOfBirth, phone, email, address, tags);
     }
 
     @Override

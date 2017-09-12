@@ -66,6 +66,18 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Finding all persons whose names start with a certain letter: `findalpha`
+
+Format: `findalpha LETTER`
+
+> The search is case insensitive, and only the name is searched.
+
+Examples:
+* `findalpha A`<br>
+  Returns `Ali` but not `Ben`
+* `findalpha b`<br>
+  Returns `Ben` but not `Ali`
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`

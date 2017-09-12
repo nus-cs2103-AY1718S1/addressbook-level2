@@ -2,11 +2,7 @@ package seedu.addressbook.commands;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -25,8 +21,8 @@ public class FindCommandTest {
         //same word, same case: matched
         assertFindCommandBehavior(new String[]{"Amy"}, Arrays.asList(td.amy));
 
-        //same word, different case: not matched
-        assertFindCommandBehavior(new String[]{"aMy"}, Collections.emptyList());
+        //same word, same case: not matched
+        assertFindCommandBehavior(new String[]{"aMy"}, Arrays.asList(td.amy));
 
         //partial word: not matched
         assertFindCommandBehavior(new String[]{"my"}, Collections.emptyList());
@@ -49,12 +45,15 @@ public class FindCommandTest {
     private void assertFindCommandBehavior(String[] keywords, List<ReadOnlyPerson> expectedPersonList) {
         FindCommand command = createFindCommand(keywords);
         CommandResult result = command.execute();
-
         assertEquals(Command.getMessageForPersonListShownSummary(expectedPersonList), result.feedbackToUser);
     }
 
     private FindCommand createFindCommand(String[] keywords) {
-        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
+        List<String> converted = new ArrayList<>();
+        for (String s : keywords) {
+            converted.add(s.toLowerCase());
+        }
+        final Set<String> keywordSet = new HashSet<>(converted);
         FindCommand command = new FindCommand(keywordSet);
         command.setData(addressBook, Collections.emptyList());
         return command;

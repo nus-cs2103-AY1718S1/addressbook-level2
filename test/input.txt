@@ -105,6 +105,8 @@
   find Dickson
   # find multiple with some keywords
   find Charlie Betsy
+  # find all the person's who are friends
+  find friends
 
 ##########################################################
 # test delete person command

@@ -66,6 +66,16 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Sorting list of all persons : `sort`
+Shows a sorted list of all persons in the address book base on their attributes.<br>
+Format: `sort ATTRIBUTE`
+
+> The sort command returns a sorted list based on the input parameter and can be any of the following: name, phone, email, address. The list will be sorted by name suppose an errorneous parameter was inputted.
+
+Examples: 
+* `sort phone`<br>
+  Returns the list of people sorted base on their phone number.
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`

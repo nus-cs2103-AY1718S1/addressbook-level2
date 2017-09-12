@@ -15,11 +15,7 @@ import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.ui.TextUi;
 import seedu.addressbook.util.TestUtil;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -32,6 +28,8 @@ public class EditCommandTest {
 	private List<ReadOnlyPerson> emptyDisplayList;
 	private List<ReadOnlyPerson> listWithEveryone;
 	private List<ReadOnlyPerson> listWithSurnameDoe;
+
+	private static String uniqueName = "Noctis Doe";
 
 	@Before
 	public void setUp() throws Exception {
@@ -55,13 +53,13 @@ public class EditCommandTest {
 
 	@Test
 	public void execute_invalidIndex_returnsInvalidIndexMessage() {
-		assertEditFailsDueToInvalidIndex(0, Name.EXAMPLE, Phone.EXAMPLE, true,
+		assertEditFailsDueToInvalidIndex(0, uniqueName, Phone.EXAMPLE, true,
 				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
 				addressBook, listWithEveryone);
-		assertEditFailsDueToInvalidIndex(-1, Name.EXAMPLE, Phone.EXAMPLE, true,
+		assertEditFailsDueToInvalidIndex(-1, uniqueName, Phone.EXAMPLE, true,
 				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
 				addressBook, listWithEveryone);
-		assertEditFailsDueToInvalidIndex(listWithEveryone.size() + 1, Name.EXAMPLE,
+		assertEditFailsDueToInvalidIndex(listWithEveryone.size() + 1, uniqueName,
 				Phone.EXAMPLE, true, Email.EXAMPLE, false, Address.EXAMPLE,
 				true, EMPTY_STRING_LIST, addressBook, listWithEveryone);
 		assertEditFailsDueToInvalidIndex(1, Name.EXAMPLE, Phone.EXAMPLE, true,
@@ -119,14 +117,14 @@ public class EditCommandTest {
 
 	@Test
 	public void execute_validInput_personIsEdited() throws IllegalValueException {
-		assertEditSuccessful(1, Name.EXAMPLE, Phone.EXAMPLE, true,
+		assertEditSuccessful(1, Name.EXAMPLE + " I", Phone.EXAMPLE, true,
 				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
 				addressBook, listWithSurnameDoe);
-		assertEditSuccessful(listWithSurnameDoe.size(), Name.EXAMPLE, Phone.EXAMPLE, true,
+		assertEditSuccessful(listWithSurnameDoe.size(), Name.EXAMPLE + " II", Phone.EXAMPLE, true,
 				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
 				addressBook, listWithSurnameDoe);
 		int middleIndex = (listWithSurnameDoe.size() / 2) + 1;
-		assertEditSuccessful(middleIndex, Name.EXAMPLE, Phone.EXAMPLE, true,
+		assertEditSuccessful(middleIndex, Name.EXAMPLE + " III", Phone.EXAMPLE, true,
 				Email.EXAMPLE, false, Address.EXAMPLE, true, EMPTY_STRING_LIST,
 				addressBook, listWithSurnameDoe);
 	}
@@ -221,7 +219,7 @@ public class EditCommandTest {
 	}
 
 	/**
-	 * Asserts that the person at the specified index can be successfully deleted.
+	 * Asserts that the person at the specified index can be successfully edited.
 	 *
 	 * The addressBook passed in will not be modified (no side effects).
 	 *
@@ -242,13 +240,24 @@ public class EditCommandTest {
 			tagSet.add(new Tag(tagName));
 		}
 
+		List<ReadOnlyPerson> listClone = new ArrayList<>();
+
 		Person newDetails = new Person(new Name(name), new Phone(phone, isPhonePrivate),
 				new Email(email, isEmailPrivate), new Address(address, isAddressPrivate),
 				new UniqueTagList(tagSet));
 
-		AddressBook expectedAddressBook = TestUtil.clone(addressBook);
-		expectedAddressBook.editPerson(targetPerson, newDetails);
-		String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, targetPerson);
+		AddressBook expectedAddressBook = new AddressBook();
+		UniquePersonList allPersonClone = addressBook.getAllPersons();
+
+		for(ReadOnlyPerson person : allPersonClone.immutableListView()) {
+			if(person.equals(targetPerson)) {
+				expectedAddressBook.addPerson(newDetails);
+			} else {
+				expectedAddressBook.addPerson((Person) person);
+			}
+		}
+
+		String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, newDetails);
 
 		AddressBook actualAddressBook = TestUtil.clone(addressBook);
 		EditCommand command = createEditCommand(targetVisibleIndex, name, phone, isPhonePrivate, email,

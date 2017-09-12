@@ -4,14 +4,17 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 public class Unit {
     private boolean isPrivate;
+
     public boolean isPrivate() {
         return isPrivate;
     }
-    //TODO add message contraints
-    public static final String MESSAGE_UNIT_CONSTRAINTS = "";
-    public  static final String EXAMPLE = "#02-25";
-    public final String value;
 
+    public static final String MESSAGE_UNIT_CONSTRAINTS = "Person unit should starts with '#' and seperats by '-'";
+    public static final String EXAMPLE = "#02-25";
+    public final String value;
+    public static final String UNIT_VALIDATION_REGEX = "#+[\\w\\.]+-[\\w\\.]+";
+
+    //add p/123 e/12@2 b/123 s/s u/#1 pc/123456
     public Unit(String unit, boolean isPrivate) throws IllegalValueException {
         String trimmedUnit = unit.trim();
         this.isPrivate = isPrivate;
@@ -24,9 +27,8 @@ public class Unit {
     /**
      * Returns true if a given string is a valid person unit
      */
-    //todo add isValidUnit method
     public static boolean isValidUnit(String test) {
-        return true;
+        return test.matches(UNIT_VALIDATION_REGEX);
     }
 
     @Override

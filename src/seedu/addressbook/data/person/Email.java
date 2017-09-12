@@ -28,14 +28,4 @@ public class Email extends Contact {
                 || (other instanceof Email // instanceof handles nulls
                 && this.value.equals(((Email) other).value)); // state check
     }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
-
-    public boolean isPrivate() {
-        return isPrivate;
-    }
 }

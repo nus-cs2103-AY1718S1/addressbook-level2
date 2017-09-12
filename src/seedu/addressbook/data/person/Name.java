@@ -43,14 +43,6 @@ public class Name {
         return Arrays.asList(fullName.split("\\s+"));
     }
 
-    /**
-     * Compares two strings lexicographically
-     */
-    
-    public int compareTo(Name comparison) {
-        return this.toString().compareToIgnoreCase(comparison.toString());
-    }
-
     @Override
     public String toString() {
         return fullName;

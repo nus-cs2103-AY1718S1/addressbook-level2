@@ -100,7 +100,9 @@ public class EditCommand extends Command {
             // Add the new person to the address book
             addressBook.addPerson(person);
 
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, person));
+            List<ReadOnlyPerson> allNowPersons = addressBook.getAllPersons().immutableListView();
+
+            return new CommandResult(getMessageForPersonEditShownSummary(allNowPersons), allNowPersons);
 
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

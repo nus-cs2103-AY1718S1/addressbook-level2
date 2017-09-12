@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -79,6 +80,22 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public List<ReadOnlyPerson> immutableListView() {
         return Collections.unmodifiableList(internalList);
+    }
+
+    /**
+     *  Returns an unmodifiable java List view with elements sorted in alphabetical order.
+     *  All the elements are cast as immutabel {@link ReadOnlyPerson}s.
+     *  Any changes to the internal list/elements are immediately visible in the returned list.
+     */
+    public List<ReadOnlyPerson> getSortedListView() {
+        List<Person> sortedList = new ArrayList<>(internalList);
+        sortedList.sort(new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                return o1.getName().fullName.compareTo(o2.getName().fullName);
+            }
+        });
+        return Collections.unmodifiableList(sortedList);
     }
 
 

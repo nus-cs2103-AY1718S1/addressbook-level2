@@ -57,7 +57,6 @@ public class Command {
      * @throws IndexOutOfBoundsException if the target index is out of bounds of the last viewed listing
      */
     protected ReadOnlyPerson getTargetPerson() throws IndexOutOfBoundsException {
-        System.out.println("ReadonlyPerson: " + getTargetIndex());//*************************************************************************************************************
         return relevantPersons.get(getTargetIndex() - DISPLAYED_INDEX_OFFSET);
     }
 

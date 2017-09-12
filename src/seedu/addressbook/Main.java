@@ -87,7 +87,6 @@ public class Main {
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);
-            System.out.println("Check main status");
         } while (!ExitCommand.isExit(command));
     }
 
@@ -109,7 +108,6 @@ public class Main {
         try {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
-            System.out.println("execute command?");//**************************************************************************************************************************************************
             storage.save(addressBook);
             return result;
         } catch (Exception e) {

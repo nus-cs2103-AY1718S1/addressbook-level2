@@ -16,4 +16,5 @@ public class Messages {
     public static final String MESSAGE_WELCOME = "Welcome to your Address Book!";
     public static final String MESSAGE_USING_STORAGE_FILE = "Using storage file : %1$s";
     public static final String MESSAGE_WRONG_PASSWORD = "WRONG PASSWORD ENTERED!";
+    public static final String MESSAGE_PROMPT_PASSWORD = "PLEASE ENTER PASSWORD TO ACCESS PRIVATE INFO.";
 }

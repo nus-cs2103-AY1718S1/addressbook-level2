@@ -18,7 +18,7 @@ public class ViewAllCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the non-private details of the person "
             + "identified by the index number in the last shown person listing.\n"
             + "Parameters: INDEX PASSWORD\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PasswordStorage.getExamplePassword();//Might have a problem.
+            + "Example: " + COMMAND_WORD + " 1 " + PasswordStorage.getExamplePassword();
 
     public static final String MESSAGE_VIEW_PERSON_DETAILS = "Viewing person: %1$s";
 
@@ -32,20 +32,15 @@ public class ViewAllCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            System.out.println('0');
             final ReadOnlyPerson target = getTargetPerson();
             if (!addressBook.containsPerson(target)) {
-                System.out.println('1');
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }
             if(!userInputPassword.equals(PasswordStorage.getActualPassword())){
-                System.out.println('2');
                 return new CommandResult(Messages.MESSAGE_WRONG_PASSWORD);
             }
-            System.out.println('3');
             return new CommandResult(String.format(MESSAGE_VIEW_PERSON_DETAILS, target.getAsTextShowAll()));
         } catch (IndexOutOfBoundsException ie) {
-            System.out.println("Is the bug here?");
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
        }
     }

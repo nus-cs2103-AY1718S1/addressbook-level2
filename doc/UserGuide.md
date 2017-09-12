@@ -53,6 +53,20 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
+### Listing all persons starting with a specific character : `listchar`
+Shows a list of all persons in the address book starting with a specific character.<br>
+Format: `listchar CHARACTER`
+
+> If the input character is a letter, it will list only names starting with that case-specific letter.
+
+Examples:
+* `listchar A`<br>
+  Returns names starting with 'A', but not 'a'
+* `listchar b`<br>
+  Returns names starting with 'b', but not 'B'
+* `listchar #`<br>
+  Returns names starting with '#'
+  
 ### Finding all persons containing any keyword in their name: `find`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`

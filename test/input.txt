@@ -99,8 +99,10 @@
   # matching should be case-sensitive
   find betsy
 
-  # find unique keyword
+  # find with keyword
   find Betsy
+  # find same with lowercase keyword
+  find betsy
   # find multiple with same keyword
   find Dickson
   # find multiple with some keywords

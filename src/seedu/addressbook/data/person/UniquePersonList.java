@@ -122,6 +122,15 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    public boolean unprivate(int targetIndex, String contactType)  throws PersonNotFoundException {
+        final Person toUnprivateContact = internalList.get(targetIndex-1);
+        if (toUnprivateContact == null) {
+            throw new PersonNotFoundException();
+        }
+        return toUnprivateContact.unprivateContact(contactType);
+
+    }
+
     /**
      * Clears all persons in list.
      */

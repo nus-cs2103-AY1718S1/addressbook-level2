@@ -11,17 +11,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -40,6 +30,10 @@ public class Parser {
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+
+
+    public static final Pattern PERSON_CONTACT_TYPE_FORMAT = //single index number followed by p, e or a
+            Pattern.compile("(?<targetIndex>.+)" + " (p|e|a)");
 
 
     /**
@@ -89,6 +83,9 @@ public class Parser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case UnprivateCommand.COMMAND_WORD:
+            return prepareUnprivate(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return prepareView(arguments);
@@ -248,6 +245,53 @@ public class Parser {
         final String[] keywords = matcher.group("keywords").split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
+    }
+
+    /**
+     * Parses the given arguments string as a single index number and the contact information in the context to unprivate
+     *
+     * @param args arguments string to parse as index number
+     * @return the parsed index number and contact type
+     * @throws ParseException if no region of the args string could be found for the index
+     * @throws NumberFormatException the args string region is not a valid number
+     */
+
+    private Command prepareUnprivate(String args) {
+        final Matcher matcher = PERSON_CONTACT_TYPE_FORMAT.matcher(args.trim());
+        // Validate arg string format
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnprivateCommand.MESSAGE_USAGE));
+        }
+        try {
+            args = args.trim();
+            String indexString = getIndexString(args);
+            String contactType = getContactType(args);
+
+            final int targetIndex = parseArgsAsDisplayedIndex(indexString);
+            return new UnprivateCommand(targetIndex, contactType);
+
+        } catch (ParseException pe) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnprivateCommand.MESSAGE_USAGE));
+
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+    }
+
+    /**
+     * Retrieves the index number as String type from the argument parsed in in the context of the unprivate command
+     *
+     * @param args arguments string to parse as index number and contact type
+     * @return the parsed index number
+     */
+    private String getIndexString(String args) {
+        String[] splitArgs = args.split(" ");
+        return splitArgs[0].trim();
+    }
+
+    private String getContactType(String args) {
+        String[] splitArgs = args.split(" ");
+        return splitArgs[1].trim();
     }
 
 

@@ -53,6 +53,21 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
+### Making all persons : `unprivate`
+Publicises a contact information of the specified person public.<br>
+Format: `unprivate INDEX CONTACT_TYPE`
+
+> Publicises the CONTACT_TYPE information of a person at the specified `INDEX`.
+  The index refers to the index number shown in the most recent listing.
+
+Examples:
+* `list`<br>
+  `unprivate 2 p`<br>
+  Publicises the phone number of the 2nd person in the address book.
+* `find Betsy`<br> 
+  `unprivate 1 a`<br>
+  Publicises the adress information of the 1st person in the results of the `find` command.
+
 ### Finding all persons containing any keyword in their name: `find`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`

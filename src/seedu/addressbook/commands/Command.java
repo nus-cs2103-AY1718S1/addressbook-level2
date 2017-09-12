@@ -15,6 +15,16 @@ public class Command {
     protected AddressBook addressBook;
     protected List<? extends ReadOnlyPerson> relevantPersons;
     private int targetIndex = -1;
+    private String contactType = "";
+
+    /**
+     * @param targetIndex last visible listing index of the target person
+     * @param contactType contact type denoted by 'p', 'e' or 'a'
+     */
+    public Command(int targetIndex, String contactType) {
+        this.setTargetIndex(targetIndex);
+        this.setContactType(contactType);
+    }
 
     /**
      * @param targetIndex last visible listing index of the target person
@@ -64,7 +74,13 @@ public class Command {
         return targetIndex;
     }
 
+    public String getContactType() { return contactType; }
+
     public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    public void setContactType(String contactType){
+        this.contactType = contactType;
     }
 }

@@ -107,6 +107,28 @@
   find Charlie Betsy
 
 ##########################################################
+# test findAll persons command
+##########################################################
+
+  # should consider no keywords as invalid command format 
+  findAll
+  # should match partial words in person names 
+  findAll bet
+  # should not match keyword in address 
+  findAll beta street
+  # matching should be case-insensitive 
+  findAll beTsy
+
+  # find unique person with keyword 
+  findAll Betsy
+  # find multiple persons with same keyword 
+  findAll Dickson
+  # find multiple persons with some keywords 
+  findAll Charlie Betsy
+  # find multiple persons with partial keyword 
+  findAll arl tsy
+
+##########################################################
 # test delete person command
 ##########################################################
 

@@ -237,32 +237,38 @@
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  findalpha]
-|| Invalid command format!
+|| Invalid command format! 
 || findalpha: Finds all persons whose names start with the specified letters (case-insensitive) and displays them as a list with index numbers.
 || Parameters: [letter]
 || Example: findalpha A
 || ===================================================
 || Enter command: || [Command entered:  findalpha ab]
-|| Invalid command format!
+|| Invalid command format! 
 || findalpha: Finds all persons whose names start with the specified letters (case-insensitive) and displays them as a list with index numbers.
 || Parameters: [letter]
 || Example: findalpha A
 || ===================================================
 || Enter command: || [Command entered:  findalpha a b]
-|| Invalid command format!
+|| Invalid command format! 
 || findalpha: Finds all persons whose names start with the specified letters (case-insensitive) and displays them as a list with index numbers.
 || Parameters: [letter]
 || Example: findalpha A
 || ===================================================
 || Enter command: || [Command entered:  findalpha A]
-|| 1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
-||
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 
 || 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  findalpha a]
-|| 1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
-||
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 
 || 1 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  find Charlie Betsy]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 
+|| 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format! 

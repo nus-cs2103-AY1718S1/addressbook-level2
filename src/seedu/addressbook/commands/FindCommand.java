@@ -18,7 +18,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names start with "
             + "the specified keywords (case-sensitive) or contains tag(s) specified and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS] t/TAG_NAME \n"
             + "Example: " + COMMAND_WORD + " alice bob charlie t/tag";
@@ -45,9 +45,10 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Retrieves all persons in the address book whose names contain some of the specified keywords.
+     * Retrieves all persons in the address book whose names start with specified keywords or who contain specified tag.
      *
-     * @param nameKeywords for searching
+     * @param nameKeywords for searching names
+     * @param tagKeywords for searching tags
      * @return list of persons found
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> nameKeywords, Set<String> tagKeywords) {

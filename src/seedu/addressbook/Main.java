@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
+import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
@@ -81,14 +82,21 @@ public class Main {
     /** Reads the user command and executes it, until the user issues the exit command.  */
     private void runCommandLoopUntilExitCommand() {
         Command command;
+        Parser parser;
         do {
             String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
+            parser = new Parser();
+            command = parser.parseCommand(userCommandText);
+            processCommand(command);
+            showChanges(parser.getIsAddOrDelete());
 
         } while (!ExitCommand.isExit(command));
+    }
+
+    private void processCommand(Command command) {
+        CommandResult result = executeCommand(command);
+        recordResult(result);
+        ui.showResultToUser(result);
     }
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
@@ -99,6 +107,11 @@ public class Main {
         }
     }
 
+    private void showChanges(boolean isAddOrDelete) {
+        if (isAddOrDelete) {
+        processCommand(new ListCommand());
+        }
+    }
     /**
      * Executes the command and returns the result.
      *

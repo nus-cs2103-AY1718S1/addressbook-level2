@@ -52,15 +52,12 @@ public class UtilsTest {
      * Asserts that null objects are properly captured by isAnyNull.
      */
     public  void assertIsAnyNull(){
-        boolean noObjectsTest = isAnyNull();
-        boolean emptyObjectTest = isAnyNull(" ", " ", 0);
-        boolean noNullObjectTest = isAnyNull("Item1", "Item2", 123, 33.4, 'a');
-        boolean nullPresentTest = isAnyNull("Item1", null, 123, 33.4);
-        boolean allNullTest = isAnyNull(null, null, null, null);
 
-        boolean[] testResults = {noObjectsTest, emptyObjectTest, noNullObjectTest, nullPresentTest, allNullTest};
-        boolean[] expected = {false, false, false, true, true};
-
-        Assert.assertArrayEquals(testResults, expected);
+        assertFalse(isAnyNull()) ;
+        assertTrue(isAnyNull(null)); ;
+        assertFalse(isAnyNull(" ", " ", 0, false));
+        assertFalse(isAnyNull("Item1", true, 123, 33.4, 'a'));
+        assertTrue(isAnyNull("Item1", null, 123, 33.4));
+        assertTrue(isAnyNull(null, null, null, null));
     }
 }

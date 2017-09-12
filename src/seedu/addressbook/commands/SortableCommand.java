@@ -10,13 +10,14 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 import java.util.*;
 
 /**
- * Sortable 
+ * Sortable superclass for implementing sort functionality for commands of listable type.
  */
 public class SortableCommand extends Command {
 
     private static final String SORT_ASCENDING_POSTFIX_WORD = "asc";
     private static final String SORT_DESCENDING_POSTFIX_WORD = "desc";
     
+    /** The set of all possible sort arguments */
     public static final HashSet<String> POSSIBLE_SORT_ARGUMENTS = 
             new HashSet<>(Arrays.asList(Name.PREFIX,
                                         Phone.PREFIX,
@@ -31,6 +32,7 @@ public class SortableCommand extends Command {
                                         Email.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD),
                                         Address.PREFIX.concat(SORT_ASCENDING_POSTFIX_WORD)));
     
+    /** Helptext for commands implementing sort functionality */
     public static final String SORT_USAGE = "[" + Name.PREFIX + "] " +
                                             "[" + Phone.PREFIX + "] " +
                                             "[" + Email.PREFIX + "] " + 

@@ -15,9 +15,9 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts all people in the address book in a specific order and then display the list with index numbers. \n" +
-            "   - option 0: alphabetical order \n" +
-            "   - option 1: order of length \n"
+            + ": Sorts all people in the address book in a specific order and then display the list with index numbers.\n" +
+            "   - option 0: alphabetical order\n" +
+            "   - option 1: order of length\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final Comparator<Person> ALPHABETICAL_COMPARATOR

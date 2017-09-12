@@ -51,6 +51,11 @@
   list
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
+  add April Brown p/222222 e/april@gmail.com a/111, alpha street
+  list
+
+  # should sort the person list in alphabetical order
+  sort
 
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy

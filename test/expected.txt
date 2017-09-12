@@ -49,28 +49,34 @@
 || Enter command: || [Command entered:  add wrong args wrong args]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Parameters: NAME [p]d/DATE OF BIRTH [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: add John Doe d/12.12.1995 p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address]
+|| Enter command: || [Command entered:  add Valid Name 12.12.1995 p/12345 e/valid@email.butNoDateOfBirthPrefix a/valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Parameters: NAME [p]d/DATE OF BIRTH [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: add John Doe d/12.12.1995 p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 valid@email.butNoPrefix a/valid, address]
+|| Enter command: || [Command entered:  add Valid Name d/12.12.1995 12345 e/valid@email.butNoPhonePrefix a/valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Parameters: NAME [p]d/DATE OF BIRTH [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: add John Doe d/12.12.1995 p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address]
+|| Enter command: || [Command entered:  add Valid Name d/12.12.1995 p/12345 valid@email.butNoPrefix a/valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Parameters: NAME [p]d/DATE OF BIRTH [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: add John Doe d/12.12.1995 p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag]
+|| Enter command: || [Command entered:  add Valid Name d/12.12.1995 p/12345 e/valid@email.butNoAddressPrefix valid, address]
+|| Invalid command format! 
+|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: NAME [p]d/DATE OF BIRTH [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: add John Doe d/12.12.1995 p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  add Valid Name d/12.12.1995 p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag]
 || Tags names should be alphanumeric
 || ===================================================
 || Enter command: || [Command entered:  add []\[;] p/12345 e/valid@e.mail a/valid, address]

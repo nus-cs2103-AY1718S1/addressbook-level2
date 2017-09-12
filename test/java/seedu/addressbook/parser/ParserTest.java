@@ -24,12 +24,7 @@ import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -49,7 +44,7 @@ public class ParserTest {
 
     @Test
     public void parse_emptyInput_returnsIncorrect() {
-        final String[] emptyInputs = { "", "  ", "\n  \n" };
+        final String[] emptyInputs = { "", " ", "  ", "\n  \n" };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, emptyInputs);
     }
@@ -146,14 +141,14 @@ public class ParserTest {
 
     @Test
     public void parse_viewAllCommandArgsIsNotSingleNumber_errorMessage() {
-        final String[] inputs = { "viewall notAnumber ", "viewall 8*wh12", "viewall 1 2 3 4 5" };
+        final String[] inputs = { "viewall notAnumber ", "viewall 8*wh12", "viewall 1 2 3 4 5 6" };
         final String resultMessage = MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
     @Test
     public void parse_viewAllCommandNumericArg_indexParsedCorrectly() {
-        final int testIndex = 3;
+        final int testIndex = 4;
         final String input = "viewall " + testIndex;
         final ViewAllCommand result = parseAndAssertCommandType(input, ViewAllCommand.class);
         assertEquals(result.getTargetIndex(), testIndex);
@@ -177,7 +172,7 @@ public class ParserTest {
 
     @Test
     public void parse_findCommandValidArgs_parsedCorrectly() {
-        final String[] keywords = { "key1", "key2", "key3" };
+        final String[] keywords = { "key1", "key2", "key3", "key4" };
         final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
 
         final String input = "find " + String.join(" ", keySet);
@@ -188,7 +183,7 @@ public class ParserTest {
 
     @Test
     public void parse_findCommandDuplicateKeys_parsedCorrectly() {
-        final String[] keywords = { "key1", "key2", "key3" };
+        final String[] keywords = { "key1", "key2", "key3", "key4" };
         final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
 
         // duplicate every keyword
@@ -209,11 +204,11 @@ public class ParserTest {
             "add ",
             "add wrong args format",
             // no phone prefix
-            String.format("add $s $s e/$s a/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
+            String.format("add $s g/$s e/$s a/$s", Name.EXAMPLE, Gender.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
             // no email prefix
-            String.format("add $s p/$s $s a/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
+            String.format("add $s g/$s p/$s $s a/$s", Name.EXAMPLE, Gender.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
             // no address prefix
-            String.format("add $s p/$s e/$s $s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE)
+            String.format("add $s g/$s p/$s e/$s $s", Name.EXAMPLE, Gender.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE)
         };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
@@ -223,6 +218,8 @@ public class ParserTest {
     public void parse_addCommandInvalidPersonDataInArgs_errorMessge() {
         final String invalidName = "[]\\[;]";
         final String validName = Name.EXAMPLE;
+        final String invalidGender = "g/genderNotMaleOrFemale";
+        final String validGender = Gender.EXAMPLE;
         final String invalidPhoneArg = "p/not__numbers";
         final String validPhoneArg = "p/" + Phone.EXAMPLE;
         final String invalidEmailArg = "e/notAnEmail123";
@@ -230,18 +227,20 @@ public class ParserTest {
         final String invalidTagArg = "t/invalid_-[.tag";
 
         // address can be any string, so no invalid address
-        final String addCommandFormatString = "add $s $s $s a/" + Address.EXAMPLE;
+        final String addCommandFormatString = "add $s $s $s $s a/" + Address.EXAMPLE;
 
         // test each incorrect person data field argument individually
         final String[] inputs = {
                 // invalid name
-                String.format(addCommandFormatString, invalidName, validPhoneArg, validEmailArg),
+                String.format(addCommandFormatString, invalidName, validGender, validPhoneArg, validEmailArg),
+                // invalid gender
+                String.format(addCommandFormatString, validName, invalidGender, validPhoneArg, validEmailArg),
                 // invalid phone
-                String.format(addCommandFormatString, validName, invalidPhoneArg, validEmailArg),
+                String.format(addCommandFormatString, validName, validGender, invalidPhoneArg, validEmailArg),
                 // invalid email
-                String.format(addCommandFormatString, validName, validPhoneArg, invalidEmailArg),
+                String.format(addCommandFormatString, validName, validGender, validPhoneArg, invalidEmailArg),
                 // invalid tag
-                String.format(addCommandFormatString, validName, validPhoneArg, validEmailArg) + " " + invalidTagArg
+                String.format(addCommandFormatString, validName, validGender, validPhoneArg, validEmailArg) + " " + invalidTagArg
         };
         for (String input : inputs) {
             parseAndAssertCommandType(input, IncorrectCommand.class);
@@ -273,6 +272,7 @@ public class ParserTest {
         try {
             return new Person(
                 new Name(Name.EXAMPLE),
+                new Gender(Gender.EXAMPLE),
                 new Phone(Phone.EXAMPLE, true),
                 new Email(Email.EXAMPLE, false),
                 new Address(Address.EXAMPLE, true),
@@ -286,6 +286,7 @@ public class ParserTest {
     private static String convertPersonToAddCommandString(ReadOnlyPerson person) {
         String addCommand = "add "
                 + person.getName().fullName
+                + " g/" + person.getGender().value
                 + (person.getPhone().isPrivate() ? " pp/" : " p/") + person.getPhone().value
                 + (person.getEmail().isPrivate() ? " pe/" : " e/") + person.getEmail().value
                 + (person.getAddress().isPrivate() ? " pa/" : " a/") + person.getAddress().value;

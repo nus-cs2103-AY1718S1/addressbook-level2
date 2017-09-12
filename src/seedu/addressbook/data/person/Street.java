@@ -7,7 +7,7 @@ public class Street {
     public static final String MESSAGE_STREET_CONSTRAINTS = "Streets can be in any format.";
     public static final String STREET_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    private final String value;
     private boolean isPrivate;
 
     /**
@@ -31,6 +31,10 @@ public class Street {
      */
     public static boolean isValidStreet(String test) {
         return test.matches(STREET_VALIDATION_REGEX);
+    }
+
+    public String toString(){
+        return this.value;
     }
 
     public boolean isPrivate() {

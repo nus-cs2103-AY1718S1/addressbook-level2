@@ -7,7 +7,7 @@ public class Block {
     public static final String MESSAGE_BLOCK_CONSTRAINTS = "Blocks should consist of numbers and/or letters.";
     public static final String BLOCK_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    private final String value;
     private boolean isPrivate;
 
     /**
@@ -31,6 +31,10 @@ public class Block {
      */
     public static boolean isValidBlock(String test) {
         return test.matches(BLOCK_VALIDATION_REGEX);
+    }
+
+    public String toString(){
+        return this.value;
     }
 
     public boolean isPrivate() {

@@ -7,7 +7,7 @@ public class Unit {
     public static final String MESSAGE_UNIT_CONSTRAINTS = "Unit numbers can be in any format.";
     public static final String UNIT_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    private final String value;
     private boolean isPrivate;
 
     /**
@@ -31,6 +31,10 @@ public class Unit {
      */
     public static boolean isValidUnit(String test) {
         return test.matches(UNIT_VALIDATION_REGEX);
+    }
+
+    public String toString(){
+        return this.value;
     }
 
     public boolean isPrivate() {

@@ -7,7 +7,7 @@ public class PostalCode {
     public static final String MESSAGE_POSTALCODE_CONSTRAINTS = "Postal code should only contain numbers.";
     public static final String POSTALCODE_VALIDATION_REGEX = "\\d+";
 
-    public final String value;
+    private final String value;
     private boolean isPrivate;
 
     /**
@@ -31,6 +31,10 @@ public class PostalCode {
      */
     public static boolean isValidPostalCode(String test) {
         return test.matches(POSTALCODE_VALIDATION_REGEX);
+    }
+
+    public String toString(){
+        return this.value;
     }
 
     public boolean isPrivate() {

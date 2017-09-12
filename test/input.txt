@@ -40,19 +40,19 @@
   add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
 
   # should add correctly and list non private information
-  add Adam Brown p/684758 e/adam@gmail.com a/555, alpha street
+  add Adam Brown p/684758 e/madambrown@gmail.com a/555, alpha street
   list
-  add Betsy Choo pp/479928 pe/benchoo@nus.edu.sg pa/111, beta street t/secretive
+  add Betsy Choo pp/479928 pe/choobet@nus.edu.sg pa/111, beta street t/secretive
   list
   add Charlie Dickson pp/346640 e/charlie.d@nus.edu.sg a/444, gamma street t/friends t/school
   list
-  add Dickson Ee p/127812 pe/dickson@nus.edu.sg a/333, delta street t/friends
+  add Dickson Ee p/127812 pe/eedickson@nus.edu.sg a/333, delta street t/friends
   list
-  add Esther Potato p/425242 e/esther@not.a.real.potato pa/222, epsilon street t/tubers t/starchy
+  add Esther Potato p/425242 e/apotato@not.a.real.potato pa/222, epsilon street t/tubers t/starchy
   list
 
   # should not allow adding duplicate persons
-  add Esther Potato p/425242 e/esther@not.a.real.potato pa/222, epsilon street t/tubers t/starchy
+  add Esther Potato p/425242 e/apotato@not.a.real.potato pa/222, epsilon street t/tubers t/starchy
 
 ##########################################################
 # test view/viewall persons command
@@ -97,6 +97,10 @@
 
   # sort by phone number
   sort phone
+  list
+
+  # sort by email
+  sort email
   list
 
   # sort by name

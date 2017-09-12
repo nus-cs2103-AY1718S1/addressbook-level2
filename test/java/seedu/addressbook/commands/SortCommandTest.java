@@ -14,17 +14,25 @@ import seedu.addressbook.util.TypicalPersons;
 
 public class SortCommandTest {
 
+
+    /**
+     * Asserts that the SortCommand reports the error.
+     */
+    private static void assertSortError(AddressBook addressBook, String expectedMessage) {
+        assertSortBehavior(new SortCommand(), addressBook, expectedMessage);
+    }
+    
     /**
      * Executes the test command for the given addressbook data.
-     * Checks that S exhibits the correct command behavior, namely:
+     * Checks that SortCommand exhibits the correct command behavior, namely:
      * 1. The feedback message of the CommandResult it returns matches expectedMessage.
      * 2. The original addressbook data is not modified after executing SortCommand.
      */
     private static void assertSortBehavior(Command sortCommand, AddressBook addressBook,
-                                           List<ReadOnlyPerson> relevantPersons, String expectedMessage) {
+                                           String expectedMessage) {
         AddressBook expectedAddressBook = TestUtil.clone(addressBook);
 
-        sortCommand.setData(addressBook, relevantPersons);
+        sortCommand.setData(addressBook, addressBook.getAllPersons().immutableListView());
         CommandResult result = sortCommand.execute();
 
         // feedback message is as expected.

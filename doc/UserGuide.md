@@ -66,6 +66,20 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Finding all persons containing any keyword in any part of their names: 'findAll'
+Finds persons whose names contain any keyword in full, or as a substring.<br>
+Format: 'findAll KEYWORD [MORE_KEYWORDS]'
+
+> The search is case-insensitive, and the order of the keywords does not matter. Only the name is searched, and persons matching at least one keyword will be returned (i.e. 'OR' search).
+
+Examples: 
+* 'findAll ohn'<br>
+  Returns 'John Doe'
+* 'findAll' joHn <br>
+  Returns 'John Doe'
+* 'findAll Betsy tIm Jo'<br>
+  Returns any person(s) having names, or have names that contain 'Betsy', 'tIm', 'Jo' as keywords. 
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`

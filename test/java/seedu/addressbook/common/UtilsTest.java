@@ -2,11 +2,13 @@ package seedu.addressbook.common;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static seedu.addressbook.common.Utils.isAnyNull;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+import seedu.addressbook.data.person.Name;
 
 public class UtilsTest {
 
@@ -42,5 +44,16 @@ public class UtilsTest {
 
     private void assertNotUnique(Object... objects) {
         assertFalse(Utils.elementsAreUnique(Arrays.asList(objects)));
+    }
+
+    @Test
+    public void testIsAnyNull() throws Exception {
+        Object nullObject = null;
+        Object notNullObject = new Object();
+
+        assertTrue(isAnyNull(nullObject));
+        assertFalse(isAnyNull(notNullObject));
+        assertTrue(isAnyNull(nullObject, nullObject));
+        assertTrue(isAnyNull(nullObject, nullObject, notNullObject));
     }
 }

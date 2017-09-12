@@ -15,28 +15,32 @@ import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.util.TypicalPersons;
 
-public class FindCommandEasilyTest {
+public class FindEasilyCommandTest {
 
     private final AddressBook addressBook = new TypicalPersons().getTypicalAddressBook();
-    private final TypicalPersons td = new TypicalPersons();
+    private final TypicalPersons tdE = new TypicalPersons();
 
     @Test
     public void execute() throws IllegalValueException {
         //same word, same case: matched
-        assertFindEasilyCommandBehavior(new String[]{"Amy"}, Arrays.asList(td.amy));
+        assertFindEasilyCommandBehavior(new String[]{"Amy"}, Arrays.asList(tdE.amy));
 
         //same word, different case: matched
-        assertFindEasilyCommandBehavior(new String[]{"aMy"}, Collections.emptyList());
+        assertFindEasilyCommandBehavior(new String[]{"aMy"}, Arrays.asList(tdE.amy));
 
         //partial word: not matched
         assertFindEasilyCommandBehavior(new String[]{"my"}, Collections.emptyList());
 
-        //multiple words: matched
-        assertFindEasilyCommandBehavior(new String[]{"Amy", "Bill", "Candy", "Destiny"},
-                Arrays.asList(td.amy, td.bill, td.candy));
+        //multiple words, same case: matched
+        assertFindEasilyCommandBehavior(new String[]{"Amy", "Bill", "Candy","Destiny"},
+                Arrays.asList(tdE.amy, tdE.bill, tdE.candy));
+
+        //multiple words, different case: matched
+        assertFindEasilyCommandBehavior(new String[]{"AMy", "BiLl", "candy","DESTINY"},
+                Arrays.asList(tdE.amy, tdE.bill, tdE.candy));
 
         //repeated keywords: matched
-        assertFindEasilyCommandBehavior(new String[]{"Amy", "Amy"}, Arrays.asList(td.amy));
+        assertFindEasilyCommandBehavior(new String[]{"Amy", "Amy"}, Arrays.asList(tdE.amy));
 
         //Keyword matching a word in address: not matched
         assertFindEasilyCommandBehavior(new String[]{"Clementi"}, Collections.emptyList());

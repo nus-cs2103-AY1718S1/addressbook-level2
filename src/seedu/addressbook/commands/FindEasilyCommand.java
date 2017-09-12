@@ -52,9 +52,19 @@ public class FindEasilyCommand extends Command {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+            int flag = 0;
             //if (!Collections.disjoint(wordsInName, keywords)) {
-            if(!(wordsInName.toString().equalsIgnoreCase(keywords.toString()))){
-                matchedPersons.add(person);
+            for(int i = 0; i < keywords.size(); i++) {
+                if(flag == 0) {
+                    for (int j = 0; j < wordsInName.size(); j++) {
+                        String w = (String) wordsInName.toArray()[j];
+                        String k = (String) keywords.toArray()[i];
+                        if (w.equalsIgnoreCase(k)) {
+                            matchedPersons.add(person);
+                            flag = 1;
+                        }
+                    }
+                }
             }
         }
         return matchedPersons;

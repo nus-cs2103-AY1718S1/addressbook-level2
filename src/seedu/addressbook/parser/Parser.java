@@ -15,7 +15,7 @@ import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED
  */
 public class Parser {
 
-    public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("^[1-9]\\d*$");
+    public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("^\\d+$");
     public static final Pattern PASSWORD_ARGS_FORMAT = Pattern.compile("^(\\d+\\p{L}+|\\p{L}+\\d+)+$");
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
@@ -81,7 +81,6 @@ public class Parser {
             return prepareView(arguments);
 
         case ViewAllCommand.COMMAND_WORD:
-            System.out.println("check whether reach here @ parseCommand");
             return prepareViewAll(arguments);
 
         case ExitCommand.COMMAND_WORD:
@@ -216,7 +215,8 @@ public class Parser {
      */
     private int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
         final String userIndex = args.split(" ")[1];
-        System.out.println(userIndex.trim());
+        System.out.println("checker userIndex: " + userIndex);
+        System.out.println("Checker userindex: " + userIndex.trim());
         final Matcher matcher = PERSON_INDEX_ARGS_FORMAT.matcher(userIndex.trim());
         System.out.println("check whether reach here: parseaefsdisplayIndex: " + args.trim());
         if (!matcher.matches()) {
@@ -240,8 +240,8 @@ public class Parser {
             System.out.println(userPassword.trim());
             throw new ParseException("Password is of wrong format, no symbols should be included");
         }
-        System.out.println("CHECK PASSWORD: " + matcher.group(1));
-        return matcher.group(1);
+        System.out.println("CHECK PASSWORD: " + matcher.group(0));
+        return matcher.group(0);
     }
     /**
      * Parses arguments in the context of the find person command.

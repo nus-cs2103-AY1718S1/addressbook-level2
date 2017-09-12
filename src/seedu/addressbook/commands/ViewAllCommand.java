@@ -24,8 +24,7 @@ public class ViewAllCommand extends Command {
 
 
     public ViewAllCommand(int targetVisibleIndex, String userInputPassword) {
-        super(targetVisibleIndex);
-        System.out.println("Check viewAllCommand");
+        this.setTargetIndex(targetVisibleIndex);
         this.userInputPassword = userInputPassword;
     }
 
@@ -48,6 +47,6 @@ public class ViewAllCommand extends Command {
         } catch (IndexOutOfBoundsException ie) {
             System.out.println("Is the bug here?");
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+       }
     }
 }

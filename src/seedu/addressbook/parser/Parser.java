@@ -11,18 +11,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.Person;
 
 /**
  * Parses user input.
@@ -77,6 +68,9 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
+
+        case UpdateCommand.COMMAND_WORD:
+            return prepareUpdate(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -156,6 +150,17 @@ public class Parser {
         // replace first delimiter prefix, then split
         final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" t/", "").split(" t/"));
         return new HashSet<>(tagStrings);
+    }
+
+
+    /**
+     * Parses arguments in the context of the update person command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareUpdate(String args) {
+        
     }
 
 

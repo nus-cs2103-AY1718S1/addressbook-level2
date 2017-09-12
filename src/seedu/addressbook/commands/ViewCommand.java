@@ -1,8 +1,7 @@
 package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
-import seedu.addressbook.data.person.ReadOnlyPerson;
-
+import seedu.addressbook.data.person.Person;
 
 /**
  * Shows details of the person identified using the last displayed index.
@@ -28,7 +27,7 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            final ReadOnlyPerson target = getTargetReadOnlyPerson();
+            final Person target = getTargetPerson();
             if (!addressBook.containsPerson(target)) {
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }

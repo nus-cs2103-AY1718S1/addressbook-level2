@@ -17,6 +17,7 @@ import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.DeleteCommand;
 import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.commands.FindCommand;
+import seedu.addressbook.commands.FindPhoneCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
@@ -33,6 +34,9 @@ public class Parser {
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+
+    public static final Pattern NUMBER_ARG_FORMAT =
+            Pattern.compile("(?<number>\\d+)");
 
     public static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
@@ -85,6 +89,9 @@ public class Parser {
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
+            return prepareFind(arguments);
+
+        case FindPhoneCommand.COMMAND_WORD:
             return prepareFind(arguments);
 
         case ListCommand.COMMAND_WORD:
@@ -250,5 +257,15 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    private Command prepareFindPhone(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindPhoneCommand.MESSAGE_USAGE));
+        }
+
+        final int phoneNumber = Integer.parseInt(matcher.group("number"));
+        return new FindPhoneCommand(phoneNumber);
+    }
 
 }

@@ -42,6 +42,9 @@ public class AdaptedPerson {
     @XmlElement
     private List<AdaptedTag> tagged = new ArrayList<>();
 
+    @XmlElement(required = true)
+    private int seq;
+
     /**
      * No-arg constructor for JAXB use.
      */
@@ -72,6 +75,9 @@ public class AdaptedPerson {
         for (Tag tag : source.getTags()) {
             tagged.add(new AdaptedTag(tag));
         }
+
+        seq = source.getSeq();
+
     }
 
     /**
@@ -108,6 +114,6 @@ public class AdaptedPerson {
         final Email email = new Email(this.email.value, this.email.isPrivate);
         final Address address = new Address(this.address.value, this.address.isPrivate);
         final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags,seq);
     }
 }

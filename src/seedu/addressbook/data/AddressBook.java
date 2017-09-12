@@ -1,9 +1,6 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.Person;
@@ -107,6 +104,40 @@ public class AddressBook {
     public void clear() {
         allPersons.clear();
         allTags.clear();
+    }
+
+    /**
+     * Sorts entire address book by name
+     */
+    public void sortByName() {
+        Collections.sort(allPersons.getInternalList(), new Comparator<Person>() {
+            public int compare(Person p1, Person p2) {
+                return p1.getName().toString().compareTo(p2.getName().toString());
+            }
+        });
+    }
+
+    /**
+     * Sorts entire address book by phone number
+     */
+    public void sortByPhone() {
+        Collections.sort(allPersons.getInternalList(), new Comparator<Person>() {
+            public int compare(Person p1, Person p2) {
+                return p1.getPhone().toString().compareTo(p2.getPhone().toString());
+            }
+        });
+    }
+
+
+    /**
+     * Sorts entire address book by email
+     */
+    public void sortByEmail() {
+        Collections.sort(allPersons.getInternalList(), new Comparator<Person>() {
+            public int compare(Person p1, Person p2) {
+                return p1.getEmail().toString().compareTo(p2.getEmail().toString());
+            }
+        });
     }
 
     /**

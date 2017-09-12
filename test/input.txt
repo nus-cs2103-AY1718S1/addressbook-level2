@@ -107,6 +107,27 @@
   find Charlie Betsy
 
 ##########################################################
+# test sort command
+##########################################################  
+
+  # should consider no keywords as invalid command format
+  sort
+  
+  # should show correct sort successful message
+  sort email
+  
+  # should consider all upper cases as valid command format
+  sort NAME
+  
+  # should consider all mixed cases as valid command format
+  sort pHoNe
+  
+  # should catch invalid args format
+  sort asd
+  sort name hello
+  
+  
+##########################################################
 # test delete person command
 ##########################################################
 

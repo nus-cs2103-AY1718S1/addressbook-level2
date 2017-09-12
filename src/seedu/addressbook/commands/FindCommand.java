@@ -18,7 +18,7 @@ public class FindCommand extends SortableCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers, "
-            + "sorted by addition order or the specified sort order.\n"
+            + "sorted by addition order or the optional specified sort orders.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]... " + SORT_USAGE + "\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie p/ n/desc";
 

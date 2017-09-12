@@ -14,7 +14,7 @@ public class ListCommand extends SortableCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays all persons in the address book as a list with index numbers, "
-            + "sorted by addition order ot the specified sort order." + "\n"
+            + "sorted by addition order or the optional specified sort orders." + "\n"
             + "Parameters: " + SORT_USAGE + "\n"
             + "Example: " + COMMAND_WORD + " n/ p/desc";
     

@@ -86,6 +86,9 @@ public interface ReadOnlyPerson {
     default String getAsTextHidePrivate() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
+        if (!getDateOfBirth().isPrivate()) {
+            builder.append(" Date of Birth: ").append(getDateOfBirth());
+        }
         if (!getPhone().isPrivate()) {
             builder.append(" Phone: ").append(getPhone());
         }

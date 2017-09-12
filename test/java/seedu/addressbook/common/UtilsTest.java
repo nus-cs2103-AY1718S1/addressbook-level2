@@ -12,6 +12,22 @@ public class UtilsTest {
 
 
     @Test
+    public void isAnyNull() throws Exception {
+        Object null_obj = null;
+        
+        // There exists null object(s)
+        assertTrue(Utils.isAnyNull(null_obj));
+        assertTrue(Utils.isAnyNull(1,2,null_obj));
+        
+        // There are no objectss
+        assertFalse(Utils.isAnyNull());
+        
+        // There are no null objectss
+        assertFalse(Utils.isAnyNull(0,1,2,3));
+        assertFalse(Utils.isAnyNull(false));
+        assertFalse(Utils.isAnyNull("null","NULL"));
+    }
+    
     public void elementsAreUnique() throws Exception {
         // empty list
         assertAreUnique();

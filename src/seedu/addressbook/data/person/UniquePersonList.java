@@ -1,5 +1,6 @@
 package seedu.addressbook.data.person;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -36,6 +37,15 @@ public class UniquePersonList implements Iterable<Person> {
     public static class PersonNotFoundException extends Exception {}
 
     private final List<Person> internalList = new ArrayList<>();
+
+    private static final String COMMAND_SORT_PARAMETER_NAME = "name";
+    private static final String COMMAND_SORT_PARAMETER_PHONE = "phone";
+    private static final String COMMAND_SORT_PARAMETER_EMAIL = "email";
+
+    /**
+     * The first index of the address book. Is 0 if empty
+     */
+    private static final int SMALLEST_INDEX_OF_ADDRESSBOOK = 0;
 
     /**
      * Constructs empty person list.
@@ -120,6 +130,158 @@ public class UniquePersonList implements Iterable<Person> {
         if (!personFoundAndDeleted) {
             throw new PersonNotFoundException();
         }
+    }
+
+    /**
+     * Removes the equivalent person from the list.
+     *
+     * @throws PersonNotFoundException if no such person could be found in the list.
+     */
+    public void sort(String parameter) throws InvalidParameterException {
+        switch (parameter) {
+        case COMMAND_SORT_PARAMETER_NAME:
+            quickSortByName(SMALLEST_INDEX_OF_ADDRESSBOOK, getLastIndexOfAddressBook());
+        case COMMAND_SORT_PARAMETER_PHONE:
+            quickSortByPhone(SMALLEST_INDEX_OF_ADDRESSBOOK, getLastIndexOfAddressBook());
+        case COMMAND_SORT_PARAMETER_EMAIL:
+            quickSortByEmail(SMALLEST_INDEX_OF_ADDRESSBOOK, getLastIndexOfAddressBook());
+        default:
+            throw new InvalidParameterException();
+        }
+    }
+
+    private void quickSortByName(int min, int max) throws IndexOutOfBoundsException {
+        if (internalList.size() == 0) {
+            return;
+        }
+        if (min < 0 || min >= internalList.size()) {
+            throw new IndexOutOfBoundsException("low is not within the range of the internalList");
+        }
+        if (max < 0 || max >= internalList.size()) {
+            throw new IndexOutOfBoundsException("high is not within the range of the internalList");
+        }
+        int low = min;
+        int high = max;
+        String pivot = internalList.get(low + (high - low) / 2).getName().toString();
+        while (low <= high) {
+            while (internalList.get(low).getName().toString().compareTo(pivot) < 0) {
+                low++;
+            }
+            while (internalList.get(high).getName().toString().compareTo(pivot) > 0) {
+                high--;
+            }
+            if (low <= high) {
+                swapPersonInArray(low, high);
+                low++;
+                high--;
+            }
+        }
+        //Recursively call quickSortByName to finish sorting the ArrayList
+        if (min < high) {
+            quickSortByName(min, high);
+        }
+        if (low < max) {
+            quickSortByName(low, max);
+        }
+    }
+
+    private void quickSortByPhone(int min, int max) throws IndexOutOfBoundsException {
+        if (internalList.size() == 0) {
+            return;
+        }
+        if (min < 0 || min >= internalList.size()) {
+            throw new IndexOutOfBoundsException("low is not within the range of the internalList");
+        }
+        if (max < 0 || max >= internalList.size()) {
+            throw new IndexOutOfBoundsException("high is not within the range of the internalList");
+        }
+        int low = min;
+        int high = max;
+        String pivot = internalList.get(low + (high - low) / 2).getPhone().toString();
+        while (low <= high) {
+            while (internalList.get(low).getPhone().toString().compareTo(pivot) < 0) {
+                low++;
+            }
+            while (internalList.get(high).getPhone().toString().compareTo(pivot) > 0) {
+                high--;
+            }
+            if (low <= high) {
+                swapPersonInArray(low, high);
+                low++;
+                high--;
+            }
+        }
+        //Recursively call quickSortByEmail to finish sorting the ArrayList
+        if (min < high) {
+            quickSortByPhone(min, high);
+        }
+        if (low < max) {
+            quickSortByPhone(low, max);
+        }
+    }
+
+    private void quickSortByEmail(int min, int max) throws IndexOutOfBoundsException {
+        if (internalList.size() == 0) {
+            return;
+        }
+        if (min < 0 || min >= internalList.size()) {
+            throw new IndexOutOfBoundsException("low is not within the range of the internalList");
+        }
+        if (max < 0 || max >= internalList.size()) {
+            throw new IndexOutOfBoundsException("high is not within the range of the internalList");
+        }
+        int low = min;
+        int high = max;
+        String pivot = internalList.get(low + (high - low) / 2).getEmail().toString();
+        while (low <= high) {
+            while (internalList.get(low).getEmail().toString().compareTo(pivot) < 0) {
+                low++;
+            }
+            while (internalList.get(high).getEmail().toString().compareTo(pivot) > 0) {
+                high--;
+            }
+            if (low <= high) {
+                swapPersonInArray(low, high);
+                low++;
+                high--;
+            }
+        }
+        //Recursively call quickSortByEmail to finish sorting the ArrayList
+        if (min < high) {
+            quickSortByEmail(min, high);
+        }
+        if (low < max) {
+            quickSortByEmail(low, max);
+        }
+    }
+
+    /**
+     * Swaps the position of 2 people in the internalList of people
+     *
+     * @param low The index of the first person
+     * @param high The index of the second person
+     */
+    private void swapPersonInArray(int low, int high)
+            throws IndexOutOfBoundsException {
+        if (internalList.size() == 0) {
+            return;
+        }
+        if (low < 0 || low >= internalList.size()) {
+            throw new IndexOutOfBoundsException("low is not within the range of personArray");
+        }
+        if (high < 0 || high >= internalList.size()) {
+            throw new IndexOutOfBoundsException("high is not within the range of personArray");
+        }
+        Person temp = internalList.get(low);
+        internalList.set(low, internalList.get(high));
+        internalList.set(high, temp);
+    }
+
+    /**
+     * Gets the last index of the internalList
+     */
+    private int getLastIndexOfAddressBook() {
+        return internalList.size() - 1;
     }
 
     /**

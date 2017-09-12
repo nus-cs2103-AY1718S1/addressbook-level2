@@ -224,6 +224,7 @@ public class ParserTest {
                 parseAndAssertCommandType(input, SortCommand.class);
         assertEquals(keyword, result.getParameter());
     }
+
     /*
      * Tests for add person command ==============================================================================
      */

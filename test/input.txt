@@ -55,6 +55,15 @@
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
 
 ##########################################################
+# test sort persons command
+##########################################################
+
+  add Aurora H p/000000 e/aurora@u.nus.edu.sg pa/000, some street t/starchy
+  sort
+  delete 2
+  list
+
+##########################################################
 # test view/viewall persons command
 ##########################################################
 

@@ -297,6 +297,10 @@
 || 
 || 0 persons listed!
 || ===================================================
+|| [Command entered:reminder CS2103T tutorial]
+|| New reminder added:
+|| ===================================================
+|| ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...
 || ===================================================

@@ -66,6 +66,18 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Finding all persons easily ignored the case containing keywords in their name: `find-easily`
+Finds persons whose names contain any of the given keywords and ignore the case.<br>
+Format: `find_easily KEYWORD [MORE_KEYWORDS]`
+
+> The search is case insensitive, the order of the keywords does not matter, only the name is searched, 
+and persons matching at least one keyword will be returned (i.e. `OR` search).
+
+Examples: 
+* `find john Doe`<br>
+  Returns `John Doe` 
+
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`

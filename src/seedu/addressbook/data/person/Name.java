@@ -62,13 +62,13 @@ public class Name implements Comparable {
 
     public int compareTo(Name nameObj){
         String currentName = fullName;
-        String compareName = nameObj.fullname;
+        String compareName = nameObj.fullName;
         return currentName.compareTo(compareName);
     }
 
     public int compareTo(Object object){
         Name nameObj = null;
-        if(object instanceOf Name){
+        if(object instanceof Name){
             nameObj = (Name) object;
         }
 

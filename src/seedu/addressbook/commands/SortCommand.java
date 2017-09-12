@@ -4,7 +4,8 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
 
-public class SortCommand extends Command {
+
+public class SortCommand extends Command{
     public static final String COMMAND_WORD="sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -13,8 +14,10 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(){
-        addressBook.sortPerson();
+        boolean isEmpty=addressBook.sortPerson();
         List<ReadOnlyPerson> allPersons=addressBook.getAllPersons().immutableListView();
-        return new CommandResult("Sorted successful for "+getMessageForPersonListShownSummary(allPersons), allPersons);
+        if(!isEmpty) return new CommandResult("The addressBook is empty, you don't need to sort it!");
+        else
+            return new CommandResult("Sorted successful for "+getMessageForPersonListShownSummary(allPersons), allPersons);
     }
 }

@@ -2,7 +2,6 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
@@ -22,7 +21,8 @@ public class UpdateCommand extends Command {
     public static final String COMMAND_WORD = "update";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Updates the person identified by the index number used in the last person listing with the details provided\n"
+            + ": Updates the person identified by the index number " 
+            + "used in the last person listing with the details provided\n"
             + "Parameters: INDEX [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1"
             + " p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
@@ -52,7 +52,7 @@ public class UpdateCommand extends Command {
         );
     }
 
-    public void setName(){
+    public void setName() {
         final ReadOnlyPerson target = getTargetPerson();
         Name name = target.getName();
         toAdd.rewriteName(name);

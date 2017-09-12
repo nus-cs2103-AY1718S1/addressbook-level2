@@ -66,7 +66,7 @@ public class Person implements ReadOnlyPerson {
         tags.setTags(replacement);
     }
 
-    public void rewriteName(Name name){
+    public void rewriteName(Name name) {
         this.name = name;
     }
 

@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.Test;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
@@ -138,6 +139,16 @@ public class TestUtil {
         List<String> list1 = Files.readAllLines(path1, Charset.defaultCharset());
         List<String> list2 = Files.readAllLines(path2, Charset.defaultCharset());
         assertEquals(String.join("\n", list1), String.join("\n", list2));
+    }
+
+    /**
+     * Asserts that the method isAnyNull can run smoothly
+     */
+    @Test
+    public void assertItemIsNull(Object... items) throws Exception {
+        for(Object item: items) {
+            assertTrue(item == null);
+        }
     }
 
     /**

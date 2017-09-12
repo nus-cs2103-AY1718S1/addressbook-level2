@@ -49,5 +49,5 @@ public class UtilsTest {
         assertTrue(Utils.isAnyNull(null, null, null, null));
         assertTrue(Utils.isAnyNull(1, null, 2));
         assertFalse(Utils.isAnyNull(3, 2, 1));
-    }
+    } 
 }

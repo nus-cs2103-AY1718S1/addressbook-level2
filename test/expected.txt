@@ -294,7 +294,10 @@
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  sort asc]
-|| Successfully Sorted
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| Successfully Sorted!
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Tags: [secretive]
@@ -303,7 +306,10 @@
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  sort dsc]
-|| Successfully Sorted
+|| 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	2. Betsy Choo Tags: [secretive]
+|| 
+|| Successfully Sorted!
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]

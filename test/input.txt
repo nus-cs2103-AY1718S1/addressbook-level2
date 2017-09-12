@@ -107,8 +107,35 @@
   find Charlie Betsy
 
 ##########################################################
+# test findtag command
+##########################################################
+
+  list
+
+# last active view: [1] adam [no tags] [2] betsy [secretive]  [3] charlie [school][friends]
+#                   [4] dickson [friends] [5] esther [tubers][starchy]
+
+  # should consider no tags as invalid command format
+  findtag
+  # should only match full words in tag
+  findtag secret
+  # does not match if none have tag
+  findtag lolwthisthistag
+  # matching should be case-sensitive
+  findtag Tubers
+
+  # find unique tag
+  findtag secretive
+  # find multiple with same tag
+  findtag friends
+  # find multiple with some tag
+  findtag tubers secretive
+
+##########################################################
 # test delete person command
 ##########################################################
+
+  find Charlie Betsy
 
 # last active view: [1] betsy [2] charlie
 
@@ -140,12 +167,7 @@
   delete 1
   list
 
-##########################################################
-# test findtag command
-##########################################################
 
-  #search for tag with starchy
-  findtag starchy
 
 ##########################################################
 # test clear command

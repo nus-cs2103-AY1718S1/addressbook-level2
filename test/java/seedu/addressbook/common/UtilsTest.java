@@ -33,7 +33,6 @@ public class UtilsTest {
         assertHasNull("", "abc", null);
         assertHasNull("aaa", "123", null);
 
-
     }
 
     @Test

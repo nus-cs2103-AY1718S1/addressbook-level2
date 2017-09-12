@@ -81,6 +81,23 @@ Examples:
   `delete 1`<br>
   Deletes the 1st person in the results of the `find` command.
 
+### Deleting a range of people : `deleterange`
+Deletes the range of people from the address book. Irreversible.<br>
+Format: `delete STARTINDEX ENDINDEX`
+
+> Deletes the range of people from the specified `STARTINDEX`    	  to'ENDINDEX'. 
+  The index refers to the index number shown in the most recent listing.
+
+Examples: 
+* `list`<br>
+  `deleterange 2 3`<br>
+  Deletes the 2nd and 3rd person in the address book.
+* `find Betsy`<br> 
+  `deleterange 1 1`<br>
+  Deletes the 1st person in the results of the `find` command.
+
+
+
 ### View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>
 Format: `view INDEX`

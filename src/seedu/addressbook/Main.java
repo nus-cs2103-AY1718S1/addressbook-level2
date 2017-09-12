@@ -88,7 +88,7 @@ public class Main {
             recordResult(result);
             ui.showResultToUser(result);
 
-            if(command instanceof AddCommand) {
+            if(command instanceof AddCommand && !result.feedbackToUser.equals(AddCommand.MESSAGE_DUPLICATE_PERSON)) {
                 recentAdded.add(0,result);
                 System.out.println("History of recently added:");
                 for (CommandResult addHistory : recentAdded) {

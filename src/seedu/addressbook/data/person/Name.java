@@ -4,6 +4,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents a Person's name in the address book.
@@ -40,7 +41,11 @@ public class Name {
      * Retrieves a listing of every word in the name, in order.
      */
     public List<String> getWordsInName() {
-        return Arrays.asList(fullName.split("\\s+"));
+        List<String> wordsInName = Arrays.asList(fullName.split("\\s+"));
+        List<String> wordsInNameLowercase = wordsInName.stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+        return wordsInNameLowercase;
     }
 
     @Override

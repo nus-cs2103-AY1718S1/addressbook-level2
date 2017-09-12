@@ -65,7 +65,7 @@ Examples:
   Returns `John Doe`
 * `find john`<br>
   Returns `John Doe` (but `find JOhn` will fail to find `John Doe`)
-* `find Betsy Tim John`<br>
+* `find Betsy tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
 ### Deleting a person : `delete`

@@ -33,7 +33,6 @@ public class Parser {
 
     public static final Pattern PERSON_INDEX_NAME_ARGS_FORMAT =
             Pattern.compile("(?<targetIndex>\\p{Digit})" + "(?<name>[^/]+)" );
-            //Pattern.compile("(?<targetIndex>.+)" + "(?<name>[^/]+)" );
 
 
     /**
@@ -147,19 +146,7 @@ public class Parser {
 
                 matcher.group("name")
         );
-
-        /*try {
-            return new EditCommand(
-                    Integer.parseInt(matcher.group("targetIndex")),
-
-                    matcher.group("name")
-            );
-
-        } catch (ParseException pe) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ViewCommand.MESSAGE_USAGE));
-        }
-        */
+        
         }
 
 

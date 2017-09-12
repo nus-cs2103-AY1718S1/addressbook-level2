@@ -86,14 +86,14 @@
 || Tags names should be alphanumeric
 || ===================================================
 || Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street, 111, 111]
-|| New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street, 111, 111 Tags: 
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street, 111, 111 Tags: 
 || 
 || 1 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive]
+|| Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street, 222, 222 t/secretive]
 || New person added: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street, 222, 222 Tags: [secretive]
 || ===================================================
 || Enter command: || [Command entered:  list]
@@ -102,7 +102,7 @@
 || 
 || 2 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school]
+|| Enter command: || [Command entered:  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street, 333, 333 t/friends t/school]
 || New person added: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street, 333, 333 Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
@@ -112,7 +112,7 @@
 || 
 || 3 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends]
+|| Enter command: || [Command entered:  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street, 444, 444 t/friends]
 || New person added: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street, 444, 444 Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
@@ -123,7 +123,7 @@
 || 
 || 4 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
+|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street, 555, 555 t/tubers t/starchy]
 || New person added: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street, 555, 555 Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  list]

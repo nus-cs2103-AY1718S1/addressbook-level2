@@ -244,8 +244,15 @@ public class Parser {
     private Command prepareFind(String args, String type) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindCommand.MESSAGE_USAGE));
+
+            if(type.equals("name")) {
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindCommand.MESSAGE_USAGE));
+            } else if (type.equals("phone")){
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        PhoneCommand.MESSAGE_USAGE));
+            }
+            return null;
         }
 
         // keywords delimited by whitespace

@@ -107,6 +107,23 @@
   find Charlie Betsy
 
 ##########################################################
+# test list chatacter command
+##########################################################
+
+  # should consider no keywords as invalid command format
+  listchar
+  # should not work if keyword is not a single character
+  listchar abc
+  # should list at least 1 contact if have correct keyword
+  listchar A
+  listchar B
+  listchar C
+  listchar D
+  listchar E
+  # does not match if none have keyword
+  listchar F
+
+##########################################################
 # test delete person command
 ##########################################################
 

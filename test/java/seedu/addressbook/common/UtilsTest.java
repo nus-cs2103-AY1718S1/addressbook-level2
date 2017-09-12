@@ -53,8 +53,9 @@ public class UtilsTest {
      */
     public  void assertIsAnyNull(){
 
+        Object nullObject = null;
         assertFalse(isAnyNull()) ;
-        assertTrue(isAnyNull(null)); ;
+        assertTrue(isAnyNull(nullObject));
         assertFalse(isAnyNull(" ", " ", 0, false));
         assertFalse(isAnyNull("Item1", true, 123, 33.4, 'a'));
         assertTrue(isAnyNull("Item1", null, 123, 33.4));

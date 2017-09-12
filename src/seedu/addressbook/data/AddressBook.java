@@ -24,13 +24,14 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
-
+    private String reminderMessage;
     /**
      * Creates an empty address book.
      */
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        reminderMessage = "No reminders.";
     }
 
     /**
@@ -43,6 +44,15 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        for (Person p : allPersons) {
+            syncTagsWithMasterList(p);
+        }
+    }
+
+    public AddressBook(UniquePersonList persons, UniqueTagList tags, String reminderMessage) {
+        this.allPersons = new UniquePersonList(persons);
+        this.allTags = new UniqueTagList(tags);
+        this.reminderMessage = reminderMessage;
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -99,12 +109,21 @@ public class AddressBook {
         allPersons.remove(toRemove);
     }
 
+    public void setReminderMessage(String reminderMessage) {
+        this.reminderMessage = reminderMessage;
+    }
+
     /**
      * Clears all persons and tags from the address book.
      */
     public void clear() {
         allPersons.clear();
         allTags.clear();
+    }
+
+    public String getReminderMessage() {
+        System.out.println("" + reminderMessage);
+        return reminderMessage;
     }
 
     /**

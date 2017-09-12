@@ -2,12 +2,14 @@
 <AddressBook>
     <persons>
         <name>John Doe</name>
+        <gender>Male</gender>
         <phone isPrivate="false">98765432</phone>
         <email isPrivate="false">johnd@gmail.com</email>
         <address isPrivate="false">John street, block 123, #01-01</address>
     </persons>
     <persons>
         <name>Betsy Crowe</name>
+        <gender>Female</gender>
         <phone isPrivate="true">1234567</phone>
         <email isPrivate="false">betsycrowe@gmail.com</email>
         <address isPrivate="true">Newgate Prison</address>

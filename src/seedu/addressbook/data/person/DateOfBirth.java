@@ -10,8 +10,8 @@ public class DateOfBirth {
 
     public static final String EXAMPLE = "07.08.1995";
     public static final String MESSAGE_DATE_CONSTRAINTS =
-            "Person emails should be 2 numbers, 2 numbers and 4 numbers strings separated by '.'";
-    public static final String DATE_VALIDATION_REGEX = "[0-9]*2.[0-9]*2.[0-9]+";
+            "Person date of birth should be three numbers strings separated by two '.'";
+    public static final String DATE_VALIDATION_REGEX = "\\d+.\\d+.\\d+";
 
     public final String value;
     private boolean isPrivate;

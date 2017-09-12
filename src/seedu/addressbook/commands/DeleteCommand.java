@@ -1,7 +1,7 @@
 package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
-import seedu.addressbook.data.person.Person;
+import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 
 
@@ -28,7 +28,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            final Person target = getTargetPerson();
+            final ReadOnlyPerson target = getTargetPerson();
             addressBook.removePerson(target);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
 

@@ -40,7 +40,7 @@
   add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
 
   # should add correctly and list non private information
-  add Adam Brown p/684758 e/madambrown@gmail.com a/555, alpha street
+  add Adam Brown p/684758 e/madambrown@gmail.com a/123, alpha street
   list
   add Betsy Choo pp/479928 pe/choobet@nus.edu.sg pa/111, beta street t/secretive
   list
@@ -101,6 +101,10 @@
 
   # sort by email
   sort email
+  list
+
+  # sort by address
+  sort address
   list
 
   # sort by name

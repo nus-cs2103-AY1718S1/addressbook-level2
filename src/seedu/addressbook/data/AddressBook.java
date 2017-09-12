@@ -115,8 +115,9 @@ public class AddressBook {
     }
 
     /** Sorts all persons in alphabetical order.
-                 */
+     */
                public void sort(){
+
                    allPersons.sort();
            }
 

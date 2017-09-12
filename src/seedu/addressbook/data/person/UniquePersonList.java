@@ -123,7 +123,7 @@ public class UniquePersonList implements Iterable<Person> {
             public void sort(){
                 Collections.sort(internalList,new Comparator<Person>(){
              public int compare(final Person person1, final Person person2) {
-                              return person1.getName().toString().compareTo(person2.getName().toString());
+                 return person1.getName().toString().compareTo(person2.getName().toString());
              }
                 });
 

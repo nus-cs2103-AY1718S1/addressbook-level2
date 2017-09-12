@@ -266,7 +266,7 @@ public class ParserTest {
         }
 
         final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
-        assertEquals(result.getPerson(), testPerson);
+        assertEquals(testPerson, result.getPerson());
     }
 
     private static Person generateTestPerson() {

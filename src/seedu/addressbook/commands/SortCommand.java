@@ -2,7 +2,7 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
-import java.util.List;
+import java.util.*;
 
 public class SortCommand extends Command{
 
@@ -12,11 +12,24 @@ public class SortCommand extends Command{
             + ": Sorts all persons in the address book in alphabetical order.\n"
             + "Example: " + COMMAND_WORD;
 
-
     @Override
     public CommandResult execute() {
-        List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
-        return new CommandResult(getMessageForPersonSortShownSummary(allPersons), allPersons);
+        final List<ReadOnlyPerson> sortedPersons = sortPersonsAlphabetically();
+        return new CommandResult(getMessageForPersonSortShownSummary(sortedPersons), sortedPersons);
+    }
+
+    /**
+     * Retrieves all persons in the address book whose names contain some of the specified keywords.
+     *
+     * @param keywords for searching
+     * @return list of persons found
+     */
+    private List<ReadOnlyPerson> sortPersonsAlphabetically() {
+        final List<ReadOnlyPerson> sortedPersons = new ArrayList<>();
+
+
+
+        return sortedPersons;
     }
 
 }

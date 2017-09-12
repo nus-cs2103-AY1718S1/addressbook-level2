@@ -14,21 +14,24 @@ public class SortCommand extends Command{
 
     @Override
     public CommandResult execute() {
-        final List<ReadOnlyPerson> sortedPersons = sortPersonsAlphabetically();
+        final List<ReadOnlyPerson> sortedPersons = sortPersonsAlphabetically(
+                                                        addressBook.getAllPersons().immutableListView());
         return new CommandResult(getMessageForPersonSortShownSummary(sortedPersons), sortedPersons);
     }
 
     /**
-     * Retrieves all persons in the address book whose names contain some of the specified keywords.
+     * Sorts and displays all persons in the address book alphabetically.
      *
-     * @param keywords for searching
-     * @return list of persons found
+     * @param  unsortedPersons for sorting
+     * @return list of persons sorted
      */
-    private List<ReadOnlyPerson> sortPersonsAlphabetically() {
-        final List<ReadOnlyPerson> sortedPersons = new ArrayList<>();
-
-
-
+    private List<ReadOnlyPerson> sortPersonsAlphabetically(List<ReadOnlyPerson> unsortedPersons) {
+        List<ReadOnlyPerson> sortedPersons = new ArrayList<ReadOnlyPerson>(unsortedPersons);
+        Collections.sort(sortedPersons, new Comparator<ReadOnlyPerson>() {
+            public int compare(ReadOnlyPerson p1, ReadOnlyPerson p2) {
+                return (p1.getName().toString()).compareTo(p2.getName().toString());
+            }
+        });
         return sortedPersons;
     }
 

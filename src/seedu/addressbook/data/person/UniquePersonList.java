@@ -35,6 +35,11 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public static class PersonNotFoundException extends Exception {}
 
+    /**
+     * Signals that no last person added into list.
+     */
+    public static class EmptyAddressBookException extends Exception {}
+
     private final List<Person> internalList = new ArrayList<>();
 
     /**
@@ -127,6 +132,17 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void clear() {
         internalList.clear();
+    }
+
+    /**
+     * Gets last added person in list.
+     */
+    public List<ReadOnlyPerson> getLastAdded() {
+        List<ReadOnlyPerson> lastPerson = new ArrayList<>();
+        if(!internalList.isEmpty()){
+            lastPerson.add(internalList.get(internalList.size() - 1));
+        }
+        return lastPerson;
     }
 
     @Override

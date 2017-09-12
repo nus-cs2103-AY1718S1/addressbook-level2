@@ -87,6 +87,32 @@
   viewall 5
 
 ##########################################################
+# test sort persons command
+##########################################################
+
+  # should consider too many keywords as invalid command format
+  sort name phone
+
+  # should consider gibberish arguments as invalid command format
+  sort #$%
+
+  # sort without any arguments
+  sort
+  list
+
+  # sort by phone number
+  sort phone
+  list
+
+  # sort by email
+  sort email
+  list
+
+  # sort by address
+  sort address
+  list
+
+##########################################################
 # test find persons command
 ##########################################################
 

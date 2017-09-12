@@ -141,10 +141,13 @@ public class UniquePersonList implements Iterable<Person> {
         switch (parameter) {
         case COMMAND_SORT_PARAMETER_NAME:
             quickSortByName(SMALLEST_INDEX_OF_ADDRESSBOOK, getLastIndexOfAddressBook());
+            break;
         case COMMAND_SORT_PARAMETER_PHONE:
             quickSortByPhone(SMALLEST_INDEX_OF_ADDRESSBOOK, getLastIndexOfAddressBook());
+            break;
         case COMMAND_SORT_PARAMETER_EMAIL:
             quickSortByEmail(SMALLEST_INDEX_OF_ADDRESSBOOK, getLastIndexOfAddressBook());
+            break;
         default:
             throw new InvalidParameterException();
         }
@@ -176,7 +179,7 @@ public class UniquePersonList implements Iterable<Person> {
                 high--;
             }
         }
-        //Recursively call quickSortByName to finish sorting the ArrayList
+        //Recursively call quickSortByName to finish sorting the internalList
         if (min < high) {
             quickSortByName(min, high);
         }
@@ -211,7 +214,7 @@ public class UniquePersonList implements Iterable<Person> {
                 high--;
             }
         }
-        //Recursively call quickSortByEmail to finish sorting the ArrayList
+        //Recursively call quickSortByPhone to finish sorting the internalList
         if (min < high) {
             quickSortByPhone(min, high);
         }
@@ -246,7 +249,7 @@ public class UniquePersonList implements Iterable<Person> {
                 high--;
             }
         }
-        //Recursively call quickSortByEmail to finish sorting the ArrayList
+        //Recursively call quickSortByEmail to finish sorting the internalList
         if (min < high) {
             quickSortByEmail(min, high);
         }

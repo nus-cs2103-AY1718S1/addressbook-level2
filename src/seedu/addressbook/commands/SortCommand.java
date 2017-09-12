@@ -29,6 +29,7 @@ public class SortCommand extends Command{
 
     @Override
     public CommandResult execute() {
+        addressBook.sortByParameter(parameter);
         return new CommandResult(String.format(MESSAGE_SUCCESS, parameter));
     }
 }

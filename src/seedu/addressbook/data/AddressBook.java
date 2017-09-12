@@ -129,7 +129,7 @@ public class AddressBook {
                         && this.allTags.equals(((AddressBook) other).allTags));
     }
 
-    public void sortByParameter() {
-
+    public void sortByParameter(String parameter) {
+        allPersons.sort(parameter);
     }
 }

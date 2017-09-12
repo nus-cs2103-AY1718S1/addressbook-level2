@@ -99,37 +99,45 @@ public class Person implements ReadOnlyPerson {
         return "Employment Information Updated";
     }
 
-    public String getEmploymentInfo(){
-        if(!hasEditedEmploymentInfo){ return hasYetToEditEmploymentStatus(); }
-        else if(hasEditedEmploymentInfo){ return printEmploymentStatus();}
-        else { return invalidEmploymentBoolean(); }
+    public void getEmploymentInfo(){
+        if(!hasEditedEmploymentInfo){ hasYetToEditEmploymentStatus(); }
+        else if(hasEditedEmploymentInfo){ printEmploymentStatus();}
+        else {invalidEmploymentBoolean(); }
     }
 
-    private String printEmploymentStatus(){
-        String printName= "Name: " + this.employmentInfo.getName();
-        String printES= "Employment Status: " + this.employmentInfo.getEmploymentStatus();
-        String printJT= "Job Title: "+ this.employmentInfo.getJobTitle();
-        String printWE= "Working Experience: " + Integer.toString(this.employmentInfo.getWorkingExperience());
-        return printName + "\n" + printES + "\n" + printJT + "\n" + printWE;
-    }
-    private String hasYetToEditEmploymentStatus(){return "Employment Info has not been updated. " +
-            "Please edit before viewing";}
-    private String invalidEmploymentBoolean(){ return "Something weird happened! Please contact us so that " +
-            "we can fix the issue!";}
+    private void printEmploymentStatus(){
+        String printName= "|| Name: " + this.employmentInfo.getName();
+        String printES= "|| Employment Status: " + this.employmentInfo.getEmploymentStatus();
+        String printJT= "|| Job Title: "+ this.employmentInfo.getJobTitle();
+        String printWE= "|| Working Experience: " + Integer.toString(this.employmentInfo.getWorkingExperience());
+        System.out.print( printName + "\n" + printES + "\n" + printJT + "\n" + printWE + "\n");}
+
+    private void hasYetToEditEmploymentStatus(){
+            System.out.println("|| Employment Info has not been updated. " +
+                    "Please edit before viewing");
+        }
+
+    private void invalidEmploymentBoolean(){ System.out.println("|| Something weird happened! Please contact us so that " +
+            "we can fix the issue!");}
 
     private void printUserFound(){
-        System.out.println("Contact Found! Please enter the person's \n");
-        System.out.println("1. Employment Status (Employed/Unemployed)");
-        System.out.println("2. Job Title");
-        System.out.println("3. Working Experience (Expressed as an Integer)");
-        System.out.println("Seperate them with a comma");
-        System.out.println("Example: Unemployed,Student,0");
+        System.out.println("|| Contact Found! Please enter the person's \n");
+        System.out.println("|| 1. Employment Status (Employed/Unemployed)");
+        System.out.println("|| 2. Job Title");
+        System.out.println("|| 3. Working Experience (Expressed as an Integer)");
+        System.out.println("|| Seperate them with a comma");
+        System.out.println("|| Example: Unemployed,Student,0");
     }
 
     private String[] obtainAndProcessInput(){
+        int inputCheckerByCountingCommas=0;
+        String[] processedInput;
         Scanner sc = new Scanner(System.in);
-        String input = sc.next();
-        String[] processedInput = input.split(",");
+        do{
+            String input = sc.nextLine();
+            processedInput = input.split(",");
+            inputCheckerByCountingCommas=processedInput.length;
+        }while(inputCheckerByCountingCommas!=3);
         return processedInput;
     }
 

@@ -128,4 +128,18 @@ public class AddressBook {
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
     }
+
+    public void editEmploymentInfo(String name){
+        for (Person p : allPersons){
+            if (p.getName().toString().equals(name.substring(1))){ p.editEmploymentInfo();}
+            break;
+        }
+    }
+
+    public void viewEmploymentInfo(String name){
+        for (Person p: allPersons){
+            if (p.getName().toString().equals(name.substring(1))){ p.getEmploymentInfo();}
+            break;
+        }
+    }
 }

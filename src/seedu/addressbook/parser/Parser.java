@@ -65,33 +65,39 @@ public class Parser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
+            case AddCommand.COMMAND_WORD:
+                return prepareAdd(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
+            case EditEmploymentStatusCommand.COMMAND_WORD:
+                return prepareEditEmploymentStatus(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            case ViewEmploymentStatusCommand.COMMAND_WORD:
+                return prepareViewEmploymentStatus(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            case DeleteCommand.COMMAND_WORD:
+                return prepareDelete(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
-        case ViewCommand.COMMAND_WORD:
-            return prepareView(arguments);
+            case FindCommand.COMMAND_WORD:
+                return prepareFind(arguments);
 
-        case ViewAllCommand.COMMAND_WORD:
-            return prepareViewAll(arguments);
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ViewCommand.COMMAND_WORD:
+                return prepareView(arguments);
 
-        case HelpCommand.COMMAND_WORD: // Fallthrough
-        default:
-            return new HelpCommand();
+            case ViewAllCommand.COMMAND_WORD:
+                return prepareViewAll(arguments);
+
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+
+            case HelpCommand.COMMAND_WORD: // Fallthrough
+            default:
+                return new HelpCommand();
         }
     }
 
@@ -241,4 +247,11 @@ public class Parser {
     }
 
 
+    private Command prepareEditEmploymentStatus(String arguments){
+        return new EditEmploymentStatusCommand(arguments);
+    }
+
+    private Command prepareViewEmploymentStatus(String arguments){
+        return new ViewEmploymentStatusCommand(arguments);
+    }
 }

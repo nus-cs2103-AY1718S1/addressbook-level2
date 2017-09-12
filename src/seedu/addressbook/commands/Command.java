@@ -5,6 +5,7 @@ import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
+import seedu.addressbook.data.person.Person;
 
 import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
 
@@ -67,4 +68,10 @@ public class Command {
     public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
     }
+
+    public void editEmploymentInfo(String name){
+        addressBook.editEmploymentInfo(name);
+    }
+
+    public void viewEmploymentInfo(String name) {addressBook.viewEmploymentInfo(name);}
 }

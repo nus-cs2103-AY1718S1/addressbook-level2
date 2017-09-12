@@ -35,7 +35,7 @@ public class AddCommandTest {
     public void addCommand_invalidPhone_throwsException() {
         final String[] invalidNumbers = { "", " ", "1234-5678", "[]\\[;]", "abc", "a123", "+651234" };
         for (String number : invalidNumbers) {
-            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE, false,
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, number, true, Email.EXAMPLE, false,
                     Block.EXAMPLE, false, Street.EXAMPLE, false, Unit.EXAMPLE, false, PostalCode.EXAMPLE, false, EMPTY_STRING_LIST);
         }
     }
@@ -45,16 +45,7 @@ public class AddCommandTest {
         final String[] invalidEmails = { "", " ", "def.com", "@", "@def", "@def.com", "abc@",
                                          "@invalid@email", "invalid@email!", "!invalid@email" };
         for (String email : invalidEmails) {
-            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE, false,
-                    Block.EXAMPLE, false, Street.EXAMPLE, false, Unit.EXAMPLE, false, PostalCode.EXAMPLE, false, EMPTY_STRING_LIST);
-        }
-    }
-
-    @Test
-    public void addCommand_invalidAddress_throwsException() {
-        final String[] invalidAddresses = { "", " " };
-        for (String address : invalidAddresses) {
-            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE, false,
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, email, false,
                     Block.EXAMPLE, false, Street.EXAMPLE, false, Unit.EXAMPLE, false, PostalCode.EXAMPLE, false, EMPTY_STRING_LIST);
         }
     }
@@ -66,7 +57,7 @@ public class AddCommandTest {
         for (String[] tags : invalidTags) {
             Set<String> tagsToAdd = new HashSet<>(Arrays.asList(tags));
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE, false,
-                    Block.EXAMPLE, false, Street.EXAMPLE, false, Unit.EXAMPLE, false, PostalCode.EXAMPLE, false, EMPTY_STRING_LIST);
+                    Block.EXAMPLE, false, Street.EXAMPLE, false, Unit.EXAMPLE, false, PostalCode.EXAMPLE, false, tagsToAdd);
         }
     }
 
@@ -108,13 +99,13 @@ public class AddCommandTest {
         assertEquals(Email.EXAMPLE, p.getEmail().value);
         assertFalse(p.getEmail().isPrivate());
         assertEquals(Block.EXAMPLE, p.getBlock().value);
-        assertTrue(p.getBlock().isPrivate());
+        assertFalse(p.getBlock().isPrivate());
         assertEquals(Street.EXAMPLE, p.getStreet().value);
-        assertTrue(p.getStreet().isPrivate());
+        assertFalse(p.getStreet().isPrivate());
         assertEquals(Unit.EXAMPLE, p.getUnit().value);
-        assertTrue(p.getUnit().isPrivate());
+        assertFalse(p.getUnit().isPrivate());
         assertEquals(PostalCode.EXAMPLE, p.getPostalCode().value);
-        assertTrue(p.getPostalCode().isPrivate());
+        assertFalse(p.getPostalCode().isPrivate());
         boolean isTagListEmpty = !p.getTags().iterator().hasNext();
         assertTrue(isTagListEmpty);
     }

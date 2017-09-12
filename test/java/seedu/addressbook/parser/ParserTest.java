@@ -204,7 +204,7 @@ public class ParserTest {
                 "add ",
                 "add wrong args format",
                 // no phone prefix
-                String.format("add $s p/$s e/$s b/$s s/$s u/$s pc/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Block.EXAMPLE, Street.EXAMPLE, Unit.EXAMPLE, PostalCode.EXAMPLE),
+                String.format("add $s /$s e/$s b/$s s/$s u/$s pc/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Block.EXAMPLE, Street.EXAMPLE, Unit.EXAMPLE, PostalCode.EXAMPLE),
                 // no email prefix
                 String.format("add $s p/$s $s b/$s s/$s u/$s pc/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Block.EXAMPLE, Street.EXAMPLE, Unit.EXAMPLE, PostalCode.EXAMPLE),
                 // no block prefix

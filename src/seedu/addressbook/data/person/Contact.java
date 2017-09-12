@@ -31,4 +31,11 @@ public class Contact {
         this.value = trimmedContact;
     }
 
+    /**
+     * Returns true if the given string is a valid contact detail.
+     */
+    public boolean isValidData(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+    
 }

@@ -27,6 +27,8 @@
 || Example: viewall 1
 || help: Shows program usage instructions.
 || Example: help
+|| total: Displays the total number of contacts stored in your address book.
+|| Example: total
 || exit: Exits the program.
 || Example: exit
 || ===================================================
@@ -289,6 +291,9 @@
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  total]
+|| 2 contacts are currently stored in your address book.
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

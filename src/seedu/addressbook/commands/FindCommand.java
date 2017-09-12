@@ -48,9 +48,20 @@ public class FindCommand extends Command {
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
+        //create all capital version of keywords for case insensitivity
+        final Set<String> keywordsInCapital = new HashSet<>();
+        for(String s : keywords) {
+            keywordsInCapital.add(s.toUpperCase());
+        }
+
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            for(String s : wordsInName) {
+                //change to capital letters
+                wordsInName.remove(s);
+                wordsInName.add(s.toUpperCase());
+            }
+            if (!Collections.disjoint(wordsInName, keywordsInCapital)) {
                 matchedPersons.add(person);
             }
         }

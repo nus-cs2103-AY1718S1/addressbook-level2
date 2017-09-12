@@ -9,7 +9,7 @@ import java.util.List;
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name extends Contact{
+public class Name{
 
     public static final String EXAMPLE = "John Doe";
     public static final String MESSAGE_NAME_CONSTRAINTS = "Person names should be spaces or alphabetic characters";
@@ -22,18 +22,13 @@ public class Name extends Contact{
      * @throws IllegalValueException if given name string is invalid.
      */
     public Name(String name) throws IllegalValueException {
-        super(trimName(name),false);
         String trimmedName = name.trim();
-
         if (!isValidName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
         this.fullName = trimmedName;
     }
 
-    private static String trimName(String name){
-        return name.trim();
-    }
     /**
      * Returns true if the given string is a valid person name.
      */
@@ -46,5 +41,22 @@ public class Name extends Contact{
      */
     public List<String> getWordsInName() {
         return Arrays.asList(fullName.split("\\s+"));
+    }
+
+    @Override
+    public String toString() {
+        return fullName;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Name // instanceof handles nulls
+                && this.fullName.equals(((Name) other).fullName)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return fullName.hashCode();
     }
 }

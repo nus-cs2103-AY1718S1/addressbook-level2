@@ -22,6 +22,7 @@ import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.UpdateCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -77,6 +78,9 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
+
+        case UpdateCommand.COMMAND_WORD:
+            return prepareUpdate(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -156,6 +160,13 @@ public class Parser {
         // replace first delimiter prefix, then split
         final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" t/", "").split(" t/"));
         return new HashSet<>(tagStrings);
+    }
+
+
+    private Command prepareUpdate(String args) {
+
+
+        return new UpdateCommand();
     }
 
 

@@ -15,14 +15,12 @@ import seedu.addressbook.util.TestUtil;
 import seedu.addressbook.util.TypicalPersons;
 
 public class SortCommandTest {
-    private TypicalPersons td = new TypicalPersons();
-    private AddressBook typicalAddressBook = td.getTypicalAddressBook();
     private AddressBook addressBook;
     private AddressBook emptyAddressBook;
 
     private List<ReadOnlyPerson> emptyPersonList = Collections.emptyList();
     private List<ReadOnlyPerson> emptyDisplayList;
-    private List<ReadOnlyPerson> displayList;
+    private List<ReadOnlyPerson> expectedDisplayList;
 
 
     @Before
@@ -40,14 +38,41 @@ public class SortCommandTest {
         emptyAddressBook = TestUtil.createAddressBook();
         addressBook = TestUtil.createAddressBook(johnDoe, annie, davidGrant, samDoe);
         emptyDisplayList = TestUtil.createList();
+        expectedDisplayList = TestUtil.createList(annie, davidGrant, johnDoe, samDoe);
     }
 
     @Test
     public void execute() throws IllegalValueException {
         //same word, same case: matched
-        assertSortCommandBehavior(    );
+        SortCommand newCommand = new SortCommand();
+        CommandResult result = newCommand.execute();
+
+        List<? extends ReadOnlyPerson> displayedPersonList = result.getRelevantPersons().get();
+        assertSortSuccess(displayedPersonList, expectedDisplayList);
 
     }
+
+    /**
+     * Asserts that the actual displayed result is the same as expected result
+     * by checking the order of the name.
+     *
+     * @param personsToBeViewed the actual sorted list of persons
+     * @param expectedPersonsToBeViewed the expected sorted list of persons
+     */
+    private void assertSortSuccess(List<? extends ReadOnlyPerson> personsToBeViewed,
+                                   List<ReadOnlyPerson> expectedPersonsToBeViewed) {
+        assertEquals(personsToBeViewed.size(), expectedPersonsToBeViewed.size());
+
+        for(int i = 0; i < personsToBeViewed.size(); i++) {
+            ReadOnlyPerson p1 = personsToBeViewed.
+            ReadOnlyPerson p2 = expectedPersonsToBeViewed.get(i);
+            assertEquals(p1.getName(), p2.getName());
+        }
+
+        assertSortCommandBehavior(new SortCommand(), addressBook);
+    }
+
+
     /**
      * Asserts that the SortCommand reports the error.
      */

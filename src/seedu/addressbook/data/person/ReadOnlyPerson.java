@@ -10,9 +10,18 @@ import seedu.addressbook.data.tag.UniqueTagList;
 public interface ReadOnlyPerson {
 
     Name getName();
+
     Phone getPhone();
+
     Email getEmail();
-    Address getAddress();
+
+    Block getBlock();
+
+    Street getStreet();
+
+    Unit getUnit();
+
+    PostalCode getPostalCode();
 
     /**
      * Returns a new TagList that is a deep copy of the internal TagList,
@@ -26,8 +35,8 @@ public interface ReadOnlyPerson {
     default boolean isSamePerson(ReadOnlyPerson other) {
         return (other == this)
                 || (other != null
-                    && other.getName().equals(this.getName())
-                    && other.getPhone().equals(this.getPhone()));
+                && other.getName().equals(this.getName())
+                && other.getPhone().equals(this.getPhone()));
     }
 
     /**
@@ -37,11 +46,14 @@ public interface ReadOnlyPerson {
     default boolean hasSameData(ReadOnlyPerson other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                    && other.getName().equals(this.getName()) // state checks here onwards
-                    && other.getPhone().equals(this.getPhone())
-                    && other.getEmail().equals(this.getEmail())
-                    && other.getAddress().equals(this.getAddress())
-                    && other.getTags().equals(this.getTags()));
+                && other.getName().equals(this.getName()) // state checks here onwards
+                && other.getPhone().equals(this.getPhone())
+                && other.getEmail().equals(this.getEmail())
+                && other.getBlock().equals(this.getBlock())
+                && other.getStreet().equals(this.getStreet())
+                && other.getUnit().equals(this.getUnit())
+                && other.getPostalCode().equals(this.getPostalCode())
+                && other.getTags().equals(this.getTags()));
     }
 
     /**
@@ -61,12 +73,28 @@ public interface ReadOnlyPerson {
             builder.append(detailIsPrivate);
         }
         builder.append(getEmail())
-                .append(" Address: ");
-        if (getAddress().isPrivate()) {
+                .append(" Block: ");
+        if (getBlock().isPrivate()) {
             builder.append(detailIsPrivate);
         }
-        builder.append(getAddress())
+        builder.append(getBlock())
+                .append(" Street: ");
+        if (getStreet().isPrivate()) {
+            builder.append(detailIsPrivate);
+        }
+        builder.append(getStreet())
+                .append(" Unit: ");
+        if (getUnit().isPrivate()) {
+            builder.append(detailIsPrivate);
+        }
+        builder.append(getUnit())
+                .append(" Postal code: ");
+        if (getPostalCode().isPrivate()) {
+            builder.append(detailIsPrivate);
+        }
+        builder.append(getPostalCode())
                 .append(" Tags: ");
+
         for (Tag tag : getTags()) {
             builder.append(tag);
         }
@@ -85,8 +113,17 @@ public interface ReadOnlyPerson {
         if (!getEmail().isPrivate()) {
             builder.append(" Email: ").append(getEmail());
         }
-        if (!getAddress().isPrivate()) {
-            builder.append(" Address: ").append(getAddress());
+        if (!getBlock().isPrivate()) {
+            builder.append(" Block: ").append(getBlock());
+        }
+        if (!getStreet().isPrivate()) {
+            builder.append(" Street: ").append(getStreet());
+        }
+        if (!getUnit().isPrivate()) {
+            builder.append(" Unit: ").append(getUnit());
+        }
+        if (!getPostalCode().isPrivate()) {
+            builder.append(" Postal code: ").append(getPostalCode());
         }
         builder.append(" Tags: ");
         for (Tag tag : getTags()) {

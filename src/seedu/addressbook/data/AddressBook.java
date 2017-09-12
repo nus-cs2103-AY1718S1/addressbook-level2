@@ -31,6 +31,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        reminderMessage = "CS2103T tutorial";
     }
 
     /**

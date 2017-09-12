@@ -115,7 +115,7 @@ public class AddressBook {
     }
 
     public UniquePersonList getAllPersonsSorted() {
-        allPersons.Sort();
+        allPersons.sort();
         return new UniquePersonList(allPersons);
     }
 

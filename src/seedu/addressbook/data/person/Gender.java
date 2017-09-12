@@ -9,6 +9,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Gender {
     public static final String EXAMPLE = "Male";
     public static final String MESSAGE_GENDER_CONSTRAINTS = "Person gender should be male OR female";
+    private static final String male = "Male";
+    private static final String female = "Female";
     public final String value;
 
     /**
@@ -28,8 +30,7 @@ public class Gender {
      * Returns true if the given string is a valid person gender.
      */
     public static boolean isValidGender(String test) {
-        String male = "Male";
-        String female = "Female";
+
         return (male.equalsIgnoreCase(test) || female.equalsIgnoreCase(test));
     }
 

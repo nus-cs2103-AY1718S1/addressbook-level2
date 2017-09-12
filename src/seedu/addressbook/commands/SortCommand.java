@@ -2,7 +2,7 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
-import java.util.list;
+import java.util.List;
 
 /*
     Lists the people in the addressbook in alphabetical order
@@ -10,7 +10,7 @@ import java.util.list;
 
 public class SortCommand extends Command{
 
-    public static final String COMMAND_WORD = 'sort';
+    public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
 

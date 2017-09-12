@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static java.lang.Boolean.*;
 
 import seedu.addressbook.commands.AddCommand;
 import seedu.addressbook.commands.ClearCommand;
@@ -28,6 +29,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Parses user input.
  */
 public class Parser {
+
+    private boolean isAddOrDelete = FALSE;
 
     public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
@@ -51,6 +54,10 @@ public class Parser {
         }
     }
 
+    public void setAddOrDeleteToTrue() {
+        isAddOrDelete = TRUE;
+    }
+    public boolean getIsAddOrDelete() { return isAddOrDelete; }
     /**
      * Used for initial separation of command word and args.
      */
@@ -118,7 +125,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         try {
-            return new AddCommand(
+            AddCommand toAdd =  new AddCommand(
                     matcher.group("name"),
 
                     matcher.group("phone"),
@@ -132,6 +139,9 @@ public class Parser {
 
                     getTagsFromArgs(matcher.group("tagArguments"))
             );
+            setAddOrDeleteToTrue();
+            return toAdd;
+
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
@@ -168,6 +178,7 @@ public class Parser {
     private Command prepareDelete(String args) {
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
+            setAddOrDeleteToTrue();
             return new DeleteCommand(targetIndex);
         } catch (ParseException pe) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));

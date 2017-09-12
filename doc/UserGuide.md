@@ -111,6 +111,16 @@ Examples:
   `viewall 1`<br>
   Views all details of the 1st person in the results of the `find` command.
 
+### Sorting of entries : `sort`
+Sort all contacts in the address book by either ascending or descending order.<br>
+Format: `sort order`
+
+> order is EITHER asc OR dsc (non case-sensitive)
+
+Examples:
+* `sort asc`<br>
+  Sort all contacts in the address book in ascending order.
+
 ### Clearing all entries : `clear`
 Clears all entries from the address book.<br>
 Format: `clear`  

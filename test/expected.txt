@@ -27,6 +27,9 @@
 || Example: viewall 1
 || help: Shows program usage instructions.
 || Example: help
+|| sort: Sort the people inside the address book by their NAME.
+|| Parameters: asc | dsc 
+|| Example: sort asc
 || exit: Exits the program.
 || Example: exit
 || ===================================================
@@ -287,6 +290,24 @@
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort asc]
+|| Successfully Sorted
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort dsc]
+|| Successfully Sorted
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	2. Betsy Choo Tags: [secretive]
 || 
 || 2 persons listed!
 || ===================================================

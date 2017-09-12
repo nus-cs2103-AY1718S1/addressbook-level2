@@ -43,7 +43,7 @@ public class Command {
      * @return summary message for persons displayed
      */
     public static String getMessageForLastAddedSummary(List<? extends ReadOnlyPerson> personsDisplayed) {
-        return String.format(Messages.MESSAGE_LAST_ADDED);
+        return String.format(Messages.MESSAGE_LAST_ADDED, personsDisplayed.size());
     }
 
     /**

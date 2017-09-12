@@ -5,7 +5,8 @@
 || Launch command format: java seedu.addressbook.Main [STORAGE_FILE_PATH]
 || Using storage file : addressbook.xml
 || ===================================================
-|| Enter command: || [Command entered:  sfdfd]
+|| Enter command: sfdfd
+|| [Command entered:sfdfd]
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
@@ -19,6 +20,9 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| unprivate: Publicises a person contact information identified by the index number in the last shown person listing. Append 'p'(phone), 'e'(email) or 'a'(address) after the index to indicate which contact to publicise. 
+|| Parameters: INDEX CONTACT_TYPE
+|| Example: unprivate 1 p
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
@@ -30,92 +34,114 @@
 || exit: Exits the program.
 || Example: exit
 || ===================================================
-|| Enter command: || [Command entered:  delete 1]
+|| Enter command: delete 1
+|| [Command entered:delete 1]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  view 1]
+|| Enter command: view 1
+|| [Command entered:view 1]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  viewall 1]
+|| Enter command: viewall 1
+|| [Command entered:viewall 1]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  clear]
+|| Enter command: clear
+|| [Command entered:clear]
 || Address book has been cleared!
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: list
+|| [Command entered:list]
 || 
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add wrong args wrong args]
+|| Enter command: add wrong args wrong args
+|| [Command entered:add wrong args wrong args]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address]
+|| Enter command: add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address
+|| [Command entered:add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 valid@email.butNoPrefix a/valid, address]
+|| Enter command: add Valid Name p/12345 valid@email.butNoPrefix a/valid, address
+|| [Command entered:add Valid Name p/12345 valid@email.butNoPrefix a/valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address]
+|| Enter command: add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address
+|| [Command entered:add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag]
+|| Enter command: add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
+|| [Command entered:add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag]
 || Tags names should be alphanumeric
 || ===================================================
-|| Enter command: || [Command entered:  add []\[;] p/12345 e/valid@e.mail a/valid, address]
+|| Enter command: add []\[;] p/12345 e/valid@e.mail a/valid, address
+|| [Command entered:add []\[;] p/12345 e/valid@e.mail a/valid, address]
 || Person names should be spaces or alphabetic characters
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/not_numbers e/valid@e.mail a/valid, address]
+|| Enter command: add Valid Name p/not_numbers e/valid@e.mail a/valid, address
+|| [Command entered:add Valid Name p/not_numbers e/valid@e.mail a/valid, address]
 || Person phone numbers should only contain numbers
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 e/notAnEmail a/valid, address]
+|| Enter command: add Valid Name p/12345 e/notAnEmail a/valid, address
+|| [Command entered:add Valid Name p/12345 e/notAnEmail a/valid, address]
 || Person emails should be 2 alphanumeric/period strings separated by '@'
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag]
+|| Enter command: add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
+|| [Command entered:add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag]
 || Tags names should be alphanumeric
 || ===================================================
-|| Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street]
+|| Enter command: add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+|| [Command entered:add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street]
 || New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: list
+|| [Command entered:list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 
 || 1 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive]
+|| Enter command: add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+|| [Command entered:add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive]
 || New person added: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: list
+|| [Command entered:list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 
 || 2 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school]
+|| Enter command: add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+|| [Command entered:add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school]
 || New person added: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: list
+|| [Command entered:list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 
 || 3 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends]
+|| Enter command: add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
+|| [Command entered:add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends]
 || New person added: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: list
+|| [Command entered:list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
@@ -123,10 +149,12 @@
 || 
 || 4 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
+|| Enter command: add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+|| [Command entered:add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
 || New person added: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: list
+|| [Command entered:list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
@@ -135,169 +163,256 @@
 || 
 || 5 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
+|| Enter command: add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+|| [Command entered:add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
 || This person already exists in the address book
 || ===================================================
-|| Enter command: || [Command entered:  view]
+|| Enter command: view
+|| [Command entered:view]
 || Invalid command format! 
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
 || ===================================================
-|| Enter command: || [Command entered:  viewall]
+|| Enter command: viewall
+|| [Command entered:viewall]
 || Invalid command format! 
 || viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
 || ===================================================
-|| Enter command: || [Command entered:  view should be only one number]
+|| Enter command: view should be only one number
+|| [Command entered:view should be only one number]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  viewall should only be one number]
+|| Enter command: viewall should only be one number
+|| [Command entered:viewall should only be one number]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  view -1]
+|| Enter command: view -1
+|| [Command entered:view -1]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  view 0]
+|| Enter command: view 0
+|| [Command entered:view 0]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  view 6]
+|| Enter command: view 6
+|| [Command entered:view 6]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  viewall -1]
+|| Enter command: viewall -1
+|| [Command entered:viewall -1]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  viewall 0]
+|| Enter command: view 0
+|| [Command entered:view 0]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  viewall 6]
+|| Enter command: viewall 6
+|| [Command entered:viewall 6]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  view 1]
+|| Enter command: view 1
+|| [Command entered:view 1]
 || Viewing person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
-|| Enter command: || [Command entered:  viewall 1]
+|| Enter command: viewall 1
+|| [Command entered:viewall 1]
 || Viewing person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
-|| Enter command: || [Command entered:  view 3]
+|| Enter command: view 3
+|| [Command entered:view 3]
 || Viewing person: Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
-|| Enter command: || [Command entered:  view 4]
+|| Enter command: view 4
+|| [Command entered:view 4]
 || Viewing person: Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || ===================================================
-|| Enter command: || [Command entered:  view 5]
+|| Enter command: view 5
+|| [Command entered:view 5]
 || Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || ===================================================
-|| Enter command: || [Command entered:  viewall 3]
+|| Enter command: viewall 3
+|| [Command entered:viewall 3]
 || Viewing person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
-|| Enter command: || [Command entered:  viewall 4]
+|| Enter command: viewall 4
+|| [Command entered:viewall 4]
 || Viewing person: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
 || ===================================================
-|| Enter command: || [Command entered:  viewall 5]
+|| Enter command: viewall 5
+|| [Command entered:viewall 5]
 || Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
-|| Enter command: || [Command entered:  find]
+|| Enter command: list
+|| [Command entered:list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command: unprivate 3 p
+|| [Command entered:unprivate 3 p]
+|| Person's phone number made public: Charlie Dickson Phone: 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| ===================================================
+|| Enter command: unprivate 4 e
+|| [Command entered:unprivate 4 e]
+|| Person's email address made public: Dickson Ee Phone: 444444 Email: dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
+|| ===================================================
+|| Enter command: unprivate 5 a
+|| [Command entered:unprivate 5 a]
+|| Person's address made public: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: 555, epsilon street Tags: [tubers][starchy]
+|| ===================================================
+|| Enter command: unprivate 2 p
+|| [Command entered:unprivate 2 p]
+|| Person's phone number made public: Betsy Choo Phone: 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
+|| ===================================================
+|| Enter command: list
+|| [Command entered:list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Phone: 222222 Tags: [secretive]
+|| 	3. Charlie Dickson Phone: 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Email: dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: 555, epsilon street Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command: unprivate 3 p
+|| [Command entered:unprivate 3 p]
+|| Phone number is not private
+|| ===================================================
+|| Enter command: unprivate 4 e
+|| [Command entered:unprivate 4 e]
+|| Email address is not private
+|| ===================================================
+|| Enter command: find
+|| [Command entered:find]
 || Invalid command format! 
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
 || Parameters: KEYWORD [MORE_KEYWORDS]...
 || Example: find alice bob charlie
 || ===================================================
-|| Enter command: || [Command entered:  find bet]
+|| Enter command: find bet
+|| [Command entered:find bet]
 || 
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  find 23912039120]
+|| Enter command: find 23912039120
+|| [Command entered:find 23912039120]
 || 
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  find betsy]
+|| Enter command: find betsy
+|| [Command entered:find betsy]
 || 
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  find Betsy]
-|| 	1. Betsy Choo Tags: [secretive]
+|| Enter command: find Betsy
+|| [Command entered:find Betsy]
+|| 	1. Betsy Choo Phone: 222222 Tags: [secretive]
 || 
 || 1 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  find Dickson]
-|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
-|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| Enter command: find Dickson
+|| [Command entered:find Dickson]
+|| 	1. Charlie Dickson Phone: 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Dickson Ee Phone: 444444 Email: dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  find Charlie Betsy]
-|| 	1. Betsy Choo Tags: [secretive]
-|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| Enter command: find Charlie Betsy
+|| [Command entered:find Charlie Betsy]
+|| 	1. Betsy Choo Phone: 222222 Tags: [secretive]
+|| 	2. Charlie Dickson Phone: 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 
 || 2 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  delete]
+|| Enter command: delete
+|| [Command entered:delete]
 || Invalid command format! 
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
 || ===================================================
-|| Enter command: || [Command entered:  delete should be only one number]
+|| Enter command: delete should be only one number
+|| [Command entered:delete should be only one number]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  delete -1]
+|| Enter command: delete -1
+|| [Command entered:delete -1]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  delete 0]
+|| Enter command: delete 0
+|| [Command entered:delete 0]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  delete 3]
+|| Enter command: delete 3
+|| [Command entered:delete 3]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  delete 2]
-|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| Enter command: delete 2
+|| [Command entered:delete 2]
+|| Deleted Person: Charlie Dickson Phone: 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
-|| Enter command: || [Command entered:  delete 2]
+|| Enter command: delete 2
+|| [Command entered:delete 2]
 || Person could not be found in address book
 || ===================================================
-|| Enter command: || [Command entered:  view 2]
+|| Enter command: view 2
+|| [Command entered:view 2]
 || Person could not be found in address book
 || ===================================================
-|| Enter command: || [Command entered:  viewall 2]
+|| Enter command: viewall 2
+|| [Command entered:viewall 2]
 || Person could not be found in address book
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: list
+|| [Command entered:list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	2. Betsy Choo Phone: 222222 Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Email: dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
+|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: 555, epsilon street Tags: [tubers][starchy]
 || 
 || 4 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  delete 4]
-|| Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
+|| Enter command: delete 4
+|| [Command entered:delete 4]
+|| Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: list
+|| [Command entered:list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	2. Betsy Choo Phone: 222222 Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Email: dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
 || 
 || 3 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  delete 1]
+|| Enter command: delete 1
+|| [Command entered:delete 1]
 || Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
-|| Enter command: || [Command entered:  list]
-|| 	1. Betsy Choo Tags: [secretive]
-|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| Enter command: list
+|| [Command entered:list]
+|| 	1. Betsy Choo Phone: 222222 Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Email: dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  clear]
+|| Enter command: clear
+|| [Command entered:clear]
 || Address book has been cleared!
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: list
+|| [Command entered:list]
 || 
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  exit]
+|| Enter command: exit
+|| [Command entered:exit]
 || Exiting Address Book as requested ...
 || ===================================================
 || Good bye!

@@ -8,6 +8,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Email {
 
+    public static final String LINE_PREFIX = "|| ";
     public static final String EXAMPLE = "valid@e.mail";
     public static final String MESSAGE_EMAIL_CONSTRAINTS =
             "Person emails should be 2 alphanumeric/period strings separated by '@'";
@@ -57,5 +58,13 @@ public class Email {
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+
+    public boolean unprivate(){
+        if (!this.isPrivate){
+            return false;
+        }
+        this.isPrivate = false;
+        return true;
     }
 }

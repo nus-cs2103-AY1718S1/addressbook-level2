@@ -87,6 +87,25 @@
   viewall 5
 
 ##########################################################
+# test findtag command
+##########################################################
+
+  # should consider no keywords as invalid command format
+  findtag
+  # should only match full word in tags
+  findtag frien
+  # does not match if none have keyword
+  findtag president
+  # matching should be case-sensitive
+  findtag owesmoney
+
+  # find unique keyword
+  findtag friends
+  # find multiple with some keywords
+  findtag friends school
+
+
+##########################################################
 # test find persons command
 ##########################################################
 

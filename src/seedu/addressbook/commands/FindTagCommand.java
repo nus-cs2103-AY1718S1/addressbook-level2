@@ -19,7 +19,7 @@ public class FindTagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons with tags of "
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " friends";
+            + "Example: " + COMMAND_WORD + " friends" + " " + "owesMoney";
 
     private final Set<String> keywords;
 
@@ -51,7 +51,7 @@ public class FindTagCommand extends Command {
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             UniqueTagList list = person.getTags();
             final Set<String> tags = new HashSet<>(list.getTagsAsList());
-            if (!Collections.disjoint(tags, keywords)) {
+            if (tags.containsAll(keywords)) {
                 matchedPersons.add(person);
             }
         }

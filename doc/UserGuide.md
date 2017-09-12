@@ -111,14 +111,17 @@ Examples:
   `viewall 1`<br>
   Views all details of the 1st person in the results of the `find` command.
 
-### Sorting entries : 'sort'
-Sorts all entries in the address book based on a certain parameter. <br>
+### Sorting entries : `sort`
+Sorts all entries in the address book based on a certain parameter. People who have privatefields will still be sorted as per normal. <br>
 Format: 'sort PARAMETER'
 
 Examples:
 * `sort name`<br>
   Sorts the people in the address book by name
-
+* `sort phone`<br>
+  Sorts the people in the address book by phone
+* `sort email`<br>
+  Sorts the people in the address book by email
 
 ### Clearing all entries : `clear`
 Clears all entries from the address book.<br>

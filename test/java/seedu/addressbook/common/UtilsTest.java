@@ -37,6 +37,9 @@ public class UtilsTest {
 
     @Test
     public void isAnyNull() throws Exception {
+        //empty parameter
+        assertNotNull();
+        
         //only one object
         assertNotNull("abc");
         assertNotNull(1);

@@ -7,7 +7,20 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.*;
+import seedu.addressbook.commands.AddCommand;
+import seedu.addressbook.commands.ClearCommand;
+import seedu.addressbook.commands.Command;
+import seedu.addressbook.commands.DeleteCommand;
+import seedu.addressbook.commands.ExitCommand;
+import seedu.addressbook.commands.FindCommand;
+import seedu.addressbook.commands.FindNameCommand;
+import seedu.addressbook.commands.FindPhoneCommand;
+import seedu.addressbook.commands.FindEmailCommand;
+import seedu.addressbook.commands.HelpCommand;
+import seedu.addressbook.commands.IncorrectCommand;
+import seedu.addressbook.commands.ListCommand;
+import seedu.addressbook.commands.ViewAllCommand;
+import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -19,6 +32,9 @@ public class Parser {
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+
+    public static final Pattern NUMBER_ARG_FORMAT =
+            Pattern.compile("(?<number>\\d+)");
 
     public static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
@@ -75,6 +91,9 @@ public class Parser {
 
         case FindNameCommand.COMMAND_WORD:
             return prepareFindName(arguments);
+            
+        case FindPhoneCommand.COMMAND_WORD:
+            return prepareFind(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -87,6 +106,9 @@ public class Parser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+            
+        case FindEmailCommand.COMMAND_WORD:
+        	return prepareFindEmail(arguments);
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
@@ -238,6 +260,7 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
+
     private Command prepareFindName(String args) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
@@ -250,6 +273,29 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindNameCommand(keywords);
     }
+    
+    private Command prepareFindEmail(String args) 
+    {
+    	  final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+          if (!matcher.matches()||!args.contains("@")) {
+              return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                      FindEmailCommand.MESSAGE_USAGE));
+          }
 
+          // keywords delimited by whitespace
+          final String[] keywords = matcher.group("keywords").split("\\s+");
+          return new FindEmailCommand(keywords[0]);
+    }
+
+    private Command prepareFindPhone(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindPhoneCommand.MESSAGE_USAGE));
+        }
+
+        final int phoneNumber = Integer.parseInt(matcher.group("number"));
+        return new FindPhoneCommand(phoneNumber);
+    }
 
 }

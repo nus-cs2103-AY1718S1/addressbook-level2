@@ -1,5 +1,8 @@
 package seedu.addressbook.data.person;
 
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -52,6 +55,11 @@ public class Email {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+    
+    public List<String> getEmailInSearch()
+    {
+    	return Arrays.asList(this.value);
     }
 
 

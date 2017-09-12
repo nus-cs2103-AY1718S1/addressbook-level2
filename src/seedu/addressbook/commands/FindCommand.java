@@ -21,7 +21,7 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final Set<String> keywords;
+    protected final Set<String> keywords;
 
     public FindCommand(Set<String> keywords) {
         this.keywords = keywords;

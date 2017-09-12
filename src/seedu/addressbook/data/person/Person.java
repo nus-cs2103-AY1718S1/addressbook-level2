@@ -9,6 +9,9 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Person implements ReadOnlyPerson {
+    private static final int STARTING_SEQUENCE_NUM = 1;
+    private static int nextSequenceNumber = STARTING_SEQUENCE_NUM;
+    public int sequenceNumber;
 
     private Name name;
     private Phone phone;

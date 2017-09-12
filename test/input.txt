@@ -139,7 +139,18 @@
   # listing indexes get updated on next request
   delete 1
   list
+  
+##########################################################
+# test tag command
+##########################################################
 
+  # search for tag with secretive tag
+  tag secretive
+  
+  #search for tag with starchy
+  tag starchy
+  
+  
 ##########################################################
 # test clear command
 ##########################################################

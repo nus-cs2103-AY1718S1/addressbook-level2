@@ -40,7 +40,7 @@
   add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
 
   # should add correctly and list non private information
-  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street t/dummy
   list
   add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
   list
@@ -50,6 +50,9 @@
   list
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
+
+  # should list all perons in alphabetical order
+  sort
 
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
@@ -96,7 +99,7 @@
   find bet
   # does not match if none have keyword
   find 23912039120
-  # matching should be case-sensitive
+  # matching should not be case-sensitive
   find betsy
 
   # find unique keyword

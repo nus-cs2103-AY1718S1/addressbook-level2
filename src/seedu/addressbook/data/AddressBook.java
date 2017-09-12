@@ -97,6 +97,7 @@ public class AddressBook {
                 p.setPhone(toUpdate.getPhone());
                 p.setEmail(toUpdate.getEmail());
                 p.setAddress(toUpdate.getAddress());
+                p.setTags(toUpdate.getTags());
                 checkPersonExist = true;
             }
         }

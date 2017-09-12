@@ -8,8 +8,9 @@ public class PostalCode {
         return isPrivate;
     }
     //TODO add message contraints
-    public static final String MESSAGE_POSTALCODE_CONSTRAINTS = "";
+    public static final String MESSAGE_POSTALCODE_CONSTRAINTS = "Postal code should be 6 digit number";
     public  static final String EXAMPLE = "123456";
+    public static final String POSTALCODE_VALIDATION_REGEX = "\\d+";
     public final String value;
 
     public PostalCode(String postalCode, boolean isPrivate) throws IllegalValueException {
@@ -24,9 +25,8 @@ public class PostalCode {
     /**
      * Returns true if a given string is a valid person postalCode
      */
-    //todo add isValidPostalCode method
     public static boolean isValidPostalCode(String test) {
-        return true;
+        return test.matches(POSTALCODE_VALIDATION_REGEX);
     }
 
     @Override

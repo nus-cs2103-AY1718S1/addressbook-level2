@@ -40,6 +40,21 @@ public class Person implements ReadOnlyPerson {
     }
 
     @Override
+    public boolean isPhonePrivate() {
+        return phone.isPrivate();
+    }
+
+    @Override
+    public boolean isEmailPrivate() {
+        return email.isPrivate();
+    }
+
+    @Override
+    public boolean isAddressPrivate() {
+        return address.isPrivate();
+    }
+
+    @Override
     public Phone getPhone() {
         return phone;
     }

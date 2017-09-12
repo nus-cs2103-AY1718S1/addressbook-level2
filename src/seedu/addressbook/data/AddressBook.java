@@ -84,6 +84,32 @@ public class AddressBook {
     }
 
     /**
+     * Updates a person to the address book.
+     *
+     * @throws PersonNotFoundException if the expected person does not exist.
+     */
+    public void updatePerson(Person toUpdate) throws PersonNotFoundException {
+
+        boolean checkPersonExist = false;
+
+        for (Person p : allPersons) {
+            if (p.getName().equals(toUpdate.getName())) {
+                p.setPhone(toUpdate.getPhone());
+                p.setEmail(toUpdate.getEmail());
+                p.setAddress(toUpdate.getAddress());
+                p.setTags(toUpdate.getTags());
+                checkPersonExist = true;
+            }
+        }
+
+        if (checkPersonExist == false) {
+            throw new PersonNotFoundException();
+        }
+
+        syncTagsWithMasterList(toUpdate);
+    }
+
+    /**
      * Returns true if an equivalent person exists in the address book.
      */
     public boolean containsPerson(ReadOnlyPerson key) {

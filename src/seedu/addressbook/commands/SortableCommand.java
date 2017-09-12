@@ -114,7 +114,7 @@ public class SortableCommand extends Command {
                 return person2.getName().toString().compareTo(person1.getName().toString());
                 
             case Phone.PREFIX + SORT_DESCENDING_POSTFIX_WORD:
-                return person2.getPhone().toString().compareTo(person1.getName().toString());
+                return person2.getPhone().toString().compareTo(person1.getPhone().toString());
                 
             case Email.PREFIX + SORT_DESCENDING_POSTFIX_WORD:
                 return person2.getEmail().toString().compareTo(person1.getEmail().toString());

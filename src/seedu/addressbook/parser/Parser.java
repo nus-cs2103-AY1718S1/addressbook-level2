@@ -263,6 +263,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnprivateCommand.MESSAGE_USAGE));
         }
         try {
+            args = args.trim();
             String indexString = getIndexString(args);
             String contactType = getContactType(args);
 

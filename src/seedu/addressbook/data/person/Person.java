@@ -88,30 +88,28 @@ public class Person implements ReadOnlyPerson {
         return getAsTextShowAll();
     }
 
-    public void unprivateContact(String contactType){
+    public boolean unprivateContact(String contactType){
         switch (contactType) {
             case PHONE_PREFIX:
-                unprivatePhone();
-                break;
+                return unprivatePhone();
+
             case EMAIL_PREFIX:
-                unprivateEmail();
-                break;
+                return unprivateEmail();
+
             case ADDRESS_PREFIX:
-                unprivateAddress();
-                break;
+                return unprivateAddress();
+
             default:
-                break;
+                return false;
         }
     }
 
-    public void unprivatePhone(){ this.phone.unprivate(); }
+    public boolean unprivatePhone(){ return this.phone.unprivate(); }
 
-    public void unprivateEmail(){
-        this.email.unprivate();
+    public boolean unprivateEmail(){
+        return this.email.unprivate();
     }
 
-    public void unprivateAddress(){
-        this.email.unprivate();
-    }
+    public boolean unprivateAddress(){ return this.address.unprivate(); }
 
 }

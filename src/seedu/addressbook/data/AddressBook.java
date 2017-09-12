@@ -104,8 +104,8 @@ public class AddressBook {
      *
      * @throws PersonNotFoundException if no such Person could be found.
      */
-    public void unprivatePerson(int targetIndex, String contactType) throws PersonNotFoundException{
-        allPersons.unprivate(targetIndex, contactType);
+    public boolean unprivatePerson(int targetIndex, String contactType) throws PersonNotFoundException{
+        return allPersons.unprivate(targetIndex, contactType);
     }
 
     /**

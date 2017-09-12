@@ -26,7 +26,11 @@ public class UnprivateCommand extends Command {
     private static final String EMAIL = "email address";
     private static final String ADDRESS = "address";
 
-    public static final String MESSAGE_UNPRIVATE_PERSON_SUCCESS = "Person's %2$s made public: %1$s";
+    public static final String MESSAGE_UNPRIVATE_PERSON_SUCCESS = "Person's %1$s made public: %2$s";
+
+    public static final String UNPRIVATE_PHONE_MESSAGE = "Phone number is not private";
+    public static final String UNPRIVATE_EMAIL_MESSAGE = "Email address is not private";
+    public static final String UNPRIVATE_ADDRESS_MESSAGE = "Address is not private";
 
     public UnprivateCommand(int targetVisibleIndex, String contactType) {
         super(targetVisibleIndex, contactType);
@@ -38,32 +42,43 @@ public class UnprivateCommand extends Command {
             final ReadOnlyPerson target = getTargetPerson();
             final int targetIndex = getTargetIndex();
             final String contactType = getContactType();
-            addressBook.unprivatePerson(targetIndex, contactType);
-            String contactInformation = "";
-            switch (contactType) {
-
-            case PHONE_PREFIX:
-                contactInformation = PHONE;
-                break;
-
-            case EMAIL_PREFIX:
-                contactInformation = EMAIL;
-                break;
-
-            case ADDRESS_PREFIX:
-                contactInformation = ADDRESS;
-                break;
-
-            default:
-                break;
-            }
-            return new CommandResult(String.format(MESSAGE_UNPRIVATE_PERSON_SUCCESS, target, contactInformation));
+            boolean isUnprivateSuccessful = addressBook.unprivatePerson(targetIndex, contactType);
+            return unprivateMessage(isUnprivateSuccessful, contactType, target);
 
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } catch (PersonNotFoundException pnfe) {
-        return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+            return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
 
+        }
+
+    }
+
+    public CommandResult unprivateMessage(boolean isUnprivateSuccessful, String contactType, ReadOnlyPerson target){
+        switch (contactType) {
+        case PHONE_PREFIX:
+            if (isUnprivateSuccessful){
+                return new CommandResult(String.format(MESSAGE_UNPRIVATE_PERSON_SUCCESS, PHONE, target));
+            } else {
+                return new CommandResult(UNPRIVATE_PHONE_MESSAGE);
+            }
+
+        case EMAIL_PREFIX:
+            if (isUnprivateSuccessful){
+                return new CommandResult(String.format(MESSAGE_UNPRIVATE_PERSON_SUCCESS, EMAIL, target));
+            } else {
+                return new CommandResult(UNPRIVATE_EMAIL_MESSAGE);
+            }
+
+        case ADDRESS_PREFIX:
+            if (isUnprivateSuccessful){
+                return new CommandResult(String.format(MESSAGE_UNPRIVATE_PERSON_SUCCESS, ADDRESS, target));
+            } else {
+                return new CommandResult(UNPRIVATE_ADDRESS_MESSAGE);
+            }
+
+        default:
+            return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
         }
 
     }

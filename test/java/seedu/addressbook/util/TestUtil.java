@@ -1,9 +1,5 @@
 package seedu.addressbook.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -16,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
+import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
@@ -28,6 +25,8 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+
+import static org.junit.Assert.*;
 
 public class TestUtil {
     /**
@@ -45,6 +44,17 @@ public class TestUtil {
         }
 
         return addressBook;
+    }
+
+
+    /**
+     * Create a list of variables to check whether isAnyNull can run correctly
+     */
+    @Test
+    public void isAnyNull() throws Exception {
+        assertHasNull("test", "a", null, "123");
+
+        assertNoNull("test", "a", "123");
     }
 
     /**
@@ -142,13 +152,14 @@ public class TestUtil {
     }
 
     /**
-     * Asserts that the method isAnyNull can run smoothly
+     * Asserts whether the method isAnyNull can run smoothly and return true false correctly
      */
-    @Test
-    public void assertItemIsNull(Object... items) throws Exception {
-        for(Object item: items) {
-            assertTrue(item == null);
-        }
+    public void assertHasNull(Object... objects) {
+        assertTrue(Utils.isAnyNull(objects));
+    }
+
+    public void assertNoNull(Object... objects) {
+        assertFalse(Utils.isAnyNull(objects));
     }
 
     /**

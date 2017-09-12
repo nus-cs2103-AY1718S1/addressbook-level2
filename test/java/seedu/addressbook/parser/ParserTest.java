@@ -21,6 +21,7 @@ import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
+import seedu.addressbook.commands.SortCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
@@ -82,6 +83,7 @@ public class ParserTest {
         parseAndAssertCommandType(input, ListCommand.class);
     }
 
+
     @Test
     public void parse_exitCommand_parsedCorrectly() {
         final String input = "exit";
@@ -89,7 +91,7 @@ public class ParserTest {
     }
 
     /*
-     * Tests for ingle index argument commands ===============================================================
+     * Tests for single index argument commands ===============================================================
      */
 
     @Test
@@ -196,6 +198,31 @@ public class ParserTest {
         final FindCommand result =
                 parseAndAssertCommandType(input, FindCommand.class);
         assertEquals(keySet, result.getKeywords());
+    }
+
+    /*
+     * Tests for sort persons by keyword in name command ===================================================
+     */
+    @Test
+    public void parse_sortCommandInvalidArgs_errorMessage() {
+        // no keywords
+        final String[] inputs = {
+                "sort",
+                "sort "
+        };
+        final String resultMessage =
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_sortCommandValidArgs_parsedCorrectly() {
+        final String keyword = "key1";
+
+        final String input = "sort " + String.join(" ", keyword);
+        final SortCommand result =
+                parseAndAssertCommandType(input, SortCommand.class);
+        assertEquals(keyword, result.getParameter());
     }
 
     /*

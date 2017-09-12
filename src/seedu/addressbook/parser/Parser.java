@@ -20,6 +20,7 @@ import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
+import seedu.addressbook.commands.SortCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
@@ -95,6 +96,9 @@ public class Parser {
 
         case ViewAllCommand.COMMAND_WORD:
             return prepareViewAll(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return prepareSort(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -250,5 +254,27 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    /**
+     * Parses argument in the context of the sort person command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareSort(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortCommand.MESSAGE_USAGE));
+        }
 
+        // keywords delimited by whitespace
+        final String[] keywords = matcher.group("keywords").split("\\s+");
+
+        // can only sort one parameter at a time
+        if (keywords.length != 1) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortCommand.MESSAGE_USAGE));
+        }
+        return new SortCommand(keywords[0]);
+    }
 }

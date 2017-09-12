@@ -128,4 +128,12 @@ public class AddressBook {
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
     }
+
+    /**
+     * Sorts the Persons in allPersons by a certain parameter
+     * @param parameter the parameter by which the list will be sorted by
+     */
+    public void sortByParameter(String parameter) {
+        allPersons.sort(parameter);
+    }
 }

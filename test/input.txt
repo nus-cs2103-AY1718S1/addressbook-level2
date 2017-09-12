@@ -40,19 +40,19 @@
   add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
 
   # should add correctly and list non private information
-  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+  add Adam Brown p/684758 e/madambrown@gmail.com a/123, alpha street
   list
-  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+  add Betsy Choo pp/479928 pe/choobet@nus.edu.sg pa/111, beta street t/secretive
   list
-  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+  add Charlie Dickson pp/346640 e/charlie.d@nus.edu.sg a/444, gamma street t/friends t/school
   list
-  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
+  add Dickson Ee p/127812 pe/eedickson@nus.edu.sg a/333, delta street t/friends
   list
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Esther Potato p/425242 e/apotato@not.a.real.potato pa/222, epsilon street t/tubers t/starchy
   list
 
   # should not allow adding duplicate persons
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Esther Potato p/425242 e/apotato@not.a.real.potato pa/222, epsilon street t/tubers t/starchy
 
 ##########################################################
 # test view/viewall persons command
@@ -85,6 +85,31 @@
   viewall 3
   viewall 4
   viewall 5
+
+##########################################################
+# test sort persons command
+##########################################################
+
+  # should consider no keywords as invalid command format
+  sort
+  # should consider too many keywords as invalid command format
+  sort name phone
+
+  # sort by phone number
+  sort phone
+  list
+
+  # sort by email
+  sort email
+  list
+
+  # sort by address
+  sort address
+  list
+
+  # sort by name
+  sort name
+  list
 
 ##########################################################
 # test find persons command
@@ -147,6 +172,12 @@
   # clears all
   clear
   list
+
+##########################################################
+# test help command
+##########################################################
+
+  help
 
 ##########################################################
 # test exit command

@@ -1,11 +1,8 @@
 package seedu.addressbook.commands;
 
-import seedu.addressbook.data.person.ReadOnlyPerson;
-
 import java.util.ArrayList;
 import java.util.List;
 import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.UniquePersonList;
 
 public class SortListCommand extends Command {
 
@@ -15,8 +12,9 @@ public class SortListCommand extends Command {
     final private String SORT_EMAIL = " email";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Takes in the variable to sort Persons according to that variable and outputs the list"
-            + "Example: " + COMMAND_WORD;
+            + ": Takes in the variable to sort Persons according to that variable and outputs the list\n"
+            + "Parameter: Variable: name/phone/email\n"
+            + "Example: sortlist name " + COMMAND_WORD;
 
     private String sortVar;
 

@@ -10,7 +10,6 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
-import seedu.addressbook.data.person.WriteOnlyPerson;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -84,8 +83,9 @@ public class AddressBook {
         syncTagsWithMasterList(toAdd);
     }
 
-    public void editPerson(WriteOnlyPerson toEdit) throws PersonNotFoundException {
-        allPersons.
+    public void editPerson(ReadOnlyPerson toEdit, ReadOnlyPerson replacement) throws PersonNotFoundException {
+
+
     }
 
     /**

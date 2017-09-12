@@ -80,7 +80,14 @@ public class UniquePersonList implements Iterable<Person> {
     public List<ReadOnlyPerson> immutableListView() {
         return Collections.unmodifiableList(internalList);
     }
-
+    
+    /**
+     * Returns a modifiable java List view
+     * Can be used in conjunction with addressBook.getAllPersons() method to return the full list of Address Book's contacts
+     */
+    public List<Person> mutableListView() {
+    	return internalList;
+    }
 
     /**
      * Checks if the list contains an equivalent person as the given argument.

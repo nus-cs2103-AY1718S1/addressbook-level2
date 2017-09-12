@@ -296,7 +296,6 @@
 || Enter command: || [Command entered:  list]
 || 
 || 0 persons listed!
-|| ===================================================
 || [Command entered:reminder CS2103T tutorial]
 || New reminder added:
 || ===================================================

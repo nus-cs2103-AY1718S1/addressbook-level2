@@ -13,7 +13,6 @@ public class Phone extends Contact{
     public static final String PHONE_VALIDATION_REGEX = "\\d+";
 
     public final String value;
-    private boolean isPrivate;
 
     /**
      * Validates given phone number.
@@ -22,7 +21,6 @@ public class Phone extends Contact{
      */
     public Phone(String phone, boolean isPrivate) throws IllegalValueException {
         super(trim(phone),isPrivate);
-        this.isPrivate = isPrivate;
         String trimmedPhone = trim(phone);
         if (!isValidPhone(trimmedPhone)) {
             throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
@@ -39,5 +37,4 @@ public class Phone extends Contact{
     public static boolean isValidPhone(String test) {
         return test.matches(PHONE_VALIDATION_REGEX);
     }
-
 }

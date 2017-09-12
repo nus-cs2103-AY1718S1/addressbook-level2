@@ -32,11 +32,4 @@ public class Address extends Contact {
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
     }
-    
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && this.getValue().equals(((Address) other).getValue())); // state check
-    }    
 }

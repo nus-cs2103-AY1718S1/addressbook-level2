@@ -119,6 +119,7 @@
   findalpha A
   # should work with lower case
   findalpha a
+  find Charlie Betsy
 
 ##########################################################
 # test delete person command

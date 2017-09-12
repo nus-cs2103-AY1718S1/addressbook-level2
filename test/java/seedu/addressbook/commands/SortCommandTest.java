@@ -63,15 +63,23 @@ public class SortCommandTest {
      */
     private void assertSortSuccess(List<? extends ReadOnlyPerson> personsToBeViewed,
                                    List<ReadOnlyPerson> expectedPersonsToBeViewed) {
-        assertEquals(personsToBeViewed.size(), expectedPersonsToBeViewed.size());
 
-        for(int i = 0; i < personsToBeViewed.size(); i++) {
-            ReadOnlyPerson p1 = personsToBeViewed.get(i);
-            ReadOnlyPerson p2 = expectedPersonsToBeViewed.get(i);
+        assertEquals(personsToBeViewed.size(), expectedPersonsToBeViewed.size());
+        assertCheckOrderByNames(personsToBeViewed, expectedPersonsToBeViewed);
+        assertSortCommandBehavior(new SortCommand(), addressBook);
+    }
+
+
+    /**
+     * Asserts that the names in two person lists are in the same order.
+     */
+    private void assertCheckOrderByNames(List<? extends ReadOnlyPerson> personList1,
+                                  List<ReadOnlyPerson> personList2) {
+        for(int i = 0; i < personList1.size(); i++) {
+            ReadOnlyPerson p1 = personList1.get(i);
+            ReadOnlyPerson p2 = personList2.get(i);
             assertEquals(p1.getName(), p2.getName());
         }
-
-        assertSortCommandBehavior(new SortCommand(), addressBook);
     }
 
 

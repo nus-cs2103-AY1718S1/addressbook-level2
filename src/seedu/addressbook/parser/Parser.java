@@ -261,11 +261,9 @@ public class Parser {
 
         final String order = matcher.group("order");
         if(order.equals("dsc")) {
-            return new ExitCommand();
-            //return new SortCommand(-1);
+            return new SortCommand(-1);
         } else { //if(order.equals("asc")) {
-            return new ExitCommand();
-            //return new SortCommand(1);
+            return new SortCommand(1);
         }
     }
 

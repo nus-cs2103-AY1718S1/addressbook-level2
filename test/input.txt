@@ -90,15 +90,21 @@
 # test unprivate persons command
 ##########################################################
 
+ #list and unprivate person's contact information. Should catch invalid index
+ list
+ unprivate 6 p
+ unprivate 0 p
+ unprivate -1 p
+
  #list and unprivate person's contact information
  list
  unprivate 3 p
  unprivate 4 e
  unprivate 5 a
  unprivate 2 p
- list
 
  #unprivate person's contact information that is already unprivate
+ list
  unprivate 3 p
  unprivate 4 e
  

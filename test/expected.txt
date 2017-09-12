@@ -256,6 +256,28 @@
 || 5 persons listed!
 || ===================================================
 || Enter command:
+|| [Command entered:unprivate 6 p]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command:
+|| [Command entered:unprivate 0 p]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command:
+|| [Command entered:unprivate -1 p]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command:
+|| [Command entered:list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command:
 || [Command entered:unprivate 3 p]
 || Person's phone number made public: Charlie Dickson Phone: 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================

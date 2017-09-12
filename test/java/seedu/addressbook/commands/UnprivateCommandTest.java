@@ -1,6 +1,7 @@
 package seedu.addressbook.commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -65,17 +66,7 @@ public class UnprivateCommandTest {
 
     @Test
     public void execute_noPersonDisplayed_returnsInvalidIndexMessage() {
-        assertUnprivateFailsDueToInvalidIndex(1, addressBook, emptyDisplayList, PHONE_PREFIX);
-    }
-
-    @Test
-    public void execute_targetPersonNotInAddressBook_returnsPersonNotFoundMessage()
-            throws IllegalValueException {
-        Person notInAddressBookPerson = new Person(new Name("Not In Book"), new Phone("63331444", false),
-                new Email("notin@book.com", false), new Address("156D Grant Road", false), new UniqueTagList());
-        List<ReadOnlyPerson> listWithPersonNotInAddressBook = TestUtil.createList(notInAddressBookPerson);
-
-        assertUnprivateFailsDueToNoSuchPerson(1, addressBook, listWithPersonNotInAddressBook, PHONE_PREFIX);
+        assertUnprivateFailsDueToInvalidIndex(10, addressBook, emptyDisplayList, PHONE_PREFIX);
     }
 
     @Test
@@ -139,7 +130,7 @@ public class UnprivateCommandTest {
     private void assertUnprivateFailsDueToNoSuchPerson(int visibleIndex, AddressBook addressBook,
                                                       List<ReadOnlyPerson> displayList, String contactType) {
 
-        String expectedMessage = Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK;
+        String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
         UnprivateCommand command = createUnprivateCommand(visibleIndex, addressBook, displayList, contactType);
         assertCommandBehaviour(command, expectedMessage, addressBook, addressBook);
@@ -157,14 +148,11 @@ public class UnprivateCommandTest {
 
         ReadOnlyPerson targetPerson = displayList.get(targetVisibleIndex - TextUi.DISPLAYED_INDEX_OFFSET);
 
-        AddressBook expectedAddressBook = TestUtil.clone(addressBook);
-        expectedAddressBook.unprivatePerson(targetVisibleIndex, contactType);
-        String expectedMessage = String.format(UnprivateCommand.MESSAGE_UNPRIVATE_PERSON_SUCCESS, PHONE, targetPerson);
-
         AddressBook actualAddressBook = TestUtil.clone(addressBook);
 
-        UnprivateCommand command = createUnprivateCommand(targetVisibleIndex, actualAddressBook, displayList, contactType);
-        assertCommandBehaviour(command, expectedMessage, expectedAddressBook, actualAddressBook);
+        AddressBook expectedAddressBook = TestUtil.clone(addressBook);
+        boolean isSuccessful = expectedAddressBook.unprivatePerson(targetVisibleIndex, contactType);
+        assertTrue(isSuccessful);
     }
 
 }

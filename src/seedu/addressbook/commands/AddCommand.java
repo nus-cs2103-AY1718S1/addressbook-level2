@@ -73,4 +73,15 @@ public class AddCommand extends Command {
         }
     }
 
+    @Override
+    public CommandResult executePostCommand(CommandResult executeCommandResult) {
+        ListCommand listCommand = new ListCommand();
+        listCommand.setData(addressBook, relevantPersons);
+        CommandResult listCommandResult = listCommand.execute();
+
+        return new CommandResult(listCommandResult.feedbackToUser
+                + "\n"
+                + executeCommandResult.feedbackToUser,
+                addressBook.getAllPersons().immutableListView());
+    }
 }

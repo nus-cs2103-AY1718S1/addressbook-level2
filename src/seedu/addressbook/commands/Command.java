@@ -44,6 +44,13 @@ public class Command {
     };
 
     /**
+     * Check if there is a command to execute AFTER execute command.
+     */
+    public CommandResult executePostCommand(CommandResult executeCommandResult) {
+        return executeCommandResult;
+    }
+
+    /**
      * Supplies the data the command will operate on.
      */
     public void setData(AddressBook addressBook, List<? extends ReadOnlyPerson> relevantPersons) {

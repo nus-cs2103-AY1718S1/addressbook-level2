@@ -110,6 +110,8 @@ public class Main {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);
+
+            result = command.executePostCommand(result);
             return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());

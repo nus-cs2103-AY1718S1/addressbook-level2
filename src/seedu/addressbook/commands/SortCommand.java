@@ -21,7 +21,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute() {
         List<Person> allPersons = addressBook.getAllPersons().getInternalList();
-
+        sort(allPersons);
         return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
     }
 

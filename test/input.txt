@@ -55,6 +55,14 @@
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
 
 ##########################################################
+# test sort person command
+##########################################################
+
+  add Aniruth Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
+  sort
+  delete 2
+
+##########################################################
 # test view/viewall persons command
 ##########################################################
 

@@ -27,11 +27,9 @@ public class SortCommand extends Command{
         try{
             List<ReadOnlyPerson> personList = new UniquePersonList(sortList).immutableListView();
             return new CommandResult(getMessageForPersonListShownSummary(personList), personList);
-        }catch (Exception e){
+        }catch (Exception e) {
             return new CommandResult(MESSAGE_ERROR);
         }
-
-
     }
     /**
      * Parses arguments in the context of the view all command.

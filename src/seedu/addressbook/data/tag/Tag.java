@@ -12,6 +12,7 @@ public class Tag {
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
+    
 
     /**
      * Validates given tag name.
@@ -49,5 +50,7 @@ public class Tag {
     public String toString() {
         return '[' + tagName + ']';
     }
+
+    public String getTagName(){ return tagName; }
 
 }

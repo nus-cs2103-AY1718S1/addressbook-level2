@@ -122,7 +122,6 @@ public class AddressBook {
     }
 
     public String getReminderMessage() {
-        System.out.println("" + reminderMessage);
         return reminderMessage;
     }
 

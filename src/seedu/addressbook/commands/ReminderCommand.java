@@ -4,7 +4,7 @@ public class ReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "reminder";
 
-    public static final String REMINDER_SUCCESS = "New reminder added: ";
+    public static final String REMINDER_SUCCESS = "New reminder added:";
 
     public String reminderToAdd;
 

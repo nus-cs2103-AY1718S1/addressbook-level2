@@ -9,14 +9,10 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Address {
 
     public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Address must be in the format a/(BLOCK), (STREET), (UNIT), (POSTAL CODE)";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
-    public final Block blockComponent;
-    public final Street streetComponent;
-    public final Unit unitComponent;
-    public final Postal postalComponent;
     private boolean isPrivate;
 
     /**
@@ -26,20 +22,10 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
+        this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-
-        String[] addressComponents = trimmedAddress.split(",");
-        if (addressComponents.length == 4) {
-            this.blockComponent = new Block(addressComponents[0]);
-            this.streetComponent = new Street(addressComponents[1]);
-            this.unitComponent = new Unit(addressComponents[2]);
-            this.postalComponent = new Postal(addressComponents[3]);
-        }
-        else { throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS); }
-
-        this.isPrivate = isPrivate;
         this.value = trimmedAddress;
     }
 
@@ -52,11 +38,7 @@ public class Address {
 
     @Override
     public String toString() {
-        String stringFormat = blockComponent.getBlock() + ", "
-                + streetComponent.getStreet() + ", "
-                + unitComponent.getUnit() + ", "
-                + postalComponent.getPostal();
-        return stringFormat;
+        return value;
     }
 
     @Override

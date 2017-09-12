@@ -8,9 +8,9 @@ import java.util.StringTokenizer;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String, int)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
-public class Address extends Contact{
+public class Address {
 
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
@@ -18,12 +18,12 @@ public class Address extends Contact{
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
 
-    //public final String value;
-    //private boolean isPrivate;
-    private Block block;
+    public final String value;
+    private boolean isPrivate;
+    /*private Block block;
     private Street street;
     private Unit unit;
-    private PostalCode postalCode;
+    private PostalCode postalCode;*/
 
 
     /**
@@ -32,21 +32,17 @@ public class Address extends Contact{
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
-        super(address.trim(), isPrivate);
         String trimmedAddress = address.trim();
+        this.isPrivate = isPrivate;
 
-        int numTokens = separateAddress(trimmedAddress);
-
-        if (!isValidAddress(trimmedAddress, numTokens)) {
-            System.out.println("|| " + MESSAGE_ADDRESS_INVALID);
-            System.out.println("|| " +AddCommand.MESSAGE_USAGE);
-
+        if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+        this.value = trimmedAddress;
 
     }
 
-    //separate address into different classes
+    /*//separate address into different classes
     private int separateAddress(String trimmedAddress) {
         StringTokenizer separator = new StringTokenizer(trimmedAddress, ", ");
         int count = 0;
@@ -72,13 +68,13 @@ public class Address extends Contact{
         }
 
         return count;
-    }
+    }*/
 
     /**
      * Returns true if a given string is a valid person address.
      */
-    public static boolean isValidAddress(String test, int numTokens) {
-        return (test.matches(ADDRESS_VALIDATION_REGEX) && (numTokens == 4));
+    public static boolean isValidAddress(String test) {
+        return (test.matches(ADDRESS_VALIDATION_REGEX));
     }
 
     @Override
@@ -98,7 +94,7 @@ public class Address extends Contact{
         return value.hashCode();
     }
 
-    /*public boolean isPrivate() {
+    public boolean isPrivate() {
         return isPrivate;
-    }*/
+    }
 }

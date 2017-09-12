@@ -91,10 +91,10 @@ public class StorageFile {
      */
     public void save(AddressBook addressBook) throws StorageOperationException {
 
-        //Catch exception if file becomes read-only
+        /*//Catch exception if file becomes read-only
         if (!file.canWrite()) {
             throw new StorageOperationException("File cannot be written");
-        }
+        }*/
 
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html

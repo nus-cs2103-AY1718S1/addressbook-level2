@@ -27,6 +27,8 @@
 || Example: viewall 1
 || help: Shows program usage instructions.
 || Example: help
+|| lastadded: Views the last person added to address book.
+|| Example: lastadded
 || exit: Exits the program.
 || Example: exit
 || ===================================================

@@ -53,6 +53,14 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
+### Limit Listing all persons : `listlimit`
+Shows a limited list of all persons in the address book based on the number set.<br>
+Format: `listlimit NUMBER`
+
+Examples: 
+* `limitlist 2`<br>
+  Returns a maximum of 2 persons' contact results from the address book.
+
 ### Finding all persons containing any keyword in their name: `find`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`

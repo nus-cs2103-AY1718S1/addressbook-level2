@@ -13,7 +13,7 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts persons according to field specified (name if none specified). \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts persons according to field specified (name if none specified).\n"
             + "Parameters: [FIELD] (name/phone/email/address)\n"
             + "Example: " + COMMAND_WORD + " address";
 

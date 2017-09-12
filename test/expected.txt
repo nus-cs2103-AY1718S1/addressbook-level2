@@ -25,9 +25,9 @@
 || viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
-|| sort: Sorts the list of persons based on a parameter, such as name, phone or email. Only 1 parameter is allowed.
-|| Parameters: KEYWORD [PARAMETER]...
-|| Example: sort name
+|| sort: Sorts persons according to field specified (name if none specified).
+|| Parameters: Parameters: [FIELD] (name/phone/email/address)
+|| Example: sort address
 || help: Shows program usage instructions.
 || Example: help
 || exit: Exits the program.
@@ -201,32 +201,44 @@
 || Enter command: || [Command entered:  viewall 5]
 || Viewing person: Esther Potato Phone: 425242 Email: apotato@not.a.real.potato Address: (private) 222, epsilon street Tags: [tubers][starchy]
 || ===================================================
-|| Enter command: || [Command entered:  sort]
+|| Enter command: || [Command entered:  sort !@#]
 || Invalid command format! 
-|| sort: Sorts the list of persons based on a parameter, such as name, phone or email. Only 1 parameter is allowed.
-|| Parameters: KEYWORD [PARAMETER]...
-|| Example: sort name
+|| sort: Sorts persons according to field specified (name if none specified).
+|| Parameters: [FIELD] (name/phone/email/address)
+|| Example: sort address
 || ===================================================
 || Enter command: || [Command entered:  sort name phone]
 || Invalid command format! 
-|| sort: Sorts the list of persons based on a parameter, such as name, phone or email. Only 1 parameter is allowed.
-|| Parameters: KEYWORD [PARAMETER]...
-|| Example: sort name
+|| sort: Sorts persons according to field specified (name if none specified).
+|| Parameters: [FIELD] (name/phone/email/address)
+|| Example: sort address
+|| ===================================================
+|| Enter command: || [Command entered:  sort]
+|| AddressBook sorted by name
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 684758 Email: madambrown@gmail.com Address: 123, alpha street Tags:
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 444, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 127812 Address: 333, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 425242 Email: apotato@not.a.real.potato Tags: [tubers][starchy]
+||
+|| 5 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  sort phone]
-|| Finished sorting by phone
+|| AddressBook sorted by phone
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Dickson Ee Phone: 127812 Address: 333, delta street Tags: [friends]
 || 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 444, gamma street Tags: [school][friends]
 || 	3. Esther Potato Phone: 425242 Email: apotato@not.a.real.potato Tags: [tubers][starchy]
 || 	4. Betsy Choo Tags: [secretive]
-|| 	5. Adam Brown Phone: 684758 Email: madambrown@gmail.com Address: 123, alpha street Tags: 
-|| 
+|| 	5. Adam Brown Phone: 684758 Email: madambrown@gmail.com Address: 123, alpha street Tags:
+||
 || 5 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  sort email]
-|| Finished sorting by email
+|| AddressBook sorted by email
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Esther Potato Phone: 425242 Email: apotato@not.a.real.potato Tags: [tubers][starchy]
@@ -238,7 +250,7 @@
 || 5 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  sort address]
-|| Finished sorting by address
+|| AddressBook sorted by address
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Tags: [secretive]
@@ -250,7 +262,7 @@
 || 5 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  sort name]
-|| Finished sorting by name
+|| AddressBook sorted by name
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 684758 Email: madambrown@gmail.com Address: 123, alpha street Tags: 

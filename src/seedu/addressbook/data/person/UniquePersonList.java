@@ -127,6 +127,7 @@ public class UniquePersonList implements Iterable<Person> {
      *
      */
     public List<ReadOnlyPerson> sortList() {
+        Collections.sort(internalList);
         return Collections.unmodifiableList(internalList);
     }
 

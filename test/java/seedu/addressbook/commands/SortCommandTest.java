@@ -12,14 +12,13 @@ import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.util.TestUtil;
-import seedu.addressbook.util.TypicalPersons;
 
 public class SortCommandTest {
     private AddressBook addressBook;
     private AddressBook emptyAddressBook;
 
-    private List<ReadOnlyPerson> emptyPersonList = Collections.emptyList();
-    private List<ReadOnlyPerson> emptyDisplayList;
+    private List<ReadOnlyPerson> personList;
+    private List<ReadOnlyPerson> emptyPersonList;
     private List<ReadOnlyPerson> expectedDisplayList;
 
 
@@ -27,7 +26,7 @@ public class SortCommandTest {
     public void setUp() throws Exception {
         Person johnDoe = new Person(new Name("John Doe"), new Phone("61234567", false),
                 new Email("john@doe.com", false), new Address("395C Ben Road", false), new UniqueTagList());
-        Person annie = new Person(new Name("annie"), new Phone("91223367", false),
+        Person annie = new Person(new Name("Annie"), new Phone("91223367", false),
                 new Email("annie@doe.com", false), new Address("33G Ohm Road", false), new UniqueTagList());
         Person samDoe = new Person(new Name("Sam Doe"), new Phone("63345566", false),
                 new Email("sam@doe.com", false), new Address("55G Abc Road", false), new UniqueTagList());
@@ -37,7 +36,9 @@ public class SortCommandTest {
 
         emptyAddressBook = TestUtil.createAddressBook();
         addressBook = TestUtil.createAddressBook(johnDoe, annie, davidGrant, samDoe);
-        emptyDisplayList = TestUtil.createList();
+        emptyPersonList = TestUtil.createList();
+
+        personList = TestUtil.createList(johnDoe, annie, samDoe, davidGrant);
         expectedDisplayList = TestUtil.createList(annie, davidGrant, johnDoe, samDoe);
     }
 
@@ -45,6 +46,7 @@ public class SortCommandTest {
     public void execute() throws IllegalValueException {
         //same word, same case: matched
         SortCommand newCommand = new SortCommand();
+        newCommand.setData(addressBook, personList);
         CommandResult result = newCommand.execute();
 
         List<? extends ReadOnlyPerson> displayedPersonList = result.getRelevantPersons().get();
@@ -64,7 +66,7 @@ public class SortCommandTest {
         assertEquals(personsToBeViewed.size(), expectedPersonsToBeViewed.size());
 
         for(int i = 0; i < personsToBeViewed.size(); i++) {
-            ReadOnlyPerson p1 = personsToBeViewed.
+            ReadOnlyPerson p1 = personsToBeViewed.get(i);
             ReadOnlyPerson p2 = expectedPersonsToBeViewed.get(i);
             assertEquals(p1.getName(), p2.getName());
         }

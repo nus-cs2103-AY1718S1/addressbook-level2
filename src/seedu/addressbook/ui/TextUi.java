@@ -21,23 +21,25 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
  */
 public class TextUi {
 
+    private static Formatter format = new Formatter();
+
     /** A decorative prefix added to the beginning of lines printed by AddressBook */
-    private static final String LINE_PREFIX = "|| ";
+    private static final String LINE_PREFIX = format.getLinePrefix();
 
     /** A platform independent line separator. */
-    private static final String LS = System.lineSeparator();
+    private static final String LS = format.getLS();
 
-    private static final String DIVIDER = "===================================================";
+    private static final String DIVIDER = format.getDIVIDER();
 
     /** Format of indexed list item */
-    private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
+    private static final String MESSAGE_INDEXED_LIST_ITEM = format.getMessageIndexedListItem();
 
 
     /** Offset required to convert between 1-indexing and 0-indexing.  */
-    public static final int DISPLAYED_INDEX_OFFSET = 1;
+    public static final int DISPLAYED_INDEX_OFFSET = format.getDisplayedIndexOffset();
 
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
-    private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
+    private static final String COMMENT_LINE_FORMAT_REGEX = format.getCommentLineFormatRegex();
 
     private final Scanner in;
     private final PrintStream out;

@@ -89,7 +89,18 @@ public class AddressBook {
      * @throws PersonNotFoundException if the expected person does not exist.
      */
     public void updatePerson(Person toUpdate) throws PersonNotFoundException {
-        allPersons.update(toUpdate);
+        if (!containsPerson(toUpdate)) {
+            throw new PersonNotFoundException();
+        }
+
+        for (Person p : allPersons) {
+            if (p.getName().equals(toUpdate.getName())) {
+                p.setPhone(toUpdate.getPhone());
+                p.setEmail(toUpdate.getEmail());
+                p.setAddress(toUpdate.getAddress());
+            }
+        }
+
         syncTagsWithMasterList(toUpdate);
     }
 

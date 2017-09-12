@@ -38,9 +38,10 @@ public class Name {
 
     /**
      * Retrieves a listing of every word in the name, in order.
+     * Full Name is now in lower case to make find command case-insensitive.
      */
     public List<String> getWordsInName() {
-        return Arrays.asList(fullName.split("\\s+"));
+        return Arrays.asList(fullName.toLowerCase().split("\\s+"));
     }
 
     @Override

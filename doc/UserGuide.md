@@ -134,3 +134,11 @@ Example:
 >
 > When running the program inside IntelliJ, you can set command line parameters 
   before running the program.
+
+#### Searching by tag : 'tag'
+Displays all entries with tag entered
+Format: 'tag' 
+
+Example: 
+* tag friend
+Display all entries with friend tag.

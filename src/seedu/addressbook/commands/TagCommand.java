@@ -20,7 +20,7 @@ public class TagCommand extends Command {
     public static final String COMMAND_WORD = "tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays all persons in address book with tag.\n"
-            +  "Parameters: TAG\n"
+            +  "Parameters: TAG NAME\n"
             + "Example: " + COMMAND_WORD + " friends";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";

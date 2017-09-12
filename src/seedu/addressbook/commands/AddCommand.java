@@ -20,6 +20,7 @@ import seedu.addressbook.data.tag.UniqueTagList;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static int nextSeqNumber = 1;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Contact details can be marked private by prepending 'p' to the prefix.\n"
@@ -51,8 +52,10 @@ public class AddCommand extends Command {
                 new Phone(phone, isPhonePrivate),
                 new Email(email, isEmailPrivate),
                 new Address(address, isAddressPrivate),
-                new UniqueTagList(tagSet)
+                new UniqueTagList(tagSet),
+                nextSeqNumber
         );
+        nextSeqNumber++;
     }
 
     public AddCommand(Person toAdd) {

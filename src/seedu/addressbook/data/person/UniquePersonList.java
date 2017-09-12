@@ -41,6 +41,7 @@ public class UniquePersonList implements Iterable<Person> {
     private static final String COMMAND_SORT_PARAMETER_NAME = "name";
     private static final String COMMAND_SORT_PARAMETER_PHONE = "phone";
     private static final String COMMAND_SORT_PARAMETER_EMAIL = "email";
+    private static final String COMMAND_SORT_PARAMETER_ADDRESS = "address";
 
     /**
      * The first index of the address book. Is 0 if empty
@@ -147,6 +148,9 @@ public class UniquePersonList implements Iterable<Person> {
             break;
         case COMMAND_SORT_PARAMETER_EMAIL:
             quickSortByEmail(SMALLEST_INDEX_OF_ADDRESSBOOK, getLastIndexOfAddressBook());
+            break;
+        case COMMAND_SORT_PARAMETER_ADDRESS:
+            quickSortByAddress(SMALLEST_INDEX_OF_ADDRESSBOOK, getLastIndexOfAddressBook());
             break;
         default:
             throw new InvalidParameterException();
@@ -273,6 +277,47 @@ public class UniquePersonList implements Iterable<Person> {
         }
         if (low < max) {
             quickSortByEmail(low, max);
+        }
+    }
+
+    /**
+     * Sorts the persons in the list by address using quick sort
+     * @param min The lower index
+     * @param max The upper index
+     * @throws IndexOutOfBoundsException if min or max happens to exceed the range of the internalList
+     */
+    private void quickSortByAddress(int min, int max) throws IndexOutOfBoundsException {
+        if (internalList.size() == 0) {
+            return;
+        }
+        if (min < 0 || min >= internalList.size()) {
+            throw new IndexOutOfBoundsException("low is not within the range of the internalList");
+        }
+        if (max < 0 || max >= internalList.size()) {
+            throw new IndexOutOfBoundsException("high is not within the range of the internalList");
+        }
+        int low = min;
+        int high = max;
+        String pivot = internalList.get(low + (high - low) / 2).getAddress().toString();
+        while (low <= high) {
+            while (internalList.get(low).getAddress().toString().compareTo(pivot) < 0) {
+                low++;
+            }
+            while (internalList.get(high).getAddress().toString().compareTo(pivot) > 0) {
+                high--;
+            }
+            if (low <= high) {
+                swapPersonInArray(low, high);
+                low++;
+                high--;
+            }
+        }
+        //Recursively call quickSortByAddress to finish sorting the internalList
+        if (min < high) {
+            quickSortByAddress(min, high);
+        }
+        if (low < max) {
+            quickSortByAddress(low, max);
         }
     }
 

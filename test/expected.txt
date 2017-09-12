@@ -299,11 +299,10 @@
 || 
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney]
+|| Enter command: || [Command entered:  add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney]
 || New person added: John Doe Phone: 98765432 Email: johnd@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends]
 || ===================================================
-|| Enter command: lastadded
-|| [Command entered:lastadded]
+|| Enter command: || [Command entered:  lastadded]
 || 	1. John Doe Phone: 98765432 Email: johnd@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends]
 ||
 || Last added person shown above.

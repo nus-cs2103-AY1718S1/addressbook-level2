@@ -141,6 +141,24 @@
   list
 
 ##########################################################
+# test edit person command
+##########################################################
+
+  # should consider invalid field types
+  edit Betsy Choo k/INVALID
+  # should consider invalid arguments
+  edit Betsy Choo e/not an email
+  # should not update if person does not exist in AddressBook
+  edit Elon Musk p/62353535
+
+  # update phone
+  edit Betsy Choo p/62353535
+  # update email
+  edit Betsy Choo e/newEmail@domain.com
+  # update address
+  edit Betsy Choo a/My New Address Street #12-213
+
+##########################################################
 # test clear command
 ##########################################################
 

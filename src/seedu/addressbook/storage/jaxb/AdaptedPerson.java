@@ -54,7 +54,7 @@ public class AdaptedPerson {
      * @param source future changes to this will not affect the created AdaptedPerson
      */
     public AdaptedPerson(ReadOnlyPerson source) {
-        name = source.getName().fullName;
+        name = source.getName().value;
 
         phone = new AdaptedContactDetail();
         phone.isPrivate = source.getPhone().isPrivate();

@@ -57,22 +57,22 @@ public class SortableCommandTest {
         
         TypicalPersons typicalPersons = new TypicalPersons();
         assertEquals((int) innerSortArgumentCompareValue.invoke(sortableCommand,"n/", typicalPersons.amy, typicalPersons.candy),
-                typicalPersons.amy.getName().toString().compareTo(typicalPersons.candy.getName().toString()));
+                typicalPersons.amy.getName().compareTo(typicalPersons.candy.getName()));
         assertEquals((int) innerSortArgumentCompareValue.invoke(sortableCommand,"p/", typicalPersons.amy, typicalPersons.candy),
-                typicalPersons.amy.getPhone().toString().compareTo(typicalPersons.candy.getPhone().toString()));
+                typicalPersons.amy.getPhone().compareTo(typicalPersons.candy.getPhone()));
         assertEquals((int) innerSortArgumentCompareValue.invoke(sortableCommand,"a/", typicalPersons.amy, typicalPersons.candy),
-                typicalPersons.amy.getAddress().toString().compareTo(typicalPersons.candy.getAddress().toString()));
+                typicalPersons.amy.getAddress().compareTo(typicalPersons.candy.getAddress()));
         assertEquals((int) innerSortArgumentCompareValue.invoke(sortableCommand,"e/", typicalPersons.amy, typicalPersons.candy),
-                typicalPersons.amy.getEmail().toString().compareTo(typicalPersons.candy.getEmail().toString()));
+                typicalPersons.amy.getEmail().compareTo(typicalPersons.candy.getEmail()));
 
         assertEquals((int) innerSortArgumentCompareValue.invoke(sortableCommand,"n/desc", typicalPersons.amy, typicalPersons.candy),
-                typicalPersons.candy.getName().toString().compareTo(typicalPersons.amy.getName().toString()));
+                typicalPersons.candy.getName().compareTo(typicalPersons.amy.getName()));
         assertEquals((int) innerSortArgumentCompareValue.invoke(sortableCommand,"p/desc", typicalPersons.amy, typicalPersons.candy),
-                typicalPersons.candy.getPhone().toString().compareTo(typicalPersons.amy.getPhone().toString()));
+                typicalPersons.candy.getPhone().compareTo(typicalPersons.amy.getPhone()));
         assertEquals((int) innerSortArgumentCompareValue.invoke(sortableCommand,"a/desc", typicalPersons.amy, typicalPersons.candy),
-                typicalPersons.candy.getAddress().toString().compareTo(typicalPersons.amy.getAddress().toString()));
+                typicalPersons.candy.getAddress().compareTo(typicalPersons.amy.getAddress()));
         assertEquals((int) innerSortArgumentCompareValue.invoke(sortableCommand,"e/desc", typicalPersons.amy, typicalPersons.candy),
-                typicalPersons.candy.getEmail().toString().compareTo(typicalPersons.amy.getEmail().toString()));
+                typicalPersons.candy.getEmail().compareTo(typicalPersons.amy.getEmail()));
     }
 
 }

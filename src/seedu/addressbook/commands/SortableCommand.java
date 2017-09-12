@@ -17,6 +17,8 @@ public class SortableCommand extends Command {
     public static final String SORT_ASCENDING_POSTFIX_WORD = "asc";
     public static final String SORT_DESCENDING_POSTFIX_WORD = "desc";
     
+    public static final int PRIVATE_COMPARATOR_VALUE = -1;
+    
     /** The set of all possible sort arguments */
     public static final HashSet<String> POSSIBLE_SORT_ARGUMENTS = 
             new HashSet<>(Arrays.asList(Name.PREFIX,
@@ -99,40 +101,40 @@ public class SortableCommand extends Command {
     private static int sortArgumentCompareValue(String sortArgument, ReadOnlyPerson person1, ReadOnlyPerson person2) {
         switch (sortArgument) {
             case Name.PREFIX:
-                return person1.getName().toString().compareTo(person2.getName().toString());
+                return person1.getName().compareTo(person2.getName());
                 
             case Phone.PREFIX:
-                return person1.getPhone().toString().compareTo(person2.getPhone().toString());
+                return person1.getPhone().compareTo(person2.getPhone());
                 
             case Email.PREFIX:
-                return person1.getEmail().toString().compareTo(person2.getEmail().toString());
+                return person1.getEmail().compareTo(person2.getEmail());
                 
             case Address.PREFIX:
-                return person1.getAddress().toString().compareTo(person2.getAddress().toString());
+                return person1.getAddress().compareTo(person2.getAddress());
                 
             case Name.PREFIX + SORT_DESCENDING_POSTFIX_WORD:
-                return person2.getName().toString().compareTo(person1.getName().toString());
+                return person2.getName().compareTo(person1.getName());
                 
             case Phone.PREFIX + SORT_DESCENDING_POSTFIX_WORD:
-                return person2.getPhone().toString().compareTo(person1.getPhone().toString());
+                return person2.getPhone().compareTo(person1.getPhone());
                 
             case Email.PREFIX + SORT_DESCENDING_POSTFIX_WORD:
-                return person2.getEmail().toString().compareTo(person1.getEmail().toString());
+                return person2.getEmail().compareTo(person1.getEmail());
                 
             case Address.PREFIX + SORT_DESCENDING_POSTFIX_WORD:
-                return person2.getAddress().toString().compareTo(person1.getAddress().toString());
+                return person2.getAddress().compareTo(person1.getAddress());
                 
             case Name.PREFIX + SORT_ASCENDING_POSTFIX_WORD:
-                return person1.getName().toString().compareTo(person2.getName().toString());
+                return person1.getName().compareTo(person2.getName());
                 
             case Phone.PREFIX + SORT_ASCENDING_POSTFIX_WORD:
-                return person1.getName().toString().compareTo(person2.getName().toString());
+                return person1.getPhone().compareTo(person2.getPhone());
                 
             case Email.PREFIX + SORT_ASCENDING_POSTFIX_WORD:
-                return person1.getName().toString().compareTo(person2.getName().toString());
+                return person1.getEmail().compareTo(person2.getEmail());
                 
             case Address.PREFIX + SORT_ASCENDING_POSTFIX_WORD:
-                return person1.getName().toString().compareTo(person2.getName().toString());
+                return person1.getAddress().compareTo(person2.getAddress());
                 
             default:
                 return 0;

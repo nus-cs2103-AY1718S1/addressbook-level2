@@ -278,14 +278,14 @@
 || 11 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  list p/ n/]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Alpha A Phone: 12345678 Email: alpha@nus.edu.sg Address: 111, alpha street Tags: 
-|| 	3. Alpha C Phone: 12345678 Email: alpha.potato@nus.edu.sg Address: 114, alpha street Tags: 
+|| 	1. Alpha A Phone: 12345678 Email: alpha@nus.edu.sg Address: 111, alpha street Tags: 
+|| 	2. Alpha C Phone: 12345678 Email: alpha.potato@nus.edu.sg Address: 114, alpha street Tags: 
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 	4. Betsy Choo Tags: [secretive]
-|| 	5. Alpha B Phone: 22345678 Email: alpha.22@nus.edu.sg Address: 112, alpha street Tags: 
-|| 	6. Alpha D Phone: 22345678 Email: alpha.sashimi@nus.edu.sg Address: 113, alpha street Tags: 
-|| 	7. Bravo a Phone: 22345678 Email: alpha.sashimi@nus.edu.sg Address: 111, bravo street Tags: 
-|| 	8. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	5. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	6. Alpha B Phone: 22345678 Email: alpha.22@nus.edu.sg Address: 112, alpha street Tags: 
+|| 	7. Alpha D Phone: 22345678 Email: alpha.sashimi@nus.edu.sg Address: 113, alpha street Tags: 
+|| 	8. Bravo a Phone: 22345678 Email: alpha.sashimi@nus.edu.sg Address: 111, bravo street Tags: 
 || 	9. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	10. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 	11. Bravo b Phone: 85559555 Email: bravo.e@nus.edu.sg Address: 111, bravo street Tags: 
@@ -427,18 +427,18 @@
 || 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Alpha e/asc p/desc]
-|| 	1. Alpha A Phone: 12345678 Email: alpha@nus.edu.sg Address: 111, alpha street Tags: 
-|| 	2. Alpha B Phone: 22345678 Email: alpha.22@nus.edu.sg Address: 112, alpha street Tags: 
-|| 	3. Alpha C Phone: 12345678 Email: alpha.potato@nus.edu.sg Address: 114, alpha street Tags: 
-|| 	4. Alpha D Phone: 22345678 Email: alpha.sashimi@nus.edu.sg Address: 113, alpha street Tags: 
+|| 	1. Alpha B Phone: 22345678 Email: alpha.22@nus.edu.sg Address: 112, alpha street Tags: 
+|| 	2. Alpha C Phone: 12345678 Email: alpha.potato@nus.edu.sg Address: 114, alpha street Tags: 
+|| 	3. Alpha D Phone: 22345678 Email: alpha.sashimi@nus.edu.sg Address: 113, alpha street Tags: 
+|| 	4. Alpha A Phone: 12345678 Email: alpha@nus.edu.sg Address: 111, alpha street Tags: 
 || 
 || 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Alpha p/asc e/desc]
 || 	1. Alpha A Phone: 12345678 Email: alpha@nus.edu.sg Address: 111, alpha street Tags: 
-|| 	2. Alpha B Phone: 22345678 Email: alpha.22@nus.edu.sg Address: 112, alpha street Tags: 
-|| 	3. Alpha C Phone: 12345678 Email: alpha.potato@nus.edu.sg Address: 114, alpha street Tags: 
-|| 	4. Alpha D Phone: 22345678 Email: alpha.sashimi@nus.edu.sg Address: 113, alpha street Tags: 
+|| 	2. Alpha C Phone: 12345678 Email: alpha.potato@nus.edu.sg Address: 114, alpha street Tags: 
+|| 	3. Alpha D Phone: 22345678 Email: alpha.sashimi@nus.edu.sg Address: 113, alpha street Tags: 
+|| 	4. Alpha B Phone: 22345678 Email: alpha.22@nus.edu.sg Address: 112, alpha street Tags: 
 || 
 || 4 persons listed!
 || ===================================================

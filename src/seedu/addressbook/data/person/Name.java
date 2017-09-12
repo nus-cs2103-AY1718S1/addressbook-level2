@@ -41,11 +41,7 @@ public class Name {
      * Retrieves a listing of every word in the name, in order.
      */
     public List<String> getWordsInName() {
-        List<String> wordsInName = Arrays.asList(fullName.split("\\s+"));
-        List<String> wordsInNameLowercase = wordsInName.stream()
-                .map(String::toLowerCase)
-                .collect(Collectors.toList());
-        return wordsInNameLowercase;
+        return Arrays.asList(fullName.toLowerCase().split("\\s+"));
     }
 
     @Override

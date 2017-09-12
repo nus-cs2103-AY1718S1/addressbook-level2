@@ -39,6 +39,7 @@ public interface ReadOnlyPerson {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                     && other.getName().equals(this.getName()) // state checks here onwards
+                    && other.getDateOfBirth().equals(this.getDateOfBirth())
                     && other.getPhone().equals(this.getPhone())
                     && other.getEmail().equals(this.getEmail())
                     && other.getAddress().equals(this.getAddress())
@@ -52,6 +53,11 @@ public interface ReadOnlyPerson {
         final StringBuilder builder = new StringBuilder();
         final String detailIsPrivate = "(private) ";
         builder.append(getName())
+                .append(" Date of Birth: ");
+        if (getDateOfBirth().isPrivate()) {
+            builder.append(detailIsPrivate);
+        }
+        builder.append(getDateOfBirth())
                 .append(" Phone: ");
         if (getPhone().isPrivate()) {
             builder.append(detailIsPrivate);

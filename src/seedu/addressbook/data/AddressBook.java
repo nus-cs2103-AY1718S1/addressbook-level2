@@ -31,7 +31,6 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
-        reminderMessage = "No reminders.";
     }
 
     /**

@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.data.tag.Tag;
+
 /**
  * Finds and lists all persons in address book whose name or tag contains any of the argument keywords.
  * Keyword matching is case sensitive.
@@ -51,30 +52,30 @@ public class FindCommand extends Command {
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> nameKeywords, Set<String> tagKeywords) {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
-        
+
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
-            
+
             boolean isPersonAdded = false;
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
             final UniqueTagList personTags = person.getTags();
             //check for matching name keyword
-            for(String s : nameKeywords) {
-                for(String w : wordsInName) {
+            for (String s : nameKeywords) {
+                for (String w : wordsInName) {
                     if (w.startsWith(s)) {
-                        if(!isPersonAdded) {
+                        if (!isPersonAdded) {
                             matchedPersons.add(person);
                             isPersonAdded = true;
                         }
-                    }                       
+                    }
                 }
             }
-            
+
             //check for tag if person has not been added
-            if(!isPersonAdded) {
-                for(String tag : tagKeywords) {
-                    for(Tag personTag : personTags) {
-                        if(personTag.tagName.equals(tag)) {
-                            if(!isPersonAdded) {
+            if (!isPersonAdded) {
+                for (String tag : tagKeywords) {
+                    for (Tag personTag : personTags) {
+                        if (personTag.tagName.equals(tag)) {
+                            if (!isPersonAdded) {
                                 matchedPersons.add(person);
                                 isPersonAdded = true;
                             }
@@ -82,9 +83,9 @@ public class FindCommand extends Command {
                     }
                 }
             }
-            
+
         }
-        
+
         return matchedPersons;
     }
 

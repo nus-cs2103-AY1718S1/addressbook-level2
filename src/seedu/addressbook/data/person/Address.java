@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
  */
 public class Address extends Contact{
 
-    public static final String EXAMPLE = "123, some street";
+    public static final String EXAMPLE = "123, some street, 23, 4";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String MESSAGE_ADDRESS_INVALID = "Address entered is invalid";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";

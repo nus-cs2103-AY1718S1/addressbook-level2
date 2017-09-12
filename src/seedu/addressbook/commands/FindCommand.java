@@ -47,14 +47,25 @@ public class FindCommand extends Command {
      * @return list of persons found
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
+        keywords = makeAllLowerCase(keywords);
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
-            final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+            Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+            wordsInName = makeAllLowerCase(wordsInName);
+
             if (!Collections.disjoint(wordsInName, keywords)) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
+    }
+
+    private Set<String> makeAllLowerCase(Set<String> names){
+        Set<String> namesLowerCase = new HashSet<String>();
+        for(String name: names){
+            namesLowerCase.add(name.toLowerCase());
+        }
+        return namesLowerCase;
     }
 
 }

@@ -5,7 +5,7 @@ import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
-
+import static seedu.addressbook.common.Messages.MESSAGE_PERSONS_LISTED_SORT;
 import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
 
 /**
@@ -34,6 +34,14 @@ public class Command {
      */
     public static String getMessageForPersonListShownSummary(List<? extends ReadOnlyPerson> personsDisplayed) {
         return String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, personsDisplayed.size());
+    }
+
+    /**
+     * Constructs a feedback message to summarise an operation that displayed a listing of persons.
+     *
+     */
+    public static String getMessageForSortedPersonList() {
+        return MESSAGE_PERSONS_LISTED_SORT;
     }
 
     /**

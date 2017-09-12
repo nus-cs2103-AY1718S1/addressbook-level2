@@ -21,6 +21,6 @@ public class SortCommand extends Command {
     public CommandResult execute() {
         addressBook.sortAddressBook();
         List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
-        return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
+        return new CommandResult(getMessageForSortedPersonList(), allPersons);
     }
 }

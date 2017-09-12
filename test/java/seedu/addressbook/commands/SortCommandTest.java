@@ -13,12 +13,12 @@ import static org.junit.Assert.*;
 
 public class SortCommandTest {
 
-    private AddressBook emptyAddressBook;
     private AddressBook addressBook;
-
-    private List<ReadOnlyPerson> emptyDisplayList;
-    private List<ReadOnlyPerson> listWithEveryone;
-    private List<ReadOnlyPerson> listWithSurnameDoe;
+    private List<ReadOnlyPerson> unsortedList;
+    private List<ReadOnlyPerson> alphabeticalList;
+    private List<ReadOnlyPerson> lengthList;
+    private SortCommand alphabeticalSort;
+    private SortCommand lengthSort;
 
     @Before
     public void setUp() throws Exception {
@@ -32,13 +32,47 @@ public class SortCommandTest {
                 new Email("david@grant.com", false), new Address("44H Define Road", false),
                 new UniqueTagList());
 
-        emptyAddressBook = TestUtil.createAddressBook();
         addressBook = TestUtil.createAddressBook(johnDoe, janeDoe, davidGrant, samDoe);
 
-        emptyDisplayList = TestUtil.createList();
+        unsortedList = TestUtil.createList(johnDoe, janeDoe, davidGrant, samDoe);
+        alphabeticalList = TestUtil.createList(davidGrant, janeDoe, johnDoe, samDoe);
+        lengthList = TestUtil.createList(samDoe, johnDoe, janeDoe, davidGrant);
 
-        listWithEveryone = TestUtil.createList(johnDoe, janeDoe, davidGrant, samDoe);
-        listWithSurnameDoe = TestUtil.createList(johnDoe, janeDoe, samDoe);
+        alphabeticalSort = createSortCommand(0, addressBook, unsortedList);
+        lengthSort = createSortCommand(1, addressBook, unsortedList);
     }
 
+    /**
+     * Creates a new sort command.
+     *
+     * @param sortingOption of choice
+     */
+    private SortCommand createSortCommand(int sortingOption, AddressBook addressBook,
+                                              List<ReadOnlyPerson> displayList) {
+
+        SortCommand command = new SortCommand(sortingOption);
+        command.setData(addressBook, displayList);
+
+        return command;
+    }
+
+    private void assertCommandBehaviour(SortCommand sortCommand,
+                                            List<ReadOnlyPerson> actualList, boolean supposedToBeTrue) {
+        final CommandResult result = sortCommand.execute();
+        if(supposedToBeTrue)
+            assertEquals(result.getRelevantPersons().orElse(null), actualList);
+        else
+            assertNotEquals(result.getRelevantPersons().orElse(null), actualList);
+    }
+
+    @Test
+    public void assertInAlphabeticalOrder() { assertCommandBehaviour(alphabeticalSort, alphabeticalList, true); }
+
+    @Test
+    public void assertInLengthOrder() {
+        assertCommandBehaviour(lengthSort, lengthList, true);
+    }
+
+    @Test
+    public void assetNotInAlphabeticalOrder() { assertCommandBehaviour(lengthSort, alphabeticalList, false); }
 }

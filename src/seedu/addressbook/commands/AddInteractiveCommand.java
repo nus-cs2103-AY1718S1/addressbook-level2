@@ -3,7 +3,7 @@ package seedu.addressbook.commands;
 /**
  * Adds a person to the address book.
  */
-public class AddInteractiveCommand extends Command {
+public class AddInteractiveCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "add-interactive";
 
@@ -21,6 +21,7 @@ public class AddInteractiveCommand extends Command {
      *
      */
     public AddInteractiveCommand() {
+        super();
     }
 
     @Override

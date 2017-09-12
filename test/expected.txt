@@ -9,9 +9,6 @@
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
-|| edit: Edits a person from the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS]  [t/TAG]...
-|| Example: edit John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
@@ -292,21 +289,6 @@
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
-|| ===================================================
-|| Enter command: || [Command entered:  edit bob p/123456]
-|| Cannot find the person
-|| ===================================================
-|| Enter command: || [Command entered:  edit Dickson Ee p/123456]
-|| Person edited: Dickson Ee Phone: 123456 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
-|| ===================================================
-|| Enter command: || [Command entered:  edit Dickson Ee e/e0000@u.nus.edu]
-|| Person edited: Dickson Ee Phone: 123456 Email: e0000@u.nus.edu Address: 444, delta street Tags: [friends]
-|| ===================================================
-|| Enter command: || [Command entered:  edit Dickson Ee pa/PGPR, NUS]
-|| Person edited: Dickson Ee Phone: 123456 Email: e0000@u.nus.edu Address: (private) PGPR, NUS Tags: [friends]
-|| ===================================================
-|| Enter command: || [Command entered:  edit Dickson Ee t/classmates]
-|| Person edited: Dickson Ee Phone: 123456 Email: e0000@u.nus.edu Address: (private) PGPR, NUS Tags: [classmates]
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

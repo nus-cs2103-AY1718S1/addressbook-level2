@@ -149,9 +149,23 @@
   list
 
 ##########################################################
+# test sort command
+##########################################################
+
+  # sorts name lexographically
+  add aaaaa p/123456 e/abc@123.gmail.com a/123123
+  add zzzzz p/123456 e/abc@123.gmail.com a/123123
+  add ddddd p/123456 e/abc@123.gmail.com a/123123
+  add OOOOO p/123456 e/abc@123.gmail.com a/123123
+  add AAAAA p/123456 e/abc@123.gmail.com a/123123
+  sort
+  clear
+
+##########################################################
 # test exit command
 ##########################################################
 
   # exits properly
   exit
   list
+

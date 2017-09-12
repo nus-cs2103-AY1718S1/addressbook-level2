@@ -19,6 +19,8 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| sort: Displays a persons in the address book as a sorted list with index numbers.
+|| Example: sort
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
@@ -296,6 +298,33 @@
 || Enter command: || [Command entered:  list]
 || 
 || 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  add aaaaa p/123456 e/abc@123.gmail.com a/123123]
+|| New person added: aaaaa Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags:
+|| ===================================================
+|| Enter command: || [Command entered:  add zzzzz p/123456 e/abc@123.gmail.com a/123123]
+|| New person added: zzzzz Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags:
+|| ===================================================
+|| Enter command: || [Command entered:  add ddddd p/123456 e/abc@123.gmail.com a/123123]
+|| New person added: ddddd Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags:
+|| ===================================================
+|| Enter command: || [Command entered:  add OOOOO p/123456 e/abc@123.gmail.com a/123123]
+|| New person added: OOOOO Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags:
+|| ===================================================
+|| Enter command: || [Command entered:  add AAAAA p/123456 e/abc@123.gmail.com a/123123]
+|| New person added: AAAAA Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags:
+|| ===================================================
+|| Enter command: || [Command entered:  sort]
+||      1. aaaaa Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags:
+||      2. AAAAA Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags:
+||      3. ddddd Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags:
+||      4. OOOOO Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags:
+||      5. zzzzz Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags:
+||
+|| 5 persons sorted!
+|| ===================================================
+|| Enter command: || [Command entered:  clear]
+|| Address book has been cleared!
 || ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...

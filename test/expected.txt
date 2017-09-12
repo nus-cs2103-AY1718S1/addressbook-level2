@@ -25,6 +25,9 @@
 || viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
+|| sort: Sorts the list of persons based on a parameter, such as name, phone or email. Only 1 parameter is allowed.
+|| Parameters: KEYWORD [PARAMETER]...
+|| Example: sort name
 || help: Shows program usage instructions.
 || Example: help
 || exit: Exits the program.
@@ -332,6 +335,34 @@
 || Enter command: || [Command entered:  list]
 || 
 || 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  help]
+|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| delete: Deletes the person identified by the index number used in the last person listing.
+|| Parameters: INDEX
+|| Example: delete 1
+|| Clears address book permanently.
+|| Example: clear
+|| find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
+|| Parameters: KEYWORD [MORE_KEYWORDS]...
+|| Example: find alice bob charlie
+|| list: Displays all persons in the address book as a list with index numbers.
+|| Example: list
+|| view: Views the non-private details of the person identified by the index number in the last shown person listing.
+|| Parameters: INDEX
+|| Example: view 1
+|| viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
+|| Parameters: INDEX
+|| Example: viewall 1
+|| sort: Sorts the list of persons based on a parameter, such as name, phone or email. Only 1 parameter is allowed.
+|| Parameters: KEYWORD [PARAMETER]...
+|| Example: sort name
+|| help: Shows program usage instructions.
+|| Example: help
+|| exit: Exits the program.
+|| Example: exit
 || ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...

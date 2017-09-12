@@ -17,6 +17,10 @@ public class SortCommand extends Command{
 
     private final String parameter;
 
+    public String getParameter() {
+        return parameter;
+    }
+
     public SortCommand(String parameter) {
         this.parameter = parameter;
     }

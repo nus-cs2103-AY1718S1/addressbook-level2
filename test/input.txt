@@ -22,8 +22,9 @@
   clear
   list
 
+
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for futu tests
 ##########################################################
 
   # should catch invalid args format

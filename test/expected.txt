@@ -46,6 +46,10 @@
 || 
 || 0 persons listed!
 || ===================================================
+|| Enter command: || [Command entered: sort]
+||
+|| 0 persons sorted!
+|| ===================================================
 || Enter command: || [Command entered:  add wrong args wrong args]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.

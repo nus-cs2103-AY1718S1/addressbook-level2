@@ -42,6 +42,9 @@ public class Name {
     public List<String> getWordsInName() {
         return Arrays.asList(fullName.split("\\s+"));
     }
+    public List<String> getWordsInNameInLowerCase() {
+        return Arrays.asList(fullName.toLowerCase().split("\\s+"));
+    }
 
     @Override
     public String toString() {

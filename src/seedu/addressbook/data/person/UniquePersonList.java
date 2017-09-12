@@ -84,7 +84,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      *  Returns an unmodifiable java List view with elements sorted in alphabetical order.
-     *  All the elements are cast as immutabel {@link ReadOnlyPerson}s.
+     *  All the elements are cast as immutable {@link ReadOnlyPerson}s.
      *  Any changes to the internal list/elements are immediately visible in the returned list.
      */
     public List<ReadOnlyPerson> getSortedListView() {

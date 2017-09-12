@@ -49,8 +49,8 @@ public class UtilsTest {
         assertIsNull();
 
         assertIsNull((Object) null);
-        assertIsNull(1,2,(Object) null);
-        assertIsNull(1,(Object) null);
+        assertIsNull(1, 2, (Object) null);
+        assertIsNull(1, (Object) null);
 
         assertNotNull("abc");
         assertNotNull(1);

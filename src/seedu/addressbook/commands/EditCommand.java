@@ -1,9 +1,13 @@
 package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
-import seedu.addressbook.data.person.ReadOnlyPerson;
-import seedu.addressbook.data.person.UniquePersonList;
+import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.*;
+import seedu.addressbook.data.tag.UniqueTagList;
 
+/**
+ * Edits a person's name in the address book.
+ */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
@@ -15,9 +19,12 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
 
+    private final String desiredName;
 
-    public EditCommand(int targetVisibleIndex) {
+
+    public EditCommand(int targetVisibleIndex, String changeToName) {
         super(targetVisibleIndex);
+        desiredName = changeToName;
     }
 
     @Override
@@ -25,12 +32,31 @@ public class EditCommand extends Command {
         try {
             final ReadOnlyPerson target = getTargetPerson();
             addressBook.removePerson(target);
+            Person editedPerson = convertAndEditPerson(target, desiredName);
+            addressBook.addPerson(editedPerson);
+
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, target));
 
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } catch (UniquePersonList.PersonNotFoundException pnfe) {
             return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
         }
+
     }
+
+    private Person convertAndEditPerson(ReadOnlyPerson initialPerson, String changeToName) throws IllegalValueException {
+
+        Person convertedPerson = new Person( new Name(changeToName),
+                                            initialPerson.getPhone(),
+                                            initialPerson.getEmail(),
+                                            initialPerson.getAddress(),
+                                            initialPerson.getTags() );
+
+        return convertedPerson;
+    }
+
+
 }

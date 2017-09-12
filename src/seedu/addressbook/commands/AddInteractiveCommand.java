@@ -1,5 +1,20 @@
 package seedu.addressbook.commands;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Email;
+import seedu.addressbook.data.person.Name;
+import seedu.addressbook.data.person.Person;
+import seedu.addressbook.data.person.Phone;
+import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.UniquePersonList;
+import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.ui.TextUi;
+
 /**
  * Adds a person to the address book.
  */
@@ -32,6 +47,20 @@ public class AddInteractiveCommand extends AddCommand {
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniquePersonList.DuplicatePersonException dpe) {
             return new CommandResult(MESSAGE_DUPLICATE_PERSON);
+        }
+        */
+        TextUi ui = new TextUi();
+        ArrayList<Class<?>> infoList = new ArrayList<>(Arrays.asList(
+                Name.class, Phone.class, Email.class, Address.class));
+        ArrayList<String> valuesToAdd = new ArrayList<>();
+        for (Class<?> infoClass : infoList) {
+            String input = ui.promptUserInput("Please enter " + infoClass.getSimpleName() + ": ");
+            valuesToAdd.add(input);
+        }
+        // For testing
+        /*
+        for (String input : valuesToAdd) {
+            ui.showToUser(input);
         }
         */
         // Testing with a generic response

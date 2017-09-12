@@ -79,15 +79,18 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
+        String fullInputLine = promptUserInput("Enter command: ");
+        showToUser("[Command entered:" + fullInputLine + "]");
+        return fullInputLine;
+    }
+    
+    public String promptUserInput(String prompt) {
+        out.print(LINE_PREFIX + prompt);
         String fullInputLine = in.nextLine();
-
         // silently consume all ignored lines
         while (shouldIgnore(fullInputLine)) {
             fullInputLine = in.nextLine();
         }
-
-        showToUser("[Command entered:" + fullInputLine + "]");
         return fullInputLine;
     }
 

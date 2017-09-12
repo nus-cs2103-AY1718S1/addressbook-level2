@@ -109,7 +109,8 @@ public class Person implements ReadOnlyPerson {
         String printName= "|| Name: " + this.employmentInfo.getName();
         String printES= "|| Employment Status: " + this.employmentInfo.getEmploymentStatus();
         String printJT= "|| Job Title: "+ this.employmentInfo.getJobTitle();
-        String printWE= "|| Working Experience: " + Integer.toString(this.employmentInfo.getWorkingExperience());
+        String printWE= "|| Working Experience: " + Integer.toString(this.employmentInfo.getWorkingExperience())
+                + " years";
         System.out.print( printName + "\n" + printES + "\n" + printJT + "\n" + printWE + "\n");}
 
     private void hasYetToEditEmploymentStatus(){
@@ -121,7 +122,7 @@ public class Person implements ReadOnlyPerson {
             "we can fix the issue!");}
 
     private void printUserFound(){
-        System.out.println("|| Contact Found! Please enter the person's \n");
+        System.out.println("|| Contact Found! Please enter the person's ");
         System.out.println("|| 1. Employment Status (Employed/Unemployed)");
         System.out.println("|| 2. Job Title");
         System.out.println("|| 3. Working Experience (Expressed as an Integer)");
@@ -134,9 +135,14 @@ public class Person implements ReadOnlyPerson {
         String[] processedInput;
         Scanner sc = new Scanner(System.in);
         do{
-            String input = sc.nextLine();
+            System.out.print("|| ");
+            String input = sc.next();
             processedInput = input.split(",");
             inputCheckerByCountingCommas=processedInput.length;
+            if (inputCheckerByCountingCommas!=3){
+                System.out.println("|| Invalid input. Please follow the " +
+                        "format given and try again!");
+            }
         }while(inputCheckerByCountingCommas!=3);
         return processedInput;
     }

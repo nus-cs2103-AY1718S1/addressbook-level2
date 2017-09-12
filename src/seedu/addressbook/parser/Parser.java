@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
+/* import seedu.addressbook.commands.AddCommand;
 import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.DeleteCommand;
@@ -21,8 +21,9 @@ import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.ViewCommand; */
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.commands.*;
 
 /**
  * Parses user input.
@@ -80,6 +81,9 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return prepareSort(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

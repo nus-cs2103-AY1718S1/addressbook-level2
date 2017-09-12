@@ -7,8 +7,8 @@ import seedu.addressbook.data.tag.UniqueTagList;
 import java.util.*;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case sensitive.
+ * Finds and lists all persons in address book who matches the given tags.
+ * Tag matching is case sensitive.
  */
 public class FindTagCommand extends Command {
 

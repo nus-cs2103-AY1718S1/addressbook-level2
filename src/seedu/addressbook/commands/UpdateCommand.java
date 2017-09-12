@@ -15,7 +15,7 @@ public class UpdateCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates a person's info in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": updates a person's info in the address book. "
             + "Contact details can be marked private by prepending 'p' to the prefix.\n"
             + "Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...\n"
             + "Example: " + COMMAND_WORD

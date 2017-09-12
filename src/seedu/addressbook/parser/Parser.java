@@ -36,7 +36,7 @@ public class Parser {
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
     public static final Pattern SORT_ARGS_FORMAT =
-            Pattern.compile("(name|phone|email|address|\\?)"); // matches any of the fields or nothing
+            Pattern.compile("(name|phone|email|address|)"); // matches any of the fields or nothing
 
     public static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
@@ -272,9 +272,10 @@ public class Parser {
         }
 
         // keywords delimited by whitespace
-        final String[] keywords = matcher.group("keywords").split("\\s+");
+        final String[] keywords = matcher.group().split("\\s+");
         final String field;
-        if (keywords.length==0) {
+
+        if (keywords[0].equals("")) {
             field = "name";
         } else {
             field = keywords[0];

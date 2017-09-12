@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.exception.SequenceNumberOverflowException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -41,7 +42,7 @@ public class AddCommand extends Command {
                       String phone, boolean isPhonePrivate,
                       String email, boolean isEmailPrivate,
                       String address, boolean isAddressPrivate,
-                      Set<String> tags) throws IllegalValueException {
+                      Set<String> tags) throws IllegalValueException, SequenceNumberOverflowException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));

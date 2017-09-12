@@ -23,6 +23,9 @@ import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.exception.SequenceNumberOverflowException;
+
+import javax.sound.midi.Sequence;
 
 /**
  * Parses user input.
@@ -134,6 +137,8 @@ public class Parser {
             );
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
+        } catch (SequenceNumberOverflowException snoe) {
+            return new IncorrectCommand(snoe.getMessage());
         }
     }
 

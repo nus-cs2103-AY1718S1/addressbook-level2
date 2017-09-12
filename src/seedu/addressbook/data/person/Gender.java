@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Gender {
     public static final String EXAMPLE = "Male";
-    public static final String MESSAGE_GENDER_CONSTRAINTS = "Person's gender should be either 'Male' or 'Female'" +
+    public static final String MESSAGE_GENDER_CONSTRAINTS = "Person gender should be either 'Male' or 'Female'" +
             " with the first letter capitalized";
 
     public final String value;

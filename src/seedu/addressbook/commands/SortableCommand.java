@@ -14,8 +14,8 @@ import java.util.*;
  */
 public class SortableCommand extends Command {
 
-    private static final String SORT_ASCENDING_POSTFIX_WORD = "asc";
-    private static final String SORT_DESCENDING_POSTFIX_WORD = "desc";
+    public static final String SORT_ASCENDING_POSTFIX_WORD = "asc";
+    public static final String SORT_DESCENDING_POSTFIX_WORD = "desc";
     
     /** The set of all possible sort arguments */
     public static final HashSet<String> POSSIBLE_SORT_ARGUMENTS = 

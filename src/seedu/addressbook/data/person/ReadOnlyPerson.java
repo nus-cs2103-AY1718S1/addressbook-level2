@@ -1,5 +1,8 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.person.contact.Address;
+import seedu.addressbook.data.person.contact.Email;
+import seedu.addressbook.data.person.contact.Phone;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 

@@ -24,11 +24,11 @@ import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
+import seedu.addressbook.data.person.contact.Address;
+import seedu.addressbook.data.person.contact.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
+import seedu.addressbook.data.person.contact.Phone;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
@@ -286,9 +286,9 @@ public class ParserTest {
     private static String convertPersonToAddCommandString(ReadOnlyPerson person) {
         String addCommand = "add "
                 + person.getName().fullName
-                + (person.getPhone().isPrivate() ? " pp/" : " p/") + person.getPhone().value
-                + (person.getEmail().isPrivate() ? " pe/" : " e/") + person.getEmail().value
-                + (person.getAddress().isPrivate() ? " pa/" : " a/") + person.getAddress().value;
+                + (person.getPhone().isPrivate() ? " pp/" : " p/") + person.getPhone().getValue()
+                + (person.getEmail().isPrivate() ? " pe/" : " e/") + person.getEmail().getValue()
+                + (person.getAddress().isPrivate() ? " pa/" : " a/") + person.getAddress().getValue();
         for (Tag tag : person.getTags()) {
             addCommand += " t/" + tag.tagName;
         }

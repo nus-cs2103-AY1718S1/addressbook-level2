@@ -118,6 +118,34 @@ public class AddressBookTest {
     }
 
     @Test
+    public void editPerson() throws Exception {
+        Person aliceBetsyToEdit = new Person(new Name("Alice Betsy"), null,
+                new Email("alice@u.nus.edu", false),
+                new Address("PGPR, NUS", false),
+                new UniqueTagList(tagPrizeWinner));
+
+        Person aliceBetsyAfterEdit = new Person(new Name("Alice Betsy"),
+                new Phone("91235468", false),
+                new Email("alice@u.nus.edu", false),
+                new Address("PGPR, NUS", false),
+                new UniqueTagList(tagPrizeWinner));
+
+        UniquePersonList personList = new UniquePersonList(aliceBetsyAfterEdit);
+
+        emptyAddressBook.addPerson(aliceBetsy);
+        emptyAddressBook.editPerson(aliceBetsyToEdit);
+
+        assertTrue(isIdentical(emptyAddressBook.getAllPersons(), personList));
+    }
+
+    @Test
+    public void editPerson_personNotInAddressBook_throwsPersonNotFoundException() throws Exception {
+        thrown.expect(PersonNotFoundException.class);
+        defaultAddressBook.editPerson(charlieDouglas);
+        defaultAddressBook.editPerson(davidElliot);
+    }
+
+    @Test
     public void containsPerson() throws Exception {
         UniquePersonList personsWhoShouldBeIn = new UniquePersonList(aliceBetsy, bobChaplin);
         UniquePersonList personsWhoShouldNotBeIn = new UniquePersonList(charlieDouglas, davidElliot);

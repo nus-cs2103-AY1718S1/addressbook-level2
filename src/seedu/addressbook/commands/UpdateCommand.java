@@ -22,7 +22,7 @@ public class UpdateCommand extends Command {
             + " John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
 
     public static final String MESSAGE_SUCCESS = "person info updated: %1$s";
-    public static final String MESSAGE_NOT_FOUND_PERSON = "This person does not exist in the address book";
+    public static final String MESSAGE_NOT_FOUND_PERSON = "This person does not exist in the AddressBook";
 
     private final Person toUpdate;
 

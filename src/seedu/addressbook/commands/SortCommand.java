@@ -53,7 +53,7 @@ public class SortCommand extends Command {
 
             List<ReadOnlyPerson> allNowPersons = addressBook.getAllPersons().immutableListView();
 
-            return new CommandResult(getMessageForPersonEditShownSummary(allNowPersons), allNowPersons);
+            return new CommandResult(getMessageForPersonSortShownSummary(allNowPersons), allNowPersons);
 
         } catch (UniquePersonList.PersonNotFoundException e) {
             return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);

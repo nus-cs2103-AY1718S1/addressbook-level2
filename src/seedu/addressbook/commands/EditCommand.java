@@ -18,6 +18,7 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_INVALID_PERSON_NAME = "Invalid name to change to.";
 
     private final String desiredName;
 
@@ -34,7 +35,6 @@ public class EditCommand extends Command {
             addressBook.removePerson(target);
             Person editedPerson = convertAndEditPerson(target, desiredName);
             addressBook.addPerson(editedPerson);
-
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, target));
 
         } catch (IndexOutOfBoundsException ie) {
@@ -42,12 +42,12 @@ public class EditCommand extends Command {
         } catch (UniquePersonList.PersonNotFoundException pnfe) {
             return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
         } catch (IllegalValueException e) {
-            e.printStackTrace();
+            return new CommandResult(MESSAGE_INVALID_PERSON_NAME);
         }
-
     }
 
-    private Person convertAndEditPerson(ReadOnlyPerson initialPerson, String changeToName) throws IllegalValueException {
+    private Person convertAndEditPerson(ReadOnlyPerson initialPerson, String changeToName)
+                                                            throws IllegalValueException {
 
         Person convertedPerson = new Person( new Name(changeToName),
                                             initialPerson.getPhone(),

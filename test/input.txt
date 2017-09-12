@@ -153,8 +153,8 @@
 ##########################################################
 
   # should view last added
-  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
-  list
+  add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+  lastadded
 
 ##########################################################
 # test exit command

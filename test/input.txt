@@ -50,9 +50,45 @@
   list
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
+  add Bravo b p/85559555 e/bravo.e@nus.edu.sg a/111, bravo street
+  list
+  add Alpha A p/12345678 e/alpha@nus.edu.sg a/111, alpha street
+  list
+  add Alpha B p/22345678 e/alpha.22@nus.edu.sg a/112, alpha street
+  list
+  add Alpha C p/12345678 e/alpha.potato@nus.edu.sg a/114, alpha street
+  list
+  add Alpha D p/22345678 e/alpha.sashimi@nus.edu.sg a/113, alpha street
+  list
+  add Bravo a p/22345678 e/alpha.sashimi@nus.edu.sg a/111, bravo street
+  list
 
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+
+##########################################################
+# test list persons command sorting
+##########################################################
+
+  # show all by name then phone then email then address (ascending)
+  list n/ p/ e/ a/
+  list n/asc p/asc e/asc a/asc
+
+  # show all by name then phone then email then address (descending)
+  list n/desc p/desc e/desc a/desc
+
+  # show all by phone then by name (ascending)
+  list p/ n/
+
+  # show all by desc name, address, desc email
+  list n/desc a/ e/desc
+
+  # should show nothing and display invalid argument error
+  list potato
+  list banana n/
+  
+  # reset listing back to addition order
+  list
 
 ##########################################################
 # test view/viewall persons command
@@ -67,10 +103,10 @@
   # should catch invalid index
   view -1
   view 0
-  view 6
+  view 100
   viewall -1
   viewall 0
-  viewall 6
+  viewall 100
 
   # should show all non private for both view and viewall
   view 1
@@ -98,6 +134,17 @@
   find 23912039120
   # matching should be case-sensitive
   find betsy
+
+  # should show people with bravo in name, sorted by name
+  find Bravo n/
+
+  # should show Alpha, sorted by descending phone and ascending email
+  find Alpha p/desc e/
+  find Alpha e/asc p/desc
+
+  # should show Alpha, sorted by ascending phone and descending email
+  find Alpha p/asc e/desc
+  find Alpha botwin e/desc p/
 
   # find unique keyword
   find Betsy

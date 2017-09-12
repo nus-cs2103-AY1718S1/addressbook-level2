@@ -149,6 +149,35 @@
   list
 
 ##########################################################
+# test sort command
+##########################################################
+
+  # populate addressbook
+  add john p/123 e/xjohn@msn.com a/lisbon st
+  add mary p/432 e/mary@yahoo.com a/daly city
+  add adam p/987 e/eve@hotmail.com a/noah ark
+
+  # list all people
+  list
+
+  # test sort
+  sort name
+  sort phone
+  sort email
+  sort address
+
+  list
+
+  # should default to sorting by name
+  sort hgsjdha
+
+  delete 3
+  list
+  delete 3
+
+  clear
+  list
+##########################################################
 # test exit command
 ##########################################################
 

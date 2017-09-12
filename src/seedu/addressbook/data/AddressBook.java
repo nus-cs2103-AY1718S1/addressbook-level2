@@ -1,9 +1,6 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -127,5 +124,14 @@ public class AddressBook {
                 || (other instanceof AddressBook // instanceof handles nulls
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
+    }
+
+    /**
+     * Sorts the list of people in the address book according to comparator specification.
+     * @param c comparator used for sorting
+     */
+    public AddressBook sort(Comparator<Person> c) {
+        allPersons.sort(c);
+        return this;
     }
 }

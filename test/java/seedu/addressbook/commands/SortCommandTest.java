@@ -50,7 +50,7 @@ public class SortCommandTest {
         CommandResult result = newCommand.execute();
 
         List<? extends ReadOnlyPerson> displayedPersonList = result.getRelevantPersons().get();
-        assertSortSuccess(displayedPersonList, expectedDisplayList);
+        assertResultVerified(displayedPersonList, expectedDisplayList);
 
     }
 
@@ -61,8 +61,8 @@ public class SortCommandTest {
      * @param personsToBeViewed the actual sorted list of persons
      * @param expectedPersonsToBeViewed the expected sorted list of persons
      */
-    private void assertSortSuccess(List<? extends ReadOnlyPerson> personsToBeViewed,
-                                   List<ReadOnlyPerson> expectedPersonsToBeViewed) {
+    private void assertResultVerified(List<? extends ReadOnlyPerson> personsToBeViewed,
+                                      List<ReadOnlyPerson> expectedPersonsToBeViewed) {
 
         assertEquals(personsToBeViewed.size(), expectedPersonsToBeViewed.size());
         assertCheckOrderByNames(personsToBeViewed, expectedPersonsToBeViewed);
@@ -82,13 +82,6 @@ public class SortCommandTest {
         }
     }
 
-
-    /**
-     * Asserts that the SortCommand reports the error.
-     */
-    private static void assertSortError(AddressBook addressBook, String expectedMessage) {
-        assertSortCommandBehavior(new SortCommand(), addressBook);
-    }
 
     /**
      * Executes the test command for the given addressbook data.

@@ -27,6 +27,8 @@ public class Address extends Contact {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+        setValue(trimmedAddress);
+        setIsPrivate(isPrivate);
     }
 
     /**

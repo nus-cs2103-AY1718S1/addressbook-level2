@@ -27,6 +27,8 @@ public class Phone extends Contact {
             throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
         }
         this.value = trimmedPhone;
+        setValue(trimmedPhone);
+        setIsPrivate(isPrivate);
     }
 
     /**

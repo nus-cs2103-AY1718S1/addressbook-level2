@@ -28,6 +28,8 @@ public class Email extends Contact {
             throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
         }
         this.value = trimmedEmail;
+        setValue(trimmedEmail);
+        setIsPrivate(isPrivate);
     }
 
     /**

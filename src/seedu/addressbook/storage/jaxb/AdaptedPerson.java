@@ -58,15 +58,15 @@ public class AdaptedPerson {
 
         phone = new AdaptedContactDetail();
         phone.isPrivate = source.getPhone().isPrivate();
-        phone.value = source.getPhone().value;
+        phone.value = source.getPhone().toString();
 
         email = new AdaptedContactDetail();
         email.isPrivate = source.getEmail().isPrivate();
-        email.value = source.getEmail().value;
+        email.value = source.getEmail().toString();
 
         address = new AdaptedContactDetail();
         address.isPrivate = source.getAddress().isPrivate();
-        address.value = source.getAddress().value;
+        address.value = source.getAddress().toString();
 
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {

@@ -7,12 +7,13 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Guarantees: immutable;
  */
 public class Email extends Contact {
+    public static final String EXAMPLE = "valid@e.mail";
+    private static final String MESSAGE_EMAIL_CONSTRAINTS =
+            "Person emails should be 2 alphanumeric/period strings separated by '@'";
+    private static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
 
     public Email(String email, boolean isPrivate) throws IllegalValueException {
-        setContactConstants("valid@e.mail",
-                "Person emails should be 2 alphanumeric/period strings separated by '@'",
-                "[\\w\\.]+@[\\w\\.]+");
-        setContact(email, isPrivate);
+        super(email, isPrivate, MESSAGE_EMAIL_CONSTRAINTS, EMAIL_VALIDATION_REGEX);
     }
 
     @Override

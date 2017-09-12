@@ -8,10 +8,12 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address extends Contact {
 
-    public Address(String email, boolean isPrivate) throws IllegalValueException {
-        setContactConstants("123, some street",
-                "Person addresses can be in any format", ".+");
-        setContact(email, isPrivate);
+    public static final String EXAMPLE = "123, some street";
+    public static final String ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+
+    public Address(String address, boolean isPrivate) throws IllegalValueException {
+        super(address, isPrivate, ADDRESS_CONSTRAINTS, ADDRESS_VALIDATION_REGEX);
     }
 
     @Override

@@ -2,6 +2,7 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
@@ -49,7 +50,9 @@ public abstract class Command {
     /**
      * Executes the command and returns the result.
      */
-    public abstract CommandResult execute() throws Exception;
+    public CommandResult execute() throws IllegalValueException{
+        throw new UnsupportedOperationException("This method is to be implemented by child classes");
+    };
 
     /**
      * Supplies the data the command will operate on.

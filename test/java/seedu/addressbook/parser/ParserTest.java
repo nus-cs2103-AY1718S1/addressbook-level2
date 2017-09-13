@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import seedu.addressbook.commands.AddCommand;
+import seedu.addressbook.commands.AddressCommand;
 import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.DeleteCommand;
@@ -130,9 +131,31 @@ public class ParserTest {
 
     @Test
     public void parse_viewCommandNumericArg_indexParsedCorrectly() {
-        final int testIndex = 2;
+        final int testIndex = 3;
         final String input = "view " + testIndex;
         final ViewCommand result = parseAndAssertCommandType(input, ViewCommand.class);
+        assertEquals(result.getTargetIndex(), testIndex);
+    }
+
+    @Test
+    public void addressCommandNoArgs_errorMessage() {
+        final String[] inputs = { "address", "address " };
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddressCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_addressCommandArgsIsNotSingleNumber_errorMessage() {
+        final String[] inputs = { "address notAnumber ", "address 8*wh12", "address 1 2 3 4 5" };
+        final String resultMessage = MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_addressCommandNumericArg_indexParsedCorrectly() {
+        final int testIndex = 2;
+        final String input = "address " + testIndex;
+        final AddressCommand result = parseAndAssertCommandType(input, AddressCommand.class);
         assertEquals(result.getTargetIndex(), testIndex);
     }
 
@@ -153,7 +176,7 @@ public class ParserTest {
 
     @Test
     public void parse_viewAllCommandNumericArg_indexParsedCorrectly() {
-        final int testIndex = 3;
+        final int testIndex = 4;
         final String input = "viewall " + testIndex;
         final ViewAllCommand result = parseAndAssertCommandType(input, ViewAllCommand.class);
         assertEquals(result.getTargetIndex(), testIndex);

@@ -10,11 +10,14 @@ class sortByPerson implements Comparator<Person> {
         String o1Name = o1.getName().toString();
         String o2Name = o2.getName().toString();
 
-        if (o1Name.compareTo(o2Name) < 0)
+        if (o1Name.compareTo(o2Name) < 0) {
             return -1;
-        else if (o1Name.compareTo(o2Name) > 0)
+        }
+        else if (o1Name.compareTo(o2Name) > 0) {
             return 1;
-        else
+        }
+        else {
             return 0;
+        }
     }
 }

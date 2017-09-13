@@ -91,7 +91,6 @@ public class StorageFileTest {
     }
 
     // getPath() method in StorageFile class is trivial so it is not tested
-
     /**
      * Asserts that the contents of two storage files are the same.
      */

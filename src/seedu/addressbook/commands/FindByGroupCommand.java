@@ -13,7 +13,7 @@ public class FindByGroupCommand extends Command{
     public static final String COMMAND_WORD = "findByGroup";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who belong to the same group "
-            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+            + "using the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: GROUP [MORE_GROUPS]...\n"
             + "Example: " + COMMAND_WORD + " work friends";
 

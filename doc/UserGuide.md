@@ -98,14 +98,15 @@ Examples:
 
 ### View all details of a person : `viewall`
 Displays all details (including private details) of the specified person.<br>
-Format: `viewall INDEX`
+Format: `viewall INDEX PASSWORD`
 
 > Views all details of the person at the specified `INDEX`. 
   The index refers to the index number shown in the most recent listing.
+> Currently, the default password to be entered is "ABC123".
 
 Examples: 
 * `list`<br>
-  `viewall 2`<br>
+  `viewall 2 ABC123`<br>
   Views all details of the 2nd person in the address book.
 * `find Betsy`<br> 
   `viewall 1`<br>

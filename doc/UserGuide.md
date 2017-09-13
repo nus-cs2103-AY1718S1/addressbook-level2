@@ -62,7 +62,7 @@ and persons matching at least one keyword will be returned (i.e. `OR` search).
 
 Examples: 
 * `find John`<br>
-  Returns `John Doe` and also `john`
+  Returns `John Doe`, `john`, `JOHN`, or any person having the name `john`(case insensitive). 
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`, case insensitive
 

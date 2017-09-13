@@ -8,6 +8,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
+    public static final String LINE_PREFIX = "|| ";
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
@@ -55,5 +56,13 @@ public class Address {
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+
+    public boolean unprivate(){
+        if (!this.isPrivate){
+            return false;
+        }
+        this.isPrivate = false;
+        return true;
     }
 }

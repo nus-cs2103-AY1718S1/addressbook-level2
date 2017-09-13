@@ -56,4 +56,12 @@ public class Phone {
     public boolean isPrivate() {
         return isPrivate;
     }
+
+    public boolean unprivate(){
+        if (!this.isPrivate){
+            return false;
+        }
+        this.isPrivate = false;
+        return true;
+    }
 }

@@ -69,7 +69,7 @@
   view 0
   view 6
   viewall -1
-  viewall 0
+  view 0
   viewall 6
 
   # should show all non private for both view and viewall
@@ -86,6 +86,28 @@
   viewall 4
   viewall 5
 
+##########################################################
+# test unprivate persons command
+##########################################################
+
+ #list and unprivate person's contact information. Should catch invalid index
+ list
+ unprivate 6 p
+ unprivate 0 p
+ unprivate -1 p
+
+ #list and unprivate person's contact information
+ list
+ unprivate 3 p
+ unprivate 4 e
+ unprivate 5 a
+ unprivate 2 p
+
+ #unprivate person's contact information that is already unprivate
+ list
+ unprivate 3 p
+ unprivate 4 e
+ 
 ##########################################################
 # test find persons command
 ##########################################################
@@ -154,4 +176,4 @@
 
   # exits properly
   exit
-  list
+ 

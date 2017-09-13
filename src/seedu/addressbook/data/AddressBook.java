@@ -108,6 +108,24 @@ public class AddressBook {
     }
 
     /**
+     * Sorts the list within the address book.
+     */
+    public void sort(){
+        allPersons.sortPerson();
+    }
+
+    /**
+     * Checks if addressbook is empty
+     */
+    public boolean isEmptyBook(){
+        if(allPersons.isEmpty()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    /**
      * Returns a new UniquePersonList of all persons in the address book at the time of the call.
      */
     public UniquePersonList getAllPersons() {

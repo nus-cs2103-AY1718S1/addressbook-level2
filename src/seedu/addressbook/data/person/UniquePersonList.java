@@ -123,10 +123,29 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * @return true if list is empty
+     */
+    public boolean isEmpty(){
+        if(internalList.isEmpty()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
      * Clears all persons in list.
      */
     public void clear() {
         internalList.clear();
+    }
+
+    /**
+     * Sorts all persons in the list.
+     */
+    public void sortPerson(){
+        internalList.sort((p1, p2) -> (p1.getName().toString().compareTo(p2.getName().toString())));
     }
 
     @Override

@@ -145,12 +145,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Sorts all persons in the list.
      */
     public void sortPerson(){
-        if(internalList.isEmpty()) {
-
-        }
-        else {
-            internalList.sort((p1, p2) -> (p1.getName().toString().compareTo(p2.getName().toString())));
-        }
+        internalList.sort((p1, p2) -> (p1.getName().toString().compareTo(p2.getName().toString())));
     }
 
     @Override

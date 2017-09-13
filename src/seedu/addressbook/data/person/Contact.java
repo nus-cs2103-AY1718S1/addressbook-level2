@@ -2,7 +2,7 @@ package seedu.addressbook.data.person;
 
 public class Contact {
 
-    public String value;
+    public final String value;
     protected boolean isPrivate;
 
     public Contact() {

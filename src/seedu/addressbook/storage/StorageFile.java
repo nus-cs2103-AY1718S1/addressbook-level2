@@ -106,6 +106,7 @@ public class StorageFile {
             marshaller.marshal(toSave, fileWriter);
 
         } catch (IOException ioe) {
+
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
@@ -144,6 +145,7 @@ public class StorageFile {
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error parsing file data format");
         } catch (IllegalValueException ive) {
+            System.out.println(ive.getMessage());
             throw new StorageOperationException("File contains illegal data values; data type constraints not met");
         }
     }

@@ -34,8 +34,8 @@ Format: `help`
 > Help is also shown if you enter an incorrect command e.g. `abcd`
  
 ### Adding a person: `add`
-Adds a person to the address book<br>
-Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...` 
+Adds a person to the address book and echos the latest viewing list in ascending order of names. <br>
+Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/[block number][street][unit number][6 digit postal code] [t/TAG]...`
  
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
 > items with `...` after them can have multiple instances. Order of parameters are fixed. 
@@ -46,11 +46,11 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > Persons can have any number of tags (including 0)
 
 Examples: 
-* `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
-* `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
+* `add John Doe p/98765432 e/johnd@gmail.com a/[1][2][3][222222]`
+* `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/[2][Newgate Prison][3][123456] t/criminal t/friend`
 
 ### Listing all persons : `list`
-Shows a list of all persons in the address book.<br>
+Shows a list of all persons in the address book in ascending order of their names.<br>
 Format: `list`
 
 ### Finding all persons containing any keyword in their name: `find`
@@ -67,7 +67,7 @@ Examples:
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
 ### Deleting a person : `delete`
-Deletes the specified person from the address book. Irreversible.<br>
+Deletes the specified person from the address book and echos the latest viewing list of people in ascending order of their names. <br>
 Format: `delete INDEX`
 
 > Deletes the person at the specified `INDEX`. 
@@ -118,6 +118,12 @@ Format: `clear`
 #### Exiting the program : `exit`
 Exits the program.<br>
 Format: `exit`  
+
+#### Undo the previous command : `undo`
+Revert the program to the state immediately before the last command which changed the addressbook, namely `add` or `delete`. <br>
+Also echos the listing of contacts after command is undone.<br>
+Format: `undo` <br>
+Throws: EmptyStackException if there is no command left to be undone since program launched.
 
 #### Saving the data 
 Address book data are saved in the hard disk automatically after any command that changes the data.<br>

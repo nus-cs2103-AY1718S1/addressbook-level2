@@ -1,6 +1,7 @@
 package seedu.addressbook;
 
 import java.util.Collections;
+import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,6 +85,19 @@ public class Main {
         do {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
+
+            if(command.isUndoCommand()) {
+                command.setData(addressBook, lastShownList);
+                try {
+                    command = command.prepareCommand();
+                }
+
+                catch (EmptyStackException ese) {
+                    ui.showToUser("nothing to undo. Please enter another command.");
+                    continue;
+                }
+            }
+
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);
@@ -111,7 +125,13 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-        } catch (Exception e) {
+        }
+
+        catch (StorageOperationException soe) {
+            return new CommandResult("Error writing to file. Perhaps turn off read-only.", lastShownList);
+        }
+
+        catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);
         }
@@ -126,6 +146,4 @@ public class Main {
         boolean isStorageFileSpecifiedByUser = launchArgs.length > 0;
         return isStorageFileSpecifiedByUser ? new StorageFile(launchArgs[0]) : new StorageFile();
     }
-
-
 }

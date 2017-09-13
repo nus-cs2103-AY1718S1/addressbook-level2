@@ -269,7 +269,7 @@ public class ParserTest {
         assertEquals(result.getPerson(), testPerson);
     }
 
-    private static Person generateTestPerson() {
+    public static Person generateTestPerson() {
         try {
             return new Person(
                 new Name(Name.EXAMPLE),

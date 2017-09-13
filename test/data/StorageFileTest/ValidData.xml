@@ -3,14 +3,16 @@
     <persons>
         <name>John Doe</name>
         <phone isPrivate="false">98765432</phone>
+        <dob isPrivate="false">17.04.1993</dob>
         <email isPrivate="false">johnd@gmail.com</email>
         <address isPrivate="false">John street, block 123, #01-01</address>
     </persons>
     <persons>
         <name>Betsy Crowe</name>
         <phone isPrivate="true">1234567</phone>
-        <email isPrivate="false">betsycrowe@gmail.com</email>
-        <address isPrivate="true">Newgate Prison</address>
+        <dob isPrivate="false">21.03.1996</dob>
+        <email isPrivate="true">betsycrowe@gmail.com</email>
+        <address isPrivate="false">Newgate Prison</address>
         <tagged>friend</tagged>
         <tagged>criminal</tagged>
     </persons>

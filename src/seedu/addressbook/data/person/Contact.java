@@ -15,6 +15,7 @@ public class Contact {
         return value;
     }
 
+    @Override
     public int hashCode() {
 
         return value.hashCode();

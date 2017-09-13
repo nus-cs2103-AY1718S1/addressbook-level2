@@ -19,8 +19,8 @@ public class SortCommandTest {
 
     @Before
     public void instantiate() throws Exception{
-        Person SadamSandler = new Person(new Name("Sadam Sandler"), new Phone("92215550", false),
-                new Email("sandleradam@gmail.com", false),
+        Person sadamSandler = new Person(new Name("Sadam Sandler"), new Phone("92215550", false),
+                new Email("sandlersadam@gmail.com", false),
                 new Address("Hollywood", false),new UniqueTagList());
 
         Person zendayaMaree = new Person(new Name("Zendaya Maree"), new Phone("92218880", false),
@@ -35,9 +35,9 @@ public class SortCommandTest {
                 new Email("juventusmarchisio@gmail.com", false),
                 new Address("Naples", false), new UniqueTagList());
 
-        testAddressBook = TestUtil.createAddressBook(SadamSandler, zendayaMaree, brooksWackerman, claudioMarchisio);
-        testPersonList = TestUtil.createList(SadamSandler, zendayaMaree, brooksWackerman, claudioMarchisio);
-        sortedDisplayList = TestUtil.createList(brooksWackerman, claudioMarchisio, SadamSandler, zendayaMaree);
+        testAddressBook = TestUtil.createAddressBook(sadamSandler, zendayaMaree, brooksWackerman, claudioMarchisio);
+        testPersonList = TestUtil.createList(sadamSandler, zendayaMaree, brooksWackerman, claudioMarchisio);
+        sortedDisplayList = TestUtil.createList(brooksWackerman, claudioMarchisio, sadamSandler, zendayaMaree);
     }
 
     @Test
@@ -53,5 +53,4 @@ public class SortCommandTest {
             assertEquals(person1.getName(), person2.getName());
         }
     }
-}
 }

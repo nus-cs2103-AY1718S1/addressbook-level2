@@ -46,4 +46,11 @@ public class Formatter {
         showToUser(failMessage, DIVIDER, DIVIDER);
     }
 
+    /** Shows message(s) to the user */
+    public void showToUser(String... message) {
+        for (String m : message) {
+            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
+        }
+    }
+
 }

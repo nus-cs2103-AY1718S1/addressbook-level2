@@ -79,17 +79,6 @@ public class ParserTest {
     }
 
     /*
-     * Tests for 1-argument commands =======================================================================
-     */
-
-    @Test
-    public void parse_sortCommand_parsedCorrectly() throws Exception {
-        final String[] inputs = {"sort", "sort asc", "sort dsc", "sort abc", "sort 123"};
-        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
-        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
-    }
-
-    /*
      * Tests for ingle index argument commands ===============================================================
      */
 

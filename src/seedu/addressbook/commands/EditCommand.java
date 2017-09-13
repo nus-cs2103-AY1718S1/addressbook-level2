@@ -5,7 +5,6 @@ import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
-import seedu.addressbook.ui.TextUi;
 
 import java.util.HashSet;
 import java.util.Set;

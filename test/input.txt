@@ -46,10 +46,13 @@
   list
   add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
   list
-  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
-  list
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
+  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
+  list
+
+  # sort list in alphabetical order
+  sort
 
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy

@@ -5,7 +5,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Contact {
 
     private final boolean isPrivate;
-    private final String value;
+    public final String value;
 
     public Contact(String contact, boolean isPrivate, String MESSAGE_CONTACT_CONSTRAINTS, String CONTACT_VALIDATION_REGEX) throws IllegalValueException {
         this.isPrivate = isPrivate;

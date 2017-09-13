@@ -135,10 +135,8 @@
   edit 0
   edit 3
 
-  # should have edited based on last active view's index
-  list
-
   # edits correct person
+  list
   edit 4 Esther Potato p/666666 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
 

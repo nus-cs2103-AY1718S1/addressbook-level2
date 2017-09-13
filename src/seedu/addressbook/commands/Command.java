@@ -36,6 +36,10 @@ public class Command {
         return String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, personsDisplayed.size());
     }
 
+    public static String getMessageForAddressbookSort() {
+        return Messages.MESSAGE_ADDRESSBOOK_SORTED;
+    }
+
     /**
      * Executes the command and returns the result.
      */

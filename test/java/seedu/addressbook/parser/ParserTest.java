@@ -79,7 +79,7 @@ public class ParserTest {
 
     @Test
     public void parse_confirmCommand_parsedCorrectly() {
-        final String input = "clear";
+        final String input = "confirm";
         parseAndAssertCommandType(input, ClearCommand.class);
     }
 

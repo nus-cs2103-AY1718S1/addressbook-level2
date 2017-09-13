@@ -10,7 +10,7 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case sensitive.
+ * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
@@ -48,8 +48,11 @@ public class FindCommand extends Command {
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
+
+        convertWordsToLowerCase(keywords);
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+            convertWordsToLowerCase(wordsInName);
             if (!Collections.disjoint(wordsInName, keywords)) {
                 matchedPersons.add(person);
             }

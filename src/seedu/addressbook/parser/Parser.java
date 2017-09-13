@@ -65,11 +65,16 @@ public class Parser {
 
         switch (commandWord) {
 
+            case BoredCommand.COMMAND_WORD:
+                return prepareBored();
+
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
 
             case ReminderCommand.COMMAND_WORD:
                 return prepareReminder(arguments);
+
+
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -129,6 +134,8 @@ public class Parser {
             return new IncorrectCommand(ive.getMessage());
         }
     }
+
+    private Command prepareBored() { return new BoredCommand(); }
 
     private Command prepareReminder(String reminder) {
         return new ReminderCommand(reminder);

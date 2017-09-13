@@ -141,6 +141,19 @@
   list
 
 ##########################################################
+# test edit person command
+##########################################################
+
+# last active view: [1] betsy [2] dickson
+
+# should catch invalid index
+  edit -1 Lincoln
+  edit 0 Emily
+  edit 3 Jason
+
+  edit 1 Jackie Choo
+
+##########################################################
 # test clear command
 ##########################################################
 

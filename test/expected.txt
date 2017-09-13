@@ -29,6 +29,9 @@
 || Example: help
 || exit: Exits the program.
 || Example: exit
+|| edit: Edits the name of the person identified by the index number used in the last person listing.
+|| Parameters: INDEX NAME
+|| Example: edit 1 Charlie
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid
@@ -289,6 +292,21 @@
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit -1 Lincoln]
+|| Invalid command format! 
+|| edit: Edits the name of the person identified by the index number used in the last person listing.
+|| Parameters: INDEX NAME
+|| Example: edit 1 Charlie
+|| ===================================================
+|| Enter command: || [Command entered:  edit 0 Emily]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  edit 3 Jason]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Jackie Choo]
+|| Edited Person: Jackie Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

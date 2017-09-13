@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.addressbook.common.Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -78,11 +79,6 @@ public class ParserTest {
         parseAndAssertCommandType(input, ExitCommand.class);
     }
 
-    @Test
-    public void parse_editCommand_parsedCorrectly() {
-        final String input = "edit";
-        parseAndAssertCommandType(input, EditCommand.class);
-    }
     /*
      * Tests for ingle index argument commands ===============================================================
      */
@@ -262,7 +258,10 @@ public class ParserTest {
 
         final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
         assertEquals(result.getPerson(), testPerson);
+
     }
+
+
 
     private static Person generateTestPerson() {
         try {
@@ -290,6 +289,43 @@ public class ParserTest {
         return addCommand;
     }
 
+    /*
+     * Tests for edit person command ==============================================================================
+     */
+
+
+    @Test
+    public void parse_editCommand_parsedCorrectly() {
+        final int testIndex = 1;
+        final String input = "edit " + testIndex + "n/John Doe";
+        final EditCommand result = parseAndAssertCommandType(input, EditCommand.class);
+        assertEquals(result.getTargetIndex(), testIndex);
+    }
+
+    @Test
+    public void parse_editCommandInvalidArgs_errorMessage() {
+        final String[] inputs = {
+                "edit",
+                "edit "
+        };
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_editCommandArgsWithoutIndex_errorMessage() {
+        final String[] inputs = {
+                "edit wrong args format",
+                // no parameter for name
+                String.format("edit n/$s",""),
+                // no name prefix
+                String.format("edit $s", Name.EXAMPLE),
+                // two prefix
+                String.format("edit n/$s p/$s", Name.EXAMPLE, Phone.EXAMPLE)
+        };
+        final String resultMessage = String.format(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
     /*
      * Utility methods ====================================================================================
      */

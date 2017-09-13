@@ -44,7 +44,7 @@ public abstract class Command {
     }
 
     public static String getMessageForPersonEditShownSummary(List<? extends ReadOnlyPerson> personsDisplayed) {
-        return String.format(Messages.MESSAGE_PERSONS_EDITED_OVERVIEW, personsDisplayed.size());
+        return Messages.MESSAGE_PERSONS_EDITED_OVERVIEW;
     }
 
     /**

@@ -1,5 +1,7 @@
 package seedu.addressbook.ui;
 
+import static seedu.addressbook.common.Messages.*;
+
 /**
  * formats outputs before passing it to TextUI to be output.
  */
@@ -28,5 +30,11 @@ public class Formatter {
 
 	static String getCommandEntered(String command) {
 		return "[Command entered:" + command + "]";
+	}
+
+	public static String[] getWelcomeMessages(String version, String storageFilePath) {
+		String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
+		return new String[]{DIVIDER, DIVIDER, MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
+				storageFileInfo, DIVIDER};
 	}
 }

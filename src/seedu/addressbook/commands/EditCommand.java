@@ -58,7 +58,7 @@ public class EditCommand extends Command {
             System.out.println("Current phone number: "+phoneNum+"\n");
             System.out.print("Keep current phone number? (Y/N):");
             String ans = "";
-            while(!ans.equals("Y") || !ans.equals("N")) {
+
                 ans=sc.nextLine().toUpperCase();
                 if (ans.equals("Y")) {
                     //Do nothing
@@ -79,13 +79,13 @@ public class EditCommand extends Command {
                 }else{
                     System.out.println("Please enter Y or N");
                 }
-            }
+
 
             //Build email
             System.out.println("Current email: "+email);
             System.out.print("Keep current email? (Y/N):");
             ans="";
-            while(!ans.equals("Y") || !ans.equals("N")) {
+
                 ans=sc.nextLine().toUpperCase();
                 if (ans.equals("Y")) {
                     //Do nothing
@@ -108,13 +108,13 @@ public class EditCommand extends Command {
                 }else{
                     System.out.println("Please enter Y or N");
                 }
-            }
+
 
             //Build Address
             System.out.println("Current address: "+ address);
             System.out.print("Keep current address? (Y/N):");
             ans="";
-            while(!ans.equals("Y") || !ans.equals("N")) {
+
                 ans=sc.nextLine().toUpperCase();
                 if (ans.equals("Y")) {
                     //Do nothing
@@ -125,7 +125,7 @@ public class EditCommand extends Command {
                 }else{
                     System.out.println("Please enter Y or N");
                 }
-            }
+
 
 
             //Build Tags
@@ -135,7 +135,7 @@ public class EditCommand extends Command {
             }
             System.out.print("Add additional tags? (Y/N):");
             ans="";
-            while(!ans.equals("Y") || !ans.equals("N")) {
+
                 ans=sc.nextLine().toUpperCase();
                 if(ans.equals("N")) {
                     //Do nothing
@@ -164,7 +164,7 @@ public class EditCommand extends Command {
                 }else{
                     System.out.println("Please enter Y or N");
                 }
-            }
+
 
             //Build the whole person. I have not added the privacy option yet. Setting it to false as default
             Person toAdd=null;

@@ -1,7 +1,4 @@
 package seedu.addressbook.commands;
-import seedu.addressbook.data.exception.IllegalValueException;
-
-import java.util.concurrent.ThreadLocalRandom;
 
 
 /**
@@ -22,7 +19,7 @@ public class WhyCommand extends Command {
     public static final String MESSAGE_WHY_MAN = "Because the world is round";
     public static final String MESSAGE_WHY_LEH = "Because the tall software engineer told you so";
     public static final String MESSAGE_WHY_ASK = "Because 911 was in inside job";
-    public static final String MESSAGE_WHY_DEFAULT = "idk";
+    public static final String MESSAGE_WHY_DEFAULT = "I'm sorry, my responses are limited, you must ask the right questions";
     public static String MESSAGE_WHY = "";
 
 
@@ -50,40 +47,7 @@ public class WhyCommand extends Command {
             default:
                 MESSAGE_WHY = MESSAGE_WHY_DEFAULT;
         }
-        /*int min = 1;
-        int max = 8;
 
-        int r = ThreadLocalRandom.current().nextInt(min, max);
-        switch (r) {
-            case 1:
-                MESSAGE_WHY = MESSAGE_WHY_1;
-                break;
-            case 2:
-                MESSAGE_WHY = MESSAGE_WHY_2;
-                break;
-            case 3:
-                MESSAGE_WHY = MESSAGE_WHY_3;
-                break;
-            case 4:
-                MESSAGE_WHY = MESSAGE_WHY_4;
-                break;
-            case 5:
-                MESSAGE_WHY = MESSAGE_WHY_5;
-                break;
-            case 6:
-                MESSAGE_WHY = MESSAGE_WHY_6;
-                break;
-            case 7:
-                MESSAGE_WHY = MESSAGE_WHY_7;
-                break;
-            case 8:
-                MESSAGE_WHY = MESSAGE_WHY_8;
-                break;
-            default:
-                MESSAGE_WHY = "Exception handling";
-                break;
-
-        }*/
         return new CommandResult(MESSAGE_WHY);
     }
 

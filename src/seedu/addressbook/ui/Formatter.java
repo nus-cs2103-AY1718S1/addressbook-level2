@@ -15,4 +15,15 @@ public class Formatter {
 
     /** Format of indexed list item */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
+    
+    private final PrintStream out;
+    
+    public Formatter() {
+        this(System.out);
+    }
+    
+    public Formatter(PrintStream out) {
+        this.out = out;
+    }
+
 }

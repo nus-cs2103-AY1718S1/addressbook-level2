@@ -27,6 +27,8 @@
 || Example: viewall 1
 || help: Shows program usage instructions.
 || Example: help
+|| Sorts the address book in ascending order.
+|| Example: sort
 || exit: Exits the program.
 || Example: exit
 || ===================================================
@@ -318,7 +320,7 @@
 || 	3. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 	4. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 	5. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
-|| 
+||
 || 5 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  sort]

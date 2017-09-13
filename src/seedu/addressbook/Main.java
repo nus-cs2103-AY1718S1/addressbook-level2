@@ -85,6 +85,15 @@ public class Main {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
+
+            // show updated list after delete a contact.
+            if(userCommandText.contains("delete")) {
+                Command subCommand = new Parser().parseCommand("list");
+                CommandResult listAfterDelete = executeCommand(subCommand);
+                recordResult(listAfterDelete);
+                ui.showResultToUser(listAfterDelete);
+            }
+
             recordResult(result);
             ui.showResultToUser(result);
 

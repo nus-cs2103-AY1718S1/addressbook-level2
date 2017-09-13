@@ -23,6 +23,9 @@ public class FindCommand extends Command {
 
     private final Set<String> keywords;
 
+    private static final boolean MATCHED = true;
+    private static final boolean NOT_MATCHED = false;
+
     public FindCommand(Set<String> keywords) {
         this.keywords = keywords;
     }
@@ -49,12 +52,25 @@ public class FindCommand extends Command {
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
-            final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            if (nameMatchesKeyword(person, keywords)) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
+    }
+
+    /**
+     * Checks if any part of a person's name matches any of the specified keywords.
+     *
+     * @return true if there is a match, false otherwise.
+     */
+    private boolean nameMatchesKeyword(ReadOnlyPerson person, Set<String> allKeywords) {
+        final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+        if (!Collections.disjoint(wordsInName, allKeywords)) {
+            return MATCHED;
+        }
+
+        return NOT_MATCHED;
     }
 
 }

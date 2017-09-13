@@ -294,8 +294,8 @@
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered: list]
-||      1. Betsy Choo Tags: [secretive]
-||      2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
 || ===================================================
@@ -304,8 +304,8 @@
 || Details updated: Betsy Choo Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered: list]
-||      1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-||      2. Betsy Choo Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	2. Betsy Choo Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 
 || 2 persons listed!
 || ===================================================

@@ -23,7 +23,7 @@ public class FindCommand extends Command {
     public FindCommand(Set<String> keywords) {
 
         // Updated features:
-        // Keyword matching is not case-sensitive.
+        // Keyword matching is case-insensitive.
         String[] tempKeywords = keywords.toArray(new String[0]);
         for (int i = 0; i < tempKeywords.length; ++i) {
             tempKeywords[i] = tempKeywords[i].toLowerCase();

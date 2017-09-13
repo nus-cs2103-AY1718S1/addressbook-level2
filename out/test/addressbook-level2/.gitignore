@@ -1,0 +1,29 @@
+# Default storage file for addressbook : don't need to cleanup when running from IDE
+
+addressbook.xml
+
+# Compiled classfiles
+bin/
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# IDEA files
+.idea/
+*.iml
+
+# Temp files used for testing
+test/actual.txt
+test/localrun.bat
+
+# Gradle build files
+.gradle/
+build/

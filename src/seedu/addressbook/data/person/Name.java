@@ -26,7 +26,12 @@ public class Name {
         if (!isValidName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
-        this.fullName = trimmedName;
+
+
+        // UPDATE:
+        // The name return to Person data is all in lowercase
+        this.fullName = trimmedName.toLowerCase();
+
     }
 
     /**

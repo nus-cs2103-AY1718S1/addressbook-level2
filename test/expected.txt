@@ -300,7 +300,7 @@
 || Example: swap alice bob
 || ===================================================
 || Enter command: || [Command entered:  swap betsy dickson]
-|| Swap failed
+|| Swap failed, both names have to be case-sensitive and must exist in the address book.
 || ===================================================
 || Enter command: || [Command entered:  swap Betsy Dickson]
 || Swap completed

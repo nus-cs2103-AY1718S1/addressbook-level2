@@ -56,5 +56,4 @@ public class FindCommand extends Command {
         }
         return matchedPersons;
     }
-
 }

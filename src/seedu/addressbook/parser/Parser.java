@@ -179,13 +179,14 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareEdit(String args) {
-        final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim());
+        final int indexOfTargetIndex = 2;
+        final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.substring(indexOfTargetIndex).trim());
         // Validate arg string format
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
         try {
-            final int targetIndex = parseArgsAsDisplayedIndex(args);
+            final int targetIndex = parseArgsAsDisplayedIndex(args.substring(0, indexOfTargetIndex).trim());
             return new EditCommand(targetIndex,
                     matcher.group("name"),
 

@@ -312,18 +312,18 @@
 || New person added: Arsene Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 || ===================================================
 || Enter command: || [Command entered: sort]
-||  1. Arsene Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
-|| 	2. Darren Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
-|| 	3. john Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
-|| 	4. terence Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+||  1. Arsene Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
+|| 	2. Darren Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
+|| 	3. john Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
+|| 	4. terence Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 ||
 || 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered: list]
-||  1. Darren Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
-|| 	2. terence Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
-|| 	3. john Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
-|| 	4. Arsene Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+||  1. Darren Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
+|| 	2. terence Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
+|| 	3. john Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
+|| 	4. Arsene Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 ||
 || 4 persons listed!
 || ===================================================

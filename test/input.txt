@@ -141,6 +141,20 @@
   list
 
 ##########################################################
+# test sort command
+##########################################################
+
+  # add contacts to test sort command
+  add Darren p/111111 e/example@gmail.com a/111, alpha street
+  add terence p/111111 e/example@gmail.com a/111, alpha street
+  add john p/111111 e/example@gmail.com a/111, alpha street
+  add Arsene p/111111 e/example@gmail.com a/111, alpha street
+
+  # contacts sorted in alphabetical order
+  sort
+  list
+
+##########################################################
 # test clear command
 ##########################################################
 
@@ -156,10 +170,3 @@
   exit
   list
 
-##########################################################
-# test sort command
-##########################################################
-
-  # contacts sorted in alphabetical order
-  sort
-  list

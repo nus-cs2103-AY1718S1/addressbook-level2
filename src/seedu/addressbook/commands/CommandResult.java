@@ -33,4 +33,7 @@ public class CommandResult {
         return Optional.ofNullable(relevantPersons);
     }
 
+    public List<? extends ReadOnlyPerson> getRelevantPersonsList() {
+        return relevantPersons;
+    }
 }

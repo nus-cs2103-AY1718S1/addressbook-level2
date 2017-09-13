@@ -51,10 +51,13 @@ public class FindCommand extends Command {
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
             final Set<String> numInPhone = new HashSet<>(person.getPhone().getNumInPhone());
+            final Set<String> mailInEmail = new HashSet<>(person.getEmail().getMailInEmail());
 
             if (!Collections.disjoint(wordsInName, keywords)) {
                 matchedPersons.add(person);
             } else if (!Collections.disjoint(numInPhone, keywords)) {
+                matchedPersons.add(person);
+            } else if (!Collections.disjoint(mailInEmail, keywords)) {
                 matchedPersons.add(person);
             }
         }

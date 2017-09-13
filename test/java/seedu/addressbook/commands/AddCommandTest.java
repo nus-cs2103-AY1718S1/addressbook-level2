@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.address.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
@@ -58,10 +58,46 @@ public class AddCommandTest {
 
     @Test
     public void addCommand_invalidAddress_throwsException() {
-        final String[] invalidAddresses = { "", " " };
+        final String[] invalidAddresses = { "", " ", "123, ABC Road, 123456", "123, ABC Road,, 123456", "123,ABC Road, #11-111, 123456" };
         for (String address : invalidAddresses) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
                     true, address, true, EMPTY_STRING_LIST);
+        }
+    }
+
+    @Test
+    public void addCommand_invalidAddress_block_throwsException() {
+        final String[] invalidAddressBlock = { "", " ", "a", "a10", "123456" };
+        for (String block : invalidAddressBlock) {
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, false, Email.EXAMPLE, false,
+                    block + ", ABC, #11-111, 123456", false, EMPTY_STRING_LIST);
+        }
+    }
+
+    @Test
+    public void addCommand_invalidAddress_street_throwsException() {
+        final String[] invalidAddressStreet = { "" };
+        for (String street : invalidAddressStreet) {
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, false, Email.EXAMPLE, false,
+                    "123, " + street + ", #11-111, 123456", false, EMPTY_STRING_LIST);
+        }
+    }
+
+    @Test
+    public void addCommand_invalidAddress_unit_throwsException() {
+        final String[] invalidAddressUnit = { " ", "a", "#12", "#12-", "#", "12-123" };
+        for (String unit : invalidAddressUnit) {
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, false, Email.EXAMPLE, false,
+                    "123, ABC, " + unit + ", 123456", false, EMPTY_STRING_LIST);
+        }
+    }
+
+    @Test
+    public void addCommand_invalidAddress_postalCode_throwsException() {
+        final String[] invalidAddressPostalCode = { "", " ", "a", "a10", "12345a" };
+        for (String postalCode : invalidAddressPostalCode) {
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, false, Email.EXAMPLE, false,
+                    "123, ABC, #11-111, " + postalCode , false, EMPTY_STRING_LIST);
         }
     }
 
@@ -75,6 +111,8 @@ public class AddCommandTest {
                     true, Address.EXAMPLE, false, tagsToAdd);
         }
     }
+
+
 
     /**
      * Asserts that attempting to construct an add command with the supplied

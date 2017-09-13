@@ -29,6 +29,7 @@ public class Parser {
                     + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
+                    + " (?<isBirthdayPrivate>p?)a/(?<birthday>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     public static final Pattern EDIT_DATA_ARGS_FORMAT =
@@ -36,6 +37,7 @@ public class Parser {
                     + " ((?<isPhonePrivate>p?)p/(?<phone>[^/]+))?"
                     + "\\s*((?<isEmailPrivate>p?)e/(?<email>[^/]+))?"
                     + "\\s*((?<isAddressPrivate>p?)a/(?<address>[^/]+))?"
+                    + "\\s*((?<isBirthdayPrivate>p?)a/(?<birthday>[^/]+))?"
                     + "(\\s*t/(?<tagArguments>[^/]+))*"); // variable number of tags
 
 
@@ -131,6 +133,9 @@ public class Parser {
                     matcher.group("address"),
                     isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
 
+                    matcher.group("birthday"),
+                    isPrivatePrefixPresent(matcher.group("isBirthdayPrivate")),
+
                     getTagsFromArgs(matcher.group("tagArguments"))
             );
         } catch (IllegalValueException ive) {
@@ -162,6 +167,9 @@ public class Parser {
 
                     matcher.group("address"),
                     isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
+
+                    matcher.group("birthday"),
+                    isPrivatePrefixPresent(matcher.group("isBirthdayPrivate")),
 
                     getTagsFromArgs(matcher.group("tagArguments"))
             );

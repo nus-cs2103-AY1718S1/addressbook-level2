@@ -1,4 +1,5 @@
 package seedu.addressbook.data.person;
+import seedu.addressbook.data.exception.IllegalValueException;
 
 public class Contact {
 
@@ -7,7 +8,10 @@ public class Contact {
     private boolean isPrivate;
 
 
-    public Contact(String value, boolean isPrivate){
+    public Contact(String value, boolean isPrivate, String regex, String constraint) throws IllegalValueException{
+        if(!isValid(value,regex)){
+            throw new IllegalValueException(constraint);
+        }
         this.value = value;
         this.isPrivate = isPrivate;
     }
@@ -23,5 +27,9 @@ public class Contact {
 
     public int hashCode(){
         return value.hashCode();
+    }
+
+    public static boolean isValid(String value, String regex){
+        return value.matches(regex);
     }
 }

@@ -92,6 +92,11 @@
 
   # should consider no keywords as invalid command format
   find
+
+  #find with non-private phone number
+  find 4444
+
+
   # should only match full words in person names
   find bet
   # does not match if none have keyword
@@ -105,6 +110,7 @@
   find Dickson
   # find multiple with some keywords
   find Charlie Betsy
+
 
 ##########################################################
 # test delete person command

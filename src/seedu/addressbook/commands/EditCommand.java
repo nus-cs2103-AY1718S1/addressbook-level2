@@ -28,7 +28,6 @@ public class EditCommand extends Command{
     public static final String MESSAGE_EDITED_PERSON_SUCCESS = "Edited Person: %1$s";
 
     private final Person replacement;
-    private final String nullString = "null";
 
     public EditCommand(int targetVisibleIndex, String name,
                       String phone, boolean isPhonePrivate,

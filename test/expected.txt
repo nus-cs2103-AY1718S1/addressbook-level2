@@ -1,3 +1,10 @@
+|| ===================================================
+|| ===================================================
+|| Welcome to your Address Book!
+|| AddessBook Level 2 - Version 1.0
+|| Launch command format: java seedu.addressbook.Main [STORAGE_FILE_PATH]
+|| Using storage file : addressbook.xml
+|| ===================================================
 || [Command entered:  sfdfd]
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
@@ -39,12 +46,7 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  sort]
-|| 	1. a Phone: 2345678 Email: 2sfawfvd@fsefs Address: sdfse Tags: [sfsefs][sf][sfvsfe]
-|| 	2. ab Phone: 1234 Email: sfw@sample.com Address: valid address Tags: 
-|| 	3. celia Phone: 84047947 Email: huwanqing1998@gmail.com Address: china Tags: [ddwf][dfsfd]
-|| 	4. de Phone: 123456 Email: sdfs@example Address: ced Tags: 
-|| 
-|| Sorted successful for 4 persons listed!
+|| The addressBook is empty, you don't need to sort it!
 || ===================================================
 || Enter command: || [Command entered:  add name p/123345 e/valid@email a/valid]
 || New person added: name Phone: 123345 Email: valid@email Address: valid Tags: 
@@ -59,31 +61,23 @@
 || New person added: zack Phone: 34653 Email: sdfvv@rf Address: dfe Tags: 
 || ===================================================
 || Enter command: || [Command entered:  sort]
-|| 	1. a Phone: 2345678 Email: 2sfawfvd@fsefs Address: sdfse Tags: [sfsefs][sf][sfvsfe]
-|| 	2. ab Phone: 1234 Email: sfw@sample.com Address: valid address Tags: 
-|| 	3. apple Phone: 35566 Email: valid@email.com Address: valid address Tags: 
-|| 	4. celia Phone: 84047947 Email: huwanqing1998@gmail.com Address: china Tags: [ddwf][dfsfd]
-|| 	5. de Phone: 123456 Email: sdfs@example Address: ced Tags: 
-|| 	6. name Phone: 123345 Email: valid@email Address: valid Tags: 
-|| 	7. zack Phone: 34653 Email: sdfvv@rf Address: dfe Tags: 
-|| 	8. zoo Phone: 345677 Email: sdf@fsfdd Address: cwfd Tags: 
+|| 	1. apple Phone: 35566 Email: valid@email.com Address: valid address Tags: 
+|| 	2. name Phone: 123345 Email: valid@email Address: valid Tags: 
+|| 	3. zack Phone: 34653 Email: sdfvv@rf Address: dfe Tags: 
+|| 	4. zoo Phone: 345677 Email: sdf@fsfdd Address: cwfd Tags: 
 || 
-|| Sorted successful for 8 persons listed!
+|| Sorted successful for 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered: change 1 p/12353]
 || the information has been successfully changed!
 || ===================================================
 || Enter command: || [Command entered: list]
-|| 	1. ab Phone: 1234 Email: sfw@sample.com Address: valid address Tags: 
-|| 	2. apple Phone: 35566 Email: valid@email.com Address: valid address Tags: 
-|| 	3. celia Phone: 84047947 Email: huwanqing1998@gmail.com Address: china Tags: [ddwf][dfsfd]
-|| 	4. de Phone: 123456 Email: sdfs@example Address: ced Tags: 
-|| 	5. name Phone: 123345 Email: valid@email Address: valid Tags: 
-|| 	6. zack Phone: 34653 Email: sdfvv@rf Address: dfe Tags: 
-|| 	7. zoo Phone: 345677 Email: sdf@fsfdd Address: cwfd Tags: 
-|| 	8. a Phone: 12353 Email: 2sfawfvd@fsefs Address: sdfse Tags: [sfsefs][sf][sfvsfe]
+|| 	1. name Phone: 123345 Email: valid@email Address: valid Tags: 
+|| 	2. zack Phone: 34653 Email: sdfvv@rf Address: dfe Tags: 
+|| 	3. zoo Phone: 345677 Email: sdf@fsfdd Address: cwfd Tags: 
+|| 	4. apple Phone: 12353 Email: valid@email.com Address: valid address Tags: 
 || 
-|| 8 persons listed!
+|| 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered: change 1 t/sfdv]
 || Invalid input message, cannot change the desired person's information
@@ -92,15 +86,11 @@
 || Person not found!
 || ===================================================
 || Enter command: || [Command entered: list]
-|| 	1. apple Phone: 35566 Email: valid@email.com Address: valid address Tags: 
-|| 	2. celia Phone: 84047947 Email: huwanqing1998@gmail.com Address: china Tags: [ddwf][dfsfd]
-|| 	3. de Phone: 123456 Email: sdfs@example Address: ced Tags: 
-|| 	4. name Phone: 123345 Email: valid@email Address: valid Tags: 
-|| 	5. zack Phone: 34653 Email: sdfvv@rf Address: dfe Tags: 
-|| 	6. zoo Phone: 345677 Email: sdf@fsfdd Address: cwfd Tags: 
-|| 	7. a Phone: 12353 Email: 2sfawfvd@fsefs Address: sdfse Tags: [sfsefs][sf][sfvsfe]
+|| 	1. zack Phone: 34653 Email: sdfvv@rf Address: dfe Tags: 
+|| 	2. zoo Phone: 345677 Email: sdf@fsfdd Address: cwfd Tags: 
+|| 	3. apple Phone: 12353 Email: valid@email.com Address: valid address Tags: 
 || 
-|| 7 persons listed!
+|| 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered: change 1 a/valid address]
 || The person index provided is invalid, only one info can be changed each time

@@ -181,7 +181,6 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 6]
-|| //The person index provided is invalid
 || Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  viewall -1]
@@ -200,27 +199,21 @@
 || Viewing person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  view 3]
-|| //Viewing person: Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || Viewing person: Betsy Choo Tags: [secretive]
 || ===================================================
 || Enter command: || [Command entered:  view 4]
-|| //Viewing person: Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || Viewing person: Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  view 5]
-|| //Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || Viewing person: Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  viewall 3]
-|| //Viewing person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || Viewing person: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
 || ===================================================
 || Enter command: || [Command entered:  viewall 4]
-|| //Viewing person: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
 || Viewing person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  viewall 5]
-|| //Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || Viewing person: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  find]

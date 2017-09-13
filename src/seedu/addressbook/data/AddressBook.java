@@ -83,6 +83,9 @@ public class AddressBook {
         syncTagsWithMasterList(toAdd);
     }
 
+    public void sortBook(String sortBy) throws Exception {
+        allPersons.sort(sortBy);
+    }
     /**
      * Returns true if an equivalent person exists in the address book.
      */

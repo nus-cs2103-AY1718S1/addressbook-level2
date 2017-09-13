@@ -197,8 +197,8 @@
 || Enter command: || [Command entered:  view 0]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  view 6]
-|| Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| Enter command: || [Command entered:  view 7]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  viewall -1]
 || The person index provided is invalid
@@ -206,8 +206,8 @@
 || Enter command: || [Command entered:  viewall 0]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  viewall 6]
-|| Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
+|| Enter command: || [Command entered:  viewall 7]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 1]
 || Viewing person: Zoe Lee Phone: 666666 Email: zoel@gmail.com Address: 666, semi street Tags: 

@@ -79,10 +79,10 @@
   # should catch invalid index
   view -1
   view 0
-  view 6
+  view 7
   viewall -1
   viewall 0
-  viewall 6
+  viewall 7
 
   # should show all non private for both view and viewall
   view 1

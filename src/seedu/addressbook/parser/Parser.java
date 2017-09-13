@@ -19,7 +19,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Parser {
 
-    public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.?)");
+    public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
     public static final Pattern SORT_TYPE_ARGS_FORMAT = Pattern.compile("(?<order>(asc|dsc)?)");
 
@@ -260,11 +260,20 @@ public class Parser {
         }
 
         final String order = matcher.group("order");
+
         if(order.equals("dsc")) {
-            return new SortCommand(-1);
+            return new ExitCommand();
+            //return new SortCommand(-1);
         } else { //if(order.equals("asc")) {
-            return new SortCommand(1);
+            return new ExitCommand();
+            //return new SortCommand(1);
         }
+
+        /*
+        // keywords delimited by whitespace
+        final String[] keywords = matcher.group("keywords").split("\\s+");
+        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
+        return new FindCommand(keywordSet);*/
     }
 
 }

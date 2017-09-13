@@ -49,7 +49,7 @@ public class AddCommandTest {
 
     @Test
     public void addCommand_invalidDOB_throwsException() {
-        final String[] invalidDOBs = { "", " ", "1234-5678", "[]\\[;]", "abc", "a123", "+651234" };
+        final String[] invalidDOBs = { "", " ", "[]\\[;]", "abc", "a123", "+651234" };
         for (String dob : invalidDOBs) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, false, dob, false, Email.EXAMPLE, true,
                     Address.EXAMPLE, false, EMPTY_STRING_LIST);

@@ -84,10 +84,15 @@ public class Main {
         do {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
-
+            
+            try {
+                CommandResult result = executeCommand(command);
+                recordResult(result);
+                ui.showResultToUser(result);
+            } catch(Exception e) {
+                ui.showReadonlyMessageToUser("addressbook.xml maybe Readonly. Kindly grant writing permission.");
+            }
+            
         } while (!ExitCommand.isExit(command));
     }
 

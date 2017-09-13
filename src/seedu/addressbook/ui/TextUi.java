@@ -100,9 +100,8 @@ public class TextUi {
         showToUser(Formatter.getGoodbyeMessages());
     }
 
-
     public void showInitFailedMessage() {
-        showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);
+        showToUser(Formatter.getInitFailedMessages());
     }
 
     /** Shows message(s) to the user */

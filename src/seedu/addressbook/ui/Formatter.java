@@ -45,4 +45,8 @@ public class Formatter {
 	static String[] getGoodbyeMessages() {
 		return new String[]{MESSAGE_GOODBYE, DIVIDER, DIVIDER};
 	}
+
+	static String[] getInitFailedMessages() {
+		return new String[]{MESSAGE_INIT_FAILED, DIVIDER, DIVIDER};
+	}
 }

@@ -44,7 +44,7 @@
   list
   add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
   list
-  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+  add Grace Dickson pp/333333 e/grace.d@nus.edu.sg a/333, gamma street t/friends t/school
   list
   add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
   list
@@ -53,6 +53,13 @@
 
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+
+##########################################################
+# test sort persons command
+##########################################################
+
+  # should sort all persons' names in alphabetical order
+  sort
 
 ##########################################################
 # test view/viewall persons command
@@ -77,14 +84,14 @@
   viewall 1
 
   # should show only non private details for view
+  view 5
   view 3
   view 4
-  view 5
 
   # should show all details even private for viewall
+  viewall 5
   viewall 3
   viewall 4
-  viewall 5
 
 ##########################################################
 # test find persons command
@@ -101,16 +108,15 @@
 
   # find unique keyword
   find Betsy
-  # find multiple with same keyword
-  find Dickson
+
   # find multiple with some keywords
-  find Charlie Betsy
+  find Grace Betsy
 
 ##########################################################
 # test delete person command
 ##########################################################
 
-# last active view: [1] betsy [2] charlie
+# last active view: [1] betsy [2] grace
 
   # should catch invalid args format
   delete

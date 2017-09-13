@@ -12,6 +12,7 @@ import seedu.addressbook.util.TestUtil;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class SortCommandTest {
 
@@ -22,7 +23,8 @@ public class SortCommandTest {
 
     private List<ReadOnlyPerson> emptyDisplayList;
     private List<ReadOnlyPerson> originalList;
-    private List<ReadOnlyPerson> reverseList;
+    private List<ReadOnlyPerson> ascendingList;
+    private List<ReadOnlyPerson> descendingList;
 
     @Before
     public void setUp() throws Exception {
@@ -42,20 +44,26 @@ public class SortCommandTest {
         emptyDisplayList = TestUtil.createList();
 
         originalList = TestUtil.createList(alvin, brandon, jane, zoe);
-        reverseList = TestUtil.createList(zoe, jane, brandon, alvin);
+        ascendingList = TestUtil.createList(alvin, brandon, jane, zoe);
+        descendingList = TestUtil.createList(zoe, jane, brandon, alvin);
     }
 
     @Test
     public void execute() throws Exception {
+        //empty list
+        sortCommand = new SortCommand(1);
+        sortCommand.setData(emptyAddressBook, emptyDisplayList);
+        assertSortedList(emptyDisplayList);
+
         //descending list
         sortCommand = new SortCommand(-1);
         sortCommand.setData(addressBook, originalList);
-        assertSortedList(originalList);
+        assertSortedList(descendingList);
 
         //ascending list
         sortCommand = new SortCommand(1);
         sortCommand.setData(addressBook, originalList);
-        assertSortedList(reverseList);
+        assertSortedList(ascendingList);
     }
 
     /**
@@ -64,6 +72,8 @@ public class SortCommandTest {
      */
     private void assertSortedList(List<ReadOnlyPerson> expectedPersonList) {
         CommandResult result = sortCommand.execute();
-        assertEquals(Command.getMessageForPersonListShownSummary(expectedPersonList), result.feedbackToUser);
+
+        List<? extends ReadOnlyPerson> sortedList = result.getRelevantPersons().get();
+        assertEquals(sortedList, expectedPersonList);
     }
 }

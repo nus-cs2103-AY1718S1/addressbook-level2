@@ -35,7 +35,24 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        splitAddress(trimmedAddress,this.splitted);
+        this.value = block.getBlock() + ", " + street.getStreet() + ", " +
+                unit.getUnit() + ", " + code.getCode();
+    }
+
+    /**
+     * Split given address and attributed each component th
+     * the respective object
+     *
+     * @param trimmedAddress
+     * @param splitted
+     */
+    public void splitAddress(String trimmedAddress, String[] splitted ) {
+        splitted = trimmedAddress.split(",");
+        this.block = new Block(splitted[BLOCK_INDEX].trim());
+        this.street = new Street(splitted[STREET_INDEX].trim());
+        this.unit = new Unit(splitted[UNIT_INDEX].trim());
+        this.code = new PostalCode(splitted[POSTALCODE_INDEX].trim());
     }
 
     /**

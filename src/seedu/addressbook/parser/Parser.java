@@ -9,14 +9,13 @@ import java.util.regex.Pattern;
 
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-import static seedu.addressbook.common.Messages.MESSAGE_PROMPT_PASSWORD;
 
 /**
  * Parses user input.
  */
 public class Parser {
 
-    public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("^\\d+$");
+    public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("-?\\d+");
     public static final Pattern PASSWORD_ARGS_FORMAT = Pattern.compile("^(\\d+\\p{L}+|\\p{L}+\\d+)+$");
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
@@ -161,6 +160,8 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         } catch (NumberFormatException nfe) {
             return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } catch (IndexOutOfBoundsException es) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, DeleteCommand.MESSAGE_USAGE));
         }
     }
 
@@ -192,16 +193,17 @@ public class Parser {
     private Command prepareViewAll(String args) {
 
         try {
-            final int targetIndex = parseArgsAsDisplayedIndex(args);
-            final String inputPassword = parseArgsAsDisplayedPassword(args);
+            final int targetIndex = parseArgsAsDisplayedIndexForViewAllCommand(args);
+            final String inputPassword = parseArgsAsDisplayedPasswordForViewAllCommnd(args);
             return new ViewAllCommand(targetIndex, inputPassword);
         } catch (ParseException pe) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
                     ViewAllCommand.MESSAGE_USAGE));
         } catch (NumberFormatException nfe) {
             return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } catch (IndexOutOfBoundsException ab){
-            return new IncorrectCommand(MESSAGE_PROMPT_PASSWORD);
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ViewAllCommand.MESSAGE_USAGE));
         }
     }
 
@@ -213,11 +215,26 @@ public class Parser {
      * @throws ParseException if no region of the args string could be found for the index
      * @throws NumberFormatException the args string region is not a valid number
      */
-    private int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
+    private int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException{
+        final Matcher matcher = PERSON_INDEX_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+        return Integer.parseInt(matcher.group(0));
+    }
+    /**
+     * Parses the given arguments string as a single index number.
+     *
+     * @param args arguments string to parse as index number
+     * @return the parsed index number
+     * @throws ParseException if no region of the args string could be found for the index
+     * @throws NumberFormatException the args string region is not a valid number
+     */
+    private int parseArgsAsDisplayedIndexForViewAllCommand(String args) throws IndexOutOfBoundsException, ParseException, NumberFormatException{
         final String userIndex = args.split(" ")[1];
         final Matcher matcher = PERSON_INDEX_ARGS_FORMAT.matcher(userIndex.trim());
-        if (!matcher.matches()) {
-            throw new ParseException("Could not find index number to parse");
+        if (!matcher.matches()||args.split(" ").length>3) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         return Integer.parseInt(matcher.group(0));
     }
@@ -226,13 +243,9 @@ public class Parser {
      *
      *
      */
-    private String parseArgsAsDisplayedPassword(String args) throws IndexOutOfBoundsException, ParseException, NumberFormatException{
+    private String parseArgsAsDisplayedPasswordForViewAllCommnd(String args) throws IndexOutOfBoundsException, ParseException, NumberFormatException{
             final String userPassword = args.split(" ")[2];
-            final Matcher matcher = PASSWORD_ARGS_FORMAT.matcher(userPassword.trim());
-            if (!matcher.matches()) {
-                throw new ParseException("Password is of wrong format, no symbols should be included");
-            }
-            return matcher.group(0);
+            return userPassword;
     }
     /**
      * Parses arguments in the context of the find person command.

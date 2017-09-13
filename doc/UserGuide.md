@@ -66,13 +66,6 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
-### Updating a person : `update`
-Update the specified person from the address book. Irreversible.<br>
-Format: `update INDEX John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
-
-> Update the person at the specified `INDEX`. 
-  The index refers to the index number shown in the most recent listing.
-
 Examples: 
 * `list`<br>
   `update 2 John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`<br>

@@ -19,6 +19,8 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| sort: Sorts the entries in the address book by name alphabetically.
+|| Example: sort
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
@@ -296,6 +298,47 @@
 || Enter command: || [Command entered:  list]
 || 
 || 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  add Fed p/12345678 e/ggdhs@hhjhj.com a/bnbbnb cxcxcd]
+|| New person added: Fed Phone: 12345678 Email: ggdhs@hhjhj.com Address: bnbbnb cxcxcd Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  add Ech p/23456732 e/hhjhh@youiui.com a/hdsdewew ewew]
+|| New person added: Ech Phone: 23456732 Email: hhjhh@youiui.com Address: hdsdewew ewew Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  add Derick p/99898 e/dsdsd@qghhhhj.com a/popewew esdc]
+|| New person added: Derick Phone: 99898 Email: dsdsd@qghhhhj.com Address: popewew esdc Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  add Cat p/989898 e/jdkjsdkjsd@kdskd.com a/eewrtt ewqe]
+|| New person added: Cat Phone: 989898 Email: jdkjsdkjsd@kdskd.com Address: eewrtt ewqe Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  add Bod p/1234343 e/klkldksld@yoioi.com a/qweqwe wdds]
+|| New person added: Bod Phone: 1234343 Email: klkldksld@yoioi.com Address: qweqwe wdds Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  add Aaron p/09099 e/jewew@gdgdfd.com a/nvmnvmcn ewrte]
+|| New person added: Aaron Phone: 09099 Email: jewew@gdgdfd.com Address: nvmnvmcn ewrte Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Fed Phone: 12345678 Email: ggdhs@hhjhj.com Address: bnbbnb cxcxcd Tags: 
+|| 	2. Ech Phone: 23456732 Email: hhjhh@youiui.com Address: hdsdewew ewew Tags: 
+|| 	3. Derick Phone: 99898 Email: dsdsd@qghhhhj.com Address: popewew esdc Tags: 
+|| 	4. Cat Phone: 989898 Email: jdkjsdkjsd@kdskd.com Address: eewrtt ewqe Tags: 
+|| 	5. Bod Phone: 1234343 Email: klkldksld@yoioi.com Address: qweqwe wdds Tags: 
+|| 	6. Aaron Phone: 09099 Email: jewew@gdgdfd.com Address: nvmnvmcn ewrte Tags: 
+|| 
+|| 6 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort]
+|| The address book has been sorted alphabetically according to name.
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Aaron Phone: 09099 Email: jewew@gdgdfd.com Address: nvmnvmcn ewrte Tags: 
+|| 	2. Bod Phone: 1234343 Email: klkldksld@yoioi.com Address: qweqwe wdds Tags: 
+|| 	3. Cat Phone: 989898 Email: jdkjsdkjsd@kdskd.com Address: eewrtt ewqe Tags: 
+|| 	4. Derick Phone: 99898 Email: dsdsd@qghhhhj.com Address: popewew esdc Tags: 
+|| 	5. Ech Phone: 23456732 Email: hhjhh@youiui.com Address: hdsdewew ewew Tags: 
+|| 	6. Fed Phone: 12345678 Email: ggdhs@hhjhj.com Address: bnbbnb cxcxcd Tags: 
+|| 
+|| 6 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...

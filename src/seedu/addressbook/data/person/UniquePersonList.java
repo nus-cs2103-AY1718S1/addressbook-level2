@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import seedu.addressbook.commands.SortCommand;
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
 
@@ -27,6 +28,9 @@ public class UniquePersonList implements Iterable<Person> {
         protected DuplicatePersonException() {
             super("Operation would result in duplicate persons");
         }
+    }
+    public static class ListIsEmptyException extends Exception{
+        protected ListIsEmptyException() {super("Operation would not work as the address book is empty");}
     }
 
     /**
@@ -139,5 +143,12 @@ public class UniquePersonList implements Iterable<Person> {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && this.internalList.equals(((UniquePersonList) other).internalList));
+    }
+    public void sort() throws ListIsEmptyException{
+       if(!internalList.isEmpty()) {
+           Collections.sort(internalList, new SortCommand());
+       }else {
+           throw new ListIsEmptyException();
+       }
     }
 }

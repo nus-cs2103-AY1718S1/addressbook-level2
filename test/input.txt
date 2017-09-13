@@ -149,6 +149,20 @@
   list
 
 ##########################################################
+# test sort command
+##########################################################
+
+  add Fed p/12345678 e/ggdhs@hhjhj.com a/bnbbnb cxcxcd
+  add Ech p/23456732 e/hhjhh@youiui.com a/hdsdewew ewew
+  add Derick p/99898 e/dsdsd@qghhhhj.com a/popewew esdc
+  add Cat p/989898 e/jdkjsdkjsd@kdskd.com a/eewrtt ewqe
+  add Bod p/1234343 e/klkldksld@yoioi.com a/qweqwe wdds
+  add Aaron p/09099 e/jewew@gdgdfd.com a/nvmnvmcn ewrte
+  list
+  sort
+  list
+
+##########################################################
 # test exit command
 ##########################################################
 

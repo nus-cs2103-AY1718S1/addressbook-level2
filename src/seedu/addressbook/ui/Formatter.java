@@ -26,4 +26,15 @@ public class Formatter {
         this.out = out;
     }
 
+    public void showWelcomeMessage(String welcomeMess, String version, String argsUsage, String storageFileInfo) {
+        showToUser(
+                DIVIDER,
+                DIVIDER,
+                welcomeMess,
+                version,
+                argsUsage,
+                storageFileInfo,
+                DIVIDER);
+    }
+
 }

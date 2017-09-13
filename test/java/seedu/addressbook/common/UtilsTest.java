@@ -1,17 +1,30 @@
 package seedu.addressbook.common;
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class UtilsTest {
 
     @Test
     public void isAnyNull() throws Exception {
+        //empty list
+        assertFalse(Utils.isAnyNull());
+        
+        //only one object
+        assertTrue(Utils.isAnyNull((Object) null));
+        assertFalse(Utils.isAnyNull(1));
+        assertFalse(Utils.isAnyNull("abc"));
+        assertFalse(Utils.isAnyNull(""));
+        
+        //multiple objects
         assertTrue(Utils.isAnyNull( null, null));
+        assertTrue(Utils.isAnyNull("abc", null, "cdd"));
+        assertFalse(Utils.isAnyNull(1, "bb"));
+        
     }
 
 

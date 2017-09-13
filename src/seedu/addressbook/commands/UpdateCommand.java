@@ -3,7 +3,10 @@ package seedu.addressbook.commands;
 import java.util.Optional;
 
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.*;
+import seedu.addressbook.data.person.Person;
+import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Email;
+import seedu.addressbook.data.person.Phone;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 
 

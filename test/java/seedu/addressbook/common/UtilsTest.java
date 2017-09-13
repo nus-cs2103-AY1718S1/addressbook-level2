@@ -13,10 +13,10 @@ public class UtilsTest {
     @Test
     public void isAnyNull() throws Exception {
         // null element
-        assertIsNull(null);
+        assertIsNull((Object) null);
 
         // no null element
-        assertNotNull("success", "contentment");
+        assertNotNull("success", "contentment", "null");
     }
 
     @Test
@@ -44,9 +44,9 @@ public class UtilsTest {
         assertNotUnique(null, "a", "b", null);
     }
 
-    private void assertIsNull(Object... objects) { assertTrue(Utils.isAnyNull(Arrays.asList(objects))); }
+    private void assertIsNull(Object... objects) { assertTrue(Utils.isAnyNull(objects)); }
 
-    private void assertNotNull(Object... objects) { assertFalse(Utils.isAnyNull(Arrays.asList(objects))); }
+    private void assertNotNull(Object... objects) { assertFalse(Utils.isAnyNull(objects)); }
 
     private void assertAreUnique(Object... objects) {
         assertTrue(Utils.elementsAreUnique(Arrays.asList(objects)));

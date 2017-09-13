@@ -123,6 +123,16 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Get Person By Index
+     *
+     * @throws PersonNotFoundException if no such person could be found in the list.
+     */
+    public Person getPersonByIndex(int index) throws ArrayIndexOutOfBoundsException, PersonNotFoundException {
+        return internalList.get(index - 1);
+    }
+
+
+    /**
      * Clears all persons in list.
      */
     public void clear() {

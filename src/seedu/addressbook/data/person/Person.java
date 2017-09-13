@@ -2,6 +2,7 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.tag.UniqueTagList;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,6 +15,7 @@ public class Person implements ReadOnlyPerson {
     private Phone phone;
     private Email email;
     private Address address;
+    private List<ReadOnlyPerson> editingPerson;
 
     private final UniqueTagList tags;
     /**
@@ -39,20 +41,26 @@ public class Person implements ReadOnlyPerson {
         return name;
     }
 
+    public void setName(Name newName) { this.name = newName;}
+
     @Override
     public Phone getPhone() {
         return phone;
     }
+
+    public void setPhone(Phone newPhone) {this.phone = newPhone;}
 
     @Override
     public Email getEmail() {
         return email;
     }
 
+    public void setEmail(Email newEmail) {this.email = newEmail;}
+
     @Override
-    public Address getAddress() {
-        return address;
-    }
+    public Address getAddress() { return address; }
+
+    public void setAddress(Address newAddress) {this.address = newAddress;}
 
     @Override
     public UniqueTagList getTags() {

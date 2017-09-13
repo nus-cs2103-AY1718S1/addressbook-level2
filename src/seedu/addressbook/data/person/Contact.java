@@ -1,7 +1,7 @@
 package seedu.addressbook.data.person;
 
 /**
- * A super class present Person's contact, including Phone, Email and Address
+ * A super class present Person's contact, including Phone, Email, Address and Birthday
  */
 public class Contact {
 

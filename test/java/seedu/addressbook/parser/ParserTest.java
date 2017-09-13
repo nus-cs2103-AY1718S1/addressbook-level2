@@ -12,17 +12,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
@@ -195,6 +185,33 @@ public class ParserTest {
         final String input = "find " + String.join(" ", keySet) + " " + String.join(" ", keySet);
         final FindCommand result =
                 parseAndAssertCommandType(input, FindCommand.class);
+        assertEquals(keySet, result.getKeywords());
+    }
+
+     /*
+     * Tests for swap person command ==============================================================================
+     */
+
+     @Test
+     public void parse_swapCommandInvalidArgs_errorMessage() {
+         // no keywords
+         final String[] inputs = {
+                 "swap",
+                 "swap "
+         };
+         final String resultMessage =
+                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SwapCommand.MESSAGE_USAGE);
+         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+     }
+
+    @Test
+    public void parse_swapCommandValidArgs_parsedCorrectly() {
+        final String[] keywords = { "key1", "key2" };
+        final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
+
+        final String input = "swap " + String.join(" ", keySet);
+        final SwapCommand result =
+                parseAndAssertCommandType(input, SwapCommand.class);
         assertEquals(keySet, result.getKeywords());
     }
 

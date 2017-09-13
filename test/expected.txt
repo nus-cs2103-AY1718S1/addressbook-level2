@@ -313,11 +313,11 @@
 || New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
 || ===================================================
 || Enter command: || [Command entered:  list]
-||  1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-||  2. Betsy Choo Tags: [secretive]
-||  3. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
-||  4. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
-||  5. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	4. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	5. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
 ||
 || 5 persons listed!
 || ===================================================
@@ -325,11 +325,11 @@
 || Address book has been sorted!
 || ===================================================
 || Enter command: || [Command entered:  list]
-||  1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
-||  2. Betsy Choo Tags: [secretive]
-||  3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
-||  4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-||  5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 ||
 || 5 persons listed!
 || ===================================================

@@ -24,7 +24,7 @@ public class SortCommand extends Command {
             return new CommandResult(Messages.MESSAGE_FAILED_SORTING);
         }
         List<ReadOnlyPerson> sortedPersonList = addressBook.getSortedPersons();
-        return new CommandResult(getMessageForPersonListShownSummary(sortedPersonList), sortedPersonList);
+        return new CommandResult(MESSAGE_SUCCESS, sortedPersonList);
     }
     
 }

@@ -7,7 +7,7 @@ import seedu.addressbook.data.tag.UniqueTagList;
  * A read-only immutable interface for a Person in the addressbook.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
-public interface ReadOnlyPerson {
+public interface ReadOnlyPerson extends Comparable<ReadOnlyPerson> {
 
     Name getName();
     Phone getPhone();
@@ -93,5 +93,19 @@ public interface ReadOnlyPerson {
             builder.append(tag);
         }
         return builder.toString();
+    }
+
+    default int compareTo(ReadOnlyPerson other) {
+        //if (other instanceof Person) {
+        return this.getName().toString().compareTo(other.getName().toString());
+        /*}
+        else {
+            try {
+                throw new InvalidTypeException();
+            } catch (InvalidTypeException e) {
+                e.printStackTrace();
+            }
+        }
+        */
     }
 }

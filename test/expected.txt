@@ -19,7 +19,7 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
-|| sort: Sort and displays all persons alphabetically in the address book as a list with index numbers.
+|| sort: Sort and displays all persons alphabetically by name in the address book as a list with index numbers.
 || Example: sort
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
@@ -297,7 +297,7 @@
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
-|| 2 persons listed, sorted alphabetically!
+|| 2 persons listed, sorted alphabetically by name!
 || ===================================================
 || Enter command: || [Command entered:  add Abbie Tan p/666666 e/abbie@gmail.com a/666, alpha beta street]
 || New person added: Abbie Tan Phone: 666666 Email: abbie@gmail.com Address: 666, alpha beta street Tags: 
@@ -314,7 +314,7 @@
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
-|| 3 persons listed, sorted alphabetically!
+|| 3 persons listed, sorted alphabetically by name!
 || ===================================================
 || Enter command: || [Command entered:  add Danny Wong Ee p/777777 pe/dannywong@nus.edu.sg a/777, delta charlie street t/friends]
 || New person added: Danny Wong Ee Phone: 777777 Email: (private) dannywong@nus.edu.sg Address: 777, delta charlie street Tags: [friends]
@@ -333,7 +333,7 @@
 || 	3. Danny Wong Ee Phone: 777777 Address: 777, delta charlie street Tags: [friends]
 || 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
-|| 4 persons listed, sorted alphabetically!
+|| 4 persons listed, sorted alphabetically by name!
 || ===================================================
 || Enter command: || [Command entered:  add Benedict Law p/888888 e/benedictlaw@nus.edu.sg a/888, bravo deta street, t/lonely]
 || New person added: Benedict Law Phone: 888888 Email: benedictlaw@nus.edu.sg Address: 888, bravo deta street, Tags: [lonely]
@@ -354,7 +354,7 @@
 || 	4. Danny Wong Ee Phone: 777777 Address: 777, delta charlie street Tags: [friends]
 || 	5. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
-|| 5 persons listed, sorted alphabetically!
+|| 5 persons listed, sorted alphabetically by name!
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

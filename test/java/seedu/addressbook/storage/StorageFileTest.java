@@ -1,13 +1,13 @@
 package seedu.addressbook.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.nio.file.Paths;
 import java.util.Collections;
 
 import org.junit.Rule;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Rules.ExpectedException;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 
 import seedu.addressbook.data.AddressBook;
@@ -114,13 +114,13 @@ public class StorageFileTest {
                                 new Phone("98765432", false),
                                 new Email("johnd@gmail.com", false),
                                 new Address("John street, block 123, #01-01", false),
-                                new Birthday("12,30,1996",false),
+                                new Birthday("30,12,1996",false),
                                 new UniqueTagList(Collections.emptySet())));
         ab.addPerson(new Person(new Name("Betsy Crowe"),
                                 new Phone("1234567", true),
                                 new Email("betsycrowe@gmail.com", false),
                                 new Address("Newgate Prison", true),
-                                new Birthday("12,30,1996",false),
+                                new Birthday("30,12,1996",false),
                                 new UniqueTagList(new Tag("friend"), new Tag("criminal"))));
         return ab;
     }

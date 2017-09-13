@@ -1,9 +1,9 @@
 package seedu.addressbook.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
@@ -56,6 +56,15 @@ public class AddCommandTest {
         for (String address : invalidAddresses) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
                     true, address, true, Birthday.EXAMPLE, true, EMPTY_STRING_LIST);
+        }
+    }
+
+    @Test
+    public void addCommand_invalidBirthday_throwsException() {
+        final String[] invalidBirthday = {"", " ","30,30,200","3,20,10"};
+        for (String birthday : invalidBirthday) {
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE, true,
+                    Address.EXAMPLE, true, birthday, true, EMPTY_STRING_LIST);
         }
     }
 

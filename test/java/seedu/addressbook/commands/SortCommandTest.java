@@ -43,7 +43,7 @@ public class SortCommandTest {
     }
 
     private void assertViewErrorEmptyList(AddressBook emptyAddressBook, List<ReadOnlyPerson> emptyPersonList) {
-        assertViewError(emptyAddressBook, emptyPersonList, "The addressbook is empty, you don't need to sort it!");
+        assertViewError(emptyAddressBook, emptyPersonList, "The addressBook is empty, you don't need to sort it!");
     }
 
     private void assertViewError(AddressBook emptyAddressBook, List<ReadOnlyPerson> emptyPersonList, String expectedMessage) {

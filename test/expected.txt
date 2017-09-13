@@ -20,7 +20,9 @@
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
 || sort: Displays a persons in the address book as a sorted list with index numbers.
-|| Example: sort
+|| Sorts by name if parameters left blank or if invalid
+|| Parameters: phone email
+|| Example: sort email
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
@@ -322,6 +324,49 @@
 || 	5. zzzzz Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
 || 
 || 5 persons sorted!
+|| ===================================================
+|| Enter command: || [Command entered:  add abcaa p/99999999 e/abc123@gmail.com a/popopo]
+|| New person added: abcaa Phone: 99999999 Email: abc123@gmail.com Address: popopo Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  add abcaa p/1 e/0123@gmail.com a/popopo]
+|| New person added: abcaa Phone: 1 Email: 0123@gmail.com Address: popopo Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  sort phone]
+|| 	1. abcaa Phone: 1 Email: 0123@gmail.com Address: popopo Tags: 
+|| 	2. aaaaa Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	3. zzzzz Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	4. ddddd Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	5. OOOOO Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	6. AAAAA Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	7. abcaa Phone: 99999999 Email: abc123@gmail.com Address: popopo Tags: 
+|| 
+|| 7 persons sorted!
+|| ===================================================
+|| Enter command: || [Command entered:  sort email]
+|| 	1. abcaa Phone: 1 Email: 0123@gmail.com Address: popopo Tags: 
+|| 	2. abcaa Phone: 99999999 Email: abc123@gmail.com Address: popopo Tags: 
+|| 	3. aaaaa Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	4. zzzzz Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	5. ddddd Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	6. OOOOO Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	7. AAAAA Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 
+|| 7 persons sorted!
+|| ===================================================
+|| Enter command: || [Command entered:  add aasdas p/444444 e/zzzzz@gmail.com a/pepeepe]
+|| New person added: aasdas Phone: 444444 Email: zzzzz@gmail.com Address: pepeepe Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  sort phone]
+|| 	1. abcaa Phone: 1 Email: 0123@gmail.com Address: popopo Tags: 
+|| 	2. aaaaa Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	3. zzzzz Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	4. ddddd Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	5. OOOOO Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	6. AAAAA Phone: 123456 Email: abc@123.gmail.com Address: 123123 Tags: 
+|| 	7. aasdas Phone: 444444 Email: zzzzz@gmail.com Address: pepeepe Tags: 
+|| 	8. abcaa Phone: 99999999 Email: abc123@gmail.com Address: popopo Tags: 
+|| 
+|| 8 persons sorted!
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

@@ -159,6 +159,12 @@
   add OOOOO p/123456 e/abc@123.gmail.com a/123123
   add AAAAA p/123456 e/abc@123.gmail.com a/123123
   sort
+  add abcaa p/99999999 e/abc123@gmail.com a/popopo
+  add abcaa p/1 e/0123@gmail.com a/popopo
+  sort phone
+  sort email
+  add aasdas p/444444 e/zzzzz@gmail.com a/pepeepe
+  sort phone
   clear
 
 ##########################################################

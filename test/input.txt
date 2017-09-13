@@ -141,6 +141,20 @@
   list
 
 ##########################################################
+# test swap command
+##########################################################
+
+  # should catch invalid args format
+  swap
+
+  # swap command is case-sensitive
+  swap betsy dickson
+
+  # swaps 2 people in the list
+  swap Betsy Dickson
+  list
+
+##########################################################
 # test clear command
 ##########################################################
 

@@ -44,6 +44,7 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > be seen using the `viewall` command.
 > 
 > Persons can have any number of tags (including 0)
+> After adding a person, it will automatically output the list of persons in the AddressBook
 
 Examples: 
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
@@ -57,14 +58,14 @@ Format: `list`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
+> The search is case insensitive, the order of the keywords does not matter, only the name is searched, 
 and persons matching at least one keyword will be returned (i.e. `OR` search).
 
 Examples: 
 * `find John`<br>
-  Returns `John Doe` but not `john`
+  Returns `John Doe`, also return `john`
 * `find Betsy Tim John`<br>
-  Returns Any person having names `Betsy`, `Tim`, or `John`
+  Returns Any person having names `Betsy`, `Tim`, or `John`, regardless of upper or lower case
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
@@ -76,10 +77,10 @@ Format: `delete INDEX`
 Examples: 
 * `list`<br>
   `delete 2`<br>
-  Deletes the 2nd person in the address book.
+  Deletes the 2nd person in the address book, then list all persons in the list after 2nd person is deleted.
 * `find Betsy`<br> 
   `delete 1`<br>
-  Deletes the 1st person in the results of the `find` command.
+  Deletes the 1st person in the results of the `find` command, then list all persons in the list after 2nd person is deleted.
 
 ### View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>

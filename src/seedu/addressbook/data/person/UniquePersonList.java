@@ -29,6 +29,9 @@ public class UniquePersonList implements Iterable<Person> {
             super("Operation would result in duplicate persons");
         }
     }
+    public static class ListIsEmptyException extends Exception{
+        protected ListIsEmptyException() {super("Operation would not work as the address book is empty");}
+    }
 
     /**
      * Signals that an operation targeting a specified person in the list would fail because
@@ -141,7 +144,11 @@ public class UniquePersonList implements Iterable<Person> {
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && this.internalList.equals(((UniquePersonList) other).internalList));
     }
-    public void sort(){
-        Collections.sort(internalList,new SortCommand());
+    public void sort() throws ListIsEmptyException{
+       if(!internalList.isEmpty()) {
+           Collections.sort(internalList, new SortCommand());
+       }else {
+           throw new ListIsEmptyException();
+       }
     }
 }

@@ -49,6 +49,16 @@ Examples:
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
+### Edits an existing contact
+edits a contact's phone, email or address
+Format : `edit [INDEX] P/PHONE_NUMBER e/EMAIL a/ADDRESS`
+
+>Can update any particulars at once (individually or all at once) Input must be in the order of p/ e/ a/.
+
+Examples:
+* `edit 1 p/91234567`
+* `edit 2 p/91234567 e/work@hotmail.com a/Goodwill street`
+
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`

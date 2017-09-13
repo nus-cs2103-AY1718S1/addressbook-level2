@@ -121,6 +121,13 @@ public class UniquePersonList implements Iterable<Person> {
             throw new PersonNotFoundException();
         }
     }
+    public void editEmail(int index, String newEmail){
+        internalList.get(index).editEmail(newEmail);
+    }
+    public void editPhone(int index, String newPhone){
+        internalList.get(index).editPhone(newPhone);
+    }
+    public void  editAddress(int index, String newAddress){ internalList.get(index).editAddress(newAddress); }
 
     /**
      * Clears all persons in list.

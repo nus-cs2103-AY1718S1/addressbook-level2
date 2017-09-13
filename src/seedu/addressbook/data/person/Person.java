@@ -59,6 +59,14 @@ public class Person implements ReadOnlyPerson {
         return new UniqueTagList(tags);
     }
 
+    public void editEmail(String newEmail) {
+        email.changeEmail(newEmail);
+    }
+    public void editPhone(String newPhone){ phone.changePhone(newPhone); }
+    public void editAddress(String newAddress){
+        address.changeAddress(newAddress);
+    }
+
     /**
      * Replaces this person's tags with the tags in the argument tag list.
      */

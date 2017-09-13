@@ -11,23 +11,16 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
  * Parses user input.
  */
 public class Parser {
+    public static final CharSequence PHONE_PREFIX = "p/";
+    public static final CharSequence EMAIL_PREFIX = "e/";
+    public static final CharSequence ADDRESS_PREFIX = "a/";
 
     public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
@@ -80,6 +73,9 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
+
+        case EditCommand.COMMAND_WORD:
+            return prepareEdit(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -157,7 +153,22 @@ public class Parser {
         final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" t/", "").split(" t/"));
         return new HashSet<>(tagStrings);
     }
+    private Command prepareEdit(String args) {
+        if(checkArgs(args)) {
+            return new EditCommand(args.trim());
+        }
+        else{
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
 
+    }
+    private static boolean checkArgs(String Args) {
+        if (Args.contains(PHONE_PREFIX) || Args.contains(EMAIL_PREFIX) || Args.contains(ADDRESS_PREFIX)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * Parses arguments in the context of the delete person command.

@@ -12,7 +12,7 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    public String value;
     private boolean isPrivate;
 
     /**
@@ -34,6 +34,9 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
+    }
+    public void changeAddress(String address){
+        this.value = address;
     }
 
     @Override

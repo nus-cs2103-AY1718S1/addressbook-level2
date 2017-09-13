@@ -123,6 +123,13 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Sorts the list lexicographically, ignoring case differences.
+     */
+    public void sort() {
+        Collections.sort(internalList);
+    }
+
+    /**
      * Clears all persons in list.
      */
     public void clear() {

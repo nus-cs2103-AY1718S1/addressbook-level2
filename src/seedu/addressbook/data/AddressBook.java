@@ -22,7 +22,7 @@ import seedu.addressbook.data.tag.UniqueTagList;
  */
 public class AddressBook {
 
-    private final UniquePersonList allPersons;
+    private UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
 
     /**
@@ -97,6 +97,14 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+    }
+
+    /**
+     * Replaces the list of all persons in address book with the given list.
+     * @param updatedList
+     */
+    public void replace(UniquePersonList updatedList) {
+        allPersons = updatedList;
     }
 
     /**

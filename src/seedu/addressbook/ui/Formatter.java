@@ -19,7 +19,7 @@ public class Formatter {
     static final String LINE_PREFIX = "|| ";
 
     /** A platform independent line separator. */
-    static final String LS = System.lineSeparator();
+    private static final String LS = System.lineSeparator();
 
     private static final String DIVIDER = "===================================================";
 
@@ -33,7 +33,7 @@ public class Formatter {
     static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
 
 
-    List<String> formatMessagesToList(String... message) {
+    private List<String> formatMessagesToList(String... message) {
         List<String> formattedMessages = new ArrayList<>();
         formattedMessages.addAll(Arrays.asList(message));
         return formattedMessages;
@@ -86,7 +86,7 @@ public class Formatter {
     /** Formats a list of strings as a viewable indexed list. */
     List<String> getIndexedListForViewing(List<String> listItems) {
         final StringBuilder formatted = new StringBuilder();
-        int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
+        int displayIndex = DISPLAYED_INDEX_OFFSET;
         for (String listItem : listItems) {
             formatted.append(getIndexedListItem(displayIndex, listItem)).append("\n");
             displayIndex++;

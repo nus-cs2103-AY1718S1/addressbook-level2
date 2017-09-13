@@ -64,7 +64,7 @@ public class TextUi {
             fullInputLine = in.nextLine();
         }
 
-        showToUser(fm.formatMessagesToList("[Command entered:" + fullInputLine + "]"));
+        showToUser("[Command entered:" + fullInputLine + "]");
         return fullInputLine;
     }
 
@@ -102,7 +102,7 @@ public class TextUi {
      */
     public void showResultToUser(CommandResult result) {
         final Optional<List<? extends ReadOnlyPerson>> resultPersons = result.getRelevantPersons();
-        resultPersons.ifPresent(readOnlyPeople -> showToUser(fm.formatPersonListView(readOnlyPeople)));
+        resultPersons.ifPresent(this::showPersonListView);
         showToUser(fm.formatCommandResult(result));
     }
 

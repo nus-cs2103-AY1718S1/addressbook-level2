@@ -11,16 +11,17 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
+import seedu.addressbook.commands.SortCommand;
 import seedu.addressbook.commands.Command;
+import seedu.addressbook.commands.AddCommand;
+import seedu.addressbook.commands.ViewAllCommand;
+import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.DeleteCommand;
 import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
 
@@ -70,7 +71,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
@@ -98,6 +99,9 @@ public class Parser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:

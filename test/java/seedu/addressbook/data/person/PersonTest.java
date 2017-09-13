@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class PersonTest {
-    
+
     @Test
     public void checkSequence() throws Exception {
         ArrayList<Person> list = new ArrayList<Person>();
@@ -27,10 +27,10 @@ public class PersonTest {
         Person person4 = new Person(new Name("Daisy"), phone, email, address, tags);
         list.add(person4);
 
-        assertTrue(person1.getSequence() == 1);
-        assertTrue(person2.getSequence() == 2);
-        assertTrue(person4.getSequence() == 4);
-        assertFalse(person4.getSequence() == 3);
+        assertEquals(person1.getSequence(),1);
+        assertEquals(person2.getSequence(),2);
+        assertEquals(person4.getSequence(),4);
+        assertNotEquals(person4.getSequence(),3);
 
     }
 }

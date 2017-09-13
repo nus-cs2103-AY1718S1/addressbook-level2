@@ -33,6 +33,9 @@
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid
 || ===================================================
+|| Enter command: || [Command entered:  address 1]
+|| The person index provided is invalid
+|| ===================================================
 || Enter command: || [Command entered:  view 1]
 || The person index provided is invalid
 || ===================================================

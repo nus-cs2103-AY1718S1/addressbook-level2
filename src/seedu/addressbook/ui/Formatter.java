@@ -41,4 +41,8 @@ public class Formatter {
 	static String getFormattedMessageLine(String m) {
 		return LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX);
 	}
+
+	static String[] getGoodbyeMessages() {
+		return new String[]{MESSAGE_GOODBYE, DIVIDER, DIVIDER};
+	}
 }

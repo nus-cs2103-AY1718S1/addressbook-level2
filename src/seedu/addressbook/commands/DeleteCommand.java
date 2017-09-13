@@ -7,6 +7,7 @@ import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 
 /**
  * Deletes a person identified using it's last displayed index from the address book.
+ * List down the updated contact list after deletion.
  */
 public class DeleteCommand extends Command {
 

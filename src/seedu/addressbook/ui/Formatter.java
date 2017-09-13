@@ -22,4 +22,11 @@ public class Formatter {
 	/** Format of a comment input line. Comment lines are silently consumed when reading user input. */
 	private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
 
+	static String getRequestCommandMessage() {
+		return LINE_PREFIX + "Enter command: ";
+	}
+
+	static String getCommandEntered(String command) {
+		return "[Command entered:" + command + "]";
+	}
 }

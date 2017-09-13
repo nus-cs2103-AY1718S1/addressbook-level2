@@ -79,7 +79,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
+        out.print(Formatter.getRequestCommandMessage());
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
@@ -87,7 +87,7 @@ public class TextUi {
             fullInputLine = in.nextLine();
         }
 
-        showToUser("[Command entered:" + fullInputLine + "]");
+        showToUser(Formatter.getCommandEntered(fullInputLine));
         return fullInputLine;
     }
 

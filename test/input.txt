@@ -141,6 +141,16 @@
   list
 
 ##########################################################
+# test sort command
+##########################################################
+
+  #sort
+  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Adam p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  sort
+  list
+
+##########################################################
 # test clear command
 ##########################################################
 

@@ -15,30 +15,20 @@ import java.util.Scanner;
 
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.ui.Formatter;
 
 /**
  * Text UI of the application.
  */
 public class TextUi {
 
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
-    private static final String LINE_PREFIX = "|| ";
 
     /** A platform independent line separator. */
     private static final String LS = System.lineSeparator();
 
     private static final String DIVIDER = "===================================================";
 
-    /** Format of indexed list item */
-    private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
-
-
-    /** Offset required to convert between 1-indexing and 0-indexing.  */
-    public static final int DISPLAYED_INDEX_OFFSET = 1;
-
-    /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
-    private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
-
+    static Formatter formatter = new Formatter();
     private final Scanner in;
     private final PrintStream out;
 
@@ -69,7 +59,7 @@ public class TextUi {
      * @return true if input line is a comment.
      */
     private boolean isCommentLine(String rawInputLine) {
-        return rawInputLine.trim().matches(COMMENT_LINE_FORMAT_REGEX);
+        return rawInputLine.trim().matches(formatter.getCommentLineFormatRegex());
     }
 
     /**
@@ -79,7 +69,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
+        out.print(formatter.requestEnterCommand());
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
@@ -87,7 +77,7 @@ public class TextUi {
             fullInputLine = in.nextLine();
         }
 
-        showToUser("[Command entered:" + fullInputLine + "]");
+        showToUser(formatter.commandEntered(fullInputLine));
         return fullInputLine;
     }
 
@@ -116,7 +106,7 @@ public class TextUi {
     /** Shows message(s) to the user */
     public void showToUser(String... message) {
         for (String m : message) {
-            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
+            out.println(formatter.getLinePrefix() + m.replace("\n", LS + formatter.getLinePrefix()));
         }
     }
 
@@ -146,27 +136,8 @@ public class TextUi {
 
     /** Shows a list of strings to the user, formatted as an indexed list. */
     private void showToUserAsIndexedList(List<String> list) {
-        showToUser(getIndexedListForViewing(list));
+        showToUser(formatter.getIndexedListForViewing(list));
     }
 
-    /** Formats a list of strings as a viewable indexed list. */
-    private static String getIndexedListForViewing(List<String> listItems) {
-        final StringBuilder formatted = new StringBuilder();
-        int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
-        for (String listItem : listItems) {
-            formatted.append(getIndexedListItem(displayIndex, listItem)).append("\n");
-            displayIndex++;
-        }
-        return formatted.toString();
-    }
-
-    /**
-     * Formats a string as a viewable indexed list item.
-     *
-     * @param visibleIndex visible index for this listing
-     */
-    private static String getIndexedListItem(int visibleIndex, String listItem) {
-        return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
-    }
 
 }

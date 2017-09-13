@@ -49,7 +49,7 @@ public class Parser {
             Pattern.compile("( n/(?<name>(?:(?!p?p/|p?e/|p?a/|t/).)*))?"
                     + "( (?<isPhonePrivate>p?)p/(?<phone>[^/\\s]+))?"
                     + "( (?<isEmailPrivate>p?)e/(?<email>[^/\\s]+))?"
-                    + "( (?<isAddressPrivate>p?)a/(?<address>[^/\\s]+))?"
+                    + "( (?<isAddressPrivate>p?)a/(?<address>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)");
     /**
      * Signals that the user input could not be parsed.

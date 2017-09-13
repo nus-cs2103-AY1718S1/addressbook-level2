@@ -115,6 +115,17 @@ Examples:
 Clears all entries from the address book.<br>
 Format: `clear`  
 
+### Asking why : `why`
+Tells you the reason why.<br>
+Format: `why [KEYWORD]`
+
+> A hidden easter egg in the program. Ask ahead!
+
+Examples: 
+* `why not`<br>
+  Returns `Because you can do it :)`
+
+
 #### Exiting the program : `exit`
 Exits the program.<br>
 Format: `exit`  

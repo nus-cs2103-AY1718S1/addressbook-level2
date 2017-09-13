@@ -1,7 +1,7 @@
 || ===================================================
 || ===================================================
 || Welcome to your Address Book!
-|| AddessBook Level 2 - Version 1.0
+|| AddressBook Level 2 - Version 1.0
 || Launch command format: java seedu.addressbook.Main [STORAGE_FILE_PATH]
 || Using storage file : addressbook.xml
 || ===================================================
@@ -296,6 +296,12 @@
 || Enter command: || [Command entered:  list]
 || 
 || 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  why not]
+|| Because you can do it :)
+|| ===================================================
+|| Enter command: || [Command entered:  why asdf]
+|| I'm sorry, my responses are limited, you must ask the right questions
 || ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...

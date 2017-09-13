@@ -37,4 +37,11 @@ public class Phone extends Contact {
     public static boolean isValidPhone(String test) {
         return test.matches(PHONE_VALIDATION_REGEX);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Address // instanceof handles nulls
+                && this.value.equals(((Address) other).value)); // state check
+    }
 }

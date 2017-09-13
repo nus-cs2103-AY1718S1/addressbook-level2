@@ -46,8 +46,10 @@ public class FindCommandTest {
      * Executes the find command for the given keywords and verifies
      * the result matches the persons in the expectedPersonList exactly.
      */
-    private void assertFindCommandBehavior(String[] keywords, List<ReadOnlyPerson> expectedPersonList) {
-
+    private void assertFindCommandBehavior(String[] keywords, List<ReadOnlyPerson> expectedPersonList){
+        for (int i=0; i<(keywords.length); i++){
+            keywords[i]=keywords[i].toUpperCase();
+        }
         FindCommand command = createFindCommand(keywords);
         CommandResult result = command.execute();
         assertEquals(Command.getMessageForPersonListShownSummary(expectedPersonList), result.feedbackToUser);

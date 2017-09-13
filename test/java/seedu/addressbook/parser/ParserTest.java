@@ -177,7 +177,7 @@ public class ParserTest {
 
     @Test
     public void parse_findCommandValidArgs_parsedCorrectly() {
-        final String[] keywords = { "key1", "key2", "key3" };
+        final String[] keywords = { "KEY1", "KEY2", "KEY3" };
         final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
 
         final String input = "find " + String.join(" ", keySet);
@@ -188,7 +188,7 @@ public class ParserTest {
 
     @Test
     public void parse_findCommandDuplicateKeys_parsedCorrectly() {
-        final String[] keywords = { "key1", "key2", "key3" };
+        final String[] keywords = { "KEY1", "KEY2", "KEY3" };
         final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
 
         // duplicate every keyword

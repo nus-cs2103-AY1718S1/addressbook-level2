@@ -5,20 +5,19 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.ReadOnlyPerson;
-import seedu.addressbook.data.person.UniquePersonList;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
- *
+ * <p>
  * Guarantees:
- *  - Every tag found in every person will also be found in the tag list.
- *  - The tags in each person point to tag objects in the master list. (== equality)
+ * - Every tag found in every person will also be found in the tag list.
+ * - The tags in each person point to tag objects in the master list. (== equality)
  */
 public class AddressBook {
 
@@ -38,7 +37,7 @@ public class AddressBook {
      * Also updates the tag list with any missing tags found in any person.
      *
      * @param persons external changes to this will not affect this address book
-     * @param tags external changes to this will not affect this address book
+     * @param tags    external changes to this will not affect this address book
      */
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
@@ -50,8 +49,8 @@ public class AddressBook {
 
     /**
      * Ensures that every tag in this person:
-     *  - exists in the master list {@link #allTags}
-     *  - points to a Tag object in the master list
+     * - exists in the master list {@link #allTags}
+     * - points to a Tag object in the master list
      */
     private void syncTagsWithMasterList(Person person) {
         final UniqueTagList personTags = person.getTags();
@@ -81,6 +80,64 @@ public class AddressBook {
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
         syncTagsWithMasterList(toAdd);
+    }
+
+    /**
+     * Returns true if an equivalent person exists in the address book.
+     */
+    public Person editPerson(Person toEdit, String arg, int targetIndex) throws IllegalValueException {
+
+            String[] splitArg = arg.split(" ");
+            final Set<Tag> tagSet = new HashSet<>();
+            for (int i = 0; i < splitArg.length; i++) {
+                String prefix = splitArg[i].substring(0, 2);
+                String newValue = splitArg[i].substring(2);
+                switch (prefix) {
+                    case ("n/"):
+                      //  newValue = getToBeEditedName(newValue);
+                        toEdit.setName(new Name(arg.substring(2)));
+                        break;
+                    case ("p/"):
+                        toEdit.setPhone(new Phone(newValue, false));
+                        break;
+                    case ("e/"):
+                        toEdit.setEmail(new Email(newValue, false));
+                        break;
+                    case ("a/"):
+                        toEdit.setAddress(new Address(arg.substring(2), false));
+                        break;
+                    case ("t/"):
+                        tagSet.add(new Tag(newValue));
+                        if (i == splitArg.length - 1) {
+                            toEdit.setTags(new UniqueTagList(tagSet));
+                        }
+                        break;
+                }
+
+            }
+        allPersons.edit(toEdit,targetIndex-1);
+
+
+        return toEdit;
+    }
+
+    /**
+     * Return full string of the name to be changed
+     */
+    public String getToBeEditedName(String arg) {
+        int indexEnd=arg.indexOf("/");
+      //  String[] splitArg = arg.split(" ");
+     //   StringBuilder stringBuilder=new StringBuilder();
+
+//        for (int i = 0; i < splitArg.length; i++) {
+//            String prefix = splitArg[i].substring(0, 2);
+//            if (prefix.equals("/a") || prefix.equals("/p") || prefix.equals("/e") || prefix.equals("/t") ){
+//                stringBuilder.append(splitArg[i-1]);
+//                break;
+//            }
+//        }
+        String editedName=arg.substring(0,indexEnd-2);
+        return editedName;
     }
 
     /**
@@ -125,7 +182,7 @@ public class AddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && this.allPersons.equals(((AddressBook) other).allPersons)
-                        && this.allTags.equals(((AddressBook) other).allTags));
+                && this.allPersons.equals(((AddressBook) other).allPersons)
+                && this.allTags.equals(((AddressBook) other).allTags));
     }
 }

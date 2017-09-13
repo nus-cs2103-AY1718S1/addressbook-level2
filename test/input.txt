@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for further tests
 ##########################################################
 
   # should catch invalid args format
@@ -140,6 +140,20 @@
   delete 1
   list
 
+###########################################################
+# test sort persons command
+###########################################################
+  sort
+  add Abbie Tan p/666666 e/abbie@gmail.com a/666, alpha beta street
+  list
+  sort
+  add Danny Wong Ee p/777777 pe/dannywong@nus.edu.sg a/777, delta charlie street t/friends
+  list
+  sort
+  add Benedict Law p/888888 e/benedictlaw@nus.edu.sg a/888, bravo deta street, t/lonely
+  list
+  sort
+
 ##########################################################
 # test clear command
 ##########################################################
@@ -155,3 +169,4 @@
   # exits properly
   exit
   list
+

@@ -52,7 +52,7 @@ public class Main {
      */
     private void start(String[] launchArgs) {
         try {
-            this.ui = new TextUi();
+            this.ui = TextUi.getInstance();
             this.storage = initializeStorage(launchArgs);
             this.addressBook = storage.load();
             ui.showWelcomeMessage(VERSION, storage.getPath());

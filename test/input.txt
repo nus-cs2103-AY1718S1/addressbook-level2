@@ -20,6 +20,7 @@
 
   # address book should be emptied
   clear
+  Y
   list
 
 ##########################################################
@@ -144,8 +145,19 @@
 # test clear command
 ##########################################################
 
+  # unknown confirmation
+  clear
+  asd
+  list
+
+  # user denies clear
+  clear
+  N
+  list
+
   # clears all
   clear
+  Y
   list
 
 ##########################################################

@@ -3,14 +3,14 @@ package seedu.addressbook.commands;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.parser.Parser;
 import seedu.addressbook.ui.TextUi;
+
 /**
  * Requests confirmation from user. Invalid responses are also
  * considered rejection.
  */
 public abstract class ConfirmableCommand extends Command {
-    private static final TextUi ui = new TextUi();
     private static final String CONFRIMATION_MESSAGE_FORMAT = "%s [Y/N]: ";
-    private final String confirmation_msg;
+    private final String confirmationMsg;
 
     /**
      * The confirmation message will be formatted with
@@ -18,28 +18,29 @@ public abstract class ConfirmableCommand extends Command {
      *
      * @param confirmation_msg message to show the user
      */
-    public ConfirmableCommand(String confirmation_msg){
-        this.confirmation_msg = String.format(CONFRIMATION_MESSAGE_FORMAT,
+    public ConfirmableCommand(String confirmation_msg) {
+        this.confirmationMsg = String.format(CONFRIMATION_MESSAGE_FORMAT,
                 confirmation_msg);
     }
 
     /**
      * Requests user confirmation and returns the result.
-     *
+     * <p>
      * {@code final} keyword added to prevent subclasses from removing
      * the prompt by overriding this method.
      */
     @Override
-    final public CommandResult execute() {
+    public final  CommandResult execute() {
         onExecute();
-        final String userConfirmation = ui.getUserConfirmation(confirmation_msg);
+        final String userConfirmation = TextUi.getInstance()
+                .getUserConfirmation(confirmationMsg);
         try {
-            if(new Parser().parseConfirmation(userConfirmation)){
+            if (new Parser().parseConfirmation(userConfirmation)) {
                 return confirmed();
-            }else{
+            } else {
                 return rejected();
             }
-        }catch (IllegalValueException e){
+        } catch (IllegalValueException e) {
             return new CommandResult(e.getMessage());
         }
     }
@@ -58,7 +59,7 @@ public abstract class ConfirmableCommand extends Command {
     /**
      * Override this execute code before the confirmation prompt.
      */
-    public void onExecute(){
+    public void onExecute() {
         //Do nothing.
     }
 }

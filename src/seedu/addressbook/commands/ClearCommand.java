@@ -1,13 +1,9 @@
 package seedu.addressbook.commands;
 
-import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.parser.Parser;
-import seedu.addressbook.ui.TextUi;
-
 /**
  * Clears the address book.
  */
-public class ClearCommand extends ConfirmableCommand{
+public class ClearCommand extends ConfirmableCommand {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears address book permanently.\n"

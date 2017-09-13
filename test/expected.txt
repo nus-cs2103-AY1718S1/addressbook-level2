@@ -12,7 +12,7 @@
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
-|| Clears address book permanently.
+|| clear: Clears address book permanently.
 || Example: clear
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
 || Parameters: KEYWORD [MORE_KEYWORDS]...
@@ -40,6 +40,7 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  clear]
+|| Clear the address book? [Y/N]: || [Entered:  Y]
 || Address book has been cleared!
 || ===================================================
 || Enter command: || [Command entered:  list]
@@ -291,6 +292,27 @@
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  clear]
+|| Clear the address book? [Y/N]: || [Entered:  asd]
+|| Invalid input!
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  clear]
+|| Clear the address book? [Y/N]: || [Entered:  N]
+|| Address book has not been cleared!
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  clear]
+|| Clear the address book? [Y/N]: || [Entered:  Y]
 || Address book has been cleared!
 || ===================================================
 || Enter command: || [Command entered:  list]

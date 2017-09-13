@@ -65,4 +65,17 @@ public class Formatter {
         showToUser(result.feedbackToUser, DIVIDER);
     }
 
+    /**
+     * Shows a list of persons to the user, formatted as an indexed list.
+     * Private contact details are hidden.
+     */
+    private void showPersonListView(List<? extends ReadOnlyPerson> persons) {
+        final List<String> formattedPersons = new ArrayList<>();
+        for (ReadOnlyPerson person : persons) {
+            formattedPersons.add(person.getAsTextHidePrivate());
+        }
+        showToUserAsIndexedList(formattedPersons);
+    }
+    
+
 }

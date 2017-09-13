@@ -297,6 +297,20 @@
 || 
 || 0 persons listed!
 || ===================================================
+|| Enter command: why
+|| [Command entered:why]
+|| Invalid command format!
+|| why: Tells you why not, why though...etc.
+|| Example: why not
+|| ===================================================
+|| Enter command: why not
+|| [Command entered:why not]
+|| Because you can do it :)
+|| ===================================================
+|| Enter command: why asdf
+|| [Command entered:why asdf]
+|| I'm sorry, my responses are limited, you must ask the right questions
+|| ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...
 || ===================================================

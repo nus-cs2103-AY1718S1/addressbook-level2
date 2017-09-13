@@ -68,6 +68,17 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Finding everyone in a particular social group: `findByGroup`
+Finds persons who are belong to social group(s) specified.<br>
+Format: `findByGroup GROUP [MORE_GROUPS]`
+
+> The search is case sensitive, the order of the group names does not matter, only the group name is searched, 
+and persons belonging to at least one group will be returned.
+
+Example: 
+* `findByGroup work`<br>
+  Returns `John Doe 98765432 johnd@gmail.com 311, Clementi Ave 2, #02-25 work Tags: friends owesMoney`
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`

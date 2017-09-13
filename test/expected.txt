@@ -27,6 +27,8 @@
 || Example: viewall 1
 || help: Shows program usage instructions.
 || Example: help
+|| sort: Displays all persons in the address book as a list sorted according to alphabetical order of the names.
+|| Example: sort
 || exit: Exits the program.
 || Example: exit
 || ===================================================

@@ -9,14 +9,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -50,6 +43,13 @@ public class StorageFile {
         public StorageOperationException(String message) {
             super(message);
         }
+    }
+
+    /***
+     * Signals that a critical system process is using a file a process is trying to make read-only.
+     */
+    public class FileInUseException extends Exception {
+        public FileInUseException(String message) { super(message);        }
     }
 
     private final JAXBContext jaxbContext;
@@ -110,6 +110,9 @@ public class StorageFile {
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
         }
+        if(path.toFile().canWrite()!=true){
+            throw new StorageOperationException("File is read-only");
+        }
     }
 
     /**
@@ -133,6 +136,9 @@ public class StorageFile {
             // manual check for missing elements
             if (loaded.isAnyRequiredFieldMissing()) {
                 throw new StorageOperationException("File data missing some elements");
+            }
+            if(loaded.canWrite()!=true){
+                throw new StorageOperationException("File is read-only");
             }
             return loaded.toModelType();
 

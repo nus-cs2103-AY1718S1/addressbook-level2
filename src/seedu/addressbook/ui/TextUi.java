@@ -8,6 +8,7 @@ import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,26 +22,15 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
  */
 public class TextUi {
 
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
-    private static final String LINE_PREFIX = "|| ";
-
-    /** A platform independent line separator. */
-    private static final String LS = System.lineSeparator();
-
-    private static final String DIVIDER = "===================================================";
-
-    /** Format of indexed list item */
-    private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
-
-
+    /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
+    private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
     /** Offset required to convert between 1-indexing and 0-indexing.  */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
 
-    /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
-    private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
-
     private final Scanner in;
     private final PrintStream out;
+    
+    public Formatter f = new Formatter();
 
     public TextUi() {
         this(System.in, System.out);
@@ -79,7 +69,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
+        out.print(Formatter.printPrefix() + "Enter command: ");
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
@@ -95,28 +85,28 @@ public class TextUi {
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         showToUser(
-                DIVIDER,
-                DIVIDER,
+                Formatter.printDivider(),
+                Formatter.printDivider(),
                 MESSAGE_WELCOME,
                 version,
                 MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
                 storageFileInfo,
-                DIVIDER);
+                Formatter.printDivider());
     }
 
     public void showGoodbyeMessage() {
-        showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+        showToUser(MESSAGE_GOODBYE, Formatter.printDivider(), Formatter.printDivider());
     }
 
 
     public void showInitFailedMessage() {
-        showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);
+        showToUser(MESSAGE_INIT_FAILED, Formatter.printDivider(), Formatter.printDivider());
     }
 
     /** Shows message(s) to the user */
     public void showToUser(String... message) {
         for (String m : message) {
-            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
+            out.println(Formatter.printPrefix() + m.replace("\n", Formatter.printLs() + Formatter.printPrefix()));
         }
     }
 
@@ -129,7 +119,7 @@ public class TextUi {
         if (resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
-        showToUser(result.feedbackToUser, DIVIDER);
+        showToUser(result.feedbackToUser, Formatter.printDivider());
     }
 
     /**
@@ -166,7 +156,7 @@ public class TextUi {
      * @param visibleIndex visible index for this listing
      */
     private static String getIndexedListItem(int visibleIndex, String listItem) {
-        return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
+        return String.format(Formatter.getIndexList(), visibleIndex, listItem);
     }
 
 }

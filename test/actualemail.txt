@@ -1,0 +1,77 @@
+|| ===================================================
+|| ===================================================
+|| Welcome to your Address Book!
+|| AddessBook Level 2 - Version 1.0
+|| Launch command format: java seedu.addressbook.Main [STORAGE_FILE_PATH]
+|| Using storage file : addressbook.xml
+|| ===================================================
+|| Enter command: || [Command entered:	clear]
+|| Address book has been cleared!
+|| ===================================================
+|| Enter command: || [Command entered:	add Daniel p/98765432 e/daniel@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/Smart]
+|| New person added: Daniel Phone: 98765432 Email: daniel@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: [Smart][friends]
+|| ===================================================
+|| Enter command: || [Command entered:	add Johnny Tan p/98765431 e/johnny@gmail.com a/112, Punggol Ave 9, #12-05 t/friends t/Average]
+|| New person added: Johnny Tan Phone: 98765431 Email: johnny@gmail.com Address: 112, Punggol Ave 9, #12-05 Tags: [Average][friends]
+|| ===================================================
+|| Enter command: || [Command entered:	add Johnny Cheng p/88765431 e/johnnycheng@gmail.com a/666, Tampines Ave 9, #14-05 t/bestfriends t/Average]
+|| New person added: Johnny Cheng Phone: 88765431 Email: johnnycheng@gmail.com Address: 666, Tampines Ave 9, #14-05 Tags: [bestfriends][Average]
+|| ===================================================
+|| Enter command: || [Command entered:	add Vivian Lai p/98665431 e/vlai@123.com a/76, Tampines Ave 5, #10-05 t/bestfriends t/Average]
+|| New person added: Vivian Lai Phone: 98665431 Email: vlai@123.com Address: 76, Tampines Ave 5, #10-05 Tags: [bestfriends][Average]
+|| ===================================================
+|| Enter command: || [Command entered:	add Adam Zhang p/97765431 e/adam@yahoo.com a/600, QueensTown Ave 9, #11-05 t/bestfriends t/Average]
+|| New person added: Adam Zhang Phone: 97765431 Email: adam@yahoo.com Address: 600, QueensTown Ave 9, #11-05 Tags: [bestfriends][Average]
+|| ===================================================
+|| Enter command: || [Command entered:	List]
+|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| delete: Deletes the person identified by the index number used in the last person listing.
+|| Parameters: INDEX
+|| Example: delete 1
+|| Clears address book permanently.
+|| Example: clear
+|| find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
+|| Parameters: KEYWORD [MORE_KEYWORDS]...
+|| Example: find alice bob charlie
+|| list: Displays all persons in the address book as a list with index numbers.
+|| Example: list
+|| view: Views the non-private details of the person identified by the index number in the last shown person listing.
+|| Parameters: INDEX
+|| Example: view 1
+|| viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
+|| Parameters: INDEX
+|| Example: viewall 1
+|| help: Shows program usage instructions.
+|| Example: help
+|| exit: Exits the program.
+|| Example: exit
+|| ===================================================
+|| Enter command: || [Command entered:	findemail adam]
+|| Invalid command format! 
+|| findemail: Finds all persons whose email contain any of the specified keywords (non case-sensitive) and displays them as a list with index numbers.
+|| Parameters: KEYWORD [MORE_KEYWORDS]...
+|| Example: findemail alice@mail
+|| ===================================================
+|| Enter command: || [Command entered:	findemail adam@]
+|| 	1. Adam Zhang Phone: 97765431 Email: adam@yahoo.com Address: 600, QueensTown Ave 9, #11-05 Tags: [bestfriends][Average]
+|| 
+|| 1 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:	findemail zz@]
+|| 
+|| 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:	findemail johnny@]
+|| 	1. Johnny Tan Phone: 98765431 Email: johnny@gmail.com Address: 112, Punggol Ave 9, #12-05 Tags: [Average][friends]
+|| 	2. Johnny Cheng Phone: 88765431 Email: johnnycheng@gmail.com Address: 666, Tampines Ave 9, #14-05 Tags: [bestfriends][Average]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:	exit]
+|| Exiting Address Book as requested ...
+|| ===================================================
+|| Good bye!
+|| ===================================================
+|| ===================================================

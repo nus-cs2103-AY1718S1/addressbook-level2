@@ -20,27 +20,17 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
  * Text UI of the application.
  */
 public class TextUi {
-
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
-    private static final String LINE_PREFIX = "|| ";
-
-    /** A platform independent line separator. */
-    private static final String LS = System.lineSeparator();
-
-    private static final String DIVIDER = "===================================================";
-
-    /** Format of indexed list item */
-    private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
-
-
-    /** Offset required to convert between 1-indexing and 0-indexing.  */
+    /**
+     * Offset required to convert between 1-indexing and 0-indexing.
+     */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
 
-    /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
+    /**
+     * Format of a comment input line. Comment lines are silently consumed when reading user input.
+     */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
 
     private final Scanner in;
-    private final PrintStream out;
     private final Formatter formatter;
 
     public TextUi() {
@@ -49,7 +39,6 @@ public class TextUi {
 
     public TextUi(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
-        this.out = out;
         this.formatter = new Formatter(out);
     }
 

@@ -297,11 +297,6 @@
 || 
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  why]
-|| Invalid command format!
-|| why: Tells you why not, why though...etc.
-|| Example: why not
-|| ===================================================
 || Enter command: || [Command entered:  why not]
 || Because you can do it :)
 || ===================================================

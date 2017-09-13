@@ -9,12 +9,7 @@ import javax.xml.bind.annotation.XmlValue;
 
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -32,6 +27,8 @@ public class AdaptedPerson {
 
     @XmlElement(required = true)
     private String name;
+    @XmlElement(required = true)
+    private String gender;
     @XmlElement(required = true)
     private AdaptedContactDetail phone;
     @XmlElement(required = true)
@@ -55,6 +52,8 @@ public class AdaptedPerson {
      */
     public AdaptedPerson(ReadOnlyPerson source) {
         name = source.getName().fullName;
+
+        gender = source.getGender().gender;
 
         phone = new AdaptedContactDetail();
         phone.isPrivate = source.getPhone().isPrivate();
@@ -88,8 +87,8 @@ public class AdaptedPerson {
                 return true;
             }
         }
-        // second call only happens if phone/email/address are all not null
-        return Utils.isAnyNull(name, phone, email, address)
+        // second call only happens if gender phone/email/address are all not null
+        return Utils.isAnyNull(name, gender, phone, email, address)
                 || Utils.isAnyNull(phone.value, email.value, address.value);
     }
 
@@ -104,10 +103,11 @@ public class AdaptedPerson {
             personTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
+        final Gender gender = new Gender(this.gender);
         final Phone phone = new Phone(this.phone.value, this.phone.isPrivate);
         final Email email = new Email(this.email.value, this.email.isPrivate);
         final Address address = new Address(this.address.value, this.address.isPrivate);
         final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, gender, phone, email, address, tags);
     }
 }

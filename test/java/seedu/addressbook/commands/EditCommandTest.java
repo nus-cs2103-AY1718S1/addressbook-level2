@@ -23,17 +23,27 @@ public class EditCommandTest {
                 null, false,
                 "alice@nushackers.org", false,
                 "8 Computing Drive, Singapore", false,
+                "0101", false,
                 defaultTags);
 
         new EditCommand("Alice Betsy",
                 "91235468", false,
                 null, false,
                 "8 Computing Drive, Singapore", false,
+                "0101", false,
                 defaultTags);
 
         new EditCommand("Alice Betsy",
                 "91235468", false,
                 "alice@nushackers.org", false,
+                null, false,
+                "0101", false,
+                defaultTags);
+
+        new EditCommand("Alice Betsy",
+                "91235468", false,
+                "alice@nushackers.org", false,
+                "8 Computing Drive, Singapore", false,
                 null, false,
                 defaultTags);
 
@@ -41,6 +51,7 @@ public class EditCommandTest {
                 "91235468", false,
                 "alice@nushackers.org", false,
                 "8 Computing Drive, Singapore", false,
+                "0101", false,
                 emptyTags);
     }
 
@@ -54,6 +65,7 @@ public class EditCommandTest {
                 "91235468", false,
                 "alice@nushackers.org", false,
                 "8 Computing Drive, Singapore", false,
+                "0101", false,
                 new HashSet<>());
     }
 }

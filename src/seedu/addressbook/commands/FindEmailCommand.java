@@ -54,8 +54,11 @@ public class FindEmailCommand extends Command
 	             		break;
 	             	}
 	        	 
-	        	 if (match)
+	        	 if (match) 
+	        	 {
 	             	matchedPersons.add(person);
+	             	match = false;
+	        	 }
 	        	 
 	        
 	     }

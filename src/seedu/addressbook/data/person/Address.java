@@ -13,10 +13,10 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
-    public final String block;
-    public final String street;
-    public final String unit;
-    public final String postalCode;
+    public String block = "";
+    public String street = "";
+    public String unit = "";
+    public String postalCode = "";
     private boolean isPrivate;
 
     /**
@@ -27,19 +27,22 @@ public class Address {
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String[] trimmedAddress = address.trim().split(",");
 
-        if(trimmedAddress.length != 4) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
-        }
-        else {
+        if(trimmedAddress.length >= 1) {
             block = trimmedAddress[0].trim();
+        }
+        if(trimmedAddress.length >= 2) {
             street = trimmedAddress[1].trim();
+        }
+        if(trimmedAddress.length >= 3) {
             unit = trimmedAddress[2].trim();
+        }
+        if(trimmedAddress.length == 4) {
             postalCode = trimmedAddress[3].trim();
         }
 
 
         this.isPrivate = isPrivate;
-        if (!isValidAddress(address.trim())) {
+        if (trimmedAddress.length == 0) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = address.trim();

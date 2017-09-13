@@ -29,6 +29,10 @@
 || Example: help
 || exit: Exits the program.
 || Example: exit
+|| edit: Edits the person identified by the index number used in the last person listing.
+|| Parameters: INDEX
+|| Example: edit 1
+|| Just follow the prompts afterwards
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid

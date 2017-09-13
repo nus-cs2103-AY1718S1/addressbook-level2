@@ -6,6 +6,10 @@ public class ReminderCommand extends Command {
 
     public static final String REMINDER_SUCCESS = "New reminder added:";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a reminder that pops up during launch.\n"
+            + "Example: " + COMMAND_WORD + " remember to do your tutorial!";
+
     public String reminderToAdd;
 
 

@@ -2,6 +2,10 @@
 
 addressbook.xml
 
+# Files for Eclipse
+.classpath
+.project
+
 # Compiled classfiles
 bin/
 *.class

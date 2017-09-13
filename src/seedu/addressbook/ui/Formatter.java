@@ -2,11 +2,14 @@ package seedu.addressbook.ui;
 
 import java.util.List;
 
+import static seedu.addressbook.common.Messages.MESSAGE_FEEDBACK_COMMAND_ECHO;
+import static seedu.addressbook.common.Messages.MESSAGE_PROMPT_USER_INPUT;
+import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
+import static seedu.addressbook.common.Messages.MESSAGE_FEEDBACK_WELCOME_MESSAGE;
 import static seedu.addressbook.common.Messages.MESSAGE_GOODBYE;
 import static seedu.addressbook.common.Messages.MESSAGE_INIT_FAILED;
-import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE;
-import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
-import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
+import static seedu.addressbook.common.Messages.MESSAGE_FEEDBACK_COMMAND_RESULT;
+import static seedu.addressbook.common.Messages.MESSAGE_FORMATTED_FEEDBACK;
 
 /**
  * Text formatter utility class for text UI.
@@ -27,24 +30,10 @@ public class Formatter {
     
     /** Offset required to convert between 1-indexing and 0-indexing.  */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
-
-
-    //===================================== Message Constants ===========================================
-    private static final String MESSAGE_PROMPT_USER_INPUT = LINE_PREFIX + "Enter command: ";
-    private static final String MESSAGE_FEEDBACK_COMMAND_ECHO = "[Command entered:%1$s]";
-    private static final String MESSAGE_FEEDBACK_WELCOME_MESSAGE = DIVIDER + "\n" + DIVIDER
-            + "\n" + MESSAGE_WELCOME
-            + "\n" + "%1$s"
-            + "\n" + MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE
-            + "\n" + "%2$s"
-            + "\n" + DIVIDER;
-    private static final String MESSAGE_FEEDBACK_GOODBYE_MESSAGE = MESSAGE_GOODBYE + "\n" + DIVIDER + "\n" + DIVIDER;
-    private static final String MESSAGE_FEEDBACK_INIT_FAILED = MESSAGE_INIT_FAILED + "\n" + DIVIDER + "\n" + DIVIDER;
-    private static final String MESSAGE_FEEDBACK_COMMAND_RESULT = "%1$s" + "\n" + DIVIDER;
-    private static final String MESSAGE_FORMATTED_FEEDBACK = LINE_PREFIX + "%1$s";
+    
 
     public static String getUserInputPrompt() {
-        return MESSAGE_PROMPT_USER_INPUT;
+        return String.format(MESSAGE_PROMPT_USER_INPUT, LINE_PREFIX);
     }
     
     public static String getUserCommandEcho(String userCommand) {
@@ -53,24 +42,25 @@ public class Formatter {
     
     public static String getWelcomeMessage(String version, String storageFilePath) {
         return String.format(MESSAGE_FEEDBACK_WELCOME_MESSAGE,
+                DIVIDER,
                 version,
                 String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath));
     }
     
     public static String getGoodbyeMessage() {
-        return MESSAGE_FEEDBACK_GOODBYE_MESSAGE;
+        return String.format(MESSAGE_GOODBYE, DIVIDER);
     }
     
     public static String getInitFailedMessage() {
-        return MESSAGE_FEEDBACK_INIT_FAILED;
+        return String.format(MESSAGE_INIT_FAILED, DIVIDER);
     }
     
     public static String getFormattedFeedbackMessage(String message) {
-        return String.format(MESSAGE_FORMATTED_FEEDBACK, message.replace("\n", LS + LINE_PREFIX));
+        return String.format(MESSAGE_FORMATTED_FEEDBACK, LINE_PREFIX, message.replace("\n", LS + LINE_PREFIX));
     }
     
     public static String getCommandResultMessage(String feedbackMessage) {
-        return String.format(MESSAGE_FEEDBACK_COMMAND_RESULT, feedbackMessage);
+        return String.format(MESSAGE_FEEDBACK_COMMAND_RESULT, feedbackMessage, DIVIDER);
     }
 
     /** Returns a formatted list of strings as a viewable indexed list. */

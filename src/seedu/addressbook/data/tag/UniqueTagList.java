@@ -33,6 +33,14 @@ public class UniqueTagList implements Iterable<Tag> {
     private final List<Tag> internalList = new ArrayList<>();
 
     /**
+     * Retrieves a listing of every tag, as string
+     */
+    public List<String> getTagsAsList() {
+        List<String> strList = new ArrayList<>();
+        for(Tag t : internalList) strList.add(t.tagName);
+        return strList;
+    }
+    /**
      * Constructs an empty TagList.
      */
     public UniqueTagList() {}

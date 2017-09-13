@@ -12,7 +12,7 @@
   # should show appropriate message when no listing has happened yet
   delete 1
   view 1
-  viewall 1
+  viewall 1 ABC123
 
 ##########################################################
 # clean and check state
@@ -68,13 +68,13 @@
   view -1
   view 0
   view 6
-  viewall -1
-  viewall 0
-  viewall 6
+  viewall -1 ABC123
+  viewall 0 ABC123
+  viewall 6 ABC123
 
   # should show all non private for both view and viewall
   view 1
-  viewall 1
+  viewall 1 ABC123
 
   # should show only non private details for view
   view 3
@@ -82,6 +82,16 @@
   view 5
 
   # should show all details even private for viewall
+  viewall 3 ABC123
+  viewall 4 ABC123
+  viewall 5 ABC123
+
+  # should detect when wrong password is entered
+  viewall 3 12321
+  viewall 4 sds$$
+  viewall 5 fds12
+
+  # block info from displaying if no password given
   viewall 3
   viewall 4
   viewall 5
@@ -127,7 +137,7 @@
 
   # should catch attempt to view something already deleted
   view 2
-  viewall 2
+  viewall 2 ABC123
 
   # should have deleted based on last active view's index
   list

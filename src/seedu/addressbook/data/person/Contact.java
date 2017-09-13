@@ -11,10 +11,12 @@ public class Contact {
 
     @Override
     public String toString() {
+
         return value;
     }
 
     public int hashCode() {
+
         return value.hashCode();
     }
 }

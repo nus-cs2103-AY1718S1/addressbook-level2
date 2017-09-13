@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.AddressBook;
 
 /**
  * Text UI of the application.
@@ -91,8 +92,7 @@ public class TextUi {
         return fullInputLine;
     }
 
-
-    public void showWelcomeMessage(String version, String storageFilePath) {
+    public void showWelcomeMessage(String version, String storageFilePath, AddressBook addrBook) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         showToUser(
                 DIVIDER,
@@ -101,6 +101,8 @@ public class TextUi {
                 version,
                 MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
                 storageFileInfo,
+                DIVIDER,
+                "REMINDER: " + addrBook.getReminderMessage(),
                 DIVIDER);
     }
 

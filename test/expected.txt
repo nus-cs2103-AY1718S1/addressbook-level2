@@ -5,6 +5,8 @@
 || Launch command format: java seedu.addressbook.Main [STORAGE_FILE_PATH]
 || Using storage file : addressbook.xml
 || ===================================================
+|| REMINDER:  CS2103T tutorial
+|| ===================================================
 || Enter command: || [Command entered:  sfdfd]
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
@@ -92,6 +94,9 @@
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 
 || 1 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  bored]
+|| This person might be bored too! Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive]
 || New person added: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
@@ -296,6 +301,9 @@
 || Enter command: || [Command entered:  list]
 || 
 || 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  reminder CS2103T tutorial]
+|| New reminder added:
 || ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...

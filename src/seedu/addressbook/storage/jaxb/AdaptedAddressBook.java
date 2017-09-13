@@ -10,6 +10,7 @@ import seedu.addressbook.data.person.UniquePersonList;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlValue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class AdaptedAddressBook {
     private List<AdaptedPerson> persons = new ArrayList<>();
     @XmlElement
     private List<AdaptedTag> tags = new ArrayList<>();
+    @XmlElement
+    private String reminderMessage;
 
     /**
      * No-arg constructor for JAXB use.
@@ -35,6 +38,7 @@ public class AdaptedAddressBook {
      * @param source future changes to this will not affect the created AdaptedAddressBook
      */
     public AdaptedAddressBook(AddressBook source) {
+        reminderMessage = source.getReminderMessage();
         persons = new ArrayList<>();
         tags = new ArrayList<>();
         for (ReadOnlyPerson person : source.getAllPersons()) {
@@ -65,6 +69,7 @@ public class AdaptedAddressBook {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -82,6 +87,6 @@ public class AdaptedAddressBook {
         for (AdaptedPerson person : persons) {
             personList.add(person.toModelType());
         }
-        return new AddressBook(new UniquePersonList(personList), new UniqueTagList(tagList));
+        return new AddressBook(new UniquePersonList(personList), new UniqueTagList(tagList), reminderMessage);
     }
 }

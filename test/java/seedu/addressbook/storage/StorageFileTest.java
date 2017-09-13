@@ -109,6 +109,7 @@ public class StorageFileTest {
 
     private AddressBook getTestAddressBook() throws Exception {
         AddressBook ab = new AddressBook();
+        ab.setReminderMessage("CS2103T tutorial");
         ab.addPerson(new Person(new Name("John Doe"),
                                 new Phone("98765432", false),
                                 new Email("johnd@gmail.com", false),

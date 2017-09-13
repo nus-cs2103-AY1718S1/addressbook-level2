@@ -72,12 +72,6 @@ public class ParserTest {
     }
 
     @Test
-    public void parse_addressCommand_parsedCorrectly() {
-        final String input = "address";
-        parseAndAssertCommandType(input, AddressCommand.class);
-    }
-
-    @Test
     public void parse_clearCommand_parsedCorrectly() {
         final String input = "clear";
         parseAndAssertCommandType(input, ClearCommand.class);
@@ -140,6 +134,28 @@ public class ParserTest {
         final int testIndex = 2;
         final String input = "view " + testIndex;
         final ViewCommand result = parseAndAssertCommandType(input, ViewCommand.class);
+        assertEquals(result.getTargetIndex(), testIndex);
+    }
+
+    @Test
+    public void addressCommandNoArgs_errorMessage() {
+        final String[] inputs = { "address", "address " };
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddressCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_addressCommandArgsIsNotSingleNumber_errorMessage() {
+        final String[] inputs = { "address notAnumber ", "address 8*wh12", "address 1 2 3 4 5" };
+        final String resultMessage = MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_addressCommandNumericArg_indexParsedCorrectly() {
+        final int testIndex = 2;
+        final String input = "address " + testIndex;
+        final AddressCommand result = parseAndAssertCommandType(input, AddressCommand.class);
         assertEquals(result.getTargetIndex(), testIndex);
     }
 

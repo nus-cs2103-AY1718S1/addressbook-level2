@@ -48,7 +48,7 @@ public class EditCommand extends Command{
         try {
             final ReadOnlyPerson target = getTargetPerson();
             addressBook.editPerson(getTargetIndex(), target, toEdit);
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, target));
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, toEdit));
 
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

@@ -38,14 +38,23 @@ public class Formatter {
 				storageFileInfo, DIVIDER};
 	}
 
+	/**
+	 * @return a formatted line of message
+	 */
 	static String getFormattedMessageLine(String m) {
 		return LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX);
 	}
 
+	/**
+	 * @return lines of messages for the goodbye message
+	 */
 	static String[] getGoodbyeMessages() {
 		return new String[]{MESSAGE_GOODBYE, DIVIDER, DIVIDER};
 	}
 
+	/**
+	 * @return Formatted initilization failed message
+	 */
 	static String[] getInitFailedMessages() {
 		return new String[]{MESSAGE_INIT_FAILED, DIVIDER, DIVIDER};
 	}

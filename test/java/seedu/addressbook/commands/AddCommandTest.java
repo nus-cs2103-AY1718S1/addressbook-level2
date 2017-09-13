@@ -146,4 +146,23 @@ public class AddCommandTest {
         assertTrue(people.contains(p));
         assertEquals(1, people.immutableListView().size());
     }
+
+    /**
+     *
+     * @throws Exception
+     * Checks if the auto-list done after Add command matches the actual output of list command
+     */
+    @Test
+    public void addCommand_autoListMatchesWith_actualListOfAddressBook() throws Exception {
+        Person p = TestUtil.generateTestPerson();
+        AddressBook book = new AddressBook();
+        AddCommand command = new AddCommand(p);
+        command.setData(book, EMPTY_PERSON_LIST);
+        ListCommand expectedCommand = new ListCommand();
+        expectedCommand.setData(book, EMPTY_PERSON_LIST);
+        CommandResult actualResult = command.execute();
+        CommandResult expectedResult = expectedCommand.execute();
+
+        assertEquals(expectedResult.getRelevantPersons(), actualResult.getRelevantPersons());
+    }
 }

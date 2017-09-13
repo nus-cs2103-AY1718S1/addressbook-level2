@@ -81,7 +81,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
+        formatter.showEnterCommand();
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
@@ -96,30 +96,23 @@ public class TextUi {
 
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        showToUser(
-                DIVIDER,
-                DIVIDER,
-                MESSAGE_WELCOME,
-                version,
-                MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-                storageFileInfo,
-                DIVIDER);
+        formatter.showWelcomeMessage(MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo);
     }
 
     public void showGoodbyeMessage() {
-        showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+        formatter.showGoodbyeMessage(MESSAGE_GOODBYE);
     }
 
 
     public void showInitFailedMessage() {
-        showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);
+        formatter.showInitFailedMessage(MESSAGE_INIT_FAILED);
     }
 
-    /** Shows message(s) to the user */
+    /**
+     * Shows message(s) to the user
+     */
     public void showToUser(String... message) {
-        for (String m : message) {
-            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
-        }
+        formatter.showToUser(message);
     }
 
     /**
@@ -127,11 +120,7 @@ public class TextUi {
      * command execution segments.
      */
     public void showResultToUser(CommandResult result) {
-        final Optional<List<? extends ReadOnlyPerson>> resultPersons = result.getRelevantPersons();
-        if (resultPersons.isPresent()) {
-            showPersonListView(resultPersons.get());
-        }
-        showToUser(result.feedbackToUser, DIVIDER);
+        formatter.showResultToUser(result);
     }
 
     /**

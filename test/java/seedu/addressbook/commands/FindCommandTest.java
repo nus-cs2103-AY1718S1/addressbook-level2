@@ -38,8 +38,20 @@ public class FindCommandTest {
         //repeated keywords: matched
         assertFindCommandBehavior(new String[]{"Amy", "Amy"}, Arrays.asList(td.amy));
 
-        //Keyword matching a word in address: not matched
-        assertFindCommandBehavior(new String[]{"Clementi"}, Collections.emptyList());
+        //Keyword matching a word in 2 addresses, 1 public 1 private:  matched
+        assertFindCommandBehavior(new String[]{"Clementi"}, Arrays.asList(td.amy));
+
+        //Keyword is contained in 3 emails, all public:  matched
+        assertFindCommandBehavior(new String[]{"@gmail"}, Arrays.asList(td.amy, td.bill, td.candy));
+
+        //Keyword is contained in 1 email, which is private:  not matched
+        assertFindCommandBehavior(new String[]{"ss@tt"}, Collections.emptyList());
+
+        //Keyword matching 1 phone number that is public:  matched
+        assertFindCommandBehavior(new String[]{"91119111"}, Arrays.asList(td.amy));
+
+        //Keyword matching 1 phone number that is private:  not matched
+        assertFindCommandBehavior(new String[]{"123456"}, Collections.emptyList());
     }
 
     /**

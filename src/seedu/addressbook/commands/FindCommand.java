@@ -23,6 +23,9 @@ public class FindCommand extends Command {
 
     private final Set<String> keywords;
 
+    private static final boolean MATCHED = true;
+    private static final boolean NOT_MATCHED = false;
+
     public FindCommand(Set<String> keywords) {
         this.keywords = keywords;
     }
@@ -36,25 +39,87 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        final List<ReadOnlyPerson> personsFound = getPersonsWithNameContainingAnyKeyword(keywords);
+        final List<ReadOnlyPerson> personsFound = getPersonsWithDetailsContainingAnyKeyword(keywords);
         return new CommandResult(getMessageForPersonListShownSummary(personsFound), personsFound);
     }
 
     /**
-     * Retrieves all persons in the address book whose names contain some of the specified keywords.
+     * Retrieves all persons in the address book whose names or public phone numbers, emails, addresses
+     * contain some of the specified keywords.
      *
      * @param keywords for searching
      * @return list of persons found
      */
-    private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
+    private List<ReadOnlyPerson> getPersonsWithDetailsContainingAnyKeyword(Set<String> keywords) {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
-            final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            if (nameMatchesKeyword(person, keywords) ||
+                    (!person.getPhone().isPrivate() && phoneMatchesKeyword(person, keywords)) ||
+                    (!person.getEmail().isPrivate() && emailMatchesKeyword(person, keywords)) ||
+                    (!person.getAddress().isPrivate() && addressMatchesKeyword(person, keywords)) ) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
+    }
+
+    /**
+     * Checks if any part of a person's name matches any of the specified keywords.
+     *
+     * @return true if there is a match, false otherwise.
+     */
+    private boolean nameMatchesKeyword(ReadOnlyPerson person, Set<String> allKeywords) {
+        final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+        if (!Collections.disjoint(wordsInName, allKeywords)) {
+            return MATCHED;
+        }
+
+        return NOT_MATCHED;
+    }
+
+    /**
+     * Checks if a person's phone number matches any of the specified keywords.
+     *
+     * @return true if there is a match, false otherwise.
+     */
+    private boolean phoneMatchesKeyword(ReadOnlyPerson person, Set<String> allKeywords) {
+        final Set<String> phoneNumber = new HashSet<>();
+        phoneNumber.add(person.getPhone().toString());
+        if (!Collections.disjoint(phoneNumber, allKeywords)) {
+            return MATCHED;
+        }
+
+        return NOT_MATCHED;
+    }
+
+    /**
+     * Checks if a person's email contains any of the specified keywords.
+     *
+     * @return true if there is a match, false otherwise.
+     */
+    private boolean emailMatchesKeyword(ReadOnlyPerson person, Set<String> allKeywords) {
+        final String email = person.getEmail().toString();
+        for (String keyword : allKeywords) {
+            if (email.contains(keyword)) {
+                return MATCHED;
+            }
+        }
+
+        return NOT_MATCHED;
+    }
+
+    /**
+     * Checks if a person's address contains any of the specified keywords.
+     *
+     * @return true if there is a match, false otherwise.
+     */
+    private boolean addressMatchesKeyword(ReadOnlyPerson person, Set<String> allKeywords) {
+        final Set<String> wordsInAddress = new HashSet<>(person.getAddress().getPartsOfAddress());
+        if (!Collections.disjoint(wordsInAddress, allKeywords)) {
+            return MATCHED;
+        }
+
+        return NOT_MATCHED;
     }
 
 }

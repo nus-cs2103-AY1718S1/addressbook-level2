@@ -32,7 +32,7 @@ public class FindNameCommandTest {
         assertFindCommandBehavior("my", Collections.emptyList());
 
         //multiple words: matched
-        assertFindCommandBehavior("amy bill candy Destiny",
+        assertFindCommandBehavior("aMy bIll CAndy Destiny",
                 Arrays.asList(td.amy, td.bill, td.candy));
 
         //repeated keywords: matched

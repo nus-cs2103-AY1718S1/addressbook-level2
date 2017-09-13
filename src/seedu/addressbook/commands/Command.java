@@ -36,6 +36,14 @@ public class Command {
         return String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, personsDisplayed.size());
     }
 
+    public static String getMessageForRandomPersonFound() {
+        return Messages.MESSAGE_RANDOM_PERSON_OVERVIEW;
+    }
+
+    public static String getMessageForAddressBookIsEmpty() {
+        return Messages.MESSAGE_EMPTY_LIST;
+    }
+
     /**
      * Executes the command and returns the result.
      */

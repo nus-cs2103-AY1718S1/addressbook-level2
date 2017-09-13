@@ -78,7 +78,7 @@ Examples:
   `update 2 John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`<br>
   Update the 2nd person in the address book.
 * `find Betsy`<br> 
-  `update 1 Besty p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01``<br>
+  `update 1 Besty p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`<br>
   update the 1st person in the results of the `find` command.
 
 

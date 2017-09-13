@@ -21,10 +21,11 @@
   # address book should be emptied
   clear
   list
+  sort
 
 
 ##########################################################
-# test add person command, setup state for futu tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format

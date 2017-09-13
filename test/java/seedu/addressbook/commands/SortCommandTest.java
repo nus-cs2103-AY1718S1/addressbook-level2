@@ -1,58 +1,86 @@
 package seedu.addressbook.commands;
 
+import org.junit.Before;
 import org.junit.Test;
-import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.*;
+import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.util.TestUtil;
-import seedu.addressbook.util.TypicalPersons;
-
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 public class SortCommandTest {
-    private TypicalPersons td = new TypicalPersons();
+    private AddressBook emptyAddressBook;
+    private AddressBook addressBook;
+    private AddressBook addressBookASCOrder;
+    private AddressBook addressBookDSCOrder;
 
-    private AddressBook typicalAddressBook = td.getTypicalAddressBook();
-    private AddressBook emptyAddressBook = TestUtil.createAddressBook();
-    private List<ReadOnlyPerson> emptyPersonList = Collections.emptyList();
-    private List<ReadOnlyPerson> listWithAllTypicalPersons = Arrays.asList(td.getTypicalPersons());
-    private List<ReadOnlyPerson> listWithSomeTypicalPersons = Arrays.asList(td.amy, td.candy, td.dan);
+    private List<ReadOnlyPerson> emptyDisplayList;
+    private List<ReadOnlyPerson> ascDisplayList;
+    private List<ReadOnlyPerson> dscDisplayList;
+
+    @Before
+    public void setUp() throws Exception {
+        Person johnDoe = new Person(new Name("John Doe"), new Phone("61234567", false),
+                new Email("john@doe.com", false), new Address("395C Ben Road", false), new UniqueTagList());
+        Person janeDoe = new Person(new Name("Jane Doe"), new Phone("91234567", false),
+                new Email("jane@doe.com", false), new Address("33G Ohm Road", false), new UniqueTagList());
+        Person samDoe = new Person(new Name("Sam Doe"), new Phone("63345566", false),
+                new Email("sam@doe.com", false), new Address("55G Abc Road", false), new UniqueTagList());
+        Person davidGrant = new Person(new Name("David Grant"), new Phone("61121122", false),
+                new Email("david@grant.com", false), new Address("44H Define Road", false),
+                new UniqueTagList());
+
+        emptyAddressBook = TestUtil.createAddressBook();
+        addressBook = TestUtil.createAddressBook(johnDoe, janeDoe, davidGrant, samDoe);
+        addressBookASCOrder = TestUtil.createAddressBook(davidGrant,janeDoe,johnDoe,samDoe);
+        addressBookDSCOrder = TestUtil.createAddressBook(samDoe,johnDoe,janeDoe,davidGrant);
+
+        emptyDisplayList = TestUtil.createList();
+        ascDisplayList = TestUtil.createList(davidGrant,janeDoe,johnDoe,samDoe);
+        dscDisplayList = TestUtil.createList(samDoe,johnDoe,janeDoe,davidGrant);
+
+    }
+
+    @Test
+    public void execute_sortASCWithoutPeople() throws Exception {
+        // empty addressbook
+        assertSortWithEmptyAddressBook(emptyAddressBook,emptyDisplayList,emptyDisplayList,"asc");
+    }
+
+    @Test
+    public void execute_sortDSCWithoutPeople() throws Exception {
+        // empty addressbook
+        assertSortWithEmptyAddressBook(emptyAddressBook,emptyDisplayList,emptyDisplayList,"dsc");
+    }
 
     @Test
     public void execute_sortASCWithPeople() throws Exception {
-        // empty addressbook
-        assertSortWithEmptyAddressBook(emptyAddressBook,emptyPersonList,"asc");
+        // Filled addressbook
+        assertSortWithAddressBook(addressBook,dscDisplayList,ascDisplayList,"asc");
+    }
 
-        // non-empty addressbook
-        assertSortWithNonEmptyAddressBook(typicalAddressBook, listWithAllTypicalPersons,"asc");
-
+    @Test
+    public void execute_sortDSCWithPeople() throws Exception {
+        // Filled addressbook
+        assertSortWithAddressBook(addressBook,ascDisplayList,dscDisplayList,"dsc");
     }
 
     /**
-     * Asserts that the sort is able to be completed despite an empty address book
+     * Asserts that the sort is able to be completed with an empty address book
      */
-    private void assertSortWithEmptyAddressBook(AddressBook addressBook, List<ReadOnlyPerson> relevantPersons, String option){
-        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS);
-
-        assertSortBehavior(new SortCommand(option),addressBook,relevantPersons,expectedMessage);
-
-        expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS);
-
-        assertSortBehavior(new SortCommand(option),addressBook,relevantPersons,expectedMessage);
+    private void assertSortWithEmptyAddressBook(AddressBook addressBook, List<ReadOnlyPerson> relevantPersons,List<ReadOnlyPerson> expectedList,
+                                                String option){
+        assertSortBehavior(new SortCommand(option),addressBook,relevantPersons,expectedList);
     }
 
-    private void assertSortWithNonEmptyAddressBook(AddressBook addressBook, List<ReadOnlyPerson> relevantPersons, String option) {
-        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS);
-
-        assertSortBehavior(new SortCommand(option), addressBook, relevantPersons, expectedMessage);
-
-        expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS);
-
-        assertSortBehavior(new SortCommand(option), addressBook, relevantPersons, expectedMessage);
+    /**
+     * Asserts that the sort is able to be completed with a non empty address book
+     */
+    private void assertSortWithAddressBook(AddressBook addressBook, List<ReadOnlyPerson> relevantPersons,List<ReadOnlyPerson> expectedList,
+                                           String option){
+        assertSortBehavior(new SortCommand(option),addressBook,relevantPersons,expectedList);
     }
 
     /**
@@ -61,13 +89,10 @@ public class SortCommandTest {
      * 1. The feedback message of the CommandResult it returns matches expectedMessage.
      */
     private static void assertSortBehavior(Command sortCommand, AddressBook addressBook,
-                                           List<ReadOnlyPerson> relevantPersons, String expectedMessage) {
-        AddressBook expectedAddressBook = TestUtil.clone(addressBook);
-
+                                           List<ReadOnlyPerson> relevantPersons, List<ReadOnlyPerson> expectedList) {
         sortCommand.setData(addressBook, relevantPersons);
         CommandResult result = sortCommand.execute();
 
-        // feedback message is as expected.
-        assertEquals(expectedMessage, result.feedbackToUser);
+        assertEquals(expectedList, result.getRelevantPersons().get());
     }
 }

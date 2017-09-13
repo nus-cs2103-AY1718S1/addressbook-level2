@@ -258,13 +258,13 @@ public class ParserTest {
         final Person testPerson = generateTestPerson();
         String input = convertPersonToAddCommandString(testPerson);
         for (Tag tag : testPerson.getTags()) {
-            // create duplicates by doubling each tag
-            input += " t/" + tag.tagName;
-        }
-
-        final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
-        assertEquals(result.getPerson(), testPerson);
+        // create duplicates by doubling each tag
+        input += " t/" + tag.tagName;
     }
+
+    final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
+    assertEquals(result.getPerson(), testPerson);
+}
 
     private static Person generateTestPerson() {
         try {

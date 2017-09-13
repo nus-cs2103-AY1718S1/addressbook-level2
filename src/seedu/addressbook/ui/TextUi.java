@@ -129,7 +129,7 @@ public class TextUi {
         if (resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
-        showToUser(result.feedbackToUser, DIVIDER);
+        out.println(Formatter.showToUser(result.feedbackToUser, DIVIDER));
     }
 
     /**
@@ -146,7 +146,7 @@ public class TextUi {
 
     /** Shows a list of strings to the user, formatted as an indexed list. */
     private void showToUserAsIndexedList(List<String> list) {
-        showToUser(getIndexedListForViewing(list));
+        out.println(Formatter.showToUser(getIndexedListForViewing(list)));
     }
 
     /** Formats a list of strings as a viewable indexed list. */
@@ -154,19 +154,9 @@ public class TextUi {
         final StringBuilder formatted = new StringBuilder();
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
         for (String listItem : listItems) {
-            formatted.append(getIndexedListItem(displayIndex, listItem)).append("\n");
+            formatted.append(Formatter.getIndexedListItem(displayIndex, listItem)).append("\n");
             displayIndex++;
         }
         return formatted.toString();
     }
-
-    /**
-     * Formats a string as a viewable indexed list item.
-     *
-     * @param visibleIndex visible index for this listing
-     */
-    private static String getIndexedListItem(int visibleIndex, String listItem) {
-        return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
-    }
-
 }

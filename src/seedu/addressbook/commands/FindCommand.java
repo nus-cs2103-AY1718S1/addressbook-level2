@@ -56,12 +56,12 @@ public class FindCommand extends Command {
 
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+            final Set<String> wordsInNameCapital = new HashSet<>();
             for(String s : wordsInName) {
                 //change to capital letters
-                wordsInName.remove(s);
-                wordsInName.add(s.toUpperCase());
+                wordsInNameCapital.add(s.toUpperCase());
             }
-            if (!Collections.disjoint(wordsInName, keywordsInCapital)) {
+            if (!Collections.disjoint(wordsInNameCapital, keywordsInCapital)) {
                 matchedPersons.add(person);
             }
         }

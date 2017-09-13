@@ -113,18 +113,18 @@
   # should consider no keywords as invalid command format
   findName
   # should only match full words in person names
-  find bet
+  findName bet
   # does not match if none have keyword
-  find 23912039120
-  # matching should be case-sensitive
-  find betsy
+  findName 23912039120
+  # matching should be case-insensitive
+  findName betsy
 
   # find unique keyword
-  find Betsy
+  findName Betsy
   # find multiple with same keyword
-  find Dickson
+  findName Dickson
   # find multiple with some keywords
-  find Charlie Betsy
+  findName Charlie Betsy
 
 ##########################################################
 # test delete person command

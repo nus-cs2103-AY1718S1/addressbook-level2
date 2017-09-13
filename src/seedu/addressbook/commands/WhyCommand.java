@@ -1,4 +1,6 @@
 package seedu.addressbook.commands;
+import seedu.addressbook.data.exception.IllegalValueException;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -9,10 +11,12 @@ public class WhyCommand extends Command {
 
     public static final String COMMAND_WORD = "why";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tells you why.\n"
+    public static String question;
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tells you why not, why though...etc.\n"
             + "Example: " + COMMAND_WORD +" not";
-    public static final String MESSAGE_WHY_1 = "Because you can do it :)";
-    public static final String MESSAGE_WHY_2 = "Because you should not give up :)";
+    public static final String MESSAGE_WHY_NOT = "Because you can do it :)";
+    public static final String MESSAGE_WHY_THOUGH = "Because you should not give up :)";
     public static final String MESSAGE_WHY_3 = "Because CS2103/T is cool";
     public static final String MESSAGE_WHY_4 = "Because we are cool potatoes";
     public static final String MESSAGE_WHY_5 = "Because the world is round";
@@ -21,10 +25,22 @@ public class WhyCommand extends Command {
     public static final String MESSAGE_WHY_8 = "idk";
     public static String MESSAGE_WHY = "";
 
+
+    public WhyCommand(String question) {this.question = question;}
+
     @Override
     public CommandResult execute() {
-        int min = 1;
+        switch (question) {
+            case "not":
+                MESSAGE_WHY = MESSAGE_WHY_NOT;
+                break;
+            case "though":
+                MESSAGE_WHY = MESSAGE_WHY_THOUGH;
+                break;
+        }
+        /*int min = 1;
         int max = 8;
+
         int r = ThreadLocalRandom.current().nextInt(min, max);
         switch (r) {
             case 1:
@@ -54,7 +70,8 @@ public class WhyCommand extends Command {
             default:
                 MESSAGE_WHY = "Exception handling";
                 break;
-        }
+
+        }*/
         return new CommandResult(MESSAGE_WHY);
     }
 

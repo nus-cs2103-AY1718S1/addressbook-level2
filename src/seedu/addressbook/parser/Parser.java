@@ -104,7 +104,8 @@ public class Parser {
             return new ExitCommand();
 
         case WhyCommand.COMMAND_WORD:
-            return new WhyCommand();
+            //return new WhyCommand();
+            return prepareWhy(arguments);
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
@@ -227,23 +228,10 @@ public class Parser {
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, WhyCommand.MESSAGE_USAGE));
         }
-        try {
-            return new AddCommand(
-                    matcher.group("name"),
-
-                    matcher.group("phone"),
-                    isPrivatePrefixPresent(matcher.group("isPhonePrivate")),
-
-                    matcher.group("email"),
-                    isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
-
-                    matcher.group("address"),
-                    isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
-
-                    getTagsFromArgs(matcher.group("tagArguments"))
+        {
+            return new WhyCommand(
+                    matcher.group("question")
             );
-        } catch (IllegalValueException ive) {
-            return new IncorrectCommand(ive.getMessage());
         }
     }
 

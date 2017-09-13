@@ -25,7 +25,7 @@ public class NameTest {
         name1 = new Name("emma");
         name2 = new Name("EMMA");
 
-        /** Name that contaons another */
+        /** Name that contains another */
         name3 = new Name("EMMA");
         name4 = new Name("EM");
 

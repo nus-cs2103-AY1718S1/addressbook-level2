@@ -42,6 +42,9 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    public static final Pattern WHY_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
+            Pattern.compile("(?<question>[^/]+)");//question to be asked : why not, though, this that etc...
+
 
     /**
      * Signals that the user input could not be parsed.

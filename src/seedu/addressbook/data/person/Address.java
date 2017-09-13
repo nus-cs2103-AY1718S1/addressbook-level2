@@ -2,6 +2,8 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import javax.security.auth.Subject;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -15,13 +17,17 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
+    private SubAddress subAddress;
+
     /**
      * Validates given address.
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Address(String address, boolean isPrivate) throws IllegalValueException {
+    public Address(String address, boolean isPrivate) throws IllegalValueException, ArrayIndexOutOfBoundsException {
         String trimmedAddress = address.trim();
+        String[] addressPart = trimmedAddress.split(" O:");
+        this.subAddress = new SubAddress(addressPart[1].trim());
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
@@ -56,4 +62,6 @@ public class Address {
     public boolean isPrivate() {
         return isPrivate;
     }
+
+    public String getOffice(){return subAddress.getSubAddress();}
 }

@@ -71,6 +71,18 @@ public class EditCommandTest {
         return command;
     }
 
+    /**
+     * Executes the command, and checks that the execution was what we had expected.
+     */
+    private void assertCommandBehaviour(EditCommand editCommand, String expectedMessage,
+                                        AddressBook expectedAddressBook, AddressBook actualAddressBook) {
+
+        CommandResult result = editCommand.execute();
+
+        assertEquals(expectedMessage, result.feedbackToUser);
+        assertEquals(expectedAddressBook.getAllPersons(), actualAddressBook.getAllPersons());
+    }
+
 }
 
 

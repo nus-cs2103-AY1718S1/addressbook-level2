@@ -399,7 +399,7 @@
 || 	4. Dickson Ee Phone: 444444 Address: 1234, Clementi Ave 6, #1-34, 1534 Tags: [friends]
 || 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
-|| 5 persons listed!
+|| Sorting performed successfully.
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

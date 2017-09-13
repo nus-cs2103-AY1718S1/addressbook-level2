@@ -83,6 +83,22 @@ Examples:
   `delete 1`<br>
   Deletes the 1st person in the results of the `find` command.
 
+### Locating a person : `locate`
+Locate the specified person from the address book.<br>
+The person's address will be search on google maps with a third-party browser. 
+Format: `locate NAME`
+
+> Locates a person's address with the specified `NAME`. 
+  The result will be the first person with that name.
+
+Examples: 
+* `locate Giang`<br>
+  Openning browser..
+* `locate Hello`<br> 
+  Sorry we couldn'd find the person with that name!
+
+
+
 ### View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>
 Format: `view INDEX`

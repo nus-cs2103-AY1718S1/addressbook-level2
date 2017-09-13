@@ -22,7 +22,7 @@ public class LocateCommand extends Command{
     private final String MESSAGE_CANNOT_FIND = "Sorry we couldn't find anyone with that name";
     private final Desktop desk = Desktop.getDesktop();
 
-    
+
     private String name;
     private String address;
     private boolean canFindName = false;

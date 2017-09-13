@@ -54,6 +54,7 @@ public class Person implements ReadOnlyPerson {
         return address;
     }
 
+
     @Override
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);

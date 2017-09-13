@@ -88,6 +88,8 @@ public class AddCommandTest {
                     tags);
         } catch (IllegalValueException e) {
             return;
+        } catch (ArrayIndexOutOfBoundsException aiobe){
+            return;
         }
         String error = String.format(
                 "An add command was successfully constructed with invalid input: %s %s %s %s %s %s %s %s",

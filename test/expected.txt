@@ -290,11 +290,11 @@
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-||
+|| 
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  swap]
-|| Invalid command format!
+|| Invalid command format! 
 || swap: Finds and swap the position of two people whose names contain any of the specified keywords (case-sensitive).
 || Parameters: KEYWORD KEYWORD
 || Example: swap alice bob
@@ -308,7 +308,7 @@
 || Enter command: || [Command entered:  list]
 || 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	2. Betsy Choo Tags: [secretive]
-||
+|| 
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  clear]

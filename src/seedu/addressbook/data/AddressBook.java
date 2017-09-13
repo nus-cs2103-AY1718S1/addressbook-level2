@@ -139,7 +139,7 @@ public class AddressBook {
     /**
      * Check if the address book is empty.
      */
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return allPersons.isEmpty();
     }
 }

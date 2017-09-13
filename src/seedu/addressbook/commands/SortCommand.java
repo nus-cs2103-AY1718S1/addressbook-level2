@@ -2,7 +2,7 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
 
-public class SortCommand extends Command{
+public class SortCommand extends Command {
 
 	public static final String COMMAND_WORD = "sort";
 
@@ -15,13 +15,12 @@ public class SortCommand extends Command{
 
 	@Override
 	public CommandResult execute() {
-		if(!addressBook.isEmpty()){
+		if (!addressBook.isEmpty()) {
 			addressBook.sort();
 			return new CommandResult(MESSAGE_SORT_ADDRESSBOOK_SUCCESS);
 		}
-		else{
+		else {
 			return new CommandResult(Messages.MESSAGE_SORTING_FAILED);
 		}
-
 	}
 }

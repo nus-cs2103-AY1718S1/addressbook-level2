@@ -48,13 +48,13 @@ public class UtilsTest {
         assertNoNull("aaa","bbb","ccc");
 
         //have nulls
-        assertNull(1,null);
-        assertNull(1,2,null,3);
-        assertNull(null,1,null,3);
-        assertNull(null,null);
+        assertHaveNull(1,null);
+        assertHaveNull(1,2,null,3);
+        assertHaveNull(null,1,null,3);
+        assertHaveNull(null,null);
     }
 
-    private void assertNull(Object... objects){
+    private void assertHaveNull(Object... objects){
         assertTrue(Utils.isAnyNull(objects));
     }
 

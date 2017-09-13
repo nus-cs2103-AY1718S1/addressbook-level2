@@ -27,3 +27,4 @@ test/localrun.bat
 # Gradle build files
 .gradle/
 build/
+test/java/seedu/addressbook/commands/SortCommandTest.java

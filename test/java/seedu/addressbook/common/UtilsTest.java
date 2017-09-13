@@ -12,13 +12,13 @@ public class UtilsTest {
     @Test
     public void isAnyNull() throws Exception {
         // empty list
-        assertIsNull();
+        assertIsNotNull();
 
         // only one object
         assertIsNull((Object) null);
-        assertIsNull(1);
-        assertIsNull("");
-        assertIsNull("abc");
+        assertIsNotNull(1);
+        assertIsNotNull("");
+        assertIsNotNull("abc");
 
         // all objects are null
         assertIsNull(null, null);
@@ -29,9 +29,9 @@ public class UtilsTest {
         assertIsNotNull(1, 2);
 
         // some objects are null
-        assertIsNotNull("abc", null);
-        assertIsNotNull("abc", null, "abc", null);
-        assertIsNotNull(null, "a", "b");
+        assertIsNull("abc", null);
+        assertIsNull("abc", null, "abc", null);
+        assertIsNull(null, "a", "b");
     }
 
 

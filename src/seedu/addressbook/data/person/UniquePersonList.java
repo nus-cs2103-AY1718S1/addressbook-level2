@@ -20,6 +20,42 @@ import seedu.addressbook.data.exception.DuplicateDataException;
  */
 public class UniquePersonList implements Iterable<Person> {
 
+    public void privatiseAddress(ReadOnlyPerson target) {
+        int targetIndex = getTargetIndex(target.getName());
+        internalList.get(targetIndex).getAddress().setPrivate(true);
+    }
+    public void privatisePhone(ReadOnlyPerson target) {
+        int targetIndex = getTargetIndex(target.getName());
+        internalList.get(targetIndex).getPhone().setPrivate(true);
+    }
+    public void privatiseEmail(ReadOnlyPerson target) {
+        int targetIndex = getTargetIndex(target.getName());
+        internalList.get(targetIndex).getEmail().setPrivate(true);
+    }
+
+    public void privatiseAll(ReadOnlyPerson target) {
+        privatiseAddress(target);
+        privatisePhone(target);
+        privatiseEmail(target);
+    }
+
+    public void publicAll(ReadOnlyPerson target) {
+        int targetIndex = getTargetIndex(target.getName());
+        internalList.get(targetIndex).getAddress().setPrivate(false);
+        internalList.get(targetIndex).getEmail().setPrivate(false);
+        internalList.get(targetIndex).getPhone().setPrivate(false);
+    }
+
+    public int getTargetIndex(Name targetName) {
+        for (int i=0;i<internalList.size();i++) {
+            if (internalList.get(i).getName().equals(targetName)) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+
     /**
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
@@ -64,7 +100,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
         internalList.addAll(persons);
     }
-
     /**
      * Constructs a shallow copy of the list.
      */

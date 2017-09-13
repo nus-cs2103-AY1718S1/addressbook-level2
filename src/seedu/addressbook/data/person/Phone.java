@@ -48,6 +48,10 @@ public class Phone {
                 && this.value.equals(((Phone) other).value)); // state check
     }
 
+    public int compareTo(Phone other) {
+        return this.value.compareToIgnoreCase(other.value);
+    }
+
     @Override
     public int hashCode() {
         return value.hashCode();

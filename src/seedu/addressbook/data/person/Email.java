@@ -49,6 +49,10 @@ public class Email {
                 && this.value.equals(((Email) other).value)); // state check
     }
 
+    public int compareTo(Email other) {
+        return this.value.compareToIgnoreCase(other.value);
+    }
+
     @Override
     public int hashCode() {
         return value.hashCode();

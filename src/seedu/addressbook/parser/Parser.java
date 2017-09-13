@@ -81,7 +81,7 @@ public class Parser {
                 return new ListCommand();
 
             case SortCommand.COMMAND_WORD:
-                return new SortCommand();
+                return new SortCommand(arguments);
 
             case ViewCommand.COMMAND_WORD:
                 return prepareView(arguments);

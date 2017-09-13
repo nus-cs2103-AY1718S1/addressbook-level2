@@ -37,4 +37,13 @@ public class Formatter {
                 DIVIDER);
     }
 
+    public void showGoodbyeMessage(String goodbyeMessage) {
+        showToUser(goodbyeMessage, DIVIDER, DIVIDER);
+    }
+
+
+    public void showInitFailedMessage(String failMessage) {
+        showToUser(failMessage, DIVIDER, DIVIDER);
+    }
+
 }

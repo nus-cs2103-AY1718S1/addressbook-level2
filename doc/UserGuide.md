@@ -115,6 +115,23 @@ Examples:
 Clears all entries from the address book.<br>
 Format: `clear`  
 
+#### Updating person particulars: `change`
+Change the person's particulars indicated by index in the last shown list
+Format: `change INDEX field/information`
+
+Example:
+* `list` <br>
+  `change 1 p/12345` <br>
+  change the phone number to 12345 of the first person in the list
+
+#### Sort the list: `sort`
+Sort the list of information in alphabetical order
+Format:`sort`
+
+Example:
+* `sort`
+   Sort the list
+   
 #### Exiting the program : `exit`
 Exits the program.<br>
 Format: `exit`  

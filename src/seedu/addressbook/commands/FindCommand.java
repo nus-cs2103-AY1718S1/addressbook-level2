@@ -39,20 +39,22 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        final List<ReadOnlyPerson> personsFound = getPersonsWithNameContainingAnyKeyword(keywords);
+        final List<ReadOnlyPerson> personsFound = getPersonsWithDetailsContainingAnyKeyword(keywords);
         return new CommandResult(getMessageForPersonListShownSummary(personsFound), personsFound);
     }
 
     /**
-     * Retrieves all persons in the address book whose names contain some of the specified keywords.
+     * Retrieves all persons in the address book whose names or public phone numbers
+     * contain some of the specified keywords.
      *
      * @param keywords for searching
      * @return list of persons found
      */
-    private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
+    private List<ReadOnlyPerson> getPersonsWithDetailsContainingAnyKeyword(Set<String> keywords) {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
-            if (nameMatchesKeyword(person, keywords)) {
+            if (nameMatchesKeyword(person, keywords) ||
+                    (!person.getPhone().isPrivate() && phoneMatchesKeyword(person, keywords)) ) {
                 matchedPersons.add(person);
             }
         }
@@ -67,6 +69,21 @@ public class FindCommand extends Command {
     private boolean nameMatchesKeyword(ReadOnlyPerson person, Set<String> allKeywords) {
         final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
         if (!Collections.disjoint(wordsInName, allKeywords)) {
+            return MATCHED;
+        }
+
+        return NOT_MATCHED;
+    }
+
+    /**
+     * Checks if a person's phone number matches any of the specified keywords.
+     *
+     * @return true if there is a match, false otherwise.
+     */
+    private boolean phoneMatchesKeyword(ReadOnlyPerson person, Set<String> allKeywords) {
+        final Set<String> phoneNumber = new HashSet<>();
+        phoneNumber.add(person.getPhone().toString());
+        if (!Collections.disjoint(phoneNumber, allKeywords)) {
             return MATCHED;
         }
 

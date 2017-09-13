@@ -57,4 +57,17 @@ public class FindCommand extends Command {
         return matchedPersons;
     }
 
+    /**
+     * Converts all the words inside the set to lowercase
+     *
+     * @param words to be converted
+     */
+    private static void convertWordsToLowerCase(Set<String> words) {
+        final Set<String> copyOfWords = new HashSet<>(words);
+        words.clear(); // this method prevents ConcurrentModificationException
+        for(String word : copyOfWords) {
+            words.add(word.toLowerCase());
+        }
+    }
+
 }

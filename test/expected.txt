@@ -29,7 +29,7 @@
 || Example: help
 || exit: Exits the program.
 || Example: exit
-|| sort: sorts persons in the list
+|| sort: sorts persons in the list in alphabetically ascending order
 || Example: sort
 || ===================================================
 || Enter command: || [Command entered:  delete 1]

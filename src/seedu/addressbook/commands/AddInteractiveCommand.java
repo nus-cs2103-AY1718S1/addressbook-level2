@@ -2,6 +2,7 @@ package seedu.addressbook.commands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
@@ -13,6 +14,7 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.parser.Parser;
 import seedu.addressbook.ui.TextUi;
 
 /**
@@ -42,6 +44,28 @@ public class AddInteractiveCommand extends AddCommand {
     @Override
     public CommandResult execute() {
         /*
+
+        */
+        TextUi ui = new TextUi();
+        ArrayList<Class<?>> infoList = new ArrayList<>(Arrays.asList(
+                Name.class, Phone.class, Email.class, Address.class));
+        String generatedCommand = AddCommand.COMMAND_WORD;
+        for (Class<?> infoClass : infoList) {
+            String input = ui.promptUserInput("Please enter " + infoClass.getSimpleName() + ": ");
+            try {
+                infoClass.getMethod("isPrivate");
+                Boolean isPrivate = ui.promptUserInput("Set this field as private? ([Y] for yes): ").trim().toUpperCase()
+                        == "Y" ;
+                generatedCommand += (isPrivate) ? " p" : " ";
+                generatedCommand += Parser.PERSON_DATA_PREFIXES.get(infoClass.getSimpleName());
+                generatedCommand += input;
+            } catch (NoSuchMethodException | SecurityException e) {
+                // Should only happen for Name class
+                generatedCommand += " " + input;
+            }
+        }
+        ui.showToUser(generatedCommand);
+        /*
         try {
             addressBook.addPerson(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
@@ -49,21 +73,6 @@ public class AddInteractiveCommand extends AddCommand {
             return new CommandResult(MESSAGE_DUPLICATE_PERSON);
         }
         */
-        TextUi ui = new TextUi();
-        ArrayList<Class<?>> infoList = new ArrayList<>(Arrays.asList(
-                Name.class, Phone.class, Email.class, Address.class));
-        ArrayList<String> valuesToAdd = new ArrayList<>();
-        for (Class<?> infoClass : infoList) {
-            String input = ui.promptUserInput("Please enter " + infoClass.getSimpleName() + ": ");
-            valuesToAdd.add(input);
-        }
-        // For testing
-        /*
-        for (String input : valuesToAdd) {
-            ui.showToUser(input);
-        }
-        */
-        // Testing with a generic response
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

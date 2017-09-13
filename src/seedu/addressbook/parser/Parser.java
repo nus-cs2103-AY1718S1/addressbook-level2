@@ -3,11 +3,7 @@ package seedu.addressbook.parser;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,6 +20,7 @@ import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.Person;
 
 /**
  * Parses user input.
@@ -41,7 +38,18 @@ public class Parser {
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+    // These are the prefix strings to define the data type of a command parameter
+    public static final Map<String, String> PERSON_DATA_PREFIXES = createPrefixesHash();
 
+    private static Map<String, String> createPrefixesHash()
+    {
+        Map<String,String> m = new HashMap<>();
+        m.put("Phone", "p/");
+        m.put("Email", "e/");
+        m.put("Address", "a/");
+        m.put("Name", null);
+        return m;
+    }
 
     /**
      * Signals that the user input could not be parsed.

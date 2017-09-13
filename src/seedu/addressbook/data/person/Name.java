@@ -28,9 +28,8 @@ public class Name {
         }
 
 
-        // UPDATE:
-        // The name return to Person data is all in lowercase
-        this.fullName = trimmedName.toLowerCase();
+
+        this.fullName = trimmedName;
 
     }
 

@@ -57,11 +57,18 @@ public class FindCommand extends Command {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            if (!Collections.disjoint(toLowerCase(wordsInName), keywords)) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
     }
 
+    private static Set<String> toLowerCase(Set<String> words) {
+        final Set<String> lowerCasedWords = new HashSet<>();
+        for (String word : words) {
+            lowerCasedWords.add(word.toLowerCase());
+        }
+        return lowerCasedWords;
+    }
 }

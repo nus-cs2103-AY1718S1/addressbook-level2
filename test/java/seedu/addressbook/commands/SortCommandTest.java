@@ -50,7 +50,7 @@ public class SortCommandTest {
 
 
     /**
-     *
+     * Asserts that the sortCommand sorts the person list successfully
      */
     private void assertSortSuccess(AddressBook addressBook, List<ReadOnlyPerson> relevantPersons,
                                    List<ReadOnlyPerson> expectedDisplayList ) {

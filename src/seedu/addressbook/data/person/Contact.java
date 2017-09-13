@@ -8,7 +8,7 @@ public class Contact {
     }
 
     public Contact(String value, boolean isPrivate) {
-        this.value = value;
+        this.value = value.trim();
         this.isPrivate = isPrivate;
     }
 

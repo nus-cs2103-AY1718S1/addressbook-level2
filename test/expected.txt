@@ -9,7 +9,7 @@
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
-|| delete: Deletes the person identified by the index number used in the last person listing.
+|| delete: Deletes the person identified by the index number used in the last person listing. List down remaining contacts afterwards.
 || Parameters: INDEX
 || Example: delete 1
 || Clears address book permanently.
@@ -252,6 +252,10 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
+||  1. Betsy Choo Tags: [secretive]
+||
+|| 1 persons listed!
+|| ===================================================
 || Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
@@ -272,6 +276,12 @@
 || 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 4]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+||
+|| 4 persons listed!
+|| ===================================================
 || Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  list]
@@ -282,6 +292,11 @@
 || 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+||
+|| 2 persons listed!
+|| ===================================================
 || Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  list]

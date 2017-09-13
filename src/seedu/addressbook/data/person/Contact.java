@@ -7,16 +7,19 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 
 public class Contact {
-    public String value;
+    public final String value;
     private boolean isPrivate;
 
-    // Setters
-    public void setValue(String value) {
+    public Contact(String value, boolean isPrivate, String regex, String constraint) throws IllegalValueException {
+        if (!isValid(value, regex)) {
+            throw new IllegalValueException(constraint);
+        }
         this.value = value;
+        this.isPrivate = isPrivate;
     }
 
-    public void setIsPrivate(boolean isPrivate) {
-        this.isPrivate = isPrivate;
+    public static boolean isValid(String value, String regex) {
+        return value.matches(regex);
     }
 
     @Override

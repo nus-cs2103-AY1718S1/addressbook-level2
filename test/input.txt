@@ -137,7 +137,7 @@
 
   # edits correct person
   list
-  edit 4 Esther Potato p/666666 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  edit 5 Esther Potato p/666666 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
 
   # listing indexes get updated on next request

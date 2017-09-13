@@ -6,7 +6,7 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts persons in the list\n" + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts persons in the list in alphabetically ascending order\n" + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "list sorted successfully";
 

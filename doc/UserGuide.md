@@ -111,6 +111,12 @@ Examples:
   `viewall 1`<br>
   Views all details of the 1st person in the results of the `find` command.
 
+### Sorting all entries : `sort`
+Sorts all the entries from the address book.<br>
+Format: `sort`
+
+> The sorting is case insensitive i.e. the sorting is done lexicographically. 
+
 ### Clearing all entries : `clear`
 Clears all entries from the address book.<br>
 Format: `clear`  

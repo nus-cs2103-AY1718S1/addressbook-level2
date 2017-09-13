@@ -117,20 +117,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
-<<<<<<< HEAD
-/**  Sorts the list by person name.
-                *  Compares the name to sort in alphabetical order
-      */
-            public void sort(){
-                Collections.sort(internalList,new Comparator<Person>(){
-             public int compare(final Person person1, final Person person2) {
-                 return person1.getName().toString().compareTo(person2.getName().toString());
-             }
-                });
-
-
-            }
-=======
     /**  Sorts the list by person name.
      *  Compares the name to sort in alphabetical order
      */
@@ -143,7 +129,6 @@ public class UniquePersonList implements Iterable<Person> {
 
 
     }
->>>>>>> SortingDebug
 
 
     /**

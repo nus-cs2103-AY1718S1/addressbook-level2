@@ -23,11 +23,11 @@ public class HelpCommand extends Command {
                 + "\n" + ListCommand.MESSAGE_USAGE
                 + "\n" + ViewCommand.MESSAGE_USAGE
                 + "\n" + ViewAllCommand.MESSAGE_USAGE
-<<<<<<< HEAD
+
                 + "\n" + SortCommand.MESSAGE_USAGE
-=======
+
                         + "\n" + SortCommand.MESSAGE_USAGE
->>>>>>> SortingDebug
+
                 + "\n" + HelpCommand.MESSAGE_USAGE
                 + "\n" + ExitCommand.MESSAGE_USAGE
         );

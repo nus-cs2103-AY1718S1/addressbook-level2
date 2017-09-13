@@ -38,7 +38,7 @@ public class AddressBook {
      * Also updates the tag list with any missing tags found in any person.
      *
      * @param persons external changes to this will not affect this address book
-     * @param tags external changes to this will not affect this address book
+     * @param tags    external changes to this will not affect this address book
      */
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
@@ -50,8 +50,8 @@ public class AddressBook {
 
     /**
      * Ensures that every tag in this person:
-     *  - exists in the master list {@link #allTags}
-     *  - points to a Tag object in the master list
+     * - exists in the master list {@link #allTags}
+     * - points to a Tag object in the master list
      */
     private void syncTagsWithMasterList(Person person) {
         final UniqueTagList personTags = person.getTags();
@@ -114,18 +114,12 @@ public class AddressBook {
         return new UniquePersonList(allPersons);
     }
 
-    /** Sorts all persons in alphabetical order.
+    /**
+     * Sorts all persons in alphabetical order.
      */
-<<<<<<< HEAD
-               public void sort(){
-
-                   allPersons.sort();
-           }
-=======
-    public void sort(){
+    public void sort() {
         allPersons.sort();
     }
->>>>>>> SortingDebug
 
     /**
      * Returns a new UniqueTagList of all tags in the address book at the time of the call.

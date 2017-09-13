@@ -28,6 +28,11 @@ What's different from AddressBook-Level1:
 * Support for marking a contact detail as 'private' (`pa/`) (`pe/`) (`pp/`) 
 * View details of a person (`view` : shows non-private details), (`viewall` : shows all details)
 
+#### Changes from level 2
+What's different from AddressBook-Level2:
+* Support Editting Persons phone number
+
+
 ### Viewing help : `help`
 Format: `help`
 
@@ -65,6 +70,18 @@ Examples:
   Returns `John Doe` but not `john`
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
+
+### Editting a person : `edit`
+Edits the specified person from the address book. Irreversible.<br>
+Format: `edit INDEX [p]p/PHONE`
+
+> Edits the person at the specified `INDEX`. 
+  The index refers to the index number shown in the most recent listing.
+
+Examples: 
+* `list`<br>
+  `edit 2 p/12345678`<br>
+  Edits the 2nd person phone number in the address book.
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>

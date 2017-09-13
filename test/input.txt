@@ -107,38 +107,48 @@
   find Charlie Betsy
 
 ##########################################################
-# test delete person command
+# test edit person command
 ##########################################################
 
 # last active view: [1] betsy [2] charlie
 
-  # should catch invalid args format
-  delete
-  delete should be only one number
-
-  # should catch invalid index
-  delete -1
-  delete 0
-  delete 3
-
-  # should catch attempt to delete something already deleted
-  delete 2
-  delete 2
-
-  # should catch attempt to view something already deleted
-  view 2
-  viewall 2
-
-  # should have deleted based on last active view's index
+  # edits correct person
+  edit 1 p/12345678
   list
 
-  # deletes correct person
-  delete 4
-  list
+  ##########################################################
+  # test delete person command
+  ##########################################################
 
-  # listing indexes get updated on next request
-  delete 1
-  list
+  # last active view: [1] betsy [2] charlie
+
+    # should catch invalid args format
+    delete
+    delete should be only one number
+
+    # should catch invalid index
+    delete -1
+    delete 0
+    delete 3
+
+    # should catch attempt to delete something already deleted
+    delete 2
+    delete 2
+
+    # should catch attempt to view something already deleted
+    view 2
+    viewall 2
+
+    # should have deleted based on last active view's index
+    list
+
+    # deletes correct person
+    delete 4
+    list
+
+    # listing indexes get updated on next request
+    delete 1
+    list
 
 ##########################################################
 # test clear command

@@ -25,7 +25,8 @@ public class Address {
      * @throws IllegalValueException if given address string is invalid, or there isn't 4 inputs for address
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
-        if (!isValidAddress(address)) {
+        String trimmedAddressPre = address.trim();
+        if (!isValidAddress(trimmedAddressPre)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         String[] trimmedAddress = address.trim().split(",");

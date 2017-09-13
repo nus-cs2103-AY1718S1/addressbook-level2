@@ -61,10 +61,10 @@ public class FindCommand extends Command {
      * @return the strings in lower case.
      */
     private Set<String> nameToLowerCase(Set<String> set) {
-        Set<String> lowerCaseName= new HashSet<String>();
+        Set<String> lowerCaseName = new HashSet<String>();
 
-        for (String name_str: set) {
-            lowerCaseName.add(name_str.toLowerCase());
+        for (String nameStr: set) {
+            lowerCaseName.add(nameStr.toLowerCase());
         }
 
         return lowerCaseName;

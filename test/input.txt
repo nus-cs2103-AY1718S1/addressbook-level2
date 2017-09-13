@@ -107,6 +107,46 @@
   find Charlie Betsy
 
 ##########################################################
+# test edit persons command
+##########################################################
+
+# last active view: [1] betsy [2] charlie
+
+  # should catch invalid args format
+  edit wrong args wrong args
+  edit 1 Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address
+  edit 1 Valid Name p/12345 valid@email.butNoPrefix a/valid, address
+  edit 1 Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address
+  edit 1 Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
+
+  # should catch invalid person data
+  edit not_number Valid Name p/12345 e/valid@e.mail a/valid, address
+  edit 1 []\[;] p/12345 e/valid@e.mail a/valid, address
+  edit 1 Valid Name p/not_numbers e/valid@e.mail a/valid, address
+  edit 1 Valid Name p/12345 e/notAnEmail a/valid, address
+  edit 1 Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
+
+  # should catch invalid args format
+  edit
+  edit should be only one number
+
+  # should catch invalid index
+  edit -1
+  edit 0
+  edit 3
+
+  # should have edited based on last active view's index
+  list
+
+  # edits correct person
+  edit 4 Esther Potato p/666666 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  list
+
+  # listing indexes get updated on next request
+  edit 1 Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+  list
+
+##########################################################
 # test delete person command
 ##########################################################
 

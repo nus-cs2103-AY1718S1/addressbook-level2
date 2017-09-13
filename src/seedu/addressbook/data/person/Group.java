@@ -11,7 +11,7 @@ public class Group {
     public static final String MESSAGE_GROUP_CONSTRAINTS = "Group name should be a combination of alphabetic characters and digits";
     public static final String GROUP_VALIDATION_REGEX = "\\w+";
 
-    private String value;
+    public String value;
     private boolean isPrivate;
 
     /**

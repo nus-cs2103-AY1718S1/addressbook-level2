@@ -49,4 +49,13 @@ public class Formatter {
 	static String[] getInitFailedMessages() {
 		return new String[]{MESSAGE_INIT_FAILED, DIVIDER, DIVIDER};
 	}
+
+	/**
+	 * Formats a string as a viewable indexed list item.
+	 *
+	 * @param visibleIndex visible index for this listing
+	 */
+	static String getIndexedListItem(int visibleIndex, String listItem) {
+		return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
+	}
 }

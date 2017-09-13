@@ -68,3 +68,12 @@
 * Problem: Test fails during the very first time.<br>
   Solution: The output of the very first test run could be slightly different because the program
   creates a new storage file. Tests should pass from the 2nd run onwards.
+* Problem: What happens if `Run 'All Tests'` still fails after changing the directory of `All in Test`?
+  Solution:
+  1. Click the `Run` tab
+  2. Click `Edit Configurations...`
+  3. Click `Defaults` on the left hand side
+  4. Select `JUnit`
+  5. Change the working directory to `addressbook-level2` folder
+  6. Right-click `test` folder and choose `Run 'All Test'`
+  7. All test cases should pass now

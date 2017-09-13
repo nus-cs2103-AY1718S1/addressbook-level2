@@ -106,6 +106,13 @@
   # find multiple with some keywords
   find Charlie Betsy
 
+  # if user is finding by phone, full phone number have to be entered
+  find 444444
+  # if user is finding by email, full email have to be entered
+  find charlie.d@nus.edu.sg
+  # if keyword (email) entered does not match any
+  find charle@nus.edu.sg
+
 ##########################################################
 # test delete person command
 ##########################################################

@@ -2,6 +2,8 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.Arrays;
+import java.util.List;
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -35,6 +37,14 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(EMAIL_VALIDATION_REGEX);
+    }
+
+    /**
+     * Retrieves a listing of the entire email
+     *
+     */
+    public List<String> getMailInEmail() {
+        return Arrays.asList(value);
     }
 
     @Override

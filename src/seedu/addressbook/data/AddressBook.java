@@ -126,6 +126,9 @@ public class AddressBook {
         if (toEdit.getAddress() != null) {
             person.setAddress(toEdit.getAddress());
         }
+        if (toEdit.getBirthday() != null) {
+            person.setBirthday(toEdit.getBirthday());
+        }
         if (toEdit.getTags().iterator().hasNext()) {
             person.setTags(toEdit.getTags());
         }

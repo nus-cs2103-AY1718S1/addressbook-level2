@@ -34,7 +34,7 @@ public class SwapCommand extends Command {
             results = "Swap completed";
         }
         else{
-            results = "Swap failed";
+            results = "Swap failed, both names have to be case-sensitive and must exist in the address book.";
         }
         return new CommandResult(results);
     }

@@ -12,17 +12,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
@@ -293,6 +283,40 @@ public class ParserTest {
             addCommand += " t/" + tag.tagName;
         }
         return addCommand;
+    }
+
+    @Test
+    public void parse_updateCommandCorrectArgs() {
+        Person person = generateTestPerson();
+        String newPhone = "123987";
+        String updatePhone = "update " + person.getName().fullName + " p/" + newPhone;
+        parseAndAssertCommandType(updatePhone, UpdateCommand.class);
+
+        String newEmail = "test@test.com";
+        String updateEmail = "update " + person.getName().fullName + " e/" + newEmail;
+        parseAndAssertCommandType(updateEmail, UpdateCommand.class);
+
+        String newAddress = "Test drive 2";
+        String updateAddress = "update " + person.getName().fullName + " a/" + newAddress;
+        parseAndAssertCommandType(updateAddress, UpdateCommand.class);
+
+    }
+
+    @Test
+    public void parse_updateCommandInCorrectArgs(){
+        Person person = generateTestPerson();
+        String newPhone = "sdfa";
+        String updatePhone = "update " + person.getName().fullName + " p/" + newPhone;
+        parseAndAssertCommandType(updatePhone, IncorrectCommand.class);
+
+        String newEmail = "asdf sadf";
+        String updateEmail = "update " + person.getName().fullName + " e/" + newEmail;
+        parseAndAssertCommandType(updateEmail, IncorrectCommand.class);
+
+        String newAddress = "Test3#€";
+        String updateAddress = "update " + person.getName().fullName + " a/" + newAddress;
+        parseAndAssertCommandType(updateAddress, IncorrectCommand.class);
+
     }
 
     /*

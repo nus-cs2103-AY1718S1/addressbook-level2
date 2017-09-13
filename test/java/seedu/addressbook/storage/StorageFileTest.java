@@ -12,6 +12,7 @@ import org.junit.rules.TemporaryFolder;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.Birthday;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -59,7 +60,7 @@ public class StorageFileTest {
         AddressBook expectedAB = getTestAddressBook();
 
         // ensure loaded AddressBook is properly constructed with test data
-        // TODO: overwrite equals method in AddressBook class and replace with equals method below
+        //  overwrite equals method in AddressBook class and replace with equals method below
         assertEquals(actualAB.getAllPersons(), expectedAB.getAllPersons());
     }
 
@@ -113,11 +114,13 @@ public class StorageFileTest {
                                 new Phone("98765432", false),
                                 new Email("johnd@gmail.com", false),
                                 new Address("John street, block 123, #01-01", false),
+                                new Birthday("19880213", false),
                                 new UniqueTagList(Collections.emptySet())));
         ab.addPerson(new Person(new Name("Betsy Crowe"),
                                 new Phone("1234567", true),
                                 new Email("betsycrowe@gmail.com", false),
                                 new Address("Newgate Prison", true),
+                                new Birthday("19880413", true),
                                 new UniqueTagList(new Tag("friend"), new Tag("criminal"))));
         return ab;
     }

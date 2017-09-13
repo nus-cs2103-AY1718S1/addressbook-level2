@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.Birthday;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -24,7 +25,8 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.util.TestUtil;
 
-public class AddCommandTest {
+public class
+AddCommandTest {
     private static final List<ReadOnlyPerson> EMPTY_PERSON_LIST = Collections.emptyList();
     private static final Set<String> EMPTY_STRING_LIST = Collections.emptySet();
 
@@ -33,7 +35,7 @@ public class AddCommandTest {
         final String[] invalidNames = { "", " ", "[]\\[;]" };
         for (String name : invalidNames) {
             assertConstructingInvalidAddCmdThrowsException(name, Phone.EXAMPLE, true, Email.EXAMPLE, false,
-                    Address.EXAMPLE, true, EMPTY_STRING_LIST);
+                    Address.EXAMPLE, true, Birthday.EXAMPLE, true, EMPTY_STRING_LIST);
         }
     }
 
@@ -42,7 +44,7 @@ public class AddCommandTest {
         final String[] invalidNumbers = { "", " ", "1234-5678", "[]\\[;]", "abc", "a123", "+651234" };
         for (String number : invalidNumbers) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, number, false, Email.EXAMPLE, true,
-                    Address.EXAMPLE, false, EMPTY_STRING_LIST);
+                    Address.EXAMPLE, false, Birthday.EXAMPLE, false, EMPTY_STRING_LIST);
         }
     }
 
@@ -52,7 +54,7 @@ public class AddCommandTest {
                                          "@invalid@email", "invalid@email!", "!invalid@email" };
         for (String email : invalidEmails) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, false, email, false,
-                    Address.EXAMPLE, false, EMPTY_STRING_LIST);
+                    Address.EXAMPLE, false, Birthday.EXAMPLE, false, EMPTY_STRING_LIST);
         }
     }
 
@@ -61,7 +63,16 @@ public class AddCommandTest {
         final String[] invalidAddresses = { "", " " };
         for (String address : invalidAddresses) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
-                    true, address, true, EMPTY_STRING_LIST);
+                    true, address, true, Birthday.EXAMPLE, true, EMPTY_STRING_LIST);
+        }
+    }
+
+    @Test
+    public void addCommand_invalidBirthday_throwsException() {
+        final String[] invalidBirthdays = { "", " ", "1234-5678", "[]\\[;]", "abc", "a123", "+651234" };
+        for (String birthday : invalidBirthdays) {
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
+                    true, Address.EXAMPLE, false, birthday, true, EMPTY_STRING_LIST);
         }
     }
 
@@ -72,7 +83,7 @@ public class AddCommandTest {
         for (String[] tags : invalidTags) {
             Set<String> tagsToAdd = new HashSet<>(Arrays.asList(tags));
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
-                    true, Address.EXAMPLE, false, tagsToAdd);
+                    true, Address.EXAMPLE, false, Birthday.EXAMPLE, true, tagsToAdd);
         }
     }
 
@@ -82,23 +93,23 @@ public class AddCommandTest {
      */
     private void assertConstructingInvalidAddCmdThrowsException(String name, String phone,
             boolean isPhonePrivate, String email, boolean isEmailPrivate, String address,
-            boolean isAddressPrivate, Set<String> tags) {
+            boolean isAddressPrivate, String birthday, boolean isBirthdayPrivate, Set<String> tags) {
         try {
-            new AddCommand(name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate,
+            new AddCommand(name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate, birthday, isBirthdayPrivate,
                     tags);
         } catch (IllegalValueException e) {
             return;
         }
         String error = String.format(
-                "An add command was successfully constructed with invalid input: %s %s %s %s %s %s %s %s",
-                name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate, tags);
+                "An add command was successfully constructed with invalid input: %s %s %s %s %s %s %s %s %s %s",
+                name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate, birthday, isBirthdayPrivate, tags);
         fail(error);
     }
 
     @Test
     public void addCommand_validData_correctlyConstructed() throws Exception {
         AddCommand command = new AddCommand(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE, false,
-                Address.EXAMPLE, true, EMPTY_STRING_LIST);
+                Address.EXAMPLE, true, Birthday.EXAMPLE, true, EMPTY_STRING_LIST);
         ReadOnlyPerson p = command.getPerson();
 
         // TODO: add comparison of tags to person.equals and equality methods to
@@ -110,6 +121,8 @@ public class AddCommandTest {
         assertFalse(p.getEmail().isPrivate());
         assertEquals(Address.EXAMPLE, p.getAddress().value);
         assertTrue(p.getAddress().isPrivate());
+        assertEquals(Birthday.EXAMPLE, p.getBirthday().value);
+        assertTrue(p.getBirthday().isPrivate());
         boolean isTagListEmpty = !p.getTags().iterator().hasNext();
         assertTrue(isTagListEmpty);
     }

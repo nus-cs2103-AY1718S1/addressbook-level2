@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import seedu.addressbook.common.Utils;
+
 import seedu.addressbook.data.exception.DuplicateDataException;
 
 
@@ -139,5 +140,22 @@ public class UniquePersonList implements Iterable<Person> {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && this.internalList.equals(((UniquePersonList) other).internalList));
+    }
+
+    public void swap(List<ReadOnlyPerson> personsFound){
+        int firstIndex = -1, secondIndex = -1;
+        for (int i = 0; i < internalList.size(); i++){
+            for (int j = 0; j < 2; j++){
+                if (personsFound.get(j) == internalList.get(i)){
+                    if (firstIndex == -1){
+                        firstIndex = i;
+                    }
+                    else {
+                        secondIndex = i;
+                    }
+                }
+            }
+        }
+        Collections.swap(internalList, firstIndex, secondIndex);
     }
 }

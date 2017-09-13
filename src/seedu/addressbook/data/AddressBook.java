@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.List;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -71,6 +72,12 @@ public class AddressBook {
         person.setTags(new UniqueTagList(commonTagReferences));
     }
 
+    /**
+     * Swaps two people in the address book.
+     */
+    public void swapPerson(List<ReadOnlyPerson> personsFound) {
+        allPersons.swap(personsFound);
+    }
     /**
      * Adds a person to the address book.
      * Also checks the new person's tags and updates {@link #allTags} with any new tags found,

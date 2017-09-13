@@ -15,7 +15,6 @@ import java.util.Scanner;
 
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
-import seedu.addressbook.ui.Formatter;
 
 /**
  * Text UI of the application.
@@ -35,7 +34,6 @@ public class TextUi {
 
     private final Scanner in;
     private final PrintStream out;
-    private final Formatter formatter;
 
     public TextUi() {
         this(System.in, System.out);
@@ -44,8 +42,6 @@ public class TextUi {
     public TextUi(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
-        this.formatter = new Formatter();
-
     }
 
     /**
@@ -143,7 +139,7 @@ public class TextUi {
 
     /** Shows a list of strings to the user, formatted as an indexed list. */
     private void showToUserAsIndexedList(List<String> list) {
-        showToUser(formatter.getIndexedListForViewing(list));
+        showToUser(Formatter.getIndexedListForViewing(list));
     }
 
 }

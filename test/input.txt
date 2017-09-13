@@ -11,6 +11,7 @@
 
   # should show appropriate message when no listing has happened yet
   delete 1
+  address 1
   view 1
   viewall 1
 

@@ -24,7 +24,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
-
+    public static ReadOnlyPerson lastRemoved;
     /**
      * Creates an empty address book.
      */
@@ -97,6 +97,7 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+        lastRemoved = toRemove;
     }
 
     /**

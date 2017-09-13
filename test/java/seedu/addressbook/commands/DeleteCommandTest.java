@@ -10,12 +10,7 @@ import org.junit.Test;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.ui.TextUi;
@@ -29,6 +24,7 @@ public class DeleteCommandTest {
     private List<ReadOnlyPerson> emptyDisplayList;
     private List<ReadOnlyPerson> listWithEveryone;
     private List<ReadOnlyPerson> listWithSurnameDoe;
+    private static Person lastDeleted = null;
 
     @Before
     public void setUp() throws Exception {
@@ -85,6 +81,11 @@ public class DeleteCommandTest {
 
         int middleIndex = (listWithSurnameDoe.size() / 2) + 1;
         assertDeletionSuccessful(middleIndex, addressBook, listWithSurnameDoe);
+    }
+
+    @Test
+    public void execute_valid_undoDeletion() throws seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException, UniquePersonList.PersonNotFoundException{
+        undoDeletionSuccessful(addressBook, listWithEveryone);
     }
 
     /**
@@ -149,6 +150,7 @@ public class DeleteCommandTest {
                                           List<ReadOnlyPerson> displayList) throws PersonNotFoundException {
 
         ReadOnlyPerson targetPerson = displayList.get(targetVisibleIndex - TextUi.DISPLAYED_INDEX_OFFSET);
+        lastDeleted = (Person)targetPerson;
 
         AddressBook expectedAddressBook = TestUtil.clone(addressBook);
         expectedAddressBook.removePerson(targetPerson);
@@ -158,5 +160,37 @@ public class DeleteCommandTest {
 
         DeleteCommand command = createDeleteCommand(targetVisibleIndex, actualAddressBook, displayList);
         assertCommandBehaviour(command, expectedMessage, expectedAddressBook, actualAddressBook);
+    }
+
+    /**
+     * Creates a new undo command.
+     */
+    private UndoCommand createUndoCommand(AddressBook addressBook,
+                                              List<ReadOnlyPerson> displayList) {
+
+        UndoCommand command = new UndoCommand();
+        command.setData(addressBook, displayList);
+
+        return command;
+    }
+
+    private void undoDeletionSuccessful(AddressBook addressBook,
+                                        List<ReadOnlyPerson> displayList) throws UniquePersonList.DuplicatePersonException, UniquePersonList.PersonNotFoundException{
+        AddressBook expectedAddressBook = TestUtil.clone(addressBook);
+        expectedAddressBook.removePerson(listWithEveryone.get(1));
+        lastDeleted = (Person)expectedAddressBook.lastRemoved;
+        expectedAddressBook.addPerson(lastDeleted);
+        String expectedMessage = UndoCommand.MESSAGE_SUCCESS_UNDODELETE;
+
+        AddressBook actualAddressBook = TestUtil.clone(addressBook);
+
+        actualAddressBook.removePerson(listWithEveryone.get(1));
+        lastDeleted = (Person)actualAddressBook.lastRemoved;
+        UndoCommand command = createUndoCommand(actualAddressBook, displayList);
+        command.setLastDeleted(lastDeleted);
+
+        CommandResult result = command.execute();
+        assertEquals(expectedMessage, result.feedbackToUser);
+        assertEquals(expectedAddressBook.getAllPersons(), actualAddressBook.getAllPersons());
     }
 }

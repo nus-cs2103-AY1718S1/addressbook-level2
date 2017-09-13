@@ -20,11 +20,13 @@ public class UndoCommand extends Command{
             + ": Undo deletion or addition\n"
             + "Example: " + COMMAND_WORD;
 
+    public void setLastDeleted(Person _lastDeleted){
+        lastDeleted = _lastDeleted;
+    }
 
     @Override
     public CommandResult execute() {
         if (lastAdded == null && lastDeleted == null){
-            System.out.println("Nothing to undo");
             return new CommandResult(MESSAGE_NOTHING_TO_UNDO);
         } else if(lastAdded != null){
             //System.out.println(addressBook.getAllPersons().immutableListView().size());

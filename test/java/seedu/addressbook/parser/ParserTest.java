@@ -131,7 +131,7 @@ public class ParserTest {
 
     @Test
     public void parse_viewCommandNumericArg_indexParsedCorrectly() {
-        final int testIndex = 2;
+        final int testIndex = 3;
         final String input = "view " + testIndex;
         final ViewCommand result = parseAndAssertCommandType(input, ViewCommand.class);
         assertEquals(result.getTargetIndex(), testIndex);
@@ -176,7 +176,7 @@ public class ParserTest {
 
     @Test
     public void parse_viewAllCommandNumericArg_indexParsedCorrectly() {
-        final int testIndex = 3;
+        final int testIndex = 4;
         final String input = "viewall " + testIndex;
         final ViewAllCommand result = parseAndAssertCommandType(input, ViewAllCommand.class);
         assertEquals(result.getTargetIndex(), testIndex);

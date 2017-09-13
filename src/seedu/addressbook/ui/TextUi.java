@@ -133,6 +133,8 @@ public class TextUi {
         showToUser(result.feedbackToUser, DIVIDER);
     }
 
+    public void showAskingUserConfirmation() { showToUser(MESSAGE_CONFIRMING_COMMAND, DIVIDER); }
+
     /**
      * Shows a list of persons to the user, formatted as an indexed list.
      * Private contact details are hidden.

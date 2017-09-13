@@ -89,6 +89,8 @@ public class Main {
             ui.showResultToUser(result);
 
         } while (!ExitCommand.isExit(command));
+
+        ui.showAskingUserConfirmation();
     }
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */

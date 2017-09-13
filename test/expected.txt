@@ -234,39 +234,39 @@
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  findName]
-|| Invalid command format!
+|| Invalid command format! 
 || findName: Finds all persons whose names contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
 || Parameters: KEYWORD [MORE_KEYWORDS]...
 || Example: findName alice bob charlie
 || ===================================================
 || Enter command: || [Command entered:  findName bet]
-||
+|| 
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  findName 23912039120]
-||
+|| 
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  findName betsy]
 || 	1. Betsy Choo Tags: [secretive]
-||
+|| 
 || 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  findName Betsy]
 || 	1. Betsy Choo Tags: [secretive]
-||
+|| 
 || 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  findName Dickson]
 || 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-||
+|| 
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  findName Charlie Betsy]
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
-||
+|| 
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete]

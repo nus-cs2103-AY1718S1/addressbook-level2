@@ -14,6 +14,16 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
+    public static String block;
+    private String street;
+    private String unit;
+    private String postalCode;
+    private String[] parts;
+
+    Block myBlock = new Block();
+    Street myStreet = new Street();
+    Unit myUnit = new Unit();
+    PostalCode myPostalCode = new PostalCode();
 
     /**
      * Validates given address.
@@ -27,6 +37,17 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+
+        parts = value.split("\\,");
+        this.block = parts[0];
+        this.street = parts[1];
+        this.unit = parts[2];
+        this.postalCode = parts[3];
+
+        myBlock.setBlock(this.block);
+        myStreet.setStreet(this.street);
+        myUnit.setUnit(this.unit);
+        myPostalCode.setPostalCode(this.postalCode);
     }
 
     /**

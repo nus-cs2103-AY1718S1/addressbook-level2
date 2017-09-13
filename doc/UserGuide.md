@@ -60,7 +60,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 > The search is case sensitive, the order of the keywords does not matter, private details cannot be searched,
 and persons matching at least one keyword in either their name, public phone, email or address
 will be returned (i.e. `OR` search). A keyword is considered matched to an email if the email contains the keyword
-in its name.
+in its name. Find addresses by using part of the name that are separated by the comma, do NOT input the comma.
 
 Examples: 
 * `find John`<br>

@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
-public class Address {
+public class Address extends Contact {
 
     public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 231534";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should be in format: " +
@@ -33,15 +33,15 @@ public class Address {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
-        String trimmedAddress = address.trim();
+        super(address, isPrivate);
         this.isPrivate = isPrivate;
         
-        if (!isValidAddress(trimmedAddress)) {
+        if (!isValidAddress(super.value)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         } 
         
         Pattern pattern = Pattern.compile(ADDRESS_DIAMOND_VALIDATION_REGEX);
-        Matcher matcher = pattern.matcher(trimmedAddress);
+        Matcher matcher = pattern.matcher(super.value);
         if (matcher.find()) {
             this.block.setValues(matcher.group("block"), isPrivate);
             this.street.setValues(matcher.group("street"), isPrivate);
@@ -49,7 +49,7 @@ public class Address {
             this.postalCode.setValues(matcher.group("postalCode"), isPrivate); 
         }
         
-        this.value = trimmedAddress;
+        this.value = super.value;
     }
 
     /**
@@ -116,15 +116,6 @@ public class Address {
         String postalCodeNumber = this.postalCode.getPostalcodeNumber();
         return (other instanceof Address // instanceof handles nulls
                 && postalCodeNumber.equals(((Address) other).postalCode.getPostalcodeNumber())); // state checks
-    }
-    
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
-    public boolean isPrivate() {
-        return isPrivate;
     }
 }
 

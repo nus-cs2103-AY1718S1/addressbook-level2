@@ -12,9 +12,7 @@ public class Address extends Contact{
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
     public String block = "", street = "", unit = "", postal_code = "";
-    private boolean isPrivate;
 
     /**
      * Validates given address.

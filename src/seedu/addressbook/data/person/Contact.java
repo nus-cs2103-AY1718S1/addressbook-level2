@@ -7,9 +7,6 @@ public class Contact {
     public Contact() {
         this.value = "";
     }
-    public Contact(String value) {
-        this.value = value;
-    }
 
     @Override
     public String toString() {

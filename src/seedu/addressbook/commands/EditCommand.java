@@ -16,8 +16,9 @@ public class EditCommand extends Command{
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits a person's details in the address book based on the index of last viewed list"
             + " and the detail that the user wants to edit.\n"
-            + "Example: " + COMMAND_WORD + " 1\n"
-            + "John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
+            + "Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1"
+            + " John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
 

@@ -105,4 +105,18 @@ public class TextUi {
         resultPersons.ifPresent(readOnlyPeople -> showToUser(fm.formatPersonListView(readOnlyPeople)));
         showToUser(fm.formatCommandResult(result));
     }
+
+    /**
+     * Shows a list of persons to the user, formatted as an indexed list.
+     * Private contact details are hidden.
+     */
+    private void showPersonListView(List<? extends ReadOnlyPerson> persons) {
+        final List<String> formattedPersons = fm.formatPersonListView(persons);
+        showToUserAsIndexedList(formattedPersons);
+    }
+
+    /** Shows a list of strings to the user, formatted as an indexed list. */
+    private void showToUserAsIndexedList(List<String> list) {
+        showToUser(fm.getIndexedListForViewing(list));
+    }
 }

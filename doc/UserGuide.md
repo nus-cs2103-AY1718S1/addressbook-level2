@@ -35,6 +35,7 @@ Format: `help`
  
 ### Adding a person: `add`
 Adds a person to the address book<br>
+An updated list of the people in the address book will be printed out as well.
 Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...` 
  
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
@@ -44,6 +45,7 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > be seen using the `viewall` command.
 > 
 > Persons can have any number of tags (including 0)
+> An updated list of the people in the address book will be printed out as well.
 
 Examples: 
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
@@ -68,6 +70,8 @@ Examples:
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
+A list of the remaining people in the addressbook is printed. However,
+this list will not count in the last recorded list shown.
 Format: `delete INDEX`
 
 > Deletes the person at the specified `INDEX`. 

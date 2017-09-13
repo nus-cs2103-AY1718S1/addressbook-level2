@@ -87,6 +87,16 @@ public class DeleteCommandTest {
         assertDeletionSuccessful(middleIndex, addressBook, listWithSurnameDoe);
     }
 
+    @Test
+    public void checkIf_autoListAfterDeleteCommand_matchesListCommand() throws Exception {
+        DeleteCommand command = createDeleteCommand(1, addressBook, listWithEveryone);
+        ListCommand expectedCommand = createListCommand(addressBook, listWithEveryone);
+        CommandResult actualResult = command.execute();
+        CommandResult expectedResult = expectedCommand.execute();
+
+        assertEquals(actualResult.feedbackToUser, expectedResult.feedbackToUser);
+    }
+
     /**
      * Creates a new delete command.
      *
@@ -101,13 +111,21 @@ public class DeleteCommandTest {
         return command;
     }
 
+    private ListCommand createListCommand(AddressBook addressBook,
+                                          List<ReadOnlyPerson> displayList) {
+        ListCommand command = new ListCommand();
+        command.setData(addressBook, displayList);
+
+        return command;
+    }
+
     /**
      * Executes the command, and checks that the execution was what we had expected.
      */
     private void assertCommandBehaviour(DeleteCommand deleteCommand, String expectedMessage,
                                         AddressBook expectedAddressBook, AddressBook actualAddressBook) {
 
-        CommandResult result = deleteCommand.execute();
+        CommandResult result = deleteCommand.getDeleteMessage();
 
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedAddressBook.getAllPersons(), actualAddressBook.getAllPersons());

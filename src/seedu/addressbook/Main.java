@@ -85,7 +85,9 @@ public class Main {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
-            recordResult(result);
+            if (result.recordList) {
+                recordResult(result);
+            }
             ui.showResultToUser(result);
 
         } while (!ExitCommand.isExit(command));

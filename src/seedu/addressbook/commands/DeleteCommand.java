@@ -3,6 +3,9 @@ package seedu.addressbook.commands;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
+import seedu.addressbook.ui.TextUi;
+
+import java.util.List;
 
 
 /**
@@ -19,6 +22,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
+    private TextUi ui = new TextUi();
+
 
     public DeleteCommand(int targetVisibleIndex) {
         super(targetVisibleIndex);
@@ -30,8 +35,26 @@ public class DeleteCommand extends Command {
         try {
             final ReadOnlyPerson target = getTargetPerson();
             addressBook.removePerson(target);
-            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
+            ui.showToUser(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
+            List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
+            return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons, false);
+        } catch (IndexOutOfBoundsException ie) {
+            return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } catch (PersonNotFoundException pnfe) {
+            return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+        }
+    }
 
+    /**
+     *
+     * @return return CommandResult of ACTUAL delete message.
+     * This method returns the delete command's CommandResult WITHOUT the auto-listing
+     */
+    public CommandResult getDeleteMessage() {
+        try {
+            final ReadOnlyPerson target = getTargetPerson();
+            addressBook.removePerson(target);
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } catch (PersonNotFoundException pnfe) {

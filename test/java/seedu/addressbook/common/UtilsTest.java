@@ -35,36 +35,6 @@ public class UtilsTest {
         assertNotUnique(null, "a", "b", null);
     }
 
-    @Test
-    public void isAnyNull() {
-        // empty list
-        assertFalse(Utils.isAnyNull());
-
-        // Any non-empty list
-        assertFalse(Utils.isAnyNull(new Object(), new Object()));
-        assertFalse(Utils.isAnyNull("test"));
-        assertFalse(Utils.isAnyNull(""));
-        assertFalse(Utils.isAnyNull(new Object()));
-        assertFalse(Utils.isAnyNull(new Object(),"test"));
-
-        // non empty list with just one null at the beginning
-        assertTrue(Utils.isAnyNull((Object) null));
-        assertTrue(Utils.isAnyNull(null, "", new Object()));
-        assertTrue(Utils.isAnyNull(null, new Object(), new Object()));
-
-        // non empty list with nulls in the middle
-        assertTrue(Utils.isAnyNull(new Object(), null, null, "test"));
-        assertTrue(Utils.isAnyNull("", null, new Object()));
-
-        // non empty list with one null as the last element
-        assertTrue(Utils.isAnyNull("", new Object(), null));
-        assertTrue(Utils.isAnyNull(new Object(), new Object(), null));
-
-        // confirms nulls inside the list are not considered
-        List<Object> nullList = Arrays.asList((Object) null);
-        assertFalse(Utils.isAnyNull(nullList));
-    }
-
     private void assertAreUnique(Object... objects) {
         assertTrue(Utils.elementsAreUnique(Arrays.asList(objects)));
     }

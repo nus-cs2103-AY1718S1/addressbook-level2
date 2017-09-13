@@ -65,7 +65,7 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.addAll(persons);
     }
 
-    public void sortName(){
+    public void sortPhone(){
         for (int i=0; i< internalList.size(); i++) {
             for (int j = 0; j < internalList.size() - 1; j++) {
                 int num1 = Integer.parseInt(internalList.get(j).getPhone().value);

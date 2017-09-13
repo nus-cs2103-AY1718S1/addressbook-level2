@@ -108,7 +108,7 @@ public class AddressBook {
     }
 
     public void sort(){
-        allPersons.sortName();
+        allPersons.sortPhone();
     }
 
     /**

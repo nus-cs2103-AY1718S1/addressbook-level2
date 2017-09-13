@@ -33,3 +33,9 @@ public class SortCommand extends Command {
         return sortedContacts;
     }
 }
+
+    class NameComparator implements Comparator<ReadOnlyPerson> {
+        public int compare(ReadOnlyPerson p1, ReadOnlyPerson p2) {
+            return p1.getName().fullName.toUpperCase().compareTo(p2.getName().fullName.toUpperCase());
+    }
+}

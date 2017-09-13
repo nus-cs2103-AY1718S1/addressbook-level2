@@ -81,6 +81,18 @@ public class UniquePersonList implements Iterable<Person> {
         return Collections.unmodifiableList(internalList);
     }
 
+    /**
+     * Sort the list in ascending order or desecending order based on parameters
+     * @param: positive = ascending, negative = descending
+     */
+    public void sortPersonList(int order) {
+        if(order >= 0) {
+            Collections.sort(internalList);
+        } else {
+            Collections.sort(internalList, Collections.reverseOrder());
+        }
+    }
+
 
     /**
      * Checks if the list contains an equivalent person as the given argument.

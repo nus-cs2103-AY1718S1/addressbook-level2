@@ -19,6 +19,10 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| sort: Sort all persons in the address book in a list by ascesnding or descending order.
+|| Example Ascending Order: sort
+|| Example Ascending Order: sort asc
+|| Example Descending Order: sort dsc
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
@@ -233,71 +237,7 @@
 || 
 || 2 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  delete]
-|| Invalid command format! 
-|| delete: Deletes the person identified by the index number used in the last person listing.
-|| Parameters: INDEX
-|| Example: delete 1
-|| ===================================================
-|| Enter command: || [Command entered:  delete should be only one number]
-|| The person index provided is invalid
-|| ===================================================
-|| Enter command: || [Command entered:  delete -1]
-|| The person index provided is invalid
-|| ===================================================
-|| Enter command: || [Command entered:  delete 0]
-|| The person index provided is invalid
-|| ===================================================
-|| Enter command: || [Command entered:  delete 3]
-|| The person index provided is invalid
-|| ===================================================
-|| Enter command: || [Command entered:  delete 2]
-|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
-|| ===================================================
-|| Enter command: || [Command entered:  delete 2]
-|| Person could not be found in address book
-|| ===================================================
-|| Enter command: || [Command entered:  view 2]
-|| Person could not be found in address book
-|| ===================================================
-|| Enter command: || [Command entered:  viewall 2]
-|| Person could not be found in address book
-|| ===================================================
-|| Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
-|| 
-|| 4 persons listed!
-|| ===================================================
-|| Enter command: || [Command entered:  delete 4]
-|| Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
-|| ===================================================
-|| Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| 
-|| 3 persons listed!
-|| ===================================================
-|| Enter command: || [Command entered:  delete 1]
-|| Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| ===================================================
-|| Enter command: || [Command entered:  list]
-|| 	1. Betsy Choo Tags: [secretive]
-|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| 
-|| 2 persons listed!
-|| ===================================================
-|| Enter command: || [Command entered:  clear]
-|| Address book has been cleared!
-|| ===================================================
-|| Enter command: || [Command entered:  list]
-|| 
-|| 0 persons listed!
-|| ===================================================
-|| Enter command: || [Command entered:  exit]
+|| Enter command: || [Command entered:  sort dsc]
 || Exiting Address Book as requested ...
 || ===================================================
 || Good bye!

@@ -14,7 +14,7 @@ public class SortListCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Takes in the variable to sort Persons according to that variable and outputs the list\n"
             + "Parameter: Variable: name/phone/email\n"
-            + "Example: sortlist name " + COMMAND_WORD;
+            + "Example: " + COMMAND_WORD + " name";
 
     private String sortVar;
 

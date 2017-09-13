@@ -42,15 +42,15 @@ public class SortCommandTest {
 
     @Test
     public void assertCheckSortOrder() {
-        SortCommand testSort = new SortCommand();
-        testSort.setData(testAddressBook, testPersonList);
-        CommandResult result = testSort.execute();
+        SortCommand sortTest = new SortCommand();
+        sortTest.setData(testAddressBook, testPersonList);
+        CommandResult result = sortTest.execute();
 
         List<? extends ReadOnlyPerson> resultPersonList = result.getRelevantPersons().get();
-        for(int i = 0; i < resultPersonList.size(); i++) {
-            ReadOnlyPerson person1 = resultPersonList.get(i);
-            ReadOnlyPerson person2 = sortedDisplayList.get(i);
-            assertEquals(person1.getName(), person2.getName());
+        for(int index = 0; index < resultPersonList.size(); index++) {
+            ReadOnlyPerson firstPerson = resultPersonList.get(index);
+            ReadOnlyPerson secondPerson = sortedDisplayList.get(index);
+            assertEquals(firstPerson.getName(), secondPerson.getName());
         }
     }
 }

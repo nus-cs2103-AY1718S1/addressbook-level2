@@ -49,6 +49,12 @@ Examples:
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
+### Adding a reminder: `reminder`
+Adds a reminder that appears during launch of the address book<br>
+Format: `reminder MESSAGE`
+
+There can only be one reminder at a time.
+
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`

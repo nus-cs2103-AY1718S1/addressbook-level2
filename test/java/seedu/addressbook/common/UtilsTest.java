@@ -14,10 +14,8 @@ public class UtilsTest {
     public void isAnyNull() throws Exception {
         // null element
         assertIsNull(null);
-        assertNotNull(null);
 
         // no null element
-        assertIsNull("happiness", "family");
         assertNotNull("success", "contentment");
     }
 

@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -141,6 +141,24 @@
   list
 
 ##########################################################
+# test sort command
+##########################################################
+
+  # clears the contact list for new inputs
+  clear
+  list
+
+  # add contacts to test sort command
+  add Darren p/111111 e/example@gmail.com a/111, alpha street
+  add terence p/111111 e/example@gmail.com a/111, alpha street
+  add john p/111111 e/example@gmail.com a/111, alpha street
+  add Arsene p/111111 e/example@gmail.com a/111, alpha street
+
+  # contacts sorted in alphabetical order
+  sort
+  list
+
+##########################################################
 # test clear command
 ##########################################################
 
@@ -155,3 +173,4 @@
   # exits properly
   exit
   list
+

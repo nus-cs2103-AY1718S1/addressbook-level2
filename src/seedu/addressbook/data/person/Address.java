@@ -16,6 +16,14 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode code;
+
+    private String[] splitted = new String[4];
+    public static final int BLOCK_INDEX = 0, STREET_INDEX = 1, UNIT_INDEX = 2, POSTALCODE_INDEX = 3;
+
     /**
      * Validates given address.
      *

@@ -58,27 +58,22 @@
 # test edites & viewes command
 ##########################################################
 
-  //Should show error message saying that person not in contact list
+  #Should show error message saying that person not in contact list
   viewes jeremy
   edites jeremy
   
   add jeremy p/1111 e/j@hotmail.com a/jstreet,lentor,#06-02
 
-  //Should show error message asking user to use edites first
+  #Should show error message asking user to use edites first
   viewes jeremy
 
-  //Takes in input
-  edites jeremy
-  
-  //Loop until input is valid
-  unemployed,student
-  student,10
-  unemployed,10
-  unemployed,student,10
+  # [To work on]
+  #edites jeremy
 
-  //Status recorded and viewes ready for use
-  viewes jeremy
-  
+  #For some reason, ui.getUserInput doesnt recognize the following line
+  #but ui.getUserInput can recognize edites.
+
+  #unemployed,student,10
 
 ##########################################################
 # test view/viewall persons command

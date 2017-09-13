@@ -206,7 +206,7 @@
 || ===================================================
 || Enter command: || [Command entered:  find 4444]
 || 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-||
+|| 
 || 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find bet]

@@ -201,6 +201,21 @@
 || Enter command: || [Command entered:  viewall 5]
 || Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
+|| Enter command: || [Command entered:  pfind]
+|| Invalid command format! 
+|| pfind: Finds all persons whose phone number contains the specified digits in sequence and displays them as a list with index numbers.
+|| Parameters: NUMBER
+|| Example: pfind 689
+|| ===================================================
+|| Enter command: || [Command entered:  pfind 111]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 
+|| 1 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  pfind 123]
+|| 
+|| 0 persons listed!
+|| ===================================================
 || Enter command: || [Command entered:  find]
 || Invalid command format! 
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.

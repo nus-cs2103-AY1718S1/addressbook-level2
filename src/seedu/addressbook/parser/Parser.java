@@ -92,7 +92,7 @@ public class Parser {
             return prepareFind(arguments);
 
         case FindPhoneCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            return prepareFindPhone(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -258,7 +258,7 @@ public class Parser {
     }
 
     private Command prepareFindPhone(String args) {
-        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        final Matcher matcher = NUMBER_ARG_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindPhoneCommand.MESSAGE_USAGE));

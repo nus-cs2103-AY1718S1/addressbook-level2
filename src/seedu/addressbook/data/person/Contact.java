@@ -1,8 +1,11 @@
 package seedu.addressbook.data.person;
 
 public class Contact {
-    public final String value;
-    private boolean isPrivate;
+    public String value;
+    protected boolean isPrivate;
+
+    protected Contact() {
+    }
 
     public Contact(String value, boolean isPrivate) {
         this.value = value;
@@ -17,8 +20,8 @@ public class Contact {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                || (other instanceof Contact // instanceof handles nulls
+                && this.value.equals(((Contact) other).value)); // state check
     }
 
     @Override

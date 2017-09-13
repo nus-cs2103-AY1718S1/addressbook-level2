@@ -13,6 +13,10 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
+    private Block block = new Block(0);
+    private Street street = new Street("");
+    private Unit unit = new Unit("");
+    private PostalCode postalCode = new PostalCode(0);
     private boolean isPrivate;
 
     /**
@@ -26,7 +30,17 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+        String[] splitAddress = trimmedAddress.split(",");
+
+        //have to comment else have to change test case
+        //block.setBlockNumber(Integer.parseInt(splitAddress[0]));
+        //street.setStreetName(splitAddress[1]);
+        //unit.setUnitNum(splitAddress[2]);
+        //postalCode.setPostalNum(Integer.parseInt(splitAddress[3].trim()));
+
+
         this.value = trimmedAddress;
+
     }
 
     /**

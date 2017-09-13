@@ -106,4 +106,11 @@ public class Formatter {
     private static String getIndexedListItem(int visibleIndex, String listItem) {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
     }
+
+    /**
+     * Shows the 'Enter command' message to user.
+     */
+    public void showEnterCommand() {
+        out.print(LINE_PREFIX + "Enter command: ");
+    }
 }

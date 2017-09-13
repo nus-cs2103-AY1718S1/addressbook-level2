@@ -37,4 +37,8 @@ public class Formatter {
 		return new String[]{DIVIDER, DIVIDER, MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
 				storageFileInfo, DIVIDER};
 	}
+
+	static String getFormattedMessageLine(String m) {
+		return LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX);
+	}
 }

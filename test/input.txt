@@ -103,6 +103,12 @@
   find Betsy
   # find multiple with same keyword
   find Dickson
+  # find phone number that is not private
+  find 555555
+  # find email with keyword, only public ones matched
+  find nus.edu.sg
+  # find address with keyword
+  find alpha
   # find multiple with some keywords
   find Charlie Betsy
 

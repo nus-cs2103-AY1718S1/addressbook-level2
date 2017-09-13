@@ -227,6 +227,21 @@
 || 
 || 2 persons listed!
 || ===================================================
+|| Enter command: || [Command entered:  find 555555]
+|| 	1. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 1 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  find nus.edu.sg]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 
+|| 1 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  find alpha]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 
+|| 1 persons listed!
+|| ===================================================
 || Enter command: || [Command entered:  find Charlie Betsy]
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]

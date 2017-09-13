@@ -60,7 +60,7 @@ public class Name {
         return fullName.hashCode();
     }
 
-    public int compareTo(Name comparingName) {
-        return this.toString().compareTo(comparingName.toString());
+    public int compareTo(Name nameToBeCompared) {
+        return this.toString().compareToIgnoreCase(nameToBeCompared.toString());
     }
 }

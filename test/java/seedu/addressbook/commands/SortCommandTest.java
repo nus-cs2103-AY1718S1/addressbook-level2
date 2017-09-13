@@ -32,18 +32,19 @@ public class SortCommandTest {
     private TypicalPersons td = new TypicalPersons();
 
     private AddressBook typicalAddressBook = td.getTypicalAddressBook();
-    private AddressBook emptyAddressBook = TestUtil.createAddressBook();
-    private List<ReadOnlyPerson> emptyPersonList = Collections.emptyList();
-    private List<ReadOnlyPerson> listWithAllTypicalPersons = Arrays.asList(td.getTypicalPersons());
-    private List<ReadOnlyPerson> listWithSomeTypicalPersons = Arrays.asList(td.amy, td.dan, td.candy);
+    //private AddressBook emptyAddressBook = TestUtil.createAddressBook();
+    //private List<ReadOnlyPerson> emptyPersonList = Collections.emptyList();
+    private List<ReadOnlyPerson> alphabeticalList = Arrays.asList(td.getTypicalPersons());
+    private List<ReadOnlyPerson> jumbledList = Arrays.asList(td.amy, td.dan, td.candy, td.bill);
 
-    
+
     @Test
     //Checks if list is sorted in alphabetical order of names
-    public void entriesInAlphabeticalOrder(List<ReadOnlyPerson> listWithSomeTypicalPersons) {
+    public void entriesInAlphabeticalOrder(List<ReadOnlyPerson> jumbledList) {
+
         SortCommand command = new SortCommand();
         CommandResult result = command.execute();
-        assertEquals(new String[] {"Amy", "Candy", "Dan"}, result);
+        assertEquals(alphabeticalList, result);
 
     }
 }

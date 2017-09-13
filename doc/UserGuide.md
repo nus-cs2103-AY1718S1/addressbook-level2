@@ -73,7 +73,13 @@ Examples:
 * `find Betsy`<br> 
   `update 1 Besty p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`<br>
   update the 1st person in the results of the `find` command.
+  
+### Updating a person : `update`
+Update the specified person from the address book. Irreversible.<br>
+Format: `update INDEX John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 
+> Update the person at the specified `INDEX`. 
+  The index refers to the index number shown in the most recent listing.
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>

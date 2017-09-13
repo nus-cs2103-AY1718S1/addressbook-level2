@@ -10,7 +10,7 @@ public class WhyCommand extends Command {
     public static final String COMMAND_WORD = "why";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tells you why.\n"
-            + "Example: " + COMMAND_WORD;
+            + "Example: " + COMMAND_WORD +" not";
     public static final String MESSAGE_WHY_1 = "Because you can do it :)";
     public static final String MESSAGE_WHY_2 = "Because you should not give up :)";
     public static final String MESSAGE_WHY_3 = "Because CS2103/T is cool";

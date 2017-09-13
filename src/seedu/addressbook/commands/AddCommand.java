@@ -77,4 +77,17 @@ public class AddCommand extends Command {
             return new CommandResult(MESSAGE_DUPLICATE_PERSON);
         }
     }
+
+    /**
+     *
+     * @return CommandResult WITHOUT the auto-list enhancement
+     */
+    public CommandResult getAddMessage() {
+        try {
+            addressBook.addPerson(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } catch (UniquePersonList.DuplicatePersonException dpe) {
+            return new CommandResult(MESSAGE_DUPLICATE_PERSON);
+        }
+    }
 }

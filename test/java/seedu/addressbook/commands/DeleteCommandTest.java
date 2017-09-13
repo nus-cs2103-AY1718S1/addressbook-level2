@@ -107,7 +107,7 @@ public class DeleteCommandTest {
     private void assertCommandBehaviour(DeleteCommand deleteCommand, String expectedMessage,
                                         AddressBook expectedAddressBook, AddressBook actualAddressBook) {
 
-        CommandResult result = deleteCommand.execute();
+        CommandResult result = deleteCommand.getDeleteMessage();
 
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedAddressBook.getAllPersons(), actualAddressBook.getAllPersons());

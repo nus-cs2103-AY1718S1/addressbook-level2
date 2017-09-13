@@ -16,12 +16,22 @@ public class CommandResult {
     /** The list of persons that was produced by the command */
     private final List<? extends ReadOnlyPerson> relevantPersons;
 
+    public boolean recordList = true;
+
     public CommandResult(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
         relevantPersons = null;
+        recordList = true;
     }
 
     public CommandResult(String feedbackToUser, List<? extends ReadOnlyPerson> relevantPersons) {
+        this.feedbackToUser = feedbackToUser;
+        this.relevantPersons = relevantPersons;
+        recordList = true;
+    }
+
+    public CommandResult(String feedbackToUser, List<? extends ReadOnlyPerson> relevantPersons, boolean record) {
+        this.recordList = record;
         this.feedbackToUser = feedbackToUser;
         this.relevantPersons = relevantPersons;
     }

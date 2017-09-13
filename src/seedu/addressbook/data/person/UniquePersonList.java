@@ -66,6 +66,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Sorts the list of persons' names in alphabetical order
+     * takes care of both uppercase and lowercase
+     */
+    public void sort(){
+        Collections.sort(internalList, (person1, person2) -> person1.getName().fullName.toLowerCase().compareTo(person2.getName().fullName.toLowerCase()));
+    }
+
+    /**
      * Constructs a shallow copy of the list.
      */
     public UniquePersonList(UniquePersonList source) {

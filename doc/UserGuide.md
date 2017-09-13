@@ -55,7 +55,13 @@ Format: `list`
 
 ### Displaying a sorted list : `sort`
 Shows a sorted list of all person in the address book.<br>
-Format: `sort`
+Format: `sort PARAMETER`
+
+> The available parameters fo sorting are email and phone. If left blank, or
+any other parameters, the sort function sorts by name instead.
+
+Examples:
+* `sort email` displays a sorted list based on emails.
 
 ### Finding all persons containing any keyword in their name: `find`
 Finds persons whose names contain any of the given keywords.<br>

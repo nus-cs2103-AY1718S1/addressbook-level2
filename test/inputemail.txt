@@ -1,0 +1,37 @@
+#############################################
+# Clean List
+#############################################
+
+	clear
+
+#############################################
+# Test add person command
+#############################################
+
+
+	add Daniel p/98765432 e/daniel@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/Smart
+	add Johnny Tan p/98765431 e/johnny@gmail.com a/112, Punggol Ave 9, #12-05 t/friends t/Average
+	add Johnny Cheng p/88765431 e/johnnycheng@gmail.com a/666, Tampines Ave 9, #14-05 t/bestfriends t/Average
+	add Vivian Lai p/98665431 e/vlai@123.com a/76, Tampines Ave 5, #10-05 t/bestfriends t/Average
+	add Adam Zhang p/97765431 e/adam@yahoo.com a/600, QueensTown Ave 9, #11-05 t/bestfriends t/Average
+
+##############################################
+# Check State
+##############################################
+
+	List
+
+##############################################
+# Check Email With Valid and Invalid Command
+##############################################
+
+	findemail adam
+	findemail adam@
+	findemail zz@
+	findemail johnny@
+
+##############################################
+# Test Exit Command
+##############################################
+
+	exit

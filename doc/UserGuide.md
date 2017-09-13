@@ -66,6 +66,17 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Swaps two persons containing any keyword in their name: `swap`
+Swaps two persons whose names contain any of the given keywords.<br>
+Format: `find KEYWORD KEYWORDS`
+
+> The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
+and both persons must be matching at least one keyword for swapping to occur.
+
+Examples: 
+* `Swap John Mary`<br>
+  Swap the location of two person having names `John` or `Mary`
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`

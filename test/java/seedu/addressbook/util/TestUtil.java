@@ -15,10 +15,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import seedu.addressbook.data.Birthday;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Birthday;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;

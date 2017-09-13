@@ -25,13 +25,14 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.util.TestUtil;
 
-public class AddCommandTest {
+public class
+AddCommandTest {
     private static final List<ReadOnlyPerson> EMPTY_PERSON_LIST = Collections.emptyList();
     private static final Set<String> EMPTY_STRING_LIST = Collections.emptySet();
 
     @Test
     public void addCommand_invalidName_throwsException() {
-        final String[] invalidNames = { "", " ", "[]\\[;]"};
+        final String[] invalidNames = { "", " ", "[]\\[;]" };
         for (String name : invalidNames) {
             assertConstructingInvalidAddCmdThrowsException(name, Phone.EXAMPLE, true, Email.EXAMPLE, false,
                     Address.EXAMPLE, true, Birthday.EXAMPLE, true, EMPTY_STRING_LIST);
@@ -71,7 +72,7 @@ public class AddCommandTest {
         final String[] invalidBirthdays = { "", " ", "1234-5678", "[]\\[;]", "abc", "a123", "+651234" };
         for (String birthday : invalidBirthdays) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
-                    true, address, false, Birthday.EXAMPLE, true, EMPTY_STRING_LIST);
+                    true, Address.EXAMPLE, false, birthday, true, EMPTY_STRING_LIST);
         }
     }
 

@@ -6,15 +6,16 @@ public class Birthday {
     public static final String EXAMPLE = "19880818";
     public static final String MESSAGE_BIRTHDAY_CONSTRAINTS = "Person birthday should be in date format";
     public static final String BIRTHDAY_VALIDATION_REGEX = "\\d+";
+    // ^\d{1,2}\/\d{1,2}\/\d{4}$
             //\\\\d{4}/[01]\\\\d/[0-3]\\\\d"
 
     public final String value;
     private boolean isPrivate;
 
     /**
-     * Validates given address.
+     * Validates given birthday.
      *
-     * @throws IllegalValueException if given address string is invalid.
+     * @throws IllegalValueException if given birthday string is invalid.
      */
     public Birthday(String birthday, boolean isPrivate) throws IllegalValueException {
         String trimmedBirthday = birthday.trim();
@@ -26,7 +27,7 @@ public class Birthday {
     }
 
     /**
-     * Returns true if a given string is a valid person address.
+     * Returns true if a given string is a valid person birthday.
      */
     public static boolean isValidBirthday(String test) {
         return test.matches(BIRTHDAY_VALIDATION_REGEX);

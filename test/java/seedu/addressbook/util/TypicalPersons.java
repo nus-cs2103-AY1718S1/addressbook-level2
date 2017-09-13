@@ -1,6 +1,6 @@
 package seedu.addressbook.util;
 
-import seedu.addressbook.data.Birthday;
+import seedu.addressbook.data.person.Birthday;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
@@ -26,7 +26,7 @@ public class TypicalPersons {
                     new Address("2 Clementi Road", true), new Birthday("19880726", false), new UniqueTagList());
             candy = new Person(new Name("Candy Destiny"), new Phone("93339333", true),
                     new Email("cd@gmail.com", false), new Address("3 Clementi Road", true),
-                    new Birthday("1988-05-24", false), new UniqueTagList());
+                    new Birthday("19880524", false), new UniqueTagList());
             dan = new Person(new Name("Dan Smith"), new Phone("1234556", true), new Email("ss@tt.com", true),
                     new Address("NUS", true), new Birthday("19880224", false), new UniqueTagList(new Tag("Test")));
         } catch (IllegalValueException e) {

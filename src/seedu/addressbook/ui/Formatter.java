@@ -49,7 +49,6 @@ public class Formatter {
     private static final String MESSAGE_FEEDBACK_GOODBYE_MESSAGE = MESSAGE_GOODBYE + "\n" + DIVIDER + "\n" + DIVIDER;
     private static final String MESSAGE_FEEDBACK_INIT_FAILED = MESSAGE_INIT_FAILED + "\n" + DIVIDER + "\n" + DIVIDER;
     private static final String MESSAGE_FEEDBACK_COMMAND_RESULT = "%1$s" + "\n" + DIVIDER;
-    private static final String MESSAGE_FORMATTED_FEEDBACK = LINE_PREFIX + "%1$s";
 
     /**
      * Returns a formatted string collection obtained from a big string into several,

@@ -1,5 +1,7 @@
 package seedu.addressbook.ui;
 
+import seedu.addressbook.commands.CommandResult;
+
 import static seedu.addressbook.common.Messages.*;
 
 /**
@@ -24,18 +26,27 @@ public class Formatter {
 	/** Format of a comment input line. Comment lines are silently consumed when reading user input. */
 	private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
 
+	/**
+	 * @return formatted request command message
+	 */
 	static String getRequestCommandMessage() {
 		return LINE_PREFIX + "Enter command: ";
 	}
 
+	/**
+	 * @return formatted details of command entered by user
+	 */
 	static String getCommandEntered(String command) {
 		return "[Command entered:" + command + "]";
 	}
 
-	static String[] getWelcomeMessages(String version, String storageFilePath) {
+	/**
+	 * @return formatted welcome message
+	 */
+	static String getWelcomeMessage(String version, String storageFilePath) {
 		String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-		return new String[]{DIVIDER, DIVIDER, MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-				storageFileInfo, DIVIDER};
+		return consolidateMessagesIntoString(new String[]{DIVIDER, DIVIDER, MESSAGE_WELCOME, version,
+				MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo, DIVIDER});
 	}
 
 	/**
@@ -48,15 +59,15 @@ public class Formatter {
 	/**
 	 * @return lines of messages for the goodbye message
 	 */
-	static String[] getGoodbyeMessages() {
-		return new String[]{MESSAGE_GOODBYE, DIVIDER, DIVIDER};
+	static String getGoodbyeMessage() {
+		return consolidateMessagesIntoString(new String[]{MESSAGE_GOODBYE, DIVIDER, DIVIDER});
 	}
 
 	/**
 	 * @return Formatted initilization failed message
 	 */
-	static String[] getInitFailedMessages() {
-		return new String[]{MESSAGE_INIT_FAILED, DIVIDER, DIVIDER};
+	static String getInitFailedMessage() {
+		return consolidateMessagesIntoString(new String[]{MESSAGE_INIT_FAILED, DIVIDER, DIVIDER});
 	}
 
 	/**
@@ -66,5 +77,28 @@ public class Formatter {
 	 */
 	static String getIndexedListItem(int visibleIndex, String listItem) {
 		return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
+	}
+
+	static String getFeedbackMessage(CommandResult result) {
+		String[] feedbackMessages = new String[]{result.feedbackToUser, DIVIDER};
+		return consolidateMessagesIntoString(feedbackMessages);
+	}
+
+	/**
+	 * Consolidate messages into a string, with each String element being formatted as a line
+	 *
+	 * @return consolidated message from messages
+ 	 */
+	private static String consolidateMessagesIntoString(String... messages) {
+		String consolidatedMessage = "";
+		for(String message : messages) {
+			consolidatedMessage += message;
+
+			if(!message.equals(messages[messages.length - 1])) {
+				consolidatedMessage += "\n";
+			}
+		}
+
+		return consolidatedMessage;
 	}
 }

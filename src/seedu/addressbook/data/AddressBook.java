@@ -114,6 +114,12 @@ public class AddressBook {
         return new UniquePersonList(allPersons);
     }
 
+    /** Sorts all persons in alphabetical order.
+     */
+    public void sort(){
+        allPersons.sort();
+    }
+
     /**
      * Returns a new UniqueTagList of all tags in the address book at the time of the call.
      */
@@ -125,7 +131,7 @@ public class AddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && this.allPersons.equals(((AddressBook) other).allPersons)
-                        && this.allTags.equals(((AddressBook) other).allTags));
+                && this.allPersons.equals(((AddressBook) other).allPersons)
+                && this.allTags.equals(((AddressBook) other).allTags));
     }
 }

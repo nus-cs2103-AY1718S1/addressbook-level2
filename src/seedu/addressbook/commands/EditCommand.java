@@ -17,9 +17,9 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a person from the address book. "
             + "Contact details can be marked private by prepending 'p' to the prefix.\n"
-            + "Parameters: NAME [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS]  [t/TAG]...\n"
+            + "Parameters: NAME [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS] [[p]b/BIRTHDAY]  [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
-            + " John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
+            + " John Doe p/98765432 a/311, Clementi Ave 2, #02-25 b/3112 t/friends t/owesMoney";
 
     public static final String MESSAGE_SUCCESS = "Person edited: %1$s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Cannot find the person";
@@ -36,6 +36,7 @@ public class EditCommand extends Command {
                        String phone, boolean isPhonePrivate,
                        String email, boolean isEmailPrivate,
                        String address, boolean isAddressPrivate,
+                       String birthday, boolean isBirthdayPrivate,
                        Set<String> tags) throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
@@ -46,6 +47,7 @@ public class EditCommand extends Command {
                 (phone == null) ? null : new Phone(phone, isPhonePrivate),
                 (email == null) ? null : new Email(email, isEmailPrivate),
                 (address == null) ? null : new Address(address, isAddressPrivate),
+                (birthday == null) ? null : new Birthday(birthday, isBirthdayPrivate),
                 new UniqueTagList(tagSet)
         );
     }

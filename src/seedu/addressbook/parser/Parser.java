@@ -80,7 +80,7 @@ public class Parser {
             return prepareAdd(arguments);
 
         case SortCommand.COMMAND_WORD:
-            return prepareSort();
+            return new SortCommand();
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -139,15 +139,6 @@ public class Parser {
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
-    }
-
-    /**
-     * Parses arguments in the context of the sort person command.
-     *
-     * @return the prepared command
-     */
-    private Command prepareSort() {
-        return new SortCommand();
     }
 
     /**

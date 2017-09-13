@@ -139,7 +139,6 @@ public class Parser {
     private Command prepareUpdate(String args) {
         try {
             String num = args.trim().substring(0,1);
-            System.out.println(num);
             final int targetIndex = parseArgsAsDisplayedIndex(num.trim());
 
             String updateInput = args.trim().substring(args.trim().indexOf(" ")+1);

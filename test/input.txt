@@ -51,8 +51,8 @@
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
 
-  # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  # should not allow adding duplicate persons
 
 ##########################################################
 # test view/viewall persons command
@@ -105,6 +105,41 @@
   find Dickson
   # find multiple with some keywords
   find Charlie Betsy
+  
+##########################################################
+# test update person command
+##########################################################
+
+# last active view: [1] betsy [2] charlie
+
+  # should catch invalid args format
+  update wrong args wrong args
+  update 1 Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address
+  update 1 Valid Name p/12345 valid@email.butNoPrefix a/valid, address
+  update 1 Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address
+  update 1 Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
+
+  # should catch invalid person data
+  update 1 []\[;] p/12345 e/valid@e.mail a/valid, address
+  update 1 Valid Name p/not_numbers e/valid@e.mail a/valid, address
+  update 1 Valid Name p/12345 e/notAnEmail a/valid, address
+  update 1 Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
+  
+  # should catch invalid index
+  update -1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+  update 0 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+  update 3 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+
+  # should have updated based on last active view's index
+  list
+
+  # update correct person
+  update 1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+  list
+
+  # listing indexes get updated on next request
+  update 1 John p/98762332 e/jo@gmail.com a/323, Clementi Ave 4, #02-25 t/friends t/owesMoney
+  list
 
 ##########################################################
 # test delete person command
@@ -119,7 +154,7 @@
   # should catch invalid index
   delete -1
   delete 0
-  delete 3
+  delete 6
 
   # should catch attempt to delete something already deleted
   delete 2
@@ -135,6 +170,7 @@
   # deletes correct person
   delete 4
   list
+  delete 1
 
   # listing indexes get updated on next request
   delete 1

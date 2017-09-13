@@ -9,6 +9,9 @@
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| update: Updates a person information from the address book. Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: update 1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
@@ -233,6 +236,84 @@
 || 
 || 2 persons listed!
 || ===================================================
+|| Enter command: || [Command entered:  update wrong args wrong args]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  update 1 Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address]
+|| Invalid command format! 
+|| update: Updates a person information from the address book. Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: update 1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  update 1 Valid Name p/12345 valid@email.butNoPrefix a/valid, address]
+|| Invalid command format! 
+|| update: Updates a person information from the address book. Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: update 1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  update 1 Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address]
+|| Invalid command format! 
+|| update: Updates a person information from the address book. Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: update 1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  update 1 Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag]
+|| Tags names should be alphanumeric
+|| ===================================================
+|| Enter command: || [Command entered:  update 1 []\[;] p/12345 e/valid@e.mail a/valid, address]
+|| Person names should be spaces or alphabetic characters
+|| ===================================================
+|| Enter command: || [Command entered:  update 1 Valid Name p/not_numbers e/valid@e.mail a/valid, address]
+|| Person phone numbers should only contain numbers
+|| ===================================================
+|| Enter command: || [Command entered:  update 1 Valid Name p/12345 e/notAnEmail a/valid, address]
+|| Person emails should be 2 alphanumeric/period strings separated by '@'
+|| ===================================================
+|| Enter command: || [Command entered:  update 1 Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag]
+|| Tags names should be alphanumeric
+|| ===================================================
+|| Enter command: || [Command entered:  update -1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  update 0 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  update 3 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  update 1 John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney]
+|| Selected person updated: John Doe Phone: 98765432 Email: johnd@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends]
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	5. John Doe Phone: 98765432 Email: johnd@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  update 1 John p/98762332 e/jo@gmail.com a/323, Clementi Ave 4, #02-25 t/friends t/owesMoney]
+|| Selected person updated: John Phone: 98762332 Email: jo@gmail.com Address: 323, Clementi Ave 4, #02-25 Tags: [owesMoney][friends]
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	3. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	4. John Doe Phone: 98765432 Email: johnd@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends]
+|| 	5. John Phone: 98762332 Email: jo@gmail.com Address: 323, Clementi Ave 4, #02-25 Tags: [owesMoney][friends]
+|| 
+|| 5 persons listed!
+|| ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format! 
 || delete: Deletes the person identified by the index number used in the last person listing.
@@ -248,11 +329,11 @@
 || Enter command: || [Command entered:  delete 0]
 || The person index provided is invalid
 || ===================================================
-|| Enter command: || [Command entered:  delete 3]
+|| Enter command: || [Command entered:  delete 6]
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| Deleted Person: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
 || Person could not be found in address book
@@ -264,29 +345,32 @@
 || Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	3. John Doe Phone: 98765432 Email: johnd@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends]
+|| 	4. John Phone: 98762332 Email: jo@gmail.com Address: 323, Clementi Ave 4, #02-25 Tags: [owesMoney][friends]
 || 
 || 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 4]
-|| Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
+|| Deleted Person: John Phone: 98762332 Email: jo@gmail.com Address: 323, Clementi Ave 4, #02-25 Tags: [owesMoney][friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	3. John Doe Phone: 98765432 Email: johnd@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends]
 || 
 || 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
-|| Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| ===================================================
+|| Enter command: || [Command entered:  delete 1]
+|| Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Betsy Choo Tags: [secretive]
-|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	1. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	2. John Doe Phone: 98765432 Email: johnd@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends]
 || 
 || 2 persons listed!
 || ===================================================

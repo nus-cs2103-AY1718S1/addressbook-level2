@@ -34,6 +34,17 @@ public class FindCommand extends Command {
         return new HashSet<>(keywords);
     }
 
+    /**
+     * Converts all words in the set to uppercase
+     */
+    private Set<String> makeStringsUpperCase(Set<String> words) {
+        HashSet<String> results = new HashSet<String>();
+        for (String word : words) {
+            results.add(word.toUpperCase());
+        }
+        return results;
+    }
+
     @Override
     public CommandResult execute() {
         final List<ReadOnlyPerson> personsFound = getPersonsWithNameContainingAnyKeyword(keywords);
@@ -47,14 +58,15 @@ public class FindCommand extends Command {
      * @return list of persons found
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
+        Set<String> upperCaseKeywords = this.makeStringsUpperCase(keywords);
+
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
-            final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            final Set<String> upperCaseWordsInName = new HashSet<>(person.getName().getUpperCaseWordsInName());
+            if (!Collections.disjoint(upperCaseWordsInName, upperCaseKeywords)) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
     }
-
 }

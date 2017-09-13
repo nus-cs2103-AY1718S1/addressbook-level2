@@ -1,5 +1,5 @@
 package seedu.addressbook.commands;
-
+import seed
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +17,8 @@ import seedu.addressbook.data.tag.UniqueTagList;
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends Command {
+public class
+AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -28,7 +29,10 @@ public class AddCommand extends Command {
             + " John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON =
+            "This person already exists in the address book, noone else was added";
+    public static final String MESSAGE_DUPLICATE_PERSON_CONFIRMATION =
+            "This person already exists in the address book,would you like to create another contact?";
 
     private final Person toAdd;
 
@@ -37,22 +41,29 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
+    String Duplicate = "abcde";
     public AddCommand(String name,
                       String phone, boolean isPhonePrivate,
                       String email, boolean isEmailPrivate,
                       String address, boolean isAddressPrivate,
                       Set<String> tags) throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
+
+
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+
         this.toAdd = new Person(
                 new Name(name),
                 new Phone(phone, isPhonePrivate),
                 new Email(email, isEmailPrivate),
                 new Address(address, isAddressPrivate),
                 new UniqueTagList(tagSet)
+
+
         );
+
     }
 
     public AddCommand(Person toAdd) {
@@ -66,11 +77,27 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
+            // if userReply detected, will run the program with userReply
+            if (userReply.contains("yes")){
+
+                toAdd.editName(toAdd.getName() +" Duplicate");
+            }
+
             addressBook.addPerson(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniquePersonList.DuplicatePersonException dpe) {
-            return new CommandResult(MESSAGE_DUPLICATE_PERSON);
+
+            if (userReply.contains("no")){
+
+                return new CommandResult(MESSAGE_DUPLICATE_PERSON);
+            }
+            return new CommandResult(MESSAGE_DUPLICATE_PERSON_CONFIRMATION, true);
         }
+
+
+
     }
 
 }
+
+

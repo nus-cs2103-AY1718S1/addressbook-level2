@@ -139,13 +139,13 @@
 || New person added: Brandon Khoo Phone: 666666 Email: brandonkhoo@nus.edu.sg Address: 666, charlie street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
-||  3. Brandon Khoo Phone: 666666 Email: brandonkhoo@nus.edu.sg Address: 666, charlie street Tags: [friends]
+||  	3. Brandon Khoo Phone: 666666 Email: brandonkhoo@nus.edu.sg Address: 666, charlie street Tags: [friends]
 || 	4. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 	5. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	6. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
-||
+|| 
 || 6 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
@@ -282,7 +282,7 @@
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
-||  3. Brandon Khoo Phone: 666666 Email: brandonkhoo@nus.edu.sg Address: 666, charlie street Tags: [friends]
+||  	3. Brandon Khoo Phone: 666666 Email: brandonkhoo@nus.edu.sg Address: 666, charlie street Tags: [friends]
 || 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
@@ -294,7 +294,7 @@
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
-||  3. Brandon Khoo Phone: 666666 Email: brandonkhoo@nus.edu.sg Address: 666, charlie street Tags: [friends]
+||  	3. Brandon Khoo Phone: 666666 Email: brandonkhoo@nus.edu.sg Address: 666, charlie street Tags: [friends]
 || 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 4 persons listed!
@@ -304,7 +304,7 @@
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Tags: [secretive]
-||  2. Brandon Khoo Phone: 666666 Email: brandonkhoo@nus.edu.sg Address: 666, charlie street Tags: [friends]
+||  	2. Brandon Khoo Phone: 666666 Email: brandonkhoo@nus.edu.sg Address: 666, charlie street Tags: [friends]
 || 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 3 persons listed!

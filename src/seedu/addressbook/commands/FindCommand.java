@@ -44,7 +44,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Retrieves all persons in the address book whose names or public phone numbers
+     * Retrieves all persons in the address book whose names or public phone numbers, emails
      * contain some of the specified keywords.
      *
      * @param keywords for searching
@@ -54,7 +54,8 @@ public class FindCommand extends Command {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             if (nameMatchesKeyword(person, keywords) ||
-                    (!person.getPhone().isPrivate() && phoneMatchesKeyword(person, keywords)) ) {
+                    (!person.getPhone().isPrivate() && phoneMatchesKeyword(person, keywords)) ||
+                    (!person.getEmail().isPrivate() && emailMatchesKeyword(person, keywords)) ) {
                 matchedPersons.add(person);
             }
         }
@@ -85,6 +86,22 @@ public class FindCommand extends Command {
         phoneNumber.add(person.getPhone().toString());
         if (!Collections.disjoint(phoneNumber, allKeywords)) {
             return MATCHED;
+        }
+
+        return NOT_MATCHED;
+    }
+
+    /**
+     * Checks if a person's email contains any of the specified keywords.
+     *
+     * @return true if there is a match, false otherwise.
+     */
+    private boolean emailMatchesKeyword(ReadOnlyPerson person, Set<String> allKeywords) {
+        final String email = person.getEmail().toString();
+        for (String keyword : allKeywords) {
+            if (email.contains(keyword)) {
+                return MATCHED;
+            }
         }
 
         return NOT_MATCHED;

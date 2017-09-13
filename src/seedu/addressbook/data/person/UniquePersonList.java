@@ -143,19 +143,8 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     public void swap(List<ReadOnlyPerson> personsFound){
-        int firstIndex = -1, secondIndex = -1;
-        for (int i = 0; i < internalList.size(); i++){
-            for (int j = 0; j < 2; j++){
-                if (personsFound.get(j) == internalList.get(i)){
-                    if (firstIndex == -1){
-                        firstIndex = i;
-                    }
-                    else {
-                        secondIndex = i;
-                    }
-                }
-            }
-        }
+        int firstIndex = internalList.indexOf(personsFound.get(0));
+        int secondIndex = internalList.indexOf(personsFound.get(1));
         Collections.swap(internalList, firstIndex, secondIndex);
     }
 }

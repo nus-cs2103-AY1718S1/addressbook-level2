@@ -35,6 +35,7 @@ Format: `help`
  
 ### Adding a person: `add`
 Adds a person to the address book<br>
+An updated list of the people in the address book will be printed out as well.
 Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...` 
  
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 

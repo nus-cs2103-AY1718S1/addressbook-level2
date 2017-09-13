@@ -9,6 +9,30 @@ import java.util.List;
 import org.junit.Test;
 
 public class UtilsTest {
+    @Test
+    public void isAnyNull() throws Exception {
+        // empty list
+        assertIsNull();
+
+        // only one object
+        assertIsNull((Object) null);
+        assertIsNull(1);
+        assertIsNull("");
+        assertIsNull("abc");
+
+        // all objects are null
+        assertIsNull(null, null);
+        assertIsNull(null, null, null);
+
+        // all objects are not null
+        assertIsNotNull("abc", "ab", "a");
+        assertIsNotNull(1, 2);
+
+        // some objects are null
+        assertIsNotNull("abc", null);
+        assertIsNotNull("abc", null, "abc", null);
+        assertIsNotNull(null, "a", "b");
+    }
 
 
     @Test
@@ -42,5 +66,13 @@ public class UtilsTest {
 
     private void assertNotUnique(Object... objects) {
         assertFalse(Utils.elementsAreUnique(Arrays.asList(objects)));
+    }
+
+    private void assertIsNull(Object... items) {
+        assertTrue(Utils.isAnyNull(items));
+    }
+
+    private void assertIsNotNull(Object... items) {
+        assertFalse(Utils.isAnyNull(items));
     }
 }

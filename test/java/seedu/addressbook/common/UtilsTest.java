@@ -46,17 +46,20 @@ public class UtilsTest {
 
     @Test
     public void isAnyNull() {
-        assertIsNull();
+        //no objects
+        assertNoNull();
+        //only has null objects
+        assertHasNull((Object) null);
+        //no null objects
+        assertNoNull("hello", 1, 2);
+        assertNoNull("1", 1, 3);
+        assertNoNull(1, "abc");
 
-        assertIsNull((Object) null);
-        assertIsNull(1, 2, (Object) null);
-        assertIsNull(1, (Object) null);
-
-        assertNotNull("abc");
-        assertNotNull(1);
-
+        //mixture of objects + one null object
+        assertHasNull(1,2,null);
+        assertHasNull("abc", "bca","hi", null);
+        assertHasNull(null, 1,"hey");
     }
-
-    private void assertIsNull(Object... objects){ assertTrue(Utils.isAnyNull(objects));}
-    private void assertNotNull(Object... objects){ assertFalse(Utils.isAnyNull(objects));}
+    private void assertHasNull(Object... objects) { assertTrue(Utils.isAnyNull((objects))); }
+    private void assertNoNull(Object... objects) { assertFalse(Utils.isAnyNull((objects)));}
 }

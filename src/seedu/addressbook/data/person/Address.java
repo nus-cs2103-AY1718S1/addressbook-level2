@@ -42,7 +42,7 @@ public class Address {
 
 
         this.isPrivate = isPrivate;
-        if (trimmedAddress.length == 0) {
+        if (!isValidAddress(address)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = address.trim();

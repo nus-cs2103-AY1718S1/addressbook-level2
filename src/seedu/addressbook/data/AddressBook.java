@@ -111,6 +111,7 @@ public class AddressBook {
      * Returns a new UniquePersonList of all persons in the address book at the time of the call.
      */
     public UniquePersonList getAllPersons() {
+        allPersons.sort();
         return new UniquePersonList(allPersons);
     }
 

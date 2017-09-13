@@ -74,5 +74,5 @@ public class Formatter {
     public String getLS(){
         return LS;
     }
-    
+
 }

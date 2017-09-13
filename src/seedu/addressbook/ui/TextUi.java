@@ -20,7 +20,6 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
  * Text UI of the application.
  */
 public class TextUi {
-2
 
     private final Scanner in;
     private final PrintStream out;

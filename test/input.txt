@@ -15,6 +15,36 @@
   viewall 1
 
 ##########################################################
+# test sort command
+##########################################################
+  #should return empty list message
+  sort
+
+  #add person to the list
+  add name p/123345 e/valid@email a/valid
+  add apple p/35566 e/valid@email.com a/valid address
+  add zoo p/345677 e/sdf@fsfdd a/cwfd
+  add zack p/34653 e/sdfvv@rf a/dfe
+
+  #should successfully sort and display list
+  sort
+
+ ##########################################################
+ # test modify information command
+ ##########################################################
+ # should catch invalid index
+ change 1 p/12353
+
+ #should catch invalid field
+ list
+ change 1 t/sfdv
+ change 1 sdfwef
+
+ #should successfully modify and display message
+ list
+ change 1 a/valid address
+
+##########################################################
 # clean and check state
 ##########################################################
 

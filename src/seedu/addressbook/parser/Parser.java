@@ -11,17 +11,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -98,6 +88,12 @@ public class Parser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+            case ModifyCommand.COMMAND_WORD:
+                return prepareModify(arguments);
+
+            case SortCommand.COMMAND_WORD:
+                return new SortCommand();
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
@@ -250,5 +246,18 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    private Command prepareModify(String args){
+        try {
+            String[] args1=args.split(" ");
+            if(args1.length>3)
+                return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX +", only one info can be changed each time");
+            final int targetIndex = parseArgsAsDisplayedIndex(args1[1]);
+            return new ModifyCommand(targetIndex,args1[2]);
+        } catch (ParseException pe) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+    }
 
 }

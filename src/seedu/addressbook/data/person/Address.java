@@ -43,7 +43,7 @@ public class Address {
      * Retrieves a listing of every part of the address, separated by comma.
      */
     public List<String> getPartsOfAddress() {
-        return Arrays.asList(value.split(",\\s*"));
+        return Arrays.asList(value.split("[,\\s*]"));
     }
 
     @Override

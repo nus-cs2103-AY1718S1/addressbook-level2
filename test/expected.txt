@@ -12,6 +12,9 @@
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || Clears address book permanently.
 || Example: clear
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
@@ -233,6 +236,114 @@
 || 
 || 2 persons listed!
 || ===================================================
+|| Enter command: || [Command entered:  edit wrong args wrong args]
+|| Invalid command format! 
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address]
+|| Invalid command format! 
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Valid Name p/12345 valid@email.butNoPrefix a/valid, address]
+|| Invalid command format! 
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address]
+|| Invalid command format! 
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag]
+|| Tags names should be alphanumeric
+|| ===================================================
+|| Enter command: || [Command entered:  edit not_number Valid Name p/12345 e/valid@e.mail a/valid, address]
+|| Invalid command format! 
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 []\[;] p/12345 e/valid@e.mail a/valid, address]
+|| Person names should be spaces or alphabetic characters
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Valid Name p/not_numbers e/valid@e.mail a/valid, address]
+|| Person phone numbers should only contain numbers
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Valid Name p/12345 e/notAnEmail a/valid, address]
+|| Person emails should be 2 alphanumeric/period strings separated by '@'
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag]
+|| Tags names should be alphanumeric
+|| ===================================================
+|| Enter command: || [Command entered:  edit]
+|| Invalid command format! 
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit should be only one number]
+|| Invalid command format! 
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit -1]
+|| Invalid command format! 
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 0]
+|| Invalid command format! 
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit 3]
+|| Invalid command format! 
+|| edit: Edits a person's details in the address book based on the index of last viewed list and the detail that the user wants to edit.
+|| Parameters: INDEX NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit 1 John Dog p/98654321 e/jdog@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit 5 Esther Potato p/666666 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
+|| Edited Person: Esther Potato Phone: 666666 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 666666 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 Adam Brown p/111111 e/adam@gmail.com a/111, alpha street]
+|| Edited Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 666666 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format! 
 || delete: Deletes the person identified by the index number used in the last person listing.
@@ -249,10 +360,10 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 3]
-|| The person index provided is invalid
+|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| Deleted Person: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
 || Person could not be found in address book
@@ -265,19 +376,18 @@
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	3. Esther Potato Phone: 666666 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
-|| 4 persons listed!
+|| 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 4]
-|| Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	3. Esther Potato Phone: 666666 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
 || 3 persons listed!
 || ===================================================
@@ -285,8 +395,8 @@
 || Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Betsy Choo Tags: [secretive]
-|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	2. Esther Potato Phone: 666666 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
 || 2 persons listed!
 || ===================================================

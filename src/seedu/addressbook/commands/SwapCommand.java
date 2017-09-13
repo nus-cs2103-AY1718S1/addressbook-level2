@@ -25,6 +25,13 @@ public class SwapCommand extends Command {
 
     public SwapCommand(Set<String> keywords) {this.keywords = keywords; }
 
+    /**
+     * Returns a copy of keywords in this command.
+     */
+    public Set<String> getKeywords() {
+        return new HashSet<>(keywords);
+    }
+
     @Override
     public CommandResult execute() {
         final List<ReadOnlyPerson> personsFound = getPersonsWithNameContainingAnyKeyword(keywords);

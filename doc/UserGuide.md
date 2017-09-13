@@ -81,6 +81,21 @@ Examples:
   `delete 1`<br>
   Deletes the 1st person in the results of the `find` command.
 
+### Editing a person : `edit`
+Edits the person identified by the index number used in the last person listing.<br>
+Format: `delete INDEX [n/NAME] [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS]  [t/TAG]...`
+
+> Edits the person at the specified `INDEX`.
+  The index refers to the index number shown in the most recent listing. Select at least one optional parameter to edit and follow the order of the format above when inputting.
+
+Examples:
+* `list`<br>
+  `edit 2 n/John NewName e/newMail@gmail.com t/newTag" `<br>
+  Edits the 2nd person in the address book. Changing the name, email, and tags details.
+* `find Betsy`<br>
+  `edit 1 pa/New Street, block 100, #01-02`<br>
+  Edits the 1st person in the results of the `find` command. Changing the address detail and marking it as private.
+
 ### View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>
 Format: `view INDEX`

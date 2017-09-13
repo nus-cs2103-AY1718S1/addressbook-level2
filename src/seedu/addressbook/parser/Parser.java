@@ -22,6 +22,7 @@ import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.EditCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -30,6 +31,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Parser {
 
     public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    public static final Pattern EDIT_PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>\\S+)"
+                    +"(?<personData>.*)");
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
@@ -41,7 +44,13 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    public static final Pattern EDIT_PERSON_DATA_ARGS_FORMAT =
 
+            Pattern.compile("( n/(?<name>(?:(?!p?p/|p?e/|p?a/|t/).)*))?"
+                    + "( (?<isPhonePrivate>p?)p/(?<phone>[^/\\s]+))?"
+                    + "( (?<isEmailPrivate>p?)e/(?<email>[^/\\s]+))?"
+                    + "( (?<isAddressPrivate>p?)a/(?<address>[^/]+))?"
+                    + "(?<tagArguments>(?: t/[^/]+)*)");
     /**
      * Signals that the user input could not be parsed.
      */
@@ -77,6 +86,9 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
+
+        case EditCommand.COMMAND_WORD:
+            return prepareEdit(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -144,6 +156,10 @@ public class Parser {
         return matchedPrefix.equals("p");
     }
 
+    private static boolean isPrivatePrefixPresentForEdit(String matchedPrefix) {
+        return matchedPrefix != null && matchedPrefix.equals("p");
+    }
+
     /**
      * Extracts the new person's tags from the add command's tag arguments string.
      * Merges duplicate tag strings.
@@ -158,6 +174,67 @@ public class Parser {
         return new HashSet<>(tagStrings);
     }
 
+    /**
+     * Parses arguments in the context of the edit person command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareEdit(String args) {
+        try {
+            final Matcher targetMatcher = parseArgsAsMatcherForEdit(args);
+            final int targetIndex = Integer.parseInt(targetMatcher.group("targetIndex"));
+            final EditCommand command = parseTargetIndexAndAgrsAsEditCommand(
+                    targetIndex, targetMatcher.group("personData"));
+            return command;
+        } catch (ParseException pe) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } catch (IllegalValueException ive) {
+           return new IncorrectCommand(ive.getMessage());
+        }
+    }
+
+    /**
+     * Parses the given arguments string as a single index number for edit command.
+     *
+     * @param args arguments string to parse as index number
+     * @return the parsed index number
+     * @throws ParseException if no region of the args string could be found for the index
+     * @throws NumberFormatException the args string region is not a valid number
+     */
+    private Matcher parseArgsAsMatcherForEdit(String args) throws ParseException{
+        final Matcher matcher = EDIT_PERSON_INDEX_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            throw new ParseException("Could not find index number to parse");
+        }
+        return matcher;
+    }
+
+    private EditCommand parseTargetIndexAndAgrsAsEditCommand(int index, String args)
+            throws ParseException, IllegalValueException {
+        final Matcher matcher = EDIT_PERSON_DATA_ARGS_FORMAT.matcher(" " + args.trim());
+        if( !matcher.matches()) {
+            throw new ParseException("Could not parse person data for edit command");
+        }
+        return new EditCommand(
+                index,
+
+                matcher.group("name"),
+
+                matcher.group("phone"),
+                isPrivatePrefixPresentForEdit(matcher.group("isPhonePrivate")),
+
+                matcher.group("email"),
+                isPrivatePrefixPresentForEdit(matcher.group("isEmailPrivate")),
+
+                matcher.group("address"),
+                isPrivatePrefixPresentForEdit(matcher.group("isAddressPrivate")),
+
+                getTagsFromArgs(matcher.group("tagArguments"))
+        );
+    }
 
     /**
      * Parses arguments in the context of the delete person command.
@@ -229,7 +306,6 @@ public class Parser {
         }
         return Integer.parseInt(matcher.group("targetIndex"));
     }
-
 
     /**
      * Parses arguments in the context of the find person command.

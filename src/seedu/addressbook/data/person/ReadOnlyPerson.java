@@ -37,11 +37,31 @@ public interface ReadOnlyPerson {
     default boolean hasSameData(ReadOnlyPerson other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                    && other.getName().equals(this.getName()) // state checks here onwards
-                    && other.getPhone().equals(this.getPhone())
-                    && other.getEmail().equals(this.getEmail())
-                    && other.getAddress().equals(this.getAddress())
-                    && other.getTags().equals(this.getTags()));
+                    && this.hasSameName(other) // state checks here onwards
+                    && this.hasSamePhone(other)
+                    && this.hasSameEmail(other)
+                    && this.hasSameAddress(other)
+                    && this.hasSameTags(other));
+    }
+
+    default boolean hasSameName(ReadOnlyPerson other) {
+        return other.getName().equals(this.getName());
+    }
+
+    default boolean hasSamePhone(ReadOnlyPerson other) {
+        return other.getPhone().equals(this.getPhone());
+    }
+
+    default boolean hasSameEmail(ReadOnlyPerson other) {
+        return other.getEmail().equals(this.getEmail());
+    }
+
+    default boolean hasSameAddress(ReadOnlyPerson other) {
+        return other.getAddress().equals(this.getAddress());
+    }
+
+    default boolean hasSameTags(ReadOnlyPerson other) {
+        return other.getTags().equals(this.getTags());
     }
 
     /**

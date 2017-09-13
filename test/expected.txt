@@ -9,24 +9,38 @@
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| 
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
-|| Clears address book permanently.
+|| 
+|| clear: Clears address book permanently.
 || Example: clear
+|| 
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
 || Parameters: KEYWORD [MORE_KEYWORDS]...
 || Example: find alice bob charlie
+|| 
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| 
+|| edit: Edits the person identified by the index number used in the last person listing.
+|| Please select at least one parameter to edit besides INDEX.
+|| Follow the order of the parameters below when inputting.
+|| Parameters: INDEX [n/NAME] [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS]  [t/TAG]...
+|| Example: edit1 n/John Newname e/newemail@gmail.com t/newTag
+|| 
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
+|| 
 || viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
+|| 
 || help: Shows program usage instructions.
 || Example: help
+|| 
 || exit: Exits the program.
 || Example: exit
 || ===================================================
@@ -296,6 +310,134 @@
 || Enter command: || [Command entered:  list]
 || 
 || 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street]
+|| New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive]
+|| New person added: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
+|| ===================================================
+|| Enter command: || [Command entered:  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school]
+|| New person added: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 
+|| 3 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit 0]
+|| Invalid command format! 
+|| edit: Edits the person identified by the index number used in the last person listing.
+|| Please select at least one parameter to edit besides INDEX.
+|| Follow the order of the parameters below when inputting.
+|| Parameters: INDEX [n/NAME] [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS]  [t/TAG]...
+|| Example: edit1 n/John Newname e/newemail@gmail.com t/newTag
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 n/Invalidp/Format]
+|| Invalid command format! 
+|| edit: Edits the person identified by the index number used in the last person listing.
+|| Please select at least one parameter to edit besides INDEX.
+|| Follow the order of the parameters below when inputting.
+|| Parameters: INDEX [n/NAME] [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS]  [t/TAG]...
+|| Example: edit1 n/John Newname e/newemail@gmail.com t/newTag
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 n/Invalida/Format]
+|| Invalid command format! 
+|| edit: Edits the person identified by the index number used in the last person listing.
+|| Please select at least one parameter to edit besides INDEX.
+|| Follow the order of the parameters below when inputting.
+|| Parameters: INDEX [n/NAME] [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS]  [t/TAG]...
+|| Example: edit1 n/John Newname e/newemail@gmail.com t/newTag
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 e/Invalid n/Format]
+|| Invalid command format! 
+|| edit: Edits the person identified by the index number used in the last person listing.
+|| Please select at least one parameter to edit besides INDEX.
+|| Follow the order of the parameters below when inputting.
+|| Parameters: INDEX [n/NAME] [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS]  [t/TAG]...
+|| Example: edit1 n/John Newname e/newemail@gmail.com t/newTag
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 t/]
+|| Invalid command format! 
+|| edit: Edits the person identified by the index number used in the last person listing.
+|| Please select at least one parameter to edit besides INDEX.
+|| Follow the order of the parameters below when inputting.
+|| Parameters: INDEX [n/NAME] [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS]  [t/TAG]...
+|| Example: edit1 n/John Newname e/newemail@gmail.com t/newTag
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 n/]
+|| Person names should be spaces or alphabetic characters
+|| ===================================================
+|| Enter command: || [Command entered:  edit -1 n/Invalid a/Index]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  edit a n/AnotherInvalid b/Index]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 n/Adam Yellow p/222222 pa/privateAddress t/newTag]
+|| Edited Person: Adam Yellow Phone: 222222 Email: adam@gmail.com Address: (private) privateAddress Tags: [newTag]
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Yellow Phone: 222222 Email: adam@gmail.com Tags: [newTag]
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 
+|| 3 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit 2 pe/bestychoo@nus.edu.sg t/secretive t/confidential]
+|| Edited Person: Betsy Choo Phone: (private) 222222 Email: (private) bestychoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive][confidential]
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Yellow Phone: 222222 Email: adam@gmail.com Tags: [newTag]
+|| 	2. Betsy Choo Tags: [secretive][confidential]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 
+|| 3 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit 3 p/555555 a/555, alpha street]
+|| Edited Person: Charlie Dickson Phone: 555555 Email: charlie.d@nus.edu.sg Address: 555, alpha street Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Yellow Phone: 222222 Email: adam@gmail.com Tags: [newTag]
+|| 	2. Betsy Choo Tags: [secretive][confidential]
+|| 	3. Charlie Dickson Phone: 555555 Email: charlie.d@nus.edu.sg Address: 555, alpha street Tags: 
+|| 
+|| 3 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit 3 a/666, beta street]
+|| Edited Person: Charlie Dickson Phone: 555555 Email: charlie.d@nus.edu.sg Address: 666, beta street Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Yellow Phone: 222222 Email: adam@gmail.com Tags: [newTag]
+|| 	2. Betsy Choo Tags: [secretive][confidential]
+|| 	3. Charlie Dickson Phone: 555555 Email: charlie.d@nus.edu.sg Address: 666, beta street Tags: 
+|| 
+|| 3 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit 2 t/secretive]
+|| Edited Person: Betsy Choo Phone: (private) 222222 Email: (private) bestychoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Yellow Phone: 222222 Email: adam@gmail.com Tags: [newTag]
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Phone: 555555 Email: charlie.d@nus.edu.sg Address: 666, beta street Tags: 
+|| 
+|| 3 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit 1 e/adamYellow@gmail.com a/www, omega street]
+|| Edited Person: Adam Yellow Phone: 222222 Email: adamYellow@gmail.com Address: www, omega street Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Yellow Phone: 222222 Email: adamYellow@gmail.com Address: www, omega street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Phone: 555555 Email: charlie.d@nus.edu.sg Address: 666, beta street Tags: 
+|| 
+|| 3 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  clear]
+|| Address book has been cleared!
 || ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...

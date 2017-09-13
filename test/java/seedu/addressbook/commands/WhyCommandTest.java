@@ -19,7 +19,7 @@ public class WhyCommandTest {
 
         //Empty String
         assertWhyCommandBehavior("");
-        
+
     }
 
 

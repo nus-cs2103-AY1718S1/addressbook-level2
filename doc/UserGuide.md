@@ -117,13 +117,13 @@ Format: `clear`
 
 ### Asking why : `why`
 Tells you the reason why.<br>
-Format: `why`
+Format: `why [KEYWORD]`
 
 > A hidden easter egg in the program. Ask ahead!
 
 Examples: 
-* `why`<br>
-  Returns `Because the world is round`
+* `why not`<br>
+  Returns `Because you can do it :)`
 
 
 #### Exiting the program : `exit`

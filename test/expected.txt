@@ -449,9 +449,9 @@
 || ===================================================
 || Enter command: || [Command entered:  sort]
 || Invalid command format! 
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| sort: Sorts all persons by chosen field (NAME, PHONE, EMAIL, ADDRESS) and by order (ASC or DESC). Case insensitive
+|| Parameters: OPTION ORDER
+|| Example: sort name asc
 || ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...

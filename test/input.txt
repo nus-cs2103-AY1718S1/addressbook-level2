@@ -153,6 +153,33 @@
   list
 
 ##########################################################
+# test sort command
+##########################################################
+   
+   #clears all
+   clear
+   list
+   
+   # no sorting, tells list is empty
+   sort
+   
+   #add person to check sorting
+   add Adam Brown p/111111 e/adam@gmail.com a/123, Clementi Ave 3, #12-34, 231534
+   list
+   add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/1234, Clementi Ave 6, #1-34, 1534 t/friends
+   list
+   add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street, #11-1, 122001 t/friends t/school
+   list
+   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street, #10-257, 138709 t/tubers t/starchy
+   list
+   add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/1, Clementi Ave 6, #12-4, 2315 t/secretive
+   list
+   
+   # sorts list
+   sort
+
+
+##########################################################
 # test clear command
 ##########################################################
 

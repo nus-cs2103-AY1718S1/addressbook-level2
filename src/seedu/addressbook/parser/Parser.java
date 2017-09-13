@@ -22,6 +22,7 @@ import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.FindAlphaCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -56,7 +57,8 @@ public class Parser {
      */
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    public Parser() {}
+    public Parser() {
+    }
 
     /**
      * Parses user input into command for execution.
@@ -75,33 +77,36 @@ public class Parser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
+            case AddCommand.COMMAND_WORD:
+                return prepareAdd(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
+            case FindAlphaCommand.COMMAND_WORD:
+                return prepareFindAlpha(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            case DeleteCommand.COMMAND_WORD:
+                return prepareDelete(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case FindCommand.COMMAND_WORD:
+                return prepareFind(arguments);
 
-        case ViewCommand.COMMAND_WORD:
-            return prepareView(arguments);
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-        case ViewAllCommand.COMMAND_WORD:
-            return prepareViewAll(arguments);
+            case ViewCommand.COMMAND_WORD:
+                return prepareView(arguments);
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ViewAllCommand.COMMAND_WORD:
+                return prepareViewAll(arguments);
 
-        case HelpCommand.COMMAND_WORD: // Fallthrough
-        default:
-            return new HelpCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+
+            case HelpCommand.COMMAND_WORD: // Fallthrough
+            default:
+                return new HelpCommand();
         }
     }
 
@@ -219,7 +224,7 @@ public class Parser {
      *
      * @param args arguments string to parse as index number
      * @return the parsed index number
-     * @throws ParseException if no region of the args string could be found for the index
+     * @throws ParseException        if no region of the args string could be found for the index
      * @throws NumberFormatException the args string region is not a valid number
      */
     private int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
@@ -250,5 +255,27 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    private Command prepareFindAlpha(String args) {
+
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindAlphaCommand.MESSAGE_USAGE));
+        }
+
+        final String[] keywords = matcher.group("keywords").split("\\s+");
+
+        if (keywords.length > 1)
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindAlphaCommand.MESSAGE_USAGE));
+        if (keywords[0].length() > 1)
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindAlphaCommand.MESSAGE_USAGE));
+
+
+        return new FindAlphaCommand(keywords[0]);
+
+
+    }
 
 }

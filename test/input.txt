@@ -107,6 +107,21 @@
   find Charlie Betsy
 
 ##########################################################
+# test find alphabet command
+##########################################################
+
+  # should consider no keywords as invalid command format
+  findalpha
+  # should consider more than one letter as invalid command format
+  findalpha ab
+  findalpha a b
+  # should work with upper case
+  findalpha A
+  # should work with lower case
+  findalpha a
+  find Charlie Betsy
+
+##########################################################
 # test delete person command
 ##########################################################
 
@@ -155,3 +170,7 @@
   # exits properly
   exit
   list
+
+
+
+

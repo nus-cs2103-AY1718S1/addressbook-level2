@@ -14,7 +14,6 @@ import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
 public class Command {
     protected AddressBook addressBook;
     protected List<? extends ReadOnlyPerson> relevantPersons;
-
     private int targetIndex = -1;
 
     /**
@@ -57,7 +56,7 @@ public class Command {
      *
      * @throws IndexOutOfBoundsException if the target index is out of bounds of the last viewed listing
      */
-    protected ReadOnlyPerson getTargetPerson() throws  IndexOutOfBoundsException {
+    protected ReadOnlyPerson getTargetPerson() throws IndexOutOfBoundsException {
         return relevantPersons.get(getTargetIndex() - DISPLAYED_INDEX_OFFSET);
     }
 

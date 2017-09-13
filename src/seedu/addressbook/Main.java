@@ -84,9 +84,23 @@ public class Main {
         do {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
+            int numOfPersonsIntheList = addressBook.getNumOfPersonInTheList();
             CommandResult result = executeCommand(command);
+
+            if(result == null) {
+                result = new CommandResult("Please allow this file be written");
+            } else {
+                recordResult(result);
+            }
+
             recordResult(result);
             ui.showResultToUser(result);
+
+            if(numOfPersonsIntheList != addressBook.getNumOfPersonInTheList()){
+                command = new Parser().parseCommand("list");
+                result = executeCommand(command);
+                ui.showResultToUser(result);
+            }
 
         } while (!ExitCommand.isExit(command));
     }

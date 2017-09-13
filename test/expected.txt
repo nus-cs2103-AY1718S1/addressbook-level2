@@ -215,20 +215,26 @@
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find betsy]
+|| 	1. Betsy Choo Tags: [secretive]
 || 
-|| 0 persons listed!
+|| 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Betsy]
+|| 	1. Betsy Choo Tags: [secretive]
 || 
-|| 0 persons listed!
+|| 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Dickson]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street, #23-456, 789333 Tags: [school][friends]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, Delta Street, #09-876, 120444 Tags: [friends]
 || 
-|| 0 persons listed!
+|| 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Charlie Betsy]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street, #23-456, 789333 Tags: [school][friends]
 || 
-|| 0 persons listed!
+|| 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  edit wrong args wrong args]
 || The person index provided is invalid

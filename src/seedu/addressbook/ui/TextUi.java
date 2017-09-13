@@ -102,7 +102,7 @@ public class TextUi {
                 MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
                 storageFileInfo,
                 DIVIDER,
-                "REMINDER:" + addrBook.getReminderMessage(),
+                "REMINDER: " + addrBook.getReminderMessage(),
                 DIVIDER);
     }
 

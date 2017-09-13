@@ -14,17 +14,23 @@ public class Person implements ReadOnlyPerson {
     private Phone phone;
     private Email email;
     private Address address;
+    private static int sequenceDatabase=0;
+    private int sequenceNumber;
+
 
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.
      */
+
     public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.sequenceNumber=sequenceDatabase+1;
+        sequenceDatabase+=1;
     }
 
     /**
@@ -84,4 +90,5 @@ public class Person implements ReadOnlyPerson {
         return getAsTextShowAll();
     }
 
+    public int getSequenceNumber(){return sequenceNumber;}
 }

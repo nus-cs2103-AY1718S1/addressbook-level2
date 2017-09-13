@@ -11,7 +11,7 @@ public class EditEmploymentStatusCommand extends Command{
 
     public CommandResult execute(){
         super.editEmploymentInfo(name);
-        return new CommandResult("Person information edited");
+        return new CommandResult("Please enter next command");
     }
 
 }

@@ -130,16 +130,30 @@ public class AddressBook {
     }
 
     public void editEmploymentInfo(String name){
+        int editCounter=0;
         for (Person p : allPersons){
-            if (p.getName().toString().equals(name.substring(1))){ p.editEmploymentInfo();}
-            break;
+            if (p.getName().toString().equals(name.substring(1))){
+                p.editEmploymentInfo();
+                editCounter=1;
+            }
+            if (editCounter==1){return;}
         }
+        System.out.println("|| Person not found! Please ensure person is a registered contact" +
+                " before using employment status function!");
     }
 
     public void viewEmploymentInfo(String name){
+        int viewedCounter=0;
         for (Person p: allPersons){
-            if (p.getName().toString().equals(name.substring(1))){ p.getEmploymentInfo();}
-            break;
+            if (p.getName().toString().equals(name.substring(1))){
+                p.getEmploymentInfo();
+                viewedCounter=1;
+            }
+            if(viewedCounter==1){
+                return;
+            }
         }
+        System.out.println("|| Person not found! Please ensure person is a registered contact" +
+                " before using employment status function!");
     }
 }

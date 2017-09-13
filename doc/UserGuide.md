@@ -49,6 +49,23 @@ Examples:
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
+### Editing Employment status 
+Edits a person's employment status in the address book<br>
+Format: edites NAME
+
+> Person needs to be in a registered contact in the addressbook for the command to implement successfully
+Example: 
+* `edites jeremy
+
+### Viewing Employment status
+Views a person's employment status in the addressbook<br>
+Format: viewes NAME
+
+> Person needs to be in a registered contact in the addressbook for the command to implement successfully
+> Person's employment status needs to be edited before viewes is used
+Example:
+* viewes jeremy
+
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`

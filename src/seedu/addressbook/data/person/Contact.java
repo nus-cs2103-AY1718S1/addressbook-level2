@@ -3,7 +3,7 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
- * A superclass for Phone, Email, and Java. We seek to extract out the common methods.
+ * A superclass for Phone, Email, and Address. We seek to extract out the common methods.
  */
 
 public class Contact {

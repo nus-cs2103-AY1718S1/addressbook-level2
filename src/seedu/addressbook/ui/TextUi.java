@@ -91,6 +91,18 @@ public class TextUi {
         return fullInputLine;
     }
 
+    public String getUserKeyboard() {
+        out.print(LINE_PREFIX + "Enter information: ");
+        String fullInputLine = in.nextLine();
+
+        // silently consume all ignored lines
+        while (shouldIgnore(fullInputLine)) {
+            fullInputLine = in.nextLine();
+        }
+
+        showToUser("[Information entered:" + fullInputLine + "]");
+        return fullInputLine;
+    }
 
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);

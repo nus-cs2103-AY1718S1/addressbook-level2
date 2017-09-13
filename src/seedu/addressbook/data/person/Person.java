@@ -3,6 +3,7 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.tag.UniqueTagList;
 import java.util.Scanner;
 import java.util.Objects;
+import seedu.addressbook.ui.TextUi;
 
 /**
  * Represents a Person in the address book.
@@ -16,6 +17,7 @@ public class Person implements ReadOnlyPerson {
     private Address address;
     private EmploymentInfo employmentInfo;
     private boolean hasEditedEmploymentInfo;
+    private TextUi ui;
 
     private final UniqueTagList tags;
     /**
@@ -29,6 +31,7 @@ public class Person implements ReadOnlyPerson {
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
         this.employmentInfo= new EmploymentInfo();
         this.hasEditedEmploymentInfo=false;
+        this.ui = new TextUi();
     }
 
     /**
@@ -88,7 +91,7 @@ public class Person implements ReadOnlyPerson {
         return getAsTextShowAll();
     }
 
-    public String editEmploymentInfo(){
+    public void editEmploymentInfo(){
         printUserFound();
         String[] processedInput = obtainAndProcessInput();
         String employmentStatus=processedInput[0];
@@ -96,7 +99,8 @@ public class Person implements ReadOnlyPerson {
         int workExperience=Integer.valueOf(processedInput[2]);
         updateEmploymentInfo(this.name.toString(),employmentStatus,jobTitle,workExperience);
         hasEditedEmploymentInfo=true;
-        return "Employment Information Updated";
+        System.out.println( "|| Employment Information Updated" );
+        return;
     }
 
     public void getEmploymentInfo(){
@@ -131,12 +135,11 @@ public class Person implements ReadOnlyPerson {
     }
 
     private String[] obtainAndProcessInput(){
+
         int inputCheckerByCountingCommas=0;
         String[] processedInput;
-        Scanner sc = new Scanner(System.in);
         do{
-            System.out.print("|| ");
-            String input = sc.next();
+            String input = ui.getUserKeyboard();
             processedInput = input.split(",");
             inputCheckerByCountingCommas=processedInput.length;
             if (inputCheckerByCountingCommas!=3){

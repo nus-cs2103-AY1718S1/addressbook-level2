@@ -111,6 +111,11 @@ Examples:
   `viewall 1`<br>
   Views all details of the 1st person in the results of the `find` command.
 
+### Sorting names of contacts : `sort`
+Sorts names of contacts currently saved in address book in alphabetical order
+and return the list of saved contacts that is sorted.<br>
+Format: `sort`
+
 ### Clearing all entries : `clear`
 Clears all entries from the address book.<br>
 Format: `clear`  

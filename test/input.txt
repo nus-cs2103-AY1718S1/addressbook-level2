@@ -149,6 +149,48 @@
   list
 
 ##########################################################
+# test edit person command
+##########################################################
+
+  # add 3 persons for edit command
+  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+  list
+
+  # You need at least one parameter besides INDEX
+  edit 0
+  
+  # should catch invalid args format
+  edit 1 n/Invalidp/Format
+  edit 1 n/Invalida/Format
+  edit 1 e/Invalid n/Format
+  edit 1 t/
+  
+  #should catch invalid name
+  edit 1 n/
+
+  # should catch invalid index
+  edit -1 n/Invalid a/Index
+  edit a n/AnotherInvalid b/Index
+
+  # edit correct person
+  edit 1 n/Adam Yellow p/222222 pa/privateAddress t/newTag
+  list
+  edit 2 pe/bestychoo@nus.edu.sg t/secretive t/confidential
+  list
+  edit 3 p/555555 a/555, alpha street
+  list
+  edit 3 a/666, beta street
+  list
+  edit 2 t/secretive
+  list
+  edit 1 e/adamYellow@gmail.com a/www, omega street
+  list
+
+  clear
+
+##########################################################
 # test exit command
 ##########################################################
 

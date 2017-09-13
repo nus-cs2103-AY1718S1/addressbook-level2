@@ -1,4 +1,4 @@
-package seedu.addressbook.parser;
+package seedu.addressbook.ui;
 
 /**
  * formats outputs before passing it to TextUI to be output.

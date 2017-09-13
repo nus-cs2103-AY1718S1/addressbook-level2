@@ -83,9 +83,32 @@ public class AddressBook {
         syncTagsWithMasterList(toAdd);
     }
 
-    public void editPerson(ReadOnlyPerson toEdit, ReadOnlyPerson replacement) throws PersonNotFoundException {
+    public ReadOnlyPerson editPerson(ReadOnlyPerson toEdit, ReadOnlyPerson replacement) throws PersonNotFoundException {
+        final Person editedPerson = new Person(toEdit);
 
+        if(replacement.getName().toString() != "") {
+            editedPerson.setName(replacement.getName());
+        }
 
+        if(replacement.getPhone().toString() != "") {
+            editedPerson.setPhone(replacement.getPhone());
+        }
+
+        if(replacement.getEmail().toString() != "") {
+            editedPerson.setEmail(replacement.getEmail());
+        }
+
+        if(replacement.getAddress().toString() != "") {
+            editedPerson.setAddress(replacement.getAddress());
+        }
+
+        if(replacement.getTags().equals(replacement.getTags())) {
+            editedPerson.setTags(replacement.getTags());
+        }
+
+        allPersons.set(toEdit, editedPerson);
+        syncTagsWithMasterList(editedPerson);
+        return editedPerson;
     }
 
     /**

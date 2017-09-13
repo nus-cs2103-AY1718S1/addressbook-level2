@@ -22,11 +22,15 @@ public class Name {
      * @throws IllegalValueException if given name string is invalid.
      */
     public Name(String name) throws IllegalValueException {
-        String trimmedName = name.trim();
-        if (!isValidName(trimmedName)) {
-            throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
+        if (name == null) {
+            this.fullName = "";
+        } else {
+            String trimmedName = name.trim();
+            if (!isValidName(trimmedName)) {
+                throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
+            }
+            this.fullName = trimmedName;
         }
-        this.fullName = trimmedName;
     }
 
     /**

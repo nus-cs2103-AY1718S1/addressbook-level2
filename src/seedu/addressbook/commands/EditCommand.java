@@ -28,6 +28,7 @@ public class EditCommand extends Command{
     public static final String MESSAGE_EDITED_PERSON_SUCCESS = "Edited Person: %1$s";
 
     private final Person replacement;
+    private final String nullString = "null";
 
     public EditCommand(int targetVisibleIndex, String name,
                       String phone, boolean isPhonePrivate,
@@ -39,6 +40,7 @@ public class EditCommand extends Command{
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+
         this.replacement = new Person(
                 new Name(name),
                 new Phone(phone, isPhonePrivate),
@@ -47,18 +49,13 @@ public class EditCommand extends Command{
                 new UniqueTagList(tagSet)
         );
     }
-    /*
-    public EditCommand(int targetVisibleIndex) {
-        super(targetVisibleIndex);
-    }
-    */
 
     @Override
     public CommandResult execute() {
         try{
             final ReadOnlyPerson target = getTargetPerson();
-            addressBook.editPerson(target, this.replacement);
-            return new CommandResult(String.format(MESSAGE_EDITED_PERSON_SUCCESS, target));
+            ReadOnlyPerson editedPerson = addressBook.editPerson(target, this.replacement);
+            return new CommandResult(String.format(MESSAGE_EDITED_PERSON_SUCCESS, editedPerson));
 
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

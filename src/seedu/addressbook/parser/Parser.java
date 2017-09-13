@@ -11,7 +11,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import seedu.addressbook.commands.AddCommand;
 import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.Command;
@@ -45,6 +44,13 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    public static final Pattern EDIT_PERSON_DATA_ARGS_FORMAT =
+
+            Pattern.compile("( n/(?<name>(?:(?!p?p/|p?e/|p?a/|t/).)*))?"
+                    + "( (?<isPhonePrivate>p?)p/(?<phone>[^/\\s]+))?"
+                    + "( (?<isEmailPrivate>p?)e/(?<email>[^/\\s]+))?"
+                    + "( (?<isAddressPrivate>p?)a/(?<address>[^/\\s]+))?"
+                    + "(?<tagArguments>(?: t/[^/]+)*)");
     /**
      * Signals that the user input could not be parsed.
      */
@@ -150,6 +156,10 @@ public class Parser {
         return matchedPrefix.equals("p");
     }
 
+    private static boolean isPrivatePrefixPresentForEdit(String matchedPrefix) {
+        return matchedPrefix != null && matchedPrefix.equals("p");
+    }
+
     /**
      * Extracts the new person's tags from the add command's tag arguments string.
      * Merges duplicate tag strings.
@@ -174,24 +184,9 @@ public class Parser {
         try {
             final Matcher targetMatcher = parseArgsAsMatcherForEdit(args);
             final int targetIndex = Integer.parseInt(targetMatcher.group("targetIndex"));
-            final Matcher targetPersonData = PERSON_DATA_ARGS_FORMAT.matcher(
-                    targetMatcher.group("personData").trim());
-            return new EditCommand(
-                    targetIndex,
-
-                    targetPersonData.group("name"),
-
-                    targetPersonData.group("phone"),
-                    isPrivatePrefixPresent(targetPersonData.group("isPhonePrivate")),
-
-                    targetPersonData.group("email"),
-                    isPrivatePrefixPresent(targetPersonData.group("isEmailPrivate")),
-
-                    targetPersonData.group("address"),
-                    isPrivatePrefixPresent(targetPersonData.group("isAddressPrivate")),
-
-                    getTagsFromArgs(targetPersonData.group("tagArguments"))
-            );
+            final EditCommand command = parseTargetIndexAndAgrsAsEditCommand(
+                    targetIndex, targetMatcher.group("personData"));
+            return command;
         } catch (ParseException pe) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         } catch (NumberFormatException nfe) {
@@ -209,13 +204,36 @@ public class Parser {
      * @throws ParseException if no region of the args string could be found for the index
      * @throws NumberFormatException the args string region is not a valid number
      */
-    //TODO: Consider including NumberFormatException for non-numeric indexes
     private Matcher parseArgsAsMatcherForEdit(String args) throws ParseException{
         final Matcher matcher = EDIT_PERSON_INDEX_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new ParseException("Could not find index number to parse");
         }
         return matcher;
+    }
+
+    private EditCommand parseTargetIndexAndAgrsAsEditCommand(int index, String args)
+            throws ParseException, IllegalValueException {
+        final Matcher matcher = EDIT_PERSON_DATA_ARGS_FORMAT.matcher(" " + args.trim());
+        if( !matcher.matches()) {
+            throw new ParseException("Could not parse person data for edit command");
+        }
+        return new EditCommand(
+                index,
+
+                matcher.group("name"),
+
+                matcher.group("phone"),
+                isPrivatePrefixPresentForEdit(matcher.group("isPhonePrivate")),
+
+                matcher.group("email"),
+                isPrivatePrefixPresentForEdit(matcher.group("isEmailPrivate")),
+
+                matcher.group("address"),
+                isPrivatePrefixPresentForEdit(matcher.group("isAddressPrivate")),
+
+                getTagsFromArgs(matcher.group("tagArguments"))
+        );
     }
 
     /**

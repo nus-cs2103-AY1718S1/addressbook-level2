@@ -110,7 +110,7 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.add(toAdd);
     }
 
-    public void set(Person toEdit, Person replacement) throws PersonNotFoundException {
+    public void set(ReadOnlyPerson toEdit, Person replacement) throws PersonNotFoundException {
         final int indexOfPersonFoundToEdit = internalList.indexOf(toEdit);
         if (indexOfPersonFoundToEdit == -1) {
             throw new PersonNotFoundException();

@@ -149,6 +149,29 @@
   list
 
 ##########################################################
+# test sort command
+##########################################################
+  
+  # add three persons not in alphabetical order
+  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+
+  # sort names in alphabetical order
+  sort
+
+  # sholuld list in alphabetical order
+  list
+
+##########################################################
+# test clear command
+##########################################################
+
+  # clears all
+  clear
+  list
+  
+##########################################################
 # test exit command
 ##########################################################
 

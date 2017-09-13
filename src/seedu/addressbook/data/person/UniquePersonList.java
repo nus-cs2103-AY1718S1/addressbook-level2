@@ -18,7 +18,7 @@ import seedu.addressbook.data.exception.DuplicateDataException;
  * @see Person#equals(Object)
  * @see Utils#elementsAreUnique(Collection)
  */
-public class UniquePersonList implements Iterable<Person> {
+public class UniquePersonList implements Iterable<Person>{
 
     /**
      * Signals that an operation would have violated the 'no duplicates' property of the list.
@@ -139,5 +139,9 @@ public class UniquePersonList implements Iterable<Person> {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && this.internalList.equals(((UniquePersonList) other).internalList));
+    }
+
+    public void sort(){
+        Collections.sort(internalList);
     }
 }

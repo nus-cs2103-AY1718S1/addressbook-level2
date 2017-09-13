@@ -298,19 +298,19 @@
 || Enter command: || [Command entered:  list]
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered: add Darren p/111111 e/example@gmail.com a/111, alpha street]
+|| Enter command: || [Command entered:  add Darren p/111111 e/example@gmail.com a/111, alpha street]
 || New person added: Darren Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 || ===================================================
-|| Enter command: || [Command entered: add terence p/111111 e/example@gmail.com a/111, alpha street]
+|| Enter command: || [Command entered:  add terence p/111111 e/example@gmail.com a/111, alpha street]
 || New person added: terence Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 || ===================================================
-|| Enter command: || [Command entered: add john p/111111 e/example@gmail.com a/111, alpha street]
+|| Enter command: || [Command entered:  add john p/111111 e/example@gmail.com a/111, alpha street]
 || New person added: john Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 || ===================================================
-|| Enter command: || [Command entered: add Arsene p/111111 e/example@gmail.com a/111, alpha street]
+|| Enter command: || [Command entered:  add Arsene p/111111 e/example@gmail.com a/111, alpha street]
 || New person added: Arsene Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 || ===================================================
-|| Enter command: || [Command entered: sort]
+|| Enter command: || [Command entered:  sort]
 ||  1. Arsene Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 || 	2. Darren Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 || 	3. john Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
@@ -318,7 +318,7 @@
 ||
 || 4 persons listed!
 || ===================================================
-|| Enter command: || [Command entered: list]
+|| Enter command: || [Command entered:  list]
 ||  1. Darren Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 || 	2. terence Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:
 || 	3. john Phone: 111111 Email: example@gmail.com Address: 111, alpha street Tags:

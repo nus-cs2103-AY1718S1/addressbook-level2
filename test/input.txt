@@ -107,6 +107,16 @@
   find Charlie Betsy
 
 ##########################################################
+# test sort persons command
+##########################################################
+
+  # sort list in descending order
+  sort dsc
+
+  # sort list in ascending order
+  sort asc
+
+##########################################################
 # test delete person command
 ##########################################################
 

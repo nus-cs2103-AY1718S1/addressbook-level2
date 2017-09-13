@@ -111,6 +111,11 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
+        } catch (StorageFile.StorageReadOnlyException e) {
+            ui.showToUser(e.getMessage());
+            ui.showToUser("Fix this error, then enter a blank line to continue...");
+            ui.getUserCommand();
+            return executeCommand(command);
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

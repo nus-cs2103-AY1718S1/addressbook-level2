@@ -34,7 +34,7 @@ Format: `help`
 > Help is also shown if you enter an incorrect command e.g. `abcd`
  
 ### Adding a person: `add`
-Adds a person to the address book<br>
+Adds a person to the address book and the then display the list in the contact book.<br>
 Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...` 
  
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 

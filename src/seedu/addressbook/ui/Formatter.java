@@ -1,5 +1,12 @@
 package seedu.addressbook.ui;
 
+import seedu.addressbook.commands.CommandResult;
+import seedu.addressbook.data.person.ReadOnlyPerson;
+
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Formatter, used to format the text of the application for display.

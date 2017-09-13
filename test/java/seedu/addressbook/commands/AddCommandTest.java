@@ -91,8 +91,8 @@ public class AddCommandTest {
             return;
         }
         String error = String.format(
-                "An add command was successfully constructed with invalid input: %s %s %s %s %s %s %s %s",
-                name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate, tags);
+                "An add command was successfully constructed with invalid input: %s %s %s %s %s %s %s %s %s",
+                name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate, group, tags);
         fail(error);
     }
 
@@ -111,6 +111,7 @@ public class AddCommandTest {
         assertFalse(p.getEmail().isPrivate());
         assertEquals(Address.EXAMPLE, p.getAddress().value);
         assertTrue(p.getAddress().isPrivate());
+        assertEquals(Group.EXAMPLE, p.getGroup().groupName);
         boolean isTagListEmpty = !p.getTags().iterator().hasNext();
         assertTrue(isTagListEmpty);
     }

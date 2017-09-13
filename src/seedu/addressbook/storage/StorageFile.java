@@ -20,6 +20,7 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.ReadOnlyFileSystemException;
 
 /**
  * Represents the file used to store address book data.
@@ -87,10 +88,20 @@ public class StorageFile {
         return filePath.toString().endsWith(".xml");
     }
 
+
+    /**
+     * Returns true if path file is a read only
+     */
+    private boolean isReadOnly() {
+        return !path.toFile().canWrite();
+    }
+
+
     /**
      * Saves all data to this storage file.
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
+     * @throws java.nio.file.ReadOnlyFileSystemException if file is read only while storing data to file.
      */
     public void save(AddressBook addressBook) throws StorageOperationException {
 
@@ -104,6 +115,10 @@ public class StorageFile {
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
+            if(isReadOnly()) {
+                System.out.println("File: " + path + "is read only. Allow file to be writable.");
+                throw new ReadOnlyFileSystemException();
+            }
 
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);

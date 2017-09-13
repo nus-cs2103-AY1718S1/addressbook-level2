@@ -53,6 +53,10 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.addAll(initialTags);
     }
 
+    public List<Person> getInternalList(){
+        return internalList;
+    }
+
     /**
      * Constructs a list from the items in the given collection.
      * @param persons a collection of persons

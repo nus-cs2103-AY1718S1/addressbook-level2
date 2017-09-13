@@ -43,6 +43,9 @@ public class Parser {
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
 
+    public static final String PERSON_UPDATE_ARGS_FORMAT = "[a-zA-Z]+(\\s[a-zA-Z]+)*"
+                                                         + " (p/\\d+|e/\\S+|a/\\w+(\\s\\w+)*)";
+
     /**
      * Signals that the user input could not be parsed.
      */
@@ -164,11 +167,44 @@ public class Parser {
 
 
     private Command prepareUpdate(String args) {
+        boolean areValidArgs = args.trim().matches(PERSON_UPDATE_ARGS_FORMAT);
+        if (areValidArgs) {
 
+            try {
+                String[] parsedArgs = parseUpdateArgs(args);
+                String personName = parsedArgs[0];
+                String valueWithPrefix = parsedArgs[1];
+                return new UpdateCommand(personName, valueWithPrefix);
+            } catch (IllegalValueException e) {
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+            }
 
-        return new UpdateCommand();
+        } else {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+        }
     }
 
+    private String[] parseUpdateArgs(String args) throws IllegalValueException{
+
+        if(args.contains("p/")){
+            return divideFromPrefix(args, "p/");
+        } else if(args.contains("e/")){
+            return divideFromPrefix(args, "e/");
+        } else if(args.contains("a/")){
+            return divideFromPrefix(args, "a/");
+        } else{
+            throw new IllegalValueException(MESSAGE_INVALID_COMMAND_FORMAT);
+
+        }
+    }
+
+    private String[] divideFromPrefix(String args, String prefix) {
+        int breakIndex = args.indexOf(prefix);
+        String personName = args.substring(0, breakIndex).trim();
+        String value = args.substring(breakIndex, args.length()).trim();
+        String[] result = {personName, value};
+        return result;
+    }
 
     /**
      * Parses arguments in the context of the delete person command.

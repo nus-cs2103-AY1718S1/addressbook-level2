@@ -39,6 +39,8 @@ public class Group {
         return groupName;
     }
 
+    public String getGroupName() { return groupName; }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

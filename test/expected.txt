@@ -234,31 +234,60 @@
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete]
-|| Invalid command format! 
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+||
+|| 2 persons listed!
+|| ===================================================
+|| Invalid command format!
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
 || ===================================================
 || Enter command: || [Command entered:  delete should be only one number]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+||
+|| 2 persons listed!
+|| ===================================================
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete -1]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+||
+|| 2 persons listed!
+|| ===================================================
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 0]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+||
+|| 2 persons listed!
+|| ===================================================
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 3]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+||
+|| 2 persons listed!
+|| ===================================================
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-||  1. Betsy Choo Tags: [secretive]
+|| 	1 Betsy Choo Tags: [secretive]
 ||
 || 1 persons listed!
 || ===================================================
 || Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
+|| 	1 Betsy Choo Tags: [secretive]
+||
+|| 1 persons listed!
+|| ===================================================
 || Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  view 2]
@@ -280,7 +309,7 @@
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 ||
-|| 4 persons listed!
+|| 3 persons listed!
 || ===================================================
 || Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================

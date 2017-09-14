@@ -25,7 +25,7 @@ import static seedu.addressbook.util.TestUtil.assertTextFilesEqual;
 import static seedu.addressbook.util.TestUtil.assertFileDoesNotExist;
 
 public class StorageFileTest {
-    private static final String TEST_DATA_FOLDER = "addressbook-level2/test/data/StorageFileTest";
+    private static final String TEST_DATA_FOLDER = "test/data/StorageFileTest";
     private static final String NON_EXISTANT_FILE_NAME = "ThisFileDoesNotExist.xml";
 
     @Rule

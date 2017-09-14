@@ -40,7 +40,7 @@
   add Valid Name p/12345 e/valid@e.mail r/Chinese a/valid, address t/invalid_-[.tag
 
   # should add correctly and list non private information
-  add Adam Brown p/111111 r/Chinese e/adam@gmail.com a/111, alpha street
+  add Adam Brown p/111111 e/adam@gmail.com r/Chinese a/111, alpha street t/friends
   list
   add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg  pr/Chinese pa/222, beta street t/secretive
   list

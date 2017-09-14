@@ -4,6 +4,7 @@ import seedu.addressbook.data.tag.UniqueTagList;
 
 import java.util.Objects;
 
+import java.util.Comparator;
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated.
@@ -34,6 +35,17 @@ public class Person implements ReadOnlyPerson {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
     }
 
+    /**
+     * Comparator used to sort names of people in alphabetical order.
+     */
+    public static Comparator<Person> sortInAlphabeticalOrder = new Comparator<Person>() {
+        public int compare(Person o1, Person o2) {
+            String person1Name = o1.getName().toString();
+            String person2Name = o2.getName().toString();
+
+            return person1Name.compareTo(person2Name);
+        }
+    };
     @Override
     public Name getName() {
         return name;

@@ -35,7 +35,12 @@ public class Command {
     public static String getMessageForPersonListShownSummary(List<? extends ReadOnlyPerson> personsDisplayed) {
         return String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, personsDisplayed.size());
     }
-
+    /**
+     * Constructs a feedback message to show that the list displayed has is alphabetically sorted.
+     */
+    public static String getMessageForSortedPersonList(List<? extends ReadOnlyPerson> personsDisplayed) {
+        return String.format(SortCommand.MESSAGE_LIST_SORTED);
+    }
     /**
      * Executes the command and returns the result.
      */

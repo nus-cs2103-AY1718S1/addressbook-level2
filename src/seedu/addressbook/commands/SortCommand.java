@@ -24,7 +24,7 @@ public class SortCommand extends Command {
         List<ReadOnlyPerson> sortedList = sortName(addressBook.getAllPersons().immutableListView());
         return new CommandResult(getMessageForPersonSortedListShownSummary(sortedList), sortedList);
     }
-    private List<ReadOnlyPerson> sortName(List<ReadOnlyPerson> dummyList) {
+    private List<ReadOnlyPerson> sortName(List<ReadOnlyPerson> testList) {
         NameComparator nameComparator = new NameComparator();
         List<ReadOnlyPerson> sortedContacts = new ArrayList<>();
         for (ReadOnlyPerson person: addressBook.getAllPersons()) {
@@ -35,7 +35,6 @@ public class SortCommand extends Command {
         return sortedContacts;
     }
 }
-
     class NameComparator implements Comparator<ReadOnlyPerson> {
         public int compare(ReadOnlyPerson p1, ReadOnlyPerson p2) {
             return p1.getName().fullName.toUpperCase().compareTo(p2.getName().fullName.toUpperCase());

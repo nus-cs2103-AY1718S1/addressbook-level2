@@ -85,8 +85,8 @@ public class Person implements ReadOnlyPerson {
     }
 
     @Override
-    public int compareTo(Person o) {
+    public int compareTo(Person anotherPerson) {
         return this.getName().toString()
-                .compareToIgnoreCase(o.getName().toString());
+                .compareToIgnoreCase(anotherPerson.getName().toString());
     }
 }

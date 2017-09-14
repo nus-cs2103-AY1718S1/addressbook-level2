@@ -133,6 +133,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Sorts all persons in list.
      */
     public void sortPeople() {
+        Collections.sort(internalList);
     }
 
     @Override

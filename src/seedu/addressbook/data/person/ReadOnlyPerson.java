@@ -52,9 +52,9 @@ public interface ReadOnlyPerson {
     default String getAsTextShowAll() {
         final StringBuilder builder = new StringBuilder();
         final String detailIsPrivate = "(private) ";
-        builder.append(getName())
-                .append(" Gender: ").append(getGender())
-                .append(" Phone: ");
+        builder.append(getName());
+        builder.append(" Gender: ").append(getGender());
+        builder.append(" Phone: ");
         if (getPhone().isPrivate()) {
             builder.append(detailIsPrivate);
         }
@@ -81,7 +81,8 @@ public interface ReadOnlyPerson {
      */
     default String getAsTextHidePrivate() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName()).append(" Gender: ").append(getGender());
+        builder.append(getName());
+        builder.append(" Gender: ").append(getGender());
         if (!getPhone().isPrivate()) {
             builder.append(" Phone: ").append(getPhone());
         }

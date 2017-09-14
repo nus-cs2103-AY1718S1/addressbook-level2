@@ -29,6 +29,7 @@
 || Example: help
 || exit: Exits the program.
 || Example: exit
+|| locate: Locates a person to the address book by his address. The argument is just the name.
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid

@@ -19,11 +19,13 @@ import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.Phone;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.storage.StorageForDeleted;
 import seedu.addressbook.util.TestUtil;
 import seedu.addressbook.util.TypicalPersons;
 
 public class ViewCommandTest {
     private TypicalPersons td = new TypicalPersons();
+    private static StorageForDeleted storageForDeleted = new StorageForDeleted();
 
     private AddressBook typicalAddressBook = td.getTypicalAddressBook();
     private AddressBook emptyAddressBook = TestUtil.createAddressBook();
@@ -140,7 +142,7 @@ public class ViewCommandTest {
                                            List<ReadOnlyPerson> relevantPersons, String expectedMessage) {
         AddressBook expectedAddressBook = TestUtil.clone(addressBook);
 
-        viewCommand.setData(addressBook, relevantPersons);
+        viewCommand.setData(addressBook, relevantPersons, storageForDeleted);
         CommandResult result = viewCommand.execute();
 
         // feedback message is as expected and there are no relevant persons returned.

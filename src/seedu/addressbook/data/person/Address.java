@@ -14,12 +14,6 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
-    
-    private Block block;
-    private Street street;
-    private Unit unit;
-    private PostalCode postalCode;
-
 
 
 
@@ -28,12 +22,8 @@ public class Address {
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Address(Address address, Street street, Unit unit, PostalCode postalCode, boolean isPrivate) throws IllegalValueException {
-        String addressString = address.toString();
-        String streetString = street.toString();
-        String unitString = unit.toString();
-        String postalCodeString = PostalCode.toString();
-        String trimmedAddress = (addressString + " " + streetString + " " + unitString + " " + postalCodeString + " ").trim();
+    public Address(String address, boolean isPrivate) throws IllegalValueException {
+        String trimmedAddress = address.trim();
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
@@ -67,37 +57,5 @@ public class Address {
 
     public boolean isPrivate() {
         return isPrivate;
-    }
-}
-
-class Block {
-    private String block;
-
-    public Block(String block) {
-        this.block = block;
-    }
-}
-
-class Street {
-    private String street;
-
-    public Street(String street) {
-        this.street = street;
-    }
-}
-
-class Unit {
-    private String unit;
-
-    public Unit(String unit) {
-        this.unit = unit;
-    }
-}
-
-class PostalCode {
-    private String postalCode;
-
-    public PostalCode(String postalCode) {
-        this.postalCode = postalCode;
     }
 }

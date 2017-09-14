@@ -13,6 +13,7 @@ import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
+import seedu.addressbook.storage.StorageForDeleted;
 import seedu.addressbook.ui.TextUi;
 
 
@@ -28,6 +29,7 @@ public class Main {
     private TextUi ui;
     private StorageFile storage;
     private AddressBook addressBook;
+    private StorageForDeleted storageForDeleted;
 
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
@@ -53,6 +55,7 @@ public class Main {
     private void start(String[] launchArgs) {
         try {
             this.ui = new TextUi();
+            this.storageForDeleted = new StorageForDeleted();
             this.storage = initializeStorage(launchArgs);
             this.addressBook = storage.load();
             ui.showWelcomeMessage(VERSION, storage.getPath());
@@ -107,7 +110,7 @@ public class Main {
      */
     private CommandResult executeCommand(Command command)  {
         try {
-            command.setData(addressBook, lastShownList);
+            command.setData(addressBook, lastShownList, storageForDeleted);
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;

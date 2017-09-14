@@ -17,6 +17,7 @@ public class SortCommand extends Command {
     public CommandResult execute() {
         List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
         List<Person> futureSortedList = new ArrayList<>();
+        /* Copy the read-only list into a list of persons to sort */
         for(int i = 0; i < allPersons.size(); i++){
             Person p = new Person(allPersons.get(i).getName(), allPersons.get(i).getPhone(), allPersons.get(i).getEmail(),
                     allPersons.get(i).getAddress(), allPersons.get(i).getTags());
@@ -24,6 +25,7 @@ public class SortCommand extends Command {
         }
         Collections.sort(futureSortedList);
         List<ReadOnlyPerson> SortedList = new ArrayList<>();
+        /* Copy back to a new list of ReadOnlyPerson to use the ListCommand tools */
         for(int i = 0; i < allPersons.size(); i++){
             ReadOnlyPerson p = new Person(futureSortedList.get(i).getName(), futureSortedList.get(i).getPhone(), futureSortedList.get(i).getEmail(),
                     futureSortedList.get(i).getAddress(), futureSortedList.get(i).getTags());

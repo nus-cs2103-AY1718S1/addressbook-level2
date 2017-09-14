@@ -38,7 +38,7 @@ public class AddressBook {
      * Also updates the tag list with any missing tags found in any person.
      *
      * @param persons external changes to this will not affect this address book
-     * @param tags external changes to this will not affect this address book
+     * @param tags    external changes to this will not affect this address book
      */
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
@@ -50,8 +50,8 @@ public class AddressBook {
 
     /**
      * Ensures that every tag in this person:
-     *  - exists in the master list {@link #allTags}
-     *  - points to a Tag object in the master list
+     * - exists in the master list {@link #allTags}
+     * - points to a Tag object in the master list
      */
     private void syncTagsWithMasterList(Person person) {
         final UniqueTagList personTags = person.getTags();
@@ -115,6 +115,13 @@ public class AddressBook {
     }
 
     /**
+     * Sorts all persons in alphabetical order.
+     */
+    public void sort() {
+        allPersons.sort();
+    }
+
+    /**
      * Returns a new UniqueTagList of all tags in the address book at the time of the call.
      */
     public UniqueTagList getAllTags() {
@@ -125,7 +132,7 @@ public class AddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && this.allPersons.equals(((AddressBook) other).allPersons)
-                        && this.allTags.equals(((AddressBook) other).allTags));
+                && this.allPersons.equals(((AddressBook) other).allPersons)
+                && this.allTags.equals(((AddressBook) other).allTags));
     }
 }

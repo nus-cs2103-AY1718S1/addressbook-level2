@@ -38,10 +38,10 @@ public class UpdateCommand extends Command {
                          Set<String> tags) throws IllegalValueException {
         super(targetVisibleIndex);
 
-        this.name = isBeingUpdate(name) ? new Name(name) : null;
-        this.phone = isBeingUpdate(phone) ? new Phone(phone, isPhonePrivate) : null;
-        this.email = isBeingUpdate(email) ? new Email(email, isEmailPrivate) : null;
-        this.address = isBeingUpdate(address) ? new Address(address, isAddressPrivate) : null;
+        this.name = isBeingUpdated(name) ? new Name(name) : null;
+        this.phone = isBeingUpdated(phone) ? new Phone(phone, isPhonePrivate) : null;
+        this.email = isBeingUpdated(email) ? new Email(email, isEmailPrivate) : null;
+        this.address = isBeingUpdated(address) ? new Address(address, isAddressPrivate) : null;
 
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
@@ -71,7 +71,7 @@ public class UpdateCommand extends Command {
         }
     }
 
-    private boolean isBeingUpdate(String test) {
+    private boolean isBeingUpdated(String test) {
         return test != null && test.length() > 0;
     }
 }

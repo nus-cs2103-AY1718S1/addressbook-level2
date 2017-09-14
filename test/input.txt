@@ -107,6 +107,17 @@
   find Charlie Betsy
 
 ##########################################################
+# test private command
+##########################################################
+
+  # should not be able to see the privated detail
+  private 1 email
+  # should not be able to see all details
+  private 1
+  # should be able to see all details again
+  private 1 UNDO
+
+##########################################################
 # test delete person command
 ##########################################################
 

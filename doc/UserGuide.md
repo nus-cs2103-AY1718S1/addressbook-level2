@@ -111,6 +111,24 @@ Examples:
   `viewall 1`<br>
   Views all details of the 1st person in the results of the `find` command.
 
+### Privatise one or all details of a person : `private`
+Allows the user to set one or all of the details of a person to private and allow un-privatising with a password.
+Format: `private INDEX DETAIL`
+
+> Sets the detail, specified by `DETAIL`, of the person at the specified `INDEX` to private.
+  If no `DETAIL` is input, all details of the person will be privatised by default.
+  A password can be input into the `DETAIL` field to set all the persons details to public.
+
+Examples:
+* `list`<br>
+  `private 1`<br>
+  Sets all the details of the 1st person in the address book to private.
+* `list`<br>
+  `private 2 email`<br>
+  Sets the email of the 2nd person in the address book to private.
+* `private 1 <SECRET_PASSWORD>`<br>
+  Sets all details of the 1st person in the address book to public if the password entered is correct.
+
 ### Clearing all entries : `clear`
 Clears all entries from the address book.<br>
 Format: `clear`  

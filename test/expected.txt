@@ -237,6 +237,15 @@
 || 
 || 2 persons listed!
 || ===================================================
+|| Enter command: || [Command entered:  private 1 email]
+|| Betsy Choo's email is now private.
+|| ===================================================
+|| Enter command: || [Command entered:  private 1]
+|| Betsy Choo's details are now all private
+|| ===================================================
+|| Enter command: || [Command entered:  private 1 UNDO]
+|| Password accepted. Betsy Choo's details are now all public.
+|| ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format! 
 || delete: Deletes the person identified by the index number used in the last person listing.
@@ -269,7 +278,7 @@
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
+|| 	2. Betsy Choo Phone: 222222 Email: benchoo@nus.edu.sg Address: 222, beta street Tags: [secretive]
 || 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
@@ -280,7 +289,7 @@
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
+|| 	2. Betsy Choo Phone: 222222 Email: benchoo@nus.edu.sg Address: 222, beta street Tags: [secretive]
 || 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 3 persons listed!
@@ -289,7 +298,7 @@
 || Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Betsy Choo Tags: [secretive]
+|| 	1. Betsy Choo Phone: 222222 Email: benchoo@nus.edu.sg Address: 222, beta street Tags: [secretive]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!

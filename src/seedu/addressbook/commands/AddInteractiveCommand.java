@@ -65,7 +65,7 @@ public class AddInteractiveCommand extends AddCommand {
                 generatedCommand += " " + input;
             }
         }
-        ui.showToUser(generatedCommand);
+        ui.enqueueCommand(generatedCommand);
         /*
         try {
             addressBook.addPerson(toAdd);

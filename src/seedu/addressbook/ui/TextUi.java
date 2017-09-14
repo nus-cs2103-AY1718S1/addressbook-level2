@@ -90,6 +90,10 @@ public class TextUi {
         showToUser("[Command entered:" + fullInputLine + "]");
         return fullInputLine;
     }
+
+    public void enqueueCommand(String command) {
+        commandsQueue.add(command);
+    }
     
     public String promptUserInput(String prompt) {
         out.print(LINE_PREFIX + prompt);

@@ -20,6 +20,7 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.ReadOnlyFileSystemException;
 
 /**
  * Represents the file used to store address book data.
@@ -105,6 +106,8 @@ public class StorageFile {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
 
+        } catch (ReadOnlyFileSystemException rofse) {
+            throw new StorageOperationException("File is read-only");
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {

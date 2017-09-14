@@ -112,16 +112,6 @@ public class AddressBook {
     }
 
     /**
-     * Prints all person in current list
-     */
-    public void printAllPersons(){
-        UniquePersonList PersonList= getAllPersons();
-        for( ReadOnlyPerson i :PersonList.immutableListView()){
-            System.out.println(i);
-        }
-    }
-
-    /**
      * Returns a new UniqueTagList of all tags in the address book at the time of the call.
      */
     public UniqueTagList getAllTags() {

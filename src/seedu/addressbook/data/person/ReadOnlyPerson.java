@@ -3,11 +3,13 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
+import java.util.List;
+
 /**
  * A read-only immutable interface for a Person in the addressbook.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
-public interface ReadOnlyPerson {
+public interface ReadOnlyPerson extends List<ReadOnlyPerson> {
 
     Name getName();
     Phone getPhone();

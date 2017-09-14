@@ -1,6 +1,7 @@
 package seedu.addressbook.commands;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.ui.TextUi;
 
 import java.util.List;
 import java.util.Optional;

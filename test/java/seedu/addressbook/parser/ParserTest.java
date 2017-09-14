@@ -18,6 +18,7 @@ import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.DeleteCommand;
 import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.commands.FindCommand;
+import seedu.addressbook.commands.FindAllCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
@@ -195,6 +196,45 @@ public class ParserTest {
         final String input = "find " + String.join(" ", keySet) + " " + String.join(" ", keySet);
         final FindCommand result =
                 parseAndAssertCommandType(input, FindCommand.class);
+        assertEquals(keySet, result.getKeywords());
+    }
+
+    /*
+     * Tests for findall persons by keyword in name command ===================================================
+     */
+
+    @Test
+    public void parse_findAllCommandInvalidArgs_errorMessage() {
+        // no keywords
+        final String[] inputs = {
+                "findall",
+                "findall "
+        };
+        final String resultMessage =
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAllCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_findAllCommandValidArgs_parsedCorrectly() {
+        final String[] keywords = { "key1", "key2", "key3" };
+        final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
+
+        final String input = "find " + String.join(" ", keySet);
+        final FindAllCommand result =
+                parseAndAssertCommandType(input, FindAllCommand.class);
+        assertEquals(keySet, result.getKeywords());
+    }
+
+    @Test
+    public void parse_findAllCommandDuplicateKeys_parsedCorrectly() {
+        final String[] keywords = { "key1", "key2", "key3" };
+        final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
+
+        // duplicate every keyword
+        final String input = "find " + String.join(" ", keySet) + " " + String.join(" ", keySet);
+        final FindAllCommand result =
+                parseAndAssertCommandType(input, FindAllCommand.class);
         assertEquals(keySet, result.getKeywords());
     }
 

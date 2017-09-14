@@ -91,48 +91,48 @@
 || Tags names should be alphanumeric
 || ===================================================
 || Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com a/123, street, #01-01, 123456]
-|| New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags:
+|| New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags: 
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags:
-||
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags: 
+|| 
 || 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street, #01-01, 123456 t/secretive]
 || New person added: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street, #01-01, 123456 Tags: [secretive]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags: 
 || 	2. Betsy Choo Tags: [secretive]
-||
+|| 
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gama street, #01-01, 123456 t/friends t/school]
 || New person added: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gama street, #01-01, 123456 Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gama street, #01-01, 123456 Tags: [school][friends]
-||
+|| 
 || 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street, #01-01, 123456 t/friends]
 || New person added: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street, #01-01, 123456 Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gama street, #01-01, 123456 Tags: [school][friends]
 || 	4. Dickson Ee Phone: 444444 Address: 444, delta street, #01-01, 123456 Tags: [friends]
-||
+|| 
 || 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, bema street, #01-01, 123456 t/tubers t/starchy]
 || New person added: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, bema street, #01-01, 123456 Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 123, street, #01-01, 123456 Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gama street, #01-01, 123456 Tags: [school][friends]
 || 	4. Dickson Ee Phone: 444444 Address: 444, delta street, #01-01, 123456 Tags: [friends]

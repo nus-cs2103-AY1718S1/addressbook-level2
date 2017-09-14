@@ -21,9 +21,9 @@ public class DateOfBirth {
      *
      * @throws IllegalValueException if given email address string is invalid.
      */
-    public DateOfBirth(String date, boolean isPrivate) throws IllegalValueException {
+    public DateOfBirth(String dateOfBirth, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
-        String trimmedDate = date.trim();
+        String trimmedDate = dateOfBirth.trim();
         if (!isValidEmail(trimmedDate)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }

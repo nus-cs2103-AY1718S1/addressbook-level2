@@ -12,11 +12,7 @@ import org.junit.rules.TemporaryFolder;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
@@ -24,7 +20,7 @@ import static seedu.addressbook.util.TestUtil.assertTextFilesEqual;
 import static seedu.addressbook.util.TestUtil.assertFileDoesNotExist;
 
 public class StorageFileTest {
-    private static final String TEST_DATA_FOLDER = "test/data/StorageFileTest";
+    private static final String TEST_DATA_FOLDER = "data/StorageFileTest";
     private static final String NON_EXISTANT_FILE_NAME = "ThisFileDoesNotExist.xml";
 
     @Rule
@@ -110,11 +106,13 @@ public class StorageFileTest {
     private AddressBook getTestAddressBook() throws Exception {
         AddressBook ab = new AddressBook();
         ab.addPerson(new Person(new Name("John Doe"),
+                                new DateOfBirth("07.08.1995", false),
                                 new Phone("98765432", false),
                                 new Email("johnd@gmail.com", false),
                                 new Address("John street, block 123, #01-01", false),
                                 new UniqueTagList(Collections.emptySet())));
         ab.addPerson(new Person(new Name("Betsy Crowe"),
+                                new DateOfBirth("12.12.2001", true),
                                 new Phone("1234567", true),
                                 new Email("betsycrowe@gmail.com", false),
                                 new Address("Newgate Prison", true),

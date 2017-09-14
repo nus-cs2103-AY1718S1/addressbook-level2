@@ -53,12 +53,12 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
-### Sorting the address book according to alphabetical order of names: `sort`
-Sorts the address book by their full name in alphabetical order.<br>
+### Lists the address book, sorted according to alphabetical order of names: `sort`
+Shows a list of all persons in the address book sorted by the full name in alphabetical order.<br>
 Format: `sort [save]`
 
 > `save` is optional, meaning the command `sort` by itself will return a list view without 
-> saving the new ordering, while the command `sort save` will return the list and saves the new ordering.
+> saving the new ordering, while the command `sort save` will return the list and saves the new ordering to the address book.
 
 Examples:
 * `list`<br>

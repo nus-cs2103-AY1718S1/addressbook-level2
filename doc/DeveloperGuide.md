@@ -65,6 +65,11 @@
 * Problem: The two files look exactly the same, but the test script reports they are different.<br>
   Solution: This can happen because the line endings used by Windows is different from Unix-based
   OSes. Convert the actual.txt to the format used by your OS using some [utility](https://kb.iu.edu/d/acux).
+* Problem: I converted the actual.txt format and it still gives me the error.<br>
+  Solution: If you edited the expected.txt in Intellij, the IDE have the tendency to automatically
+  remove the trailing space of the LINE_PREFIX. Therefore, edit the expected.txt in programs like
+  Notepad++, where there is an option to see all hidden characters.<br>
+  Example: "|| " automatically changes to "||"<br>
 * Problem: Test fails during the very first time.<br>
   Solution: The output of the very first test run could be slightly different because the program
   creates a new storage file. Tests should pass from the 2nd run onwards.

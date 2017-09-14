@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.User;
 
 /**
  * Parses user input.
@@ -114,11 +115,11 @@ public class Parser {
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LoginCommand.MESSAGE_USAGE));
         }
-//        try {
-            return new LoginCommand(
-                    matcher.group("username"),
-                    matcher.group("password")
-            );
+
+//        System.out.println( matcher.group("username"));
+        /* Check username and password here */
+
+        return new LoginCommand(matcher.group("username"), matcher.group("password"));
 
 //        }
 //        catch (IllegalValueException ive) {

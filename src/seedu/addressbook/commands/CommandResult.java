@@ -1,6 +1,8 @@
 package seedu.addressbook.commands;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.User;
+import seedu.addressbook.data.person.Username;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,14 +18,27 @@ public class CommandResult {
     /** The list of persons that was produced by the command */
     private final List<? extends ReadOnlyPerson> relevantPersons;
 
+    public boolean isLogin;
+
+    public CommandResult(String feedbackToUser, boolean isLogin){
+        this.feedbackToUser = feedbackToUser;
+        relevantPersons = null;
+        this.isLogin = isLogin;
+    }
+
     public CommandResult(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
         relevantPersons = null;
+        this.isLogin = false;
     }
 
     public CommandResult(String feedbackToUser, List<? extends ReadOnlyPerson> relevantPersons) {
         this.feedbackToUser = feedbackToUser;
         this.relevantPersons = relevantPersons;
+    }
+
+    public void setIslogin(boolean isLogin){
+        this.isLogin = isLogin;
     }
 
     /**

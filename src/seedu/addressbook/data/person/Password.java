@@ -1,7 +1,9 @@
 package seedu.addressbook.data.person;
 
 
-public class Password {
+import java.io.Serializable;
+
+public class Password implements Serializable {
 
     public final String password;
 

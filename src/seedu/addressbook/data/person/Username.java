@@ -1,6 +1,8 @@
 package seedu.addressbook.data.person;
 
-public class Username {
+import java.io.Serializable;
+
+public class Username implements Serializable {
 
     public final String username;
 
@@ -17,6 +19,10 @@ public class Username {
 
     @Override
     public String toString() {
+        return this.username;
+    }
+
+    public String hasValue(){
         return this.username;
     }
 }

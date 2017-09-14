@@ -2,6 +2,7 @@ package seedu.addressbook.storage;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.Username;
 import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
 
 import javax.xml.bind.JAXBContext;
@@ -127,6 +128,9 @@ public class StorageFile {
      */
     public AddressBook load() throws StorageOperationException {
 
+        Username username = new Username("linus");
+
+        /* Create a new storage file */
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             return new AddressBook();
         }

@@ -105,6 +105,18 @@ public class TextUi {
                 DIVIDER);
     }
 
+
+    public void showWelcomeMessage(String version) {
+        showToUser(
+                DIVIDER,
+                DIVIDER,
+                MESSAGE_WELCOME,
+                version,
+                MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
+                MESSSAGE_LOGIN,
+                DIVIDER);
+    }
+
     public void showGoodbyeMessage() {
         showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
     }

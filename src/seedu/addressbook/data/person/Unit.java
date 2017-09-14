@@ -1,0 +1,15 @@
+package seedu.addressbook.data.person;
+
+public class Unit {
+
+    private String unit;
+
+    private void Unit(String unit){
+        this.unit = unit;
+    }
+
+    public String getUnit(){
+        return this.unit;
+    }
+
+}

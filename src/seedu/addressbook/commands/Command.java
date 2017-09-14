@@ -3,6 +3,7 @@ package seedu.addressbook.commands;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.storage.StorageForDeleted;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
 public class Command {
     protected AddressBook addressBook;
     protected List<? extends ReadOnlyPerson> relevantPersons;
+    protected StorageForDeleted storageForDeleted;
     private int targetIndex = -1;
 
     /**
@@ -46,9 +48,10 @@ public class Command {
     /**
      * Supplies the data the command will operate on.
      */
-    public void setData(AddressBook addressBook, List<? extends ReadOnlyPerson> relevantPersons) {
+    public void setData(AddressBook addressBook, List<? extends ReadOnlyPerson> relevantPersons, StorageForDeleted storageForDeleted) {
         this.addressBook = addressBook;
         this.relevantPersons = relevantPersons;
+        this.storageForDeleted = storageForDeleted;
     }
 
     /**

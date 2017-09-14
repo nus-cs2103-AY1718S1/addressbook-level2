@@ -22,11 +22,13 @@ import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.Phone;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
+import seedu.addressbook.storage.StorageForDeleted;
 import seedu.addressbook.util.TestUtil;
 
 public class AddCommandTest {
     private static final List<ReadOnlyPerson> EMPTY_PERSON_LIST = Collections.emptyList();
     private static final Set<String> EMPTY_STRING_LIST = Collections.emptySet();
+    private static final StorageForDeleted storageForDeleted = new StorageForDeleted();
 
     @Test
     public void addCommand_invalidName_throwsException() {
@@ -119,7 +121,7 @@ public class AddCommandTest {
         Person p = TestUtil.generateTestPerson();
         AddCommand command = new AddCommand(p);
         AddressBook book = new AddressBook();
-        command.setData(book, EMPTY_PERSON_LIST);
+        command.setData(book, EMPTY_PERSON_LIST, storageForDeleted);
         CommandResult result = command.execute();
         UniquePersonList people = book.getAllPersons();
 
@@ -135,7 +137,7 @@ public class AddCommandTest {
         AddressBook book = new AddressBook();
         book.addPerson(p);
         AddCommand command = new AddCommand(p);
-        command.setData(book, EMPTY_PERSON_LIST);
+        command.setData(book, EMPTY_PERSON_LIST, storageForDeleted);
         CommandResult result = command.execute();
 
         assertFalse(result.getRelevantPersons().isPresent());

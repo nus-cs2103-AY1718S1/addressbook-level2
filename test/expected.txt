@@ -234,12 +234,6 @@
 || 
 || 2 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  find friends]
-|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
-|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| 
-|| 2 persons listed!
-|| ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format! 
 || delete: Deletes the person identified by the index number used in the last person listing.
@@ -259,7 +253,7 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-|| Deleted Person: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
+|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
 || Person could not be found in address book
@@ -273,7 +267,7 @@
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
-|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
 || 4 persons listed!
@@ -284,7 +278,7 @@
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
-|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 3 persons listed!
 || ===================================================
@@ -293,7 +287,7 @@
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Tags: [secretive]
-|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
 || ===================================================

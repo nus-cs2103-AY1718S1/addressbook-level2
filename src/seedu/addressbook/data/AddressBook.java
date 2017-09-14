@@ -81,6 +81,7 @@ public class AddressBook {
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
         syncTagsWithMasterList(toAdd);
+
     }
 
     /**
@@ -97,6 +98,15 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+    }
+
+    /**
+     * Finds the index of the desired person in the address book
+     * @param toFind the person to be found
+     * @return the index of the person in the address book
+     */
+    public int findIndexOf(Person toFind) {
+        return allPersons.indexOf(toFind);
     }
 
     /**
@@ -125,7 +135,7 @@ public class AddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && this.allPersons.equals(((AddressBook) other).allPersons)
-                        && this.allTags.equals(((AddressBook) other).allTags));
+                && this.allPersons.equals(((AddressBook) other).allPersons)
+                && this.allTags.equals(((AddressBook) other).allTags));
     }
 }

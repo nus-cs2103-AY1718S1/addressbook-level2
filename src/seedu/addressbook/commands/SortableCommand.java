@@ -80,7 +80,9 @@ public class SortableCommand extends Command {
         sortedPersons.sort((person1, person2) -> {
             int c = 0;
             for (String sortArgument : sortArguments) {
-                if (c == 0) {
+                if (c != 0) {
+                    return c;
+                } else {
                     c = sortArgumentCompareValue(sortArgument, person1, person2);
                 }
             }

@@ -8,7 +8,7 @@
 || Enter command: || [Command entered:  sfdfd]
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25, S520725 t/friends t/owesMoney
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
@@ -19,6 +19,9 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| address: Views the non-private address details of the person identified by the index number in the last shown person listing.
+|| Parameters: INDEX
+|| Example: address 1
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
@@ -31,6 +34,9 @@
 || Example: exit
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  address 1]
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 1]
@@ -50,25 +56,25 @@
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25, S520725 t/friends t/owesMoney
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25, S520725 t/friends t/owesMoney
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 valid@email.butNoPrefix a/valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25, S520725 t/friends t/owesMoney
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25, S520725 t/friends t/owesMoney
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag]
 || Tags names should be alphanumeric

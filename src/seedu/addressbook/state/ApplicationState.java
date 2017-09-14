@@ -6,16 +6,20 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 import java.util.List;
 
 public class ApplicationState {
-    AddressBook addressbook;
-    List<? extends ReadOnlyPerson> lastShownList;
-    String commandResult;
-    ApplicationState(AddressBook addressBook, List<? extends ReadOnlyPerson> lastShownList, String commandResult) {
-        this.addressbook = addressBook;
-        this.lastShownList = lastShownList;
-        this.commandResult = commandResult;
+    
+    private AddressBook addressbook;
+    private List<ReadOnlyPerson> lastShownList;
+    
+    public ApplicationState(AddressBook addressBook, List<? extends ReadOnlyPerson> lastShownList) {
+        this.addressbook = addressBook.clone();
+        this.lastShownList = new ArrayList<>(lastShownList);
+    }
+    
+    public AddressBook getAddressBookInState() {
+        return addressbook;
     }
 
-    String getDifferences(ApplicationHistory.ApplicationState other) {
-        return null;
+    public List<ReadOnlyPerson> getListingInState() {
+        return lastShownList;
     }
 }

@@ -50,7 +50,8 @@ public class Parser {
         m.put("Phone", "p/");
         m.put("Email", "e/");
         m.put("Address", "a/");
-        m.put("Name", null);
+        m.put("Tag", "t/");
+        m.put("Name", "");
         return m;
     }
 

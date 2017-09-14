@@ -43,20 +43,27 @@ public class AddInteractiveCommand extends AddCommand {
 
     @Override
     public CommandResult execute() {
-
+        // These are the classes that will be only added once
         ArrayList<Class<?>> infoList = new ArrayList<>(Arrays.asList(
                 Name.class, Phone.class, Email.class, Address.class));
         String generatedCommand = AddCommand.COMMAND_WORD;
         for (Class<?> infoClass : infoList) {
             String prompt = "Please enter " + infoClass.getSimpleName() + ": ";
-            generatedCommand += generateCommandFromInput(infoClass, prompt);
+            String input = ui.promptUserInput(prompt);
+            generatedCommand += generateCommandFromInput(infoClass, input);
         }
+
+        // Tags may be added multiple times; ask user to input a space-separated list for convenience
+        String tagsInput = ui.promptUserInput("Please enter tags for person (separate multiple tags with spaces):");
+        for (String tag : tagsInput.trim().split(" ")) {
+            generatedCommand += generateCommandFromInput(Tag.class, tag);
+        }
+
         ui.enqueueCommand(generatedCommand);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    private String generateCommandFromInput(Class<?> infoClass, String promptMessage) {
-        String input = ui.promptUserInput(promptMessage);
+    private String generateCommandFromInput(Class<?> infoClass, String input) {
         String generatedCommandSnippet = " ";
         try {
             infoClass.getMethod("isPrivate");
@@ -65,11 +72,10 @@ public class AddInteractiveCommand extends AddCommand {
             // However due to time constraint we leave the validation to AddCommand
             Boolean isPrivate = Objects.equals(isPrivateInput, "Y");
             generatedCommandSnippet += (isPrivate) ? "p" : "";
-            generatedCommandSnippet += Parser.PERSON_DATA_PREFIXES.get(infoClass.getSimpleName());
-
         } catch (NoSuchMethodException | SecurityException e) {
             // Should only happen for Name and Tag class
         }
+        generatedCommandSnippet += Parser.PERSON_DATA_PREFIXES.get(infoClass.getSimpleName());
         generatedCommandSnippet += input;
         return generatedCommandSnippet;
     }

@@ -22,7 +22,10 @@ import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.UndoCommand;
+import seedu.addressbook.commands.RedoCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.state.ApplicationHistory;
 
 /**
  * Parses user input.
@@ -64,7 +67,14 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
-    public Command parseCommand(String userInput) {
+    /**
+     * Parses user input into command for execution.
+     * 
+     * @param userInput full user input string
+     * @param applicationHistory the application history to be used for history commands.
+     * @return the command based on the user input
+     */
+    public Command parseCommand(String userInput, ApplicationHistory applicationHistory) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -96,6 +106,12 @@ public class Parser {
         case ViewAllCommand.COMMAND_WORD:
             return prepareViewAll(arguments);
 
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand(applicationHistory);
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand(applicationHistory);
+            
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

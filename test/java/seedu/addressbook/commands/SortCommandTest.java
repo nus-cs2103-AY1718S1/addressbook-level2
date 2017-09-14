@@ -1,5 +1,6 @@
 package seedu.addressbook.commands;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -19,6 +20,7 @@ import java.util.List;
 public class SortCommandTest {
 
     private AddressBook newAddressBook;
+    private AddressBook sortedAddressBook;
 
     private List<ReadOnlyPerson> newListWithEveryone;
 
@@ -35,6 +37,7 @@ public class SortCommandTest {
                 new UniqueTagList());
 
         newAddressBook = TestUtil.createAddressBook(johnDoe, daneDoe, ballyGrant, samDoe);
+        sortedAddressBook = TestUtil.createAddressBook(ballyGrant, daneDoe, johnDoe, samDoe);
         newListWithEveryone = TestUtil.createList(johnDoe, daneDoe, ballyGrant, samDoe);
     }
 
@@ -44,26 +47,38 @@ public class SortCommandTest {
         SortCommand command = new SortCommand();
         command.setData(newAddressBook, newListWithEveryone);
 
-        //checks list to be unsorted.
+
         assertUnsorted(newAddressBook, newListWithEveryone);
 
         CommandResult result = command.execute();
 
         List<? extends ReadOnlyPerson> sortedList = result.getRelevantPersons().get();
 
-        //checks the list to be sorted
         assertSortSuccessful(newAddressBook,sortedList);
+
+        //check whether newAddressBook is actually sorted by comparing it with sortedAddressBook
+        assertEquals(newAddressBook,sortedAddressBook);
         
     }
 
+    /**
+     * Asserts that the people listed in the addressBook is not alphabetically sorted.
+     */
     private void assertUnsorted(AddressBook addressBook, List<ReadOnlyPerson> displayList) {
         assertFalse(isAddressBookSorted(addressBook,displayList));
     }
 
+    /**
+     * Asserts that the people listed in the addressBook is alphabetically sorted.
+     */
     private void assertSortSuccessful(AddressBook addressBook, List<? extends ReadOnlyPerson> displayList){
         assertTrue(isAddressBookSorted(addressBook,displayList));
     }
 
+    /**
+     * Help method to check whether the people listed in the addressBook is
+     * alphabetically sorted or not.
+     */
     private boolean isAddressBookSorted(AddressBook addressBook, List<? extends ReadOnlyPerson> displayList){
         for(int i = 0; i < displayList.size() - 1; i++){
             ReadOnlyPerson person1 = displayList.get(i);
@@ -72,12 +87,16 @@ public class SortCommandTest {
             assertTrue(addressBook.containsPerson(person1));
             assertTrue(addressBook.containsPerson(person2));
 
-            if (compareNamesAlphbetically(person1, person2)) return false;
+            if (compareNamesAlphabetically(person1, person2)) return false;
         }
         return true;
     }
 
-    private boolean compareNamesAlphbetically(ReadOnlyPerson person1, ReadOnlyPerson person2) {
+    /**
+     * Help method to check whether person1 at index i and person2 at index i+1
+     * of the addressBook is alphabetically sorted or not.
+     */
+    private boolean compareNamesAlphabetically(ReadOnlyPerson person1, ReadOnlyPerson person2) {
         String name1 = person1.getName().toString();
         String name2 = person2.getName().toString();
 

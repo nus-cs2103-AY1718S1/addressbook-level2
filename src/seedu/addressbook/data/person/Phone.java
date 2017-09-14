@@ -2,6 +2,8 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.Arrays;
+import java.util.List;
 /**
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
@@ -34,6 +36,13 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
         return test.matches(PHONE_VALIDATION_REGEX);
+    }
+
+    /**
+     * Retrieves a listing of every number in the name, in order.
+     */
+    public List<String> getNumInPhone() {
+        return Arrays.asList(value);
     }
 
     @Override

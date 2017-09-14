@@ -8,10 +8,7 @@ import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -105,6 +102,15 @@ public class TextUi {
         return fullInputLine;
     }
 
+    /**
+     * Prompts for user to choose yes or no
+     * Accepts y, Y, yes (case-insensitive) as yes; surrounding spaces ignored
+     * @return whether user gave a positive reply
+     */
+    public boolean isUserAnswerYes() {
+        String input = promptUserInput("(Enter [Y]es/[N]o):").trim().toUpperCase();
+        return Objects.equals(input, "Y") || Objects.equals(input, "YES");
+    }
 
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);

@@ -12,6 +12,7 @@ public class Person implements ReadOnlyPerson {
 
     private Name name;
     private Phone phone;
+    private DOB dob;
     private Email email;
     private Address address;
 
@@ -19,9 +20,10 @@ public class Person implements ReadOnlyPerson {
     /**
      * Assumption: Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+    public Person(Name name, Phone phone, DOB dob, Email email, Address address, UniqueTagList tags) {
         this.name = name;
         this.phone = phone;
+        this.dob = dob;
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
@@ -31,7 +33,7 @@ public class Person implements ReadOnlyPerson {
      * Copy constructor.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+        this(source.getName(), source.getPhone(), source.getDOB(), source.getEmail(), source.getAddress(), source.getTags());
     }
 
     @Override
@@ -43,6 +45,9 @@ public class Person implements ReadOnlyPerson {
     public Phone getPhone() {
         return phone;
     }
+
+    @Override
+    public DOB getDOB() { return dob; }
 
     @Override
     public Email getEmail() {
@@ -76,7 +81,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, dob, email, address, tags);
     }
 
     @Override

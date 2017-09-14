@@ -4,7 +4,7 @@ import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
-import java.util.Scanner;
+
 
 /**
  * Lists all persons in the address book to the user.
@@ -13,31 +13,27 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
+    public static int numberOfPersons;
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays the desired number of persons in the address book as a list with index numbers. If no" +
-            "integer is given, all persons will be displayed.\n"
-            + "Example: " + COMMAND_WORD;
+            + ": Displays the desired number of persons from the address book as an unordered list with index numbers. \n The desired " +
+            "number of persons should be given at the same time as the list command.\n"
+            + "Example: " + COMMAND_WORD + " 2" ;
+
 
 
     @Override
     public CommandResult execute() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("How many persons should be displayed? ");
         List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
-        if (scanner.hasNextInt()) {
-            try {
-                int i = scanner.nextInt();
-                List<ReadOnlyPerson> subListPersons = allPersons.subList(0, i);
+        try {
+            List<ReadOnlyPerson> subListPersons = allPersons.subList(0, numberOfPersons);
+            return new CommandResult(getMessageForPersonListShownSummary(subListPersons), subListPersons);
 
-            } catch (IndexOutOfBoundsException ie) {
-                return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-
-
+        } catch (IndexOutOfBoundsException ie) {
+            return new CommandResult(Messages.MESSAGE_INVALID_NUMBER_PERSONS);
         }
-        else {
-            return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
-        }
-        return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
+
+
     }
+
 }

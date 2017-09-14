@@ -27,6 +27,7 @@ What's different from AddressBook-Level1:
 * Support for storing address (`a/`) and tags (`t/`)
 * Support for marking a contact detail as 'private' (`pa/`) (`pe/`) (`pp/`) 
 * View details of a person (`view` : shows non-private details), (`viewall` : shows all details)
+* Sorting address book list according to different criteria. (`sort 0` : sorts in alphabetical order)
 
 ### Viewing help : `help`
 Format: `help`
@@ -118,8 +119,8 @@ Format: `sort OPTION`
 
 > Uses particular sorting specification with given `OPTION`.
   The option number refers to a particular way of sorting.<br>
-  Option 1: Alphabetical Order (lexicographical order) <br>
-  Option 2: Order of Length (shortest to longest)
+  Option 0: Alphabetical Order (lexicographical order) <br>
+  Option 1: Order of Length (shortest to longest)
   
 Examples:
 * `sort 0`<br>

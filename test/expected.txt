@@ -87,6 +87,7 @@
 || ===================================================
 || Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street]
 || New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| ===================================================
 History of recently added:
 New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
 || ===================================================

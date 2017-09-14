@@ -26,13 +26,12 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(){
+    public CommandResult execute() {
         try {
             addressBook.sortPerson(toSort);
             List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
             return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
-        }
-        catch (UniquePersonList.WrongSortException dpe) {
+        } catch (UniquePersonList.WrongSortException dpe) {
             return new CommandResult(MESSAGE_WRONG_SORT);
         }
     }

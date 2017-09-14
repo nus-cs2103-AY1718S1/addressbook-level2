@@ -1,10 +1,17 @@
 package seedu.addressbook.data.person;
 
-import java.util.*;
 
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
 import seedu.addressbook.data.exception.IllegalValueException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Comparator;
 
 
 /**
@@ -132,8 +139,8 @@ public class UniquePersonList implements Iterable<Person> {
      * @throws WrongSortException if the sorting method for the list does not exist.
      */
 
-    public void sort(String sorting) throws WrongSortException{
-        if(sorting.equals(" ascending")){
+    public void sort(String sorting) throws WrongSortException {
+        if (" ascending".equals(sorting)){
             Collections.sort(internalList, new Comparator<Person>() {
                 public int compare(Person personOne, Person personTwo) {
                     return personOne.getName().toString().compareTo(personTwo.getName().toString());
@@ -141,7 +148,7 @@ public class UniquePersonList implements Iterable<Person> {
             });
             return;
         }
-        if(sorting.equals(" descending")){
+        if (" descending".equals(sorting)){
             Collections.sort(internalList, new Comparator<Person>() {
                 public int compare(Person personOne, Person personTwo) {
                     return -1 * personOne.getName().toString().compareTo(personTwo.getName().toString());
@@ -149,7 +156,7 @@ public class UniquePersonList implements Iterable<Person> {
             });
             return;
         }
-        if(!sorting.equals(" ascending") && !sorting.equals(" descending")){
+        if (!" ascending".equals(sorting) && !" descending".equals(sorting)){
             throw new WrongSortException();
         }
     }

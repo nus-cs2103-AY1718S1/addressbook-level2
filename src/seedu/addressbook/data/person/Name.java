@@ -39,8 +39,8 @@ public class Name {
     /**
      * Retrieves a listing of every word in the name, in order.
      */
-    public List<String> getWordsInName() {
-        return Arrays.asList(fullName.split("\\s+"));
+    public List<String> getWordsInNameIgnoreCaseSensitive() {
+        return Arrays.asList(fullName.toUpperCase().split("\\s+"));
     }
 
     @Override

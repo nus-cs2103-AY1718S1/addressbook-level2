@@ -11,7 +11,7 @@ public class SortCommand extends Command {
 			+ "Example: " + COMMAND_WORD;
 
 	public static final String MESSAGE_SORT_ADDRESSBOOK_SUCCESS = "Contacts successfully sorted in "
-			+ "alphabetical order. \n";
+			+ "alphabetical order.";
 
 	@Override
 	public CommandResult execute() {

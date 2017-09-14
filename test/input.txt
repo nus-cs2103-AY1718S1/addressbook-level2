@@ -153,7 +153,7 @@
   edit Dickson Ee p/123456
   edit Dickson Ee e/e0000@u.nus.edu
   edit Dickson Ee pa/PGPR, NUS
-  edit Dickson Ee pb/0401
+  edit Dickson Ee b/1234
   edit Dickson Ee t/classmates
 
 ##########################################################

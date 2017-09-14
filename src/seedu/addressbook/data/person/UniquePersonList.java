@@ -149,8 +149,7 @@ public class UniquePersonList implements Iterable<Person> {
             });
             return;
         }
-        if(sorting != " ascending" && sorting != " descending"){
-            System.out.println("wrong");
+        if(!sorting.equals(" ascending") && !sorting.equals(" descending")){
             throw new WrongSortException();
         }
     }

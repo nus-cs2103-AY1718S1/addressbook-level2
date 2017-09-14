@@ -47,7 +47,7 @@
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add wrong args wrong args]
-|| Invalid command format!
+|| Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney

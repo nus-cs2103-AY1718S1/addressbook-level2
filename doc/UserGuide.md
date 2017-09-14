@@ -81,6 +81,23 @@ Examples:
   `delete 1`<br>
   Deletes the 1st person in the results of the `find` command.
 
+### Sort the address book by name / phone / email / address: `sort`
+Sorts the the address book by parameter given.<br>
+Format: `sort PARAMETER`
+
+> Sorts the address book based on the specified `PARAMETER`.
+  The parameter refers to either name, phone, email or address.
+
+Examples:
+* `sort name`<br>
+  Sorts the address book by name.
+* `sort phone`<br>
+  Sorts the address book by phone number.
+* `sort email`<br>
+  Sorts the address book by email address.
+* `sort address`<br>
+  Sorts the address book by address.
+  
 ### View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>
 Format: `view INDEX`

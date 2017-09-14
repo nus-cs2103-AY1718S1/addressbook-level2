@@ -55,6 +55,25 @@
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
 
 ##########################################################
+# test findtag command
+##########################################################
+
+  # should consider no keywords as invalid command format
+  findtag
+  # should only match full words in person tags
+  findtag frie
+  # does not match if none have tag
+  findtag 23912039120
+  # matching should not be case-sensitive
+  findtag Tubers
+  # find unique keyword
+  findtag secretive
+  # find multiple with same keyword
+  findtag friends
+  # find multiple with some keywords
+  findtag secretive school
+  list
+##########################################################
 # test view/viewall persons command
 ##########################################################
 

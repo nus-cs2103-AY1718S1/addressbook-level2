@@ -43,7 +43,7 @@ public class Person implements ReadOnlyPerson {
 
             return name1.compareTo(name2);
         }
-    }
+    };
 
     @Override
     public Name getName() {

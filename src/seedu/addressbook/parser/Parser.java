@@ -101,7 +101,7 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
-            return new HelpCommand();
+        return new HelpCommand();
         }
     }
 
@@ -238,7 +238,7 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareFind(String args) {
-        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim().toLowerCase());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindCommand.MESSAGE_USAGE));
@@ -246,9 +246,12 @@ public class Parser {
 
         // keywords delimited by whitespace
         final String[] keywords = matcher.group("keywords").split("\\s+");
+
+        /*for (String s: keywords)
+            System.out.println(s);*/
+
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
-
 
 }

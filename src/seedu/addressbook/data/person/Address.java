@@ -13,15 +13,11 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
-    private Block block;
-    private Street street;
-    private Unit unit;
-    private Postal postal;
 
-    block = new Block(0);
-    street = new Street("");
-    unit = new Unit("");
-    postal = new Postal(0);
+    private Block block = new Block(0);
+    private Street street = new Street("");
+    private Unit unit = new Unit("");
+    private Postal postal = new Postal(0);
 
     private boolean isPrivate;
 

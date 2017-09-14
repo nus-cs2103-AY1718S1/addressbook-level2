@@ -26,8 +26,8 @@ public class AltFindCommand extends Command {
     private final Set<String> keywords;
 
     public AltFindCommand(Set<String> keywords) {
-        private List<String> memlist = keywords.stream().collect(Collectors.toList());
-        private Set<String> memberSet = memlist.stream().map(s -> s.toLowerCase()).collect(Collectors.toSet());
+        List<String> memlist = keywords.stream().collect(Collectors.toList());
+        Set<String> memberSet = memlist.stream().map(s -> s.toLowerCase()).collect(Collectors.toSet());
         this.keywords = memberSet;
     }
 

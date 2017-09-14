@@ -12,6 +12,7 @@ import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.ui.TextUi;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
@@ -24,6 +25,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    TextUi formatter;
 
     /**
      * Creates an empty address book.
@@ -31,6 +33,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        TextUi formatter = new TextUi();
     }
 
     /**
@@ -140,7 +143,7 @@ public class AddressBook {
                 return;
             }
         }
-        System.out.println("|| Person not found! Please ensure person is a registered contact" +
+        System.out.println(formatter.getLinePrefix() + " Person not found! Please ensure person is a registered contact" +
                 " before using employment status function!");
     }
 
@@ -155,7 +158,7 @@ public class AddressBook {
                 return;
             }
         }
-        System.out.println("|| Person not found! Please ensure person is a registered contact" +
+        System.out.println(formatter.getLinePrefix() + " Person not found! Please ensure person is a registered contact" +
                 " before using employment status function!");
     }
 }

@@ -101,7 +101,7 @@ public class Person implements ReadOnlyPerson {
         int workExperience = Integer.valueOf(processedInput[2]);
         updateEmploymentInfo(this.name.toString(), employmentStatus, jobTitle, workExperience);
         hasEditedEmploymentInfo = true;
-        System.out.println("|| Employment Information Updated");
+        System.out.println(ui.getLinePrefix() + " Employment Information Updated");
         return;
     }
 
@@ -116,31 +116,31 @@ public class Person implements ReadOnlyPerson {
     }
 
     private void printEmploymentStatus() {
-        String printName = "|| Name: " + this.employmentInfo.getName();
-        String printES = "|| Employment Status: " + this.employmentInfo.getEmploymentStatus();
-        String printJT = "|| Job Title: " + this.employmentInfo.getJobTitle();
-        String printWE = "|| Working Experience: " + Integer.toString(this.employmentInfo.getWorkingExperience())
+        String printName = ui.getLinePrefix() + " Name: " + this.employmentInfo.getName();
+        String printES = ui.getLinePrefix() + " Employment Status: " + this.employmentInfo.getEmploymentStatus();
+        String printJT = ui.getLinePrefix() + " Job Title: " + this.employmentInfo.getJobTitle();
+        String printWE = ui.getLinePrefix() + " Working Experience: " + Integer.toString(this.employmentInfo.getWorkingExperience())
                 + " years";
         System.out.print(printName + "\n" + printES + "\n" + printJT + "\n" + printWE + "\n");
     }
 
     private void hasYetToEditEmploymentStatus() {
-        System.out.println("|| Employment Info has not been updated. " +
+        System.out.println(ui.getLinePrefix() + " Employment Info has not been updated. " +
                 "Please edit before viewing");
     }
 
     private void invalidEmploymentBoolean() {
-        System.out.println("|| Something weird happened! Please contact us so that " +
+        System.out.println(ui.getLinePrefix() + " Something weird happened! Please contact us so that " +
                 "we can fix the issue!");
     }
 
     private void printUserFound() {
-        System.out.println("|| Contact Found! Please enter the person's ");
-        System.out.println("|| 1. Employment Status (Employed/Unemployed)");
-        System.out.println("|| 2. Job Title");
-        System.out.println("|| 3. Working Experience (Expressed as an Integer)");
-        System.out.println("|| Seperate them with a comma");
-        System.out.println("|| Example: Unemployed,Student,0");
+        System.out.println(ui.getLinePrefix() + " Contact Found! Please enter the person's ");
+        System.out.println(ui.getLinePrefix() + " 1. Employment Status (Employed/Unemployed)");
+        System.out.println(ui.getLinePrefix() + " 2. Job Title");
+        System.out.println(ui.getLinePrefix() + " 3. Working Experience (Expressed as an Integer)");
+        System.out.println(ui.getLinePrefix() + " Seperate them with a comma");
+        System.out.println(ui.getLinePrefix() + " Example: Unemployed,Student,0");
     }
 
     private String[] obtainAndProcessInput() {
@@ -152,7 +152,7 @@ public class Person implements ReadOnlyPerson {
             processedInput = input.split(",");
             inputCheckerByCountingCommas = processedInput.length;
             if (inputCheckerByCountingCommas != 3) {
-                System.out.println("|| Invalid input. Please follow the " +
+                System.out.println(ui.getLinePrefix() + " Invalid input. Please follow the " +
                         "format given and try again!");
             }
         } while (inputCheckerByCountingCommas != 3);

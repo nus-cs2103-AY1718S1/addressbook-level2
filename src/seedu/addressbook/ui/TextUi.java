@@ -198,4 +198,7 @@ public class TextUi {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
     }
 
+    public String getLinePrefix() {
+        return LINE_PREFIX;
+    }
 }

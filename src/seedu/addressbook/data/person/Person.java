@@ -14,24 +14,29 @@ public class Person implements ReadOnlyPerson {
     private Phone phone;
     private Email email;
     private Address address;
+    private Birthday birthday;
 
     private final UniqueTagList tags;
+    private final int sequenceNumber;
+    private static int nextSequenceNumber=0;
     /**
      * Assumption: Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, UniqueTagList tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.sequenceNumber=nextSequenceNumber+1;
     }
 
     /**
      * Copy constructor.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getBirthday(), source.getTags());
     }
 
     @Override
@@ -55,8 +60,28 @@ public class Person implements ReadOnlyPerson {
     }
 
     @Override
+    public Birthday getBirthday() {return  birthday; }
+
+    @Override
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
+    }
+
+    public int getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    /**
+     * Returns a concatenated version of the printable strings of each object.
+     */
+    public String getPrintableString(Printable... printables){
+        String output="";
+
+        for(Printable p:printables){
+            output+=p.getPrintableString()+" ";
+        }
+
+        return output;
     }
 
     /**
@@ -76,12 +101,14 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, birthday, tags);
     }
 
     @Override
     public String toString() {
         return getAsTextShowAll();
+        //Using LO Interface Segregation Principle
+        //return getPrintableString(name,phone,email,address,birthday);
     }
 
 }

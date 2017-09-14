@@ -10,6 +10,23 @@ import org.junit.Test;
 
 public class UtilsTest {
 
+    @Test
+     public void isAnyNull() throws Exception {
+
+
+        // non empty list with nulls in the middle
+        assertTrue(Utils.isAnyNull(new Object(), null, null, "test"));
+        assertTrue(Utils.isAnyNull("", null, new Object()));
+
+        // non empty list with one null as the last element
+        assertTrue(Utils.isAnyNull("", new Object(), null));
+        assertTrue(Utils.isAnyNull(new Object(), new Object(), null));
+
+        // confirms nulls inside the list are not considered
+        List<Object> nullList = Arrays.asList((Object) null);
+        assertFalse(Utils.isAnyNull(nullList));
+
+    }
 
     @Test
     public void elementsAreUnique() throws Exception {

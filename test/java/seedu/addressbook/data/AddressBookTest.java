@@ -11,6 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import seedu.addressbook.data.person.Birthday;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -48,24 +49,28 @@ public class AddressBookTest {
                                     new Phone("91235468", false),
                                     new Email("alice@nushackers.org", false),
                                     new Address("8 Computing Drive, Singapore", false),
+                                    new Birthday("0101", false),
                                     new UniqueTagList(tagMathematician));
 
         bobChaplin     = new Person(new Name("Bob Chaplin"),
                                     new Phone("94321500", false),
                                     new Email("bob@nusgreyhats.org", false),
                                     new Address("9 Computing Drive", false),
+                                    new Birthday("0102", false),
                                     new UniqueTagList(tagMathematician));
 
         charlieDouglas = new Person(new Name("Charlie Douglas"),
                                     new Phone("98751365", false),
                                     new Email("charlie@nusgdg.org", false),
                                     new Address("10 Science Drive", false),
+                                    new Birthday("0103", false),
                                     new UniqueTagList(tagScientist));
 
         davidElliot    = new Person(new Name("David Elliot"),
                                     new Phone("84512575", false),
                                     new Email("douglas@nuscomputing.com", false),
                                     new Address("11 Arts Link", false),
+                                    new Birthday("0103", false),
                                     new UniqueTagList(tagEconomist, tagPrizeWinner));
 
         emptyAddressBook = new AddressBook();
@@ -115,6 +120,36 @@ public class AddressBookTest {
         }
 
         assertFalse(isTagObjectInAddressBookList(tagPrizeWinner, defaultAddressBook));
+    }
+
+    @Test
+    public void editPerson() throws Exception {
+        Person aliceBetsyToEdit = new Person(new Name("Alice Betsy"), null,
+                new Email("alice@u.nus.edu", false),
+                new Address("PGPR, NUS", false),
+                new Birthday("3112", false),
+                new UniqueTagList(tagPrizeWinner));
+
+        Person aliceBetsyAfterEdit = new Person(new Name("Alice Betsy"),
+                new Phone("91235468", false),
+                new Email("alice@u.nus.edu", false),
+                new Address("PGPR, NUS", false),
+                new Birthday("3112", false),
+                new UniqueTagList(tagPrizeWinner));
+
+        UniquePersonList personList = new UniquePersonList(aliceBetsyAfterEdit);
+
+        emptyAddressBook.addPerson(aliceBetsy);
+        emptyAddressBook.editPerson(aliceBetsyToEdit);
+
+        assertTrue(isIdentical(emptyAddressBook.getAllPersons(), personList));
+    }
+
+    @Test
+    public void editPerson_personNotInAddressBook_throwsPersonNotFoundException() throws Exception {
+        thrown.expect(PersonNotFoundException.class);
+        defaultAddressBook.editPerson(charlieDouglas);
+        defaultAddressBook.editPerson(davidElliot);
     }
 
     @Test

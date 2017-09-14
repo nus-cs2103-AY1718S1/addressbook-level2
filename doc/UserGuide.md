@@ -35,19 +35,38 @@ Format: `help`
  
 ### Adding a person: `add`
 Adds a person to the address book<br>
-Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...` 
+Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [p]b/BIRTHDAY [t/TAG]...`
  
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
 > items with `...` after them can have multiple instances. Order of parameters are fixed. 
 > 
-> Put a `p` before the phone / email / address prefixes to mark it as `private`. `private` details can only
+> Put a `p` before the phone / email / address / birthday prefixes to mark it as `private`. `private` details can only
 > be seen using the `viewall` command.
 > 
 > Persons can have any number of tags (including 0)
 
 Examples: 
-* `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
-* `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
+* `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01 b/0101`
+* `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison b/0102 t/criminal t/friend`
+
+### Editing a person: `edit`
+Edits a person from the address book<br>
+Formant: `edit NAME [[p]p/PHONE_NUMBER] [[p]e/EMAIL] [[p]a/ADDRESS] [[p]b/BIRTHDAY] [t/TAG]...`
+
+> Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
+> items with `...` after them can have multiple instances. Order of parameters are fixed. 
+> 
+> Put a `p` before the phone / email / address / birthday prefixes to mark it as `private`. `private` details can only
+> be seen using the `viewall` command.
+>
+> Edit the person whose name is NAME.
+> 
+> PHONE_NUMBER, EMAIL, ADDRESS, BIRTHDAY and TAG are optional. If they are added to the command, the corresponding part
+> will be changed.
+
+Examples: 
+* `edit John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01 b/0101`
+* `edit Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison b/0102 t/criminal t/friend`
 
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>

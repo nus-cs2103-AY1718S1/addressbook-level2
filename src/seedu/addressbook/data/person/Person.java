@@ -14,24 +14,33 @@ public class Person implements ReadOnlyPerson {
     private Phone phone;
     private Email email;
     private Address address;
+    private Birthday birthday;
 
     private final UniqueTagList tags;
+
+    private int sequenceNumber;
+    public static int nextSequenceNumber = 1;
+
     /**
      * Assumption: Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, UniqueTagList tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+
+        sequenceNumber = nextSequenceNumber;
+        nextSequenceNumber++;
     }
 
     /**
      * Copy constructor.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getBirthday(), source.getTags());
     }
 
     @Override
@@ -55,8 +64,37 @@ public class Person implements ReadOnlyPerson {
     }
 
     @Override
+    public Birthday getBirthday() {
+        return birthday;
+    }
+
+    @Override
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
+    }
+
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void setBirthday(Birthday birthday) {
+        this.birthday = birthday;
+    }
+
+    public int getSequenceNumber() {
+        return sequenceNumber;
     }
 
     /**
@@ -76,7 +114,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, birthday, tags);
     }
 
     @Override

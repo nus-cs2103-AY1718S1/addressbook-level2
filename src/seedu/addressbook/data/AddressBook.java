@@ -1,9 +1,6 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -81,6 +78,60 @@ public class AddressBook {
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
         syncTagsWithMasterList(toAdd);
+    }
+
+    /**
+     * Edits a person from the address book.
+     * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
+     * and updates the Tag objects in the person to point to those in {@link #allTags}.
+     */
+    public Person editPerson(Person toEdit) throws PersonNotFoundException {
+        Person person = findPerson(toEdit);
+        allPersons.remove(person);
+        modifyDifferences(person, toEdit);
+        try {
+            allPersons.add(person);
+        } catch (DuplicatePersonException dpe) {
+            // This will not happen because person has been removed.
+        }
+        syncTagsWithMasterList(person);
+        return person;
+    }
+
+    /**
+     * Checks whether the person who has same name with {@param toEdit}
+     * @return person himself if found, else return null
+     */
+    private Person findPerson(Person toEdit) throws PersonNotFoundException{
+        Iterator<Person> iterator = allPersons.iterator();
+        while (iterator.hasNext()) {
+            Person person = iterator.next();
+            if (person.getName().equals(toEdit.getName())) {
+                return person;
+            }
+        }
+        throw new PersonNotFoundException();
+    }
+
+    /**
+     * Modifies the different parts of {@param person} and {@param toEdit} if not null
+     */
+    private void modifyDifferences(Person person, Person toEdit) {
+        if (toEdit.getPhone() != null) {
+            person.setPhone(toEdit.getPhone());
+        }
+        if (toEdit.getEmail() != null) {
+            person.setEmail(toEdit.getEmail());
+        }
+        if (toEdit.getAddress() != null) {
+            person.setAddress(toEdit.getAddress());
+        }
+        if (toEdit.getBirthday() != null) {
+            person.setBirthday(toEdit.getBirthday());
+        }
+        if (toEdit.getTags().iterator().hasNext()) {
+            person.setTags(toEdit.getTags());
+        }
     }
 
     /**

@@ -8,12 +8,14 @@ import java.util.Objects;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Person implements ReadOnlyPerson {
+public class Person implements ReadOnlyPerson, Comparable<Person> {
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+
+    private static String sortBy;
 
     private final UniqueTagList tags;
     /**
@@ -84,4 +86,19 @@ public class Person implements ReadOnlyPerson {
         return getAsTextShowAll();
     }
 
+    /**
+     * Sets the params to sort by
+     * @param sortBy params for sorting
+     */
+    public static void setSortBy(String sortBy) {
+        Person.sortBy = sortBy;
+    }
+
+    @Override
+    public int compareTo(Person p) {
+        if (sortBy.compareTo("name") == 0) return this.getName().toString().toLowerCase().compareTo(p.getName().toString().toLowerCase());
+        else if (sortBy.compareTo("phone") == 0) return this.getPhone().toString().toLowerCase().compareTo(p.getPhone().toString().toLowerCase());
+        else if (sortBy.compareTo("email") == 0) return this.getEmail().toString().toLowerCase().compareTo(p.getEmail().toString().toLowerCase());
+        else return this.getAddress().toString().toLowerCase().compareTo(p.getAddress().toString().toLowerCase());
+    }
 }

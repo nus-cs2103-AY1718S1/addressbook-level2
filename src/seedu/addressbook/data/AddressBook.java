@@ -108,6 +108,14 @@ public class AddressBook {
     }
 
     /**
+     * Sorts the contacts in the address book by the parameter input
+     * @param sortBy the parameter to sort the address book by
+     */
+    public void sortBy(String sortBy) {
+        allPersons.sortBy(sortBy);
+    }
+
+    /**
      * Returns a new UniquePersonList of all persons in the address book at the time of the call.
      */
     public UniquePersonList getAllPersons() {

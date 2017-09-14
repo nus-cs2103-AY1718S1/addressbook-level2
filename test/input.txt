@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -53,6 +53,19 @@
 
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+
+##########################################################
+# test sort command
+##########################################################
+
+  sort name
+  list
+  sort phone
+  list
+  sort email
+  list
+  sort address
+  list
 
 ##########################################################
 # test view/viewall persons command

@@ -19,7 +19,6 @@ import seedu.addressbook.data.exception.DuplicateDataException;
  * @see Utils#elementsAreUnique(Collection)
  */
 public class UniquePersonList implements Iterable<Person> {
-
     /**
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
@@ -127,6 +126,15 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void clear() {
         internalList.clear();
+    }
+
+    /**
+     * Sorts the list by the parameter input
+     * @param sortBy the parameter to sort the address book by
+     */
+    public void sortBy(String sortBy) {
+        Person.setSortBy(sortBy);
+        Collections.sort(internalList);
     }
 
     @Override

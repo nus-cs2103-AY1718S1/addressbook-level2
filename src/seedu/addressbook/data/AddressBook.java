@@ -114,6 +114,11 @@ public class AddressBook {
         return new UniquePersonList(allPersons);
     }
 
+    public UniquePersonList getAllPersonsSorted() {
+        allPersons.sort();
+        return new UniquePersonList(allPersons);
+    }
+
     /**
      * Returns a new UniqueTagList of all tags in the address book at the time of the call.
      */

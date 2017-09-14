@@ -1,6 +1,7 @@
 package seedu.addressbook.commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -23,10 +24,8 @@ import seedu.addressbook.util.TestUtil;
 
 public class SortCommandTest {
 
-    private AddressBook sortedAddressBook;
     private AddressBook addressBook;
-
-    private List<ReadOnlyPerson> listWithEveryone;
+    private List<ReadOnlyPerson> sortedOriginalList;
 
     @Before
     public void setUp() throws Exception {
@@ -41,95 +40,11 @@ public class SortCommandTest {
                 new UniqueTagList());
 
         addressBook = TestUtil.createAddressBook(johnDoe, janeDoe, davidGrant, samDoe);
-        sortedAddressBook = TestUtil.createAddressBook( davidGrant, janeDoe, johnDoe, samDoe);
-        listWithEveryone = TestUtil.createList(johnDoe, janeDoe, davidGrant, samDoe);
+        sortedOriginalList = TestUtil.createList(davidGrant, janeDoe, johnDoe, samDoe);
     }
-
     @Test
-    public void execute_emptyAddressBook_returnsPersonNotFoundMessage() {
-        assertDeletionFailsDueToNoSuchPerson(1, emptyAddressBook, listWithEveryone);
+    public void simpleSort() {
+        addressBook.sortSelf();
+        assertEquals(addressBook.getAllPersons().immutableListView(), sortedOriginalList);
     }
-
-    @Test
-    public void execute_noPersonDisplayed_returnsInvalidIndexMessage() {
-        assertDeletionFailsDueToInvalidIndex(1, addressBook, emptyDisplayList);
-    }
-
-    @Test
-    public void execute_targetPersonNotInAddressBook_returnsPersonNotFoundMessage()
-            throws IllegalValueException {
-        Person notInAddressBookPerson = new Person(new Name("Not In Book"), new Phone("63331444", false),
-                new Email("notin@book.com", false), new Address("156D Grant Road", false), new UniqueTagList());
-        List<ReadOnlyPerson> listWithPersonNotInAddressBook = TestUtil.createList(notInAddressBookPerson);
-
-        assertDeletionFailsDueToNoSuchPerson(1, addressBook, listWithPersonNotInAddressBook);
-    }
-
-    @Test
-    public void execute_invalidIndex_returnsInvalidIndexMessage() {
-        assertDeletionFailsDueToInvalidIndex(0, addressBook, listWithEveryone);
-        assertDeletionFailsDueToInvalidIndex(-1, addressBook, listWithEveryone);
-        assertDeletionFailsDueToInvalidIndex(listWithEveryone.size() + 1, addressBook, listWithEveryone);
-    }
-
-    @Test
-    public void execute_validIndex_personIsDeleted() throws PersonNotFoundException {
-        assertDeletionSuccessful(1, addressBook, listWithSurnameDoe);
-        assertDeletionSuccessful(listWithSurnameDoe.size(), addressBook, listWithSurnameDoe);
-
-        int middleIndex = (listWithSurnameDoe.size() / 2) + 1;
-        assertDeletionSuccessful(middleIndex, addressBook, listWithSurnameDoe);
-    }
-
-    /**
-     * Creates a new delete command.
-     *
-     * @param targetVisibleIndex of the person that we want to delete
-     */
-    private DeleteCommand createDeleteCommand(int targetVisibleIndex, AddressBook addressBook,
-                                              List<ReadOnlyPerson> displayList) {
-
-        DeleteCommand command = new DeleteCommand(targetVisibleIndex);
-        command.setData(addressBook, displayList);
-
-        return command;
-    }
-
-    /**
-     * Executes the command, and checks that the execution was what we had expected.
-     */
-    private void assertCommandBehaviour(DeleteCommand deleteCommand, String expectedMessage,
-                                        AddressBook expectedAddressBook, AddressBook actualAddressBook) {
-
-        CommandResult result = deleteCommand.execute();
-
-        assertEquals(expectedMessage, result.showFeedback());
-        assertEquals(expectedAddressBook.getAllPersons(), actualAddressBook.getAllPersons());
-    }
-
-    /**
-     * Asserts that the index is not valid for the given display list.
-     */
-    private void assertDeletionFailsDueToInvalidIndex(int invalidVisibleIndex, AddressBook addressBook,
-                                                      List<ReadOnlyPerson> displayList) {
-
-        String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-
-        DeleteCommand command = createDeleteCommand(invalidVisibleIndex, addressBook, displayList);
-        assertCommandBehaviour(command, expectedMessage, addressBook, addressBook);
-    }
-
-    /**
-     * Asserts that the person at the specified index cannot be deleted, because that person
-     * is not in the address book.
-     */
-    private void assertDeletionFailsDueToNoSuchPerson(int visibleIndex, AddressBook addressBook,
-                                                      List<ReadOnlyPerson> displayList) {
-
-        String expectedMessage = Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK;
-
-        DeleteCommand command = createDeleteCommand(visibleIndex, addressBook, displayList);
-        assertCommandBehaviour(command, expectedMessage, addressBook, addressBook);
-    }
-
 }

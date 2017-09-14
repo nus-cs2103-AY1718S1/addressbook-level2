@@ -96,6 +96,21 @@ Examples:
   `view 1`<br>
   Views the 1st person in the results of the `find` command.
 
+### View non-private address details of a person : `address`
+Displays the non-private address details of the specified person.<br>
+Format: `address INDEX`
+
+> Views the person address at the specified `INDEX`. 
+  The index refers to the index number shown in the most recent listing.
+
+Examples: 
+* `list`<br>
+  `address 2`<br>
+  Views the 2nd person's address in the address book.
+* `find Betsy` <br> 
+  `address 1`<br>
+  Views the 1st person's address in the results of the `find` command.
+
 ### View all details of a person : `viewall`
 Displays all details (including private details) of the specified person.<br>
 Format: `viewall INDEX`

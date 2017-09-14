@@ -19,6 +19,8 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| sort: Sorts all contacts in the address book by name, phone or email.
+|| Example: sort name
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
@@ -232,6 +234,30 @@
 || 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 
 || 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort]
+|| Unable to sort by : 
+|| sort: Sorts all contacts in the address book by name, phone or email.
+|| Example: sort name
+|| ===================================================
+|| Enter command: || [Command entered:  sort email]
+|| Address book is now sorted by email.
+|| ===================================================
+|| Enter command: || [Command entered:  sort NAME]
+|| Address book is now sorted by NAME.
+|| ===================================================
+|| Enter command: || [Command entered:  sort pHoNe]
+|| Address book is now sorted by pHoNe.
+|| ===================================================
+|| Enter command: || [Command entered:  sort asd]
+|| Unable to sort by : asd
+|| sort: Sorts all contacts in the address book by name, phone or email.
+|| Example: sort name
+|| ===================================================
+|| Enter command: || [Command entered:  sort name hello]
+|| Unable to sort by : name hello
+|| sort: Sorts all contacts in the address book by name, phone or email.
+|| Example: sort name
 || ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format! 

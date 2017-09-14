@@ -53,6 +53,19 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
+### Sorting all persons : `sort`
+Sorts all persons in the address book by name, phone or email.<br>
+Format: `sort ARGUMENT`
+
+> The sort is not case sensitive.
+> Words in `UPPER_CASE` are the parameters.
+> Use the command `list` to check out the sorted list afterwards
+
+Examples:
+* `sort name`
+* `sort phone`
+* `sort email`
+
 ### Finding all persons containing any keyword in their name: `find`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`

@@ -1,9 +1,13 @@
 package seedu.addressbook.data;
 
+import java.util.List;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.Map;
+import java.util.Comparator;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -90,6 +94,7 @@ public class AddressBook {
         return allPersons.contains(key);
     }
 
+
     /**
      * Removes the equivalent person from the address book.
      *
@@ -105,6 +110,40 @@ public class AddressBook {
     public void clear() {
         allPersons.clear();
         allTags.clear();
+    }
+
+    /**
+     * Sorts entire address book by name
+     */
+    public void sortByName() {
+        Collections.sort(allPersons.getInternalList(), new Comparator<Person>() {
+            public int compare(Person p1, Person p2) {
+                return p1.getName().toString().compareTo(p2.getName().toString());
+            }
+        });
+    }
+
+    /**
+     * Sorts entire address book by phone number
+     */
+    public void sortByPhone() {
+        Collections.sort(allPersons.getInternalList(), new Comparator<Person>() {
+            public int compare(Person p1, Person p2) {
+                return Integer.parseInt(p1.getPhone().toString()) - (Integer.parseInt(p2.getPhone().toString()));
+            }
+        });
+    }
+
+
+    /**
+     * Sorts entire address book by email
+     */
+    public void sortByEmail() {
+        Collections.sort(allPersons.getInternalList(), new Comparator<Person>() {
+            public int compare(Person p1, Person p2) {
+                return p1.getEmail().toString().compareTo(p2.getEmail().toString());
+            }
+        });
     }
 
     /**

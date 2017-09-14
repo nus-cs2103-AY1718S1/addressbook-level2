@@ -70,7 +70,7 @@ Examples:
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`
 
-> Deletes the person at the specified `INDEX`. 
+> Deletes the person at the specified `INDEX` and list down remaining contact.
   The index refers to the index number shown in the most recent listing.
 
 Examples: 

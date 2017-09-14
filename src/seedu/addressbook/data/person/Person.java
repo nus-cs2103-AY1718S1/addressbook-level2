@@ -17,6 +17,11 @@ public class Person implements ReadOnlyPerson {
 
     private final UniqueTagList tags;
     /**
+     * Sequence Number as a static variable to identify the creation sequence of each person, currently unused
+     */
+    private int sequenceNumber;
+    private static int nextSequenceNumber = 1;
+    /**
      * Assumption: Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
@@ -25,6 +30,8 @@ public class Person implements ReadOnlyPerson {
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.sequenceNumber = Person.nextSequenceNumber;
+        Person.nextSequenceNumber++;
     }
 
     /**
@@ -59,6 +66,11 @@ public class Person implements ReadOnlyPerson {
         return new UniqueTagList(tags);
     }
 
+    /**
+     * 
+     * @return sequenceNumber of person
+     */
+    public int getSequenceNumber() { return sequenceNumber; }
     /**
      * Replaces this person's tags with the tags in the argument tag list.
      */

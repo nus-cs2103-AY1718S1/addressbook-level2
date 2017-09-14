@@ -14,6 +14,9 @@ import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
 public class Command {
     protected AddressBook addressBook;
     protected List<? extends ReadOnlyPerson> relevantPersons;
+
+    // record userReply
+    public String userReply = "";
     private int targetIndex = -1;
 
     /**
@@ -50,7 +53,13 @@ public class Command {
         this.addressBook = addressBook;
         this.relevantPersons = relevantPersons;
     }
+    //
 
+
+    public void setUserReply(String userReply){
+        this.userReply = userReply;
+
+    }
     /**
      * Extracts the the target person in the last shown list from the given arguments.
      *

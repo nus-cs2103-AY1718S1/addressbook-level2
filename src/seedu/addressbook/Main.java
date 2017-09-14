@@ -83,10 +83,22 @@ public class Main {
         Command command;
         do {
             String userCommandText = ui.getUserCommand();
+
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
+            // detect is there is a newCommand request from command result;
+            //record the result
+            // show user the newCommand request & ask user for a reply
+            //excute the command with the user reply
+            if (result.newCommand == true){
+                recordResult(result);
+                ui.showResultToUser(result);
+                String userReply = ui.getUserCommand();
+                result = executeCommand(command,userReply);
+            }
             recordResult(result);
             ui.showResultToUser(result);
+
 
         } while (!ExitCommand.isExit(command));
     }
@@ -107,6 +119,19 @@ public class Main {
      */
     private CommandResult executeCommand(Command command)  {
         try {
+            command.setData(addressBook, lastShownList);
+            CommandResult result = command.execute();
+            storage.save(addressBook);
+            return result;
+        } catch (Exception e) {
+            ui.showToUser(e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+    // additional excute command with userReply
+    private CommandResult executeCommand(Command command, String userReply)  {
+        try {
+            command.setUserReply(userReply);
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);

@@ -30,7 +30,7 @@ public class AddCommandTest {
 
     @Test
     public void addCommand_invalidName_throwsException() {
-        final String[] invalidNames = { "", " ", "[]\\[;]" };
+        final String[] invalidNames = {"", " ", "[]\\[;]"};
         for (String name : invalidNames) {
             assertConstructingInvalidAddCmdThrowsException(name, Phone.EXAMPLE, true, Email.EXAMPLE, false,
                     Address.EXAMPLE, true, EMPTY_STRING_LIST);
@@ -39,7 +39,7 @@ public class AddCommandTest {
 
     @Test
     public void addCommand_invalidPhone_throwsException() {
-        final String[] invalidNumbers = { "", " ", "1234-5678", "[]\\[;]", "abc", "a123", "+651234" };
+        final String[] invalidNumbers = {"", " ", "1234-5678", "[]\\[;]", "abc", "a123", "+651234"};
         for (String number : invalidNumbers) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, number, false, Email.EXAMPLE, true,
                     Address.EXAMPLE, false, EMPTY_STRING_LIST);
@@ -48,8 +48,8 @@ public class AddCommandTest {
 
     @Test
     public void addCommand_invalidEmail_throwsException() {
-        final String[] invalidEmails = { "", " ", "def.com", "@", "@def", "@def.com", "abc@",
-                                         "@invalid@email", "invalid@email!", "!invalid@email" };
+        final String[] invalidEmails = {"", " ", "def.com", "@", "@def", "@def.com", "abc@",
+                "@invalid@email", "invalid@email!", "!invalid@email"};
         for (String email : invalidEmails) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, false, email, false,
                     Address.EXAMPLE, false, EMPTY_STRING_LIST);
@@ -58,7 +58,7 @@ public class AddCommandTest {
 
     @Test
     public void addCommand_invalidAddress_throwsException() {
-        final String[] invalidAddresses = { "", " " };
+        final String[] invalidAddresses = {"", " "};
         for (String address : invalidAddresses) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
                     true, address, true, EMPTY_STRING_LIST);
@@ -67,8 +67,8 @@ public class AddCommandTest {
 
     @Test
     public void addCommand_invalidTags_throwsException() {
-        final String[][] invalidTags = { { "" }, { " " }, { "'" }, { "[]\\[;]" }, { "validTag", "" },
-                                         { "", " " } };
+        final String[][] invalidTags = {{""}, {" "}, {"'"}, {"[]\\[;]"}, {"validTag", ""},
+                {"", " "}};
         for (String[] tags : invalidTags) {
             Set<String> tagsToAdd = new HashSet<>(Arrays.asList(tags));
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
@@ -81,8 +81,8 @@ public class AddCommandTest {
      * invalid data throws an IllegalValueException
      */
     private void assertConstructingInvalidAddCmdThrowsException(String name, String phone,
-            boolean isPhonePrivate, String email, boolean isEmailPrivate, String address,
-            boolean isAddressPrivate, Set<String> tags) {
+                                                                boolean isPhonePrivate, String email, boolean isEmailPrivate, String address,
+                                                                boolean isAddressPrivate, Set<String> tags) {
         try {
             new AddCommand(name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate,
                     tags);
@@ -92,7 +92,7 @@ public class AddCommandTest {
         String error = String.format(
                 "An add command was successfully constructed with invalid input: %s %s %s %s %s %s %s %s",
                 name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate, tags);
-        fail(error);
+        fail(error); // what is fail??
     }
 
     @Test
@@ -139,9 +139,28 @@ public class AddCommandTest {
         CommandResult result = command.execute();
 
         assertFalse(result.getRelevantPersons().isPresent());
-        assertEquals(AddCommand.MESSAGE_DUPLICATE_PERSON, result.feedbackToUser);
+        assertEquals(AddCommand.MESSAGE_DUPLICATE_PERSON_CONFIRMATION, result.feedbackToUser);
         UniquePersonList people = book.getAllPersons();
         assertTrue(people.contains(p));
         assertEquals(1, people.immutableListView().size());
     }
+
+    @Test
+
+    public void addCommand_Addperson() throws Exception {
+        Person p = TestUtil.generateTestPerson();
+        AddressBook book = new AddressBook();
+        AddCommand command = new AddCommand(p);
+        command.setData(book, EMPTY_PERSON_LIST);
+        CommandResult result = command.execute();
+
+        assertFalse(result.getRelevantPersons().isPresent());
+
+        UniquePersonList people = book.getAllPersons();
+        assertTrue(people.contains(p));
+        assertEquals(1, people.immutableListView().size());
+
+    }
+
+
 }

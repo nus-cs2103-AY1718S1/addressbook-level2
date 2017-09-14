@@ -136,7 +136,10 @@
 || 5 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
-|| This person already exists in the address book
+|| This person already exists in the address book,would you like to create another contact?
+|| ===================================================
+|| Enter command: || [Command entered:  yes]
+|| New person added: Esther Potato Duplicate Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  view]
 || Invalid command format! 
@@ -268,8 +271,9 @@
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	5. Esther Potato Duplicate Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
-|| 4 persons listed!
+|| 5 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 4]
 || Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
@@ -278,8 +282,9 @@
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	4. Esther Potato Duplicate Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
-|| 3 persons listed!
+|| 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
@@ -287,8 +292,9 @@
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	3. Esther Potato Duplicate Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
-|| 2 persons listed!
+|| 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

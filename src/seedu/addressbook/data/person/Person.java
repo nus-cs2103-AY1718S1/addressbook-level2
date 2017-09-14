@@ -39,6 +39,11 @@ public class Person implements ReadOnlyPerson {
         return name;
     }
 
+        // for editting the name
+    public void editName(String newname) {
+        name.editName(newname);
+    }
+
     @Override
     public Phone getPhone() {
         return phone;

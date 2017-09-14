@@ -123,13 +123,20 @@ public class TextUi {
     /**
      * Shows the result of a command execution to the user. Includes additional formatting to demarcate different
      * command execution segments.
+     *
      */
+
     public void showResultToUser(CommandResult result) {
         final Optional<List<? extends ReadOnlyPerson>> resultPersons = result.getRelevantPersons();
         if (resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
         showToUser(result.feedbackToUser, DIVIDER);
+    }
+
+    public void showResultToUser(String response) {
+
+        showToUser(response, DIVIDER);
     }
 
     /**

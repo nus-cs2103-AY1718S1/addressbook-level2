@@ -14,7 +14,7 @@ public class Name {
     public static final String EXAMPLE = "John Doe";
     public static final String MESSAGE_NAME_CONSTRAINTS = "Person names should be spaces or alphabetic characters";
     public static final String NAME_VALIDATION_REGEX = "[\\p{Alpha} ]+";
-    public final String fullName;
+    public String fullName;
 
     /**
      * Validates given name.
@@ -28,7 +28,10 @@ public class Name {
         }
         this.fullName = trimmedName;
     }
-
+    // to allow editing of name
+    public void editName(String name){
+        this.fullName = name;
+    }
     /**
      * Returns true if the given string is a valid person name.
      */

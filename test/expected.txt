@@ -152,7 +152,7 @@
 || This person already exists in the address book
 || ===================================================
 || Enter command: || [Command entered:  view]
-|| Invalid command format!
+|| Invalid command format! 
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1

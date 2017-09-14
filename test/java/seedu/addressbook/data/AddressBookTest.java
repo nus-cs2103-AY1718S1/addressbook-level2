@@ -24,6 +24,7 @@ import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 public class AddressBookTest {
+
     private Tag tagPrizeWinner;
     private Tag tagScientist;
     private Tag tagMathematician;

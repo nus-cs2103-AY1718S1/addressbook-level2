@@ -51,7 +51,7 @@ public class AddCommandTest {
     public void addCommand_invalidDOB_throwsException() {
         final String[] invalidDOBs = { "", " ", "[]\\[;]", "abc", "a123", "+651234" };
         for (String dob : invalidDOBs) {
-            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, false, dob, false, Email.EXAMPLE, true,
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, false, dob, false, Email.EXAMPLE, false,
                     Address.EXAMPLE, false, EMPTY_STRING_LIST);
         }
     }
@@ -62,7 +62,7 @@ public class AddCommandTest {
                                          "@invalid@email", "invalid@email!", "!invalid@email" };
         for (String email : invalidEmails) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, DOB.EXAMPLE, true, email, false,
-                    Address.EXAMPLE, true, EMPTY_STRING_LIST);
+                    Address.EXAMPLE, false, EMPTY_STRING_LIST);
         }
     }
 

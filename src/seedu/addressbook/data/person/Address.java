@@ -2,6 +2,9 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -11,7 +14,6 @@ public class Address extends Contact{
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
-
 
     /**
      * Validates given address.
@@ -23,6 +25,13 @@ public class Address extends Contact{
         if (!isValidAddress(address.trim())) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+    }
+
+    /**
+     * Retrieves a listing of every word in the address, in order.
+     */
+    public List<String> getWordsInAddress() {
+        return Arrays.asList(value.split("\\s+"));
     }
 
     /**

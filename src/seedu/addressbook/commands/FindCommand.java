@@ -33,6 +33,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute() {
         final List<ReadOnlyPerson> personsFound = getPersonsWithNameContainingAnyKeyword(keywords);
+        personsFound.addAll(getPersonsWithAddressContainingAnyKeyword(keywords));
         return new CommandResult(getMessageForPersonListShownSummary(personsFound), personsFound);
     }
 
@@ -71,4 +72,20 @@ public class FindCommand extends Command {
         return matchedPersons;
     }
 
+    /**
+     * Retrieves all persons in the address book whose address contain some of the specified keywords.
+     *
+     * @param keywords for searching
+     * @return list of persons found
+     */
+    private List<ReadOnlyPerson> getPersonsWithAddressContainingAnyKeyword(Set<String> keywords) {
+        final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
+        for (ReadOnlyPerson person : addressBook.getAllPersons()) {
+            final Set<String> wordsInAddress = new HashSet<>(person.getAddress().getWordsInAddress()); //getName().getWordsInName());
+            if (!Collections.disjoint(getWordsInLowercase(wordsInAddress), getWordsInLowercase(keywords))) {
+                matchedPersons.add(person);
+            }
+        }
+        return matchedPersons;
+    }
 }

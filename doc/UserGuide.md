@@ -53,11 +53,11 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
-### Finding all persons containing any keyword in their name: `find`
-Finds persons whose names contain any of the given keywords.<br>
+### Finding all persons containing any keyword in their name and address: `find`
+Finds persons whose names or address contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> The search is case insensitive, the order of the keywords does not matter, only the name is searched, 
+> The search is case insensitive, the order of the keywords does not matter, only the name or address is searched, 
 and persons matching at least one keyword will be returned (i.e. `OR` search).
 
 Examples: 
@@ -65,6 +65,8 @@ Examples:
   Returns `John Doe`
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
+* `find Newgate`<br>
+  Returns Any person having with address `Newgate`
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>

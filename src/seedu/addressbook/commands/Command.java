@@ -37,6 +37,24 @@ public class Command {
     }
 
     /**
+     * Constructs a feedback message for a successful undo or redo operation.
+     * 
+     * @param successMessage the success message for the undo or redo operation
+     * @param personsInCurrentState list of persons in the current state
+     * @param currentState the current application state
+     * @param previousState the previous application state
+     * @return a constructed feedback message for a successful undo or redo operation
+     */
+    public static String getMessageForSuccessfulUndoRedo(String successMessage, 
+                                                         List<ReadOnlyPerson> personsInCurrentState, 
+                                                         ApplicationState currentState,
+                                                         ApplicationState previousState) {
+        return String.format(successMessage,
+                getMessageForPersonListShownSummary(personsInCurrentState),
+                currentState.getDifferencesMessage(previousState));
+    }
+    
+    /**
      * Executes the command and returns the result.
      */
     public CommandResult execute(){

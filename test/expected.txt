@@ -31,6 +31,9 @@
 || Example: exit
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
+||
+|| 0 persons listed!
+|| ===================================================
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 1]

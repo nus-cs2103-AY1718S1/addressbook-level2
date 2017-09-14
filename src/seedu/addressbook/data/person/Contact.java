@@ -19,6 +19,9 @@ public class Contact {
         this.value = trimmedValue;
     }
 
+    /**
+     * Returns true if the given string is a valid one according to the specified regex.
+     */
     public static boolean isValid(String test, String validationRegex) {
         return test.matches(validationRegex);
     }

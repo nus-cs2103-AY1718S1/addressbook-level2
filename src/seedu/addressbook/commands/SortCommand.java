@@ -14,11 +14,17 @@ public class SortCommand extends Command{
             + ": Sorts all persons according to name in alphabetical order.\n "
             + "Example: " + COMMAND_WORD;
 
+    public static final String MESSAGE_SORTED_PERSONS = "Sorting successful.";
+
     public SortCommand() {
 
     }
 
-
+    public CommandResult execute() {
+        addressBook.sortPerson();
+        List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
+        return new CommandResult(getMessageForSortedPersonList(allPersons), allPersons);
+    }
 }
 
 

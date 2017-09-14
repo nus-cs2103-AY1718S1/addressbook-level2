@@ -149,6 +149,22 @@
   list
 
 ##########################################################
+# test clear command
+##########################################################
+
+  # should sort correctly in alphabetical order
+  add zbc p/123456 e/zbc@gmail.com a/123
+  list
+  add abc p/987654 e/abc@gmail.com a/321
+  list
+  sort
+  list
+
+  # should show unsuccessful sorting message
+  clear
+  sort
+
+##########################################################
 # test exit command
 ##########################################################
 

@@ -24,7 +24,7 @@ public class TagCommand extends Command {
             + "Parameters: INDEX [TAGS]...\n"
             + "Example: " + COMMAND_WORD + " 1 t/best friend";
 
-    public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Person: %1$s (Not yet actually!)";
+    public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Person: %1$s";
 
     private final Set<Tag> tagSet;
 

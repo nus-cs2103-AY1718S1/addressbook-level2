@@ -43,6 +43,7 @@
 || Example: sort
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
+|| 
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 1]
@@ -58,6 +59,7 @@
 || Address book has been cleared!
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| 
 || 
 || 0 persons listed!
 || ===================================================

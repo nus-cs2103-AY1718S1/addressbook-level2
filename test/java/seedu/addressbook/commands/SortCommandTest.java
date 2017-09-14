@@ -35,7 +35,7 @@ public class SortCommandTest {
 
         List allList = addressBook.getAllPersons().immutableListView();
 
-        for(i=0; i<allList.size() -1; i++) {
+        for(int i=0; i<allList.size() -1; i++) {
             assertTrue(((Person)allList.get(i)).getName().toString().toLowerCase().compareTo(((Person)allList.get(i)).getName().toString().toLowerCase()) <= 0);
         }
     }

@@ -206,7 +206,7 @@
 || 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
-||
+|| 
 || sorting completed!
 || ===================================================
 || Enter command: || [Command entered:  find]

@@ -48,18 +48,18 @@ public abstract class ConfirmableCommand extends Command {
     /**
      * This method will run if the user confirms the command.
      */
-    public abstract CommandResult confirmed();
+    protected abstract CommandResult confirmed();
 
     /**
      * This method will run if the user rejects the command.Invalid
      * responses are also considered rejection.
      */
-    public abstract CommandResult rejected();
+    protected abstract CommandResult rejected();
 
     /**
-     * Override this execute code before the confirmation prompt.
+     * Override this to execute code before the confirmation prompt.
      */
-    public void onExecute() {
+    protected void onExecute() {
         //Do nothing.
     }
 }

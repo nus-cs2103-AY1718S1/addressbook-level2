@@ -12,18 +12,20 @@ import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.ui.TextUi;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
- *
+ * <p>
  * Guarantees:
- *  - Every tag found in every person will also be found in the tag list.
- *  - The tags in each person point to tag objects in the master list. (== equality)
+ * - Every tag found in every person will also be found in the tag list.
+ * - The tags in each person point to tag objects in the master list. (== equality)
  */
 public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    TextUi formatter;
 
     /**
      * Creates an empty address book.
@@ -31,6 +33,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        formatter = new TextUi();
     }
 
     /**
@@ -38,11 +41,12 @@ public class AddressBook {
      * Also updates the tag list with any missing tags found in any person.
      *
      * @param persons external changes to this will not affect this address book
-     * @param tags external changes to this will not affect this address book
+     * @param tags    external changes to this will not affect this address book
      */
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        formatter = new TextUi();
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -50,8 +54,8 @@ public class AddressBook {
 
     /**
      * Ensures that every tag in this person:
-     *  - exists in the master list {@link #allTags}
-     *  - points to a Tag object in the master list
+     * - exists in the master list {@link #allTags}
+     * - points to a Tag object in the master list
      */
     private void syncTagsWithMasterList(Person person) {
         final UniqueTagList personTags = person.getTags();
@@ -125,7 +129,39 @@ public class AddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && this.allPersons.equals(((AddressBook) other).allPersons)
-                        && this.allTags.equals(((AddressBook) other).allTags));
+                && this.allPersons.equals(((AddressBook) other).allPersons)
+                && this.allTags.equals(((AddressBook) other).allTags));
+    }
+
+    public void editEmploymentInfo(String name) {
+        int editCounter = 0;
+        String newName = name.substring(1);
+        for (Person p : allPersons) {
+            if (p.getName().toString().equals(newName)) {
+                p.editEmploymentInfo();
+                editCounter = 1;
+            }
+            if (editCounter == 1) {
+                return;
+            }
+        }
+        System.out.println(formatter.getLinePrefix() + "Person not found! Please ensure person is a registered contact" +
+                " before using employment status function!");
+    }
+
+    public void viewEmploymentInfo(String name) {
+        int viewedCounter = 0;
+        String newName = name.substring(1);
+        for (Person p : allPersons) {
+            if (p.getName().toString().equals(newName)) {
+                p.getEmploymentInfo();
+                viewedCounter = 1;
+            }
+            if (viewedCounter == 1) {
+                return;
+            }
+        }
+        System.out.println(formatter.getLinePrefix() + "Person not found! Please ensure person is a registered contact" +
+                " before using employment status function!");
     }
 }

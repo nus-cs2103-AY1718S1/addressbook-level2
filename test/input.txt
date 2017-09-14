@@ -55,6 +55,27 @@
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
 
 ##########################################################
+# test edites & viewes command
+##########################################################
+
+  #Should show error message saying that person not in contact list
+  viewes jeremy
+  edites jeremy
+  
+  add jeremy p/1111 e/j@hotmail.com a/jstreet,lentor,#06-02
+
+  #Should show error message asking user to use edites first
+  viewes jeremy
+
+  # [To work on]
+  #edites jeremy
+
+  #For some reason, ui.getUserInput doesnt recognize the following line
+  #but ui.getUserInput can recognize edites.
+
+  #unemployed,student,10
+
+##########################################################
 # test view/viewall persons command
 ##########################################################
 

@@ -10,13 +10,13 @@ import java.util.Objects;
  */
 public class Person implements ReadOnlyPerson {
 
-    private static int nextSequenceNumber =1; //set as class-level variable using static
+    private static int nextSequenceNumber =1; //Set as class-level variable using static
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private final int sequenceNumber ;  //no to be changed
+    private final int sequenceNumber ;  //number no to be changed
 
     private final UniqueTagList tags;
 

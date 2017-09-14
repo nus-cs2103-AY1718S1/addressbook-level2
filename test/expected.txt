@@ -297,8 +297,6 @@
 || 
 || 0 persons listed!
 || ===================================================
-|| sort: Sorts the AddressBook
-|| Example: sort
 || Enter command: || [Command entered:  add Bobby tang p/111111 e/bobby@gmail.com a/111, bishan]
 || New person added: Bobby Tang Phone: 111111 Email: bobby@gmail.com Address: (private) 111, bishan Tags:
 || ===================================================

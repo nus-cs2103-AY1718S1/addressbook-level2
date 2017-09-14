@@ -2,6 +2,10 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -14,6 +18,10 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
 
     /**
      * Validates given address.
@@ -22,11 +30,30 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
+        ArrayList<String> addressInfo = processAddress(trimmedAddress);
+        System.out.println(addressInfo.toString());
+
+
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+
+        if (addressInfo.size() >= 1)
+            this.block = new Block(addressInfo.get(0));
+        if (addressInfo.size() >= 2)
+            this.street = new Street(addressInfo.get(1));
+        if (addressInfo.size() >= 3)
+            this.unit = new Unit(addressInfo.get(2));
+        if (addressInfo.size() >= 4)
+            this.postalCode = new PostalCode(addressInfo.get(3));
+
         this.value = trimmedAddress;
+    }
+
+    public ArrayList<String> processAddress(String trimmedAddress) {
+        ArrayList<String> output = new ArrayList<String>(Arrays.asList(trimmedAddress.split(",\\s+")));
+        return output;
     }
 
     /**

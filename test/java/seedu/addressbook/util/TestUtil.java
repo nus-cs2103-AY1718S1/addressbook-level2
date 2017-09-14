@@ -118,6 +118,16 @@ public class TestUtil {
         }
     }
 
+    public static Person generateOtherTestPerson() {
+        try {
+            return new Person(new Name(Name.EXAMPLE), new Phone(Phone.EXAMPLE_OTHER, false),
+                    new Email(Email.EXAMPLE_OTHER, true), new Address(Address.EXAMPLE, false), new UniqueTagList());
+        } catch (IllegalValueException e) {
+            fail("test person data should be valid by definition");
+            return null;
+        }
+    }
+
     public static UniqueTagList getAllTags(UniquePersonList persons) {
         Set<Tag> combinedTagList = new HashSet<Tag>();
 
@@ -137,6 +147,7 @@ public class TestUtil {
     public static void assertTextFilesEqual(Path path1, Path path2) throws IOException {
         List<String> list1 = Files.readAllLines(path1, Charset.defaultCharset());
         List<String> list2 = Files.readAllLines(path2, Charset.defaultCharset());
+
         assertEquals(String.join("\n", list1), String.join("\n", list2));
     }
 

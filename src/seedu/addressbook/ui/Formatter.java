@@ -22,10 +22,10 @@ public class Formatter {
 
     /** The maximum console width in number of monospaced characters, not inclusive of LINE_PREFIX */
     public static final int MAX_CONSOLE_WIDTH = 72;
-    private static final String SUBLINE_PREFIX = "    ";
     
     /** A decorative prefix added to the beginning of lines printed by AddressBook */
-    private static final String LINE_PREFIX = "|| ";
+    private static final String PPREFIX_LINE = "|| ";
+    private static final String PREFIX_SUBLINE = "    ";
 
     /** A platform independent line separator. */
     private static final String LS = System.lineSeparator();
@@ -53,7 +53,7 @@ public class Formatter {
             if (line.length() > MAX_CONSOLE_WIDTH) {
                 formattedLines.add(getTruncatedLines(line));
             } else {
-                formattedLines.add(LINE_PREFIX + line);
+                formattedLines.add(PPREFIX_LINE + line);
             }
         }
         return formattedLines;
@@ -68,14 +68,14 @@ public class Formatter {
     private static String getTruncatedLines(String longLine) {
         StringTokenizer wordsRemaining = new StringTokenizer(longLine, " ");
         StringBuilder output = new StringBuilder(longLine.length());
-        output.append(LINE_PREFIX);
+        output.append(PPREFIX_LINE);
         int lineLength = 0;
         while (wordsRemaining.hasMoreTokens()) {
             String currentWord = wordsRemaining.nextToken();
             
             if (lineLength + currentWord.length() > MAX_CONSOLE_WIDTH) {
-                output.append(getLineEnding() + SUBLINE_PREFIX);
-                lineLength = SUBLINE_PREFIX.length();
+                output.append(getLineEnding() + PREFIX_SUBLINE);
+                lineLength = PREFIX_SUBLINE.length();
             }
             output.append(currentWord + " ");
             lineLength += currentWord.length() + 1;
@@ -84,11 +84,11 @@ public class Formatter {
     }
     
     private static String getLineEnding() {
-        return LS + LINE_PREFIX;
+        return LS + PPREFIX_LINE;
     }
     
     public static String getUserInputPrompt() {
-        return String.format(MESSAGE_PROMPT_USER_INPUT, LINE_PREFIX);
+        return String.format(MESSAGE_PROMPT_USER_INPUT, PPREFIX_LINE);
     }
     
     public static String getUserCommandEcho(String userCommand) {

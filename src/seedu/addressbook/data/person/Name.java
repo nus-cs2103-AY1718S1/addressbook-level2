@@ -60,4 +60,11 @@ public class Name {
         return fullName.hashCode();
     }
 
+    /**
+     * Used for comparator in sorting
+     * @param nameToBeCompared
+     */
+    public int compareTo(Name nameToBeCompared) {
+        return this.toString().compareToIgnoreCase(nameToBeCompared.toString());
+    }
 }

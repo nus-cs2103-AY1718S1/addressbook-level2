@@ -7,7 +7,7 @@ public class Username implements Serializable {
     public final String username;
 
     /**
-     * Validates given name.
+     * Initialize username
      *
      * */
     public Username(String username){

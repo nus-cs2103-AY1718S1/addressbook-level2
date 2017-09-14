@@ -12,17 +12,15 @@ public class FileHandling {
 
 
         try {
-
-            FileOutputStream f = new FileOutputStream("User.txt");
+            /* Open user storage file */
+            FileOutputStream f = new FileOutputStream(DEFAULT_USER_PATH);
             ObjectOutputStream o = new ObjectOutputStream(f);
 
+            /* Write objects into file */
             o.writeObject(users);
-
-            // Write objects to file
 
             o.close();
             f.close();
-
 
         } catch (IOException e) {
 
@@ -38,7 +36,7 @@ public class FileHandling {
         ArrayList<User> users;
 
         try {
-            FileInputStream fi = new FileInputStream("User.txt");
+            FileInputStream fi = new FileInputStream(DEFAULT_USER_PATH);
             ObjectInputStream oi = new ObjectInputStream(fi);
 
             users = (ArrayList<User>) oi.readObject();
@@ -48,7 +46,7 @@ public class FileHandling {
 
 
         }catch (FileNotFoundException e){
-            /* Generate users */
+            /* Generate default users */
             User user1 = new User("linus", "123456");
             User user2 = new User("john", "123456");
 
@@ -62,12 +60,12 @@ public class FileHandling {
 
             return users;
         }
-        catch (IOException e){
-            // return null arraylist of users
-            users = new ArrayList<User>();
-        }catch (ClassNotFoundException e){
+        catch (Exception e){
+
+            // return null ArrayList of users
             users = new ArrayList<User>();
         }
+
         return users;
     }
 

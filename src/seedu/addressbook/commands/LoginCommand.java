@@ -1,16 +1,12 @@
 package seedu.addressbook.commands;
 
-import seedu.addressbook.common.Messages;
-import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.*;
-
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 
 
 /**
- * User logins into the program.
+ * User login command
  */
 
 public class LoginCommand extends Command {
@@ -26,9 +22,7 @@ public class LoginCommand extends Command {
     public static final String MESSAGE_LOGIN_B4_USE = "You have to log in before using this program. \n"
             + "Type exit to exit this program.";
     public static final String MESSAGE_FAIL = "Incorrect username or password";
-
     private final User toAdd;
-
 
     public LoginCommand(String username, String password) {
 
@@ -41,10 +35,12 @@ public class LoginCommand extends Command {
 
         boolean foundMatch = false;
 
+        /* Opens storage files to get all users object */
         FileHandling file = new FileHandling();
 
         ArrayList<User> users2 = file.readFile();
 
+        /* Find the matched user in the storage file */
         for (User u: users2){
             /* Check if username and password match */
             if(this.toAdd.getUsername().toString().equals(u.getUsername().toString()) &&
@@ -53,7 +49,6 @@ public class LoginCommand extends Command {
             }
 
         }
-
         if(foundMatch){
             return new CommandResult(String.format(MESSAGE_SUCCESS, this.toAdd), foundMatch);
         }

@@ -8,7 +8,7 @@ public class Password implements Serializable {
     public final String password;
 
     /**
-     * Validates password.
+     * Initialize password
      *
      */
     public Password(String password) {

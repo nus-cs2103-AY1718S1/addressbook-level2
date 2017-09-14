@@ -29,7 +29,7 @@ public class Main {
     private TextUi ui;
     private StorageFile storage;
     private AddressBook addressBook;
-//    private User user;
+    /* Variable to record if user has logged in */
     private static boolean isLogin = false;
 
     /** The list of person shown to the user most recently.  */
@@ -98,7 +98,7 @@ public class Main {
                 continue;
             }
 
-            /* Deal all login commands here */
+            /* All login commands go here */
             else if(userCommandText.indexOf("login") > -1){
 
                 /* Execute login operation here */
@@ -107,6 +107,7 @@ public class Main {
                 isLogin = true;
                 continue;
 
+                /* If user uses other commands without logging in */
             }else if(!isLogin){
                 User newUser = new User();
                 ui.showResultToUser(new CommandResult(String.format(LoginCommand.MESSAGE_LOGIN_B4_USE, newUser)));

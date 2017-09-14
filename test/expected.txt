@@ -29,6 +29,7 @@
 || Example: help
 || exit: Exits the program.
 || Example: exit
+|| sort: Sorts all people by alphabetical orderNo parameter needed.
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid
@@ -283,6 +284,15 @@
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort]
+|| All people sorted
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Tags: [secretive]

@@ -1,9 +1,5 @@
 package seedu.addressbook.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -15,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.Test;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
@@ -27,8 +24,19 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.storage.StorageFile;
+import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
+
+import static org.junit.Assert.*;
 
 public class TestUtil {
+    @Test
+    public void inputValidAdaptedAddressbook_returnFalse() {
+        AddressBook a = createAddressBook(generateTestPerson());
+        AdaptedAddressBook adaptedAddressBook= new AdaptedAddressBook(a);
+        assertFalse(adaptedAddressBook.isAnyRequiredFieldMissing());
+    }
+
     /**
      * Creates an address book containing the given persons.
      */

@@ -129,6 +129,13 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.clear();
     }
 
+    public void addAll(UniquePersonList uniquePersonList) throws DuplicatePersonException {
+        if (!Collections.disjoint(this.internalList, uniquePersonList.internalList)) {
+            throw new DuplicatePersonException();
+        }
+        this.internalList.addAll(uniquePersonList.internalList);
+    }
+    
     @Override
     public Iterator<Person> iterator() {
         return internalList.iterator();

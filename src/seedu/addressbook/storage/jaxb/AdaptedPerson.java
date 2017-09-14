@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlValue;
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Race;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
@@ -37,6 +38,8 @@ public class AdaptedPerson {
     @XmlElement(required = true)
     private AdaptedContactDetail email;
     @XmlElement(required = true)
+    private AdaptedContactDetail race;
+    @XmlElement(required = true)
     private AdaptedContactDetail address;
 
     @XmlElement
@@ -63,6 +66,10 @@ public class AdaptedPerson {
         email = new AdaptedContactDetail();
         email.isPrivate = source.getEmail().isPrivate();
         email.value = source.getEmail().value;
+
+        race = new AdaptedContactDetail();
+        race.isPrivate = source.getRace().isPrivate();
+        race.value = source.getRace().value;
 
         address = new AdaptedContactDetail();
         address.isPrivate = source.getAddress().isPrivate();
@@ -106,8 +113,9 @@ public class AdaptedPerson {
         final Name name = new Name(this.name);
         final Phone phone = new Phone(this.phone.value, this.phone.isPrivate);
         final Email email = new Email(this.email.value, this.email.isPrivate);
+        final Race race = new Race(this.race.value, this.race.isPrivate);
         final Address address = new Address(this.address.value, this.address.isPrivate);
         final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, race, address, tags);
     }
 }

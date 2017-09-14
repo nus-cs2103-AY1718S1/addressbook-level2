@@ -15,11 +15,7 @@ public class User implements Serializable {
     private Password password;
     private Date loginDate;
 
-    private UniquePersonList personLists;
-
-    public User(){
-        super();
-    }
+    public User(){}
 
     public User(String username, String password){
         this.username = new Username(username);
@@ -29,14 +25,12 @@ public class User implements Serializable {
 
     public User(Username username, UniquePersonList personLists){
         this.username = username;
-        this.personLists = personLists;
-
     }
 
     public User(Username username, Date loginDate){
 
         this.username = username;
-        // Instantiate a Date object
+        /* Instantiate a Date object */
         this.loginDate = loginDate;
     }
 
@@ -55,7 +49,6 @@ public class User implements Serializable {
     }
 
     public Password getPassword(){return this.password;}
-
 
     /* Return login date */
     public String getloginDate(){ return this.loginDate.toString(); }

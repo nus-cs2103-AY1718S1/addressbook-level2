@@ -107,6 +107,22 @@
   find Charlie Betsy
 
 ##########################################################
+# test update person command
+##########################################################
+
+  # should catch invalid args format
+  update
+
+  # list again to help with clarity
+  list
+
+  # should update the name correctly
+  update 1 Adam Smith
+
+  # should add one more tag
+  update 2 t/school
+
+##########################################################
 # test delete person command
 ##########################################################
 
@@ -115,6 +131,9 @@
   # should catch invalid args format
   delete
   delete should be only one number
+
+  # find again to delimit the number of records in the last_shown_listing
+  find Charlie Betsy
 
   # should catch invalid index
   delete -1

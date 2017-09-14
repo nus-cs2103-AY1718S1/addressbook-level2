@@ -1,17 +1,16 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.ReadOnlyPerson;
-import seedu.addressbook.data.person.UniquePersonList;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.tag.UniqueTagList.DuplicateTagException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
@@ -53,7 +52,7 @@ public class AddressBook {
      *  - exists in the master list {@link #allTags}
      *  - points to a Tag object in the master list
      */
-    private void syncTagsWithMasterList(Person person) {
+    private void syncTagsWithMasterList(ReadOnlyPerson person) {
         final UniqueTagList personTags = person.getTags();
         allTags.mergeFrom(personTags);
 
@@ -97,6 +96,29 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+    }
+
+    public void updatePerson(ReadOnlyPerson toUpdate, Name name, Phone phone,
+                              Email email, Address address, UniqueTagList tagList) throws DuplicateTagException {
+        if (name != null) {
+            toUpdate.setName(name);
+        }
+
+        if (phone != null) {
+            toUpdate.setPhone(phone);
+        }
+
+        if (email != null) {
+            toUpdate.setEmail(email);
+        }
+
+        if (address != null) {
+            toUpdate.setEmail(email);
+        }
+
+        // Use addTags rather than setTags for better UX (user experience)
+        toUpdate.addTags(tagList);
+        syncTagsWithMasterList(toUpdate);
     }
 
     /**

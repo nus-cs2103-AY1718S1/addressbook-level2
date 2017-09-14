@@ -1,46 +1,46 @@
 package seedu.addressbook.parser;
 
-import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import seedu.addressbook.commands.*;
+import seedu.addressbook.data.exception.IllegalValueException;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
-import seedu.addressbook.data.exception.IllegalValueException;
+import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 /**
  * Parses user input.
  */
 public class Parser {
+    private static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
-    public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    // one or more keywords separated by whitespace
+    private static final Pattern KEYWORDS_ARGS_FORMAT =
+            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)");
 
-    public static final Pattern KEYWORDS_ARGS_FORMAT =
-            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
-
-    public static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
+    // '/' forward slashes are reserved for delimiter prefixes
+    private static final Pattern PERSON_DATA_ADD_ARGS_FORMAT =
             Pattern.compile("(?<name>[^/]+)"
                     + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    /**
+     * Different from {@link #PERSON_DATA_ADD_ARGS_FORMAT} in a few points:
+     * 1. The first argument is the index number from last visible listing (rather than name);
+     * 2. All contact details are optional.
+     */
+    private static final Pattern PERSON_DATA_UPDATE_ARGS_FORMAT =
+            // '(p)p/', '(p)e/' and '(p)a/' are all optional
+            Pattern.compile("(?<targetIndex>[0-9]+)"
+                    + "(?<name>([^/]+)?)"
+                    + "( (?<isPhonePrivate>p?)p/(?<phone>[^/]+))?"
+                    + "( (?<isEmailPrivate>p?)e/(?<email>[^/]+))?"
+                    + "( (?<isAddressPrivate>p?)a/(?<address>[^/]+))?"
+                    + "(?<tagArguments>(?: t/[^/]+)*)");
 
     /**
      * Signals that the user input could not be parsed.
@@ -54,7 +54,7 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     public Parser() {}
 
@@ -96,6 +96,9 @@ public class Parser {
         case ViewAllCommand.COMMAND_WORD:
             return prepareViewAll(arguments);
 
+        case UpdateCommand.COMMAND_WORD:
+            return prepareUpdate(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -112,7 +115,7 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareAdd(String args) {
-        final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim());
+        final Matcher matcher = PERSON_DATA_ADD_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -138,10 +141,50 @@ public class Parser {
     }
 
     /**
+     * Parses arguments in the context of the update person command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareUpdate(String args) {
+        final Matcher matcher = PERSON_DATA_UPDATE_ARGS_FORMAT.matcher(args.trim());
+
+        // Validate arg string format
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+        }
+
+        // Attempts to parse the index number of the specified person first
+        final int targetIndex;
+        try {
+            targetIndex = Integer.parseInt(matcher.group("targetIndex"));
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        try {
+            return new UpdateCommand(targetIndex, matcher.group("name"),
+
+                                      matcher.group("phone"),
+                                      isPrivatePrefixPresent(matcher.group("isPhonePrivate")),
+
+                                      matcher.group("email"),
+                                      isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
+
+                                      matcher.group("address"),
+                                      isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
+
+                                      getTagsFromArgs(matcher.group("tagArguments")));
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
+    }
+
+    /**
      * Returns true if the private prefix is present for a contact detail in the add command's arguments string.
      */
     private static boolean isPrivatePrefixPresent(String matchedPrefix) {
-        return matchedPrefix.equals("p");
+        return matchedPrefix != null && matchedPrefix.equals("p");
     }
 
     /**

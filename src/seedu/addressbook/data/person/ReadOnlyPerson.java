@@ -2,17 +2,28 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.tag.UniqueTagList.DuplicateTagException;
 
 /**
- * A read-only immutable interface for a Person in the addressbook.
+ * A read-only immutable interface for a Person in the addressBook.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 public interface ReadOnlyPerson {
-
+    // Getter methods for different attributes.
     Name getName();
     Phone getPhone();
     Email getEmail();
     Address getAddress();
+
+    // Setter methods for different attributes.
+    void setName(Name name);
+    void setPhone(Phone phone);
+    void setEmail(Email email);
+    void setAddress(Address address);
+    void setTags(UniqueTagList tags);
+
+    // Add more tags
+    void addTags(UniqueTagList tags) throws DuplicateTagException;
 
     /**
      * Returns a new TagList that is a deep copy of the internal TagList,

@@ -14,7 +14,6 @@ import seedu.addressbook.data.tag.UniqueTagList;
  * Class to generate typical test persons
  */
 public class TypicalPersons {
-
     public Person amy, bill, candy, dan;
 
     public TypicalPersons() {
@@ -52,5 +51,4 @@ public class TypicalPersons {
         loadAddressBookWithSampleData(ab);
         return ab;
     }
-
 }

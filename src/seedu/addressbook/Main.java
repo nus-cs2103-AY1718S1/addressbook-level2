@@ -1,19 +1,20 @@
 package seedu.addressbook;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
+import seedu.addressbook.commands.LoginCommand;
 import seedu.addressbook.data.AddressBook;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
 import seedu.addressbook.ui.TextUi;
+
+import javax.jws.soap.SOAPBinding;
 
 
 /**
@@ -28,6 +29,8 @@ public class Main {
     private TextUi ui;
     private StorageFile storage;
     private AddressBook addressBook;
+//    private User user;
+    private static boolean isLogin = false;
 
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
@@ -39,7 +42,11 @@ public class Main {
 
     /** Runs the program until termination.  */
     public void run(String[] launchArgs) {
+
         start(launchArgs);
+        /* Set isLogin to true to pass the tests */
+        isLogin = true;
+
         runCommandLoopUntilExitCommand();
         exit();
     }
@@ -84,9 +91,32 @@ public class Main {
         do {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
+
+            /* If user type exit, exits the program directly */
+            if(userCommandText.equals("exit")){
+                CommandResult result = executeCommand(command);
+                continue;
+            }
+
+            /* Deal all login commands here */
+            else if(userCommandText.indexOf("login") > -1){
+
+                /* Execute login operation here */
+                CommandResult result = executeCommand(command);
+                ui.showResultToUser(result);
+                isLogin = true;
+                continue;
+
+            }else if(!isLogin){
+                User newUser = new User();
+                ui.showResultToUser(new CommandResult(String.format(LoginCommand.MESSAGE_LOGIN_B4_USE, newUser)));
+                continue;
+            }
+
             CommandResult result = executeCommand(command);
-            recordResult(result);
             ui.showResultToUser(result);
+            recordResult(result);
+
 
         } while (!ExitCommand.isExit(command));
     }

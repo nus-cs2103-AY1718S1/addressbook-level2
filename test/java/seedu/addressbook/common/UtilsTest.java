@@ -36,6 +36,30 @@ public class UtilsTest {
         assertNotUnique(null, "a", "b", null);
     }
 
+    @Test
+    public void isAnyNull() throws NullPointerException
+    {
+        try {
+            //Return true
+            assertTrue(Utils.isAnyNull((Object) null));
+            assertTrue(Utils.isAnyNull("abc", null));
+            assertTrue(Utils.isAnyNull(null, null));
+
+            //Return false
+            assertFalse(Utils.isAnyNull("abc"));
+            assertFalse(Utils.isAnyNull("abc", "null"));
+            assertFalse(Utils.isAnyNull("null", "null"));
+
+            //Should return error
+            assertTrue(Utils.isAnyNull( null));
+        }
+        catch (NullPointerException e){
+            System.out.println(e);
+        }
+    }
+
+
+
     private void assertAreUnique(Object... objects) {
         assertTrue(Utils.elementsAreUnique(Arrays.asList(objects)));
     }

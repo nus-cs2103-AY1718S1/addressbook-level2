@@ -39,6 +39,9 @@ public class TextUi {
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
 
+    /** A queue to store commands to be executed later */
+    private ArrayList<String> commandsQueue = new ArrayList<>();
+
     private final Scanner in;
     private final PrintStream out;
 
@@ -78,7 +81,11 @@ public class TextUi {
      * Echos the command back to the user.
      * @return command (full line) entered by the user
      */
-    public String getUserCommand() {
+    public String getNextCommand() {
+        if (!commandsQueue.isEmpty()) {
+            return commandsQueue.remove(0);
+        }
+
         String fullInputLine = promptUserInput("Enter command: ");
         showToUser("[Command entered:" + fullInputLine + "]");
         return fullInputLine;

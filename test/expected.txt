@@ -1,7 +1,7 @@
 || ===================================================
 || ===================================================
 || Welcome to your Address Book!
-|| AddessBook Level 2 - Version 1.0
+|| AddressBook Level 2 - Version 1.0
 || Launch command format: java seedu.addressbook.Main [STORAGE_FILE_PATH]
 || Using storage file : addressbook.xml
 || ===================================================
@@ -27,6 +27,10 @@
 || Example: viewall 1
 || help: Shows program usage instructions.
 || Example: help
+|| sort: Sorts all people in the address book in a specific order and then display the list with index numbers.
+||    - option 0: alphabetical order
+||    - option 1: order of length
+|| Example: sort 1
 || exit: Exits the program.
 || Example: exit
 || ===================================================

@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.collections.transformation.SortedList;
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
 
@@ -127,6 +128,13 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void clear() {
         internalList.clear();
+    }
+
+    /**
+     *Sorts all persons in list in alphabetical order.
+     */
+    public void sort() {
+        internalList.sort((Person1, Person2) -> Person1.getName().compareTo(Person2.getName()));
     }
 
     @Override

@@ -55,6 +55,21 @@
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
 
 ##########################################################
+# test sort persons command
+##########################################################
+  #add name not in alphabetical order from current list
+  add Adam Brown p/222221 e/adam@gmail.com a/333, alpha street
+
+  #should show list in unsorted order
+  list
+
+  # person names should be in sorted order
+  sort
+
+  # should list persons in sorted order
+  list
+
+##########################################################
 # test view/viewall persons command
 ##########################################################
 
@@ -96,7 +111,7 @@
   find bet
   # does not match if none have keyword
   find 23912039120
-  # matching should be case-sensitive
+  # matching should be case-insensitive
   find betsy
 
   # find unique keyword

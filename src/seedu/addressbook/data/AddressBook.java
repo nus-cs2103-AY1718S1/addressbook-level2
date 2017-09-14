@@ -129,6 +129,9 @@ public class AddressBook {
                         && this.allTags.equals(((AddressBook) other).allTags));
     }
 
+    /**
+     * Calls sort() method from UniquePersonList class
+     */
     public void sort(){
         allPersons.executeSort();
     }

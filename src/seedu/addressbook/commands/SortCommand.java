@@ -13,7 +13,7 @@ public class SortCommand extends Command{
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays all persons in the address book as a list sorted in lexicographic order.\n"
+            + ": Displays all persons in the address book as a list sorted in lexicographic order, ignoring letter case.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "List sorted successfully";
@@ -23,9 +23,5 @@ public class SortCommand extends Command{
         addressBook.sort();
         List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
         return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
-
-        /*alternative return statement in case printing of list is not needed
-         *return new CommandResult(MESSAGE_SUCCESS);
-         */
     }
 }

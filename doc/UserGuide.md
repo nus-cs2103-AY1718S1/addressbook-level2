@@ -54,7 +54,7 @@ Shows a list of all persons in the address book.<br>
 Format: `list`
 
 ### Sorting the address book : `sort`
-Shows a sorted list of all persons in the address book.<br>
+Sorts and displays a list of all persons in the address book.<br>
 Format: `sort`
 
 ### Finding all persons containing any keyword in their name: `find`

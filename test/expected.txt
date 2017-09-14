@@ -296,6 +296,61 @@
 || Enter command: || [Command entered:  list]
 || 
 || 0 persons listed!
+
+|| ===================================================
+|| Enter command: || [Command entered:  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+|| New person added: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| ===================================================
+
+|| ===================================================
+|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+|| New person added: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
+|| ===================================================
+
+|| ===================================================
+|| Enter command: || [Command entered:  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
+|| New person added: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
+|| ===================================================
+
+|| ===================================================
+|| Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+|| New person added: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
+|| ===================================================
+
+|| ===================================================
+|| Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+|| New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| ===================================================
+
+|| ===================================================
+|| Enter command: || [Command entered:  add Zylon Toh p/123132 e/zylon@gmail.com a/111, alpaca street
+|| New person added: Zylon Toh Phone: 123132 Email: zylon@gmail.com Address: 111, alpaca street Tags:
+|| ===================================================
+
+|| ===================================================
+|| Enter command: || [Command entered:  add Sylar Pin p/621212 e/sylar@gmail.com a/231, yishun
+|| New person added: Sylar Pin Phone: 621212 Email: sylar@gmail.com Address: 231, yishun Tags:
+|| ===================================================
+
+|| ===================================================
+|| Enter command: || [Command entered:  add Syla Shin p/2123 e/syla@gmail.com a/212121, ang mo kio
+|| New person added: Syla Shin Phone: 2123 Email: syla@gmail.com Address: 212121, ang mo kio Tags:
+|| ===================================================
+
+|| ===================================================
+|| Enter command: || [Command entered:  sort]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	6. Syla Shin Phone: 2123 Email: syla@gmail.com Address: 212121, ang mo kio Tags:
+|| 	7. Sylar Pin Phone: 621212 Email: sylar@gmail.com Address: 231, yishun Tags:
+|| 	8. Zylon Toh Phone: 123132 Email: zylon@gmail.com Address: 111, alpaca street Tags:
+||
+|| 8 persons listed!
+|| ===================================================
+
 || ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...

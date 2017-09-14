@@ -81,6 +81,9 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
 
+        //case TagCommand.COMMAND_WORD:
+        //    return prepareTag(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -156,6 +159,27 @@ public class Parser {
         // replace first delimiter prefix, then split
         final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" t/", "").split(" t/"));
         return new HashSet<>(tagStrings);
+    }
+
+    /**
+     * Parses arguments in the context of the tag person command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareTag(String args) {
+
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindCommand.MESSAGE_USAGE));
+        }
+        /*
+        return new TagCommand(
+                matcher.group("name"),
+                getTagsFromArgs(matcher.group("tagArguments")));
+                */
+        return new IncorrectCommand("tag function not defined!");
     }
 
 

@@ -60,10 +60,9 @@ public class Main {
     private void start(String[] launchArgs) {
         try {
             this.ui = new TextUi();
-            ui.showWelcomeMessage(VERSION);
-//            ui.showWelcomeMessage(VERSION, storage.getPath());
             this.storage = initializeStorage(launchArgs);
             this.addressBook = storage.load();
+            ui.showWelcomeMessage(VERSION, storage.getPath());
 
         } catch (InvalidStorageFilePathException | StorageOperationException e) {
             ui.showInitFailedMessage();

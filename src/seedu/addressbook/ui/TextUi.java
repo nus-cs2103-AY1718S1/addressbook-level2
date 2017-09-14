@@ -91,7 +91,6 @@ public class TextUi {
         return fullInputLine;
     }
 
-
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         showToUser(
@@ -101,7 +100,6 @@ public class TextUi {
                 version,
                 MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
                 storageFileInfo,
-                MESSSAGE_LOGIN,
                 DIVIDER);
     }
 

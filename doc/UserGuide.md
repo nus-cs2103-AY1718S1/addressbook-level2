@@ -49,6 +49,33 @@ Examples:
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
+### Adding a person with prompted steps: `add-interactive`
+Adds a person to the address book. Different from `add`, there are prompts for information to input at each step<br>
+Format: `add-interactive`
+
+Examples:
+* `add-interactive`
+```
+[Command entered:add-interactive]
+Please enter Name: John Doe
+Please enter Phone: 98765432
+Set this field as private?
+(Enter [Y]es/[N]o):n
+Please enter Email: johnd@gmail.com
+Set this field as private?
+(Enter [Y]es/[N]o):y
+Please enter Address: John street, block 123, #01-01
+Set this field as private?
+(Enter [Y]es/[N]o):n
+Do you want to add tags for this person?
+(Enter [Y]es/[N]o):y
+Please enter tags for person (separate multiple tags with spaces):friend owesMoney
+Adding person to address book...
+===================================================
+New person added: John Doe Phone: 98765432 Email: (private) johnd@gmail.com Address: John street, block 123, #01-01 Tags: [owesMoney][friend]
+===================================================
+```
+
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`

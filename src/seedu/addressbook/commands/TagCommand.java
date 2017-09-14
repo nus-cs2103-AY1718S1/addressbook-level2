@@ -9,12 +9,12 @@ import java.util.Set;
  */
 public class TagCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the specified keywords as tags to the profile "
+            + "of the person with the given index number.\n"
+            + "Parameters: INDEX [TAGS]...\n"
+            + "Example: " + COMMAND_WORD + " 1 t/best friend";
 
     private final Set<String> keywords;
 

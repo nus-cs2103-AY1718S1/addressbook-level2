@@ -20,6 +20,7 @@ import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
+import seedu.addressbook.commands.TagCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
@@ -81,8 +82,8 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
 
-        //case TagCommand.COMMAND_WORD:
-        //    return prepareTag(arguments);
+        case TagCommand.COMMAND_WORD:
+            return prepareTag(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -172,7 +173,7 @@ public class Parser {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindCommand.MESSAGE_USAGE));
+                    TagCommand.MESSAGE_USAGE));
         }
         /*
         return new TagCommand(

@@ -1,6 +1,7 @@
 package seedu.addressbook.commands;
 
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        addressBook.sort();
-        return new CommandResult("Sort is successful.");
+        List<Person> newList = addressBook.sort();
+        return new CommandResult("Sort is successful.",newList);
     }
 }

@@ -2,6 +2,7 @@ package seedu.addressbook.data;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -114,8 +115,8 @@ public class AddressBook {
         return new UniquePersonList(allPersons);
     }
 
-    public void sort() {
-        allPersons.sortList();
+    public List<Person> sort() {
+        return allPersons.sortList();
     }
 
     /**

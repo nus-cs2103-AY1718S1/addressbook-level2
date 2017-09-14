@@ -29,7 +29,7 @@ public class Parser {
                     + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
-                    + " (?<isBirthdayPrivate>p?)a/(?<birthday>[^/]+)"
+                    + " (?<isBirthdayPrivate>p?)b/(?<birthday>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     public static final Pattern EDIT_DATA_ARGS_FORMAT =

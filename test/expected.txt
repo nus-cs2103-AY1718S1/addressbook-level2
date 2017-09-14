@@ -47,7 +47,7 @@
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add wrong args wrong args]
-|| Invalid command format! 
+|| Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
@@ -70,91 +70,73 @@
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered: add Valid Name p/12345 e/valid@email.butNoTagPrefix r/Chinese a/valid, address t/goodTag noPrefixTag]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoTagPrefix r/Chinese a/valid, address t/goodTag noPrefixTag]
+|| Tags names should be alphanumeric
 || ===================================================
 || Enter command: || [Command entered:  add []\[;] p/12345 e/valid@e.mail r/Chinese a/valid, address]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Person names should be spaces or alphabetic characters
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/not_numbers e/valid@e.mail r/Chinese a/valid, address]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Person phone numbers should only contain numbers
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/notAnEmail r/Chinese a/valid, address]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Person emails should be 2 alphanumeric/period strings separated by '@'
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/valid@e.mail r/Chinese a/valid, address t/invalid_-[.tag]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Tags names should be alphanumeric
 || ===================================================
-|| Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com r/Chinese a/111, alpha street]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com r/Chinese a/111, alpha street t/friends]
+|| New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
 ||
-|| 0 persons listed!
+|| 1 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pr/Chinese pa/222, beta street t/secretive]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg  pr/Chinese pa/222, beta street t/secretive]
+|| New person added: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Race: (private) Chinese Address: (private) 222, beta street Tags: [secretive]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
+|| 	2. Betsy Choo Tags: [secretive]
 ||
-|| 0 persons listed!
+|| 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg r/Chinese a/333, gamma street t/friends t/school]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| New person added: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Race: Chinese Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Race: Chinese Address: 333, gamma street Tags: [school][friends]
 ||
-|| 0 persons listed!
+|| 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Dickson Ee p/444444 pe/dickson@nus.edu.sg r/Chinese a/444, delta street t/friends]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| New person added: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Race: Chinese Address: 444, delta street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Race: Chinese Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Race: Chinese Address: 444, delta street Tags: [friends]
 ||
-|| 0 persons listed!
+|| 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato r/Chinese pa/555, epsilon street t/tubers t/starchy]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| New person added: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Race: Chinese Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Race: Chinese Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Race: Chinese Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Race: Chinese Tags: [tubers][starchy]
 ||
-|| 0 persons listed!
+|| 5 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato r/Chinese pa/555, epsilon street t/tubers t/starchy]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| This person already exists in the address book
 || ===================================================
 || Enter command: || [Command entered:  view]
 || Invalid command format!
@@ -193,28 +175,28 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 1]
-|| The person index provided is invalid
+|| Viewing person: Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  viewall 1]
-|| The person index provided is invalid
+|| Viewing person: Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  view 3]
-|| The person index provided is invalid
+|| Viewing person: Charlie Dickson Email: charlie.d@nus.edu.sg Race: Chinese Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  view 4]
-|| The person index provided is invalid
+|| Viewing person: Dickson Ee Phone: 444444 Race: Chinese Address: 444, delta street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  view 5]
-|| The person index provided is invalid
+|| Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Race: Chinese Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  viewall 3]
-|| The person index provided is invalid
+|| Viewing person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Race: Chinese Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  viewall 4]
-|| The person index provided is invalid
+|| Viewing person: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Race: Chinese Address: 444, delta street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  viewall 5]
-|| The person index provided is invalid
+|| Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Race: Chinese Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  find]
 || Invalid command format!
@@ -235,16 +217,21 @@
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Betsy]
+|| 	1. Betsy Choo Tags: [secretive]
 ||
-|| 0 persons listed!
+|| 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Dickson]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Race: Chinese Address: 333, gamma street Tags: [school][friends]
+|| 	2. Dickson Ee Phone: 444444 Race: Chinese Address: 444, delta street Tags: [friends]
 ||
-|| 0 persons listed!
+|| 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Charlie Betsy]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Race: Chinese Address: 333, gamma street Tags: [school][friends]
 ||
-|| 0 persons listed!
+|| 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format!
@@ -265,34 +252,43 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-|| The person index provided is invalid
+|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Race: Chinese Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-|| The person index provided is invalid
+|| Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  view 2]
-|| The person index provided is invalid
+|| Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  viewall 2]
-|| The person index provided is invalid
+|| Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Race: Chinese Address: 444, delta street Tags: [friends]
+|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Race: Chinese Tags: [tubers][starchy]
 ||
-|| 0 persons listed!
+|| 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 4]
-|| The person index provided is invalid
+|| Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Race: Chinese Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Race: Chinese Address: 444, delta street Tags: [friends]
 ||
-|| 0 persons listed!
+|| 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
-|| The person index provided is invalid
+|| Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Race: Chinese Address: 111, alpha street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Race: Chinese Address: 444, delta street Tags: [friends]
 ||
-|| 0 persons listed!
+|| 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!
@@ -307,4 +303,3 @@
 || Good bye!
 || ===================================================
 || ===================================================
-

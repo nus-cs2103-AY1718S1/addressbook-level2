@@ -5,8 +5,7 @@
 || Launch command format: java seedu.addressbook.Main [STORAGE_FILE_PATH]
 || Using storage file : addressbook.xml
 || ===================================================
-|| Enter command:
-|| [Command entered:  sfdfd]
+|| Enter command: || [Command entered:  sfdfd]
 ||
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
@@ -40,7 +39,7 @@
 || exit: Exits the program.
 || Example: exit
 ||
-|| sort: Sort all persons' name in alphabetical order.
+|| sort: Sort all persons' names in alphabetical order.
 || Example: sort
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
@@ -374,43 +373,43 @@
 ||
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:add zbc p/123456 e/zbc@gmail.com a/123]
+|| Enter command: || [Command entered:  add zbc p/123456 e/zbc@gmail.com a/123]
 ||
 || New person added: zbc Phone: 123456 Email: zbc@gmail.com Address: 123 Tags:
 || ===================================================
-|| Enter command: || [Command entered:list]
+|| Enter command: || [Command entered:  list]
 ||
 || 	1. zbc Phone: 123456 Email: zbc@gmail.com Address: 123 Tags:
 ||
 || 1 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:add abc p/987654 e/abc@gmail.com a/321]
+|| Enter command: || [Command entered:  add abc p/987654 e/abc@gmail.com a/321]
 ||
 || New person added: abc Phone: 987654 Email: abc@gmail.com Address: 321 Tags:
 || ===================================================
-|| Enter command: ||  [Command entered:list]
+|| Enter command: ||  [Command entered: list]
 ||
 || 	1. zbc Phone: 123456 Email: zbc@gmail.com Address: 123 Tags:
 || 	2. abc Phone: 987654 Email: abc@gmail.com Address: 321 Tags:
 ||
 || 2 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:sort]
+|| Enter command: || [Command entered:  sort]
 ||
 || Contacts successfully sorted in alphabetical order.
 || ===================================================
-|| Enter command: || [Command entered:list]
+|| Enter command: || [Command entered:  list]
 ||
 || 	1. abc Phone: 987654 Email: abc@gmail.com Address: 321 Tags:
 || 	2. zbc Phone: 123456 Email: zbc@gmail.com Address: 123 Tags:
 ||
 || 2 persons listed!
 || ===================================================
-|| Enter command || [Command entered:clear]
+|| Enter command: || [Command entered:  clear]
 ||
 || Address book has been cleared!
 || ===================================================
-|| Enter command || [Command entered:sort]
+|| Enter command: || [Command entered:  sort]
 ||
 || Address book is empty. Unable to sort address book
 || ===================================================

@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -105,6 +105,26 @@
   find Dickson
   # find multiple with some keywords
   find Charlie Betsy
+
+##########################################################
+# test find persons command
+##########################################################
+
+  # should consider no keywords as invalid command format
+  findnotc
+  # should only match full words in person names
+  findnotc bet
+  # does not match if none have keyword
+  findnotc 23912039120
+  # matching NOT should be case-sensitive
+  findnotc betsy
+
+  # find unique keyword
+  find Betsy
+  # find multiple with same keyword
+  find Dickson
+  # find multiple with some keywords
+  find CHARLIE betsy
 
 ##########################################################
 # test delete person command

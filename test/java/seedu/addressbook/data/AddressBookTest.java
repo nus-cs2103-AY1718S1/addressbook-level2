@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.DOB;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
@@ -23,6 +24,7 @@ import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 public class AddressBookTest {
+
     private Tag tagPrizeWinner;
     private Tag tagScientist;
     private Tag tagMathematician;
@@ -46,24 +48,28 @@ public class AddressBookTest {
 
         aliceBetsy     = new Person(new Name("Alice Betsy"),
                                     new Phone("91235468", false),
+                                    new DOB("03.05.2000", false),
                                     new Email("alice@nushackers.org", false),
                                     new Address("8 Computing Drive, Singapore", false),
                                     new UniqueTagList(tagMathematician));
 
         bobChaplin     = new Person(new Name("Bob Chaplin"),
                                     new Phone("94321500", false),
+                                    new DOB("14.06.1997", false),
                                     new Email("bob@nusgreyhats.org", false),
                                     new Address("9 Computing Drive", false),
                                     new UniqueTagList(tagMathematician));
 
         charlieDouglas = new Person(new Name("Charlie Douglas"),
                                     new Phone("98751365", false),
+                                    new DOB("26.12.1982", false),
                                     new Email("charlie@nusgdg.org", false),
                                     new Address("10 Science Drive", false),
                                     new UniqueTagList(tagScientist));
 
         davidElliot    = new Person(new Name("David Elliot"),
                                     new Phone("84512575", false),
+                                    new DOB("02.10.1994", false),
                                     new Email("douglas@nuscomputing.com", false),
                                     new Address("11 Arts Link", false),
                                     new UniqueTagList(tagEconomist, tagPrizeWinner));

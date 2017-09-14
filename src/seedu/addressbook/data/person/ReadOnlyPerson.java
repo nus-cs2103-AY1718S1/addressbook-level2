@@ -11,6 +11,7 @@ public interface ReadOnlyPerson {
 
     Name getName();
     Phone getPhone();
+    DOB getDOB();
     Email getEmail();
     Address getAddress();
 
@@ -39,6 +40,7 @@ public interface ReadOnlyPerson {
                 || (other != null // this is first to avoid NPE below
                     && other.getName().equals(this.getName()) // state checks here onwards
                     && other.getPhone().equals(this.getPhone())
+                    && other.getDOB().equals(this.getDOB())
                     && other.getEmail().equals(this.getEmail())
                     && other.getAddress().equals(this.getAddress())
                     && other.getTags().equals(this.getTags()));
@@ -56,6 +58,11 @@ public interface ReadOnlyPerson {
             builder.append(detailIsPrivate);
         }
         builder.append(getPhone())
+                .append(" DOB: ");
+        if (getDOB().isPrivate()) {
+            builder.append(detailIsPrivate);
+        }
+        builder.append(getDOB())
                 .append(" Email: ");
         if (getEmail().isPrivate()) {
             builder.append(detailIsPrivate);
@@ -81,6 +88,9 @@ public interface ReadOnlyPerson {
         builder.append(getName());
         if (!getPhone().isPrivate()) {
             builder.append(" Phone: ").append(getPhone());
+        }
+        if (!getDOB().isPrivate()) {
+            builder.append(" DOB: ").append(getDOB());
         }
         if (!getEmail().isPrivate()) {
             builder.append(" Email: ").append(getEmail());

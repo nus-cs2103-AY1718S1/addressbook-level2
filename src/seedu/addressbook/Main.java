@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.addressbook.commands.AddCommand;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
@@ -87,7 +88,13 @@ public class Main {
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);
-
+            String stringCommand = new Parser().parseString(userCommandText);
+            if (stringCommand.equals("add") || stringCommand.equals("delete"))   {
+                command = new Parser().parseCommand("list");
+                CommandResult listResult = executeCommand(command);
+                recordResult(listResult);
+                ui.showResultToUser(listResult);
+            }
         } while (!ExitCommand.isExit(command));
     }
 

@@ -11,7 +11,7 @@ public class DateOfBirth {
     public static final String EXAMPLE = "07.08.1995";
     public static final String MESSAGE_DATE_CONSTRAINTS =
             "Person date of birth should be three numbers strings separated by two '.'";
-    public static final String DATE_VALIDATION_REGEX = "\\d+.\\d+.\\d+";
+    public static final String DATE_VALIDATION_REGEX = "\\d+\\.\\d+\\.\\d+";
 
     public final String value;
     private boolean isPrivate;

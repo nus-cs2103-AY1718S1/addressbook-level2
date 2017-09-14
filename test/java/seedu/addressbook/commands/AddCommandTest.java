@@ -33,7 +33,7 @@ public class AddCommandTest {
 
     @Test
     public void addCommand_invalidDateOfBirth_throwsException() {
-        final String[] invalidDateOfBirths = {"", " ", "12-12", "[]\\[;]", "abc", "a123", "+++"};
+        final String[] invalidDateOfBirths = {"", " ", "12-12-1997", "[]\\[;]", "abc", "a123", "+++"};
         for (String dateOfBirth : invalidDateOfBirths) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, dateOfBirth, true, Phone.EXAMPLE, true, Email.EXAMPLE, false,
                     Address.EXAMPLE, true, EMPTY_STRING_LIST);

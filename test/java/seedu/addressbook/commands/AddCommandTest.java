@@ -32,6 +32,15 @@ public class AddCommandTest {
     }
 
     @Test
+    public void addCommand_invalidDateOfBirth_throwsException() {
+        final String[] invalidDateOfBirths = {"", " ", "12-12", "[]\\[;]", "abc", "a123", "+++"};
+        for (String dateOfBirth : invalidDateOfBirths) {
+            assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, dateOfBirth, true, Phone.EXAMPLE, true, Email.EXAMPLE, false,
+                    Address.EXAMPLE, true, EMPTY_STRING_LIST);
+        }
+    }
+
+    @Test
     public void addCommand_invalidPhone_throwsException() {
         final String[] invalidNumbers = { "", " ", "1234-5678", "[]\\[;]", "abc", "a123", "+651234" };
         for (String number : invalidNumbers) {
@@ -84,8 +93,8 @@ public class AddCommandTest {
             return;
         }
         String error = String.format(
-                "An add command was successfully constructed with invalid input: %s %s %s %s %s %s %s %s",
-                name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate, tags);
+                "An add command was successfully constructed with invalid input: %s %s %s %s %s %s %s %s %s %s",
+                name, dateOfBirth, isDateOfBirthPrivate, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate, tags);
         fail(error);
     }
 

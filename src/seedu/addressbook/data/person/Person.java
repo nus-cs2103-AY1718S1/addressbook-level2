@@ -59,6 +59,11 @@ public class Person implements ReadOnlyPerson {
         return new UniqueTagList(tags);
     }
 
+    @Override
+    public int compareTo(ReadOnlyPerson o) {
+        return this.name.compareTo(o.getName());
+    }
+
     /**
      * Replaces this person's tags with the tags in the argument tag list.
      */

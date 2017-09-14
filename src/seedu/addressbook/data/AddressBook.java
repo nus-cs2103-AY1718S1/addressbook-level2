@@ -1,6 +1,9 @@
 package seedu.addressbook.data;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -129,7 +132,7 @@ public class AddressBook {
     /**
      * Sort the address book according to names in alphabetical order
      */
-    public void sort(){
+    public void sort() {
         allPersons.sort();
     }
 }

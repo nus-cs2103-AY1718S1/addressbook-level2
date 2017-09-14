@@ -20,5 +20,5 @@ public class Messages {
     public static final String MESSAGE_DELETED = "Deleted Person: %1$s";
     public static final String MESSAGE_ERROR_EMPTY_HISTORY_STACK = "Unable to undo: You are already at the most recent undo state.";
     public static final String MESSAGE_ERROR_EMPTY_REDO_STACK = "Unable to redo: You are already at the most recent redo state.";
-    public static final String MESSAGE_LISTING_PREFIX = "New listing:\n"
+    public static final String MESSAGE_LISTING_PREFIX = "New listing:\n";
 }

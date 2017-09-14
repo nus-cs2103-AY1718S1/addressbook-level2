@@ -148,7 +148,7 @@ public class DeleteCommandTest {
     private void assertDeletionSuccessful(int targetVisibleIndex, AddressBook addressBook,
                                           List<ReadOnlyPerson> displayList) throws PersonNotFoundException {
 
-        ReadOnlyPerson targetPerson = displayList.get(targetVisibleIndex - TextUi.DISPLAYED_INDEX_OFFSET);
+        ReadOnlyPerson targetPerson = displayList.get(targetVisibleIndex - Command.DISPLAYED_INDEX_OFFSET);
 
         AddressBook expectedAddressBook = TestUtil.clone(addressBook);
         expectedAddressBook.removePerson(targetPerson);

@@ -1,6 +1,7 @@
 package seedu.addressbook.commands;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +17,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names, phone, email and address contain any of "
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
@@ -36,7 +37,7 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        final List<ReadOnlyPerson> personsFound = getPersonsWithNameContainingAnyKeyword(keywords);
+        final List<ReadOnlyPerson> personsFound = getPersonsWithDetailsContainingAnyKeyword(keywords);
         return new CommandResult(getMessageForPersonListShownSummary(personsFound), personsFound);
     }
 
@@ -46,11 +47,24 @@ public class FindCommand extends Command {
      * @param keywords for searching
      * @return list of persons found
      */
-    private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
+    private List<ReadOnlyPerson> getPersonsWithDetailsContainingAnyKeyword(Set<String> keywords) {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
+            boolean PhoneAndEmailContains = false;
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            //test for address
+            final Set<String> wordsInAddress = new HashSet<>(person.getAddress().getWordsInAddress());
+            //test for phone and email
+            for (String keyword: keywords){
+                if (person.getPhone().toString().contains(keyword) || person.getEmail().toString().contains(keyword)){
+                    PhoneAndEmailContains = true;
+                    break;
+                }
+            }
+
+            if (!Collections.disjoint(wordsInName, keywords)
+                    || !Collections.disjoint(wordsInAddress, keywords)
+                    || PhoneAndEmailContains) {
                 matchedPersons.add(person);
             }
         }

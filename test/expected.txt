@@ -14,7 +14,7 @@
 || Example: delete 1
 || Clears address book permanently.
 || Example: clear
-|| find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
+|| find: Finds all persons whose names, phone, email and address contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
 || Parameters: KEYWORD [MORE_KEYWORDS]...
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
@@ -29,6 +29,7 @@
 || Example: help
 || exit: Exits the program.
 || Example: exit
+|| locate: Locates a person to the address book by his address. The argument is just the name. 
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid
@@ -200,9 +201,14 @@
 || ===================================================
 || Enter command: || [Command entered:  find]
 || Invalid command format! 
-|| find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
+|| find: Finds all persons whose names, phone, email and address contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
 || Parameters: KEYWORD [MORE_KEYWORDS]...
 || Example: find alice bob charlie
+|| ===================================================
+|| Enter command: || [Command entered:  find 4444]
+|| 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find bet]
 || 

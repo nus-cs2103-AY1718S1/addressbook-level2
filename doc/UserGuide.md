@@ -53,8 +53,8 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
-### Finding all persons containing any keyword in their name: `find`
-Finds persons whose names contain any of the given keywords.<br>
+### Finding all persons containing any keyword in their name, email, phone or address: `find`
+Finds persons whose names, phones, emails or addresses contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 > The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
@@ -63,6 +63,8 @@ and persons matching at least one keyword will be returned (i.e. `OR` search).
 Examples: 
 * `find John`<br>
   Returns `John Doe` but not `john`
+* `find 8401`<br>
+  Returns `Giang` and people having phones or addresses containing the number
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
@@ -80,6 +82,22 @@ Examples:
 * `find Betsy`<br> 
   `delete 1`<br>
   Deletes the 1st person in the results of the `find` command.
+
+### Locating a person : `locate`
+Locate the specified person from the address book.<br>
+The person's address will be search on google maps with a third-party browser. 
+Format: `locate NAME`
+
+> Locates a person's address with the specified `NAME`. 
+  The result will be the first person with that name.
+
+Examples: 
+* `locate Giang`<br>
+  Openning browser..
+* `locate Hello`<br> 
+  Sorry we couldn'd find the person with that name!
+
+
 
 ### View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>

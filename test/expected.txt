@@ -14,9 +14,12 @@
 || Example: delete 1
 || Clears address book permanently.
 || Example: clear
-|| find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
+|| find: Finds all persons whose names contain exactly of the specified keywords (case-sensitive) and displays them as a list with index numbers.
 || Parameters: KEYWORD [MORE_KEYWORDS]...
-|| Example: find alice bob charlie
+|| Example: find Alice Bob Charlie
+|| findall: Finds all persons whose names contain any of the specified keywords (ignore case-sensitive) and displays them as a list with index numbers.
+|| Parameters: KEYWORD [MORE_KEYWORDS]...
+|| Example: findall alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
@@ -200,9 +203,9 @@
 || ===================================================
 || Enter command: || [Command entered:  find]
 || Invalid command format! 
-|| find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
+|| find: Finds all persons whose names contain exactly of the specified keywords (case-sensitive) and displays them as a list with index numbers.
 || Parameters: KEYWORD [MORE_KEYWORDS]...
-|| Example: find alice bob charlie
+|| Example: find Alice Bob Charlie
 || ===================================================
 || Enter command: || [Command entered:  find bet]
 || 
@@ -228,6 +231,37 @@
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Charlie Betsy]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  findall]
+|| Invalid command format! 
+|| findall: Finds all persons whose names contain any of the specified keywords (ignore case-sensitive) and displays them as a list with index numbers.
+|| Parameters: KEYWORD [MORE_KEYWORDS]...
+|| Example: findall alice bob charlie
+|| ===================================================
+|| Enter command: || [Command entered:  findall bet]
+|| 
+|| 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  findall 23912039120]
+|| 
+|| 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  findall betsy]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 
+|| 1 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  findall dickson]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  findall charlie betsy]
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 

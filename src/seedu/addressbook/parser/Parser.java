@@ -173,16 +173,17 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareTag(String args) {
-
+        //initialise matcher with pattern
         final Matcher matcher = PERSON_ID_TAGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     TagCommand.MESSAGE_USAGE));
         }
 
+        //use matcher to extract data from input
         try {
             return new TagCommand(
-                    Integer.parseInt( matcher.group("id") ),//use the code for finding a name to find the ID
+                    Integer.parseInt( matcher.group("id") ),
                     getTagsFromArgs(matcher.group("tagArguments")));
         } catch (NumberFormatException nfe) {
             return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

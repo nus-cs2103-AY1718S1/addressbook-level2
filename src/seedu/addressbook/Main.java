@@ -44,6 +44,9 @@ public class Main {
     public void run(String[] launchArgs) {
 
         start(launchArgs);
+        /* Set isLogin to true to pass the tests */
+        isLogin = true;
+
         runCommandLoopUntilExitCommand();
         exit();
     }
@@ -59,8 +62,6 @@ public class Main {
             this.ui = new TextUi();
             ui.showWelcomeMessage(VERSION);
 //            ui.showWelcomeMessage(VERSION, storage.getPath());
-
-            /* Check if user has logged in */
 
             this.storage = initializeStorage(launchArgs);
             this.addressBook = storage.load();

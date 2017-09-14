@@ -19,6 +19,8 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| sort: Displays a list of all persons in the address book in alphabetical order.
+|| Example: sort
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
@@ -46,6 +48,12 @@
 || 
 || 0 persons listed!
 || ===================================================
+|| ===================================================
+|| Enter command: || [Command entered:  Sort]
+||
+||     1. Brandon Chan Phone: 92109210
+||     2. Dominic Tan Phone: 92139213
+
 || Enter command: || [Command entered:  add wrong args wrong args]
 || Invalid command format! 
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.

@@ -12,7 +12,7 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be entered in the following format \n"
             + "a/BLOCK, STREET, UNIT, POSTAL_CODE \n"
             + "a/123, Clementi Ave 3, #12-34, 231534";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String ADDRESS_VALIDATION_REGEX = "\\d+, [\\w|\\s|\\d]+, #\\d+-\\d+, \\d{6}";
 
     public final String value;
     private Block block;

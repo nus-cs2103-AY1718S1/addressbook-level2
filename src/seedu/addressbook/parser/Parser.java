@@ -42,6 +42,10 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    public static final Pattern PERSON_ID_TAGS_FORMAT =
+            Pattern.compile("(?<id>[^/]+)"
+                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+
 
     /**
      * Signals that the user input could not be parsed.
@@ -170,17 +174,23 @@ public class Parser {
      */
     private Command prepareTag(String args) {
 
-        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        final Matcher matcher = PERSON_ID_TAGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     TagCommand.MESSAGE_USAGE));
         }
-        /*
-        return new TagCommand(
-                matcher.group("name"),
-                getTagsFromArgs(matcher.group("tagArguments")));
-                */
-        return new IncorrectCommand("tag function not defined!");
+
+        try {
+            return new TagCommand(
+                    Integer.parseInt( matcher.group("id") ),//use the code for finding a name to find the ID
+                    getTagsFromArgs(matcher.group("tagArguments")));
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
+
+        //return new IncorrectCommand("tag function not defined!");
     }
 
 

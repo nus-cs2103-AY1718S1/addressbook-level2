@@ -78,7 +78,7 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * sorts the internalList in alphabetical order
+     * Sorts the internalList in alphabetical order
      */
     public void sort() {
         internalList.sort((Person1,Person2) -> Person1.getName().compareTo(Person2.getName()));

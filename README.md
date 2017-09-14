@@ -15,7 +15,7 @@
 
 # Contributors
 
-SE-EDU Project Team and Hailin.
+SE-EDU Project Team.
 
 # Contact Us
 

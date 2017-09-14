@@ -135,8 +135,9 @@ public class AddressBook {
 
     public void editEmploymentInfo(String name) {
         int editCounter = 0;
+        String newName = name.substring(1);
         for (Person p : allPersons) {
-            if (p.getName().toString().equals(name.substring(1))) {
+            if (p.getName().toString().equals(newName)) {
                 p.editEmploymentInfo();
                 editCounter = 1;
             }
@@ -150,8 +151,9 @@ public class AddressBook {
 
     public void viewEmploymentInfo(String name) {
         int viewedCounter = 0;
+        String newName = name.substring(1);
         for (Person p : allPersons) {
-            if (p.getName().toString().equals(name.substring(1))) {
+            if (p.getName().toString().equals(newName)) {
                 p.getEmploymentInfo();
                 viewedCounter = 1;
             }

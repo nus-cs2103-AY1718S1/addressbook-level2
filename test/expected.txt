@@ -245,7 +245,7 @@
 ||
 || 5 persons listed!
 || ===================================================
-|| Invalid command format!
+|| Invalid command format! 
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1

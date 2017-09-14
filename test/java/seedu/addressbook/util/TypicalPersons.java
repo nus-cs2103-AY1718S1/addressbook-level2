@@ -3,6 +3,7 @@ package seedu.addressbook.util;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Birthday;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
@@ -20,13 +21,15 @@ public class TypicalPersons {
     public TypicalPersons() {
         try {
             amy = new Person(new Name("Amy Buck"), new Phone("91119111", false), new Email("ab@gmail.com", false),
-                    new Address("1 Clementi Road", false), new UniqueTagList());
+                    new Address("1 Clementi Road", false), new Birthday("01011995", false), new UniqueTagList());
             bill = new Person(new Name("Bill Clint"), new Phone("92229222", false), new Email("bc@gmail.com", false),
-                    new Address("2 Clementi Road", true), new UniqueTagList());
+                    new Address("2 Clementi Road", true), new Birthday("02021995", false), new UniqueTagList());
             candy = new Person(new Name("Candy Destiny"), new Phone("93339333", true),
-                    new Email("cd@gmail.com", false), new Address("3 Clementi Road", true), new UniqueTagList());
+                    new Email("cd@gmail.com", false), new Address("3 Clementi Road", true),
+                    new Birthday("03031995", false), new UniqueTagList());
             dan = new Person(new Name("Dan Smith"), new Phone("1234556", true), new Email("ss@tt.com", true),
-                    new Address("NUS", true), new UniqueTagList(new Tag("Test")));
+                    new Address("NUS", true), new Birthday("04041995", false),
+                    new UniqueTagList(new Tag("Test")));
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";

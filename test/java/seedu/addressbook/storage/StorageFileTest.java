@@ -13,6 +13,7 @@ import org.junit.rules.TemporaryFolder;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Birthday;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
@@ -110,15 +111,17 @@ public class StorageFileTest {
     private AddressBook getTestAddressBook() throws Exception {
         AddressBook ab = new AddressBook();
         ab.addPerson(new Person(new Name("John Doe"),
-                                new Phone("98765432", false),
-                                new Email("johnd@gmail.com", false),
-                                new Address("John street, block 123, #01-01", false),
-                                new UniqueTagList(Collections.emptySet())));
+                new Phone("98765432", false),
+                new Email("johnd@gmail.com", false),
+                new Address("John street, block 123, #01-01", false),
+                new Birthday("01122001", false),
+                new UniqueTagList(Collections.emptySet())));
         ab.addPerson(new Person(new Name("Betsy Crowe"),
-                                new Phone("1234567", true),
-                                new Email("betsycrowe@gmail.com", false),
-                                new Address("Newgate Prison", true),
-                                new UniqueTagList(new Tag("friend"), new Tag("criminal"))));
+                new Phone("1234567", true),
+                new Email("betsycrowe@gmail.com", false),
+                new Address("Newgate Prison", true),
+                new Birthday("02011993", false),
+                new UniqueTagList(new Tag("friend"), new Tag("criminal"))));
         return ab;
     }
 }

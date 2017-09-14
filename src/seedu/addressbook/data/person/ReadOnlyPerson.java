@@ -13,6 +13,7 @@ public interface ReadOnlyPerson {
     Phone getPhone();
     Email getEmail();
     Address getAddress();
+    Birthday getBirthday();
 
     /**
      * Returns a new TagList that is a deep copy of the internal TagList,
@@ -26,8 +27,8 @@ public interface ReadOnlyPerson {
     default boolean isSamePerson(ReadOnlyPerson other) {
         return (other == this)
                 || (other != null
-                    && other.getName().equals(this.getName())
-                    && other.getPhone().equals(this.getPhone()));
+                && other.getName().equals(this.getName())
+                && other.getPhone().equals(this.getPhone()));
     }
 
     /**
@@ -37,11 +38,12 @@ public interface ReadOnlyPerson {
     default boolean hasSameData(ReadOnlyPerson other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                    && other.getName().equals(this.getName()) // state checks here onwards
-                    && other.getPhone().equals(this.getPhone())
-                    && other.getEmail().equals(this.getEmail())
-                    && other.getAddress().equals(this.getAddress())
-                    && other.getTags().equals(this.getTags()));
+                && other.getName().equals(this.getName()) // state checks here onwards
+                && other.getPhone().equals(this.getPhone())
+                && other.getEmail().equals(this.getEmail())
+                && other.getAddress().equals(this.getAddress())
+                && other.getBirthday().equals(this.getBirthday())
+                && other.getTags().equals(this.getTags()));
     }
 
     /**
@@ -66,6 +68,11 @@ public interface ReadOnlyPerson {
             builder.append(detailIsPrivate);
         }
         builder.append(getAddress())
+                .append(" Birthday: ");
+        if (getBirthday().isPrivate()) {
+            builder.append(detailIsPrivate);
+        }
+        builder.append(getBirthday())
                 .append(" Tags: ");
         for (Tag tag : getTags()) {
             builder.append(tag);
@@ -87,6 +94,9 @@ public interface ReadOnlyPerson {
         }
         if (!getAddress().isPrivate()) {
             builder.append(" Address: ").append(getAddress());
+        }
+        if (!getBirthday().isPrivate()) {
+            builder.append(" Birthday: ").append(getBirthday());
         }
         builder.append(" Tags: ");
         for (Tag tag : getTags()) {

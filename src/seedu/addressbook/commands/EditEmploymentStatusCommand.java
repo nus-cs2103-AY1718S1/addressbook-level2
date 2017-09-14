@@ -1,6 +1,6 @@
 package seedu.addressbook.commands;
 
-public class EditEmploymentStatusCommand extends Command{
+public class EditEmploymentStatusCommand extends Command {
 
     public static final String COMMAND_WORD = "edites";
 
@@ -12,11 +12,11 @@ public class EditEmploymentStatusCommand extends Command{
 
     String name;
 
-    public EditEmploymentStatusCommand(String name){
-        this.name=name;
+    public EditEmploymentStatusCommand(String name) {
+        this.name = name;
     }
 
-    public CommandResult execute(){
+    public CommandResult execute() {
         super.editEmploymentInfo(name);
         return new CommandResult("Please enter next command");
     }

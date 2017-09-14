@@ -46,7 +46,8 @@ public class Parser {
      */
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    public Parser() {}
+    public Parser() {
+    }
 
     /**
      * Parses user input into command for execution.
@@ -215,7 +216,7 @@ public class Parser {
      *
      * @param args arguments string to parse as index number
      * @return the parsed index number
-     * @throws ParseException if no region of the args string could be found for the index
+     * @throws ParseException        if no region of the args string could be found for the index
      * @throws NumberFormatException the args string region is not a valid number
      */
     private int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException {
@@ -247,11 +248,11 @@ public class Parser {
     }
 
 
-    private Command prepareEditEmploymentStatus(String arguments){
+    private Command prepareEditEmploymentStatus(String arguments) {
         return new EditEmploymentStatusCommand(arguments);
     }
 
-    private Command prepareViewEmploymentStatus(String arguments){
+    private Command prepareViewEmploymentStatus(String arguments) {
         return new ViewEmploymentStatusCommand(arguments);
     }
 }

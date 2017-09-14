@@ -26,7 +26,9 @@ import java.nio.file.Paths;
  */
 public class StorageFile {
 
-    /** Default file path used if the user doesn't provide the file name. */
+    /**
+     * Default file path used if the user doesn't provide the file name.
+     */
     public static final String DEFAULT_STORAGE_FILEPATH = "addressbook.xml";
 
     /* Note: Note the use of nested classes below.
@@ -116,7 +118,7 @@ public class StorageFile {
      * Loads data from this storage file.
      *
      * @return an {@link AddressBook} containing the data in the file, or an empty {@link AddressBook} if it
-     *    does not exist.
+     * does not exist.
      * @throws StorageOperationException if there were errors reading and/or converting data from file.
      */
     public AddressBook load() throws StorageOperationException {
@@ -138,7 +140,7 @@ public class StorageFile {
 
         } catch (FileNotFoundException fnfe) {
             throw new AssertionError("A non-existent file scenario is already handled earlier.");
-        // other errors
+            // other errors
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {

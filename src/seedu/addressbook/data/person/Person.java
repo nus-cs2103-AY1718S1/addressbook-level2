@@ -1,7 +1,9 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.tag.UniqueTagList;
+
 import java.util.Objects;
+
 import seedu.addressbook.ui.TextUi;
 
 /**
@@ -19,6 +21,7 @@ public class Person implements ReadOnlyPerson {
     private TextUi ui;
 
     private final UniqueTagList tags;
+
     /**
      * Assumption: Every field must be present and not null.
      */
@@ -28,8 +31,8 @@ public class Person implements ReadOnlyPerson {
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
-        this.employmentInfo= new EmploymentInfo();
-        this.hasEditedEmploymentInfo=false;
+        this.employmentInfo = new EmploymentInfo();
+        this.hasEditedEmploymentInfo = false;
         this.ui = new TextUi();
     }
 
@@ -90,41 +93,48 @@ public class Person implements ReadOnlyPerson {
         return getAsTextShowAll();
     }
 
-    public void editEmploymentInfo(){
+    public void editEmploymentInfo() {
         printUserFound();
         String[] processedInput = obtainAndProcessInput();
-        String employmentStatus=processedInput[0];
-        String jobTitle=processedInput[1];
-        int workExperience=Integer.valueOf(processedInput[2]);
-        updateEmploymentInfo(this.name.toString(),employmentStatus,jobTitle,workExperience);
-        hasEditedEmploymentInfo=true;
-        System.out.println( "|| Employment Information Updated" );
+        String employmentStatus = processedInput[0];
+        String jobTitle = processedInput[1];
+        int workExperience = Integer.valueOf(processedInput[2]);
+        updateEmploymentInfo(this.name.toString(), employmentStatus, jobTitle, workExperience);
+        hasEditedEmploymentInfo = true;
+        System.out.println("|| Employment Information Updated");
         return;
     }
 
-    public void getEmploymentInfo(){
-        if(!hasEditedEmploymentInfo){ hasYetToEditEmploymentStatus(); }
-        else if(hasEditedEmploymentInfo){ printEmploymentStatus();}
-        else {invalidEmploymentBoolean(); }
+    public void getEmploymentInfo() {
+        if (!hasEditedEmploymentInfo) {
+            hasYetToEditEmploymentStatus();
+        } else if (hasEditedEmploymentInfo) {
+            printEmploymentStatus();
+        } else {
+            invalidEmploymentBoolean();
+        }
     }
 
-    private void printEmploymentStatus(){
-        String printName= "|| Name: " + this.employmentInfo.getName();
-        String printES= "|| Employment Status: " + this.employmentInfo.getEmploymentStatus();
-        String printJT= "|| Job Title: "+ this.employmentInfo.getJobTitle();
-        String printWE= "|| Working Experience: " + Integer.toString(this.employmentInfo.getWorkingExperience())
+    private void printEmploymentStatus() {
+        String printName = "|| Name: " + this.employmentInfo.getName();
+        String printES = "|| Employment Status: " + this.employmentInfo.getEmploymentStatus();
+        String printJT = "|| Job Title: " + this.employmentInfo.getJobTitle();
+        String printWE = "|| Working Experience: " + Integer.toString(this.employmentInfo.getWorkingExperience())
                 + " years";
-        System.out.print( printName + "\n" + printES + "\n" + printJT + "\n" + printWE + "\n");}
+        System.out.print(printName + "\n" + printES + "\n" + printJT + "\n" + printWE + "\n");
+    }
 
-    private void hasYetToEditEmploymentStatus(){
-            System.out.println("|| Employment Info has not been updated. " +
-                    "Please edit before viewing");
-        }
+    private void hasYetToEditEmploymentStatus() {
+        System.out.println("|| Employment Info has not been updated. " +
+                "Please edit before viewing");
+    }
 
-    private void invalidEmploymentBoolean(){ System.out.println("|| Something weird happened! Please contact us so that " +
-            "we can fix the issue!");}
+    private void invalidEmploymentBoolean() {
+        System.out.println("|| Something weird happened! Please contact us so that " +
+                "we can fix the issue!");
+    }
 
-    private void printUserFound(){
+    private void printUserFound() {
         System.out.println("|| Contact Found! Please enter the person's ");
         System.out.println("|| 1. Employment Status (Employed/Unemployed)");
         System.out.println("|| 2. Job Title");
@@ -133,24 +143,24 @@ public class Person implements ReadOnlyPerson {
         System.out.println("|| Example: Unemployed,Student,0");
     }
 
-    private String[] obtainAndProcessInput(){
+    private String[] obtainAndProcessInput() {
 
-        int inputCheckerByCountingCommas=0;
+        int inputCheckerByCountingCommas = 0;
         String[] processedInput;
-        do{
+        do {
             String input = ui.getUserKeyboard();
             processedInput = input.split(",");
-            inputCheckerByCountingCommas=processedInput.length;
-            if (inputCheckerByCountingCommas!=3){
+            inputCheckerByCountingCommas = processedInput.length;
+            if (inputCheckerByCountingCommas != 3) {
                 System.out.println("|| Invalid input. Please follow the " +
                         "format given and try again!");
             }
-        }while(inputCheckerByCountingCommas!=3);
+        } while (inputCheckerByCountingCommas != 3);
         return processedInput;
     }
 
-    private void updateEmploymentInfo(String name,String employmentStatus,
-                                      String jobTitle,int workExperience){
+    private void updateEmploymentInfo(String name, String employmentStatus,
+                                      String jobTitle, int workExperience) {
         employmentInfo.setName(name);
         employmentInfo.setEmploymentStatus(employmentStatus);
         employmentInfo.setJobTitle(jobTitle);

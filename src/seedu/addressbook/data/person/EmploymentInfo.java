@@ -3,21 +3,22 @@ package seedu.addressbook.data.person;
 public class EmploymentInfo {
 
     private String name;
-    private String employmentStatus ;
+    private String employmentStatus;
     private String jobTitle;
     private int workingExperience;
 
-    public EmploymentInfo(){
-        this.name="";
-        this.employmentStatus="";
-        this.jobTitle="";
-        this.workingExperience=0;
+    public EmploymentInfo() {
+        this.name = "";
+        this.employmentStatus = "";
+        this.jobTitle = "";
+        this.workingExperience = 0;
     }
-    public EmploymentInfo(String myName,String hire,String position,int experience){
-        this.name=myName;
-        this.employmentStatus=hire;
-        this.jobTitle=position;
-        this.workingExperience=experience;
+
+    public EmploymentInfo(String myName, String hire, String position, int experience) {
+        this.name = myName;
+        this.employmentStatus = hire;
+        this.jobTitle = position;
+        this.workingExperience = experience;
     }
 
     public void setEmploymentStatus(String employmentStatus) {

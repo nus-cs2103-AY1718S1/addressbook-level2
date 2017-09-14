@@ -8,10 +8,7 @@ import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -38,6 +35,9 @@ public class TextUi {
 
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
+
+    /** A queue to store commands to be executed later */
+    private ArrayList<String> commandsQueue = new ArrayList<>();
 
     private final Scanner in;
     private final PrintStream out;
@@ -78,19 +78,39 @@ public class TextUi {
      * Echos the command back to the user.
      * @return command (full line) entered by the user
      */
-    public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
-        String fullInputLine = in.nextLine();
-
-        // silently consume all ignored lines
-        while (shouldIgnore(fullInputLine)) {
-            fullInputLine = in.nextLine();
+    public String getNextCommand() {
+        if (!commandsQueue.isEmpty()) {
+            return commandsQueue.remove(0);
         }
 
+        String fullInputLine = promptUserInput("Enter command: ");
         showToUser("[Command entered:" + fullInputLine + "]");
         return fullInputLine;
     }
 
+    public void enqueueCommand(String command) {
+        commandsQueue.add(command);
+    }
+    
+    public String promptUserInput(String prompt) {
+        out.print(LINE_PREFIX + prompt);
+        String fullInputLine = in.nextLine();
+        // silently consume all ignored lines
+        while (shouldIgnore(fullInputLine)) {
+            fullInputLine = in.nextLine();
+        }
+        return fullInputLine;
+    }
+
+    /**
+     * Prompts for user to choose yes or no
+     * Accepts y, Y, yes (case-insensitive) as yes; surrounding spaces ignored
+     * @return whether user gave a positive reply
+     */
+    public boolean isUserAnswerYes() {
+        String input = promptUserInput("(Enter [Y]es/[N]o):").trim().toUpperCase();
+        return Objects.equals(input, "Y") || Objects.equals(input, "YES");
+    }
 
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);

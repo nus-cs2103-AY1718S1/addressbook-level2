@@ -3,15 +3,12 @@ package seedu.addressbook.parser;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.addressbook.commands.AddCommand;
+import seedu.addressbook.commands.AddInteractiveCommand;
 import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.DeleteCommand;
@@ -23,6 +20,8 @@ import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.Person;
+import seedu.addressbook.ui.TextUi;
 
 /**
  * Parses user input.
@@ -40,7 +39,21 @@ public class Parser {
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+    // These are the prefix strings to define the data type of a command parameter
+    public static final Map<String, String> PERSON_DATA_PREFIXES = createPrefixesHash();
 
+    private static Map<String, String> createPrefixesHash()
+    {
+        Map<String,String> m = new HashMap<>();
+        // Key entries must match class name
+        // Not very DRY but it would be too much work to change the structure of the contact classes
+        m.put("Phone", "p/");
+        m.put("Email", "e/");
+        m.put("Address", "a/");
+        m.put("Tag", "t/");
+        m.put("Name", "");
+        return m;
+    }
 
     /**
      * Signals that the user input could not be parsed.
@@ -64,7 +77,7 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
-    public Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput, TextUi ui) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -77,7 +90,10 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
-
+             
+        case AddInteractiveCommand.COMMAND_WORD:
+            return new AddInteractiveCommand(ui);
+                    
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
 

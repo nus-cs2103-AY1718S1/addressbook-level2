@@ -82,8 +82,8 @@ public class Main {
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
-            String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
+            String userCommandText = ui.getNextCommand();
+            command = new Parser().parseCommand(userCommandText, ui);
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);

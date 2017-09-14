@@ -30,7 +30,7 @@ public class AddInteractiveCommand extends AddCommand {
 
     private TextUi ui;
 
-    //public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Adding person to address book...";
 
     /**
      * Constructor for AddInteractive
@@ -43,38 +43,35 @@ public class AddInteractiveCommand extends AddCommand {
 
     @Override
     public CommandResult execute() {
-        /*
 
-        */
         ArrayList<Class<?>> infoList = new ArrayList<>(Arrays.asList(
                 Name.class, Phone.class, Email.class, Address.class));
         String generatedCommand = AddCommand.COMMAND_WORD;
         for (Class<?> infoClass : infoList) {
-            String input = ui.promptUserInput("Please enter " + infoClass.getSimpleName() + ": ");
-            try {
-                infoClass.getMethod("isPrivate");
-                String isPrivateInput = ui.promptUserInput("Set this field as private? ([Y] for yes): ").trim().toUpperCase();
-                // It would be more user-friendly to validate input here instead of returning error after all the steps
-                // However due to time constraint we leave the validation to AddCommand
-                Boolean isPrivate = Objects.equals(isPrivateInput, "Y");
-                generatedCommand += (isPrivate) ? " p" : " ";
-                generatedCommand += Parser.PERSON_DATA_PREFIXES.get(infoClass.getSimpleName());
-                generatedCommand += input;
-            } catch (NoSuchMethodException | SecurityException e) {
-                // Should only happen for Name class
-                generatedCommand += " " + input;
-            }
+            String prompt = "Please enter " + infoClass.getSimpleName() + ": ";
+            generatedCommand += generateCommandFromInput(infoClass, prompt);
         }
         ui.enqueueCommand(generatedCommand);
-        /*
-        try {
-            addressBook.addPerson(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (UniquePersonList.DuplicatePersonException dpe) {
-            return new CommandResult(MESSAGE_DUPLICATE_PERSON);
-        }
-        */
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    private String generateCommandFromInput(Class<?> infoClass, String promptMessage) {
+        String input = ui.promptUserInput(promptMessage);
+        String generatedCommandSnippet = " ";
+        try {
+            infoClass.getMethod("isPrivate");
+            String isPrivateInput = ui.promptUserInput("Set this field as private? ([Y] for yes): ").trim().toUpperCase();
+            // It would be more user-friendly to validate input here instead of returning error after all the steps
+            // However due to time constraint we leave the validation to AddCommand
+            Boolean isPrivate = Objects.equals(isPrivateInput, "Y");
+            generatedCommandSnippet += (isPrivate) ? "p" : "";
+            generatedCommandSnippet += Parser.PERSON_DATA_PREFIXES.get(infoClass.getSimpleName());
+
+        } catch (NoSuchMethodException | SecurityException e) {
+            // Should only happen for Name and Tag class
+        }
+        generatedCommandSnippet += input;
+        return generatedCommandSnippet;
     }
 
 }

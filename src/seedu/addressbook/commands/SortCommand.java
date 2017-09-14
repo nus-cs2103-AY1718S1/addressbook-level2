@@ -1,7 +1,5 @@
 package seedu.addressbook.commands;
 
-import seedu.addressbook.data.AddressBook;
-import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 
 import java.util.List;

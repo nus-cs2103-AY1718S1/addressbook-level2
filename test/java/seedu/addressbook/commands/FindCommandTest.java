@@ -29,7 +29,7 @@ public class FindCommandTest {
         assertFindCommandBehavior(new String[]{"aMy"}, Collections.emptyList());
 
         //partial word: not matched
-        assertFindCommandBehavior(new String[]{"my"}, Collections.emptyList());
+        assertFindCommandBehavior(new String[]{"my"}, Arrays.asList(td.amy));
 
         //multiple words: matched
         assertFindCommandBehavior(new String[]{"Amy", "Bill", "Candy", "Destiny"},

@@ -1,5 +1,6 @@
 package seedu.addressbook.storage;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
@@ -50,6 +51,16 @@ public class StorageFile {
         public StorageOperationException(String message) {
             super(message);
         }
+
+    }
+
+    /**
+     * Exception to handle read only errors and inform user.
+     */
+    public static class StorageReadOnlyException extends Exception {
+        public StorageReadOnlyException(String message) {
+            super(message);
+        }
     }
 
     private final JAXBContext jaxbContext;
@@ -92,7 +103,7 @@ public class StorageFile {
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
      */
-    public void save(AddressBook addressBook) throws StorageOperationException {
+    public void save(AddressBook addressBook) throws StorageOperationException, StorageReadOnlyException {
 
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
@@ -106,7 +117,11 @@ public class StorageFile {
             marshaller.marshal(toSave, fileWriter);
 
         } catch (IOException ioe) {
+            if (path.toFile().canRead()) {
+                throw new StorageReadOnlyException("Error file: " + path + " is READ ONLY. Please modify these settings to continue.");
+            }
             throw new StorageOperationException("Error writing to file: " + path);
+
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
         }

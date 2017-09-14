@@ -57,4 +57,15 @@ public class FindCommand extends Command {
         return matchedPersons;
     }
 
+    private List<ReadOnlyPerson> getPersonsWithPhone(Set<String> keywords) {
+        final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
+        for (ReadOnlyPerson person : addressBook.getAllPersons()) {
+            final Set<String> numInPhone = new HashSet<>(person.getPhone().getNumInPhone());
+            if (!Collections.disjoint(numInPhone, keywords)) {
+                matchedPersons.add(person);
+            }
+        }
+        return matchedPersons;
+    }
+
 }

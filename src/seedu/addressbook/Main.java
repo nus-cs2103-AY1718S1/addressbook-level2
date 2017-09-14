@@ -81,14 +81,30 @@ public class Main {
     /** Reads the user command and executes it, until the user issues the exit command.  */
     private void runCommandLoopUntilExitCommand() {
         Command command;
+        boolean exitConfirmed = false;
         do {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
 
-        } while (!ExitCommand.isExit(command));
+            if(!userCommandText.equals(ExitCommand.COMMAND_WORD)){
+                CommandResult result = executeCommand(command);
+                recordResult(result);
+                ui.showResultToUser(result);
+                continue;
+            }
+
+            ui.showAskingUserConfirmation();
+            String userConfirmationText = ui.getUserCommand();
+            ui.showToUser(userConfirmationText);
+            if(userConfirmationText.equals("y")){
+                exitConfirmed = true;
+                CommandResult result = executeCommand(command);
+                recordResult(result);
+                ui.showResultToUser(result);
+            }
+
+        } while (!exitConfirmed); //!ExitCommand.isExit(command)
+
     }
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */

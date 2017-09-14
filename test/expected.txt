@@ -297,7 +297,18 @@
 || 
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  exit]
+|| Enter command: || [Command entered:exit]
+|| Are you sure?
+|| Type [y] if yes, enter any key if no
+|| ===================================================
+|| Enter command: || [Command entered:n]
+|| n
+|| Enter command: || [Command entered:exit]
+|| Are you sure?
+|| Type [y] if yes, enter any key if no
+|| ===================================================
+|| Enter command: || [Command entered:y]
+|| y
 || Exiting Address Book as requested ...
 || ===================================================
 || Good bye!

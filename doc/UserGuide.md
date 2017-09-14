@@ -116,7 +116,7 @@ Clears all entries from the address book.<br>
 Format: `clear`  
 
 #### Exiting the program : `exit`
-Exits the program.<br>
+Prompts user to confirm exit and exits the program, when user enters y.<br>
 Format: `exit`  
 
 #### Saving the data 

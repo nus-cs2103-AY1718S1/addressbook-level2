@@ -293,7 +293,7 @@
 || Enter command: || [Command entered:  sort descending]
 || 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	2. Betsy Choo Tags: [secretive]
-|| 
+||
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  sort]

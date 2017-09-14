@@ -1,9 +1,11 @@
 package seedu.addressbook;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.addressbook.commands.AddCommand;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
@@ -81,12 +83,24 @@ public class Main {
     /** Reads the user command and executes it, until the user issues the exit command.  */
     private void runCommandLoopUntilExitCommand() {
         Command command;
+        final ArrayList<CommandResult> recentAdded = new ArrayList<CommandResult>();
         do {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);
+
+
+
+            if(command instanceof AddCommand && !result.feedbackToUser.equals(AddCommand.MESSAGE_DUPLICATE_PERSON)) {
+                recentAdded.add(0,result);
+                System.out.println("History of recently added:");
+                for (CommandResult addHistory : recentAdded) {
+                    System.out.println(addHistory.feedbackToUser);
+                }
+            }
+
 
         } while (!ExitCommand.isExit(command));
     }

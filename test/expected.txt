@@ -318,7 +318,7 @@
 || Person edited: Dickson Ee Phone: 123456 Email: e0000@u.nus.edu Address: (private) PGPR, NUS Birthday: 1234 Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  edit Dickson Ee t/classmates]
-|| Person edited: Dickson Ee Phone: 123456 Email: e0000@u.nus.edu Address: (private) PGPR, NUS Tags: [classmates]
+|| Person edited: Dickson Ee Phone: 123456 Email: e0000@u.nus.edu Address: (private) PGPR, NUS Birthday: 1234 Tags: [classmates]
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

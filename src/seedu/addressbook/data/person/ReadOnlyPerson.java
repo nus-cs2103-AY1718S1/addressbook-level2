@@ -10,6 +10,7 @@ import seedu.addressbook.data.tag.UniqueTagList;
 public interface ReadOnlyPerson {
 
     Name getName();
+    DateOfBirth getDateOfBirth();
     Phone getPhone();
     Email getEmail();
     Address getAddress();
@@ -38,6 +39,7 @@ public interface ReadOnlyPerson {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                     && other.getName().equals(this.getName()) // state checks here onwards
+                    && other.getDateOfBirth().equals(this.getDateOfBirth())
                     && other.getPhone().equals(this.getPhone())
                     && other.getEmail().equals(this.getEmail())
                     && other.getAddress().equals(this.getAddress())
@@ -51,6 +53,11 @@ public interface ReadOnlyPerson {
         final StringBuilder builder = new StringBuilder();
         final String detailIsPrivate = "(private) ";
         builder.append(getName())
+                .append(" Date of Birth: ");
+        if (getDateOfBirth().isPrivate()) {
+            builder.append(detailIsPrivate);
+        }
+        builder.append(getDateOfBirth())
                 .append(" Phone: ");
         if (getPhone().isPrivate()) {
             builder.append(detailIsPrivate);
@@ -79,6 +86,9 @@ public interface ReadOnlyPerson {
     default String getAsTextHidePrivate() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
+        if (!getDateOfBirth().isPrivate()) {
+            builder.append(" Date of Birth: ").append(getDateOfBirth());
+        }
         if (!getPhone().isPrivate()) {
             builder.append(" Phone: ").append(getPhone());
         }

@@ -307,7 +307,7 @@
 || Address Book sorted as requested ...
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 1. Avas Pang Phone: 666666 Email: avas@gmail.com Address: 666, ang mo kio Tags:
+||   1. Avas Pang Phone: 666666 Email: avas@gmail.com Address: 666, ang mo kio Tags:
 || 	2. Bobby Tang Phone: 111111 Email: bobby@gmail.com Address: 111, bishan Tags:
 ||
 || 2 persons listed!

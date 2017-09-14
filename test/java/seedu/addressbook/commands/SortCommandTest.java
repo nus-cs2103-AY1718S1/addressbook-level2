@@ -3,13 +3,15 @@ package seedu.addressbook.commands;
 import org.junit.Before;
 import org.junit.Test;
 import seedu.addressbook.data.AddressBook;
-import seedu.addressbook.data.person.*;
+import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Name;
+import seedu.addressbook.data.person.Person;
+import seedu.addressbook.data.person.Phone;
+import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.util.TestUtil;
 
-import java.util.List;
-
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertEquals;
 
 public class SortCommandTest {
 

@@ -90,7 +90,7 @@
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Faculty: computing Address: 111, alpha street Tags: [stupid]
-||
+|| 
 || 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pf/computing pa/222, beta street t/secretive]

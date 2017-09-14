@@ -50,11 +50,19 @@ public class FindCommand extends Command {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            if (!Collections.disjoint(convertToLowerCase(wordsInName), convertToLowerCase(keywords))) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
+    }
+
+    private Set<String> convertToLowerCase (Set<String> toBeConverted) {
+        final Set<String> lowerCaseSet = new HashSet<String>();
+        for (String word : toBeConverted){
+            lowerCaseSet.add(word.toLowerCase());
+        }
+        return lowerCaseSet;
     }
 
 }

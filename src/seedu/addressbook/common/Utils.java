@@ -21,6 +21,14 @@ public class Utils {
         return false;
     }
 
+    public static boolean noNull(){
+        return true;
+    }
+
+    public static boolean haveNull(){
+        return true;
+    }
+
     /**
      * Returns true if every element the given collection are unique by {@link Object#equals(Object)}.
      */

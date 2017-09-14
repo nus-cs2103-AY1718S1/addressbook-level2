@@ -6,6 +6,10 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 import java.util.List;
 import java.util.Stack;
 
+import static seedu.addressbook.common.Messages.MESSAGE_ERROR_APPLICATION;
+import static seedu.addressbook.common.Messages.MESSAGE_ERROR_EMPTY_HISTORY_STACK;
+import static seedu.addressbook.common.Messages.MESSAGE_ERROR_EMPTY_REDO_STACK;
+
 public class ApplicationHistory {
     
 

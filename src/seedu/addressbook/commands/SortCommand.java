@@ -22,7 +22,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute() {
         List<ReadOnlyPerson> sortedList = sortName(addressBook.getAllPersons().immutableListView());
-        return new CommandResult(getMessageForPersonListShownSummary(sortedList), sortedList);
+        return new CommandResult(getMessageForPersonSortedListShownSummary(sortedList), sortedList);
     }
     private List<ReadOnlyPerson> sortName(List<ReadOnlyPerson> dummyList) {
         NameComparator nameComparator = new NameComparator();

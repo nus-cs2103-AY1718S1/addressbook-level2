@@ -52,65 +52,55 @@
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address]
+|| Enter command: || [Command entered:  add Valid Name 12345 e/valid@email.butNoPhonePrefix r/Chinese a/valid, address]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 valid@email.butNoPrefix a/valid, address]
+|| Enter command: || [Command entered:  add Valid Name p/12345 valid@email.butNoPrefix r/Chinese a/valid, address]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address]
+|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, r/Chinese address]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag]
+|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoTagPrefix r/Chinese a/valid, address t/goodTag noPrefixTag]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add []\[;] p/12345 e/valid@e.mail a/valid, address]
+|| Enter command: || [Command entered:  add []\[;] p/12345 e/valid@e.mail r/Chinese a/valid, address]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/not_numbers e/valid@e.mail a/valid, address]
+|| Enter command: || [Command entered:  add Valid Name p/not_numbers e/valid@e.mail r/Chinese a/valid, address]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 e/notAnEmail a/valid, address]
+|| Enter command: || [Command entered:  add Valid Name p/12345 e/notAnEmail r/Chinese a/valid, address]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag]
+|| Enter command: || [Command entered:  add Valid Name p/12345 e/valid@e.mail r/Chinese a/valid, address t/invalid_-[.tag]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
-|| Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street]
-|| Invalid command format!
-|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
-|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
-|| ===================================================
-|| Enter command: || [Command entered:  list]
-||
-|| 0 persons listed!
-|| ===================================================
-|| Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive]
+|| Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com r/Chinese a/111, alpha street]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
@@ -120,7 +110,7 @@
 ||
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school]
+|| Enter command: || [Command entered:  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pr/Chinese pa/222, beta street t/secretive]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
@@ -130,7 +120,7 @@
 ||
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends]
+|| Enter command: || [Command entered:  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg r/Chinese a/333, gamma street t/friends t/school]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
@@ -140,7 +130,7 @@
 ||
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
+|| Enter command: || [Command entered:  add Dickson Ee p/444444 pe/dickson@nus.edu.sg r/Chinese a/444, delta street t/friends]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
@@ -150,7 +140,17 @@
 ||
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
+|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato r/Chinese pa/555, epsilon street t/tubers t/starchy]
+|| Invalid command format!
+|| add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...
+|| Example: add John Doe p/98765432 e/johnd@gmail.com r/Chinese a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+||
+|| 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato r/Chinese pa/555, epsilon street t/tubers t/starchy]
 || Invalid command format!
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]r/RACE [p]a/ADDRESS  [t/TAG]...

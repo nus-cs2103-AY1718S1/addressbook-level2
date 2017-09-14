@@ -13,6 +13,7 @@ import org.junit.Test;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Faculty;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
@@ -49,6 +50,7 @@ public class ViewCommandTest {
         ReadOnlyPerson stranger = new Person(new Name("me"),
                                              new Phone("123", true),
                                              new Email("some@hey.go", true),
+                                             new Faculty("com eng", false),
                                              new Address("nus", false),
                                              new UniqueTagList(Collections.emptySet()));
         List<ReadOnlyPerson> listWithExtraPerson

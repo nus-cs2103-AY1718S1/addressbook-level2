@@ -27,7 +27,7 @@ public class Birthday {
         return test.matches(BIRTHDAY_VALIDATION_REGEX);
     }
 
-    public List<String> getBirthday(){
+    public List<String> getBirthdays(){
         return Arrays.asList(birthday.split("\\s+"));
     }
 

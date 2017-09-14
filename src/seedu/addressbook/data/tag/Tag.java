@@ -2,12 +2,17 @@ package seedu.addressbook.data.tag;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
 
+    public static final Set<String> EXAMPLE = new HashSet<>(Arrays.asList("Friend", "Classmate"));
     public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
 

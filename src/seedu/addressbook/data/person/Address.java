@@ -29,20 +29,25 @@ public class Address {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
-        System.out.println("Untrimmed Address: " + address);
         String trimmedAddress = address.trim();
-        System.out.println("I trimmed it: " + trimmedAddress);
         ArrayList<String> addressInfo = processAddress(trimmedAddress);
         System.out.println(addressInfo.toString());
-        this.block = new Block(addressInfo.get(0));
-        this.street = new Street(addressInfo.get(1));
-        this.unit = new Unit(addressInfo.get(2));
-        this.postalCode = new PostalCode(addressInfo.get(3));
+
 
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+
+        if (addressInfo.size() >= 1)
+            this.block = new Block(addressInfo.get(0));
+        if (addressInfo.size() >= 2)
+            this.street = new Street(addressInfo.get(1));
+        if (addressInfo.size() >= 3)
+            this.unit = new Unit(addressInfo.get(2));
+        if (addressInfo.size() >= 4)
+            this.postalCode = new PostalCode(addressInfo.get(3));
+
         this.value = trimmedAddress;
     }
 

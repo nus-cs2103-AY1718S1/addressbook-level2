@@ -118,6 +118,16 @@ public class TestUtil {
         }
     }
 
+    public static Person generateOtherTestPerson() {
+        try {
+            return new Person(new Name(Name.EXAMPLE), new Phone(Phone.EXAMPLE_OTHER, false),
+                    new Email(Email.EXAMPLE_OTHER, true), new Address(Address.EXAMPLE, false), new UniqueTagList());
+        } catch (IllegalValueException e) {
+            fail("test person data should be valid by definition");
+            return null;
+        }
+    }
+
     public static UniqueTagList getAllTags(UniquePersonList persons) {
         Set<Tag> combinedTagList = new HashSet<Tag>();
 

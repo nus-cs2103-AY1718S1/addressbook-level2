@@ -220,7 +220,7 @@ public class ParserTest {
         final String[] keywords = { "key1", "key2", "key3" };
         final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
 
-        final String input = "find " + String.join(" ", keySet);
+        final String input = "findall " + String.join(" ", keySet);
         final FindAllCommand result =
                 parseAndAssertCommandType(input, FindAllCommand.class);
         assertEquals(keySet, result.getKeywords());
@@ -232,7 +232,7 @@ public class ParserTest {
         final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
 
         // duplicate every keyword
-        final String input = "find " + String.join(" ", keySet) + " " + String.join(" ", keySet);
+        final String input = "findall " + String.join(" ", keySet) + " " + String.join(" ", keySet);
         final FindAllCommand result =
                 parseAndAssertCommandType(input, FindAllCommand.class);
         assertEquals(keySet, result.getKeywords());

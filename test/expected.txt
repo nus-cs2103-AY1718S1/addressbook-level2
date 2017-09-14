@@ -1,13 +1,13 @@
 || ===================================================
 || ===================================================
 || Welcome to your Address Book!
-|| AddressBook Level 2 - Version 1.0
+|| AddessBook Level 2 - Version 1.0
 || Launch command format: java seedu.addressbook.Main [STORAGE_FILE_PATH]
 || Using storage file : addressbook.xml
 || ===================================================
 || Enter command: || [Command entered:  sfdfd]
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
-|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]f/faculty [p]a/ADDRESS  [t/TAG]...
+|| Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]f/FACULTY [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com f/computing a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX

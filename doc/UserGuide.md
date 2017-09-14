@@ -69,8 +69,6 @@ Examples:
   Returns `John Doe` but not `john`
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
-  
-  
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>

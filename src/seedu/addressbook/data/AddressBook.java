@@ -128,4 +128,16 @@ public class AddressBook {
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
     }
+    /**
+     * Returns if the current Address Book is empty
+     */
+    public boolean isEmpty(){
+        return getAllPersons().isEmpty();
+    }
+    /**
+     * Sorts current address book.
+     */
+    public void sortSelf(){
+        allPersons.sort();
+    }
 }

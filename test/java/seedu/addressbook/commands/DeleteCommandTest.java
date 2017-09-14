@@ -18,6 +18,7 @@ import seedu.addressbook.data.person.Phone;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.ui.Formatter;
 import seedu.addressbook.ui.TextUi;
 import seedu.addressbook.util.TestUtil;
 

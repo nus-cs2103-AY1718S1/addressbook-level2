@@ -123,7 +123,7 @@ public class AddressBook {
     public void sortByPhone() {
         Collections.sort(allPersons.getInternalList(), new Comparator<Person>() {
             public int compare(Person p1, Person p2) {
-                return p1.getPhone().toString().compareTo(p2.getPhone().toString());
+                return Integer.parseInt(p1.getPhone().toString()) - (Integer.parseInt(p2.getPhone().toString()));
             }
         });
     }

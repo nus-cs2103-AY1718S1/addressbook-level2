@@ -21,13 +21,11 @@ public class UtilsTest {
         // one not null object
         assertNotNull(1);
         assertNotNull("");
-        assertNotNull(new Object());
+        assertNotNull("123");
 
-        // several non-null objects
+        // several objects
         assertNotNull(1, 2);
         assertNotNull("abc", "def", "ghi");
-
-        //several null objects
         assertIsNull(1, 2, null);
         assertIsNull(4, null, "abc");
         assertIsNull(null, "abc", "def");
@@ -43,6 +41,7 @@ public class UtilsTest {
     private void assertNotNull(Object... objects) {
         assertFalse(Utils.isAnyNull(objects));
     }
+
 
     @Test
     public void elementsAreUnique() throws Exception {

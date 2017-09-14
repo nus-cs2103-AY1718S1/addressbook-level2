@@ -17,7 +17,7 @@ public class Address {
     private Block block = new Block(0);
     private Street street = new Street("");
     private Unit unit = new Unit("");
-    private Postal postal = new Postal(0);
+    private Postal postal = new Postal("");
 
     private boolean isPrivate;
 
@@ -34,10 +34,10 @@ public class Address {
         }
         String[] splitAddress = trimmedAddress.split(",");
 
-        block.setBlock(splitAddress[0]);
-        street.setStreet(splitAddress[1]);
-        unit.setUnitNum(splitAddress[2]);
-        postal.setPostalNum(Integer.parseInt(splitAddress[3].trim()));
+        block.setBlock(splitAddress[0].trim());
+        street.setStreet(splitAddress[1].trim());
+        unit.setUnitNum(splitAddress[2].trim());
+        postal.setPostalNum(splitAddress[3].trim());
 
         this.value = trimmedAddress;
     }

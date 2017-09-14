@@ -1,14 +1,14 @@
 package seedu.addressbook.data.person;
 
 public class Postal {
-    private int postalNum;
-    public Postal(int postalNum) {
+    private String postalNum;
+    public Postal(String postalNum) {
         this.postalNum = postalNum;
     }
-    public int getPostalNum() {
+    public String getPostalNum() {
         return postalNum;
     }
-    public void setPostalNum(int postalNum) {
+    public void setPostalNum(String postalNum) {
         this.postalNum = postalNum;
     }
 }

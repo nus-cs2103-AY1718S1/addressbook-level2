@@ -6,14 +6,13 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
-public class Address {
+public class Address extends Contact{
 
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
-    private boolean isPrivate;
+    public String block = "", street = "", unit = "", postal_code = "";
 
     /**
      * Validates given address.
@@ -26,7 +25,14 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        String[] splitAddress = trimmedAddress.split(", ");
+        switch (splitAddress.length) {
+            case 4: this.postal_code = splitAddress[3];
+            case 3: this.unit = splitAddress[2];
+            case 2: this.street = splitAddress[1];
+            case 1: this.block = splitAddress[0];
+            default: this.value = trimmedAddress;
+        }
     }
 
     /**
@@ -34,11 +40,6 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
-    }
-
-    @Override
-    public String toString() {
-        return value;
     }
 
     @Override
@@ -56,4 +57,6 @@ public class Address {
     public boolean isPrivate() {
         return isPrivate;
     }
+
+    public void setPrivate(boolean isPrivate) { this.isPrivate = isPrivate; }
 }

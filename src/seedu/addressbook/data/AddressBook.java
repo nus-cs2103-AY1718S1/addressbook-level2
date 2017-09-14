@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.addressbook.commands.CommandResult;
+import seedu.addressbook.commands.IncorrectCommand;
+import seedu.addressbook.commands.PrivateCommand;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
@@ -128,4 +131,39 @@ public class AddressBook {
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
     }
+
+    public CommandResult privatise(ReadOnlyPerson target, String targetDetail) {
+        switch (targetDetail) {
+            case "address":
+                allPersons.privatiseAddress(target);
+                return new CommandResult(
+                        String.format(PrivateCommand.MESSAGE_SINGLE_PRIVATE_SUCCESS,
+                                target.getName(),targetDetail));
+            case "phone":
+                allPersons.privatisePhone(target);
+                return new CommandResult(
+                        String.format(PrivateCommand.MESSAGE_SINGLE_PRIVATE_SUCCESS,
+                                target.getName(),targetDetail));
+            case "email":
+                allPersons.privatiseEmail(target);
+                return new CommandResult(
+                        String.format(PrivateCommand.MESSAGE_SINGLE_PRIVATE_SUCCESS,
+                                target.getName(),targetDetail));
+            case "":
+                allPersons.privatiseAll(target);
+                return new CommandResult(
+                        String.format(PrivateCommand.MESSAGE_ALL_PRIVATE_SUCCESS,
+                                target.getName()));
+            default:
+                return new CommandResult(PrivateCommand.MESSAGE_COMMAND_FAIL);
+
+        }
+    }
+    public CommandResult publicise(ReadOnlyPerson target) {
+        allPersons.publicAll(target);
+        return new CommandResult(
+                String.format(PrivateCommand.MESSAGE_PUBLIC_SUCCESS,
+                        target.getName()));
+    }
+
 }

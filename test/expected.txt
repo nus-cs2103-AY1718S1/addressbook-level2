@@ -286,7 +286,7 @@
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
-|| 
+||
 || 4 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 4]

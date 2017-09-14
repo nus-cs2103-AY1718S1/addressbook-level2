@@ -62,7 +62,6 @@ public class Main {
             this.ui = new TextUi();
             ui.showWelcomeMessage(VERSION);
 //            ui.showWelcomeMessage(VERSION, storage.getPath());
-
             this.storage = initializeStorage(launchArgs);
             this.addressBook = storage.load();
 
@@ -106,7 +105,7 @@ public class Main {
                 /* Execute login operation here */
                 CommandResult result = executeCommand(command);
                 ui.showResultToUser(result);
-                isLogin = result.isLogin;
+                isLogin = true;
                 continue;
 
             }else if(!isLogin){

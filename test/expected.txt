@@ -11,7 +11,7 @@
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 b/3112 t/friends t/owesMoney
 || edit: Edits a person from the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [[p]p/PHONE] [[p]e/EMAIL] [[p]a/ADDRESS] [[p]b/BIRTHDAY]  [t/TAG]...
-|| Example: edit John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/friends b/3112 t/owesMoney
+|| Example: edit John Doe p/98765432 a/311, Clementi Ave 2, #02-25 b/3112 t/friends t/owesMoney
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1

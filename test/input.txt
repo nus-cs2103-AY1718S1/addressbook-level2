@@ -6,6 +6,14 @@
   sfdfd
 
 ##########################################################
+# test undo/redo command at initialisation
+##########################################################
+
+  # should have no effect
+  undo
+  redo
+
+##########################################################
 # commands using list index before any listing created
 ##########################################################
 
@@ -141,12 +149,65 @@
   list
 
 ##########################################################
+# test undo/redo command on delete
+##########################################################
+
+  # should revert listing to point of deleting 1
+  undo
+
+  # should revert delete 1 and update listing to pre deletion
+  undo
+
+  # should revert listing to point of deleting 4
+  undo
+  
+  # should revert delete 4 and update listing to pre deletion
+  undo
+
+  # should redo previous undo (delete 4)
+  redo
+
+  # should redo previous undo (list after delete 4)
+  redo
+
+  # should redo previous undo (delete 1)
+  redo
+
+  # should redo previous undo (list after delete 1)
+  redo
+
+  # should have no effect
+  redo
+
+##########################################################
 # test clear command
 ##########################################################
 
   # clears all
   clear
   list
+
+##########################################################
+# test undo/redo command after clear
+##########################################################
+  
+  # should add all cleared entries back
+  undo
+  undo
+
+  # should clear again
+  redo
+  redo
+
+  # should undo redo
+  undo
+  undo
+
+  # should clear all entries
+  clear
+
+  # should have no effect (redo stack cleared)
+  redo
 
 ##########################################################
 # test exit command

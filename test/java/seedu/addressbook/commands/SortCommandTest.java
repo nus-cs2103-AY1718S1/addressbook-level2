@@ -32,7 +32,6 @@ public class SortCommandTest {
         SortCommand sc = new SortCommand();
         sc.setData(addressBook, listAll);
         sc.execute();
-
         List allList = addressBook.getAllPersons().immutableListView();
 
         for(int i=0; i<allList.size() -1; i++) {

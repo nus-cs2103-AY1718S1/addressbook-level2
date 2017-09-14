@@ -21,6 +21,7 @@ import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Person;
+import seedu.addressbook.ui.TextUi;
 
 /**
  * Parses user input.
@@ -75,7 +76,7 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
-    public Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput, TextUi ui) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -90,7 +91,7 @@ public class Parser {
             return prepareAdd(arguments);
              
         case AddInteractiveCommand.COMMAND_WORD:
-            return new AddInteractiveCommand();  
+            return new AddInteractiveCommand(ui);
                     
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);

@@ -28,14 +28,17 @@ public class AddInteractiveCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book with guided steps. "
             + "Example: " + COMMAND_WORD;
 
+    private TextUi ui;
+
     //public static final String MESSAGE_SUCCESS = "New person added: %1$s";
 
     /**
      * Constructor for AddInteractive
      *
      */
-    public AddInteractiveCommand() {
+    public AddInteractiveCommand(TextUi ui) {
         super();
+        this.ui = ui;
     }
 
     @Override
@@ -43,7 +46,6 @@ public class AddInteractiveCommand extends AddCommand {
         /*
 
         */
-        TextUi ui = new TextUi();
         ArrayList<Class<?>> infoList = new ArrayList<>(Arrays.asList(
                 Name.class, Phone.class, Email.class, Address.class));
         String generatedCommand = AddCommand.COMMAND_WORD;

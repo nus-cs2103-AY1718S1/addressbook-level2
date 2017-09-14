@@ -60,12 +60,6 @@ public class Name implements Comparable {
         return fullName.hashCode();
     }
 
-    public int compareTo(Name nameObj) {
-        String curName = fullName;
-        String compName = nameObj.fullName;
-        return curName.compareTo(compName);
-    }
-
     public int compareTo(Object object) {
         Name nameObj = null;
         if(object instanceof Name) {

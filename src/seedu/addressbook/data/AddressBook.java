@@ -97,6 +97,8 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+        Person removed = (Person) toRemove;
+        removed.decrementCount();
     }
 
     /**

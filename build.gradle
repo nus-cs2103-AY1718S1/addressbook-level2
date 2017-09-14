@@ -30,7 +30,6 @@ allprojects {
 
     dependencies {
         testCompile 'junit:junit:4.12'
-        compile 'org.junit.jupiter:junit-jupiter-api'
     }
 }
 

@@ -27,7 +27,7 @@
 || Example: viewall 1
 || undo: Undoes the previous operation. Undo history will be cleared on application exit.
 || Example: undo
-|| redo: Redoes the previous undo operation. Redo history will be cleared on application exit.
+|| redo: Redoes the previous undo operation. Redo history will be cleared on a new normal command and application exit.
 || Example: redo
 || help: Shows program usage instructions.
 || Example: help

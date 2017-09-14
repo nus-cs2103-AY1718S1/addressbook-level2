@@ -2,6 +2,7 @@ package seedu.addressbook.storage;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.Username;
 import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
 
 import javax.xml.bind.JAXBContext;
@@ -28,6 +29,9 @@ public class StorageFile {
 
     /** Default file path used if the user doesn't provide the file name. */
     public static final String DEFAULT_STORAGE_FILEPATH = "addressbook.xml";
+
+    /** Default file path used to store registered users */
+    public static final String DEFAULT_USER_STORAGE_FILEPATH = "addressbook-user.xml";
 
     /* Note: Note the use of nested classes below.
      * More info https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
@@ -69,11 +73,14 @@ public class StorageFile {
     public StorageFile(String filePath) throws InvalidStorageFilePathException {
         try {
             jaxbContext = JAXBContext.newInstance(AdaptedAddressBook.class);
+
         } catch (JAXBException jaxbe) {
             throw new RuntimeException("jaxb initialisation error");
         }
 
         path = Paths.get(filePath);
+//        path = Paths.get(DEFAULT_USER_STORAGE_FILEPATH);
+
         if (!isValidPath(path)) {
             throw new InvalidStorageFilePathException("Storage file should end with '.xml'");
         }
@@ -121,6 +128,9 @@ public class StorageFile {
      */
     public AddressBook load() throws StorageOperationException {
 
+        Username username = new Username("linus");
+
+        /* Create a new storage file */
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             return new AddressBook();
         }

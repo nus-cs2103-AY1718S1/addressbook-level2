@@ -14,8 +14,12 @@ public class Person implements ReadOnlyPerson {
     private Phone phone;
     private Email email;
     private Address address;
-
     private final UniqueTagList tags;
+
+    public Person(UniqueTagList tags){
+        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+    }
+
     /**
      * Assumption: Every field must be present and not null.
      */

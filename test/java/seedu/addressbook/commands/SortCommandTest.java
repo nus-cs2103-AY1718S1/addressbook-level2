@@ -8,11 +8,18 @@ import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.Phone;
+import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.util.TestUtil;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static seedu.addressbook.commands.SortCommand.MESSAGE_SUCCESS;
 
 public class SortCommandTest {
 
@@ -28,6 +35,8 @@ public class SortCommandTest {
     private Tag tagScientist;
     private Tag tagMathematician;
     private Tag tagEconomist;
+
+    private List<ReadOnlyPerson> allPersons;
 
     @Before
     public void setUp() throws Exception {
@@ -62,15 +71,39 @@ public class SortCommandTest {
 
         unsortedAddressBook = new AddressBook(new UniquePersonList(bobChaplin, aliceBetsy, davidElliot, charlieDouglas),
                 new UniqueTagList(tagMathematician, tagScientist, tagEconomist, tagPrizeWinner));
-        sortedAddressBook = new AddressBook(new UniquePersonList(bobChaplin, aliceBetsy, davidElliot, charlieDouglas),
+        sortedAddressBook = new AddressBook(new UniquePersonList(aliceBetsy, bobChaplin, charlieDouglas, davidElliot),
                 new UniqueTagList(tagMathematician, tagScientist, tagEconomist, tagPrizeWinner));
+        allPersons = Arrays.asList(aliceBetsy, bobChaplin, charlieDouglas, davidElliot);
+    }
 
+    @Test
+    public void checkUnsorted() throws Exception {
+        assertNotEquals(unsortedAddressBook.getAllPersons(), sortedAddressBook.getAllPersons());
     }
 
     @Test
     public void sortTest() throws Exception {
-        new SortCommand();
-        assertEquals(unsortedAddressBook, sortedAddressBook);
+        assertSortBehavior(new SortCommand(), sortedAddressBook, unsortedAddressBook, allPersons, MESSAGE_SUCCESS);
+    }
+
+    /**
+     * Executes the test command for the given addressbook data.
+     * Checks that SortCommand exhibits the correct command behavior, namely:
+     * 1. The feedback message of the CommandResult it returns matches expectedMessage.
+     * 2. The original addressbook data is not sorted after executing SortCommand.
+     */
+    private static void assertSortBehavior(Command sortCommand, AddressBook sortedAddressBook
+            , AddressBook unsortedAddressBook, List<ReadOnlyPerson> relevantPersons, String expectedMessage) {
+        AddressBook addressBookToSort = TestUtil.clone(unsortedAddressBook);
+
+        sortCommand.setData(addressBookToSort, relevantPersons);
+        CommandResult result = sortCommand.execute();
+
+        // feedback message is as expected
+        assertEquals(expectedMessage, result.feedbackToUser);
+
+        // addressbook was sorted
+        assertEquals(addressBookToSort.getAllPersons(), sortedAddressBook.getAllPersons());
     }
 
 }

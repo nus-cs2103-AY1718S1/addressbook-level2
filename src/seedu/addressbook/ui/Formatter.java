@@ -16,7 +16,7 @@ public class Formatter {
 
 
     /** Offset required to convert between 1-indexing and 0-indexing.  */
-    private static final int DISPLAYED_INDEX_OFFSET = 1;
+    public static final int DISPLAYED_INDEX_OFFSET = 1;
 
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";

@@ -4,7 +4,7 @@ public class PostalCode {
 
     private String postalCode;
 
-    private void PostalCode(String postalCode){
+    public PostalCode(String postalCode){
         this.postalCode = postalCode;
     }
 

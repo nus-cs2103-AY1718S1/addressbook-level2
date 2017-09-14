@@ -4,7 +4,8 @@ public class Street {
 
     private String street;
 
-    private void Street(String street){
+    public Street(String street){
+
         this.street = street;
     }
 

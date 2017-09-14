@@ -15,7 +15,25 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
+
     private boolean isPrivate;
+
+    private enum AddressType {
+        BLOCK(0), STREET(1), UNIT(2), POSTALCODE(3);
+        private int value;
+
+        AddressType(int value) {
+            this.value = value;
+        }
+
+        public int getValue(){
+            return value;
+        }
+    }
 
     /**
      * Validates given address.
@@ -28,9 +46,19 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        this.value = splitAddress(trimmedAddress);
     }
 
+    public String splitAddress(String trimmedAddress)
+    {
+        String[] splitAddress = trimmedAddress.split(", ");
+        block = new Block(splitAddress[AddressType.BLOCK.getValue()]);
+        street = new Street(splitAddress[AddressType.STREET.getValue()]);
+        unit = new Unit(splitAddress[AddressType.UNIT.getValue()]);
+        postalCode = new PostalCode(splitAddress[AddressType.POSTALCODE.getValue()]);
+
+        return block.getBlock() + ", " + street.getStreet() + ", " + unit.getUnit() + ", " + postalCode.getpostalCode();
+    }
     /**
      * Returns true if a given string is a valid person address.
      */

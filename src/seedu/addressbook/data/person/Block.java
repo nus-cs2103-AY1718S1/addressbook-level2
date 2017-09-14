@@ -4,7 +4,7 @@ public class Block {
 
     private String block;
 
-    private void Block(String block){
+    public Block(String block){
         this.block = block;
     }
 

@@ -40,9 +40,9 @@
   add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag
 
   # should add correctly and list non private information
-  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
-  list
   add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+  list
+  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
   list
   add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
   list
@@ -147,6 +147,22 @@
   # clears all
   clear
   list
+
+##########################################################
+# test clear command
+##########################################################
+
+  # should sort correctly in alphabetical order
+  add zbc p/123456 e/zbc@gmail.com a/123
+  list
+  add abc p/987654 e/abc@gmail.com a/321
+  list
+  sort
+  list
+
+  # should show unsuccessful sorting message
+  clear
+  sort
 
 ##########################################################
 # test exit command

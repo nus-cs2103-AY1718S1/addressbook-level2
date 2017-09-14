@@ -17,6 +17,9 @@
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
 || Parameters: KEYWORD [MORE_KEYWORDS]...
 || Example: find alice bob charlie
+|| swap: Finds and swap the position of two people whose names contain any of the specified keywords (case-sensitive).
+|| Parameters: KEYWORD KEYWORD
+|| Example: swap alice bob
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
@@ -287,6 +290,24 @@
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  swap]
+|| Invalid command format! 
+|| swap: Finds and swap the position of two people whose names contain any of the specified keywords (case-sensitive).
+|| Parameters: KEYWORD KEYWORD
+|| Example: swap alice bob
+|| ===================================================
+|| Enter command: || [Command entered:  swap betsy dickson]
+|| Swap failed, both names have to be case-sensitive and must exist in the address book.
+|| ===================================================
+|| Enter command: || [Command entered:  swap Betsy Dickson]
+|| Swap completed
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	2. Betsy Choo Tags: [secretive]
 || 
 || 2 persons listed!
 || ===================================================

@@ -43,6 +43,8 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 > Put a `p` before the phone / email / address prefixes to mark it as `private`. `private` details can only
 > be seen using the `viewall` command.
 > 
+> Everyone in the addressbook will be printed when a new person is added
+>
 > Persons can have any number of tags (including 0)
 
 Examples: 

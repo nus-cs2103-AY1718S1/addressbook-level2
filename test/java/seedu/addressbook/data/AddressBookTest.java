@@ -22,6 +22,9 @@ import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class AddressBookTest {
     private Tag tagPrizeWinner;
     private Tag tagScientist;
@@ -170,6 +173,7 @@ public class AddressBookTest {
         assertTrue(isIdentical(allPersons, personsToCheck));
     }
 
+
     @Test
     public void getAllTags() throws Exception {
         UniqueTagList allTags = defaultAddressBook.getAllTags();
@@ -189,4 +193,5 @@ public class AddressBookTest {
         }
         return false;
     }
+
 }

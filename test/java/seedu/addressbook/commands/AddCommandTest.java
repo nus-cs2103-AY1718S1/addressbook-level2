@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.AddressBookTest;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
@@ -122,10 +123,15 @@ public class AddCommandTest {
         command.setData(book, EMPTY_PERSON_LIST);
         CommandResult result = command.execute();
         UniquePersonList people = book.getAllPersons();
+        ListCommand list = new ListCommand();
+        list.setData(book,EMPTY_PERSON_LIST);
+        CommandResult cmdRes = list.execute();
+        String ToCheck= "1 persons listed!";
 
         assertTrue(people.contains(p));
         assertEquals(1, people.immutableListView().size());
-        assertFalse(result.getRelevantPersons().isPresent());
+        assertEquals(cmdRes.getRelevantPersons(),result.getRelevantPersons());
+
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, p), result.feedbackToUser);
     }
 

@@ -15,6 +15,10 @@ public class Person implements ReadOnlyPerson {
     private Email email;
     private Address address;
 
+    // unique sequence number that indicates the order in which Person object was created
+    public static int nextSequenceNumber = 1;
+    private int sequenceNumber;
+
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.
@@ -25,6 +29,10 @@ public class Person implements ReadOnlyPerson {
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+
+        // assign curr sequence number to this person and increment nextSequenceNumber
+        this.sequenceNumber = nextSequenceNumber;
+        nextSequenceNumber++;
     }
 
     /**
@@ -32,6 +40,23 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+    }
+
+    /**
+     * Get the sequence number of the next Person to be added
+     * @return an int representing the sequence number of next Person to be added
+     */
+
+    public static int getNextSequenceNumber() {
+        return nextSequenceNumber;
+    }
+
+    /**
+     * Get sequence number of this Person
+     * @return an int representing the sequence number of this Person
+     */
+    public int getSequenceNumber() {
+        return sequenceNumber;
     }
 
     @Override

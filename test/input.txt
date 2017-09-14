@@ -101,8 +101,10 @@
 
   # find unique keyword
   find Betsy
-  # find multiple with same keyword
+  # find multiple names with same keyword
   find Dickson
+  # find multiple address with same keyword
+  find gamma delta
   # find multiple with some keywords
   find Charlie Betsy
 

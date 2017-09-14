@@ -49,6 +49,17 @@ Examples:
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
+### Updating person's information: `update`
+Updates person's information in the address book<br>
+Format: `update NAME [p/PHONE_NUMBER | e/EMAIL | a/ADDRESS]`
+
+> You can either give new phone number, email or address
+
+Examples:
+* `update John Doe p/12344321`
+* `update John Doe e/test@test.com`
+* `update John Doe a/Test Drive 3`
+
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`

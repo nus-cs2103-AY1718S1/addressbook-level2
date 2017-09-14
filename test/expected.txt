@@ -12,6 +12,8 @@
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
+|| update: Updates persons information based on the given parameter. Parameters: NAME PREFIX/NEW_VALUE
+|| Example: update John Doe p/98765432
 || Clears address book permanently.
 || Example: clear
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
@@ -289,6 +291,12 @@
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  update Dickson Ee p/123456]
+|| Person's information was updated
+|| ===================================================
+|| Enter command: || [Command entered:  update Dickson p/234234]
+|| No person found with that name.
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

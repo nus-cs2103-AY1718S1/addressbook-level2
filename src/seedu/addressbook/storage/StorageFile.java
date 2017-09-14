@@ -106,12 +106,12 @@ public class StorageFile {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
 
+        } catch (ReadOnlyFileSystemException rofse) {
+            throw new StorageOperationException("File is read-only");
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
-        } catch (ReadOnlyFileSystemException rofse) {
-            throw new StorageOperationException("File is read-only");
         }
     }
 

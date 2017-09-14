@@ -22,12 +22,10 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        UniquePersonList allPersons = addressBook.getAllPersons();
-        UniquePersonList allPersonsSorted = new UniquePersonList();
-        for (Person currPerson : allPersons){
-//            if curr
-        }
-        return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
+
+        List<ReadOnlyPerson> sortedPersons = addressBook.getAllPersons().sortedListView();
+
+        return new CommandResult(getMessageForPersonListShownSummary(sortedPersons), sortedPersons);
     }
 
 }

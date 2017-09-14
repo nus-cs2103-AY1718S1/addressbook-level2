@@ -33,7 +33,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
-        TextUi formatter = new TextUi();
+        formatter = new TextUi();
     }
 
     /**
@@ -46,6 +46,7 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        formatter = new TextUi();
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -143,7 +144,7 @@ public class AddressBook {
                 return;
             }
         }
-        System.out.println(formatter.getLinePrefix() + " Person not found! Please ensure person is a registered contact" +
+        System.out.println(formatter.getLinePrefix() + "Person not found! Please ensure person is a registered contact" +
                 " before using employment status function!");
     }
 
@@ -158,7 +159,7 @@ public class AddressBook {
                 return;
             }
         }
-        System.out.println(formatter.getLinePrefix() + " Person not found! Please ensure person is a registered contact" +
+        System.out.println(formatter.getLinePrefix() + "Person not found! Please ensure person is a registered contact" +
                 " before using employment status function!");
     }
 }

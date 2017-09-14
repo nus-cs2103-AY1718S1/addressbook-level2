@@ -120,10 +120,6 @@ public class Main {
             storage.save(addressBook);
             updateApplicationHistory(command);
             return result;
-        } catch (ApplicationHistory.EmptyHistoryException ehe) {
-            return new CommandResult(ehe.getMessage());
-        } catch (ApplicationHistory.EmptyRedoHistoryException erhe) {
-            return new CommandResult(erhe.getMessage());
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

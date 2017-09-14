@@ -1,9 +1,9 @@
 package seedu.addressbook.state;
 
 import seedu.addressbook.data.AddressBook;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.state.exception.EmptyHistoryException;
+import seedu.addressbook.state.exception.LoadStateException;
 
-import java.util.List;
 import java.util.Stack;
 
 import static seedu.addressbook.common.Messages.MESSAGE_ERROR_APPLICATION;
@@ -24,33 +24,6 @@ public class ApplicationHistory {
     
     /** A temporary saveState before Application runs an operation */
     private ApplicationState saveState;
-    
-    /**
-     * Signals that the history stack is empty during a pop command.
-     */
-    public static class EmptyHistoryException extends IllegalStateException {
-        public EmptyHistoryException(String message) {
-            super(message);
-        }
-    }
-
-    /**
-     * Signals that the redo history stack is empty during a pop command.
-     */
-    public static class EmptyRedoHistoryException extends IllegalStateException {
-        public EmptyRedoHistoryException(String message) {
-            super(message);
-        }
-    }
-
-    /**
-     * Signals that the application state has failed to load accurately.
-     */
-    public static class LoadStateException extends IllegalStateException {
-        public LoadStateException(String message) {
-            super(message);
-        }
-    }
 
     /**
      * Replaces the current state with a new ApplicationState
@@ -115,7 +88,7 @@ public class ApplicationHistory {
         return redoStack.isEmpty();
     }
     
-    public ApplicationState popHistory() {
+    public ApplicationState popHistory() throws EmptyHistoryException {
         if (isEmptyHistory()) {
             throw new EmptyHistoryException(MESSAGE_ERROR_EMPTY_HISTORY_STACK);
         }
@@ -124,9 +97,9 @@ public class ApplicationHistory {
     
     public void pushHistory(ApplicationState applicationState) { historyStack.push(applicationState); }
     
-    public ApplicationState popRedoHistory() {
+    public ApplicationState popRedoHistory() throws EmptyHistoryException {
         if (isEmptyRedoHistory()) {
-            throw new EmptyRedoHistoryException(MESSAGE_ERROR_EMPTY_REDO_STACK);
+            throw new EmptyHistoryException(MESSAGE_ERROR_EMPTY_REDO_STACK);
         }
         return redoStack.pop();
     }

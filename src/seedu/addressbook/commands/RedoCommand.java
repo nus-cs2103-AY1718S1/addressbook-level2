@@ -3,6 +3,8 @@ package seedu.addressbook.commands;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.state.ApplicationHistory;
 import seedu.addressbook.state.ApplicationState;
+import seedu.addressbook.state.exception.EmptyHistoryException;
+import seedu.addressbook.state.exception.LoadStateException;
 
 import java.util.List;
 
@@ -25,18 +27,19 @@ public class RedoCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        ApplicationState saveState = getCurrentApplicationState();
-        ApplicationState loadState = applicationHistory.popRedoHistory();
-        final List<ReadOnlyPerson> loadPersonListing = loadState.getListingInState();
+        ApplicationState loadState = null;
         try {
+            ApplicationState saveState = getCurrentApplicationState();
+            loadState = applicationHistory.popRedoHistory();
+            final List<ReadOnlyPerson> loadPersonListing = loadState.getListingInState();
             applicationHistory.loadNewApplicationState(loadState, addressBook);
             applicationHistory.addStateAfterSuccessfulOperation();
             return new CommandResult(getMessageForSuccessfulUndoRedo(MESSAGE_SUCCESS, loadPersonListing, loadState, saveState), loadPersonListing);
             
-        } catch (ApplicationHistory.EmptyRedoHistoryException erhe) {
-            return new CommandResult(String.format(erhe.getMessage(), COMMAND_WORD));
+        } catch (EmptyHistoryException ehe) {
+            return new CommandResult(String.format(ehe.getMessage(), COMMAND_WORD));
             
-        } catch (ApplicationHistory.LoadStateException lse) {
+        } catch (LoadStateException lse) {
             applicationHistory.pushRedoHistory(loadState);
             return new CommandResult(String.format(lse.getMessage(), COMMAND_WORD));
             

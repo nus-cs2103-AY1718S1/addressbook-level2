@@ -96,7 +96,7 @@
   find bet
   # does not match if none have keyword
   find 23912039120
-  # matching should be case-sensitive
+  # matching should be case-insensitive
   find betsy
 
   # find unique keyword
@@ -139,6 +139,16 @@
   # listing indexes get updated on next request
   delete 1
   list
+
+##########################################################
+# test sort command
+##########################################################
+
+  # sort descending order
+  sort descending
+
+  #sort bad example, will return "No such sort"
+  sort
 
 ##########################################################
 # test clear command

@@ -89,8 +89,7 @@
 ##########################################################
 # test find persons command
 ##########################################################
-
-  # should consider no keywords as invalid command format
+# should consider no keywords as invalid command format
   find
   # should only match full words in person names
   find bet
@@ -99,12 +98,18 @@
   # matching should be case-sensitive
   find betsy
 
-  # find unique keyword
-  find Betsy
-  # find multiple with same keyword
-  find Dickson
-  # find multiple with some keywords
-  find Charlie Betsy
+##########################################################
+# test find_email command
+##########################################################
+
+  # should consider no keywords as invalid command format
+  find_email
+  # should only match full words in person names
+  find_email charlie.d@nus.edu.sg
+  # does not match if none have keyword
+  find_email 23912039120
+  # matching should be case-sensitive
+  find_email Charlie.d@nus.edu.sg
 
 ##########################################################
 # test delete person command

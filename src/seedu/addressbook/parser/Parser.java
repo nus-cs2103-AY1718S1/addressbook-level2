@@ -11,17 +11,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -75,33 +65,36 @@ public class Parser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
+            case AddCommand.COMMAND_WORD:
+                return prepareAdd(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
+            case DeleteCommand.COMMAND_WORD:
+                return prepareDelete(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            case EditCommand.COMMAND_WORD:
+                return prepareEdit(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case FindCommand.COMMAND_WORD:
+                return prepareFind(arguments);
 
-        case ViewCommand.COMMAND_WORD:
-            return prepareView(arguments);
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-        case ViewAllCommand.COMMAND_WORD:
-            return prepareViewAll(arguments);
+            case ViewCommand.COMMAND_WORD:
+                return prepareView(arguments);
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ViewAllCommand.COMMAND_WORD:
+                return prepareViewAll(arguments);
 
-        case HelpCommand.COMMAND_WORD: // Fallthrough
-        default:
-            return new HelpCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+
+            case HelpCommand.COMMAND_WORD: // Fallthrough
+            default:
+                return new HelpCommand();
         }
     }
 
@@ -158,6 +151,34 @@ public class Parser {
         return new HashSet<>(tagStrings);
     }
 
+    /**
+     * Parses arguments in the context of the edit person command.
+     *
+     *   full command args string
+     * @return the prepared command
+     */
+    private Command prepareEdit(String args){
+        try {
+            String[] argArray = args.split("name");
+            return new EditCommand(argArray[0].trim(), "name", argArray[1].trim());
+        } catch (ArrayIndexOutOfBoundsException e){
+            try{
+                String[] argArray = args.split("phone");
+                return new EditCommand(argArray[0].trim(), "phone", argArray[1].trim());
+            } catch (ArrayIndexOutOfBoundsException f){
+                try{
+                    String[] argArray = args.split("email");
+                    return new EditCommand(argArray[0].trim(), "email", argArray[1].trim());
+                } catch (ArrayIndexOutOfBoundsException g){
+                    try{
+                        String[] argArray = args.split("address");
+                        return new EditCommand(argArray[0].trim(), "address", argArray[1].trim());
+                    } catch (ArrayIndexOutOfBoundsException h){ }
+                }
+            }
+        }
+        return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+    }
 
     /**
      * Parses arguments in the context of the delete person command.

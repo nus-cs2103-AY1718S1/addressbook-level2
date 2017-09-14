@@ -387,7 +387,7 @@
 ||
 || New person added: abc Phone: 987654 Email: abc@gmail.com Address: 321 Tags: 
 || ===================================================
-|| Enter command: ||  [Command entered:  list]
+|| Enter command: || [Command entered:  list]
 ||
 || 	1. zbc Phone: 123456 Email: zbc@gmail.com Address: 123 Tags: 
 || 	2. abc Phone: 987654 Email: abc@gmail.com Address: 321 Tags: 

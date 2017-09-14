@@ -25,7 +25,7 @@
 || viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
-|| sort: Sorts the AddressBook
+|| sort: Sorts the AddressBook.
 || Example: sort
 || help: Shows program usage instructions.
 || Example: help

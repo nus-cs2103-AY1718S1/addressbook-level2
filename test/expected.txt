@@ -309,13 +309,13 @@
 ||
 || 3 persons listed!
 || ===================================================
-|| Person could not be found in address book
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 4]
-|| Person could not be found in address book
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  viewall 5]
-|| Person could not be found in address book
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:

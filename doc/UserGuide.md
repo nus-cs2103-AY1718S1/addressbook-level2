@@ -66,7 +66,7 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
-*** Finding all persons within group: `findgroup`
+### Finding all persons within group: `findgroup`
 Find persons who are in group that has name containing given keyword.<br>
 Format: `findgroup keyword`
 

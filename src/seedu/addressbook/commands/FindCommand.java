@@ -1,10 +1,6 @@
 package seedu.addressbook.commands;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
@@ -37,7 +33,26 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute() {
         final List<ReadOnlyPerson> personsFound = getPersonsWithNameContainingAnyKeyword(keywords);
+        personsFound.addAll(getPersonsWithAddressContainingAnyKeyword(keywords));
         return new CommandResult(getMessageForPersonListShownSummary(personsFound), personsFound);
+    }
+
+    /**
+     * Converts all strings in the HashSet to lowercase ones
+     *
+     * @param words Collection/HashSet of strings
+     * @return words, HashSet
+     */
+    private static Collection<String> getWordsInLowercase(Collection<String> words)
+    {
+        String[] stringsArray = words.toArray(new String[0]);
+        for (int i=0; i<stringsArray.length; ++i)
+        {
+            stringsArray[i] = stringsArray[i].toLowerCase();
+        }
+        words.clear();
+        words.addAll(Arrays.asList(stringsArray));
+        return words;
     }
 
     /**
@@ -50,11 +65,27 @@ public class FindCommand extends Command {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            if (!Collections.disjoint(getWordsInLowercase(wordsInName), getWordsInLowercase(keywords))) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
     }
 
+    /**
+     * Retrieves all persons in the address book whose address contain some of the specified keywords.
+     *
+     * @param keywords for searching
+     * @return list of persons found
+     */
+    private List<ReadOnlyPerson> getPersonsWithAddressContainingAnyKeyword(Set<String> keywords) {
+        final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
+        for (ReadOnlyPerson person : addressBook.getAllPersons()) {
+            final Set<String> wordsInAddress = new HashSet<>(person.getAddress().getWordsInAddress()); //getName().getWordsInName());
+            if (!Collections.disjoint(getWordsInLowercase(wordsInAddress), getWordsInLowercase(keywords))) {
+                matchedPersons.add(person);
+            }
+        }
+        return matchedPersons;
+    }
 }

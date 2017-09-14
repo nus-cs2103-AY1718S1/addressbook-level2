@@ -36,7 +36,7 @@ public class Address {
 
         block.setBlock(splitAddress[0]);
         street.setStreet(splitAddress[1]);
-        unit.setUnitNum(Integer.parseInt(splitAddress[2]));
+        unit.setUnitNum(splitAddress[2]);
         postal.setPostalNum(Integer.parseInt(splitAddress[3].trim()));
 
         this.value = trimmedAddress;

@@ -78,7 +78,7 @@ public class Parser {
             return prepareFind(arguments);
 
         case AltFindCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            return prepareAltFind(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -241,6 +241,25 @@ public class Parser {
         final String[] keywords = matcher.group("keywords").split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
+    }
+
+    /**
+     * Parses arguments in the context of the alternate find person command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareAltFind(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AltFindCommand.MESSAGE_USAGE));
+        }
+
+        // keywords delimited by whitespace
+        final String[] keywords = matcher.group("keywords").toLowerCase().split("\\s+");
+        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
+        return new AltFindCommand(keywordSet);
     }
 
 

@@ -17,7 +17,7 @@ public class Email {
     private Block block;
     private Street street;
     private Unit unit;
-    private PostalCode postalCode;
+    private Postal postalCode;
     private boolean isPrivate;
 
     /**
@@ -31,11 +31,6 @@ public class Email {
         if (!isValidEmail(trimmedEmail)) {
             throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
         }
-            String[] splitAddress = trimAddress.split(",");
-            block.setBlock(Integer.parseInt(splitAddress[0]));
-            street.setStreet(splitAddress[1]);
-            unit.setUnit(Integer.parseInt(splitAddress[2]));
-            postalCode.setPost(Integer.parseInt(splitAddress[3]));
 
         this.value = trimmedEmail;
     }

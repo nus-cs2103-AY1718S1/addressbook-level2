@@ -8,7 +8,7 @@ public class Block {
         return blockNum;
     }
 
-    public void setBlock(int blockNumber) {
+    public void setBlock(String blockNumber) {
         this.blockNum = blockNum;
     }
 }

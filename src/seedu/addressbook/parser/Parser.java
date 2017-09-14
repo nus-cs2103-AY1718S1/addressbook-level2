@@ -44,6 +44,8 @@ public class Parser {
     private static Map<String, String> createPrefixesHash()
     {
         Map<String,String> m = new HashMap<>();
+        // Key entries must match class name
+        // Not very DRY but it would be too much work to change the structure of the contact classes
         m.put("Phone", "p/");
         m.put("Email", "e/");
         m.put("Address", "a/");

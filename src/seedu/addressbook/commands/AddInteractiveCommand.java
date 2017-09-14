@@ -3,6 +3,7 @@ package seedu.addressbook.commands;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
@@ -24,14 +25,10 @@ public class AddInteractiveCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "add-interactive";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
-            + "Contact details can be marked private by prepending 'p' to the prefix.\n"
-            + "Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...\n"
-            + "Example: " + COMMAND_WORD
-            + " John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book with guided steps. "
+            + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    //public static final String MESSAGE_SUCCESS = "New person added: %1$s";
 
     /**
      * Constructor for AddInteractive
@@ -54,8 +51,10 @@ public class AddInteractiveCommand extends AddCommand {
             String input = ui.promptUserInput("Please enter " + infoClass.getSimpleName() + ": ");
             try {
                 infoClass.getMethod("isPrivate");
-                Boolean isPrivate = ui.promptUserInput("Set this field as private? ([Y] for yes): ").trim().toUpperCase()
-                        == "Y" ;
+                String isPrivateInput = ui.promptUserInput("Set this field as private? ([Y] for yes): ").trim().toUpperCase();
+                // It would be more user-friendly to validate input here instead of returning error after all the steps
+                // However due to time constraint we leave the validation to AddCommand
+                Boolean isPrivate = Objects.equals(isPrivateInput, "Y");
                 generatedCommand += (isPrivate) ? " p" : " ";
                 generatedCommand += Parser.PERSON_DATA_PREFIXES.get(infoClass.getSimpleName());
                 generatedCommand += input;

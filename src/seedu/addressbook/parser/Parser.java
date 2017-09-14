@@ -11,18 +11,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.User;
 
 /**
  * Parses user input.
@@ -41,6 +32,10 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    /* Pattern for validating login arguments */
+    public static final Pattern LOGIN_ARGS_FORMAT = Pattern.compile("u/(?<username>[^/]+)"
+        + " p/(?<password>[^/]+)"
+    );
 
     /**
      * Signals that the user input could not be parsed.
@@ -75,6 +70,9 @@ public class Parser {
 
         switch (commandWord) {
 
+        case LoginCommand.COMMAND_WORD:
+            return prepareLogin(arguments);
+
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
 
@@ -104,6 +102,31 @@ public class Parser {
             return new HelpCommand();
         }
     }
+
+    /**
+     * Parses arguments in the context of login command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareLogin(String args) {
+        final Matcher matcher = LOGIN_ARGS_FORMAT.matcher(args.trim());
+        // Validate arg string format
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LoginCommand.MESSAGE_USAGE));
+        }
+
+//        System.out.println( matcher.group("username"));
+        /* Check username and password here */
+
+        return new LoginCommand(matcher.group("username"), matcher.group("password"));
+
+//        }
+//        catch (IllegalValueException ive) {
+//            return new IncorrectCommand(ive.getMessage());
+//        }
+    }
+
 
     /**
      * Parses arguments in the context of the add person command.

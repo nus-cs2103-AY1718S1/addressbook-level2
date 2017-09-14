@@ -1,7 +1,5 @@
 package seedu.addressbook.data.person;
 
-
-
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
 
@@ -138,7 +136,7 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
-                        && this.internalList.equals(((UniquePersonList) other).internalList));
+                && this.internalList.equals(((UniquePersonList) other).internalList));
     }
 
     /**

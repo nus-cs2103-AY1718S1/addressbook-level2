@@ -86,10 +86,10 @@
 || Tags names should be alphanumeric
 || ===================================================
 || Enter command: || [Command entered:  add Adam Brown g/Girl p/111111 e/adam@gmail.com a/111, alpha street]
-|| New person added: Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| New person added: Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 
 || 1 persons listed!
 || ===================================================
@@ -97,7 +97,7 @@
 || New person added: Betsy Choo Gender: Girl Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Gender: Girl Tags: [secretive]
 || 
 || 2 persons listed!
@@ -106,7 +106,7 @@
 || New person added: Charlie Dickson Gender: Boy Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Gender: Girl Tags: [secretive]
 || 	3. Charlie Dickson Gender: Boy Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 
@@ -116,7 +116,7 @@
 || New person added: Dickson Ee Gender: Boy Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Gender: Girl Tags: [secretive]
 || 	3. Charlie Dickson Gender: Boy Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 	4. Dickson Ee Gender: Boy Phone: 444444 Address: 444, delta street Tags: [friends]
@@ -127,7 +127,7 @@
 || New person added: Esther Potato Gender: Girl Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Gender: Girl Tags: [secretive]
 || 	3. Charlie Dickson Gender: Boy Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 	4. Dickson Ee Gender: Boy Phone: 444444 Address: 444, delta street Tags: [friends]
@@ -175,10 +175,10 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 1]
-|| Viewing person: Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| Viewing person: Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  viewall 1]
-|| Viewing person: Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| Viewing person: Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  view 3]
 || Viewing person: Charlie Dickson Gender: Boy Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
@@ -264,7 +264,7 @@
 || Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Gender: Girl Tags: [secretive]
 || 	3. Dickson Ee Gender: Boy Phone: 444444 Address: 444, delta street Tags: [friends]
 || 	4. Esther Potato Gender: Girl Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
@@ -275,14 +275,14 @@
 || Deleted Person: Esther Potato Gender: Girl Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| 	1. Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Gender: Girl Tags: [secretive]
 || 	3. Dickson Ee Gender: Boy Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
-|| Deleted Person: Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| Deleted Person: Adam Brown Gender: Girl Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Gender: Girl Tags: [secretive]

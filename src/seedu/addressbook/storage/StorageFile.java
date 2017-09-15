@@ -20,6 +20,8 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.ReadOnlyFileSystemException; //Idea adapted from coursemate "Deepak Buddha"
+
 
 /**
  * Represents the file used to store address book data.
@@ -91,6 +93,8 @@ public class StorageFile {
      * Saves all data to this storage file.
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
+     *  @throws ReadOnlyFileSystemException if there were errors writing while storing data to file.
+     *  (Addapted ReadOnlyFileSystemException from course emate "Deepak Buddha")
      */
     public void save(AddressBook addressBook) throws StorageOperationException {
 
@@ -104,11 +108,14 @@ public class StorageFile {
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
+            path.toFile().canWrite();
 
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
+        } catch (ReadOnlyFileSystemException rofse) {
+            throw new StorageOperationException("Error writing to read-only file: " + path);
         }
     }
 
@@ -138,7 +145,7 @@ public class StorageFile {
 
         } catch (FileNotFoundException fnfe) {
             throw new AssertionError("A non-existent file scenario is already handled earlier.");
-        // other errors
+            // other errors
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {

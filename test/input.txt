@@ -107,6 +107,24 @@
   find Charlie Betsy
 
 ##########################################################
+# test phone number command
+##########################################################
+
+  # should consider no phone number as invalid command format
+  phone
+  # should only match full phone numbers in person phone number
+  phone 1111
+  # does not match if no person have the phone number
+  phone 23912039120
+
+  # find unique phone number
+  phone 111111
+  # find multiple with same phone number
+  phone 111111 111111
+  # find multiple with some phone number
+  phone 222222 333333
+
+##########################################################
 # test delete person command
 ##########################################################
 

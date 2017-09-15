@@ -66,6 +66,19 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Finding all persons with any number in their phone number: `phone`
+Finds persons whose phone number contain any of the given phone numbers.<br>
+Format: `phone PHONE_NUM [MORE_PHONE_NUM]`
+
+> The phone numbers must be exact, country codes e.g (+65) are not ignored.
+> Partial phone numbers will not return persons e.g (John phone is 12345678 but user search for 1234)
+
+Examples: 
+* `phone 98765432`<br>
+  Returns `John Doe`
+* `phone 1234567 98765432`<br>
+  Returns Any person with numbers `98765432`, or `1234567`
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`

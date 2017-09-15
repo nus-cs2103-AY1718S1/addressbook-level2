@@ -22,6 +22,7 @@ import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.PhoneCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -85,7 +86,10 @@ public class Parser {
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            return prepareFind(arguments, "name");
+
+        case PhoneCommand.COMMAND_WORD:
+            return prepareFind(arguments, "phone");
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -237,17 +241,30 @@ public class Parser {
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareFind(String args) {
+    private Command prepareFind(String args, String type) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindCommand.MESSAGE_USAGE));
+
+            if(type.equals("name")) {
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindCommand.MESSAGE_USAGE));
+            } else if (type.equals("phone")){
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        PhoneCommand.MESSAGE_USAGE));
+            }
+            return null;
         }
 
         // keywords delimited by whitespace
         final String[] keywords = matcher.group("keywords").split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-        return new FindCommand(keywordSet);
+
+        if(type.equals("phone")) {
+            return new PhoneCommand(keywordSet);
+        } else if (type.equals("name")){
+            return new FindCommand(keywordSet);
+        }
+        return null;
     }
 
 

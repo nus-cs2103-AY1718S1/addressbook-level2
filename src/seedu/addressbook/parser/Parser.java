@@ -112,7 +112,7 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareAdd(String args) {
-        final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim());
+        final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim().toUpperCase());
         // Validate arg string format
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));

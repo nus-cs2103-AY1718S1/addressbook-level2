@@ -2,6 +2,9 @@ package seedu.addressbook.data.tag;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
@@ -24,6 +27,13 @@ public class Tag {
             throw new IllegalValueException(MESSAGE_TAG_CONSTRAINTS);
         }
         this.tagName = trimmedName;
+    }
+
+    /**
+     * Retrieves a listing of every word in the Tag, in order.
+     */
+    public List<String> getWordsInTag() {
+        return Arrays.asList(tagName.split("\\s+"));
     }
 
     /**

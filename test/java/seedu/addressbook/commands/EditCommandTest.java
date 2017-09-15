@@ -1,25 +1,64 @@
 package seedu.addressbook.commands;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import seedu.addressbook.data.AddressBook;
+
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.*;
 
-import java.util.*;
+import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Email;
+import seedu.addressbook.data.person.Name;
+import seedu.addressbook.data.person.Person;
+import seedu.addressbook.data.person.Phone;
+import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.UniquePersonList;
+import seedu.addressbook.data.tag.UniqueTagList;
 
-import static org.junit.Assert.*;
+import seedu.addressbook.ui.TextUi;
+
+import seedu.addressbook.util.TestUtil;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class EditCommandTest {
-    private static final List<ReadOnlyPerson> EMPTY_PERSON_LIST = Collections.emptyList();
     private static final Set<String> EMPTY_STRING_LIST = Collections.emptySet();
     private static final int INDEX_EXAMPLE = 1;
 
+    private AddressBook editedAddressBook;
+    private AddressBook uneditedAddressBook;
+
+    private List<ReadOnlyPerson> listWithUneditedPerson;
+
+    @Before
+    public void setUp() throws Exception {
+        Person johnDoe = new Person(new Name("John Doe"), new Phone("61234567", false),
+                new Email("john@doe.com", false), new Address("395C Ben Road", false), new UniqueTagList());
+        Person janeDoe = new Person(new Name("Jane Doe"), new Phone("91234567", false),
+                new Email("jane@doe.com", false), new Address("33G Ohm Road", false), new UniqueTagList());
+
+        Person editedJohnDoe = new Person(new Name("John Doe"), new Phone("98765432", false),
+                new Email("john@doe.com", false), new Address("395C Ben Road", false), new UniqueTagList());
+
+        editedAddressBook = TestUtil.createAddressBook(editedJohnDoe, janeDoe);
+        uneditedAddressBook = TestUtil.createAddressBook(johnDoe, janeDoe);
+
+        listWithUneditedPerson = TestUtil.createList(johnDoe, janeDoe);
+    }
+
     @Test
-    public void editCommand_invalidIndex_throwsException() {
-        final int[] invalidIndexes = {0};
-        for (int index : invalidIndexes) {
-            assertConstructingInvalidEditCmdThrowsException(index, Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE, false,
-                    Address.EXAMPLE, true, EMPTY_STRING_LIST);
-        }
+    public void editCommand_invalidIndex_returnsInvalidIndexMessage() {
+        assertEditFailsDueToInvalidIndex(0, uneditedAddressBook, listWithUneditedPerson);
+        assertEditFailsDueToInvalidIndex(-1, uneditedAddressBook, listWithUneditedPerson);
+        assertEditFailsDueToInvalidIndex(listWithUneditedPerson.size() + 1, uneditedAddressBook, listWithUneditedPerson);
     }
 
     @Test
@@ -70,8 +109,15 @@ public class EditCommandTest {
         }
     }
 
+    @Test
+    public void editCommand_validIndex_personIsEdited() throws IllegalValueException{
+        Person editedPerson = new Person(new Name("John Doe"), new Phone("98765432", false),
+                new Email("john@doe.com", false), new Address("395C Ben Road", false), new UniqueTagList());
+        assertEditCmdReturnsCorrectList(1, editedPerson, uneditedAddressBook, listWithUneditedPerson);
+    }
+
     /**
-     * Asserts that attempting to construct an add command with the supplied
+     * Asserts that attempting to construct an edit command with the supplied
      * invalid data throws an IllegalValueException
      */
     private void assertConstructingInvalidEditCmdThrowsException(int index, String name, String phone,
@@ -87,6 +133,34 @@ public class EditCommandTest {
                 "An edit command was successfully constructed with invalid input: %d %s %s %s %s %s %s %s %s",
                 index, name, phone, isPhonePrivate, email, isEmailPrivate, address, isAddressPrivate, tags);
         fail(error);
+    }
+
+    private void assertEditFailsDueToInvalidIndex(int index, AddressBook uneditedAddressBook, List<ReadOnlyPerson> listWithUneditedPerson) {
+        try {
+            Person janeDoe = new Person(new Name("Jane Doe"), new Phone("91234567", false),
+                    new Email("jane@doe.com", false), new Address("33G Ohm Road", false), new UniqueTagList());
+            ReadOnlyPerson target = listWithUneditedPerson.get(index - TextUi.DISPLAYED_INDEX_OFFSET);
+            uneditedAddressBook.editPerson(index, target, janeDoe);
+        } catch (IllegalValueException e) {
+            return;
+        } catch (IndexOutOfBoundsException ie) {
+            return;
+        } catch (UniquePersonList.PersonNotFoundException pnfe) {
+            return;
+        }
+    }
+
+    /**
+     * Asserts that using the edit command returns the same addressbook as the expected output
+     */
+    private void assertEditCmdReturnsCorrectList(int targetIndex, Person toEdit, AddressBook uneditedAddressBook,
+                                                 List<ReadOnlyPerson> displayList) {
+        try {
+            ReadOnlyPerson targetPerson = displayList.get(targetIndex - TextUi.DISPLAYED_INDEX_OFFSET);
+            uneditedAddressBook.editPerson(1, targetPerson, toEdit);
+            assertEquals(uneditedAddressBook, editedAddressBook);
+        } catch (UniquePersonList.PersonNotFoundException pnef) {
+        }
     }
 
 //    /**

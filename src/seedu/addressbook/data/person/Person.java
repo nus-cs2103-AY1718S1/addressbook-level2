@@ -84,4 +84,9 @@ public class Person implements ReadOnlyPerson {
         return getAsTextShowAll();
     }
 
+    @Override
+    public int compareTo(Person anotherPerson) {
+        return this.getName().toString()
+                .compareToIgnoreCase(anotherPerson.getName().toString());
+    }
 }

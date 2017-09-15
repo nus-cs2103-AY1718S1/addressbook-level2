@@ -23,6 +23,7 @@ import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.personToAdd;
 
 /**
  * Parses user input.
@@ -30,9 +31,14 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Parser {
 
     public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    //^^^ .(any character) + (one or more times)
+    //^^^ (?<name>X) X as a named capturing group
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+            //^^^ \\S (non-whitespace character) + (one or more times)
+            //^^^ \\s+ (whitespace character one or more) \\S (non-whitespace+) * (0 or more times)
+            //^^^ only the first word is accessible via <keywords>, the rest are not captured
 
     public static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
@@ -77,6 +83,7 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
+/*            return prepareAdd();*/
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -111,7 +118,7 @@ public class Parser {
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareAdd(String args) {
+/*    private Command prepareAdd(String args) {
         final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
         if (!matcher.matches()) {
@@ -131,6 +138,38 @@ public class Parser {
                     isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
 
                     getTagsFromArgs(matcher.group("tagArguments"))
+            );
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
+    }*/
+
+    /*
+    *   Creates a new 'personToAdd' object labelled 'newguy'
+    *   The constructor of 'personToAdd' will prompt the user for input
+    *   and initialize it as the attributes of newguy.
+    *   These attributes are then extracted by its getter methods and passed into AddCommand
+     */
+    private Command prepareAdd(String args) {
+        if (!args.isEmpty()) {
+            System.out.println("Did you mean 'add'?");
+            System.out.println("Extra arguments discarded");
+        }
+        personToAdd newguy = new personToAdd();
+        try {
+            return new AddCommand(
+                    newguy.getName(),
+
+                    newguy.getPhone(),
+                    newguy.getPhonePrivacy(),
+
+                    newguy.getEmail(),
+                    newguy.getEmailPrivacy(),
+
+                    newguy.getAddress(),
+                    newguy.getAddressPrivacy(),
+
+                    newguy.getTags()
             );
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());

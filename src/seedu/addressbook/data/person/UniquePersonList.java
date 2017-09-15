@@ -65,6 +65,22 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.addAll(persons);
     }
 
+    public void sortPhone(){
+        for (int i=0; i< internalList.size(); i++) {
+            for (int j = 0; j < internalList.size() - 1; j++) {
+                int num1 = Integer.parseInt(internalList.get(j).getPhone().value);
+                int num2 = Integer.parseInt(internalList.get(j + 1).getPhone().value);
+                if (num1 > num2) {
+                //    ALL_PERSONS.set(j, smallerNumber);
+                //    ALL_PERSONS.set(j + 1, biggerNumber);
+                    Person bigPerson = new Person(internalList.get(j));
+                    internalList.set(j, internalList.get(j+1));
+                    internalList.set(j+1,bigPerson);
+                }
+            }
+        }
+    }
+
     /**
      * Constructs a shallow copy of the list.
      */

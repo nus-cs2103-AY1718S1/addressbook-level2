@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlValue;
 
 import seedu.addressbook.common.Utils;
+import seedu.addressbook.data.affiliation.Affiliation;
+import seedu.addressbook.data.affiliation.UniqueAffiliationList;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
@@ -100,6 +102,7 @@ public class AdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Affiliation> personAffiliations = new ArrayList<>();
         for (AdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
@@ -108,6 +111,7 @@ public class AdaptedPerson {
         final Email email = new Email(this.email.value, this.email.isPrivate);
         final Address address = new Address(this.address.value, this.address.isPrivate);
         final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Person(name, phone, email, address, tags);
+        final UniqueAffiliationList affiliations = new UniqueAffiliationList(personAffiliations);
+        return new Person(name, phone, email, address, tags, affiliations);
     }
 }

@@ -1,5 +1,7 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.affiliation.Affiliation;
+import seedu.addressbook.data.affiliation.UniqueAffiliationList;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -19,6 +21,12 @@ public interface ReadOnlyPerson {
      * changes on the returned list will not affect the person's internal tags.
      */
     UniqueTagList getTags();
+
+    /**
+     * Returns a new AffiliationList that is a deep copy of the internal AffiliationList,
+     * changes on the returned list will not affect the person's internal affiliations.
+     */
+    UniqueAffiliationList getAffiliations();
 
     /**
      * Returns true if both persons have the same identity fields (name and telephone).
@@ -41,7 +49,8 @@ public interface ReadOnlyPerson {
                     && other.getPhone().equals(this.getPhone())
                     && other.getEmail().equals(this.getEmail())
                     && other.getAddress().equals(this.getAddress())
-                    && other.getTags().equals(this.getTags()));
+                    && other.getTags().equals(this.getTags()))
+                    && other.getAffiliations().equals(this.getAffiliations());
     }
 
     /**
@@ -70,6 +79,11 @@ public interface ReadOnlyPerson {
         for (Tag tag : getTags()) {
             builder.append(tag);
         }
+        builder
+                .append(" Affiliations:");
+        for(Affiliation affiliation : getAffiliations()) {
+            builder.append(affiliation);
+        }
         return builder.toString();
     }
 
@@ -91,6 +105,10 @@ public interface ReadOnlyPerson {
         builder.append(" Tags: ");
         for (Tag tag : getTags()) {
             builder.append(tag);
+        }
+        builder.append(" Affiliations:");
+        for(Affiliation affiliation : getAffiliations()) {
+            builder.append(affiliation);
         }
         return builder.toString();
     }

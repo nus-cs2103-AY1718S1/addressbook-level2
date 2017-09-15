@@ -3,6 +3,8 @@ package seedu.addressbook.commands;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.addressbook.data.affiliation.Affiliation;
+import seedu.addressbook.data.affiliation.UniqueAffiliationList;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
@@ -23,9 +25,9 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Contact details can be marked private by prepending 'p' to the prefix.\n"
-            + "Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...\n"
+            + "Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG] [f/AFFILIATIONS]...\n"
             + "Example: " + COMMAND_WORD
-            + " John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
+            + " John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney f/NUS f/Google";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
@@ -41,17 +43,23 @@ public class AddCommand extends Command {
                       String phone, boolean isPhonePrivate,
                       String email, boolean isEmailPrivate,
                       String address, boolean isAddressPrivate,
-                      Set<String> tags) throws IllegalValueException {
+                      Set<String> tags,
+                      Set<String> affiliations) throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
+        final Set<Affiliation> affiliationSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
+        }
+        for (String affiliationName : affiliations) {
+            affiliationSet.add(new Affiliation(affiliationName));
         }
         this.toAdd = new Person(
                 new Name(name),
                 new Phone(phone, isPhonePrivate),
                 new Email(email, isEmailPrivate),
                 new Address(address, isAddressPrivate),
-                new UniqueTagList(tagSet)
+                new UniqueTagList(tagSet),
+                new UniqueAffiliationList(affiliationSet)
         );
     }
 

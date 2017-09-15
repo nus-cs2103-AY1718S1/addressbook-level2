@@ -1,6 +1,8 @@
 package seedu.addressbook.storage.jaxb;
 
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.affiliation.Affiliation;
+import seedu.addressbook.data.affiliation.UniqueAffiliationList;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
@@ -76,12 +78,13 @@ public class AdaptedAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         final List<Tag> tagList = new ArrayList<>();
         final List<Person> personList = new ArrayList<>();
+        final List<Affiliation> affiliationList = new ArrayList<>();
         for (AdaptedTag tag : tags) {
             tagList.add(tag.toModelType());
         }
         for (AdaptedPerson person : persons) {
             personList.add(person.toModelType());
         }
-        return new AddressBook(new UniquePersonList(personList), new UniqueTagList(tagList));
+        return new AddressBook(new UniquePersonList(personList), new UniqueTagList(tagList), new UniqueAffiliationList(affiliationList));
     }
 }

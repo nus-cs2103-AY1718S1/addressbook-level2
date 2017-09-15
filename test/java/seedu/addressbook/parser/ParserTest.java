@@ -23,6 +23,8 @@ import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.data.affiliation.Affiliation;
+import seedu.addressbook.data.affiliation.UniqueAffiliationList;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
@@ -276,7 +278,8 @@ public class ParserTest {
                 new Phone(Phone.EXAMPLE, true),
                 new Email(Email.EXAMPLE, false),
                 new Address(Address.EXAMPLE, true),
-                new UniqueTagList(new Tag("tag1"), new Tag("tag2"), new Tag("tag3"))
+                new UniqueTagList(new Tag("tag1"), new Tag("tag2"), new Tag("tag3")),
+                new UniqueAffiliationList()
             );
         } catch (IllegalValueException ive) {
             throw new RuntimeException("test person data should be valid by definition");

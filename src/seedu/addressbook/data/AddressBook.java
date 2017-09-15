@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.addressbook.data.affiliation.Affiliation;
+import seedu.addressbook.data.affiliation.UniqueAffiliationList;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
@@ -24,6 +26,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private final UniqueAffiliationList allAffiliations;
 
     /**
      * Creates an empty address book.
@@ -31,6 +34,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        allAffiliations = new UniqueAffiliationList();
     }
 
     /**
@@ -40,9 +44,10 @@ public class AddressBook {
      * @param persons external changes to this will not affect this address book
      * @param tags external changes to this will not affect this address book
      */
-    public AddressBook(UniquePersonList persons, UniqueTagList tags) {
+    public AddressBook(UniquePersonList persons, UniqueTagList tags, UniqueAffiliationList affiliations) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        this.allAffiliations = new UniqueAffiliationList(affiliations);
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -72,6 +77,29 @@ public class AddressBook {
     }
 
     /**
+     * Ensures that every affiliation in this person:
+     *  - exists in the master list {@link #allAffiliations}
+     *  - points to an Affiliation object in the master list
+     */
+    private void syncAffiliationsWithMasterList(Person person) {
+        final UniqueAffiliationList affiliationTags = person.getAffiliations();
+        allAffiliations.mergeFrom(affiliationTags);
+
+        // Create map with values = tag object references in the master list
+        final Map<Affiliation, Affiliation> masterAffiliationObjects = new HashMap<>();
+        for (Affiliation affiliation : allAffiliations) {
+            masterAffiliationObjects.put(affiliation, affiliation);
+        }
+
+        // Rebuild the list of person tags using references from the master list
+        final Set<Affiliation> commonAffiliationRef = new HashSet<>();
+        for (Affiliation affiliation : affiliationTags) {
+            commonAffiliationRef.add(masterAffiliationObjects.get(affiliation));
+        }
+        person.setAffiliations(new UniqueAffiliationList(commonAffiliationRef));
+    }
+
+    /**
      * Adds a person to the address book.
      * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
      * and updates the Tag objects in the person to point to those in {@link #allTags}.
@@ -81,6 +109,7 @@ public class AddressBook {
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
         syncTagsWithMasterList(toAdd);
+        syncAffiliationsWithMasterList(toAdd);
     }
 
     /**
@@ -105,6 +134,7 @@ public class AddressBook {
     public void clear() {
         allPersons.clear();
         allTags.clear();
+        allAffiliations.clear();
     }
 
     /**
@@ -121,11 +151,19 @@ public class AddressBook {
         return new UniqueTagList(allTags);
     }
 
+    /**
+     * Returns a new UniqueAffiliationList of all tags in the address book at the time of the call.
+     */
+    public UniqueAffiliationList getAllAffiliations() {
+        return new UniqueAffiliationList(allAffiliations);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                         && this.allPersons.equals(((AddressBook) other).allPersons)
-                        && this.allTags.equals(((AddressBook) other).allTags));
+                        && this.allTags.equals(((AddressBook) other).allTags))
+                        && this.allAffiliations.equals(((AddressBook) other).allAffiliations);
     }
 }

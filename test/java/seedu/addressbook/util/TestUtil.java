@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.affiliation.UniqueAffiliationList;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
@@ -27,6 +28,8 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.affiliation.Affiliation;
+import seedu.addressbook.data.affiliation.UniqueAffiliationList;
 
 public class TestUtil {
     /**
@@ -64,7 +67,7 @@ public class TestUtil {
      * of Persons and Tags. The Persons and Tags are not cloned.
      */
     public static AddressBook clone(AddressBook addressBook) {
-        return new AddressBook(addressBook.getAllPersons(), addressBook.getAllTags());
+        return new AddressBook(addressBook.getAllPersons(), addressBook.getAllTags(), addressBook.getAllAffiliations());
     }
 
     /**
@@ -111,7 +114,7 @@ public class TestUtil {
     public static Person generateTestPerson() {
         try {
             return new Person(new Name(Name.EXAMPLE), new Phone(Phone.EXAMPLE, false),
-                    new Email(Email.EXAMPLE, true), new Address(Address.EXAMPLE, false), new UniqueTagList());
+                    new Email(Email.EXAMPLE, true), new Address(Address.EXAMPLE, false), new UniqueTagList(), new UniqueAffiliationList());
         } catch (IllegalValueException e) {
             fail("test person data should be valid by definition");
             return null;

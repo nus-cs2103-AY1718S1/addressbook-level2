@@ -1,5 +1,7 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.affiliation.Affiliation;
+import seedu.addressbook.data.affiliation.UniqueAffiliationList;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 import java.util.Objects;
@@ -16,22 +18,25 @@ public class Person implements ReadOnlyPerson {
     private Address address;
 
     private final UniqueTagList tags;
+    private final UniqueAffiliationList affiliations;
+
     /**
      * Assumption: Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags, UniqueAffiliationList affiliations) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.affiliations = new UniqueAffiliationList(affiliations);
     }
 
     /**
      * Copy constructor.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags(), source.getAffiliations());
     }
 
     @Override
@@ -59,11 +64,18 @@ public class Person implements ReadOnlyPerson {
         return new UniqueTagList(tags);
     }
 
+    @Override
+    public UniqueAffiliationList getAffiliations() { return new UniqueAffiliationList(affiliations); }
+
     /**
      * Replaces this person's tags with the tags in the argument tag list.
      */
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);
+    }
+
+    public void setAffiliations(UniqueAffiliationList replacement) {
+        affiliations.setAffiliations(replacement);
     }
 
     @Override

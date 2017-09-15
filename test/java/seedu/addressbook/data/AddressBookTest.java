@@ -11,6 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import seedu.addressbook.data.affiliation.Affiliation;
+import seedu.addressbook.data.affiliation.UniqueAffiliationList;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -28,6 +30,11 @@ public class AddressBookTest {
     private Tag tagMathematician;
     private Tag tagEconomist;
 
+    private Affiliation affiliationNUS;
+    private Affiliation affiliationGoogle;
+    private Affiliation affiliationIBM;
+    private Affiliation affiliationCMU;
+
     private Person aliceBetsy;
     private Person bobChaplin;
     private Person charlieDouglas;
@@ -44,33 +51,43 @@ public class AddressBookTest {
         tagMathematician = new Tag("mathematician");
         tagEconomist     = new Tag("economist");
 
+        affiliationNUS = new Affiliation("National University of Singapore");
+        affiliationGoogle = new Affiliation("Google");
+        affiliationIBM = new Affiliation("IBM");
+        affiliationCMU = new Affiliation("Carnegie Melon University");
+
         aliceBetsy     = new Person(new Name("Alice Betsy"),
                                     new Phone("91235468", false),
                                     new Email("alice@nushackers.org", false),
                                     new Address("8 Computing Drive, Singapore", false),
-                                    new UniqueTagList(tagMathematician));
+                                    new UniqueTagList(tagMathematician),
+                                    new UniqueAffiliationList(affiliationNUS, affiliationGoogle));
 
         bobChaplin     = new Person(new Name("Bob Chaplin"),
                                     new Phone("94321500", false),
                                     new Email("bob@nusgreyhats.org", false),
                                     new Address("9 Computing Drive", false),
-                                    new UniqueTagList(tagMathematician));
+                                    new UniqueTagList(tagMathematician),
+                                    new UniqueAffiliationList(affiliationCMU));
 
         charlieDouglas = new Person(new Name("Charlie Douglas"),
                                     new Phone("98751365", false),
                                     new Email("charlie@nusgdg.org", false),
                                     new Address("10 Science Drive", false),
-                                    new UniqueTagList(tagScientist));
+                                    new UniqueTagList(tagScientist),
+                                    new UniqueAffiliationList(affiliationNUS));
 
         davidElliot    = new Person(new Name("David Elliot"),
                                     new Phone("84512575", false),
                                     new Email("douglas@nuscomputing.com", false),
                                     new Address("11 Arts Link", false),
-                                    new UniqueTagList(tagEconomist, tagPrizeWinner));
+                                    new UniqueTagList(tagEconomist, tagPrizeWinner),
+                                    new UniqueAffiliationList(affiliationIBM, affiliationCMU));
 
         emptyAddressBook = new AddressBook();
         defaultAddressBook = new AddressBook(new UniquePersonList(aliceBetsy, bobChaplin),
-                                             new UniqueTagList(tagMathematician, tagScientist));
+                                             new UniqueTagList(tagMathematician, tagScientist),
+                                             new UniqueAffiliationList(affiliationGoogle, affiliationCMU));
     }
 
     @Rule

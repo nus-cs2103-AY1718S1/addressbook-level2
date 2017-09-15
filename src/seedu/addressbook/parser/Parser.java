@@ -39,7 +39,8 @@ public class Parser {
                     + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
-                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+                    + "(?<tagArguments>(?: t/[^/]+)*)" // variable number of tags
+                    + "(?<affiliationArguments>(?: f/[^/]+)*)"); // variable number of affiliations
 
 
     /**
@@ -130,7 +131,9 @@ public class Parser {
                     matcher.group("address"),
                     isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
 
-                    getTagsFromArgs(matcher.group("tagArguments"))
+                    getTagsFromArgs(matcher.group("tagArguments")),
+
+                    getAffiliationsFromArgs(matcher.group("affiliationArguments"))
             );
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
@@ -156,6 +159,21 @@ public class Parser {
         // replace first delimiter prefix, then split
         final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" t/", "").split(" t/"));
         return new HashSet<>(tagStrings);
+    }
+
+    /**
+     * Extracts the new person's affiliations from the add command's tag arguments string.
+     * Merges duplicate affiliation strings.
+     */
+
+    private static Set<String> getAffiliationsFromArgs(String affiliationArguments) throws IllegalValueException {
+        // no affiliations
+        if (affiliationArguments.isEmpty()) {
+            return Collections.emptySet();
+        }
+        // replace first delimiter prefix, then split
+        final Collection<String> affiliationStrings = Arrays.asList(affiliationArguments.replaceFirst(" f/", "").split(" f/"));
+        return new HashSet<>(affiliationStrings);
     }
 
 

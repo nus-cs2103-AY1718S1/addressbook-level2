@@ -20,7 +20,7 @@ public class Phone {
      *
      * @throws IllegalValueException if given phone string is invalid.
      */
-    public Phone(String phone, boolean iasPrivte) throws IllegalValueException {
+    public Phone(String phone, boolean isPrivate) throws IllegalValueException {
         checkAndSetPhone(phone);
         this.isPrivate = isPrivate;
     }

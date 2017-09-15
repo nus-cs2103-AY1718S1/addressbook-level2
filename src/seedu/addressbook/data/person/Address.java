@@ -14,7 +14,7 @@ public class Address {
 
     public final String value;
 
-    private Block block = new Block(0);
+    private Block block = new Block("");
     private Street street = new Street("");
     private Unit unit = new Unit("");
     private Postal postal = new Postal("");
@@ -33,11 +33,20 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         String[] splitAddress = trimmedAddress.split(",");
-
-        block.setBlock(splitAddress[0].trim());
-        street.setStreet(splitAddress[1].trim());
-        unit.setUnitNum(splitAddress[2].trim());
-        postal.setPostalNum(splitAddress[3].trim());
+        for(int i=0;i<splitAddress.length;i++) {
+            if(i==0) {
+                block.setBlock(splitAddress[i]);
+            }
+            else if(i==1) {
+                street.setStreet(splitAddress[i]);
+            }
+            else if(i==2) {
+                unit.setUnitNum(splitAddress[i]);
+            }
+            else if(i==3) {
+                postal.setPostalNum(splitAddress[i]);
+            }
+        }
 
         this.value = trimmedAddress;
     }

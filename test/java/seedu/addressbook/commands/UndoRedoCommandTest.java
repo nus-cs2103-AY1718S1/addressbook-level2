@@ -99,12 +99,28 @@ public class UndoRedoCommandTest {
     public void assertUndoTillEmpty() {
         TypicalHistory typicalHistory = new TypicalHistory();
         ApplicationHistory applicationHistory = typicalHistory.typicalHistory;
+        
         try {
-            while (!applicationHistory.isEmptyHistory()) {
+            Field maxSizeField = applicationHistory.getClass().getDeclaredField("MAX_HISTORY_SIZE");
+            maxSizeField.setAccessible(true);
+            int maxSize = (int) maxSizeField.get(applicationHistory);
+
+            for (int i = 0; i <= maxSize; i++) {
                 applicationHistory.popHistory();
             }
+            assert false : "application history did not deplete.";
+            
+        } catch (NoSuchFieldException nsfe) {
+            nsfe.printStackTrace();
+            assert false : "No MAX_HISTORY_SIZE exists in application history";
+            
+        } catch (IllegalAccessException iae) {
+            iae.printStackTrace();
+            assert false : "Unable to access MAX_HISTORY_SIZE";
+
         } catch (EmptyHistoryException ehe) {
             assertTrue(applicationHistory.isEmptyHistory());
+            
         }
     }
     
@@ -113,11 +129,31 @@ public class UndoRedoCommandTest {
         TypicalHistory typicalHistory = new TypicalHistory();
         ApplicationHistory applicationHistory = typicalHistory.typicalHistory;
         try {
-            while (!applicationHistory.isEmptyRedoHistory()) {
+            Field maxSizeField = applicationHistory.getClass().getDeclaredField("MAX_HISTORY_SIZE");
+            maxSizeField.setAccessible(true);
+            int maxSize = (int) maxSizeField.get(applicationHistory);
+
+            // load using undo stack
+            while (!applicationHistory.isEmptyHistory()) {
+                applicationHistory.pushRedoHistory(applicationHistory.popHistory());
+            }
+            
+            for (int i = 0; i <= maxSize; i++) {
                 applicationHistory.popRedoHistory();
             }
+            assert false : "application history did not deplete.";
+            
+        } catch (NoSuchFieldException nsfe) {
+            nsfe.printStackTrace();
+            assert false : "No MAX_HISTORY_SIZE exists in application history";
+            
+        } catch (IllegalAccessException iae) {
+            iae.printStackTrace();
+            assert false : "Unable to access MAX_HISTORY_SIZE";
+            
         } catch (EmptyHistoryException ehe) {
             assertTrue(applicationHistory.isEmptyRedoHistory());
+            
         }
     }
     

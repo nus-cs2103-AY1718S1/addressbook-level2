@@ -7,7 +7,11 @@ import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+
 
 /**
  * Sortable superclass for implementing sort functionality for commands of listable type.

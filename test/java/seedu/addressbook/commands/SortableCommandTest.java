@@ -21,7 +21,9 @@ public class SortableCommandTest {
     private SortableCommand sortableCommand;
     
     @Before
-    public void setUp() { sortableCommand = new SortableCommand(null); }
+    public void setUp() { 
+        sortableCommand = new SortableCommand(null);
+    }
     
     @Test
     public void testIsValidSortArgument() {

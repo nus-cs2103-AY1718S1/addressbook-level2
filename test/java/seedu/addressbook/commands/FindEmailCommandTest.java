@@ -23,20 +23,13 @@ public class FindEmailCommandTest {
     @Test
     public void execute() throws IllegalValueException {
         //same word, same case: matched
-        assertFindEmailCommandBehavior(new String[]{"Amy"}, Arrays.asList(td.amy));
+        assertFindEmailCommandBehavior(new String[]{"ab@gmail.com"}, Arrays.asList(td.amy));
 
         //same word, different case: not matched
-        assertFindEmailCommandBehavior(new String[]{"aMy"}, Collections.emptyList());
+        assertFindEmailCommandBehavior(new String[]{"AB@gmail.com"}, Collections.emptyList());
 
         //partial word: not matched
-        assertFindEmailCommandBehavior(new String[]{"my"}, Collections.emptyList());
-
-        //multiple words: matched
-        assertFindEmailCommandBehavior(new String[]{"Amy", "Bill", "Candy", "Destiny"},
-                Arrays.asList(td.amy, td.bill, td.candy));
-
-        //repeated keywords: matched
-        assertFindEmailCommandBehavior(new String[]{"Amy", "Amy"}, Arrays.asList(td.amy));
+        assertFindEmailCommandBehavior(new String[]{"ab@gmail"}, Collections.emptyList());
 
         //Keyword matching a word in address: not matched
         assertFindEmailCommandBehavior(new String[]{"Clementi"}, Collections.emptyList());

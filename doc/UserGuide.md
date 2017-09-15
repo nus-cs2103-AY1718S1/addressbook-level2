@@ -34,7 +34,7 @@ Format: `help`
 > Help is also shown if you enter an incorrect command e.g. `abcd`
  
 ### Adding a person: `add`
-Adds a person to the address book<br>
+Adds a person to the address book and lists the Addressbook<br>
 Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...` 
  
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
@@ -67,7 +67,7 @@ Examples:
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
 ### Deleting a person : `delete`
-Deletes the specified person from the address book. Irreversible.<br>
+Deletes the specified person from the address book. Irreversible. Lists the Addressbook afterward.<br>
 Format: `delete INDEX`
 
 > Deletes the person at the specified `INDEX`. 

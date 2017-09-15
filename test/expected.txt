@@ -12,6 +12,10 @@
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
+|| tag: Adds the specified keywords as tags to the profile of the person with the given index number. Make sure you have used the list command at least
+|| once already in your session to check which index you're editing!
+|| Parameters: INDEX [TAGS]...
+|| Example: tag 1 t/best friend
 || Clears address book permanently.
 || Example: clear
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.

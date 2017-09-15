@@ -100,6 +100,15 @@ public class AddressBook {
     }
 
     /**
+     * Adds the given tags to the profile of the equivalent person.
+     *
+     * @throws PersonNotFoundException if no such Person could be found.
+     */
+    public void addTags(ReadOnlyPerson target, UniqueTagList tags) throws PersonNotFoundException {
+        allPersons.addTags(target, tags);
+    }
+
+    /**
      * Clears all persons and tags from the address book.
      */
     public void clear() {

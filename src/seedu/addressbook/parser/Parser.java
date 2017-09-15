@@ -20,6 +20,7 @@ import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
+import seedu.addressbook.commands.TagCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
@@ -39,6 +40,10 @@ public class Parser {
                     + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
+                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+
+    public static final Pattern PERSON_ID_TAGS_FORMAT =
+            Pattern.compile("(?<id>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
 
@@ -80,6 +85,9 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
+
+        case TagCommand.COMMAND_WORD:
+            return prepareTag(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -156,6 +164,34 @@ public class Parser {
         // replace first delimiter prefix, then split
         final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" t/", "").split(" t/"));
         return new HashSet<>(tagStrings);
+    }
+
+    /**
+     * Parses arguments in the context of the tag person command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareTag(String args) {
+        //initialise matcher with pattern
+        final Matcher matcher = PERSON_ID_TAGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    TagCommand.MESSAGE_USAGE));
+        }
+
+        //use matcher to extract data from input
+        try {
+            return new TagCommand(
+                    Integer.parseInt( matcher.group("id") ),
+                    getTagsFromArgs(matcher.group("tagArguments")));
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
+
+        //return new IncorrectCommand("tag function not defined!");
     }
 
 

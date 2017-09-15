@@ -66,6 +66,18 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Adding tags to an existing person's profile `tag`
+Adds the keywords to the profile of the person with the given index as tags.<br>
+Format: `tag ID [t/TAGS]`
+
+> Tags must be alphanumeric - only one word answers!
+
+Examples:
+* `tag 1 t/friend`<br>
+  Adds the tag 'friend' to the person with index 1
+* `tag 5 t/enemy t/programmer t/student`<br>
+  Adds the tags 'enemy', 'programmer' and 'student' to the person with index 5
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`

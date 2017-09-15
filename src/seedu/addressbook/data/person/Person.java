@@ -62,8 +62,15 @@ public class Person implements ReadOnlyPerson {
     /**
      * Replaces this person's tags with the tags in the argument tag list.
      */
-    public void setTags(UniqueTagList replacement) {
-        tags.setTags(replacement);
+    public void setTags(UniqueTagList replacementTags) {
+        tags.setTags(replacementTags);
+    }
+
+    /**
+     * Adds the tags in the argument tag list to this person's tags.
+     */
+    public void addTags(UniqueTagList additionalTags) {
+        tags.mergeFrom(additionalTags);
     }
 
     @Override

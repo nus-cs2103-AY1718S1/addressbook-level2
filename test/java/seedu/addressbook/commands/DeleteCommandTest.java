@@ -65,7 +65,7 @@ public class DeleteCommandTest {
     public void execute_targetPersonNotInAddressBook_returnsPersonNotFoundMessage()
             throws IllegalValueException {
         Person notInAddressBookPerson = new Person(new Name("Not In Book"), new Phone("63331444", false),
-                new Email("notin@book.com", false), new Address("156D Grant Road", false), new UniqueTagList());
+                new Email("notin@book.com", false), new Address("156, Grant Road, #01-01, 123456", false), new UniqueTagList());
         List<ReadOnlyPerson> listWithPersonNotInAddressBook = TestUtil.createList(notInAddressBookPerson);
 
         assertDeletionFailsDueToNoSuchPerson(1, addressBook, listWithPersonNotInAddressBook);

@@ -24,11 +24,16 @@ public class SortCommand extends Command {
         _argument = argument;
     }
 
+    public SortCommand(String argument, List<Person> lst){
+        _argument = argument;
+        friendsList = lst;
+    }
 
+    private List<Person> friendsList;
 
     //following methods returns a sorted list of persons according to the type
-    public List<Person> sort(String field){
-        List<Person> totalList = addressBook.getAllPersons().getInternalList();
+    public List<Person> sort(String field, List<Person> totalList){
+        //List<Person> totalList = addressBook.getAllPersons().getInternalList();
 
         for (int i = 1; i < totalList.size(); i++){ //bubblesort
             for (int k = 0; k < totalList.size() - i; k++){
@@ -46,46 +51,30 @@ public class SortCommand extends Command {
 
     }
 
-    private String sortBy(Person dude, String sortField){
+
+    private String sortBy(Person newPerson, String sortField){
         switch(sortField){
             case NAME:
-                return dude.getName().toString();
+                return newPerson.getName().toString();
             case PHONE:
-                return dude.getPhone().toString();
+                return newPerson.getPhone().toString();
             case EMAIL:
-                return dude.getEmail().toString();
+                return newPerson.getEmail().toString();
             case ADDRESS:
-                return dude.getAddress().toString();
+                return newPerson.getAddress().toString();
             default:
-                return dude.getName().toString();
+                return newPerson.getName().toString();
         }
     }
 
 
     @Override
     public CommandResult execute() {
-        List<Person> allPersons = this.sort(_argument);
+        List<Person> allPersons = this.sort(_argument, addressBook.getAllPersons().getInternalList());
         return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
     }
 
 
-
-    public static List<Integer> suyashSort(ArrayList<Integer> totalList){
-
-        for (int i = 1; i < totalList.size(); i++){ //bubblesort
-            for (int k = 0; k < totalList.size() - i; k++){
-                if (totalList.get(k).compareTo(totalList.get(k+1)) > 0){
-                    Integer temp = totalList.get(k); //swap operation
-                    totalList.set(k, totalList.get(k+1));
-                    totalList.set(k+1, temp);
-                }
-            }
-        }
-        for (Integer i : totalList) {
-            System.out.println(i);
-        }
-        return totalList;
-    }
 
 }
 

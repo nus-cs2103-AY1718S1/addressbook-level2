@@ -53,6 +53,13 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
+### Listing sorted list of persons : `sortlist`
+Shows a list of all persons in the address book sorted according to the sort criteria specified.<br>
+Format: `sortlist criteria`
+Example:
+* `sortlist name` <br>
+    Returns `Jack Doe, Jane Doe, John Doe` from list containing those names sorted in lexicographical order
+
 ### Finding all persons containing any keyword in their name: `find`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`

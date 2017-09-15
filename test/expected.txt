@@ -19,6 +19,9 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| sortlist: Takes in the variable to sort Persons according to that variable and outputs the list
+|| Parameter: Variable: name/phone/email
+|| Example: sortlist name
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1

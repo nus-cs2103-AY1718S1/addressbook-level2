@@ -58,11 +58,12 @@ public class FindCommand extends Command {
     }
 
     private Collection<String> lowerCased(Set<String> set) {
+        HashSet<String> clone = new HashSet<>();
         for(String s : set) {
-            s = s.toLowerCase();
+            clone.add(s.toLowerCase());
         }
 
-        return set;
+        return clone;
     }
 
 

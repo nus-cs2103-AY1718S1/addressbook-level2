@@ -14,6 +14,10 @@ public class Email {
     public static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
 
     public final String value;
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private Postal postalCode;
     private boolean isPrivate;
 
     /**
@@ -27,6 +31,7 @@ public class Email {
         if (!isValidEmail(trimmedEmail)) {
             throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
         }
+
         this.value = trimmedEmail;
     }
 

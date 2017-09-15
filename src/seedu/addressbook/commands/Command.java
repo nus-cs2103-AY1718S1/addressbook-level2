@@ -71,4 +71,5 @@ public class Command {
     public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
     }
+
 }

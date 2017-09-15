@@ -81,6 +81,15 @@ Examples:
   `delete 1`<br>
   Deletes the 1st person in the results of the `find` command.
 
+### Sorting address book: `sort`
+Reorganizes all entries in the address book in alphabetical order. <br>
+Format: `sort`
+
+> Sort will acknowledge completion.
+  However, it will not display the new list to reduce clutter.
+  To view, type 'list' again.
+
+
 ### View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>
 Format: `view INDEX`

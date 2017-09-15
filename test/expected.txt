@@ -22,6 +22,9 @@
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
+|| sort: a person by different fields 
+||  Parameters: name, phone, email, or address (choose one only!)
+|| Example: sort address
 || viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1

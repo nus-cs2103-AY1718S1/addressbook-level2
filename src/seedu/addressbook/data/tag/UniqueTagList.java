@@ -73,6 +73,20 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
+     * Returns the size of the tags in list.
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
+     * Returns the name of the tags in the list as a list of strings.
+     */
+    public List<String> UniqueTagName(int index) {
+        return internalList.get(index).getWordsInTag();
+    }
+
+    /**
      * Returns a new Set that is a deep copy of all tags in this list.
      * This set is mutable and change-insulated against the internal list.
      */
@@ -137,5 +151,4 @@ public class UniqueTagList implements Iterable<Tag> {
                 || (other instanceof UniqueTagList // instanceof handles nulls
                         && this.internalList.equals(((UniqueTagList) other).internalList));
     }
-
 }

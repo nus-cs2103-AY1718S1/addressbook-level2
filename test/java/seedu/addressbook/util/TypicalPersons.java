@@ -15,7 +15,7 @@ import seedu.addressbook.data.tag.UniqueTagList;
  */
 public class TypicalPersons {
 
-    public Person amy, bill, candy, dan;
+    public Person amy, bill, candy, dan, eric;
 
     public TypicalPersons() {
         try {
@@ -27,6 +27,8 @@ public class TypicalPersons {
                     new Email("cd@gmail.com", false), new Address("3 Clementi Road", true), new UniqueTagList());
             dan = new Person(new Name("Dan Smith"), new Phone("1234556", true), new Email("ss@tt.com", true),
                     new Address("NUS", true), new UniqueTagList(new Tag("Test")));
+            eric = new Person(new Name("Eric Smith"), new Phone("1238856", true), new Email("ee@tt.com", true),
+                    new Address("NUS", true), new UniqueTagList(new Tag("Homework")));
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
@@ -44,7 +46,7 @@ public class TypicalPersons {
     }
 
     public Person[] getTypicalPersons() {
-        return new Person[]{amy, bill, candy, dan};
+        return new Person[]{amy, bill, candy, dan, eric};
     }
 
     public AddressBook getTypicalAddressBook() {

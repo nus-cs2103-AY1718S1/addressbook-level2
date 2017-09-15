@@ -15,6 +15,8 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
+
+
     /**
      * Validates given address.
      *

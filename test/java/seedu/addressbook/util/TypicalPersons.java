@@ -16,13 +16,13 @@ public class TypicalPersons {
     public TypicalPersons() {
         try {
             amy = new Person(new Name("Amy Buck"), new Phone("91119111", false), new Email("ab@gmail.com", false),
-                    new Address("1 Clementi Road", false), new Birthday("09091898", false), new UniqueTagList());
+                    new Address("1 Clementi Road", false), new Birthday("1898-01-01", false), new UniqueTagList());
             bill = new Person(new Name("Bill Clint"), new Phone("92229222", false), new Email("bc@gmail.com", false),
-                    new Address("2 Clementi Road", true), new Birthday("03042010", true), new UniqueTagList());
+                    new Address("2 Clementi Road", true), new Birthday("1998-02-18", true), new UniqueTagList());
             candy = new Person(new Name("Candy Destiny"), new Phone("93339333", true),
-                    new Email("cd@gmail.com", false), new Address("3 Clementi Road", true), new Birthday("07071996", false), new UniqueTagList());
+                    new Email("cd@gmail.com", false), new Address("3 Clementi Road", true), new Birthday("1996-07-07", false), new UniqueTagList());
             dan = new Person(new Name("Dan Smith"), new Phone("1234556", true), new Email("ss@tt.com", true),
-                    new Address("NUS", true), new Birthday("08091998", false), new UniqueTagList(new Tag("Test")));
+                    new Address("NUS", true), new Birthday("1996-09-09", false), new UniqueTagList(new Tag("Test")));
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";

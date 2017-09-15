@@ -61,7 +61,7 @@ public class AddCommandTest {
 
     @Test
     public void addCommand_invalidBirthday_throwsException() {
-        final String[] invalidBirthday = { "", " ", "1234-5678", "[]\\[;]", "abc", "a123", "+651234" };
+        final String[] invalidBirthday = { "", " ", "1234-5678", "[]\\[;]", "abc", "a123", "09091979" };
         for (String birthday : invalidBirthday) {
             assertConstructingInvalidAddCmdThrowsException(Name.EXAMPLE, Phone.EXAMPLE, true, Email.EXAMPLE,
                     true, Address.EXAMPLE, true, birthday, true, EMPTY_STRING_LIST);
@@ -113,6 +113,8 @@ public class AddCommandTest {
         assertFalse(p.getEmail().isPrivate());
         assertEquals(Address.EXAMPLE, p.getAddress().value);
         assertTrue(p.getAddress().isPrivate());
+        assertEquals(Birthday.EXAMPLE, p.getBirthday().value);
+        assertTrue(p.getBirthday().isPrivate());
         boolean isTagListEmpty = !p.getTags().iterator().hasNext();
         assertTrue(isTagListEmpty);
     }

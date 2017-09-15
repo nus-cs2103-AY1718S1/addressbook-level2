@@ -49,28 +49,28 @@ public class AddressBookTest {
                                     new Phone("91235468", false),
                                     new Email("alice@nushackers.org", false),
                                     new Address("8 Computing Drive, Singapore", false),
-                                    new Birthday("01011993", false),
+                                    new Birthday("1993-01-01", false),
                                     new UniqueTagList(tagMathematician));
 
         bobChaplin     = new Person(new Name("Bob Chaplin"),
                                     new Phone("94321500", false),
                                     new Email("bob@nusgreyhats.org", false),
                                     new Address("9 Computing Drive", false),
-                                    new Birthday("15021991", false),
+                                    new Birthday("1991-02-15", false),
                                     new UniqueTagList(tagMathematician));
 
         charlieDouglas = new Person(new Name("Charlie Douglas"),
                                     new Phone("98751365", false),
                                     new Email("charlie@nusgdg.org", false),
                                     new Address("10 Science Drive", false),
-                                    new Birthday("16081968", false),
+                                    new Birthday("1968-08-16", false),
                                     new UniqueTagList(tagScientist));
 
         davidElliot    = new Person(new Name("David Elliot"),
                                     new Phone("84512575", false),
                                     new Email("douglas@nuscomputing.com", false),
                                     new Address("11 Arts Link", false),
-                                    new Birthday("09091992", false),
+                                    new Birthday("1948-09-02", false),
                                     new UniqueTagList(tagEconomist, tagPrizeWinner));
 
         emptyAddressBook = new AddressBook();

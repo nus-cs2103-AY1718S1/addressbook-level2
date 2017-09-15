@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -50,6 +50,8 @@
   list
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
+  add Fish Leong p/666666 e/adam@gmail.com a/666, zeta street
+  list
 
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
@@ -70,7 +72,7 @@
   view 6
   viewall -1
   viewall 0
-  viewall 6
+  viewall 7
 
   # should show all non private for both view and viewall
   view 1
@@ -92,25 +94,33 @@
 
   # should consider no keywords as invalid command format
   find
-  # should only match full words in person names
+  # should only match full words in person names/ public email
   find bet
+  find charlie.d@nus
   # does not match if none have keyword
   find 23912039120
+  find 123@email.com
   # matching should be case-sensitive
   find betsy
+  find CHarLie.d@nus.edu.sg
+  # does not match if email is private
+  find benchoo@nus.edu.sg
 
-  # find unique keyword
+  # find unique keyword/ public email
   find Betsy
+  find charlie.d@nus.edu.sg
   # find multiple with same keyword
   find Dickson
+  find adam@gmail.com
   # find multiple with some keywords
   find Charlie Betsy
+  find charlie.d@nus.edu.sg esther@not.a.real.potato
 
 ##########################################################
 # test delete person command
 ##########################################################
 
-# last active view: [1] betsy [2] charlie
+# last active view: [1] charlie [2] esther
 
   # should catch invalid args format
   delete

@@ -283,13 +283,13 @@
 || 
 || 3 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  delete 1]
-|| Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags:
+|| Enter command: || [Command entered:      delete 1]
+|| Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
-|| Enter command: || [Command entered:  sort]
+|| Enter command: || [Command entered:    sort]
 || Sort successful
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: || [Command entered:    list]
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 

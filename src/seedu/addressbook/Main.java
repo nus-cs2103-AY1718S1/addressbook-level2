@@ -1,5 +1,6 @@
 package seedu.addressbook;
 
+import java.nio.ReadOnlyBufferException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,8 @@ import seedu.addressbook.ui.TextUi;
 
 
 /**
- * Entry point of the Address Book application.
+ * Entry point of
+ * the Address Book application.
  * Initializes the application and starts the interaction with the user.
  */
 public class Main {
@@ -113,7 +115,7 @@ public class Main {
             return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
-            throw new RuntimeException(e);
+            throw new ReadOnlyBufferException();
         }
     }
 

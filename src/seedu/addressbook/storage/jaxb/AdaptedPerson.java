@@ -14,6 +14,7 @@ import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.Phone;
+import seedu.addressbook.data.person.Group;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
@@ -38,6 +39,8 @@ public class AdaptedPerson {
     private AdaptedContactDetail email;
     @XmlElement(required = true)
     private AdaptedContactDetail address;
+    @XmlElement(required = true)
+    private String group;
 
     @XmlElement
     private List<AdaptedTag> tagged = new ArrayList<>();
@@ -68,6 +71,8 @@ public class AdaptedPerson {
         address.isPrivate = source.getAddress().isPrivate();
         address.value = source.getAddress().value;
 
+        group = source.getGroup().groupName;
+
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new AdaptedTag(tag));
@@ -88,8 +93,8 @@ public class AdaptedPerson {
                 return true;
             }
         }
-        // second call only happens if phone/email/address are all not null
-        return Utils.isAnyNull(name, phone, email, address)
+        // second call only happens if phone/email/address/group are all not null
+        return Utils.isAnyNull(name, phone, email, address, group)
                 || Utils.isAnyNull(phone.value, email.value, address.value);
     }
 
@@ -107,7 +112,8 @@ public class AdaptedPerson {
         final Phone phone = new Phone(this.phone.value, this.phone.isPrivate);
         final Email email = new Email(this.email.value, this.email.isPrivate);
         final Address address = new Address(this.address.value, this.address.isPrivate);
+        final Group group = new Group(this.group);
         final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, group, tags);
     }
 }

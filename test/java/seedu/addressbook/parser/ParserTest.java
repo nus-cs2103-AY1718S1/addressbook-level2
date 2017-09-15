@@ -24,12 +24,7 @@ import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -209,13 +204,13 @@ public class ParserTest {
             "add ",
             "add wrong args format",
             // no phone prefix
-            String.format("add $s $s e/$s a/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
+            String.format("add $s $s e/$s a/$s g/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE, Group.EXAMPLE),
             // no email prefix
-            String.format("add $s p/$s $s a/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
+            String.format("add $s p/$s $s a/$s g/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE, Group.EXAMPLE),
             // no address prefix
-            String.format("add $s p/$s e/$s $s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE)
+            String.format("add $s p/$s e/$s $s g/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE, Group.EXAMPLE)
         };
-        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE, Group.EXAMPLE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
@@ -228,6 +223,7 @@ public class ParserTest {
         final String invalidEmailArg = "e/notAnEmail123";
         final String validEmailArg = "e/" + Email.EXAMPLE;
         final String invalidTagArg = "t/invalid_-[.tag";
+        final String validGroupArg = "g/" + Group.EXAMPLE;
 
         // address can be any string, so no invalid address
         final String addCommandFormatString = "add $s $s $s a/" + Address.EXAMPLE;
@@ -235,13 +231,13 @@ public class ParserTest {
         // test each incorrect person data field argument individually
         final String[] inputs = {
                 // invalid name
-                String.format(addCommandFormatString, invalidName, validPhoneArg, validEmailArg),
+                String.format(addCommandFormatString, invalidName, validPhoneArg, validEmailArg, validGroupArg),
                 // invalid phone
-                String.format(addCommandFormatString, validName, invalidPhoneArg, validEmailArg),
+                String.format(addCommandFormatString, validName, invalidPhoneArg, validEmailArg, validGroupArg),
                 // invalid email
-                String.format(addCommandFormatString, validName, validPhoneArg, invalidEmailArg),
+                String.format(addCommandFormatString, validName, validPhoneArg, invalidEmailArg, validGroupArg),
                 // invalid tag
-                String.format(addCommandFormatString, validName, validPhoneArg, validEmailArg) + " " + invalidTagArg
+                String.format(addCommandFormatString, validName, validPhoneArg, validEmailArg, validGroupArg) + " " + invalidTagArg
         };
         for (String input : inputs) {
             parseAndAssertCommandType(input, IncorrectCommand.class);
@@ -276,6 +272,7 @@ public class ParserTest {
                 new Phone(Phone.EXAMPLE, true),
                 new Email(Email.EXAMPLE, false),
                 new Address(Address.EXAMPLE, true),
+                new Group(Group.EXAMPLE),
                 new UniqueTagList(new Tag("tag1"), new Tag("tag2"), new Tag("tag3"))
             );
         } catch (IllegalValueException ive) {
@@ -288,7 +285,8 @@ public class ParserTest {
                 + person.getName().fullName
                 + (person.getPhone().isPrivate() ? " pp/" : " p/") + person.getPhone().value
                 + (person.getEmail().isPrivate() ? " pe/" : " e/") + person.getEmail().value
-                + (person.getAddress().isPrivate() ? " pa/" : " a/") + person.getAddress().value;
+                + (person.getAddress().isPrivate() ? " pa/" : " a/") + person.getAddress().value
+                + "g/" + person.getGroup().groupName;
         for (Tag tag : person.getTags()) {
             addCommand += " t/" + tag.tagName;
         }

@@ -57,6 +57,10 @@ Format: `list`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+### Sorting all persons : `sort`
+Sorts the list of all persons by name in alphabetical order.
+Format: `sort`
+
 > The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
 and persons matching at least one keyword will be returned (i.e. `OR` search).
 

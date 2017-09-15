@@ -111,7 +111,7 @@ public class Parser {
                 return prepareViewAll(arguments);
 
             case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+                return new ExitCommand(false);
 
             case HelpCommand.COMMAND_WORD: // Fallthrough
             default:
@@ -123,6 +123,12 @@ public class Parser {
     private Command parseEditorialCommand(String userInput) {
         final Matcher matcher = EDITORIAL_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
+            final Matcher matcher1 = BASIC_COMMAND_FORMAT.matcher((userInput.trim()));
+            if (matcher1.matches()){
+                if (matcher1.group("commandWord").equals("exit")){
+                    return new ExitCommand(true);
+                }
+            }
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommandP2.MESSAGE_USAGE));
         }
         return prepareEditP2(userInput);

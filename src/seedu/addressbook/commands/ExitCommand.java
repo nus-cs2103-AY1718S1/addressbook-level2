@@ -11,9 +11,20 @@ public class ExitCommand extends Command {
             + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_EXIT_ACKNOWEDGEMENT = "Exiting Address Book as requested ...";
 
+    public static final String MESSAGE_EXIT_EDITORIAL = "Exiting editorial mode as requested";
+
+    private boolean isEditorial;
+
+    public ExitCommand(boolean isEditorial){this.isEditorial = isEditorial;}
+
     @Override
     public CommandResult execute() {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWEDGEMENT);
+        if (!isEditorial){
+            return new CommandResult(MESSAGE_EXIT_ACKNOWEDGEMENT);
+        } else{
+            return new CommandResult(MESSAGE_EXIT_EDITORIAL);
+        }
+
     }
 
     public static boolean isExit(Command command) {

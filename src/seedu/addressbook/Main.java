@@ -85,7 +85,10 @@ public class Main {
         do {
             command = runCommand(false);
             if (command instanceof EditCommand) {
-                command = runCommand(true);
+                Command editCommand;
+                do {
+                    editCommand = runCommand(true);
+                } while (!ExitCommand.isExit(editCommand));
             }
         } while (!ExitCommand.isExit(command));
     }

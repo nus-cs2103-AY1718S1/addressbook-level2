@@ -9,9 +9,12 @@ import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.ui.TextUi;
 import seedu.addressbook.util.TestUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static seedu.addressbook.commands.EditCommand.MESSAGE_EDIT_PERSON_SUCCESS;
+import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
 
 public class EditCommandTest {
 
@@ -50,6 +53,13 @@ public class EditCommandTest {
         assertEditFailsDueToInvalidIndex(listWithEveryone.size() + 1, "Joe", addressBook, listWithEveryone);
     }
 
+    @Test
+    public void execute_validIndex_PersonIsEdited() throws UniquePersonList.PersonNotFoundException {
+
+        assertEditSuccessful(1, "Joe", addressBook, listWithEveryone);
+
+    }
+
     /**
      * Asserts that the index is not valid for the given display list.
      */
@@ -83,6 +93,36 @@ public class EditCommandTest {
         assertEquals(expectedAddressBook.getAllPersons(), actualAddressBook.getAllPersons());
     }
 
+    /**
+     * Executes the command, and checks that the message was what we had expected.
+     */
+    private void assertCommandMessage(EditCommand editCommand, String expectedMessage) {
+
+        CommandResult result = editCommand.execute();
+
+        assertEquals(expectedMessage, result.feedbackToUser);
+
+    }
+
+    private void assertEditSuccessful(int targetVisibleIndex, String targetName, AddressBook addressBook,
+                                      List<ReadOnlyPerson> displayList) throws UniquePersonList.PersonNotFoundException {
+
+        EditCommand command = createEditCommand(targetVisibleIndex, targetName, addressBook, displayList);
+
+
+
+        /* Get  */
+        List<ReadOnlyPerson> readOnlyAddressBook = new ArrayList<ReadOnlyPerson>();
+        List<Person> newList = addressBook.getAllPersons().getInternalList();
+        for (Person persons : newList) {
+            readOnlyAddressBook.add(persons);
+        }
+
+        ReadOnlyPerson targetPerson = readOnlyAddressBook.get(targetVisibleIndex - DISPLAYED_INDEX_OFFSET);
+        String expectedMessage = String.format(MESSAGE_EDIT_PERSON_SUCCESS, targetName);
+        // + " Tags: " + targetPerson.getTags();
+        assertCommandMessage(command, expectedMessage);
+    }
 }
 
 

@@ -49,7 +49,7 @@
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  sort]
-||
+|| 
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  add wrong args wrong args]

@@ -140,4 +140,20 @@ public class UniquePersonList implements Iterable<Person> {
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && this.internalList.equals(((UniquePersonList) other).internalList));
     }
+
+    public void nameSorter() {
+        for (int i=0; i<internalList.size(); i++) {
+            for(int j=0; j<internalList.size() - 1; j++) {
+                String person1 = internalList.get(j).getName().toString();
+                String person2 = internalList.get(j+1).getName().toString();
+                if (person1.compareTo(person2)>0) {
+                    Person moveRight = new Person(internalList.get(j));
+                    internalList.set(j, internalList.get(j+1));
+                    internalList.set(j+1, moveRight);
+                }
+            }
+
+        }
+    }
+
 }

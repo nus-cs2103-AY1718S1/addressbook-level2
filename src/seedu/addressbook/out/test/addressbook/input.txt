@@ -98,10 +98,9 @@
   find 23912039120
   # matching should be case-sensitive
   find betsy
-  // find from number
+
   # find unique keyword
   find Betsy
-  find 111111
   # find multiple with same keyword
   find Dickson
   # find multiple with some keywords

@@ -1,6 +1,8 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Represents a Person's phone number in the address book.
@@ -21,19 +23,30 @@ public class Phone {
      * @throws IllegalValueException if given phone string is invalid.
      */
     public Phone(String phone, boolean isPrivate) throws IllegalValueException {
-        this.isPrivate = isPrivate;
-        String trimmedPhone = phone.trim();
-        if (!isValidPhone(trimmedPhone)) {
-            throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
-        }
-        this.value = trimmedPhone;
+        //int x = 1;
+        //do {
+            this.isPrivate = isPrivate;
+            String trimmedPhone = phone.trim();
+            if (!isValidPhone(trimmedPhone)) {
+                throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
+            }
+            this.value = trimmedPhone;
+        //}while (x==1);
     }
 
     /**
      * Returns true if the given string is a valid person phone number.
      */
     public static boolean isValidPhone(String test) {
+        //int test2 = test.length();
         return test.matches(PHONE_VALIDATION_REGEX);
+//
+    }
+    /**
+     * for find number purposes
+     */
+    public List<String> getPhoneNumber(){
+        return Arrays.asList(value);
     }
 
     @Override

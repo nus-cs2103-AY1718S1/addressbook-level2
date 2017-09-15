@@ -107,6 +107,26 @@
   find Charlie Betsy
 
 ##########################################################
+# test find tag command
+##########################################################
+
+  # should consider no keywords as invalid command format
+  findTag
+  # should only match full words in tags
+  findTag bet
+  # does not match if none have keyword
+  findTag 23912039120
+  # matching should be case-sensitive
+  findTag Friends
+
+  # find unique keyword
+  findTag school
+  # find multiple with same keyword
+  findTag friends
+  # find multiple with some keywords
+  findTag school friends
+
+##########################################################
 # test delete person command
 ##########################################################
 

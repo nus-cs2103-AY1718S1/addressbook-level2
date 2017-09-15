@@ -85,6 +85,14 @@ public class Main {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
+
+            if(userCommandText.contains("add")) {
+                                Command subCommand = new Parser().parseCommand("list");
+                                CommandResult listAfterAdd = executeCommand(subCommand);
+                                recordResult(listAfterAdd);
+                                ui.showResultToUser(listAfterAdd);
+                          }
+
             recordResult(result);
             ui.showResultToUser(result);
 

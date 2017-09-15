@@ -38,6 +38,7 @@ public class Parser {
             Pattern.compile("(?<name>[^/]+)"
                     + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
+                    + " (?<isBirthdayPrivate>p?)b/(?<birthday>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
@@ -126,6 +127,9 @@ public class Parser {
 
                     matcher.group("email"),
                     isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
+
+                    matcher.group("birthday"),
+                    isPrivatePrefixPresent(matcher.group("isBirthdayPrivate")),
 
                     matcher.group("address"),
                     isPrivatePrefixPresent(matcher.group("isAddressPrivate")),

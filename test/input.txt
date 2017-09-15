@@ -107,7 +107,7 @@
   find Charlie Betsy
 
 ##########################################################
-# test find persons command
+# test findnotc persons command
 ##########################################################
 
   # should consider no keywords as invalid command format
@@ -120,11 +120,11 @@
   findnotc betsy
 
   # find unique keyword
-  find Betsy
+  findnotc Betsy
   # find multiple with same keyword
-  find Dickson
+  findnotc Dickson
   # find multiple with some keywords
-  find CHARLIE betsy
+  findnotc CHARLIE betsy
 
 ##########################################################
 # test delete person command

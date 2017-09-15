@@ -7,6 +7,7 @@ public class Contact {
     public static String EXAMPLE = "";
     public static String MESSAGE_CONSTRAINTS = "";
     public static String VALIDATION_REGEX = "";
+public abstract class Contact {
 
     public final String value;
     private boolean isPrivate;

@@ -294,7 +294,7 @@
 || Enter command: || [Command entered:  list]
 || 
 || 0 persons listed!
-
+|| ===================================================
 || Enter command: || [Command entered:  add adam Brown p/111111 e/adam@gmail.com a/111, alpha street]
 || New person added: adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================

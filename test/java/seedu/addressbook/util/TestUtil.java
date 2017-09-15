@@ -45,6 +45,15 @@ public class TestUtil {
 
         return addressBook;
     }
+    
+    public static List<Person> createListToSort(Person... persons){
+        List<Person> list = new ArrayList<>();
+        
+        for (Person person: persons){
+            list.add(person);
+        }
+        return list;
+    }
 
     /**
      * Creates a list of persons.

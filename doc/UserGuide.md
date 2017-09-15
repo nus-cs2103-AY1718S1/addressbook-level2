@@ -67,7 +67,7 @@ Examples:
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
 ### Deleting a person : `delete`
-Deletes the specified person from the address book. Irreversible.<br>
+Deletes the specified person from the address book. Reversible with 'restore'.<br>
 Format: `delete INDEX`
 
 > Deletes the person at the specified `INDEX`. 
@@ -80,6 +80,20 @@ Examples:
 * `find Betsy`<br> 
   `delete 1`<br>
   Deletes the 1st person in the results of the `find` command.
+
+### Restoring a person : `restore`
+Revoke the most recent deletion. Can be used to restore multiple times. Irreversible.<br>
+Format: `restore`
+
+> Revoke the most recent deletion.
+
+Examples:
+* `list`<br>
+  `delete 2`<br>
+  Deletes the 2nd person in the address book.
+* `find Betsy`<br>
+  `restore`<br>
+  Restore the person that was deleted in 'delete 2'.
 
 ### View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>

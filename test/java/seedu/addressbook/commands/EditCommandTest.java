@@ -54,6 +54,11 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_emptyAddressBook_returnsPersonNotFoundMessage() {
+        assertEditFailsDueToNoSuchPerson(1, "Joe" ,emptyAddressBook, listWithEveryone);
+    }
+
+    @Test
     public void execute_validIndex_PersonIsEdited() throws UniquePersonList.PersonNotFoundException {
 
         assertEditSuccessful(1, "Joe", addressBook, listWithEveryone);
@@ -122,6 +127,16 @@ public class EditCommandTest {
         String expectedMessage = String.format(MESSAGE_EDIT_PERSON_SUCCESS, targetName);
         // + " Tags: " + targetPerson.getTags();
         assertCommandMessage(command, expectedMessage);
+    }
+
+    private void assertEditFailsDueToNoSuchPerson(int visibleIndex, String targetName, AddressBook addressBook,
+                                                      List<ReadOnlyPerson> displayList) {
+
+        String expectedMessage = Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK;
+
+        EditCommand command = createEditCommand(visibleIndex, targetName, addressBook, displayList);
+        assertCommandBehaviour(command, expectedMessage, addressBook, addressBook);
+
     }
 }
 

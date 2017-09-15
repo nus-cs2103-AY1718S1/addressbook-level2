@@ -82,6 +82,8 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
 
+
+
     /**
      * Checks if the list contains an equivalent person as the given argument.
      * The {@link ReadOnlyPerson#isSamePerson} method is used for this comparison, which
@@ -140,4 +142,5 @@ public class UniquePersonList implements Iterable<Person> {
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && this.internalList.equals(((UniquePersonList) other).internalList));
     }
+
 }

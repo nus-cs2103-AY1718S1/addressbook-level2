@@ -1,4 +1,4 @@
-package seedu.addressbook.parser;
+package seedu.addressbook.commands;
 
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;

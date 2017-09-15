@@ -1,8 +1,6 @@
 package seedu.addressbook.commands;
 
 
-import seedu.addressbook.parser.EditCommandP2;
-
 /**
  * Shows help instructions.
  */

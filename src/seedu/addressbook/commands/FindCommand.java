@@ -49,7 +49,7 @@ public class FindCommand extends Command {
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
-        List<String> upperCaseKeywords = new ArrayList<>();
+        List<String> upperCaseKeywords= new ArrayList<>();
 
             keywords.forEach((keyword)-> {
                 upperCaseKeywords.add(keyword.toUpperCase());

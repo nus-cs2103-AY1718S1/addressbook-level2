@@ -83,18 +83,33 @@
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag]
+|| 
+|| 0 persons listed!
+|| ===================================================
 || Tags names should be alphanumeric
 || ===================================================
 || Enter command: || [Command entered:  add []\[;] p/12345 e/valid@e.mail a/valid, address]
+|| 
+|| 0 persons listed!
+|| ===================================================
 || Person names should be spaces or alphabetic characters
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/not_numbers e/valid@e.mail a/valid, address]
+|| 
+|| 0 persons listed!
+|| ===================================================
 || Person phone numbers should only contain numbers
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/notAnEmail a/valid, address]
+|| 
+|| 0 persons listed!
+|| ===================================================
 || Person emails should be 2 alphanumeric/period strings separated by '@'
 || ===================================================
 || Enter command: || [Command entered:  add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag]
+|| 
+|| 0 persons listed!
+|| ===================================================
 || Tags names should be alphanumeric
 || ===================================================
 || Enter command: || [Command entered:  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street]

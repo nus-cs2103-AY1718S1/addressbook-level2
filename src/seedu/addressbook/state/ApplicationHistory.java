@@ -104,5 +104,5 @@ public class ApplicationHistory {
         return redoStack.pop();
     }
 
-    public void pushRedoHistory(ApplicationState applicationState) { historyStack.push(applicationState); }
+    public void pushRedoHistory(ApplicationState applicationState) { redoStack.push(applicationState); }
 }

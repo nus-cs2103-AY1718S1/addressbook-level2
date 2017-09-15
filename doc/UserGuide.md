@@ -49,6 +49,23 @@ Examples:
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
+### Changing tag of a person: `changetag`
+Changes the tag of a person in the address book<br>
+Format: `changetag INDEX [t/TAG]...`
+
+> Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional,
+> items with `...` after them can have multiple instances. Order of parameters are fixed.
+>
+> The index refers to the index number shown in the most recent listing.
+>
+> Persons can have any number of tags (including 0)
+
+Examples:
+* `changetag 1 t/friend t/criminal`<br>
+Changes tags to `friend` and `criminal`
+* `changetag 5`<br>
+Removes all tags
+
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`

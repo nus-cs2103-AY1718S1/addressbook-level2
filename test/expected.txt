@@ -12,6 +12,9 @@
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
+|| deleteByName: Deletes the person identified by the CASE-SENSITIVE input.
+|| Parameters: NAME
+|| Example: deleteByName John
 || Clears address book permanently.
 || Example: clear
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
@@ -292,6 +295,16 @@
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 
+|| 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25]
+|| New person added: John Doe Phone: 98765432 Email: johnd@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  deleteByName John Doe]
+|| Deleted Person: John Doe Phone: 98765432 Email: johnd@gmail.com Address: 311, Clementi Ave 2, #02-25 Tags: 
 || ===================================================
 || Enter command: || [Command entered:  list]
 || 

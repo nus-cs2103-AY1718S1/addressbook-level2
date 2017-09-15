@@ -4,9 +4,11 @@ import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,6 +22,7 @@ import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
+import seedu.addressbook.commands.SortableCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
@@ -30,9 +33,9 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Parser {
 
     public static final Pattern PERSON_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
-
-    public static final Pattern KEYWORDS_ARGS_FORMAT =
-            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+    
+    public static final Pattern ARGS_FORMAT =
+            Pattern.compile("(?<arguments>\\S+(?:\\s+\\S+)*)"); // one or more arguments separated by whitespace
 
     public static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
@@ -88,7 +91,7 @@ public class Parser {
             return prepareFind(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return prepareList(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return prepareView(arguments);
@@ -230,6 +233,30 @@ public class Parser {
         return Integer.parseInt(matcher.group("targetIndex"));
     }
 
+    /**
+     * Parses sort arguments in the context of the list command
+     * 
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareList(String args) {
+        if (args.trim().matches("")) {
+            return new ListCommand(null);
+        }
+        
+        // arguments delimited by whitespace
+        final String[] arguments = args.trim().split("\\s+");
+        
+        // if any argument is not a valid sort argument, return invalid format
+        for (String argument : arguments) {
+            if (!SortableCommand.isValidSortArgument(argument)) {
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        ListCommand.MESSAGE_USAGE)); 
+            }
+        }
+
+        return new ListCommand(new ArrayList<>(Arrays.asList(arguments)));
+    }
 
     /**
      * Parses arguments in the context of the find person command.
@@ -238,16 +265,32 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareFind(String args) {
-        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        final Matcher matcher = ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindCommand.MESSAGE_USAGE));
         }
 
-        // keywords delimited by whitespace
-        final String[] keywords = matcher.group("keywords").split("\\s+");
-        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-        return new FindCommand(keywordSet);
+        // arguments delimited by whitespace
+        final String[] arguments = matcher.group("arguments").split("\\s+");
+        final Set<String> keywordSet = new HashSet<>();
+        final List<String> sortArgumentList = new ArrayList<>();
+        
+        // If an argument is a sort argument,
+        // stop adding arguments to keywordSet and add remaining to sortArguments.
+        // If any of the remaining elements is not a sort argument, return an invalid format.
+        for (String argument : arguments) {
+            if (!SortableCommand.isValidSortArgument(argument) && sortArgumentList.isEmpty()) {
+                keywordSet.add(argument);
+            } else if (!SortableCommand.isValidSortArgument(argument) && !sortArgumentList.isEmpty()) {
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindCommand.MESSAGE_USAGE));
+            } else {
+                sortArgumentList.add(argument);
+            }
+        }
+        
+        return new FindCommand(keywordSet, sortArgumentList);
     }
 
 

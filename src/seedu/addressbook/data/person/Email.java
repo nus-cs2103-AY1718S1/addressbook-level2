@@ -2,6 +2,8 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import static seedu.addressbook.commands.SortableCommand.PRIVATE_COMPARATOR_VALUE;
+
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -12,6 +14,7 @@ public class Email {
     public static final String MESSAGE_EMAIL_CONSTRAINTS =
             "Person emails should be 2 alphanumeric/period strings separated by '@'";
     public static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
+    public static final String PREFIX = "e/";
 
     public final String value;
     private boolean isPrivate;
@@ -52,6 +55,14 @@ public class Email {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public int compareTo(Email other) {
+        if (isPrivate()) {
+            return PRIVATE_COMPARATOR_VALUE;
+        } else {
+            return toString().compareTo(other.toString());
+        }
     }
 
 

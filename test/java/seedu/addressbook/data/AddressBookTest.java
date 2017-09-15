@@ -1,5 +1,6 @@
 package seedu.addressbook.data;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.addressbook.util.TestUtil.getSize;
@@ -11,6 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import seedu.addressbook.commands.SortableCommand;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -188,5 +190,15 @@ public class AddressBookTest {
             }
         }
         return false;
+    }
+    
+    @Test
+    public void testPreSortingConstants() {
+        assertEquals(Address.PREFIX, "a/");
+        assertEquals(Phone.PREFIX, "p/");
+        assertEquals(Email.PREFIX, "e/");
+        assertEquals(Name.PREFIX, "n/");
+        assertEquals(SortableCommand.SORT_ASCENDING_POSTFIX_WORD, "asc");
+        assertEquals(SortableCommand.SORT_DESCENDING_POSTFIX_WORD, "desc");
     }
 }

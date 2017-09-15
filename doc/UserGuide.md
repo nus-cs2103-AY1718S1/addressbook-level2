@@ -50,12 +50,36 @@ Examples:
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
 ### Listing all persons : `list`
-Shows a list of all persons in the address book.<br>
-Format: `list`
+Shows a list of all persons in the address book, sorted by addition order or the optional specified order.<br>
+Format: `list [SORT_ARGUMENTS]`
+
+>Items in square brackets are the optional sort parameters.<br/>
+>`SORT_ARGUMENTS` can be any, some or all of
+>`[n/]`, `[p/]`, `[e/]`, `[a/]`, `[n/desc]`, `[p/desc]`, `[e/desc]`, `[a/desc]`, `[n/asc]`, `[p/asc]`, `[e/asc]`, `[a/asc]`
+>, separated by whitespaces in any order, where `asc` is the optional postfix specifier for an ascending order and 
+>`desc` is the optional postfix specifier for a descending order. The sort order prefix will correspond to the following fields:<br/>
+>`n/` - the person's name<br/>
+>`p/` - the person's phone number<br/>
+>`e/` - the person's email<br/>
+>`a/` - the person's address
+>
+>If the postfix is left blank, the sort order of the preceding sort parameter will be ascending by default.
+>
+>`SORT_ARGUMENTS` should be specified in order of priority, where the leftmost sort parameter has the highest priority.
+
+Examples: 
+* `list` <br>
+  Returns all persons, sorted by the addition order
+* `list n/desc p/` <br>
+  Returns all persons, sorted by descending name, then by phone number
+* `list p/ n/desc` <br>
+  Returns all persons, sorted by phone number, then by descending name
+* `list a/desc` <br>
+  Returns all persons, sorted by descending address
 
 ### Finding all persons containing any keyword in their name: `find`
-Finds persons whose names contain any of the given keywords.<br>
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Finds persons whose names contain any of the given keywords, sorted by addition order or the optional specified order.<br>
+Format: `find KEYWORD [MORE_KEYWORDS] [SORT_ARGUMENTS]`
 
 > The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
 and persons matching at least one keyword will be returned (i.e. `OR` search).
@@ -64,7 +88,11 @@ Examples:
 * `find John`<br>
   Returns `John Doe` but not `john`
 * `find Betsy Tim John`<br>
-  Returns Any person having names `Betsy`, `Tim`, or `John`
+  Returns any person having names `Betsy`, `Tim`, or `John`
+* `find Betsy n/`<br>
+  Returns any persons having names `Betsy`, sorted by name
+* `find Tim p/desc a/`<br>
+  Returns any person having names `Tim`, sorted by descending phone number, then by address
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>

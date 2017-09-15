@@ -306,7 +306,7 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  edit 1 Jackie Choo]
-|| Edited Person: Jackie Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
+|| Edited Person:  Jackie Choo
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

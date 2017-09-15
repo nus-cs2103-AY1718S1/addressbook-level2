@@ -241,20 +241,31 @@
 || Parameters: KEYWORD [MORE_KEYWORDS]...
 || Example: find homework
 || ===================================================
-|| Enter command: || [Command entered:  find bet]
+|| Enter command: || [Command entered:  findTag bet]
 ||
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  find 23912039120]
+|| Enter command: || [Command entered:  findTag 23912039120]
 ||
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  find betsy]
+|| Enter command: || [Command entered:  findTag Friends]
 ||
 || 0 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  find homework friends]
-|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [homework][friends]
+|| Enter command: || [Command entered:  findTag school]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+||
+|| 1 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  findTag friends]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+||
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  findTag school friends]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 ||
 || 2 persons listed!

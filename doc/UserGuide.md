@@ -49,6 +49,19 @@ Examples:
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
+### Editing the name of a person: `edit`
+Edits a person's name in the address book<br>
+Format: `edit INDEX NAME` 
+ 
+> Words in `UPPER_CASE` are the parameters, 
+> 
+> Edits the name of the person at the specified `INDEX`. 
+> The index refers to the index number shown in the most recent listing.
+
+Examples: 
+* `edit 1 Charlie`
+* `edit 2 Tim Cook`
+
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`

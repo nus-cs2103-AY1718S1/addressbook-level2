@@ -1,10 +1,10 @@
 package seedu.addressbook.data.person;
 
 public class Block {
-    private int blockNum;
-    public Block(int bNum) { this.blockNum = bNum;}
+    private String blockNum;
+    public Block(String bNum) { this.blockNum = bNum;}
 
-    public int getBlock() {
+    public String getBlock() {
         return blockNum;
     }
 

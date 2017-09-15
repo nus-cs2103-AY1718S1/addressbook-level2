@@ -88,7 +88,15 @@ public class Person implements ReadOnlyPerson, Comparable<Person> {
         if(this.name.toString().charAt(0) > anotherPerson.name.toString().charAt(0)) {
             return 1;
         }else if(this.name.toString().charAt(0) == anotherPerson.name.toString().charAt(0)){
-            return 0;
+            int i = 1;
+            for(i = 1; this.name.toString().charAt(i) == anotherPerson.name.toString().charAt(i) && i < this.name.toString().length();i++){
+            }
+            if(this.name.toString().charAt(0) > anotherPerson.name.toString().charAt(0)) {
+                return 1;
+            }else{
+                return -1;
+            }
+
         }
         else{
             return -1;

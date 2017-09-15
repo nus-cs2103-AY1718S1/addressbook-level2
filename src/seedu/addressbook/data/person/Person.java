@@ -36,19 +36,19 @@ public class Person implements ReadOnlyPerson {
     }
 
     public void editName(String name) throws IllegalValueException {
-        this.name = new Name(name);
+        this.name.editName(name);
     }
 
     public void editPhone(String phone) throws IllegalValueException {
-        this.phone = new Phone(phone, false);
+        this.phone.editPhone(phone);
     }
 
     public void editEmail(String email) throws IllegalValueException {
-        this.email = new Email(email, false);
+        this.email.editEmail(email);
     }
 
     public void editAddress(String address) throws IllegalValueException {
-        this.address = new Address(address, false);
+        this.address.editAddress(address);
     }
     @Override
     public Name getName() {

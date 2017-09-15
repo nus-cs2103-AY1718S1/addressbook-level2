@@ -6,12 +6,12 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
-public class Address extends Contact{
+public class Address extends Contact {
 
-    // public static final String EXAMPLE = "123, some street";
-    public static final String EXAMPLE = " a/123, Clementi Ave 3, #12-34, 231534 ";
-    //    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in the format: a/BLOCK, STREET, UNIT, POSTAL_CODE";
+    public static final String EXAMPLE = "123, some street";
+    //  public static final String EXAMPLE = " a/123, Clementi Ave 3, #12-34, 231534 ";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    // public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in the format: a/BLOCK, STREET, UNIT, POSTAL_CODE";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
 
@@ -21,7 +21,7 @@ public class Address extends Contact{
      * @throws IllegalValueException if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
-        super(address,isPrivate);
+        super(address, isPrivate);
         if (!isValidAddress(super.toString())) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }

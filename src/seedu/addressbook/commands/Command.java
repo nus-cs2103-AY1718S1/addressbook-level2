@@ -6,6 +6,7 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
 
+import static seedu.addressbook.common.Messages.MESSAGE_PERSONS_LIST_SORTED;
 import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
 
 /**
@@ -36,6 +37,9 @@ public class Command {
         return String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, personsDisplayed.size());
     }
 
+    public static String getMessageForPersonListSorted() {
+        return MESSAGE_PERSONS_LIST_SORTED;
+    }
     /**
      * Executes the command and returns the result.
      */
@@ -67,4 +71,5 @@ public class Command {
     public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
     }
+
 }

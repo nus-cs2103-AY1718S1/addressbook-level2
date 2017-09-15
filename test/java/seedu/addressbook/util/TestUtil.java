@@ -59,6 +59,15 @@ public class TestUtil {
         return list;
     }
 
+    public static List<Person> createListToSort(Person... persons){
+        List<Person> list = new ArrayList<>();
+
+        for (Person person : persons) {
+            list.add(person);
+        }
+
+        return list;
+    }
     /**
      * Creates a copy of the original address book with the same entries
      * of Persons and Tags. The Persons and Tags are not cloned.

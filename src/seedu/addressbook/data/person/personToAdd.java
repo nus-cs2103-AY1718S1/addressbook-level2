@@ -25,28 +25,32 @@ public class personToAdd {
 		int inputCounter = 0;
 		Boolean continueFlag;
 		String input;
-        System.out.println("NOTE: Enter 'undo' at any time to undo the last entry");
+        System.out.println("|| NOTE: Enter 'undo' at any time to undo the last entry");
 		while (inputCounter < 5) {
 			continueFlag = false;
 			switch (inputCounter) {
 				case 0:
-					System.out.print("Enter Name: ");
+					System.out.print("|| Enter Name: ");
 					break;
 				case 1:
-					System.out.print("Enter Phone Number (append /p to set as private): ");
+					System.out.print("|| Enter Phone Number (append /p to set as private): ");
 					break;
 				case 2:
-					System.out.print("Enter Email (append /p to set as private): ");
+					System.out.print("|| Enter Email (append /p to set as private): ");
 					break;
 				case 3:
-					System.out.print("Enter Address (append /p to set as private): ");
+					System.out.print("|| Enter Address (append /p to set as private): ");
 					break;
 				case 4:
-					System.out.print("Enter tags (separated by commas): ");
+					System.out.print("|| Enter tags (separated by commas): ");
 					break;
 			}
 
-			input = sc.nextLine();
+			if (sc.hasNextLine()) {
+				input = sc.nextLine();
+			} else {
+			    input = "GENERIC STRING";
+            }
 
 			if (input.equals("undo")){
 				switch (inputCounter) {

@@ -23,7 +23,6 @@ public class EditCommandTest {
 
     private List<ReadOnlyPerson> emptyDisplayList;
     private List<ReadOnlyPerson> listWithEveryone;
-    private List<ReadOnlyPerson> listWithSurnameDoe;
 
     @Before
     public void setUp() throws Exception {
@@ -41,7 +40,7 @@ public class EditCommandTest {
         addressBook = TestUtil.createAddressBook(johnDoe, janeDoe, davidGrant, samDoe);
         emptyDisplayList = TestUtil.createList();
         listWithEveryone = TestUtil.createList(johnDoe, janeDoe, davidGrant, samDoe);
-        listWithSurnameDoe = TestUtil.createList(johnDoe, janeDoe, samDoe);
+        
 
     }
 
@@ -123,7 +122,6 @@ public class EditCommandTest {
             readOnlyAddressBook.add(persons);
         }
 
-        ReadOnlyPerson targetPerson = readOnlyAddressBook.get(targetVisibleIndex - DISPLAYED_INDEX_OFFSET);
         String expectedMessage = String.format(MESSAGE_EDIT_PERSON_SUCCESS, targetName);
         // + " Tags: " + targetPerson.getTags();
         assertCommandMessage(command, expectedMessage);

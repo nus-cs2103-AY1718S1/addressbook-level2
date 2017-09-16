@@ -60,4 +60,12 @@ public class Name {
         return fullName.hashCode();
     }
 
+    /**
+     *
+     * @param compareTarget Name String to be compared to
+     * @compareTo overrides compareTo method for Name class
+     */
+    public int compareTo(Name compareTarget){
+        return this.toString().compareToIgnoreCase(compareTarget.toString());
+    }
 }

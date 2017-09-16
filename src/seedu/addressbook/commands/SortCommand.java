@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Sorts current address book list in lexicographic order and lists it
  */
-public class SortCommand extends Command{
+public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 

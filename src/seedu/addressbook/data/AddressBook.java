@@ -131,6 +131,7 @@ public class AddressBook {
 
     /**
      * Calls sort() method from UniquePersonList class
+     * sorts allPersons using Name Comparator override
      */
     public void sort(){
         allPersons.executeSort();

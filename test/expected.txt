@@ -25,10 +25,20 @@
 || viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
+|| undo: Undoes the previous operation. Undo history will be cleared on application exit.
+|| Example: undo
+|| redo: Redoes the previous undo operation. Redo history will be cleared on a new normal command and application exit.
+|| Example: redo
 || help: Shows program usage instructions.
 || Example: help
 || exit: Exits the program.
 || Example: exit
+|| ===================================================
+|| Enter command: || [Command entered:  undo]
+|| Unable to undo: You are already at the most recent undo state.
+|| ===================================================
+|| Enter command: || [Command entered:  redo]
+|| Unable to redo: You are already at the most recent redo state.
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
 || The person index provided is invalid
@@ -43,6 +53,7 @@
 || Address book has been cleared!
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| New listing:
 || 
 || 0 persons listed!
 || ===================================================
@@ -89,6 +100,7 @@
 || New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| New listing:
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 
 || 1 persons listed!
@@ -97,6 +109,7 @@
 || New person added: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| New listing:
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 
@@ -106,6 +119,7 @@
 || New person added: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| New listing:
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
@@ -116,6 +130,7 @@
 || New person added: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| New listing:
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
@@ -127,6 +142,7 @@
 || New person added: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| New listing:
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
@@ -205,29 +221,35 @@
 || Example: find alice bob charlie
 || ===================================================
 || Enter command: || [Command entered:  find bet]
+|| New listing:
 || 
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find 23912039120]
+|| New listing:
 || 
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find betsy]
+|| New listing:
 || 
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Betsy]
+|| New listing:
 || 	1. Betsy Choo Tags: [secretive]
 || 
 || 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Dickson]
+|| New listing:
 || 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Charlie Betsy]
+|| New listing:
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 
@@ -264,6 +286,7 @@
 || Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| New listing:
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
@@ -275,6 +298,7 @@
 || Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| New listing:
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || 	2. Betsy Choo Tags: [secretive]
 || 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
@@ -285,17 +309,186 @@
 || Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| New listing:
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
 || ===================================================
+|| Enter command: || [Command entered:  undo]
+|| New listing:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 3 persons listed!
+|| 
+|| Successfully completed undo operation. Changes to Address Book:
+|| 
+|| ===================================================
+|| Enter command: || [Command entered:  undo]
+|| New listing:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 3 persons listed!
+|| 
+|| Successfully completed undo operation. Changes to Address Book:
+|| 
+|| New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  undo]
+|| New listing:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 4 persons listed!
+|| 
+|| Successfully completed undo operation. Changes to Address Book:
+|| 
+|| ===================================================
+|| Enter command: || [Command entered:  undo]
+|| New listing:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 4 persons listed!
+|| 
+|| Successfully completed undo operation. Changes to Address Book:
+|| 
+|| New person added: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| ===================================================
+|| Enter command: || [Command entered:  redo]
+|| New listing:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 4 persons listed!
+|| 
+|| Successfully completed redo operation. Changes to Address Book:
+|| 
+|| Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| ===================================================
+|| Enter command: || [Command entered:  redo]
+|| New listing:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 3 persons listed!
+|| 
+|| Successfully completed redo operation. Changes to Address Book:
+|| 
+|| ===================================================
+|| Enter command: || [Command entered:  redo]
+|| New listing:
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 3 persons listed!
+|| 
+|| Successfully completed redo operation. Changes to Address Book:
+|| 
+|| Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:  redo]
+|| New listing:
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| 
+|| Successfully completed redo operation. Changes to Address Book:
+|| 
+|| ===================================================
+|| Enter command: || [Command entered:  redo]
+|| Unable to redo: You are already at the most recent redo state.
+|| ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!
 || ===================================================
 || Enter command: || [Command entered:  list]
+|| New listing:
 || 
 || 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  undo]
+|| New listing:
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| 
+|| Successfully completed undo operation. Changes to Address Book:
+|| 
+|| ===================================================
+|| Enter command: || [Command entered:  undo]
+|| New listing:
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| 
+|| Successfully completed undo operation. Changes to Address Book:
+|| 
+|| New person added: Betsy Choo Tags: [secretive]
+|| New person added: Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| ===================================================
+|| Enter command: || [Command entered:  redo]
+|| New listing:
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| 
+|| Successfully completed redo operation. Changes to Address Book:
+|| 
+|| Deleted Person: Betsy Choo Tags: [secretive]
+|| Deleted Person: Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| ===================================================
+|| Enter command: || [Command entered:  redo]
+|| New listing:
+|| 
+|| 0 persons listed!
+|| 
+|| Successfully completed redo operation. Changes to Address Book:
+|| 
+|| ===================================================
+|| Enter command: || [Command entered:  undo]
+|| New listing:
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| 
+|| Successfully completed undo operation. Changes to Address Book:
+|| 
+|| ===================================================
+|| Enter command: || [Command entered:  undo]
+|| New listing:
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| 
+|| Successfully completed undo operation. Changes to Address Book:
+|| 
+|| New person added: Betsy Choo Tags: [secretive]
+|| New person added: Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| ===================================================
+|| Enter command: || [Command entered:  clear]
+|| Address book has been cleared!
+|| ===================================================
+|| Enter command: || [Command entered:  redo]
+|| Unable to redo: You are already at the most recent redo state.
 || ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...

@@ -32,6 +32,7 @@ import seedu.addressbook.data.person.Phone;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.state.ApplicationHistory;
 
 public class ParserTest {
 
@@ -317,7 +318,7 @@ public class ParserTest {
      * @return the parsed command object
      */
     private <T extends Command> T parseAndAssertCommandType(String input, Class<T> expectedCommandClass) {
-        final Command result = parser.parseCommand(input);
+        final Command result = parser.parseCommand(input, new ApplicationHistory());
         assertTrue(result.getClass().isAssignableFrom(expectedCommandClass));
         return (T) result;
     }

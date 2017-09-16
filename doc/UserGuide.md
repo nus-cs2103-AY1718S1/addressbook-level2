@@ -115,6 +115,14 @@ Examples:
 Clears all entries from the address book.<br>
 Format: `clear`  
 
+### Undoing a previous command : `undo`
+Undoes the previous operation. Will display the new listing and other changes. Undo history will be cleared on application exit.<br>
+Format: `undo`  
+
+### Redoing a previous undo command : `redo`
+Redoes the previous undo operation. Will display the new listing and other changes. Redo history will be cleared on a new normal command and application exit.<br>
+Format: `redo`  
+
 #### Exiting the program : `exit`
 Exits the program.<br>
 Format: `exit`  

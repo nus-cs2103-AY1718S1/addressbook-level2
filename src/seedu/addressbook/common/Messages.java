@@ -5,6 +5,7 @@ package seedu.addressbook.common;
  */
 public class Messages {
 
+    public static final String MESSAGE_ERROR_APPLICATION = "Application Error: %1$s command was unable to be resolved.";
     public static final String MESSAGE_GOODBYE = "Good bye!";
     public static final String MESSAGE_INIT_FAILED = "Failed to initialise address book application. Exiting...";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
@@ -15,4 +16,9 @@ public class Messages {
             "java seedu.addressbook.Main [STORAGE_FILE_PATH]";
     public static final String MESSAGE_WELCOME = "Welcome to your Address Book!";
     public static final String MESSAGE_USING_STORAGE_FILE = "Using storage file : %1$s";
+    public static final String MESSAGE_ADDED = "New person added: %1$s";
+    public static final String MESSAGE_DELETED = "Deleted Person: %1$s";
+    public static final String MESSAGE_ERROR_EMPTY_HISTORY_STACK = "Unable to undo: You are already at the most recent undo state.";
+    public static final String MESSAGE_ERROR_EMPTY_REDO_STACK = "Unable to redo: You are already at the most recent redo state.";
+    public static final String MESSAGE_LISTING_PREFIX = "New listing:\n";
 }

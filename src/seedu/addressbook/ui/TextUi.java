@@ -5,6 +5,7 @@ import static seedu.addressbook.common.Messages.MESSAGE_INIT_FAILED;
 import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE;
 import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
 import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
+import static seedu.addressbook.common.Messages.MESSAGE_LISTING_PREFIX;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -151,7 +152,7 @@ public class TextUi {
 
     /** Formats a list of strings as a viewable indexed list. */
     private static String getIndexedListForViewing(List<String> listItems) {
-        final StringBuilder formatted = new StringBuilder();
+        final StringBuilder formatted = new StringBuilder(MESSAGE_LISTING_PREFIX);
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
         for (String listItem : listItems) {
             formatted.append(getIndexedListItem(displayIndex, listItem)).append("\n");

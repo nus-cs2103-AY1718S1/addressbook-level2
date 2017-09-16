@@ -7,9 +7,14 @@ import java.util.Optional;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
+import seedu.addressbook.commands.RedoCommand;
+import seedu.addressbook.commands.UndoCommand;
+import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
+import seedu.addressbook.state.ApplicationHistory;
+import seedu.addressbook.state.ApplicationState;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
@@ -28,6 +33,7 @@ public class Main {
     private TextUi ui;
     private StorageFile storage;
     private AddressBook addressBook;
+    private ApplicationHistory applicationHistory;
 
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
@@ -55,6 +61,7 @@ public class Main {
             this.ui = new TextUi();
             this.storage = initializeStorage(launchArgs);
             this.addressBook = storage.load();
+            this.applicationHistory = initializeApplicationHistory();
             ui.showWelcomeMessage(VERSION, storage.getPath());
 
         } catch (InvalidStorageFilePathException | StorageOperationException e) {
@@ -83,7 +90,7 @@ public class Main {
         Command command;
         do {
             String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
+            command = new Parser().parseCommand(userCommandText, applicationHistory);
             CommandResult result = executeCommand(command);
             recordResult(result);
             ui.showResultToUser(result);
@@ -107,9 +114,11 @@ public class Main {
      */
     private CommandResult executeCommand(Command command)  {
         try {
+            applicationHistory.saveStateBeforeOperation(new ApplicationState(addressBook, lastShownList));
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);
+            updateApplicationHistory(command);
             return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
@@ -127,5 +136,24 @@ public class Main {
         return isStorageFileSpecifiedByUser ? new StorageFile(launchArgs[0]) : new StorageFile();
     }
 
+    /**
+     * Creates a new instance of ApplicationHistory for managing the application state objects.
+     */
+    private ApplicationHistory initializeApplicationHistory() {
+        return new ApplicationHistory();
+    }
+
+    /**
+     * Updates the application history using different logic depending on the command type.
+     * 
+     * @param command the command that was just successfully executed.
+     */
+    private void updateApplicationHistory(Command command) {
+        if (!(command instanceof RedoCommand)
+                && !(command instanceof UndoCommand)
+                && !(command instanceof  HelpCommand)) {
+            applicationHistory.updateStateAfterSuccessfulOperation();
+        }
+    }
 
 }

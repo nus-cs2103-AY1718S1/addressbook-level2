@@ -5,7 +5,6 @@ import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.UniqueTagList;
-import seedu.addressbook.parser.Parser;
 import seedu.addressbook.util.TestUtil;
 
 import static org.junit.Assert.*;
@@ -28,10 +27,10 @@ public class TotalContactsCommandTest {
         assertEquals(0, addressBook.getAllPersons().immutableListView().size());
     }
 
-    
+
     @Test
     public void afterAddingOneContact() throws Exception {
-        for (int i=0; i<1; i++) {
+        for (int i = 0; i<1; i++) {
             addressBook.addPerson(person);
         }
         assertEquals(1, addressBook.getAllPersons().immutableListView().size());

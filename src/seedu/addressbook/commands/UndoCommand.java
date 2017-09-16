@@ -8,7 +8,9 @@ import seedu.addressbook.state.exception.LoadStateException;
 
 import java.util.List;
 
-
+/**
+ * Undoes any previous command, except invalid commands or help commands.
+ */
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";

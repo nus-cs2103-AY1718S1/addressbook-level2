@@ -10,6 +10,9 @@ import static seedu.addressbook.common.Messages.MESSAGE_ERROR_APPLICATION;
 import static seedu.addressbook.common.Messages.MESSAGE_ERROR_EMPTY_HISTORY_STACK;
 import static seedu.addressbook.common.Messages.MESSAGE_ERROR_EMPTY_REDO_STACK;
 
+/**
+ * A object for the current program instance that allows management of its command execution history.
+ */
 public class ApplicationHistory {
     
 
@@ -95,7 +98,9 @@ public class ApplicationHistory {
         return historyStack.pop();
     }
     
-    public void pushHistory(ApplicationState applicationState) { historyStack.push(applicationState); }
+    public void pushHistory(ApplicationState applicationState) {
+        historyStack.push(applicationState);
+    }
     
     public ApplicationState popRedoHistory() throws EmptyHistoryException {
         if (isEmptyRedoHistory()) {
@@ -104,5 +109,7 @@ public class ApplicationHistory {
         return redoStack.pop();
     }
 
-    public void pushRedoHistory(ApplicationState applicationState) { redoStack.push(applicationState); }
+    public void pushRedoHistory(ApplicationState applicationState) {
+        redoStack.push(applicationState);
+    }
 }

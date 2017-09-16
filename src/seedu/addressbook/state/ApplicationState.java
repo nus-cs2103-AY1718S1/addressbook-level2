@@ -10,6 +10,9 @@ import java.util.List;
 import static seedu.addressbook.common.Messages.MESSAGE_ADDED;
 import static seedu.addressbook.common.Messages.MESSAGE_DELETED;
 
+/**
+ * A single state at which the program was executed.
+ */
 public class ApplicationState {
     
     private AddressBook addressbook;

@@ -8,7 +8,9 @@ import seedu.addressbook.state.exception.LoadStateException;
 
 import java.util.List;
 
-
+/**
+ * Redoes a previous undo command on the application.
+ */
 public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";

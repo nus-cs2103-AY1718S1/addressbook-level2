@@ -12,6 +12,13 @@
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
+|| edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
 || Clears address book permanently.
 || Example: clear
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
@@ -138,6 +145,252 @@
 || Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
 || This person already exists in the address book
 || ===================================================
+|| Enter command: || [Command entered:  edit 123]
+|| Wrong sequence of edit command.
+|| Usage: edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| 
+|| Enter command: || [Command entered:  edit 91556]
+|| Wrong sequence of edit command.
+|| Usage: edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| 
+|| Enter command: || [Command entered:  edit 1 n/Le Quang Quan p/86496586 e/quan_le@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems]
+|| Wrong sequence of edit command.
+|| Usage: edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| 
+|| Enter command: || [Command entered:  list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  delete 1]
+|| The Syntax for the edit command is wrong.
+|| Usage: edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  asdfasdf]
+|| The Syntax for the edit command is wrong.
+|| Usage: edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  add Le Quang Quan Bean p/86496586 e/quan_le@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems]
+|| The Syntax for the edit command is wrong.
+|| Usage: edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter command: || [Command entered:  edit]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 	3. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	4. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	5. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  edit 1 n/Le Quang Quan p/76496586 e/quan_le@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems]
+|| Person is edited!
+|| ===================================================
+|| 
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	5. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	5. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  edit 1 Le Test p/95876985 e/quan_le111111@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems]
+|| Invalid command format! 
+|| edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  edit]
+|| Wrong sequence of edit command.
+|| Usage: edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| 
+|| Enter data to be edited: || [Command entered:  edit 2 Le Brown p/96496586 e/quan_le8946519@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/Double Degree t/Accountancy t/Information Systems]
+|| Invalid command format! 
+|| edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  edit]
+|| Wrong sequence of edit command.
+|| Usage: edit: Edits a person in the address book.Select the index of the person to be edited from the list provided.
+|| The first command will just be edit to list all the people in the database.
+|| Contact details can be marked private by prepending 'p' to the prefix.
+|| Parameters: n/NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
+|| Example: edit
+|| <List of all people in the address book will be populated>
+|| edit 1 John Doe [p]p/98765432 pe/johnd@gmail.com [p]a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| ===================================================
+|| 
+|| Enter data to be edited: || [Command entered:  edit 3 n/Le Green p/84588119 e/quan_le89789153@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems]
+|| Person is edited!
+|| ===================================================
+|| 
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	3. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	4. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	5. Le Green Phone: 84588119 Email: quan_le89789153@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	3. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	4. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	5. Le Green Phone: 84588119 Email: quan_le89789153@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  edit 1 n/Le Do Do p/86496586 e/quan_le123@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems]
+|| Person is edited!
+|| ===================================================
+|| 
+|| Enter command: || [Command entered:  edit]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	3. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	4. Le Green Phone: 84588119 Email: quan_le89789153@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	5. Le Do Do Phone: 86496586 Email: quan_le123@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  edit 2 n/Bean Le p/97864859 e/a0126932asdfv@u.nus.edu a/25 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems]
+|| Person is edited!
+|| ===================================================
+|| 
+|| Enter command: || [Command entered:  edit]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	3. Le Green Phone: 84588119 Email: quan_le89789153@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	4. Le Do Do Phone: 86496586 Email: quan_le123@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	5. Bean Le Phone: 97864859 Email: a0126932asdfv@u.nus.edu Address: 25 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  edit 3 n/Nigel Choo p/88888888 e/quan_le29456@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems]
+|| Person is edited!
+|| ===================================================
+|| 
+|| Enter command: || [Command entered:  edit]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	3. Le Do Do Phone: 86496586 Email: quan_le123@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	4. Bean Le Phone: 97864859 Email: a0126932asdfv@u.nus.edu Address: 25 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	5. Nigel Choo Phone: 88888888 Email: quan_le29456@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter data to be edited: || [Command entered:  edit 4 n/Nigel Lim p/77777777 e/a0126932e@u.nus.edu a/25 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems]
+|| Person is edited!
+|| ===================================================
+|| 
+|| Enter command: || [Command entered:  list]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	3. Le Do Do Phone: 86496586 Email: quan_le123@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	4. Nigel Choo Phone: 88888888 Email: quan_le29456@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	5. Nigel Lim Phone: 77777777 Email: a0126932e@u.nus.edu Address: 25 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 
+|| 5 persons listed!
+|| ===================================================
 || Enter command: || [Command entered:  view]
 || Invalid command format! 
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
@@ -175,28 +428,28 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 1]
-|| Viewing person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| ===================================================
-|| Enter command: || [Command entered:  viewall 1]
-|| Viewing person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| ===================================================
-|| Enter command: || [Command entered:  view 3]
 || Viewing person: Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
-|| Enter command: || [Command entered:  view 4]
-|| Viewing person: Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| ===================================================
-|| Enter command: || [Command entered:  view 5]
-|| Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
-|| ===================================================
-|| Enter command: || [Command entered:  viewall 3]
+|| Enter command: || [Command entered:  viewall 1]
 || Viewing person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
+|| Enter command: || [Command entered:  view 3]
+|| Viewing person: Le Do Do Phone: 86496586 Email: quan_le123@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| ===================================================
+|| Enter command: || [Command entered:  view 4]
+|| Viewing person: Nigel Choo Phone: 88888888 Email: quan_le29456@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| ===================================================
+|| Enter command: || [Command entered:  view 5]
+|| Viewing person: Nigel Lim Phone: 77777777 Email: a0126932e@u.nus.edu Address: 25 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| ===================================================
+|| Enter command: || [Command entered:  viewall 3]
+|| Viewing person: Le Do Do Phone: 86496586 Email: quan_le123@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| ===================================================
 || Enter command: || [Command entered:  viewall 4]
-|| Viewing person: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
+|| Viewing person: Nigel Choo Phone: 88888888 Email: quan_le29456@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
 || ===================================================
 || Enter command: || [Command entered:  viewall 5]
-|| Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
+|| Viewing person: Nigel Lim Phone: 77777777 Email: a0126932e@u.nus.edu Address: 25 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
 || ===================================================
 || Enter command: || [Command entered:  find]
 || Invalid command format! 
@@ -217,21 +470,18 @@
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Betsy]
-|| 	1. Betsy Choo Tags: [secretive]
 || 
-|| 1 persons listed!
+|| 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Dickson]
 || 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
-|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
-|| 2 persons listed!
+|| 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Charlie Betsy]
-|| 	1. Betsy Choo Tags: [secretive]
-|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 
-|| 2 persons listed!
+|| 1 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format! 
@@ -252,43 +502,46 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-|| Person could not be found in address book
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 2]
-|| Person could not be found in address book
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  viewall 2]
-|| Person could not be found in address book
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	3. Le Do Do Phone: 86496586 Email: quan_le123@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	4. Nigel Choo Phone: 88888888 Email: quan_le29456@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	5. Nigel Lim Phone: 77777777 Email: a0126932e@u.nus.edu Address: 25 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 
+|| 5 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  delete 4]
+|| Deleted Person: Nigel Choo Phone: 88888888 Email: quan_le29456@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	3. Le Do Do Phone: 86496586 Email: quan_le123@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	4. Nigel Lim Phone: 77777777 Email: a0126932e@u.nus.edu Address: 25 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
 || 
 || 4 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  delete 4]
-|| Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
+|| Enter command: || [Command entered:  delete 1]
+|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	1. Le Quang Quan Phone: 76496586 Email: quan_le@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	2. Le Do Do Phone: 86496586 Email: quan_le123@u.nus.edu Address: 35 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
+|| 	3. Nigel Lim Phone: 77777777 Email: a0126932e@u.nus.edu Address: 25 Prince George's Park, #03-19 O, Residence 5, S187529 Tags: [Accountancy][InformationSystems][DoubleDegree]
 || 
 || 3 persons listed!
-|| ===================================================
-|| Enter command: || [Command entered:  delete 1]
-|| Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| ===================================================
-|| Enter command: || [Command entered:  list]
-|| 	1. Betsy Choo Tags: [secretive]
-|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| 
-|| 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

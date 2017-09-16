@@ -4,9 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.CommandResult;
-import seedu.addressbook.commands.ExitCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
@@ -24,6 +22,18 @@ public class Main {
 
     /** Version info of the program. */
     public static final String VERSION = "AddessBook Level 2 - Version 1.0";
+    private static final String MESSAGE_INVALID_EDIT_COMMAND = "The Syntax for the edit command is wrong.\n"
+            + "Usage: " + EditCommand.MESSAGE_USAGE;
+    private static final String COMMAND_EDIT_LISTING = EditCommand.COMMAND_WORD + "Listing";
+    private static final String COMMAND_EDIT_DATA = EditCommand.COMMAND_WORD + "Data";
+
+    /** Message to stop edit command as the commands sequence is wrong */
+    private static final String MESSAGE_INVALID_SEQUENCE = "Wrong sequence of edit command.\n"
+            +"Usage: " + EditCommand.MESSAGE_USAGE;
+    /** Message to stop edit command as the database is empty */
+    private String MESSAGE_STOP_EDIT_COMMAND = "There are no one in the Address Book! Add someone first before editing.";
+    /** Message to end edit command */
+    private String MESSAGE_END_EDIT_COMMAND = "Person is edited!";
 
     private TextUi ui;
     private StorageFile storage;
@@ -81,14 +91,66 @@ public class Main {
     /** Reads the user command and executes it, until the user issues the exit command.  */
     private void runCommandLoopUntilExitCommand() {
         Command command;
+        String previousCommandTextSorted = "";
         do {
-            String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
+            String userCommandText;
+            if (previousCommandTextSorted.equals(COMMAND_EDIT_LISTING)) {
+                userCommandText = ui.getUserCommand("Enter data to be edited: ");
+            } else {
+                userCommandText = ui.getUserCommand("Enter command: ");
+            }
+            String commandTextSorted = new Parser().parseCommandText(userCommandText);
+            if (compareCommandWithPreviousCommand(commandTextSorted,previousCommandTextSorted)) {
+                command = new Parser().parseCommand(userCommandText); //Give delete command
+            } else {
+                command = new IncorrectCommand(MESSAGE_INVALID_EDIT_COMMAND);
+                previousCommandTextSorted = "";
+            }
 
+            if (commandTextSorted.equals(COMMAND_EDIT_DATA)
+                    && !previousCommandTextSorted.equals(COMMAND_EDIT_LISTING)) { //Show results if the current command is not a delete command
+                ui.showToUserEdit(MESSAGE_INVALID_SEQUENCE);
+            } else if (!commandTextSorted.equals(COMMAND_EDIT_DATA)
+                    && previousCommandTextSorted.equals(COMMAND_EDIT_LISTING)) {
+                ui.showToUserEdit(MESSAGE_INVALID_SEQUENCE);
+            } else {
+                CommandResult result = processCommandResult(command); //Process delete command
+                if (command instanceof IncorrectCommand){
+                    ui.showResultToUser(result);
+                } else if (commandTextSorted.equals(COMMAND_EDIT_DATA)) {
+                    command = new Parser().parseAddCommand(userCommandText); //Set current command to a nested add command
+                    processCommandResult(command);
+                    ui.showToUserEdit(MESSAGE_END_EDIT_COMMAND);
+                    previousCommandTextSorted = "";
+                } else {
+                    ui.showResultToUser(result);
+                    previousCommandTextSorted = commandTextSorted;
+                    if (lastShownList.size() == 0 && commandTextSorted.equals(COMMAND_EDIT_LISTING)) {
+                        ui.showToUserEdit(MESSAGE_STOP_EDIT_COMMAND);
+                        previousCommandTextSorted = "";
+                    }
+                }
+            }
         } while (!ExitCommand.isExit(command));
+    }
+
+    private CommandResult processCommandResult(Command command) {
+        CommandResult result = executeCommand(command);
+        recordResult(result);
+        return result;
+    }
+
+    private boolean compareCommandWithPreviousCommand(String commandTextSorted, String previousCommandTextSorted){
+        if (!commandTextSorted.equals("editListing") && !commandTextSorted.equals("editData")
+                && !previousCommandTextSorted.equals("editListing")) {
+            return true;
+        } else if (commandTextSorted.equals("editListing") && !previousCommandTextSorted.equals("editData")) {
+            return true;
+        } else if (commandTextSorted.equals("editData") && previousCommandTextSorted.equals("editListing")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
@@ -101,6 +163,7 @@ public class Main {
 
     /**
      * Executes the command and returns the result.
+     *
      *
      * @param command user command
      * @return result of the command
@@ -116,6 +179,7 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
+
 
     /**
      * Creates the StorageFile object based on the user specified path (if any) or the default storage path.

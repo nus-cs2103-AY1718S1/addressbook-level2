@@ -11,17 +11,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -41,6 +31,19 @@ public class Parser {
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    public static final Pattern EDIT_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
+            Pattern.compile("(?<index>[^/]+)"
+                    + " n/(?<name>[^/]+)"
+                    + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
+                    + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
+                    + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
+                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+
+    public static final Pattern EDIT_ADD_ARGS_FORMAT =
+            Pattern.compile("(?<index>[^/]+)"
+                    + " n/(?<arguments>.*)");
+
+    private String ARGUMENTS_ARE_EMPTY = "";
 
     /**
      * Signals that the user input could not be parsed.
@@ -57,6 +60,46 @@ public class Parser {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     public Parser() {}
+
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param userInput full user input string
+     * @return the command text based on the user input
+     */
+    public String parseCommandText(String userInput) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            return String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE);
+        }
+        String commandText = matcher.group("commandWord");
+        String arguments = matcher.group("arguments");
+        if (!commandText.equals(EditCommand.COMMAND_WORD)){
+            return commandText;
+        }else {
+            return commandText + ((arguments.equals("")) ? "Listing" : "Data");
+        }
+    }
+
+    /**
+     * Parses user input into an add command for edit command execution.
+     *
+     * @param userCommandText full user input string
+     * @return the add command based on the user input for the edit command processing
+     */
+    public Command parseAddCommand(String userCommandText) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userCommandText.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+        final String editData = matcher.group("arguments");
+        final Matcher matcherEditAdd = EDIT_ADD_ARGS_FORMAT.matcher(editData.trim());
+        if (!matcherEditAdd.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+        final String addArguments = matcherEditAdd.group("arguments");
+        return prepareAdd(addArguments);
+    }
 
     /**
      * Parses user input into command for execution.
@@ -81,6 +124,9 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
 
+        case EditCommand.COMMAND_WORD:
+            return processEdit(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -102,6 +148,14 @@ public class Parser {
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
             return new HelpCommand();
+        }
+    }
+
+    private Command processEdit(String arguments) {
+        if (arguments.equals(ARGUMENTS_ARE_EMPTY)) {
+            return new ListCommand();
+        } else {
+            return prepareEdit(arguments);
         }
     }
 
@@ -135,6 +189,54 @@ public class Parser {
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
+    }
+
+    /**
+     * Parses arguments in the context of the edit person command.
+     *
+     * @param arguments full command args string
+     * @return the prepared command
+     */
+    private Command prepareEdit(String arguments){
+        final Matcher matcher = EDIT_DATA_ARGS_FORMAT.matcher(arguments.trim());
+        // Validate arg string format
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+        String index = matcher.group("index");
+
+        String name = matcher.group("name");
+
+        String phone = matcher.group("phone");
+        String isPhonePrivate = matcher.group("isPhonePrivate");
+
+        String email = matcher.group("email");
+        String isEmailPrivate = matcher.group("isEmailPrivate");
+
+        String address = matcher.group("address");
+        String isAddressPrivate = matcher.group("isAddressPrivate");
+
+        String tags = matcher.group("tagArguments");
+        return new DeleteCommand(Integer.parseInt(matcher.group("index")));
+//        try {
+//            return new EditCommand(matcher.group("index"),
+//
+//                    matcher.group("name"),
+//
+//                    matcher.group("phone"),
+//                    isPrivatePrefixPresent(matcher.group("isPhonePrivate")),
+//
+//                    matcher.group("email"),
+//                    isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
+//
+//                    matcher.group("address"),
+//                    isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
+//
+//                    getTagsFromArgs(matcher.group("tagArguments"))
+//            );
+//        } catch (IllegalValueException ive) {
+//            return new IncorrectCommand(ive.getMessage());
+//        }
     }
 
     /**

@@ -27,6 +27,7 @@ What's different from AddressBook-Level1:
 * Support for storing address (`a/`) and tags (`t/`)
 * Support for marking a contact detail as 'private' (`pa/`) (`pe/`) (`pp/`) 
 * View details of a person (`view` : shows non-private details), (`viewall` : shows all details)
+* Edit details of a person based on user's input
 
 ### Viewing help : `help`
 Format: `help`
@@ -48,6 +49,25 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 Examples: 
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
+
+### Editing a person: `edit`
+Edit the details of an existing person in the address book. This is a series of 2 commands<br>
+Format:<br>
+Command1: `edit`<br>
+Screen Output: List of existing person in Address Book with their corresponding indices<br>
+Command2: `edit INDEX n/NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
+
+> Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional,
+> items with `...` after them can have multiple instances. Order of parameters are fixed.
+>
+> Put a `p` before the phone / email / address prefixes to mark it as `private`. `private` details can only
+> be seen using the `viewall` command.
+>
+> Persons can have any number of tags (including 0)
+
+Examples:
+* `edit 1 n/John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
+* `edit 2 n/Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>

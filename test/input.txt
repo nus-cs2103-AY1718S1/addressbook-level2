@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -53,6 +53,47 @@
 
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+
+##########################################################
+# test edit person command
+##########################################################
+
+  # should not allow wrong sequence of edit listing and edit data
+  edit 123
+  edit 91556
+  edit 1 n/Le Quang Quan p/86496586 e/quan_le@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems
+  list
+
+  # should not allow illegal command after edit listing data
+  edit
+  delete 1
+  edit
+  asdfasdf
+  edit
+  add Le Quang Quan Bean p/86496586 e/quan_le@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems
+  edit
+  edit 1 n/Le Quang Quan p/76496586 e/quan_le@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems
+  list
+
+  # should not allow wrong syntax of the second edit command
+  edit
+  edit 1 Le Test p/95876985 e/quan_le111111@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems
+  edit
+  edit 2 Le Brown p/96496586 e/quan_le8946519@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/Double Degree t/Accountancy t/Information Systems
+  edit
+  edit 3 n/Le Green p/84588119 e/quan_le89789153@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems
+  list
+
+  # edit first 4 people
+  edit
+  edit 1 n/Le Do Do p/86496586 e/quan_le123@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems
+  edit
+  edit 2 n/Bean Le p/97864859 e/a0126932asdfv@u.nus.edu a/25 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems
+  edit
+  edit 3 n/Nigel Choo p/88888888 e/quan_le29456@u.nus.edu a/35 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems
+  edit
+  edit 4 n/Nigel Lim p/77777777 e/a0126932e@u.nus.edu a/25 Prince George's Park, #03-19 O, Residence 5, S187529 t/DoubleDegree t/Accountancy t/InformationSystems
+  list
 
 ##########################################################
 # test view/viewall persons command

@@ -32,7 +32,6 @@ public class TextUi {
     /** Format of indexed list item */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
 
-
     /** Offset required to convert between 1-indexing and 0-indexing.  */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
 
@@ -78,8 +77,8 @@ public class TextUi {
      * Echos the command back to the user.
      * @return command (full line) entered by the user
      */
-    public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
+    public String getUserCommand(String message) {
+        out.print(LINE_PREFIX + message);
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
@@ -90,7 +89,6 @@ public class TextUi {
         showToUser("[Command entered:" + fullInputLine + "]");
         return fullInputLine;
     }
-
 
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
@@ -118,6 +116,12 @@ public class TextUi {
         for (String m : message) {
             out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
         }
+    }
+
+    /** Shows empty address book alert to the user */
+    public void showToUserEdit(String message) {
+        out.println(LINE_PREFIX + message.replace("\n", LS + LINE_PREFIX));
+        out.println(LINE_PREFIX + DIVIDER + LS + LINE_PREFIX);
     }
 
     /**

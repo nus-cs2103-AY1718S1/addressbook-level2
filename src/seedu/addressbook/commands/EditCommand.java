@@ -20,13 +20,12 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " 1 p/23456789 (or) e/johndoe@gmail.com (or) a/311, Clementi Ave 2, #02-25";
 
-    private static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    private static final String MESSAGE_EDIT_ARGS_INVALID = "Edit command's arguments are invalid. Please check.";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
 
-    private static final int EDIT_PERSON_DATA_COUNT = 4;
+    public static final int EDIT_PERSON_DATA_COUNT = 4;
 
     private static final int EDIT_PERSON_DATA_INDEX_NAME = 0;
-    private static final int EDIT_PERSON_DATA_INDEX_PHONE = 1;
+    public static final int EDIT_PERSON_DATA_INDEX_PHONE = 1;
     private static final int EDIT_PERSON_DATA_INDEX_EMAIL = 2;
     private static final int EDIT_PERSON_DATA_INDEX_ADDRESS = 3;
 
@@ -46,6 +45,10 @@ public class EditCommand extends Command {
         if (!phone.equals("")) this.newPersonData[EDIT_PERSON_DATA_INDEX_PHONE] = new Phone(phone, isPhonePrivate);
         if (!email.equals("")) this.newPersonData[EDIT_PERSON_DATA_INDEX_EMAIL] = new Email(email, isEmailPrivate);
         if (!address.equals("")) this.newPersonData[EDIT_PERSON_DATA_INDEX_ADDRESS] = new Address(address, isAddressPrivate);
+    }
+
+    public Object[] getNewPersonData() {
+        return this.newPersonData;
     }
 
     @Override

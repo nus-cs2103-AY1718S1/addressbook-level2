@@ -28,6 +28,7 @@ public class Email {
             throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
         }
         this.value = trimmedEmail;
+
     }
 
     /**

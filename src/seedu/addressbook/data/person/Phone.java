@@ -56,4 +56,5 @@ public class Phone {
     public boolean isPrivate() {
         return isPrivate;
     }
+
 }

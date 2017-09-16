@@ -9,14 +9,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -56,6 +49,8 @@ public class StorageFile {
 
     public final Path path;
 
+    File file;
+
     /**
      * @throws InvalidStorageFilePathException if the default path is invalid
      */
@@ -77,6 +72,8 @@ public class StorageFile {
         if (!isValidPath(path)) {
             throw new InvalidStorageFilePathException("Storage file should end with '.xml'");
         }
+
+        file = new File(filePath);
     }
 
     /**
@@ -93,6 +90,11 @@ public class StorageFile {
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
      */
     public void save(AddressBook addressBook) throws StorageOperationException {
+
+        /*//Catch exception if file becomes read-only
+        if (!file.canWrite()) {
+            throw new StorageOperationException("File cannot be written");
+        }*/
 
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html

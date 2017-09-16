@@ -3,25 +3,11 @@ package seedu.addressbook.parser;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -80,6 +66,9 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
+
+        case DeleteRangeCommand.COMMAND_WORD:
+            return prepareDeleteRange(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -177,6 +166,23 @@ public class Parser {
     }
 
     /**
+     * Parses arguments in the context of the delete range command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareDeleteRange(String args) {
+        try {
+            final ArrayList<Integer> targetIndices = parseArgsAsDisplayedIndices(args);
+            return new DeleteRangeCommand(targetIndices);
+        } catch (ParseException pe) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteRangeCommand.MESSAGE_USAGE));
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+    }
+
+    /**
      * Parses arguments in the context of the view command.
      *
      * @param args full command args string
@@ -230,6 +236,63 @@ public class Parser {
         return Integer.parseInt(matcher.group("targetIndex"));
     }
 
+    /**
+     * Parses the given arguments string as a single index number.
+     *
+     * @param args arguments string to parse as index number
+     * @return the parsed index number
+     * @throws ParseException if no region of the args string could be found for the index
+     * @throws NumberFormatException the args string region is not a valid number
+     */
+    private ArrayList<Integer> parseArgsAsDisplayedIndices(String args) throws ParseException, NumberFormatException {
+        ArrayList<Integer> rangeIndices = new ArrayList<>();
+
+        // Check if args string has 2 tokens
+        ArrayList<String> tokens = Parser.extractTwoTokens(args.trim());
+        if (tokens == null) {
+            throw new ParseException("Invalid index range to parse");
+        }
+
+        final int extractedStartIndex = Integer.parseInt(tokens.get(0)); // use standard libraries to parse
+        final int extractedEndIndex = Integer.parseInt(tokens.get(1));
+        // Check if endIndex is higher than
+        if (!((extractedEndIndex >= extractedStartIndex) && (extractedStartIndex >= 1) && (extractedEndIndex >= 1)))
+            throw new ParseException("Invalid index range to parse");
+        else {
+            rangeIndices.add(extractedStartIndex);
+            rangeIndices.add(extractedEndIndex);
+        }
+
+        return rangeIndices;
+    }
+
+    private static ArrayList<String> extractTwoTokens(String rawArgs) {
+        final Scanner SCANNER_RANGE = new Scanner(rawArgs);
+        ArrayList<String> tokens = new ArrayList<>();
+
+        if (Parser.hasTwoTokens(rawArgs)) {
+
+            while (SCANNER_RANGE.hasNext()) {
+                tokens.add(SCANNER_RANGE.next());
+            }
+
+            return tokens;
+        }
+
+        return null;
+    }
+
+    private static boolean hasTwoTokens(String rawArgs) {
+        final Scanner SCANNER_RANGE = new Scanner(rawArgs);
+        int numTokens=0;
+
+        while (SCANNER_RANGE.hasNext()) {
+            numTokens++;
+            SCANNER_RANGE.next();
+        }
+
+        return (numTokens == 2);
+    }
 
     /**
      * Parses arguments in the context of the find person command.

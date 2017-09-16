@@ -36,7 +36,7 @@ public class Parser {
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
     public static final Pattern NUMBER_ARG_FORMAT =
-            Pattern.compile("(?<number>\\d+)");
+            Pattern.compile("(?<number>\\d+(?:\\s+(?:-)?\\d+)*)"); //one number, followed by a negative number separated by whitespace
 
     public static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
@@ -264,8 +264,9 @@ public class Parser {
                     FindPhoneCommand.MESSAGE_USAGE));
         }
 
-        final int phoneNumber = Integer.parseInt(matcher.group("number"));
-        return new FindPhoneCommand(phoneNumber);
+        // numbers delimited by whitespace
+        final String[] numbersString = matcher.group("number").split("\\s+");
+        return new FindPhoneCommand(numbersString);
     }
 
 }

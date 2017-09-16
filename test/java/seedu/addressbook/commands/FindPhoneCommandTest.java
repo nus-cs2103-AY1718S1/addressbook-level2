@@ -17,31 +17,32 @@ public class FindPhoneCommandTest {
 
     @Test
     public void execute() throws IllegalValueException {
+        /* Single Search Term */
         //one digit, multiple match
-        assertFindPhoneCommandBehavior(9, Arrays.asList(td.amy, td.bill, td.candy));
+        assertFindPhoneCommandBehavior(new String[] {"9"}, Arrays.asList(td.amy, td.bill, td.candy));
         //one digit, single match
-        assertFindPhoneCommandBehavior(5, Arrays.asList(td.dan));
+        assertFindPhoneCommandBehavior(new String[] {"5"}, Arrays.asList(td.dan));
         //two digit, single match
-        assertFindPhoneCommandBehavior(93, Arrays.asList(td.candy));
+        assertFindPhoneCommandBehavior(new String[] {"93"}, Arrays.asList(td.candy));
         //one digit, no match
-        assertFindPhoneCommandBehavior(7, Collections.emptyList());
+        assertFindPhoneCommandBehavior(new String[] {"7"}, Collections.emptyList());
         //five digit, no match
-        assertFindPhoneCommandBehavior(11119, Collections.emptyList());
+        assertFindPhoneCommandBehavior(new String[] {"11119"}, Collections.emptyList());
     }
 
     /**
      * Executes the find command for the given keywords and verifies
      * the result matches the persons in the expectedPersonList exactly.
      */
-    private void assertFindPhoneCommandBehavior(int number, List<ReadOnlyPerson> expectedPersonList) {
-        FindPhoneCommand command = createFindPhoneCommand(number);
+    private void assertFindPhoneCommandBehavior(String[] numbersString, List<ReadOnlyPerson> expectedPersonList) {
+        FindPhoneCommand command = createFindPhoneCommand(numbersString);
         CommandResult result = command.execute();
 
         assertEquals(Command.getMessageForPersonListShownSummary(expectedPersonList), result.feedbackToUser);
     }
 
-    private FindPhoneCommand createFindPhoneCommand(int number) {
-        FindPhoneCommand command = new FindPhoneCommand(number);
+    private FindPhoneCommand createFindPhoneCommand(String[] numbersString) {
+        FindPhoneCommand command = new FindPhoneCommand(numbersString);
         command.setData(addressBook, Collections.emptyList());
         return command;
     }

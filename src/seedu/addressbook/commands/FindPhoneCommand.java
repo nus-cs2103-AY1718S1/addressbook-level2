@@ -18,7 +18,7 @@ public class FindPhoneCommand extends Command {
             + "the specified digits in sequence and displays them as a list with index numbers.\n"
             + "Separate different search terms with space.\n"
             + "Add negative sign '-' before number sequence to indicate exlusion of all results with the number "
-            + "sequence instead."
+            + "sequence instead.\n"
             + "Parameters: NUMBER [MORE NUMBERS ...]\n"
             + "Example: " + COMMAND_WORD + " 689 -68 89";
 

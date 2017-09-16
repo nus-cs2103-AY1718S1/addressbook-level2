@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -139,6 +139,19 @@
   # listing indexes get updated on next request
   delete 1
   list
+
+##########################################################
+# test sort command
+##########################################################
+
+  # add a person with name starting with A
+  add Amy Pek p/858135 e/amypek@live.sg a/123, watata drive t/retard
+
+  # display addressbook before sorting
+  list
+
+  # display addressbook after sorting
+  sort
 
 ##########################################################
 # test clear command

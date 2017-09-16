@@ -83,6 +83,10 @@ public class AddressBook {
         syncTagsWithMasterList(toAdd);
     }
 
+    public void sortPerson() {
+        allPersons.sort();
+    }
+
     /**
      * Returns true if an equivalent person exists in the address book.
      */

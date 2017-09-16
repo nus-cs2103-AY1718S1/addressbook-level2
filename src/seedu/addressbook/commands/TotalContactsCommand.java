@@ -16,6 +16,7 @@ public class TotalContactsCommand extends Command {
         return totalContacts;
     }
 
+    
     @Override
     public CommandResult execute() {
         List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();

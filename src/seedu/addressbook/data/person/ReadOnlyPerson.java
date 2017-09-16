@@ -94,4 +94,18 @@ public interface ReadOnlyPerson {
         }
         return builder.toString();
     }
+
+    default int compareTo(ReadOnlyPerson other) {
+        //if (other instanceof Person) {
+        return this.getName().toString().compareTo(other.getName().toString());
+        /*}
+        else {
+            try {
+                throw new InvalidTypeException();
+            } catch (InvalidTypeException e) {
+                e.printStackTrace();
+            }
+        }
+        */
+    }
 }

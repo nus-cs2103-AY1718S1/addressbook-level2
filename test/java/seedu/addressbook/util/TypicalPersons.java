@@ -43,8 +43,22 @@ public class TypicalPersons {
         }
     }
 
+    private void loadAddressBookWithUnsortedData(AddressBook ab) {
+        try {
+            for (Person p : this.getUnsortedPersons()) {
+                ab.addPerson(new Person(p));
+            }
+        } catch (IllegalValueException e) {
+            assert false : "not possible";
+        }
+    }
+
     public Person[] getTypicalPersons() {
         return new Person[]{amy, bill, candy, dan};
+    }
+
+    public Person[] getUnsortedPersons() {
+        return new Person[]{bill, dan, candy, amy};
     }
 
     public AddressBook getTypicalAddressBook() {
@@ -53,4 +67,9 @@ public class TypicalPersons {
         return ab;
     }
 
+    public AddressBook getUnsortedAddressBook() {
+        AddressBook ab = new AddressBook();
+        loadAddressBookWithUnsortedData(ab);
+        return ab;
+}
 }

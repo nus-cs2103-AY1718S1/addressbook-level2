@@ -139,6 +139,13 @@
   # listing indexes get updated on next request
   delete 1
   list
+  
+##########################################################
+# test sort command
+##########################################################
+
+  # sorts all
+  sort
 
 ##########################################################
 # test clear command

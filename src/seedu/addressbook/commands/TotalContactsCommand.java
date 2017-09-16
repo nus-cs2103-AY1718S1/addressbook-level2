@@ -10,13 +10,7 @@ public class TotalContactsCommand extends Command {
             + ": Displays total number of contacts in the address book.\n"
             + "Example: " + COMMAND_WORD;
 
-    public int getTotalContacts() throws NullPointerException{
-        List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
-        int totalContacts = allPersons.size();
-        return totalContacts;
-    }
 
-    
     @Override
     public CommandResult execute() {
         List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();

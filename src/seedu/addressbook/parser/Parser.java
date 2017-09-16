@@ -11,7 +11,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import seedu.addressbook.commands.AddCommand;
 import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.Command;
@@ -255,6 +254,11 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    /**
+     * Parses arguments in the context of the sort person command
+     * @param args full command args string
+     * @return the prepared command
+     */
     private Command prepareSort(String args) {
         if(args.equals("")) {
             return new SortCommand(false);
@@ -264,9 +268,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortCommand.MESSAGE_USAGE));
         }
-
         return new SortCommand(true);
     }
-
 
 }

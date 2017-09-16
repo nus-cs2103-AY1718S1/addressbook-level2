@@ -18,7 +18,8 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays all persons in the address book as a list sorted by alphabetical order. (UNSAVED)\n"
             + "Example: " + COMMAND_WORD +"\n"
-            + COMMAND_WORD + " save: Displays all persons in the address book as a list sorted by alphabetical order. (SAVED)\n"
+            + COMMAND_WORD + " save: " +
+            "Displays all persons in the address book as a list sorted by alphabetical order. (SAVED)\n"
             + "Example: " + COMMAND_WORD + " save";
 
     public SortCommand(boolean saveSortedList) {

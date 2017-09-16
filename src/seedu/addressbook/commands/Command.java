@@ -42,7 +42,8 @@ public abstract class Command {
      * @param personsDisplayed used to generate summary
      * @return summary message for persons displayed
      */
-    public static String getMessageForSavedSortedPersonListShownSummary(List<? extends ReadOnlyPerson> personsDisplayed) {
+    public static String getMessageForSavedSortedPersonListShownSummary(
+            List<? extends ReadOnlyPerson> personsDisplayed) {
         return String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, personsDisplayed.size());
     }
 
@@ -52,7 +53,8 @@ public abstract class Command {
      * @param personsDisplayed used to generate summary
      * @return summary message for persons displayed
      */
-    public static String getMessageForUnsavedSortedPersonListShownSummary(List<? extends ReadOnlyPerson> personsDisplayed) {
+    public static String getMessageForUnsavedSortedPersonListShownSummary(
+            List<? extends ReadOnlyPerson> personsDisplayed) {
         return String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, personsDisplayed.size())
                 + ("(not saved; to save, enter command \"sort save\")");
     }

@@ -99,6 +99,9 @@ public class AddressBook {
         allPersons.remove(toRemove);
     }
 
+    /**
+     * Sorts the internal list in the address book in alphabetical order of fullNames
+     */
     public void sortAddressBook() {
         allPersons.sort();
     }

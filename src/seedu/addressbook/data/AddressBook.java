@@ -102,23 +102,11 @@ public class AddressBook {
      *
      * @throws PersonNotFoundException if no such Person could be found.
      */
-    public void UpdatePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
+    public void UpdatePerson(ReadOnlyPerson toRemove , String inputLine) throws PersonNotFoundException {
 
         Person toUpdate = new Person(toRemove);
-        ChooseUpdateMethod(SelectUpdateAction(), toUpdate );
+        ChooseUpdateMethod(inputLine, toUpdate );
 
-    }
-
-    public static String SelectUpdateAction() {
-
-        System.out.println("|| " + "Enter 1 to update name , 2 to update phone no and 3 to update email: ");
-        String inputLine = SCANNER.nextLine();
-        // silently consume all blank and comment lines
-        while (inputLine.trim().isEmpty() || inputLine.trim().charAt(0) == '#') {
-            inputLine = SCANNER.nextLine();
-        }
-        System.out.println("|| " +"[Action chosen:" + inputLine + "]");
-        return inputLine;
     }
 
     private static void ChooseUpdateMethod(String inputLine , Person toUpdate ) {
@@ -161,7 +149,7 @@ public class AddressBook {
                 break;
 
             default:
-                ChooseUpdateMethod(SelectUpdateAction(), toUpdate);
+                ChooseUpdateMethod(inputLine, toUpdate);
                 break;
         }
     }

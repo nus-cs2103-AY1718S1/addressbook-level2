@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -128,6 +129,25 @@ public class UniquePersonList implements Iterable<Person> {
     public void clear() {
         internalList.clear();
     }
+
+    /**
+     * Sorts all persons in list.
+     */
+    public void sort() {
+        Collections.sort(internalList, comparePersons);
+    }
+
+    /**
+     * Compares two persons and return a positive number if the name of first
+     * person is lexicographically bigger than the second person, and vice versa.
+     */
+    public Comparator<Person> comparePersons = new Comparator<Person>(){
+        public int compare(Person firstPerson, Person secondPerson){
+            String firstPersonName = firstPerson.getName().fullName;
+            String secondPersonName = secondPerson.getName().fullName;
+            return firstPersonName.compareTo(secondPersonName);
+        }
+    };
 
     @Override
     public Iterator<Person> iterator() {

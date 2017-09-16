@@ -113,7 +113,11 @@ Examples:
 
 ### Clearing all entries : `clear`
 Clears all entries from the address book.<br>
-Format: `clear`  
+Format: `clear`
+
+### Sorting all entries : `sort`
+Sorts the entries in the address book in ascending order.<br>
+Format: `sort`
 
 #### Exiting the program : `exit`
 Exits the program.<br>

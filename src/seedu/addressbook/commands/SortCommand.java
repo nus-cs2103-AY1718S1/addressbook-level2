@@ -1,9 +1,5 @@
 package seedu.addressbook.commands;
 
-import seedu.addressbook.data.person.ReadOnlyPerson;
-import java.util.Collections;
-import java.util.List;
-
 
 public class SortCommand extends Command {
 
@@ -15,15 +11,6 @@ public class SortCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     @Override
-    /*public CommandResult execute() {
-        List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
-        List<ReadOnlyPerson> mutableList = allPersons;
-        Collections.sort(mutableList);
-
-        return new CommandResult(MESSAGE_SUCCESS);
-        //getMessageForPersonListShownSummary(mutableList)
-    }
-    */
     public CommandResult execute() {
         addressBook.sort();
         return new CommandResult(MESSAGE_SUCCESS);

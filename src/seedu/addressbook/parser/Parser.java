@@ -64,6 +64,16 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
+
+    public String parseString(String userInput)    {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            return "nil";
+        }
+        final String commandWord = matcher.group("commandWord");
+        return commandWord;
+    }
+
     public Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {

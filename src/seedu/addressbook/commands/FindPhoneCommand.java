@@ -76,10 +76,11 @@ public class FindPhoneCommand extends Command {
     }
 
     /**
-     * Retrieves all persons in the address book whose names contain some of the specified number sequence.
-     * If
+     * Retrieves all persons in the address book whose names contain some of the specified number sequence in the
+     * inclusiveTerms list, and none of the specified number sequence in the exclusiveTerms list
      *
-     * @param keywords for searching
+     * @param list of inclusive search terms
+     * @param list of exclusive search terms
      * @return list of persons found
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingPhoneNumber(List<Integer> inclusiveTerms,
@@ -87,7 +88,7 @@ public class FindPhoneCommand extends Command {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             if (checkPersonPhoneNumberAgainstSequencesInList(person, exclusiveTerms))
-                break;
+                continue;
             if (checkPersonPhoneNumberAgainstSequencesInList(person, inclusiveTerms))
                 matchedPersons.add(person);
         }

@@ -28,6 +28,20 @@ public class FindPhoneCommandTest {
         assertFindPhoneCommandBehavior(new String[] {"7"}, Collections.emptyList());
         //five digit, no match
         assertFindPhoneCommandBehavior(new String[] {"11119"}, Collections.emptyList());
+        /* Multiple Inclusive Search Terms */
+        //multiple match
+        assertFindPhoneCommandBehavior(new String[] {"91", "933", "5"}, Arrays.asList(td.amy, td.candy, td.dan));
+        //single match
+        assertFindPhoneCommandBehavior(new String[] {"9111", "119", "191"}, Arrays.asList(td.amy));
+        //no match
+        assertFindPhoneCommandBehavior(new String[] {"7", "11119", "22229", "33339"}, Collections.emptyList());
+        /* Multiple Inclusive and Exclusive Search Terms */
+        //multiple match
+        assertFindPhoneCommandBehavior(new String[] {"9", "-393"}, Arrays.asList(td.amy, td.bill));
+        //single match
+        assertFindPhoneCommandBehavior(new String[] {"9", "-33", "-191"}, Arrays.asList(td.bill));
+        //no match
+        assertFindPhoneCommandBehavior(new String[] {"911", "-9"}, Collections.emptyList());
     }
 
     /**

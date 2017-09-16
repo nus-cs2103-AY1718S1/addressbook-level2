@@ -53,6 +53,23 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
+### Lists the address book, sorted according to alphabetical order of names: `sort`
+Shows a list of all persons in the address book sorted by the full name in alphabetical order.<br>
+Format: `sort [save]`
+
+> `save` is optional, meaning the command `sort` by itself will return a list view without 
+> saving the new ordering, while the command `sort save` will return the list and saves the new ordering to the address book.
+
+Examples:
+* `list`<br>
+  `sort`<br>
+  `list`<br>
+  The list before and after the sort will remain in the same ordering.
+* `list`<br>
+  `sort save`<br>
+  `list`<br>
+  The list after the sort will have the same ordering as the sort.
+
 ### Finding all persons containing any keyword in their name: `find`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`

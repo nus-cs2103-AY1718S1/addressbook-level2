@@ -100,6 +100,13 @@ public class AddressBook {
     }
 
     /**
+     * Sorts the internal list in the address book in alphabetical order of fullNames
+     */
+    public void sortAddressBook() {
+        allPersons.sort();
+    }
+
+    /**
      * Clears all persons and tags from the address book.
      */
     public void clear() {

@@ -37,6 +37,29 @@ public class Command {
     }
 
     /**
+     * Constructs a feedback message to summarise an operation that displayed a saved sorted listing of persons.
+     *
+     * @param personsDisplayed used to generate summary
+     * @return summary message for persons displayed
+     */
+    public static String getMessageForSavedSortedPersonListShownSummary(
+            List<? extends ReadOnlyPerson> personsDisplayed) {
+        return String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, personsDisplayed.size());
+    }
+
+    /**
+     * Constructs a feedback message to summarise an operation that displayed an unsaved sorted listing of persons.
+     *
+     * @param personsDisplayed used to generate summary
+     * @return summary message for persons displayed
+     */
+    public static String getMessageForUnsavedSortedPersonListShownSummary(
+            List<? extends ReadOnlyPerson> personsDisplayed) {
+        return String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, personsDisplayed.size())
+                + ("(not saved; to save, enter command \"sort save\")");
+    }
+
+    /**
      * Executes the command and returns the result.
      */
     public CommandResult execute(){

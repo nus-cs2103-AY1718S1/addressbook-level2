@@ -2,7 +2,8 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Finds and lists all persons in address book whose number contains all the digits specified in sequence.

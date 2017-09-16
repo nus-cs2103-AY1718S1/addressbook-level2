@@ -51,7 +51,7 @@ public class DeleteRangeCommandTest {
 
     @Test
     public void execute_noPersonDisplayed_returnsInvalidIndexMessage() {
-        assertDeletionFailsDueToInvalidIndex(1, addressBook, emptyDisplayList);
+        assertDeletionFailsDueToInvalidIndex(1, 2, addressBook, emptyDisplayList);
     }
 
     @Test
@@ -61,29 +61,29 @@ public class DeleteRangeCommandTest {
                 new Email("notin@book.com", false), new Address("156D Grant Road", false), new UniqueTagList());
         List<ReadOnlyPerson> listWithPersonNotInAddressBook = TestUtil.createList(notInAddressBookPerson);
 
-        assertDeletionFailsDueToNoSuchPerson(1, addressBook, listWithPersonNotInAddressBook);
+        assertDeletionFailsDueToNoSuchPerson(1, 2, addressBook, listWithPersonNotInAddressBook);
     }
 
     @Test
     public void execute_invalidIndex_returnsInvalidIndexMessage() {
-        assertDeletionFailsDueToInvalidIndex(0, addressBook, listWithEveryone);
-        assertDeletionFailsDueToInvalidIndex(-1, addressBook, listWithEveryone);
-        assertDeletionFailsDueToInvalidIndex(listWithEveryone.size() + 1, addressBook, listWithEveryone);
+        assertDeletionFailsDueToInvalidIndex(0, 0, addressBook, listWithEveryone);
+        assertDeletionFailsDueToInvalidIndex(-1, -1, addressBook, listWithEveryone);
+        assertDeletionFailsDueToInvalidIndex(listWithEveryone.size() + 1, listWithEveryone.size() + 1, addressBook, listWithEveryone);
     }
 
     @Test
     public void execute_validIndex_personIsDeleted() throws UniquePersonList.PersonNotFoundException {
-        assertDeletionSuccessful(1, addressBook, listWithSurnameDoe);
-        assertDeletionSuccessful(listWithSurnameDoe.size(), addressBook, listWithSurnameDoe);
+        assertDeletionSuccessful(1, 1, addressBook, listWithSurnameDoe);
+        assertDeletionSuccessful(listWithSurnameDoe.size(), listWithSurnameDoe.size(), addressBook, listWithSurnameDoe);
 
         int middleIndex = (listWithSurnameDoe.size() / 2) + 1;
-        assertDeletionSuccessful(middleIndex, addressBook, listWithSurnameDoe);
+        assertDeletionSuccessful(middleIndex, middleIndex, addressBook, listWithSurnameDoe);
     }
 
     /**
      * Creates a new delete command.
      *
-     * @param targetVisibleIndex of the person that we want to delete
+     * @param visibleIndices of the people that we want to delete
      */
     private DeleteRangeCommand createDeleteRangeCommand(ArrayList<Integer> visibleIndices, AddressBook addressBook,
                                               List<ReadOnlyPerson> displayList) {
@@ -107,14 +107,17 @@ public class DeleteRangeCommandTest {
     }
 
     /**
-     * Asserts that the index is not valid for the given display list.
+     * Asserts that the start index and end index are not valid for the given display list.
      */
-    private void assertDeletionFailsDueToInvalidIndex(int invalidVisibleIndex, AddressBook addressBook,
+    private void assertDeletionFailsDueToInvalidIndex(int invalidVisibleStartIndex, int invalidVisibleEndIndex, AddressBook addressBook,
                                                       List<ReadOnlyPerson> displayList) {
 
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+        ArrayList<Integer> invalidVisibleIndices = new ArrayList<>();
+        invalidVisibleIndices.add(invalidVisibleStartIndex);
+        invalidVisibleIndices.add(invalidVisibleEndIndex);
 
-        DeleteCommand command = createDeleteCommand(invalidVisibleIndex, addressBook, displayList);
+        DeleteRangeCommand command = createDeleteRangeCommand(invalidVisibleIndices, addressBook, displayList);
         assertCommandBehaviour(command, expectedMessage, addressBook, addressBook);
     }
 
@@ -135,24 +138,31 @@ public class DeleteRangeCommandTest {
     }
 
     /**
-     * Asserts that the person at the specified index can be successfully deleted.
+     * Asserts that the people within the specified indices can be successfully deleted.
      *
      * The addressBook passed in will not be modified (no side effects).
      *
      * @throws UniquePersonList.PersonNotFoundException if the selected person is not in the address book
      */
-    private void assertDeletionSuccessful(int targetVisibleIndex, AddressBook addressBook,
+    private void assertDeletionSuccessful(int targetVisibleStartIndex, int targetVisibleEndIndex, AddressBook addressBook,
                                           List<ReadOnlyPerson> displayList) throws UniquePersonList.PersonNotFoundException {
-
-        ReadOnlyPerson targetPerson = displayList.get(targetVisibleIndex - TextUi.DISPLAYED_INDEX_OFFSET);
-
         AddressBook expectedAddressBook = TestUtil.clone(addressBook);
-        expectedAddressBook.removePerson(targetPerson);
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, targetPerson);
+        for (int i=targetVisibleStartIndex; i<= targetVisibleEndIndex;i++) {
+            ReadOnlyPerson targetPerson = displayList.get(i- TextUi.DISPLAYED_INDEX_OFFSET);
+
+
+            expectedAddressBook.removePerson(targetPerson);
+
+        }
+        String expectedMessage = DeleteRangeCommand.MESSAGE_DELETE_RANGE_SUCCESS + targetVisibleStartIndex + " to " + targetVisibleEndIndex;
+
+        ArrayList<Integer> visibleIndices = new ArrayList<>();
+        visibleIndices.add(targetVisibleStartIndex);
+        visibleIndices.add(targetVisibleEndIndex);
 
         AddressBook actualAddressBook = TestUtil.clone(addressBook);
 
-        DeleteCommand command = createDeleteCommand(targetVisibleIndex, actualAddressBook, displayList);
+        DeleteRangeCommand command = createDeleteRangeCommand(visibleIndices, actualAddressBook, displayList);
         assertCommandBehaviour(command, expectedMessage, expectedAddressBook, actualAddressBook);
     }
 }

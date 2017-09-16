@@ -60,6 +60,16 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 > The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
 and persons matching at least one keyword will be returned (i.e. `OR` search).
 
+### Editing a person's details : `edit`
+Edits a person's details in the address book.<br>
+Format: `edit NAME CATEGORY(name,phone,address,email) NEW_VALUE`
+
+>Words in `UPPER_CASE` are the parameters
+>Can only edit one category at a time
+
+Examples:
+* `edit John Doe name Doe`
+
 Examples: 
 * `find John`<br>
   Returns `John Doe` but not `john`

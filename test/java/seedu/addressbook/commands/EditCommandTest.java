@@ -7,11 +7,7 @@ import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.util.TestUtil;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
-import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -114,9 +110,5 @@ public class EditCommandTest {
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedAddressBook.getAllPersons(), actualAddressBook.getAllPersons());
     }
-
-    /**
-     * Asserts that the
-     */
 
 }

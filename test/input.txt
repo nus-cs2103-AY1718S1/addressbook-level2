@@ -103,6 +103,12 @@
   find Betsy
   # find multiple with same keyword
   find Dickson
+
+ ##########################################################
+ # test sort list command
+ ##########################################################
+  #should sort the list in alphabetical order
+  sort
   # find multiple with some keywords
   find Charlie Betsy
 

@@ -10,12 +10,16 @@ import java.util.Objects;
  */
 public class Person implements ReadOnlyPerson {
 
+    private static int nextSequenceNumber =1; //Set as class-level variable using static
+
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private final int sequenceNumber ;  //number no to be changed
 
     private final UniqueTagList tags;
+
     /**
      * Assumption: Every field must be present and not null.
      */
@@ -24,7 +28,10 @@ public class Person implements ReadOnlyPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.tags = new UniqueTagList(tags);
+        this.sequenceNumber = nextSequenceNumber;
+        nextSequenceNumber++;
+        // protect internal tags from changes in the arg list
     }
 
     /**

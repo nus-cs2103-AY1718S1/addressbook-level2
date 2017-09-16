@@ -1,8 +1,17 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.commands.CommandResult;
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 import java.util.Objects;
+
+import static seedu.addressbook.data.person.Name.MESSAGE_NAME_CONSTRAINTS;
+import static seedu.addressbook.data.person.Name.isValidName;
+import static seedu.addressbook.data.person.Phone.MESSAGE_PHONE_CONSTRAINTS;
+import static seedu.addressbook.data.person.Email.MESSAGE_EMAIL_CONSTRAINTS;
+import static seedu.addressbook.data.person.Address.MESSAGE_ADDRESS_CONSTRAINTS;
+
 
 /**
  * Represents a Person in the address book.
@@ -39,9 +48,34 @@ public class Person implements ReadOnlyPerson {
         return name;
     }
 
+    public Boolean setName(String name) {
+        /*try{
+            this.name = new Name(name);
+        } catch (IllegalValueException ive){
+            System.out.println(MESSAGE_NAME_CONSTRAINTS);
+        }*/
+        try{
+            this.name = new Name(name);
+            return true;
+        } catch (IllegalValueException ive){
+            System.out.println("|| " + MESSAGE_NAME_CONSTRAINTS);
+            return false;
+        }
+    }
+
     @Override
     public Phone getPhone() {
         return phone;
+    }
+
+    public Boolean setPhone(String phone) {
+        try {
+            this.phone = new Phone(phone, false);
+            return true;
+        } catch (IllegalValueException ive){
+            System.out.println("|| " + MESSAGE_PHONE_CONSTRAINTS);
+            return false;
+        }
     }
 
     @Override
@@ -49,9 +83,29 @@ public class Person implements ReadOnlyPerson {
         return email;
     }
 
+    public Boolean setEmail(String email) {
+        try {
+            this.email = new Email(email, false);
+            return true;
+        } catch (IllegalValueException ive){
+            System.out.println("|| " + MESSAGE_EMAIL_CONSTRAINTS);
+            return false;
+        }
+    }
+
     @Override
     public Address getAddress() {
         return address;
+    }
+
+    public Boolean setAddress(String value) {
+        try {
+            this.address = new Address(value, false);
+            return true;
+        } catch (IllegalValueException ive) {
+            System.out.println("|| " + MESSAGE_ADDRESS_CONSTRAINTS);
+            return false;
+        }
     }
 
     @Override

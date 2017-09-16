@@ -54,6 +54,7 @@
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
 
+
 ##########################################################
 # test view/viewall persons command
 ##########################################################
@@ -138,6 +139,16 @@
 
   # listing indexes get updated on next request
   delete 1
+  list
+
+##########################################################
+# test edit/listall persons command
+##########################################################
+
+  # edit all of Dickson Ee's information, check with list, then edit it back
+  edit Dickson Ee name Brown
+  list
+  edit Brown name Dickson Ee
   list
 
 ##########################################################

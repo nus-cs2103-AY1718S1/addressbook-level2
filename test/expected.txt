@@ -12,6 +12,9 @@
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
+|| edit: Edits a person's details in the address book.
+|| Parameters: NAME PROPERTY(name, phone, email, address) VALUE.
+|| Example: edit John Doe name Doe, changes the name of person "John Doe" to "Doe"
 || Clears address book permanently.
 || Example: clear
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
@@ -287,6 +290,24 @@
 || Enter command: || [Command entered:  list]
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit Dickson Ee name Brown]
+|| Details successfully changed!
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+||	1. Betsy Choo Tags: [secretive]
+||	2. Brown Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  edit Brown name Dickson Ee]
+|| Details successfully changed!
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+||	1. Betsy Choo Tags: [secretive]
+||	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
 || ===================================================

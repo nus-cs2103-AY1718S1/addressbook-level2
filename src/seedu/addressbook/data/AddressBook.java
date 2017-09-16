@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
@@ -12,6 +13,15 @@ import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+
+import static seedu.addressbook.data.person.Address.MESSAGE_ADDRESS_CONSTRAINTS;
+import static seedu.addressbook.data.person.Address.isValidAddress;
+import static seedu.addressbook.data.person.Email.MESSAGE_EMAIL_CONSTRAINTS;
+import static seedu.addressbook.data.person.Email.isValidEmail;
+import static seedu.addressbook.data.person.Name.MESSAGE_NAME_CONSTRAINTS;
+import static seedu.addressbook.data.person.Name.isValidName;
+import static seedu.addressbook.data.person.Phone.MESSAGE_PHONE_CONSTRAINTS;
+import static seedu.addressbook.data.person.Phone.isValidPhone;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
@@ -81,6 +91,19 @@ public class AddressBook {
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
         syncTagsWithMasterList(toAdd);
+    }
+
+    /**
+     * Edits a person in the address book.
+     * @params toEdit: person to edit
+     * @params field: which field to edit(i.e. Address/Phone Number)
+     * @params value: new value to change to
+     *
+     * @throws IllegalValueException if the provided data does not fulfill some constraints
+     */
+    public Boolean editPerson(Person toEdit, String field, String value) {
+            Boolean success = allPersons.edit(toEdit, field, value);
+            return success;
     }
 
     /**

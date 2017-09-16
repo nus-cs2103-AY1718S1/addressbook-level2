@@ -1,6 +1,7 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
+import java.util.*;
 
 /**
  * Represents a Person's address in the address book.
@@ -8,12 +9,20 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String EXAMPLE = "123, some street, some unit, some postal code";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be in format: BLOCK, STREET, UNIT, POSTAL_CODE";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
     private boolean isPrivate;
+
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode code;
+
+    private String[] splitted = new String[4];
+    public static final int BLOCK_INDEX = 0, STREET_INDEX = 1, UNIT_INDEX = 2, POSTALCODE_INDEX = 3;
 
     /**
      * Validates given address.
@@ -26,7 +35,24 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        splitAddress(trimmedAddress,this.splitted);
+        this.value = block.getBlock() + ", " + street.getStreet() + ", " +
+                unit.getUnit() + ", " + code.getCode();
+    }
+
+    /**
+     * Split given address and attributed each component th
+     * the respective object
+     *
+     * @param trimmedAddress
+     * @param splitted
+     */
+    public void splitAddress(String trimmedAddress, String[] splitted ) {
+        splitted = trimmedAddress.split(",");
+        this.block = new Block(splitted[BLOCK_INDEX].trim());
+        this.street = new Street(splitted[STREET_INDEX].trim());
+        this.unit = new Unit(splitted[UNIT_INDEX].trim());
+        this.code = new PostalCode(splitted[POSTALCODE_INDEX].trim());
     }
 
     /**

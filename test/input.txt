@@ -96,6 +96,10 @@
   pfind 111
   # should not match any person
   pfind 123
+  # should not match any person
+  pfind 1 -111
+  # should match two persons
+  pfind 11 2222
 
 ##########################################################
 # test find persons command

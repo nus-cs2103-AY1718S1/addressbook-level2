@@ -21,7 +21,7 @@
 || Separate different search terms with space.
 || Add negative sign '-' before number sequence to indicate exclusion of all results with the number sequence instead.
 || Parameters: NUMBER [MORE NUMBERS ...]
-|| Example: pfind 689
+|| Example: pfind 689 -68 89
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
@@ -206,8 +206,10 @@
 || Enter command: || [Command entered:  pfind]
 || Invalid command format! 
 || pfind: Finds all persons whose phone number contains the specified digits in sequence and displays them as a list with index numbers.
-|| Parameters: NUMBER
-|| Example: pfind 689
+|| Separate different search terms with space.
+|| Add negative sign '-' before number sequence to indicate exclusion of all results with the number sequence instead.
+|| Parameters: NUMBER [MORE NUMBERS ...]
+|| Example: pfind 689 -68 89
 || ===================================================
 || Enter command: || [Command entered:  pfind 111]
 || 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
@@ -217,6 +219,16 @@
 || Enter command: || [Command entered:  pfind 123]
 || 
 || 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  pfind 1 -111]
+|| 
+|| 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  pfind 11 2222]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 	2. Betsy Choo Tags: [secretive]
+|| 
+|| 2 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find]
 || Invalid command format! 

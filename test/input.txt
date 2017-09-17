@@ -42,17 +42,17 @@
   # should add correctly and list non private information
   add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
   list
-  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, Clementi Ave 2, #02-25, 101010 beta street t/secretive
   list
-  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, Clementi Ave 2, #02-25, 101010 gamma street t/friends t/school
   list
-  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
+  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, Clementi Ave 2, #02-25, 101010 delta street t/friends
   list
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, Clementi Ave 2, #02-25, 101010 epsilon street t/tubers t/starchy
   list
 
   # should not allow adding duplicate persons
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, Clementi Ave 2, #02-25, 101010 epsilon street t/tubers t/starchy
 
 ##########################################################
 # test view/viewall persons command
@@ -89,8 +89,7 @@
 ##########################################################
 # test find persons command
 ##########################################################
-
-  # should consider no keywords as invalid command format
+# should consider no keywords as invalid command format
   find
   # should only match full words in person names
   find bet
@@ -99,12 +98,18 @@
   # matching should be case-sensitive
   find betsy
 
-  # find unique keyword
-  find Betsy
-  # find multiple with same keyword
-  find Dickson
-  # find multiple with some keywords
-  find Charlie Betsy
+##########################################################
+# test find_email command
+##########################################################
+
+  # should consider no keywords as invalid command format
+  find_email
+  # should only match full words in person names
+  find_email charlie.d@nus.edu.sg
+  # does not match if none have keyword
+  find_email 23912039120
+  # matching should be case-sensitive
+  find_email Charlie.d@nus.edu.sg
 
 ##########################################################
 # test delete person command

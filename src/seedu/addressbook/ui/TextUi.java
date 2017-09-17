@@ -17,27 +17,27 @@ import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 /**
- * Text UI of the application.
+ * Text UI of the application that is responsible for the parsing of user commands.
  */
 public class TextUi {
 
     /** A decorative prefix added to the beginning of lines printed by AddressBook */
-    private static final String LINE_PREFIX = "|| ";
+    private static final String LINE_PREFIX = Formatter.LINE_PREFIX;
 
     /** A platform independent line separator. */
-    private static final String LS = System.lineSeparator();
+    private static final String LS = Formatter.LS;
 
-    private static final String DIVIDER = "===================================================";
+    private static final String DIVIDER = Formatter.DIVIDER;
 
     /** Format of indexed list item */
-    private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
+    private static final String MESSAGE_INDEXED_LIST_ITEM = Formatter.MESSAGE_INDEXED_LIST_ITEM;
 
 
     /** Offset required to convert between 1-indexing and 0-indexing.  */
-    public static final int DISPLAYED_INDEX_OFFSET = 1;
+    public static final int DISPLAYED_INDEX_OFFSET = Formatter.DISPLAYED_INDEX_OFFSET;
 
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
-    private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
+    private static final String COMMENT_LINE_FORMAT_REGEX = Formatter.COMMENT_LINE_FORMAT_REGEX;
 
     private final Scanner in;
     private final PrintStream out;

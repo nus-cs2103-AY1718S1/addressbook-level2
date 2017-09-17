@@ -115,9 +115,13 @@ Examples:
 Clears all entries from the address book.<br>
 Format: `clear`  
 
+### Total number of contacts : 'total'
+Displays the total number of contacts in the addressbook contact list
+Format: 'total'
+
 #### Exiting the program : `exit`
 Exits the program.<br>
-Format: `exit`  
+Format: `exit`
 
 #### Saving the data 
 Address book data are saved in the hard disk automatically after any command that changes the data.<br>

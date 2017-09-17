@@ -122,6 +122,11 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+
+    public void sort(){
+        Collections.sort(internalList, (personOne,personTwo) -> personOne.getName().toString().compareToIgnoreCase(personTwo.getName().toString()));
+    }
+
     /**
      * Clears all persons in list.
      */

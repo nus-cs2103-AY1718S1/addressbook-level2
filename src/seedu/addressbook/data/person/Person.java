@@ -1,8 +1,11 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.exception.IllegalValueException;
 
 import java.util.Objects;
+import java.util.Comparator;
+import java.util.*;
 
 /**
  * Represents a Person in the address book.
@@ -37,6 +40,17 @@ public class Person implements ReadOnlyPerson {
     @Override
     public Name getName() {
         return name;
+    }
+
+    /**
+     * Sets this person's name.
+     */
+    public void setName(String newName) {
+        try {
+            name = new Name(newName);
+        } catch(IllegalValueException e) {
+            return;
+        }
     }
 
     @Override

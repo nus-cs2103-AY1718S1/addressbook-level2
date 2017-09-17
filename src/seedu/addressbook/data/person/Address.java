@@ -1,6 +1,6 @@
 package seedu.addressbook.data.person;
 
-import java.util.*;
+import java.util.Scanner;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**

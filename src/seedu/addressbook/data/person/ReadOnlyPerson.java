@@ -43,8 +43,7 @@ public interface ReadOnlyPerson {
                     && other.getPhone().equals(this.getPhone())
                     && other.getEmail().equals(this.getEmail())
                     && other.getAddress().equals(this.getAddress())
-                    && other.getTags().equals(this.getTags())
-                    && other.getSequenceNumber() == this.getSequenceNumber());
+                    && other.getTags().equals(this.getTags()));
     }
 
     /**
@@ -73,7 +72,6 @@ public interface ReadOnlyPerson {
         for (Tag tag : getTags()) {
             builder.append(tag);
         }
-        builder.append(" Sequence no.: ").append(getSequenceNumber());
         return builder.toString();
     }
 
@@ -96,7 +94,6 @@ public interface ReadOnlyPerson {
         for (Tag tag : getTags()) {
             builder.append(tag);
         }
-        builder.append(" Sequence no.: ").append(getSequenceNumber());
         return builder.toString();
     }
 }

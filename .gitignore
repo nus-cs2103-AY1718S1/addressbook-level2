@@ -23,6 +23,7 @@ hs_err_pid*
 # Temp files used for testing
 test/actual.txt
 test/localrun.bat
+out/
 
 # Gradle build files
 .gradle/

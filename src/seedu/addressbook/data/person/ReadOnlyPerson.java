@@ -20,6 +20,8 @@ public interface ReadOnlyPerson {
      */
     UniqueTagList getTags();
 
+    int getSequenceNumber();
+
     /**
      * Returns true if both persons have the same identity fields (name and telephone).
      */

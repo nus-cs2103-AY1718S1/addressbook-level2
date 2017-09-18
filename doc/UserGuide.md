@@ -66,6 +66,16 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Finding all persons containing a number in their phone number: `pfind`
+Finds persons whose names contain the number specified in order.<br>
+Exclude all persons with a certain number sequence in the phone number, by adding negative sign '-' to the number.<br>
+Multiple number sequences (inclusive or exclusive) can be specified.<br>
+Format `pfind NUMBER [MORE_NUMBER]`
+
+> The order of the digits matter. `pfind 869` will not match a person with phone number `689`.
+> 'pfind 698 -69' will search for all persons with '698' contained in phone number, 
+  and will then exclude all persons with '69' in the phone number, always returning nothing.
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`

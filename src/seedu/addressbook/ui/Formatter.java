@@ -7,7 +7,7 @@ import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
 import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 
 /**
- * Decoration to ui
+ * Format messages displayed to ui with LINE_PREFIX and DIVIDER
  */
 
 public class Formatter {

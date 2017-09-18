@@ -47,7 +47,7 @@ public class ViewCommandTest {
     public void execute_personNotInAddressBook_returnsPersonNotInAddressBookMessage() throws Exception {
         // generate list with person not in addressbook, add to list
         ReadOnlyPerson stranger = new Person(new Name("me"),
-                                             new Phone("123", true),
+                                             new Phone("12345678", true),
                                              new Email("some@hey.go", true),
                                              new Address("nus", false),
                                              new UniqueTagList(Collections.emptySet()));

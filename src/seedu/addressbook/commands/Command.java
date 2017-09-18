@@ -3,8 +3,10 @@ package seedu.addressbook.commands;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.stack.CommandPair;
 
 import java.util.List;
+import java.util.Stack;
 
 import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
 
@@ -13,7 +15,9 @@ import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
  */
 public class Command {
     protected AddressBook addressBook;
+    protected static Stack<CommandPair> undoStack = new Stack<>();
     protected List<? extends ReadOnlyPerson> relevantPersons;
+
     private int targetIndex = -1;
 
     /**
@@ -24,6 +28,14 @@ public class Command {
     }
 
     protected Command() {
+    }
+
+    public Command prepareCommand() {
+        throw new UnsupportedOperationException("This method is to be implemented by undo class");
+    }
+
+    public boolean isUndoCommand() {
+        return false;
     }
 
     /**

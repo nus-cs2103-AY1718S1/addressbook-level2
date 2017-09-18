@@ -83,24 +83,16 @@ public class TextUi {
 
 
     public void showWelcomeMessage(String version, String storageFilePath) {
-        String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        showToUser(
-                formatter.getDivider(),
-                formatter.getDivider(),
-                MESSAGE_WELCOME,
-                version,
-                MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-                storageFileInfo,
-                formatter.getDivider());
+        showToUser(formatter.getWelcomeMessage(version, storageFilePath));
     }
 
     public void showGoodbyeMessage() {
-        showToUser(MESSAGE_GOODBYE, formatter.getDivider(), formatter.getDivider());
+        showToUser(formatter.getGoodbyMessage());
     }
 
 
     public void showInitFailedMessage() {
-        showToUser(MESSAGE_INIT_FAILED, formatter.getDivider(), formatter.getDivider());
+        showToUser(formatter.getInitFailedMessage());
     }
 
     /** Shows message(s) to the user */

@@ -15,6 +15,11 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
+    private Block block;
+    private PostalCode postalCode;
+    private Street street;
+    private Unit unit;
+
     /**
      * Validates given address.
      *
@@ -27,7 +32,24 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+        splitAddress(value);
+
     }
+
+    /**
+     * Split given address into block, unit, street and postal code.
+     */
+    public void splitAddress(String value) {
+        String[] values = value.split(",");
+
+        if (values.length >= 4) {
+            block = new Block(values[Block.BLOCK_VALUE_NO]);
+            postalCode = new PostalCode(Integer.parseInt(values[PostalCode.POSTAL_CODE_VALUE_NO].trim()));
+            unit = new Unit(values[Unit.UNIT_VALUE_NO]);
+            street = new Street(values[Street.STREET_VALUE_NO]);
+        }
+    }
+
 
     /**
      * Returns true if a given string is a valid person address.

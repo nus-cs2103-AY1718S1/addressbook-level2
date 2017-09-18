@@ -1,10 +1,7 @@
 package seedu.addressbook.ui;
 
-import static seedu.addressbook.common.Messages.MESSAGE_GOODBYE;
-import static seedu.addressbook.common.Messages.MESSAGE_INIT_FAILED;
-import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE;
-import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
-import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
+import seedu.addressbook.commands.CommandResult;
+import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -13,30 +10,39 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import seedu.addressbook.commands.CommandResult;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import static seedu.addressbook.common.Messages.*;
 
 /**
  * Text UI of the application.
  */
 public class TextUi {
 
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
+    /**
+     * A decorative prefix added to the beginning of lines printed by AddressBook
+     */
     private static final String LINE_PREFIX = "|| ";
 
-    /** A platform independent line separator. */
+    /**
+     * A platform independent line separator.
+     */
     private static final String LS = System.lineSeparator();
 
     private static final String DIVIDER = "===================================================";
 
-    /** Format of indexed list item */
+    /**
+     * Format of indexed list item
+     */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
 
 
-    /** Offset required to convert between 1-indexing and 0-indexing.  */
+    /**
+     * Offset required to convert between 1-indexing and 0-indexing.
+     */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
 
-    /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
+    /**
+     * Format of a comment input line. Comment lines are silently consumed when reading user input.
+     */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
 
     private final Scanner in;
@@ -76,6 +82,7 @@ public class TextUi {
      * Prompts for the command and reads the text entered by the user.
      * Ignores empty, pure whitespace, and comment lines.
      * Echos the command back to the user.
+     *
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
@@ -113,7 +120,9 @@ public class TextUi {
         showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);
     }
 
-    /** Shows message(s) to the user */
+    /**
+     * Shows message(s) to the user
+     */
     public void showToUser(String... message) {
         for (String m : message) {
             out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
@@ -125,12 +134,17 @@ public class TextUi {
      * command execution segments.
      */
     public void showResultToUser(CommandResult result) {
-        final Optional<List<? extends ReadOnlyPerson>> resultPersons = result.getRelevantPersons();
-        if (resultPersons.isPresent()) {
-            showPersonListView(resultPersons.get());
+        try {
+            final Optional<List<? extends ReadOnlyPerson>> resultPersons = result.getRelevantPersons();
+            if (resultPersons.isPresent()) {
+                showPersonListView(resultPersons.get());
+            }
+            showToUser(result.getFeedbackToUser(), DIVIDER);
+        }catch(Exception e){
+            showToUser("Allow write access to file if it has been set to read-only.");
         }
-        showToUser(result.feedbackToUser, DIVIDER);
     }
+
 
     /**
      * Shows a list of persons to the user, formatted as an indexed list.
@@ -144,12 +158,16 @@ public class TextUi {
         showToUserAsIndexedList(formattedPersons);
     }
 
-    /** Shows a list of strings to the user, formatted as an indexed list. */
+    /**
+     * Shows a list of strings to the user, formatted as an indexed list.
+     */
     private void showToUserAsIndexedList(List<String> list) {
         showToUser(getIndexedListForViewing(list));
     }
 
-    /** Formats a list of strings as a viewable indexed list. */
+    /**
+     * Formats a list of strings as a viewable indexed list.
+     */
     private static String getIndexedListForViewing(List<String> listItems) {
         final StringBuilder formatted = new StringBuilder();
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;

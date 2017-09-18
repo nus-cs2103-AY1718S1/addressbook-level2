@@ -5,8 +5,9 @@ import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.util.TypicalPersons;
-
-import java.util.*;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 

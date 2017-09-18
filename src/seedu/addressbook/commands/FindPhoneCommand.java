@@ -41,10 +41,11 @@ public class FindPhoneCommand extends Command {
     private void classifySearchTerms(String[] numbersString, List inclusiveTerms, List exclusiveTerms) {
         for (String number : numbersString) {
             int phoneNumberTerm = Integer.parseInt(number);
-            if (phoneNumberTerm < 0)
+            if (phoneNumberTerm < 0) {
                 exclusiveTerms.add(Math.abs(phoneNumberTerm));
-            else
+            } else {
                 inclusiveTerms.add(phoneNumberTerm);
+            }
         }
     }
 
@@ -56,9 +57,11 @@ public class FindPhoneCommand extends Command {
      *          false otherwise
      */
     private boolean checkPersonPhoneNumberAgainstSequencesInList(ReadOnlyPerson person, List<Integer> searchTerms) {
-        for (int singleSearchTerm : searchTerms)
-            if (person.getPhone().toString().contains(singleSearchTerm + ""))
+        for (int singleSearchTerm : searchTerms) {
+            if (person.getPhone().toString().contains(singleSearchTerm + "")) {
                 return true;
+            }
+        }
         return false;
     }
 
@@ -87,10 +90,12 @@ public class FindPhoneCommand extends Command {
                                                                          List<Integer> exclusiveTerms) {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
-            if (checkPersonPhoneNumberAgainstSequencesInList(person, exclusiveTerms))
+            if (checkPersonPhoneNumberAgainstSequencesInList(person, exclusiveTerms)) {
                 continue;
-            if (checkPersonPhoneNumberAgainstSequencesInList(person, inclusiveTerms))
+            }
+            if (checkPersonPhoneNumberAgainstSequencesInList(person, inclusiveTerms)) {
                 matchedPersons.add(person);
+            }
         }
         return matchedPersons;
     }

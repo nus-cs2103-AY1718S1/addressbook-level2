@@ -117,7 +117,11 @@ Format: `clear`
 
 #### Exiting the program : `exit`
 Exits the program.<br>
-Format: `exit`  
+Format: `exit`
+
+#### Sorting the address book: `sort`
+Sorts the address book by Phone number.<br>
+Format: `sort`
 
 #### Saving the data 
 Address book data are saved in the hard disk automatically after any command that changes the data.<br>

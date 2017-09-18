@@ -48,7 +48,7 @@ public class FindCommand extends Command {
      * Retrieves all persons in the address book whose names start with specified keywords or who contain specified tag.
      *
      * @param nameKeywords for searching names
-     * @param tagKeywords for searching tags
+     * @param tagKeywords  for searching tags
      * @return list of persons found
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> nameKeywords, Set<String> tagKeywords) {
@@ -56,38 +56,60 @@ public class FindCommand extends Command {
 
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
 
-            boolean isPersonAdded = false;
-            final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            final UniqueTagList personTags = person.getTags();
-            //check for matching name keyword
-            for (String s : nameKeywords) {
-                for (String w : wordsInName) {
-                    if (w.startsWith(s)) {
-                        if (!isPersonAdded) {
-                            matchedPersons.add(person);
-                            isPersonAdded = true;
-                        }
-                    }
-                }
-            }
-
-            //check for tag if person has not been added
-            if (!isPersonAdded) {
-                for (String tag : tagKeywords) {
-                    for (Tag personTag : personTags) {
-                        if (personTag.tagName.equals(tag)) {
-                            if (!isPersonAdded) {
-                                matchedPersons.add(person);
-                                isPersonAdded = true;
-                            }
-                        }
-                    }
-                }
+            if (doesPersonNameContainKeywords(person, nameKeywords)) {
+                matchedPersons.add(person);
+            } else if (doesPersonContainTags(person, tagKeywords)) {
+                matchedPersons.add(person);
             }
 
         }
 
         return matchedPersons;
+    }
+
+    /**
+     * Returns true if a person's name contains any keyword as a prefix
+     *
+     * @param person
+     * @param nameKeywords set of keywords
+     * @return whether a person's name contains any keyword as a prefix
+     */
+
+    private boolean doesPersonNameContainKeywords(ReadOnlyPerson person, Set<String> nameKeywords) {
+        final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
+
+        for (String s : nameKeywords) {
+            for (String w : wordsInName) {
+                if (w.startsWith(s)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns true if a person contains any tag
+     *
+     * @param person
+     * @param tagKeywords set of tags
+     * @return whether a person contains any tag
+     */
+
+    private boolean doesPersonContainTags(ReadOnlyPerson person, Set<String> tagKeywords) {
+
+        final UniqueTagList personTags = person.getTags();
+
+        for (String tag : tagKeywords) {
+            for (Tag personTag : personTags) {
+                if (personTag.tagName.equals(tag)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
 }

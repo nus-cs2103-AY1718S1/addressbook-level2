@@ -53,18 +53,26 @@ Examples:
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
-### Finding all persons containing any keyword in their name: `find`
-Finds persons whose names contain any of the given keywords.<br>
+### Finding all persons containing any keyword in their name or who contain given tag: `find`
+Finds persons whose names start with any of the given keywords or who has given tag in the addressbook.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
-and persons matching at least one keyword will be returned (i.e. `OR` search).
+> The search is case sensitive, the order of the keywords does not matter, names and tags are searched, 
+and persons matching at least one keyword will be returned (i.e. `OR` search). To indicate tags, put "t/" prefix
+before the keyword.
 
 Examples: 
 * `find John`<br>
   Returns `John Doe` but not `john`
+  
+* `find Jo Be`<br>
+  Returns `John Doe` `Betsy Crowe`
+  
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
+  
+* `find Betsy Tim John t/Friend`<br>
+Returns Any person having names `Betsy`, `Tim`, `John` or has the tag `Friend`
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>

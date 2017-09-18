@@ -14,9 +14,9 @@
 || Example: delete 1
 || Clears address book permanently.
 || Example: clear
-|| find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
-|| Parameters: KEYWORD [MORE_KEYWORDS]...
-|| Example: find alice bob charlie
+|| find: Finds all persons whose names start with the specified keywords (case-sensitive) or contains tag(s) specified and displays them as a list with index numbers.
+|| Parameters: KEYWORD [MORE_KEYWORDS] t/TAG_NAME 
+|| Example: find alice bob charlie t/tag
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
@@ -200,9 +200,9 @@
 || ===================================================
 || Enter command: || [Command entered:  find]
 || Invalid command format! 
-|| find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
-|| Parameters: KEYWORD [MORE_KEYWORDS]...
-|| Example: find alice bob charlie
+|| find: Finds all persons whose names start with the specified keywords (case-sensitive) or contains tag(s) specified and displays them as a list with index numbers.
+|| Parameters: KEYWORD [MORE_KEYWORDS] t/TAG_NAME 
+|| Example: find alice bob charlie t/tag
 || ===================================================
 || Enter command: || [Command entered:  find bet]
 || 
@@ -226,6 +226,19 @@
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
 || 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  find t/friends]
+|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 2 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  find Betsy t/friends]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 3 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Charlie Betsy]
 || 	1. Betsy Choo Tags: [secretive]

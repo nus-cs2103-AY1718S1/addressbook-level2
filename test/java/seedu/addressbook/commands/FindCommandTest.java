@@ -40,6 +40,15 @@ public class FindCommandTest {
 
         //Keyword matching a word in address: not matched
         assertFindCommandBehavior(new String[]{"Clementi"}, Collections.emptyList());
+        
+        //Keyword matching a tag: matched
+        assertFindCommandBehavior(new String[]{}, new String[]{"Test"}, Arrays.asList(td.dan));
+        
+        //Keywords matching tag or name: matched
+        assertFindCommandBehavior(new String[]{"Candy"}, new String[]{"Test"}, Arrays.asList(td.candy, td.dan));
+        
+        //check for repeated name
+        assertFindCommandBehavior(new String[]{"Dan"}, new String[]{"Test"}, Arrays.asList(td.dan));
     }
 
     /**
@@ -47,15 +56,23 @@ public class FindCommandTest {
      * the result matches the persons in the expectedPersonList exactly.
      */
     private void assertFindCommandBehavior(String[] keywords, List<ReadOnlyPerson> expectedPersonList) {
-        FindCommand command = createFindCommand(keywords);
+        FindCommand command = createFindCommand(keywords, new String[]{});
         CommandResult result = command.execute();
 
         assertEquals(Command.getMessageForPersonListShownSummary(expectedPersonList), result.feedbackToUser);
     }
 
-    private FindCommand createFindCommand(String[] keywords) {
+    private void assertFindCommandBehavior(String[] keywords, String[] tags, List<ReadOnlyPerson> expectedPersonList) {
+        FindCommand command = createFindCommand(keywords, tags);
+        CommandResult result = command.execute();
+
+        assertEquals(Command.getMessageForPersonListShownSummary(expectedPersonList), result.feedbackToUser);
+    }
+
+    private FindCommand createFindCommand(String[] keywords, String[] tagwords) {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-        FindCommand command = new FindCommand(keywordSet);
+        final Set<String> tagwordSet = new HashSet<>(Arrays.asList(tagwords));
+        FindCommand command = new FindCommand(keywordSet, tagwordSet);
         command.setData(addressBook, Collections.emptyList());
         return command;
     }

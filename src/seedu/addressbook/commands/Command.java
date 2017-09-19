@@ -1,10 +1,13 @@
 package seedu.addressbook.commands;
 
+import com.sun.org.apache.regexp.internal.RE;
+import javafx.util.Pair;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
-
+import seedu.addressbook.data.person.Person;
 import java.util.List;
+import java.util.Stack;
 
 import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
 
@@ -15,6 +18,9 @@ public class Command {
     protected AddressBook addressBook;
     protected List<? extends ReadOnlyPerson> relevantPersons;
     private int targetIndex = -1;
+
+    public static Person lastAdded = null;
+    public static Person lastDeleted = null;
 
     /**
      * @param targetIndex last visible listing index of the target person

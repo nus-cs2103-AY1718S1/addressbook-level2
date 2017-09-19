@@ -18,6 +18,7 @@ import seedu.addressbook.data.person.Phone;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.storage.StorageForDeleted;
 import seedu.addressbook.ui.TextUi;
 import seedu.addressbook.util.TestUtil;
 
@@ -25,6 +26,7 @@ public class DeleteCommandTest {
 
     private AddressBook emptyAddressBook;
     private AddressBook addressBook;
+    private StorageForDeleted storageForDeleted;
 
     private List<ReadOnlyPerson> emptyDisplayList;
     private List<ReadOnlyPerson> listWithEveryone;
@@ -44,7 +46,7 @@ public class DeleteCommandTest {
 
         emptyAddressBook = TestUtil.createAddressBook();
         addressBook = TestUtil.createAddressBook(johnDoe, janeDoe, davidGrant, samDoe);
-
+        storageForDeleted = TestUtil.createStorageForDeleted();
         emptyDisplayList = TestUtil.createList();
 
         listWithEveryone = TestUtil.createList(johnDoe, janeDoe, davidGrant, samDoe);
@@ -96,7 +98,7 @@ public class DeleteCommandTest {
                                                                       List<ReadOnlyPerson> displayList) {
 
         DeleteCommand command = new DeleteCommand(targetVisibleIndex);
-        command.setData(addressBook, displayList);
+        command.setData(addressBook, displayList, storageForDeleted);
 
         return command;
     }

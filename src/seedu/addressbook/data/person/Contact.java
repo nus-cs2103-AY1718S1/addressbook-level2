@@ -18,6 +18,7 @@ public abstract class Contact {
     public boolean equals(Object other) {
         return this == other
                 || (other instanceof Contact
+                && this.getClass().equals(other.getClass())
                 && this.value.equals(((Contact) other).value));
     }
 

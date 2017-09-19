@@ -107,6 +107,38 @@
   find Charlie Betsy
 
 ##########################################################
+# test restore person command
+##########################################################
+
+  # should show that there is no person to be restored
+  restore
+
+##########################################################
+# test delete & restore person command
+##########################################################
+
+  # should catch invalid args format
+  undo
+
+  # delete once and restore it back
+  list
+  delete 1
+  restore
+
+  # delete multiple times and restore them back
+  list
+  delete 3
+  delete 2
+  delete 1
+  restore
+  restore
+  restore
+
+  # should have nothing to be restored
+  restore
+
+
+##########################################################
 # test delete person command
 ##########################################################
 

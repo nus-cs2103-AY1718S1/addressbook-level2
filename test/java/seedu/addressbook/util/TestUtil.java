@@ -27,6 +27,7 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.storage.StorageForDeleted;
 
 public class TestUtil {
     /**
@@ -44,6 +45,20 @@ public class TestUtil {
         }
 
         return addressBook;
+    }
+
+    public static StorageForDeleted createStorageForDeleted(Person... persons) {
+        StorageForDeleted storageForDeleted = new StorageForDeleted();
+
+        for (Person person : persons) {
+            try {
+                storageForDeleted.storeTheDeleted(person);
+            } catch (DuplicatePersonException e) {
+                throw new AssertionError(e);
+            }
+        }
+
+        return storageForDeleted;
     }
 
     /**

@@ -2,6 +2,7 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 
 
@@ -27,8 +28,11 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute() {
+        //before removal of the person, put this person into the storage of the removed
         try {
             final ReadOnlyPerson target = getTargetPerson();
+            storageForDeleted.storeTheDeleted(target);
+            // System.out.println("i m after the storeTheDeleted");
             addressBook.removePerson(target);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
 
@@ -36,6 +40,8 @@ public class DeleteCommand extends Command {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } catch (PersonNotFoundException pnfe) {
             return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+        } catch (UniquePersonList.DuplicatePersonException e) {
+            return new CommandResult(Messages.MESSAGE_DUPLICATE_ENTRY_IN_STORAGE_FOR_DELETED);
         }
     }
 

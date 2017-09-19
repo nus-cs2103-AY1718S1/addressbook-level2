@@ -48,16 +48,17 @@ Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...`
 Examples: 
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
+* `add JJ Lin p/1111111 pe/jjlin@yahoo.com pa/Taiwan t/singer`
 
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`
 
-### Finding all persons containing any keyword in their name: `find`
-Finds persons whose names contain any of the given keywords.<br>
+### Finding all persons containing any keyword in their name or public email address: `find`
+Finds persons whose names or public email addresses contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
+> The search is case sensitive, the order of the keywords does not matter, only the name and email address are searched,
 and persons matching at least one keyword will be returned (i.e. `OR` search).
 
 Examples: 
@@ -65,6 +66,10 @@ Examples:
   Returns `John Doe` but not `john`
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
+* `find johnd@gmail.com`<br>
+  Returns John Doe
+* `find jjlin@yahoo.com`<br>
+  Returns an empty list
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>

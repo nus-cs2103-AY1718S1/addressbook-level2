@@ -6,12 +6,12 @@ package seedu.addressbook.data.person;
  */
 
 public abstract class Contact {
-    protected String value;
+    private String value;
     protected boolean isPrivate;
 
     @Override
     public String toString(){
-        return value;
+        return getValue();
     }
 
     @Override
@@ -19,15 +19,23 @@ public abstract class Contact {
         return this == other
                 || (other instanceof Contact
                 && this.getClass().equals(other.getClass())
-                && this.value.equals(((Contact) other).value));
+                && this.getValue().equals(((Contact) other).getValue()));
     }
 
     @Override
     public int hashCode(){
-        return value.hashCode();
+        return getValue().hashCode();
     }
 
     public boolean isPrivate(){
         return isPrivate;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

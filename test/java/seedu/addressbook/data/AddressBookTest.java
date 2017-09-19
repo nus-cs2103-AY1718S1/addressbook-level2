@@ -178,6 +178,13 @@ public class AddressBookTest {
         assertTrue(isIdentical(allTags, tagsToCheck));
     }
 
+    @Test
+    public void equalsInContact() throws Exception {
+        Address address = new Address("99990000", true);
+        Phone phone = new Phone("99990000", true);
+        assertFalse(address.equals(phone));
+    }
+
     /**
      * Returns true if the given Tag object is found in the tag list of the given AddressBook.
      */

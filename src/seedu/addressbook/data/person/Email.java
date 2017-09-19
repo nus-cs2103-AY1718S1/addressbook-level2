@@ -24,7 +24,7 @@ public class Email extends Contact {
             throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
         }
         this.isPrivate = isPrivate;
-        this.value = trimmedEmail;
+        this.setValue(trimmedEmail);
     }
 
     /**

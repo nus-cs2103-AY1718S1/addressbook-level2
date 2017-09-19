@@ -10,7 +10,7 @@ public class Address extends Contact {
 
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format, as long as it is" +
-            "not empty.";
+            " not empty.";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     /**
@@ -23,7 +23,7 @@ public class Address extends Contact {
         if(!isValidAddress(address)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = address;
+        this.setValue(address);
     }
 
     /**

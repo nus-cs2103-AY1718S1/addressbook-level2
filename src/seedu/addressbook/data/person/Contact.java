@@ -5,14 +5,9 @@ package seedu.addressbook.data.person;
  * as much commonality and reduce method duplication
  */
 
-public class Contact {
-    public final String value;
-    private boolean isPrivate;
-
-    public Contact(String value, boolean isPrivate){
-        this.value = value;
-        this.isPrivate = isPrivate;
-    }
+public abstract class Contact {
+    protected String value;
+    protected boolean isPrivate;
 
     @Override
     public String toString(){

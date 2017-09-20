@@ -61,9 +61,6 @@ public class FindCommand extends Command {
 
     /**
      * Changes every letter in collection of words to lower case.
-     *
-     * @param words contained in the collection
-     * @return same set of words in lower case
      */
     private static Set<String> toLowerCase(Set<String> words) {
         final Set<String> lowerCasedWords = new HashSet<>();

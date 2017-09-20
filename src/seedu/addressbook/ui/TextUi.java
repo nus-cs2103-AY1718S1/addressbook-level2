@@ -6,6 +6,9 @@ import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAG
 import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
 import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 
+import static seedu.addressbook.ui.Formatter.LS;
+import static seedu.addressbook.ui.Formatter.LINE_PREFIX;
+import static seedu.addressbook.ui.Formatter.DIVIDER;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -20,17 +23,15 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
  * Text UI of the application.
  */
 public class TextUi {
-    /**
-     * Offset required to convert between 1-indexing and 0-indexing.
-     */
-    public static final int DISPLAYED_INDEX_OFFSET = 1;
 
-    /**
-     * Format of a comment input line. Comment lines are silently consumed when reading user input.
-     */
+    /** Offset required to convert between 1-indexing and 0-indexing.  */
+    public static final int DISPLAYED_INDEX_OFFSET = Formatter.DISPLAYED_INDEX_OFFSET;
+
+    /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
 
     private final Scanner in;
+    private final PrintStream out;
     private final Formatter formatter;
 
     public TextUi() {
@@ -39,7 +40,8 @@ public class TextUi {
 
     public TextUi(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
-        this.formatter = new Formatter(out);
+        this.out = out;
+        this.formatter = new Formatter();
     }
 
     /**
@@ -70,7 +72,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        formatter.showEnterCommand();
+        out.print(LINE_PREFIX + "Enter command: ");
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
@@ -85,23 +87,30 @@ public class TextUi {
 
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        formatter.showWelcomeMessage(MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo);
+        showToUser(
+                DIVIDER,
+                DIVIDER,
+                MESSAGE_WELCOME,
+                version,
+                MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
+                storageFileInfo,
+                DIVIDER);
     }
 
     public void showGoodbyeMessage() {
-        formatter.showGoodbyeMessage(MESSAGE_GOODBYE);
+        showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
     }
 
 
     public void showInitFailedMessage() {
-        formatter.showInitFailedMessage(MESSAGE_INIT_FAILED);
+        showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);
     }
 
-    /**
-     * Shows message(s) to the user
-     */
+    /** Shows message(s) to the user */
     public void showToUser(String... message) {
-        formatter.showToUser(message);
+        for (String m : message) {
+            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
+        }
     }
 
     /**
@@ -109,7 +118,29 @@ public class TextUi {
      * command execution segments.
      */
     public void showResultToUser(CommandResult result) {
-        formatter.showResultToUser(result);
+        final Optional<List<? extends ReadOnlyPerson>> resultPersons = result.getRelevantPersons();
+        if (resultPersons.isPresent()) {
+            showPersonListView(resultPersons.get());
+        }
+        showToUser(result.feedbackToUser, DIVIDER);
     }
-    
+
+    /**
+     * Shows a list of persons to the user, formatted as an indexed list.
+     * Private contact details are hidden.
+     */
+    private void showPersonListView(List<? extends ReadOnlyPerson> persons) {
+        final List<String> formattedPersons = new ArrayList<>();
+        for (ReadOnlyPerson person : persons) {
+            formattedPersons.add(person.getAsTextHidePrivate());
+        }
+        showToUserAsIndexedList(formattedPersons);
+    }
+
+    /** Shows a list of strings to the user, formatted as an indexed list. */
+    private void showToUserAsIndexedList(List<String> list) {
+        showToUser(formatter.getIndexedListForViewing(list));
+    }
+
+
 }

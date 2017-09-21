@@ -25,4 +25,10 @@ public class Email extends Contact{
         }
         this.value = trimmedEmail;
     }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Email // instanceof handles nulls
+                && this.value.equals(((Email) other).value)); // state check
+    }
 }

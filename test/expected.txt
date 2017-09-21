@@ -12,6 +12,8 @@
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
+|| undo: Undo deletion or addition
+|| Example: undo
 || Clears address book permanently.
 || Example: clear
 || find: Finds all persons whose names contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers.
@@ -138,6 +140,23 @@
 || Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
 || This person already exists in the address book
 || ===================================================
+|| Enter command: || [Command entered:    clear]
+|| Address book has been cleared!
+|| ===================================================
+|| Enter command: || [Command entered:    add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street]
+|| New person added: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| ===================================================
+|| Enter command: || [Command entered:    list]
+|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| 
+|| 1 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:    undo]
+|| Undo Addition successfully
+|| ===================================================
+|| Enter command: || [Command entered:    clear]
+|| Address book has been cleared!
+|| ===================================================
 || Enter command: || [Command entered:  view]
 || Invalid command format! 
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
@@ -175,28 +194,28 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 1]
-|| Viewing person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  viewall 1]
-|| Viewing person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| Person could not be found in address book
 || ===================================================
 || Enter command: || [Command entered:  view 3]
-|| Viewing person: Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 4]
-|| Viewing person: Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 5]
-|| Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  viewall 3]
-|| Viewing person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  viewall 4]
-|| Viewing person: Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  viewall 5]
-|| Viewing person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  find]
 || Invalid command format! 
@@ -217,21 +236,16 @@
 || 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Betsy]
-|| 	1. Betsy Choo Tags: [secretive]
 || 
-|| 1 persons listed!
+|| 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Dickson]
-|| 	1. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
-|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
-|| 2 persons listed!
+|| 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  find Charlie Betsy]
-|| 	1. Betsy Choo Tags: [secretive]
-|| 	2. Charlie Dickson Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || 
-|| 2 persons listed!
+|| 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format! 
@@ -252,43 +266,34 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
-|| Person could not be found in address book
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  view 2]
-|| Person could not be found in address book
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  viewall 2]
-|| Person could not be found in address book
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
-|| 	4. Esther Potato Phone: 555555 Email: esther@not.a.real.potato Tags: [tubers][starchy]
 || 
-|| 4 persons listed!
+|| 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 4]
-|| Deleted Person: Esther Potato Phone: 555555 Email: esther@not.a.real.potato Address: (private) 555, epsilon street Tags: [tubers][starchy]
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
-|| 	2. Betsy Choo Tags: [secretive]
-|| 	3. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
-|| 3 persons listed!
+|| 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  delete 1]
-|| Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
+|| The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  list]
-|| 	1. Betsy Choo Tags: [secretive]
-|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
-|| 2 persons listed!
+|| 0 persons listed!
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!

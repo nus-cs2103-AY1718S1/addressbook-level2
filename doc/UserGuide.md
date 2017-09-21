@@ -49,6 +49,13 @@ Examples:
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
+### Undoing the previous adding of a person: `undo`
+Undoes the previous adding<br>
+There must be an AddCommand for the previous command<br>
+
+Examples:
+* ^undo^
+
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`
@@ -80,6 +87,13 @@ Examples:
 * `find Betsy`<br> 
   `delete 1`<br>
   Deletes the 1st person in the results of the `find` command.
+
+### Undoing the previous deleting of a person: `undo`
+Undoes the previous deletion<br>
+There must be an DeleteCommand for the previous command<br>
+
+Examples:
+* ^undo^
 
 ### View non-private details of a person : `view`
 Displays the non-private details of the specified person.<br>

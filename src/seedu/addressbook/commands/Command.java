@@ -67,4 +67,8 @@ public class Command {
     public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
     }
+
+    public boolean isMutating() {
+        return true;
+    }
 }

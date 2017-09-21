@@ -24,7 +24,7 @@ public class FindCommand extends Command {
     private final Set<String> keywords;
 
     public FindCommand(Set<String> keywords) {
-        this.keywords = keywords ;
+        this.keywords = keywords;
     }
 
     /**

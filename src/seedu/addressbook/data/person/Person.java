@@ -15,6 +15,9 @@ public class Person implements ReadOnlyPerson {
     private Email email;
     private Address address;
 
+    public static int nextSequenceNumber;
+    private int sequenceNumber;
+
     private final UniqueTagList tags;
     /**
      * Assumption: Every field must be present and not null.
@@ -54,6 +57,8 @@ public class Person implements ReadOnlyPerson {
         return address;
     }
 
+    public int getSequenceNumber() { return sequenceNumber;}
+
     @Override
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
@@ -64,8 +69,11 @@ public class Person implements ReadOnlyPerson {
      */
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);
-    }
+    } //tag is private therefore this method cannot be changed to static
 
+    public void setSequenceNumber() {
+        this.sequenceNumber = nextSequenceNumber ++;
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

@@ -79,6 +79,7 @@ public class AddressBook {
      * @throws DuplicatePersonException if an equivalent person already exists.
      */
     public void addPerson(Person toAdd) throws DuplicatePersonException {
+        toAdd.setSequenceNumber();
         allPersons.add(toAdd);
         syncTagsWithMasterList(toAdd);
     }
@@ -127,5 +128,9 @@ public class AddressBook {
                 || (other instanceof AddressBook // instanceof handles nulls
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
+    }
+
+    public int PersonsCount() {
+        return allPersons.size();
     }
 }

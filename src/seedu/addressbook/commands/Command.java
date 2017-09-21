@@ -37,6 +37,13 @@ public class Command {
     }
 
     /**
+     * Constructs a feedback message to summarise an operation that displays a sorted list of current AddressBook
+     */
+    public static String getMessageForPersonSortedListShownSummary(List<? extends ReadOnlyPerson> personsDisplayed) {
+        return String.format(Messages.MESSAGE_PERSONS_SORTED_LIST_OVERVIEW, personsDisplayed.size());
+    }
+
+    /**
      * Executes the command and returns the result.
      */
     public CommandResult execute(){

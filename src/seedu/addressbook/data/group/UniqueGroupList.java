@@ -87,6 +87,15 @@ public class UniqueGroupList implements Iterable<Group>{
     }
 
     /**
+     * Returns an unmodifiable java List view with elements cast as immutable {@link Group}s.
+     * For use with other methods/libraries.
+     * Any changes to the internal list/elements are immediately visible in the returned list.
+     */
+    public List<Group> immutableListView() {
+        return Collections.unmodifiableList(internalList);
+    }
+
+    /**
      * Removes the equivalent group from the list.
      *
      * @throws UniqueGroupList.GroupNotFoundException if no such group could be found in the list.

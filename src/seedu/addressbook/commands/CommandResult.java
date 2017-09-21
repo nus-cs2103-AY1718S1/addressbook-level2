@@ -1,5 +1,6 @@
 package seedu.addressbook.commands;
 
+import seedu.addressbook.data.group.Group;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
@@ -16,16 +17,27 @@ public class CommandResult {
     /** The list of persons that was produced by the command */
     private final List<? extends ReadOnlyPerson> relevantPersons;
 
+    /** The list of groups that was produced by the command */
+    private final List<Group> relevantGroups;
+
     public CommandResult(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
         relevantPersons = null;
+        relevantGroups = null;
     }
 
     public CommandResult(String feedbackToUser, List<? extends ReadOnlyPerson> relevantPersons) {
         this.feedbackToUser = feedbackToUser;
         this.relevantPersons = relevantPersons;
+        relevantGroups = null;
     }
 
+    public CommandResult(String feedbackToUser, List<? extends ReadOnlyPerson> relevantPersons,
+                         List<Group> relevantGroups) {
+        this.feedbackToUser = feedbackToUser;
+        this.relevantGroups = relevantGroups;
+        this.relevantPersons = relevantPersons;
+    }
     /**
      * Returns a list of persons relevant to the command command result, if any.
      */
@@ -33,4 +45,7 @@ public class CommandResult {
         return Optional.ofNullable(relevantPersons);
     }
 
+    public Optional<List<Group>> getRelevantGroups() {
+        return Optional.ofNullable(relevantGroups);
+    }
 }

@@ -5,7 +5,7 @@ import seedu.addressbook.data.person.Person;
 import java.util.*;
 
 public class Group {
-    private String _name;
+    private GroupName _name;
     private ArrayList<Person> _members;
 
     /**
@@ -13,18 +13,24 @@ public class Group {
      * Assumption: Every field must be present and not null
      * @param groupName
      */
-    public Group(String groupName)
-    {
-        this._name = groupName;
+    public Group(String groupName) {
+        try {
+            this._name = new GroupName(groupName);
+        } catch (Exception E){
+            System.out.println("Invalid Name!");
+        }
         this._members = new ArrayList<>();
     }
 
+    public Group(GroupName groupName) {
+        this._name = groupName;
+        this._members = new ArrayList<>();
+    }
     /**
      * Add new member
      * @param newMember
      */
-    public void addMember(Person newMember)
-    {
+    public void addMember(Person newMember) {
         if(this._members.contains(newMember))
             System.out.println(newMember.getName() + " is already in this group!");
         else
@@ -35,8 +41,7 @@ public class Group {
      * Remove member
      * @param member
      */
-    public void removeMember(Person member)
-    {
+    public void removeMember(Person member) {
         if(this._members.contains(member))
             this._members.remove(member);
         else
@@ -46,8 +51,7 @@ public class Group {
     /**
      * List members
      */
-    public void listMembers()
-    {
+    public void listMembers() {
         int count = 1;
         for(Person E: _members)
         {
@@ -65,7 +69,7 @@ public class Group {
                 && other.getName().equals(this.getName()));
     }
 
-    public String getName() { return this._name;}
+    public String getName() { return this._name.toString();}
 
     public int getNumOfMembers() { return this._members.size();}
 
@@ -91,6 +95,6 @@ public class Group {
     }
 
     public String toString(){
-        return this._name;
+        return this._name.toString();
     }
 }

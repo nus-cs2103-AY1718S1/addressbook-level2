@@ -26,7 +26,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
-    private final UniqueGroupList listOfGroups;
+    private final UniqueGroupList allGroups;
 
     /**
      * Creates an empty address book.
@@ -34,7 +34,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
-        listOfGroups = new UniqueGroupList();
+        allGroups = new UniqueGroupList();
     }
 
     /**
@@ -47,7 +47,7 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags, UniqueGroupList groups) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
-        this.listOfGroups = new UniqueGroupList(groups);
+        this.allGroups = new UniqueGroupList(groups);
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -78,7 +78,7 @@ public class AddressBook {
 
     public void addGroup(Group toAdd) throws UniqueGroupList.DuplicateGroupException
     {
-        listOfGroups.add(toAdd);
+        allGroups.add(toAdd);
 
     }
     /**
@@ -115,7 +115,7 @@ public class AddressBook {
     public void clear() {
         allPersons.clear();
         allTags.clear();
-        listOfGroups.clear();
+        allGroups.clear();
     }
 
     /**
@@ -123,6 +123,13 @@ public class AddressBook {
      */
     public UniquePersonList getAllPersons() {
         return new UniquePersonList(allPersons);
+    }
+
+    /**
+     * Returns a new UniqueGroupList of all groups in the address book at the time of the call.
+     */
+    public UniqueGroupList getAllGroups() {
+        return new UniqueGroupList(allGroups);
     }
 
     /**

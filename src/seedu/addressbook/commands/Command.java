@@ -2,6 +2,7 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.group.Group;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
 public abstract class Command {
     protected AddressBook addressBook;
     protected List<? extends ReadOnlyPerson> relevantPersons;
+    protected List<Group> relevantGroups;
     private int targetIndex = -1;
 
     /**
@@ -49,6 +51,13 @@ public abstract class Command {
         this.relevantPersons = relevantPersons;
     }
 
+    /**
+     * Supplies the data the command will operate on.
+     */
+    public void setGroupData(AddressBook addressBook, List<Group> relevantGroups) {
+        this.addressBook = addressBook;
+        this.relevantGroups = relevantGroups;
+    }
     /**
      * Extracts the the target person in the last shown list from the given arguments.
      *

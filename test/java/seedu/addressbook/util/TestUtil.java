@@ -1,32 +1,22 @@
 package seedu.addressbook.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.group.Group;
+import seedu.addressbook.data.group.GroupName;
+import seedu.addressbook.data.person.*;
+import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
+import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.UniqueTagList;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-import seedu.addressbook.data.AddressBook;
-import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
-import seedu.addressbook.data.person.UniquePersonList;
-import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
-import seedu.addressbook.data.tag.Tag;
-import seedu.addressbook.data.tag.UniqueTagList;
+import static org.junit.Assert.*;
 
 public class TestUtil {
     /**
@@ -64,7 +54,7 @@ public class TestUtil {
      * of Persons and Tags. The Persons and Tags are not cloned.
      */
     public static AddressBook clone(AddressBook addressBook) {
-        return new AddressBook(addressBook.getAllPersons(), addressBook.getAllTags());
+        return new AddressBook(addressBook.getAllPersons(), addressBook.getAllTags(), addressBook.getAllGroups());
     }
 
     /**
@@ -114,6 +104,15 @@ public class TestUtil {
                     new Email(Email.EXAMPLE, true), new Address(Address.EXAMPLE, false), new UniqueTagList());
         } catch (IllegalValueException e) {
             fail("test person data should be valid by definition");
+            return null;
+        }
+    }
+
+    public static Group generateTestGroup() {
+        try {
+            return new Group(new GroupName(GroupName.EXAMPLE));
+        } catch (IllegalValueException e) {
+            fail("test group data should be valid by definition");
             return null;
         }
     }

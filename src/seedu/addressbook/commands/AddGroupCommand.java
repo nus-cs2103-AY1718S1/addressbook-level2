@@ -31,6 +31,10 @@ public class AddGroupCommand extends Command {
         this.toAdd = toAdd;
     }
 
+    public Group getGroup() {
+        return toAdd;
+    }
+
     @Override
     public CommandResult execute() {
         try {

@@ -83,7 +83,7 @@ public class ParserTest {
     }
     
     @Test
-    public void listSortedCommand_parsedCorrectly() {
+    public void parse_listSortedCommand_parsedCorrectly() {
         final String input = "listsorted";
         parseAndAssertCommandType(input, ListSortedCommand.class);
     }

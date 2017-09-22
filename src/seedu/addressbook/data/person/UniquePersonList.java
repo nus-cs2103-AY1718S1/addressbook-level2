@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -82,11 +83,18 @@ public class UniquePersonList implements Iterable<Person> {
     }
     
     /**
-     * Returns a modifiable java List view
-     * Can be used in conjunction with addressBook.getAllPersons() method to return the full list of Address Book's contacts
+     * Returns a sorted list of unique persons
      */
-    public List<Person> mutableListView() {
-    	return internalList;
+    public List<ReadOnlyPerson> sortedListView() {
+        Comparator<ReadOnlyPerson> nameComp = new Comparator<ReadOnlyPerson>() {
+            @Override
+            public int compare(ReadOnlyPerson p1, ReadOnlyPerson p2) {
+                // Compares its two arguments for ordering by name
+                return p1.getName().toString().compareTo(p2.getName().toString());
+            }
+        };
+        internalList.sort(nameComp);
+        return immutableListView();
     }
 
     /**

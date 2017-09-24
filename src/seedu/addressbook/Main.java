@@ -107,10 +107,13 @@ public class Main {
      */
     private CommandResult executeCommand(Command command)  {
         try {
+            storage.checkIfReadOnly();
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
+        } catch (StorageOperationException soe) {
+            return new CommandResult(soe.getMessage());
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);

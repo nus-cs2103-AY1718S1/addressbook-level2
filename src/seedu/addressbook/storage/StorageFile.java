@@ -79,6 +79,11 @@ public class StorageFile {
         }
     }
 
+    public void checkIfReadOnly() throws StorageOperationException {
+        if(!path.toFile().canWrite()) {
+            throw new StorageOperationException("File is read-only");
+        }
+    }
     /**
      * Returns true if the given path is acceptable as a storage file.
      * The file path is considered acceptable if it ends with '.xml'

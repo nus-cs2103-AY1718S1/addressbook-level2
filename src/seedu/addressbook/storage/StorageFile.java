@@ -80,7 +80,7 @@ public class StorageFile {
     }
 
     public void checkIfReadOnly() throws StorageOperationException {
-        if(!path.toFile().canWrite()) {
+        if(!(path.toFile().canWrite())) {
             throw new StorageOperationException("File is read-only");
         }
     }

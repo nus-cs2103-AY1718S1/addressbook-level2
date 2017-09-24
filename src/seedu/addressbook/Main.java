@@ -107,9 +107,9 @@ public class Main {
      */
     private CommandResult executeCommand(Command command)  {
         try {
-            storage.checkIfReadOnly();
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
+            storage.checkIfReadOnly();
             storage.save(addressBook);
             return result;
         } catch (StorageOperationException soe) {

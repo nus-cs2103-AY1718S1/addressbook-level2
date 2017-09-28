@@ -33,7 +33,6 @@ public class Person implements ReadOnlyPerson {
 
         sequenceNumber = nextSequenceNumber;
         incrementSequenceNumber();
-        System.out.println(sequenceNumber);
     }
 
 

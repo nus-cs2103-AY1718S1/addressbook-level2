@@ -1,11 +1,11 @@
 package seedu.addressbook.data.person;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
+import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
@@ -120,6 +120,13 @@ public class UniquePersonList implements Iterable<Person> {
         if (!personFoundAndDeleted) {
             throw new PersonNotFoundException();
         }
+    }
+
+    /**
+     * Sorts all persons in list by their name in lexicographical order
+     */
+    public void sort() {
+        Collections.sort(internalList, new sortByPerson());
     }
 
     /**

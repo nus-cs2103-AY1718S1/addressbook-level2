@@ -25,6 +25,9 @@
 || viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
+|| sort: Sorts all persons by chosen field (NAME, PHONE, EMAIL, ADDRESS) and by order (ASC or DESC). Case insensitive
+|| Parameters: OPTION ORDER
+|| Example: sort name asc
 || help: Shows program usage instructions.
 || Example: help
 || exit: Exits the program.
@@ -296,6 +299,159 @@
 || Enter command: || [Command entered:  list]
 || 
 || 0 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  add Orion p/1111111 pe/orion@constellation.org a/534, Orion Constellation t/Orion t/Onion]
+|| New person added: Orion Phone: 1111111 Email: (private) orion@constellation.org Address: 534, Orion Constellation Tags: [Onion][Orion]
+|| ===================================================
+|| Enter command: || [Command entered:  add Scorpio p/10232 pe/scorpio@constellation.org a/123, Constellation X t/Scorpio]
+|| New person added: Scorpio Phone: 10232 Email: (private) scorpio@constellation.org Address: 123, Constellation X Tags: [Scorpio]
+|| ===================================================
+|| Enter command: || [Command entered:  add Artemis p/323234 e/artermis@constellation.org a/435, Constellation Y t/Artemis]
+|| New person added: Artemis Phone: 323234 Email: artermis@constellation.org Address: 435, Constellation Y Tags: [Artemis]
+|| ===================================================
+|| Enter command: || [Command entered:  add Zeus p/9453472 e/zues@heaven.org a/324, Stars and heavens t/Zeus]
+|| New person added: Zeus Phone: 9453472 Email: zues@heaven.org Address: 324, Stars and heavens Tags: [Zeus]
+|| ===================================================
+|| Enter command: || [Command entered:  add Athena p/2462345 e/athena@heaven.org a/234, Stars and heavens t/Athena]
+|| New person added: Athena Phone: 2462345 Email: athena@heaven.org Address: 234, Stars and heavens Tags: [Athena]
+|| ===================================================
+|| Enter command: || [Command entered:  add Poseidon p/44532 e/poseiden@underthesea.com a/342, Under the Sea t/sea t/Poseidon]
+|| New person added: Poseidon Phone: 44532 Email: poseiden@underthesea.com Address: 342, Under the Sea Tags: [Poseidon][sea]
+|| ===================================================
+|| Enter command: || [Command entered:  add Hades p/14523 e/hades@underworld.com a/364, Under the world t/Hades t/Underworld]
+|| New person added: Hades Phone: 14523 Email: hades@underworld.com Address: 364, Under the world Tags: [Underworld][Hades]
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Orion Phone: 1111111 Address: 534, Orion Constellation Tags: [Onion][Orion]
+|| 	2. Scorpio Phone: 10232 Address: 123, Constellation X Tags: [Scorpio]
+|| 	3. Artemis Phone: 323234 Email: artermis@constellation.org Address: 435, Constellation Y Tags: [Artemis]
+|| 	4. Zeus Phone: 9453472 Email: zues@heaven.org Address: 324, Stars and heavens Tags: [Zeus]
+|| 	5. Athena Phone: 2462345 Email: athena@heaven.org Address: 234, Stars and heavens Tags: [Athena]
+|| 	6. Poseidon Phone: 44532 Email: poseiden@underthesea.com Address: 342, Under the Sea Tags: [Poseidon][sea]
+|| 	7. Hades Phone: 14523 Email: hades@underworld.com Address: 364, Under the world Tags: [Underworld][Hades]
+|| 
+|| 7 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort name asc]
+|| All persons sorted successfully...
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Artemis Phone: 323234 Email: artermis@constellation.org Address: 435, Constellation Y Tags: [Artemis]
+|| 	2. Athena Phone: 2462345 Email: athena@heaven.org Address: 234, Stars and heavens Tags: [Athena]
+|| 	3. Hades Phone: 14523 Email: hades@underworld.com Address: 364, Under the world Tags: [Underworld][Hades]
+|| 	4. Orion Phone: 1111111 Address: 534, Orion Constellation Tags: [Onion][Orion]
+|| 	5. Poseidon Phone: 44532 Email: poseiden@underthesea.com Address: 342, Under the Sea Tags: [Poseidon][sea]
+|| 	6. Scorpio Phone: 10232 Address: 123, Constellation X Tags: [Scorpio]
+|| 	7. Zeus Phone: 9453472 Email: zues@heaven.org Address: 324, Stars and heavens Tags: [Zeus]
+|| 
+|| 7 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort name desc]
+|| All persons sorted successfully...
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Zeus Phone: 9453472 Email: zues@heaven.org Address: 324, Stars and heavens Tags: [Zeus]
+|| 	2. Scorpio Phone: 10232 Address: 123, Constellation X Tags: [Scorpio]
+|| 	3. Poseidon Phone: 44532 Email: poseiden@underthesea.com Address: 342, Under the Sea Tags: [Poseidon][sea]
+|| 	4. Orion Phone: 1111111 Address: 534, Orion Constellation Tags: [Onion][Orion]
+|| 	5. Hades Phone: 14523 Email: hades@underworld.com Address: 364, Under the world Tags: [Underworld][Hades]
+|| 	6. Athena Phone: 2462345 Email: athena@heaven.org Address: 234, Stars and heavens Tags: [Athena]
+|| 	7. Artemis Phone: 323234 Email: artermis@constellation.org Address: 435, Constellation Y Tags: [Artemis]
+|| 
+|| 7 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort phone asc]
+|| All persons sorted successfully...
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Scorpio Phone: 10232 Address: 123, Constellation X Tags: [Scorpio]
+|| 	2. Orion Phone: 1111111 Address: 534, Orion Constellation Tags: [Onion][Orion]
+|| 	3. Hades Phone: 14523 Email: hades@underworld.com Address: 364, Under the world Tags: [Underworld][Hades]
+|| 	4. Athena Phone: 2462345 Email: athena@heaven.org Address: 234, Stars and heavens Tags: [Athena]
+|| 	5. Artemis Phone: 323234 Email: artermis@constellation.org Address: 435, Constellation Y Tags: [Artemis]
+|| 	6. Poseidon Phone: 44532 Email: poseiden@underthesea.com Address: 342, Under the Sea Tags: [Poseidon][sea]
+|| 	7. Zeus Phone: 9453472 Email: zues@heaven.org Address: 324, Stars and heavens Tags: [Zeus]
+|| 
+|| 7 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort phone desc]
+|| All persons sorted successfully...
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Zeus Phone: 9453472 Email: zues@heaven.org Address: 324, Stars and heavens Tags: [Zeus]
+|| 	2. Poseidon Phone: 44532 Email: poseiden@underthesea.com Address: 342, Under the Sea Tags: [Poseidon][sea]
+|| 	3. Artemis Phone: 323234 Email: artermis@constellation.org Address: 435, Constellation Y Tags: [Artemis]
+|| 	4. Athena Phone: 2462345 Email: athena@heaven.org Address: 234, Stars and heavens Tags: [Athena]
+|| 	5. Hades Phone: 14523 Email: hades@underworld.com Address: 364, Under the world Tags: [Underworld][Hades]
+|| 	6. Orion Phone: 1111111 Address: 534, Orion Constellation Tags: [Onion][Orion]
+|| 	7. Scorpio Phone: 10232 Address: 123, Constellation X Tags: [Scorpio]
+|| 
+|| 7 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort email asc]
+|| All persons sorted successfully...
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Artemis Phone: 323234 Email: artermis@constellation.org Address: 435, Constellation Y Tags: [Artemis]
+|| 	2. Athena Phone: 2462345 Email: athena@heaven.org Address: 234, Stars and heavens Tags: [Athena]
+|| 	3. Hades Phone: 14523 Email: hades@underworld.com Address: 364, Under the world Tags: [Underworld][Hades]
+|| 	4. Orion Phone: 1111111 Address: 534, Orion Constellation Tags: [Onion][Orion]
+|| 	5. Poseidon Phone: 44532 Email: poseiden@underthesea.com Address: 342, Under the Sea Tags: [Poseidon][sea]
+|| 	6. Scorpio Phone: 10232 Address: 123, Constellation X Tags: [Scorpio]
+|| 	7. Zeus Phone: 9453472 Email: zues@heaven.org Address: 324, Stars and heavens Tags: [Zeus]
+|| 
+|| 7 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort email desc]
+|| All persons sorted successfully...
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Zeus Phone: 9453472 Email: zues@heaven.org Address: 324, Stars and heavens Tags: [Zeus]
+|| 	2. Scorpio Phone: 10232 Address: 123, Constellation X Tags: [Scorpio]
+|| 	3. Poseidon Phone: 44532 Email: poseiden@underthesea.com Address: 342, Under the Sea Tags: [Poseidon][sea]
+|| 	4. Orion Phone: 1111111 Address: 534, Orion Constellation Tags: [Onion][Orion]
+|| 	5. Hades Phone: 14523 Email: hades@underworld.com Address: 364, Under the world Tags: [Underworld][Hades]
+|| 	6. Athena Phone: 2462345 Email: athena@heaven.org Address: 234, Stars and heavens Tags: [Athena]
+|| 	7. Artemis Phone: 323234 Email: artermis@constellation.org Address: 435, Constellation Y Tags: [Artemis]
+|| 
+|| 7 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort address asc]
+|| All persons sorted successfully...
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Scorpio Phone: 10232 Address: 123, Constellation X Tags: [Scorpio]
+|| 	2. Athena Phone: 2462345 Email: athena@heaven.org Address: 234, Stars and heavens Tags: [Athena]
+|| 	3. Zeus Phone: 9453472 Email: zues@heaven.org Address: 324, Stars and heavens Tags: [Zeus]
+|| 	4. Poseidon Phone: 44532 Email: poseiden@underthesea.com Address: 342, Under the Sea Tags: [Poseidon][sea]
+|| 	5. Hades Phone: 14523 Email: hades@underworld.com Address: 364, Under the world Tags: [Underworld][Hades]
+|| 	6. Artemis Phone: 323234 Email: artermis@constellation.org Address: 435, Constellation Y Tags: [Artemis]
+|| 	7. Orion Phone: 1111111 Address: 534, Orion Constellation Tags: [Onion][Orion]
+|| 
+|| 7 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  sort address desc]
+|| All persons sorted successfully...
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Orion Phone: 1111111 Address: 534, Orion Constellation Tags: [Onion][Orion]
+|| 	2. Artemis Phone: 323234 Email: artermis@constellation.org Address: 435, Constellation Y Tags: [Artemis]
+|| 	3. Hades Phone: 14523 Email: hades@underworld.com Address: 364, Under the world Tags: [Underworld][Hades]
+|| 	4. Poseidon Phone: 44532 Email: poseiden@underthesea.com Address: 342, Under the Sea Tags: [Poseidon][sea]
+|| 	5. Zeus Phone: 9453472 Email: zues@heaven.org Address: 324, Stars and heavens Tags: [Zeus]
+|| 	6. Athena Phone: 2462345 Email: athena@heaven.org Address: 234, Stars and heavens Tags: [Athena]
+|| 	7. Scorpio Phone: 10232 Address: 123, Constellation X Tags: [Scorpio]
+|| 
+|| 7 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  clear]
+|| Address book has been cleared!
+|| ===================================================
+|| Enter command: || [Command entered:  sort]
+|| Invalid command format! 
+|| sort: Sorts all persons by chosen field (NAME, PHONE, EMAIL, ADDRESS) and by order (ASC or DESC). Case insensitive
+|| Parameters: OPTION ORDER
+|| Example: sort name asc
 || ===================================================
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...

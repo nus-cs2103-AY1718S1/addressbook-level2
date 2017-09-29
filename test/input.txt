@@ -32,7 +32,7 @@
   add Valid Name p/12345 valid@email.butNoPrefix a/valid, address
   add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address
   add Valid Name p/12345 e/valid@email.butNoTagPrefix a/valid, address t/goodTag noPrefixTag
-  
+
   # should catch invalid person data
   add []\[;] p/12345 e/valid@e.mail a/valid, address
   add Valid Name p/not_numbers e/valid@e.mail a/valid, address
@@ -147,6 +147,53 @@
   # clears all
   clear
   list
+
+##########################################################
+# test sort command
+##########################################################
+
+  # adds dummy data for testing of sort command
+  add Orion p/1111111 pe/orion@constellation.org a/534, Orion Constellation t/Orion t/Onion
+  add Scorpio p/10232 pe/scorpio@constellation.org a/123, Constellation X t/Scorpio
+  add Artemis p/323234 e/artermis@constellation.org a/435, Constellation Y t/Artemis
+  add Zeus p/9453472 e/zues@heaven.org a/324, Stars and heavens t/Zeus
+  add Athena p/2462345 e/athena@heaven.org a/234, Stars and heavens t/Athena
+  add Poseidon p/44532 e/poseiden@underthesea.com a/342, Under the Sea t/sea t/Poseidon
+  add Hades p/14523 e/hades@underworld.com a/364, Under the world t/Hades t/Underworld
+
+  # shows unsorted list
+  list
+
+  # sort by name
+  sort name asc
+  list
+  sort name desc
+  list
+
+  # sort by phone
+  sort phone asc
+  list
+  sort phone desc
+  list
+
+  # sort by email
+  sort email asc
+  list
+  sort email desc
+  list
+
+  # sort by address
+  sort address asc
+  list
+  sort address desc
+  list
+
+  # Clean up address book after use
+  clear
+
+  # Check wrong input
+  sort
+
 
 ##########################################################
 # test exit command

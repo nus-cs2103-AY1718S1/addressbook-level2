@@ -1,11 +1,6 @@
 package seedu.addressbook.data.person;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
@@ -120,6 +115,92 @@ public class UniquePersonList implements Iterable<Person> {
         if (!personFoundAndDeleted) {
             throw new PersonNotFoundException();
         }
+    }
+
+    /**
+     * Comparators for the various fields available for sorting
+     */
+    public Comparator<Person> personNameComparator = new Comparator<Person>() {
+        @Override
+        public int compare(Person o1, Person o2) {
+            return o1.getName().fullName.compareTo(o2.getName().fullName);
+        }
+    };
+
+    public Comparator<Person> personPhoneComparator = new Comparator<Person>() {
+        @Override
+        public int compare(Person o1, Person o2) {
+            return o1.getPhone().value.compareTo(o2.getPhone().value);
+        }
+    };
+
+    public Comparator<Person> personEmailComparator = new Comparator<Person>() {
+        @Override
+        public int compare(Person o1, Person o2) {
+            return o1.getEmail().value.compareTo(o2.getEmail().value);
+        }
+    };
+
+    public Comparator<Person> personAddressComparator = new Comparator<Person>() {
+        @Override
+        public int compare(Person o1, Person o2) {
+            return o1.getAddress().value.compareTo(o2.getAddress().value);
+        }
+    };
+
+    /**
+     *  Sorts person list by valid field (name, phone, email, address) and order (asc, desc) by
+     *  using the relevant Comparator. Note that the default statement is redundant, but acts
+     *  as a fail safe in case the checks in SortCommand.java fails.
+     */
+    public void sortBy(String field, String order) {
+        //sortyBy first chooses the right comparator
+        Comparator<Person> comparator = null;
+        switch (field) {
+            case "name":
+                comparator = personNameComparator;
+                break;
+
+            case "phone":
+                comparator = personPhoneComparator;
+                break;
+
+            case "email":
+                comparator = personEmailComparator;
+                break;
+
+            case "address":
+                comparator = personAddressComparator;
+                break;
+
+            default:
+                try {
+                    System.out.println("An error occured");
+                    throw new Exception("Invalid field parameter entered...\n");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
+
+        //sortBy then chooses the right ordering
+        switch (order) {
+            case "asc":
+                Collections.sort(internalList, comparator);
+                break;
+
+            case "desc":
+                Collections.sort(internalList, Collections.reverseOrder(comparator));
+                break;
+
+            default:
+                try {
+                    System.out.println("An error occured");
+                    throw new Exception("Invalid field parameter entered...\n");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
+
     }
 
     /**

@@ -59,38 +59,37 @@ public class Parser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
+        case AddCommand.COMMAND_WORD:
+            return prepareAdd(arguments);
 
-            case AddCommand.COMMAND_WORD:
-                return prepareAdd(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return prepareDelete(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return prepareDelete(arguments);
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case FindCommand.COMMAND_WORD:
+            return prepareFind(arguments);
 
-            case FindCommand.COMMAND_WORD:
-                return prepareFind(arguments);
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case SortCommand.COMMAND_WORD:
+            return prepareSort(arguments);
 
-            case SortCommand.COMMAND_WORD:
-                return prepareSort(arguments);
+        case ViewCommand.COMMAND_WORD:
+            return prepareView(arguments);
 
-            case ViewCommand.COMMAND_WORD:
-                return prepareView(arguments);
+        case ViewAllCommand.COMMAND_WORD:
+            return prepareViewAll(arguments);
 
-            case ViewAllCommand.COMMAND_WORD:
-                return prepareViewAll(arguments);
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case HelpCommand.COMMAND_WORD: // Fallthrough
 
-            case HelpCommand.COMMAND_WORD: // Fallthrough
-
-            default:
-                return new HelpCommand();
+        default:
+            return new HelpCommand();
         }
     }
 

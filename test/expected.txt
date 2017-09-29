@@ -21,6 +21,8 @@
 || Example: list
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
+|| sort: Sorts all persons in the address book by comparing their names lexicographically.
+|| Example: sort
 || Example: view 1
 || viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX

@@ -12,6 +12,7 @@ import org.junit.Test;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.group.Group;
+import seedu.addressbook.data.group.GroupName;
 import seedu.addressbook.data.group.UniqueGroupList;
 import seedu.addressbook.util.TestUtil;
 
@@ -22,7 +23,7 @@ public class AddGroupCommandTest {
     public void addGroupCommand_invalidName_throwsException() {
         final String[] invalidNames = { "", " ", "[]\\[;]" };
         for (String name : invalidNames) {
-            assertConstructingInvalidAddCmdThrowsException(name);
+            assertConstructingInvalidAddGroupCmdThrowsException(name);
         }
     }
 
@@ -30,7 +31,7 @@ public class AddGroupCommandTest {
      * Asserts that attempting to construct an addgroup command with the supplied
      * invalid data throws an IllegalValueException
      */
-    private void assertConstructingInvalidAddCmdThrowsException(String name) {
+    private void assertConstructingInvalidAddGroupCmdThrowsException(String name) {
         try {
             new AddGroupCommand(name);
         } catch (IllegalValueException e) {
@@ -39,6 +40,14 @@ public class AddGroupCommandTest {
         String error = String.format(
                 "An add group command was successfully constructed with invalid input: %s", name);
         fail(error);
+    }
+
+    @Test
+    public void addGroupCommand_validData_correctlyConstructed() throws Exception {
+        AddGroupCommand command = new AddGroupCommand(GroupName.EXAMPLE);
+        Group p = command.getGroup();
+
+        assertEquals(GroupName.EXAMPLE, p.getName());
     }
 
     @Test

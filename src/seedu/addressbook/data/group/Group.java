@@ -2,6 +2,7 @@ package seedu.addressbook.data.group;
 
 import java.util.ArrayList;
 
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Person;
 
 
@@ -14,12 +15,8 @@ public class Group {
      * Assumption: Every field must be present and not null
      * @param groupName
      */
-    public Group(String groupName) {
-        try {
-            this._name = new GroupName(groupName);
-        } catch (Exception E){
-            System.out.println("Invalid Name!");
-        }
+    public Group(String groupName) throws IllegalValueException{
+        this._name = new GroupName(groupName);
         this._members = new ArrayList<>();
     }
 

@@ -1,9 +1,9 @@
 package seedu.addressbook.data.group;
 
-import seedu.addressbook.data.exception.IllegalValueException;
-
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
  * Represents a Group's name in the address book.
@@ -13,7 +13,7 @@ public class GroupName {
 
     public static final String EXAMPLE = "CS2103";
     public static final String MESSAGE_GROUP_NAME_CONSTRAINTS = "Group names should be spaces or alphabetic characters";
-    public static final String GROUP_NAME_VALIDATION_REGEX = "[\\p{Alpha} ]+";
+    public static final String GROUP_NAME_VALIDATION_REGEX = "[\\p{Alnum} ]+";
     public final String fullName;
 
     /**

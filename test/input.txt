@@ -23,7 +23,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -53,6 +53,21 @@
 
   # should not allow adding duplicate persons
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+
+##########################################################
+# test addgroup command, setup state for future tests
+##########################################################
+
+  # should catch invalid name
+  addgroup @#^
+
+  # should add correctly
+  addgroup CS2103
+  addgroup NUS
+  addgroup 2103
+
+  # should not allow adding duplicate group
+  addgroup CS2103
 
 ##########################################################
 # test view/viewall persons command

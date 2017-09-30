@@ -138,6 +138,21 @@
 || Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
 || This person already exists in the address book
 || ===================================================
+|| Enter command: || [Command entered:addgroup @#^]
+|| Group names should be alphabetic characters and/or numbers
+|| ===================================================
+|| Enter command: || [Command entered:addgroup CS2103]
+|| New group added: CS2103
+|| ===================================================
+|| Enter command: || [Command entered:addgroup NUS]
+|| New group added: NUS
+|| ===================================================
+|| Enter command: || [Command entered:addgroup 2103]
+|| New group added: 2103
+|| ===================================================
+|| Enter command: || [Command entered:addgroup CS2103]
+|| This group already exists in the address book
+|| ===================================================
 || Enter command: || [Command entered:  view]
 || Invalid command format! 
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.

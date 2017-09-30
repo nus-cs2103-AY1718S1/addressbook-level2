@@ -12,7 +12,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class GroupName {
 
     public static final String EXAMPLE = "CS2103";
-    public static final String MESSAGE_GROUP_NAME_CONSTRAINTS = "Group names should be spaces or alphabetic characters";
+    public static final String MESSAGE_GROUP_NAME_CONSTRAINTS = "Group names should be alphabetic characters and/or "
+                                                                      + "numbers";
     public static final String GROUP_NAME_VALIDATION_REGEX = "[\\p{Alnum} ]+";
     public final String fullName;
 

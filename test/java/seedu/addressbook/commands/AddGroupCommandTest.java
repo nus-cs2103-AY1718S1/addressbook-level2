@@ -1,16 +1,19 @@
 package seedu.addressbook.commands;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.Test;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.group.Group;
 import seedu.addressbook.data.group.UniqueGroupList;
 import seedu.addressbook.util.TestUtil;
-
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class AddGroupCommandTest {
     private static final List<Group> EMPTY_GROUP_LIST = Collections.emptyList();
@@ -34,7 +37,7 @@ public class AddGroupCommandTest {
             return;
         }
         String error = String.format(
-                "An add command was successfully constructed with invalid input: %s", name);
+                "An add group command was successfully constructed with invalid input: %s", name);
         fail(error);
     }
 
@@ -49,8 +52,8 @@ public class AddGroupCommandTest {
 
         assertTrue(groups.contains(p));
         assertEquals(1, groups.immutableListView().size());
-        assertFalse(result.getRelevantPersons().isPresent());
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, p), result.feedbackToUser);
+        assertFalse(result.getRelevantGroups().isPresent());
+        assertEquals(String.format(AddGroupCommand.MESSAGE_SUCCESS, p), result.feedbackToUser);
     }
 
     @Test

@@ -1,8 +1,9 @@
 package seedu.addressbook.data.group;
 
+import java.util.ArrayList;
+
 import seedu.addressbook.data.person.Person;
 
-import java.util.*;
 
 public class Group {
     private GroupName _name;
@@ -29,9 +30,11 @@ public class Group {
     /**
      * Add new member
      * @param newMember
+     *
+     * if member already in group, print error message
      */
     public void addMember(Person newMember) {
-        if(this._members.contains(newMember))
+        if (this._members.contains(newMember))
             System.out.println(newMember.getName() + " is already in this group!");
         else
             this._members.add(newMember);
@@ -40,12 +43,15 @@ public class Group {
     /**
      * Remove member
      * @param member
+     *
+     * if member not found in group, print error message
      */
     public void removeMember(Person member) {
-        if(this._members.contains(member))
+        if(this._members.contains(member)) {
             this._members.remove(member);
-        else
+        } else {
             System.out.println(member.getName() + " is not in this group!");
+        }
     }
 
     /**
@@ -53,8 +59,7 @@ public class Group {
      */
     public void listMembers() {
         int count = 1;
-        for(Person E: _members)
-        {
+        for (Person E: _members) {
             System.out.println(count++ + ". Name: " + E.getName() + " Phone Number: " + E.getPhone() + " Email: "
                     + E.getEmail() + " Address: " + E.getAddress());
         }
@@ -69,14 +74,19 @@ public class Group {
                 && other.getName().equals(this.getName()));
     }
 
-    public String getName() { return this._name.toString();}
+    public String getName() {
+        return this._name.toString();
+    }
 
-    public int getNumOfMembers() { return this._members.size();}
+    public int getNumOfMembers() {
+        return this._members.size();
+    }
 
-    public ArrayList<Person> getListOfMembers() {return this._members;}
+    public ArrayList<Person> getListOfMembers() {
+        return this._members;
+    }
 
-    public void moveMember (Group origin, Group destination, Person member)
-    {
+    public void moveMember(Group origin, Group destination, Person member) {
         destination.addMember(member);
         origin.removeMember(member);
     }
@@ -88,13 +98,19 @@ public class Group {
                 && this.hasSameData((Group) other));
     }
 
+    /**
+     * Determines if this object has the same data as the other object
+     * @param other
+     * @return
+     */
     public boolean hasSameData(Group other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                && other.getName().equals(this.getName())); // state checks here onwards
+                && other.getName().equals(this.getName())
+                && other.getListOfMembers().equals(this.getListOfMembers())); // state checks here onwards
     }
 
-    public String toString(){
+    public String toString() {
         return this._name.toString();
     }
 }

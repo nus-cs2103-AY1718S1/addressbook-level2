@@ -1,5 +1,10 @@
 package seedu.addressbook.data;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import seedu.addressbook.data.group.Group;
 import seedu.addressbook.data.group.UniqueGroupList;
 import seedu.addressbook.data.person.Person;
@@ -9,11 +14,6 @@ import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
@@ -43,6 +43,7 @@ public class AddressBook {
      *
      * @param persons external changes to this will not affect this address book
      * @param tags external changes to this will not affect this address book
+     * @param groups external changes to this will not affect this address book
      */
     public AddressBook(UniquePersonList persons, UniqueTagList tags, UniqueGroupList groups) {
         this.allPersons = new UniquePersonList(persons);

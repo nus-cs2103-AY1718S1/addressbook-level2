@@ -15,7 +15,7 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
  */
 public class TextUi {
 
-    private Formatter formatter;
+    private Formatter formatter = new Formatter();
 
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
@@ -77,12 +77,12 @@ public class TextUi {
     }
 
     public void showGoodbyeMessage() {
-        formatter.formatGoodbyeMessage();
+        showToUser(formatter.formatGoodbyeMessage());
     }
 
 
     public void showInitFailedMessage() {
-        formatter.formatFailedMessage();
+        showToUser(formatter.formatFailedMessage());
     }
 
     /** Shows message(s) to the user */
@@ -118,8 +118,7 @@ public class TextUi {
 
     /** Shows a list of strings to the user, formatted as an indexed list. */
     private void showToUserAsIndexedList(List<String> list) {
-        showToUser(formatter.getIndexedListForViewing(list));
+        showToUser(formatter.formatIndexedListForViewing(list));
     }
-
 
 }

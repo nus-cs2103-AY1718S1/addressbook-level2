@@ -8,6 +8,9 @@ import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAG
 import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
 import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 
+/**
+ * Formats Strings and messages for the Text UI
+ */
 public class Formatter {
 
     /** A decorative prefix added to the beginning of lines printed by AddressBook */
@@ -63,7 +66,7 @@ public class Formatter {
     }
 
     /** Formats a list of strings as a viewable indexed list. */
-    public static String getIndexedListForViewing(List<String> listItems) {
+    public static String formatIndexedListForViewing(List<String> listItems) {
         final StringBuilder formatted = new StringBuilder();
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
         for (String listItem : listItems) {

@@ -7,7 +7,7 @@ import seedu.addressbook.data.group.UniqueGroupList;
 public class AddGroupCommand extends Command {
     public static final String COMMAND_WORD = "addgroup";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a group to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a group to the address book."
             + "\nParameters: NAME \n"
             + "Example: " + COMMAND_WORD
             + " NUS";

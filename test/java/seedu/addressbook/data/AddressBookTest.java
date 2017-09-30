@@ -10,7 +10,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
+import seedu.addressbook.data.group.Group;
+import seedu.addressbook.data.group.GroupName;
+import seedu.addressbook.data.group.UniqueGroupList;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
@@ -32,6 +34,8 @@ public class AddressBookTest {
     private Person bobChaplin;
     private Person charlieDouglas;
     private Person davidElliot;
+
+    private Group cs2103;
 
     private AddressBook defaultAddressBook;
     private AddressBook emptyAddressBook;
@@ -68,9 +72,12 @@ public class AddressBookTest {
                                     new Address("11 Arts Link", false),
                                     new UniqueTagList(tagEconomist, tagPrizeWinner));
 
+        cs2103 = new Group(new GroupName("CS2103"));
+
         emptyAddressBook = new AddressBook();
         defaultAddressBook = new AddressBook(new UniquePersonList(aliceBetsy, bobChaplin),
-                                             new UniqueTagList(tagMathematician, tagScientist));
+                                             new UniqueTagList(tagMathematician, tagScientist),
+                                             new UniqueGroupList(cs2103));
     }
 
     @Rule

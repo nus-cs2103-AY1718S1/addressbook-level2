@@ -9,6 +9,9 @@
 || add: Adds a person to the address book. Contact details can be marked private by prepending 'p' to the prefix.
 || Parameters: NAME [p]p/PHONE [p]e/EMAIL [p]a/ADDRESS  [t/TAG]...
 || Example: add John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+|| addgroup: Adds a group to the address book.
+|| Parameters: NAME
+|| Example: addgroup NUS
 || delete: Deletes the person identified by the index number used in the last person listing.
 || Parameters: INDEX
 || Example: delete 1
@@ -137,6 +140,21 @@
 || ===================================================
 || Enter command: || [Command entered:  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy]
 || This person already exists in the address book
+|| ===================================================
+|| Enter command: || [Command entered:  addgroup @#^]
+|| Group names should be alphabetic characters and/or numbers
+|| ===================================================
+|| Enter command: || [Command entered:  addgroup CS2103]
+|| New group added: CS2103
+|| ===================================================
+|| Enter command: || [Command entered:  addgroup NUS]
+|| New group added: NUS
+|| ===================================================
+|| Enter command: || [Command entered:  addgroup 2103]
+|| New group added: 2103
+|| ===================================================
+|| Enter command: || [Command entered:  addgroup CS2103]
+|| This group already exists in the address book
 || ===================================================
 || Enter command: || [Command entered:  view]
 || Invalid command format! 

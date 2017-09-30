@@ -49,6 +49,16 @@ Examples:
 * `add John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01`
 * `add Betsy Crowe pp/1234567 e/betsycrowe@gmail.com pa/Newgate Prison t/criminal t/friend`
 
+### Adding a group" `addgroup`
+Adds a group to the address book<br>
+Format: `addgroup NAME`
+
+> Words in `UPPER_CASE` are the parameters
+
+Examples:
+* `addgroup CS2103`
+* `addgroup NUS`
+
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`

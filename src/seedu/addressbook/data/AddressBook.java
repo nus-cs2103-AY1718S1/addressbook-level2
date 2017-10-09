@@ -1,5 +1,7 @@
 package seedu.addressbook.data;
 
+import static seedu.addressbook.data.tag.UniqueTagList.DuplicateTagException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -113,7 +115,13 @@ public class AddressBook {
      * @param person is the person that the tag will be added to
      * @param tag is the tag that will be added to {@code person}
      */
-    public void addTag(Person person, Tag tag) {
+    public void addTag(Person person, Tag tag) throws UnsupportedOperationException, DuplicateTagException {
+        if (!containsPerson(person)) {
+            throw new UnsupportedOperationException("The person does not exist in the AddressBook");
+        }
+
+        person.addTag(tag);
+        syncTagsWithMasterList(person);
         taggings.add(new Tagging(person, tag, Tagging.TaggingOperations.ADD));
     }
 

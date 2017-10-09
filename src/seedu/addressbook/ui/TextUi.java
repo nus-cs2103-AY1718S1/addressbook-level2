@@ -14,7 +14,9 @@ import java.util.Optional;
 import java.util.Scanner;
 
 import seedu.addressbook.commands.CommandResult;
+import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.tag.Tagging;
 
 /**
  * Text UI of the application.
@@ -169,4 +171,12 @@ public class TextUi {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
     }
 
+    /**
+     * Shows the session's taggins to the user
+     */
+    public void showSessionTaggings(AddressBook addressBook) {
+        for (Tagging tagging : addressBook.getTaggings()) {
+            showToUser(tagging.toString());
+        }
+    }
 }

@@ -2,6 +2,7 @@ package seedu.addressbook.data.person;
 
 import static seedu.addressbook.data.tag.UniqueTagList.DuplicateTagException;
 
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -71,6 +72,10 @@ public class Person implements ReadOnlyPerson {
 
     public void addTag(Tag tag) throws DuplicateTagException {
         tags.add(tag);
+    }
+
+    public void removeTag(Tag tag) throws IllegalValueException {
+        tags.remove(tag);
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
@@ -131,7 +132,13 @@ public class AddressBook {
      * @param person is the person that the tag will be removed from
      * @param tag is the tag that will be removed from {@code person}
      */
-    public void removeTag(Person person, Tag tag) {
+    public void removeTag(Person person, Tag tag) throws IllegalValueException {
+        if (!containsPerson(person)) {
+            throw new UnsupportedOperationException("The person does not exist in the AddressBook");
+        }
+
+        person.removeTag(tag);
+        syncTagsWithMasterList(person);
         taggings.add(new Tagging(person, tag, Tagging.TaggingOperations.REMOVE));
     }
 

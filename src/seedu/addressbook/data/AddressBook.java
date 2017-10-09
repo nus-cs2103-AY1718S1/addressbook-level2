@@ -1,9 +1,13 @@
 package seedu.addressbook.data;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -11,6 +15,8 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.TagActionType;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 /**
@@ -24,6 +30,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private final List<Tagging> taggings;
 
     /**
      * Creates an empty address book.
@@ -31,6 +38,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        taggings = new ArrayList<>();
     }
 
     /**
@@ -46,6 +54,7 @@ public class AddressBook {
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
+        taggings = new ArrayList<>();
     }
 
     /**
@@ -80,6 +89,9 @@ public class AddressBook {
      */
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
+        for (Tag tag : toAdd.getTags()) {
+            taggings.add(new Tagging(toAdd, tag, TagActionType.ADD));
+        }
         syncTagsWithMasterList(toAdd);
     }
 
@@ -97,6 +109,23 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+        for (Tag tag : toRemove.getTags()) {
+            taggings.add(new Tagging(toRemove, tag, TagActionType.DELETE));
+        }
+    }
+
+    /**
+     * Returns the current tagging history for the application session
+     */
+    public List<Tagging> getTaggings() {
+        return taggings;
+    }
+
+    /**
+     * Returns a list of the taggings in String format
+     */
+    public List<String> getTaggingString() {
+        return getTaggings().stream().map(tagging -> tagging.toString()).collect(Collectors.toList());
     }
 
     /**

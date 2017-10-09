@@ -1,7 +1,7 @@
 || ===================================================
 || ===================================================
 || Welcome to your Address Book!
-|| AddessBook Level 2 - Version 1.0
+|| AddressBook Level 2 - Version 1.0
 || Launch command format: java seedu.addressbook.Main [STORAGE_FILE_PATH]
 || Using storage file : addressbook.xml
 || ===================================================
@@ -22,7 +22,7 @@
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
-|| viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
+|| viewall: Views all the details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
 || help: Shows program usage instructions.
@@ -146,7 +146,7 @@
 || ===================================================
 || Enter command: || [Command entered:  viewall]
 || Invalid command format! 
-|| viewall: Views the non-private details of the person identified by the index number in the last shown person listing.
+|| viewall: Views all the details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: viewall 1
 || ===================================================

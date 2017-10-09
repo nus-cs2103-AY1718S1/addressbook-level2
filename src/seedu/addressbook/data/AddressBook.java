@@ -1,16 +1,22 @@
 package seedu.addressbook.data;
 
+import static seedu.addressbook.data.tag.UniqueTagList.DuplicateTagException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 /**
@@ -23,7 +29,12 @@ import seedu.addressbook.data.tag.UniqueTagList;
 public class AddressBook {
 
     private final UniquePersonList allPersons;
-    private final UniqueTagList allTags; // can contain tags not attached to any person
+
+    // can contain tags not attached to any person
+    private final UniqueTagList allTags;
+
+    // a list to record all transactions related to tagging.
+    private final List<Tagging> taggings = new ArrayList<>();
 
     /**
      * Creates an empty address book.
@@ -97,6 +108,38 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+    }
+
+    /**
+     * Adds a specific tag to a specific person.
+     *
+     * @param person is the person that the tag will be added to
+     * @param tag is the tag that will be added to {@code person}
+     */
+    public void addTag(Person person, Tag tag) throws UnsupportedOperationException, DuplicateTagException {
+        if (!containsPerson(person)) {
+            throw new UnsupportedOperationException("The person does not exist in the AddressBook");
+        }
+
+        person.addTag(tag);
+        syncTagsWithMasterList(person);
+        taggings.add(new Tagging(person, tag, Tagging.TaggingOperations.ADD));
+    }
+
+    /**
+     * Removes a specific tag from a specific person.
+     *
+     * @param person is the person that the tag will be removed from
+     * @param tag is the tag that will be removed from {@code person}
+     */
+    public void removeTag(Person person, Tag tag) throws IllegalValueException {
+        if (!containsPerson(person)) {
+            throw new UnsupportedOperationException("The person does not exist in the AddressBook");
+        }
+
+        person.removeTag(tag);
+        syncTagsWithMasterList(person);
+        taggings.add(new Tagging(person, tag, Tagging.TaggingOperations.REMOVE));
     }
 
     /**

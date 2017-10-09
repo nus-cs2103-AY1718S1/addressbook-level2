@@ -23,7 +23,7 @@ import seedu.addressbook.ui.TextUi;
 public class Main {
 
     /** Version info of the program. */
-    public static final String VERSION = "AddressBook Level 2 - Version 1.0";
+    private static final String VERSION = "AddressBook Level 2 - Version 1.0";
 
     /** Components of the application, can be seen approximately as a MVC framework. */
     private TextUi ui;
@@ -43,7 +43,7 @@ public class Main {
     }
 
     /** Runs the program until termination.  */
-    public void run(String[] launchArgs) {
+    private void run(String[] launchArgs) {
         start(launchArgs);
         runCommandLoopUntilExitCommand();
         exit();
@@ -99,9 +99,7 @@ public class Main {
     private void recordResult(CommandResult result) {
         final Optional<List<? extends ReadOnlyPerson>> personList = result.getRelevantPersons();
 
-        if (personList.isPresent()) {
-            lastShownList = personList.get();
-        }
+        personList.ifPresent(readOnlyPeople -> lastShownList = readOnlyPeople);
     }
 
     /**

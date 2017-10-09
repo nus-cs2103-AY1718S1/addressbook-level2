@@ -10,8 +10,6 @@ import java.util.List;
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
 
-
-
 /**
  * A list of persons. Does not allow null elements or duplicates.
  *
@@ -24,7 +22,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
     public static class DuplicatePersonException extends DuplicateDataException {
-        protected DuplicatePersonException() {
+        DuplicatePersonException() {
             super("Operation would result in duplicate persons");
         }
     }
@@ -40,7 +38,9 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Constructs empty person list.
      */
-    public UniquePersonList() {}
+    public UniquePersonList() {
+
+    }
 
     /**
      * Constructs a person list with the given persons.

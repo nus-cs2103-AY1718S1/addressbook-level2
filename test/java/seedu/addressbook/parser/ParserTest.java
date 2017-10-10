@@ -12,17 +12,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import seedu.addressbook.commands.AddCommand;
-import seedu.addressbook.commands.ClearCommand;
-import seedu.addressbook.commands.Command;
-import seedu.addressbook.commands.DeleteCommand;
-import seedu.addressbook.commands.ExitCommand;
-import seedu.addressbook.commands.FindCommand;
-import seedu.addressbook.commands.HelpCommand;
-import seedu.addressbook.commands.IncorrectCommand;
-import seedu.addressbook.commands.ListCommand;
-import seedu.addressbook.commands.ViewAllCommand;
-import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
@@ -160,6 +150,45 @@ public class ParserTest {
     }
 
     /*
+     * Tests for find persons by keyword ignore case in name command ===================================================
+     */
+
+    @Test
+    public void parse_findEasilyCommandInvalidArgs_errorMessage() {
+        // no keywords
+        final String[] inputs = {
+            "find_easily",
+            "find_easily "
+        };
+        final String resultMessage =
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEasilyCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_findEasilyCommandValidArgs_parsedCorrectly() {
+        final String[] keywords = { "key1", "key2", "key3" };
+        final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
+
+        final String input = "find_easily " + String.join(" ", keySet);
+        final FindEasilyCommand result =
+                parseAndAssertCommandType(input, FindEasilyCommand.class);
+        assertEquals(keySet, result.getKeywords());
+    }
+
+    @Test
+    public void parse_findEasilyCommandDuplicateKeys_parsedCorrectly() {
+        final String[] keywords = { "key1", "key2", "key3" };
+        final Set<String> keySet = new HashSet<>(Arrays.asList(keywords));
+
+        // duplicate every keyword
+        final String input = "find_easily " + String.join(" ", keySet) + " " + String.join(" ", keySet);
+        final FindEasilyCommand result =
+                parseAndAssertCommandType(input, FindEasilyCommand.class);
+        assertEquals(keySet, result.getKeywords());
+    }
+
+    /*
      * Tests for find persons by keyword in name command ===================================================
      */
 
@@ -167,8 +196,8 @@ public class ParserTest {
     public void parse_findCommandInvalidArgs_errorMessage() {
         // no keywords
         final String[] inputs = {
-            "find",
-            "find "
+                "find",
+                "find "
         };
         final String resultMessage =
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);

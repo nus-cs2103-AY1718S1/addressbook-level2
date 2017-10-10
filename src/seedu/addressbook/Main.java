@@ -1,5 +1,7 @@
 package seedu.addressbook;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -9,12 +11,12 @@ import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
 import seedu.addressbook.ui.TextUi;
-
 
 /**
  * Entry point of the Address Book application.
@@ -28,6 +30,7 @@ public class Main {
     private TextUi ui;
     private StorageFile storage;
     private AddressBook addressBook;
+    private ArrayList<Tagging> taggings;
 
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();

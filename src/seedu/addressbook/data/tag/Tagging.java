@@ -38,4 +38,9 @@ public class Tagging {
     public Tag getUniqueTag() {
         return uniqueTag;
     }
+
+    @Override
+    public String toString() {
+        return action + " " + person.getName() + " " + "[" + uniqueTag.tagName + "]";
+    }
 }

@@ -18,6 +18,7 @@ import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
 import seedu.addressbook.ui.TextUi;
 
+
 /**
  * Entry point of the Address Book application.
  * Initializes the application and starts the interaction with the user.
@@ -30,7 +31,6 @@ public class Main {
     private TextUi ui;
     private StorageFile storage;
     private AddressBook addressBook;
-    private ArrayList<Tagging> taggings;
 
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
@@ -44,6 +44,7 @@ public class Main {
     public void run(String[] launchArgs) {
         start(launchArgs);
         runCommandLoopUntilExitCommand();
+        printSessionTaggings();
         exit();
     }
 
@@ -130,5 +131,15 @@ public class Main {
         return isStorageFileSpecifiedByUser ? new StorageFile(launchArgs[0]) : new StorageFile();
     }
 
+    /**
+     * Loops through ArrayList of taggings, and prints them, each Tagging records a change in tags of a Person in the
+     * AddressBook
+     */
+    private void printSessionTaggings(){
+        ArrayList<Tagging> taggings = addressBook.getTaggings();
+        for(Tagging t : taggings) {
+            System.out.println(t);
+        }
+    }
 
 }

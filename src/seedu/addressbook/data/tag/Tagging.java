@@ -41,6 +41,6 @@ public class Tagging {
 
     @Override
     public String toString() {
-        return action + " " + person.getName() + " " + "[" + uniqueTag.tagName + "]";
+        return action + " " + person.getName() + " " + uniqueTag.tagName;
     }
 }

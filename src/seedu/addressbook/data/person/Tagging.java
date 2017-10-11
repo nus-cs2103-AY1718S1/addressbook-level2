@@ -15,7 +15,7 @@ public class Tagging {
     }
 
     public String printResult() {
-        return taggingSign() + this.personTagged + " [" + this.tagTagged + "] ";
+        return taggingSign() + this.personTagged.getName() + " [" + this.tagTagged.tagName + "] ";
     }
 
     public String taggingSign() {

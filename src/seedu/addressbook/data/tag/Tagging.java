@@ -18,6 +18,6 @@ public class Tagging {
     }
 
     public String printTagging() {
-        return getTaggingChange() + this.person.getName() +  "[" + this.tag.tagName + "]";
+        return getTaggingChange() + " " + this.person.getName() +  " [" + this.tag.tagName + "]";
     }
 }

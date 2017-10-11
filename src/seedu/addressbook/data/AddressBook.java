@@ -1,7 +1,9 @@
 package seedu.addressbook.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 /**
@@ -22,8 +25,11 @@ import seedu.addressbook.data.tag.UniqueTagList;
  */
 public class AddressBook {
 
+    private static final char ADD_TAG_PREFIX = '+';
+    private static final char REMOVE_TAG_PREFIX = '-';
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private final ArrayList<Tagging> allTaggings;
 
     /**
      * Creates an empty address book.
@@ -31,6 +37,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        allTaggings = new ArrayList<>();
     }
 
     /**
@@ -46,6 +53,7 @@ public class AddressBook {
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
+        this.allTaggings = new ArrayList<>();
     }
 
     /**
@@ -81,6 +89,7 @@ public class AddressBook {
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
         syncTagsWithMasterList(toAdd);
+        toAdd.getTags().forEach(tag -> allTaggings.add(new Tagging(toAdd, tag, ADD_TAG_PREFIX)));
     }
 
     /**
@@ -97,6 +106,8 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+        toRemove.getTags().forEach(tag -> allTaggings.add(new Tagging(toRemove, tag, REMOVE_TAG_PREFIX)));
+
     }
 
     /**
@@ -127,5 +138,13 @@ public class AddressBook {
                 || (other instanceof AddressBook // instanceof handles nulls
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
+    }
+
+    public void printAllTaggings() {
+        Iterator iterator = allPersons.iterator();
+        while (iterator.hasNext()) {
+            ReadOnlyPerson eachPerson = (ReadOnlyPerson) iterator.next();
+            eachPerson.getTags().forEach(tagging -> System.out.println(tagging.toString()));
+        }
     }
 }

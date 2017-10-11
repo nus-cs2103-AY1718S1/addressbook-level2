@@ -14,10 +14,10 @@ public class Tagging {
     }
 
     public String getTaggingChange() {
-        return isTagAdded ? "added" : "removed";
+        return isTagAdded ? "+" : "-";
     }
 
     public String printTagging() {
-        return "|| " + this.person.getName() +  "[" + this.tag.tagName + "]" + getTaggingChange();
+        return getTaggingChange() + this.person.getName() +  "[" + this.tag.tagName + "]";
     }
 }

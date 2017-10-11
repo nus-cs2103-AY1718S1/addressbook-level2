@@ -1,9 +1,6 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -11,19 +8,21 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
- *
+ * <p>
  * Guarantees:
- *  - Every tag found in every person will also be found in the tag list.
- *  - The tags in each person point to tag objects in the master list. (== equality)
+ * - Every tag found in every person will also be found in the tag list.
+ * - The tags in each person point to tag objects in the master list. (== equality)
  */
 public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private ArrayList<Tagging> taggingArrayList;
 
     /**
      * Creates an empty address book.
@@ -31,6 +30,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        this.taggingArrayList = new ArrayList<>();
     }
 
     /**
@@ -38,7 +38,7 @@ public class AddressBook {
      * Also updates the tag list with any missing tags found in any person.
      *
      * @param persons external changes to this will not affect this address book
-     * @param tags external changes to this will not affect this address book
+     * @param tags    external changes to this will not affect this address book
      */
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
@@ -46,12 +46,13 @@ public class AddressBook {
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
+        this.taggingArrayList = new ArrayList<>();
     }
 
     /**
      * Ensures that every tag in this person:
-     *  - exists in the master list {@link #allTags}
-     *  - points to a Tag object in the master list
+     * - exists in the master list {@link #allTags}
+     * - points to a Tag object in the master list
      */
     private void syncTagsWithMasterList(Person person) {
         final UniqueTagList personTags = person.getTags();
@@ -121,11 +122,18 @@ public class AddressBook {
         return new UniqueTagList(allTags);
     }
 
+    /**
+     * Returns the ArrayList of Taggings.
+     */
+    public ArrayList<Tagging> getTaggingArrayList() {
+        return this.taggingArrayList;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && this.allPersons.equals(((AddressBook) other).allPersons)
-                        && this.allTags.equals(((AddressBook) other).allTags));
+                && this.allPersons.equals(((AddressBook) other).allPersons)
+                && this.allTags.equals(((AddressBook) other).allTags));
     }
 }

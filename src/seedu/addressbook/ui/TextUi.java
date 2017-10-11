@@ -1,7 +1,9 @@
 package seedu.addressbook.ui;
 
 import seedu.addressbook.commands.CommandResult;
+import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.tag.Tagging;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -111,7 +113,10 @@ public class TextUi {
                 DIVIDER);
     }
 
-    public void showGoodbyeMessage() {
+    public void showGoodbyeMessage(AddressBook addressBook) {
+        for (Tagging tagging : addressBook.getTaggingArrayList()) {
+            showToUser(tagging.getInfo());
+        }
         showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
     }
 
@@ -140,7 +145,7 @@ public class TextUi {
                 showPersonListView(resultPersons.get());
             }
             showToUser(result.getFeedbackToUser(), DIVIDER);
-        }catch(Exception e){
+        } catch (Exception e) {
             showToUser("Allow write access to file if it has been set to read-only.");
         }
     }

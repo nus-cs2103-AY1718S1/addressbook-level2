@@ -127,6 +127,14 @@ public class AddressBook {
         return new UniqueTagList(allTags);
     }
 
+    /**
+     * Returns the list of taggings in the address book currently
+     * @return
+     */
+    public ArrayList<Tagging> getAllTaggings() {
+        return taggings;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

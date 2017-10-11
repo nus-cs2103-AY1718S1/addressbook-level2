@@ -303,3 +303,15 @@
 || Good bye!
 || ===================================================
 || ===================================================
++ Betsy Choo [secretive]
++ Charlie Dickson [school]
++ Charlier Dickson [friends]
++ Dickson Ee [friends]
++ Ester Potato [tubers]
++ Ester Potato [starchy]
+- Charlie Dickson [school]
+- Charlie Dickson [friends]
+- Charlie Dickson [school]
+- Charlie Dickson [friends]
+- Ester Potato [tubers]
+- Ester Potato [starchy]

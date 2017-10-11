@@ -1,16 +1,19 @@
 package seedu.addressbook.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 /**
@@ -24,6 +27,10 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private final ArrayList<Tagging> allTaggings;
+
+    private final String ADD_OPERATION = "+";
+    private final String REMOVE_OPERATION = "-";
 
     /**
      * Creates an empty address book.
@@ -31,6 +38,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        allTaggings = new ArrayList<>();
     }
 
     /**
@@ -46,6 +54,7 @@ public class AddressBook {
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
+        this.allTaggings = new ArrayList<>();
     }
 
     /**
@@ -119,6 +128,45 @@ public class AddressBook {
      */
     public UniqueTagList getAllTags() {
         return new UniqueTagList(allTags);
+    }
+
+    /**
+     * Adds given tag to the given person's tags list.
+     * @param person
+     * @param tag
+     * @throws PersonNotFoundException if no such Person could be found.
+     */
+    public void addTag(Person person, Tag tag) throws PersonNotFoundException, UniqueTagList.DuplicateTagException {
+        if (!containsPerson(person)) {
+            throw new PersonNotFoundException();
+        }
+
+        person.addTag(tag);
+        allTaggings.add(new Tagging(person, tag, ADD_OPERATION));
+    }
+
+    /**
+     * Removes given tag from the given person's tags list.
+     * @param person
+     * @param tag
+     * @throws PersonNotFoundException if no such Person could be found.
+     */
+    public void removeTag(Person person, Tag tag) throws PersonNotFoundException, IllegalValueException {
+        if (!containsPerson(person)) {
+            throw new PersonNotFoundException();
+        }
+
+        person.removeTag(tag);
+        allTaggings.add(new Tagging(person, tag, REMOVE_OPERATION));
+    }
+
+    /**
+     * Prints out all the taggings from the list of taggings (allTaggings)
+     */
+    public void printTaggings() {
+        for (Tagging tagging : allTaggings) {
+            System.out.println(tagging);
+        }
     }
 
     @Override

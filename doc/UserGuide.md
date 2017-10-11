@@ -57,14 +57,14 @@ Format: `list`
 Finds persons whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> The search is case sensitive, the order of the keywords does not matter, only the name is searched, 
+> The search is not case sensitive, the order of the keywords does not matter, only the name is searched, 
 and persons matching at least one keyword will be returned (i.e. `OR` search).
 
 Examples: 
 * `find John`<br>
-  Returns `John Doe` but not `john`
+  Returns both `John Doe` and `john`
 * `find Betsy Tim John`<br>
-  Returns Any person having names `Betsy`, `Tim`, or `John`
+  Returns Any person having names `Betsy`, `Tim`, or `John` ignoring the case.
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
@@ -110,6 +110,12 @@ Examples:
 * `find Betsy`<br> 
   `viewall 1`<br>
   Views all details of the 1st person in the results of the `find` command.
+
+### Sorting all entries : `sort`
+Sorts all the entries from the address book.<br>
+Format: `sort`
+
+> The sorting is case insensitive i.e. the sorting is done lexicographically. 
 
 ### Clearing all entries : `clear`
 Clears all entries from the address book.<br>

@@ -16,6 +16,8 @@ import java.util.Scanner;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
+import javax.sound.sampled.Line;
+
 /**
  * Text UI of the application.
  */
@@ -129,7 +131,7 @@ public class TextUi {
         if (resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
-        showToUser(result.feedbackToUser, DIVIDER);
+        showToUser(result.giveFeedback(), DIVIDER);
     }
 
     /**
@@ -169,4 +171,14 @@ public class TextUi {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
     }
 
+    /**
+     * Informs user about the storage file being read-only
+     * @param message message to print
+     */
+    public void showReadonlyMessageToUser(String... message){
+        for (String m : message) {
+            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
+        }
+        out.println(LINE_PREFIX + DIVIDER);
+    }
 }

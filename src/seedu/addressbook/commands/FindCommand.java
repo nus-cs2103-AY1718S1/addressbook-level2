@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Collection;
 
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
@@ -17,7 +18,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (not case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
@@ -42,7 +43,7 @@ public class FindCommand extends Command {
 
     /**
      * Retrieves all persons in the address book whose names contain some of the specified keywords.
-     *
+     * (not cases sensitive)
      * @param keywords for searching
      * @return list of persons found
      */
@@ -50,11 +51,29 @@ public class FindCommand extends Command {
         final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
             final Set<String> wordsInName = new HashSet<>(person.getName().getWordsInName());
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            final Set<String> wordsInNameInLowerCase = convertStringToLowerCase(wordsInName);
+            final Set<String> keywordsInLowerCase = convertStringToLowerCase(keywords);
+            if (!Collections.disjoint(wordsInNameInLowerCase, keywordsInLowerCase)) {
                 matchedPersons.add(person);
             }
         }
         return matchedPersons;
     }
+
+    /**
+     * Converts the words into lower case for easy comparison
+     *
+     * @param wordsToBeConverted words to convert to lower case
+     * @return Set of converted words
+     */
+    private static Set<String> convertStringToLowerCase(Collection<String> wordsToBeConverted) {
+        final Set<String> wordsConvertedToLowerCase = new HashSet<String>();
+        for (String word : wordsToBeConverted){
+            word = word.toLowerCase();
+            wordsConvertedToLowerCase.add(word);
+        }
+        return wordsConvertedToLowerCase;
+    }
+
 
 }

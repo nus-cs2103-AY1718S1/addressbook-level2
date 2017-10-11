@@ -25,8 +25,8 @@ public class FindCommandTest {
         //same word, same case: matched
         assertFindCommandBehavior(new String[]{"Amy"}, Arrays.asList(td.amy));
 
-        //same word, different case: not matched
-        assertFindCommandBehavior(new String[]{"aMy"}, Collections.emptyList());
+        //same word, different case: matched
+        assertFindCommandBehavior(new String[]{"aMy"}, Arrays.asList(td.amy));
 
         //partial word: not matched
         assertFindCommandBehavior(new String[]{"my"}, Collections.emptyList());
@@ -34,9 +34,16 @@ public class FindCommandTest {
         //multiple words: matched
         assertFindCommandBehavior(new String[]{"Amy", "Bill", "Candy", "Destiny"},
                 Arrays.asList(td.amy, td.bill, td.candy));
+        
+        //multiple words, different case: matched
+        assertFindCommandBehavior(new String[]{"aMy", "biLL", "CANDY", "destiny"},
+                Arrays.asList(td.amy, td.bill, td.candy));
 
         //repeated keywords: matched
         assertFindCommandBehavior(new String[]{"Amy", "Amy"}, Arrays.asList(td.amy));
+        
+        //repeated keywords, different case: matched
+        assertFindCommandBehavior(new String[]{"CANDY", "candy", "canDY"}, Arrays.asList(td.amy));
 
         //Keyword matching a word in address: not matched
         assertFindCommandBehavior(new String[]{"Clementi"}, Collections.emptyList());
@@ -50,7 +57,7 @@ public class FindCommandTest {
         FindCommand command = createFindCommand(keywords);
         CommandResult result = command.execute();
 
-        assertEquals(Command.getMessageForPersonListShownSummary(expectedPersonList), result.feedbackToUser);
+        assertEquals(Command.getMessageForPersonListShownSummary(expectedPersonList), result.giveFeedback());
     }
 
     private FindCommand createFindCommand(String[] keywords) {

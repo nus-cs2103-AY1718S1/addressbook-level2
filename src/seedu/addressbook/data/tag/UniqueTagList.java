@@ -9,8 +9,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.sun.org.apache.bcel.internal.generic.DUP;
+
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
+import seedu.addressbook.data.exception.IllegalValueException;
 
 
 /**
@@ -46,6 +49,26 @@ public class UniqueTagList implements Iterable<Tag> {
             throw new DuplicateTagException();
         }
         internalList.addAll(initialTags);
+    }
+
+    /**
+     * Add tag in the internalList
+     */
+    public void addTag(Tag tags) throws DuplicateTagException {
+        if(internalList.contains(tags)) {
+            throw new DuplicateTagException();
+        }
+        internalList.add(tags);
+    }
+
+    /**
+     * Remove tag in the internalList
+     */
+    public void removeTag(Tag tags) throws IllegalValueException {
+        if(!internalList.contains(tags)) {
+            throw new IllegalValueException("Tag not found in list");
+        }
+        internalList.remove(tags);
     }
 
     /**

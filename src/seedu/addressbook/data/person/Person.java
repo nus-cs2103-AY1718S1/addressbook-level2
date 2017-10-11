@@ -98,7 +98,6 @@ public class Person implements ReadOnlyPerson {
              this.tagAddedOrDeleted = tagAddedOrDeleted;
          }
 
-
     }
 
 }

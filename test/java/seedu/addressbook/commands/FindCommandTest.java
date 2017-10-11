@@ -26,7 +26,7 @@ public class FindCommandTest {
         assertFindCommandBehavior(new String[]{"Amy"}, Arrays.asList(td.amy));
 
         //same word, different case: not matched
-        assertFindCommandBehavior(new String[]{"aMy"}, Collections.emptyList());
+        assertFindCommandBehavior(new String[]{"aMy"},Collections.emptyList());
 
         //partial word: not matched
         assertFindCommandBehavior(new String[]{"my"}, Collections.emptyList());
@@ -52,6 +52,7 @@ public class FindCommandTest {
 
         assertEquals(Command.getMessageForPersonListShownSummary(expectedPersonList), result.feedbackToUser);
     }
+
 
     private FindCommand createFindCommand(String[] keywords) {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));

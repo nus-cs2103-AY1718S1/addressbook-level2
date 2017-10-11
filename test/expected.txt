@@ -19,6 +19,8 @@
 || Example: find alice bob charlie
 || list: Displays all persons in the address book as a list with index numbers.
 || Example: list
+|| sort: Sorts all persons in the address book in alphabetical order.
+|| Example: sort
 || view: Views the non-private details of the person identified by the index number in the last shown person listing.
 || Parameters: INDEX
 || Example: view 1
@@ -281,10 +283,13 @@
 || 
 || 3 persons listed!
 || ===================================================
-|| Enter command: || [Command entered:  delete 1]
+|| Enter command: || [Command entered:      delete 1]
 || Deleted Person: Adam Brown Phone: 111111 Email: adam@gmail.com Address: 111, alpha street Tags: 
 || ===================================================
-|| Enter command: || [Command entered:  list]
+|| Enter command: || [Command entered:    sort]
+|| Sort successful
+|| ===================================================
+|| Enter command: || [Command entered:    list]
 || 	1. Betsy Choo Tags: [secretive]
 || 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
 || 
@@ -300,6 +305,16 @@
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...
 || ===================================================
++ Betsy Choo [secretive]
++ Charlie Dickson [school]
++ Charlie Dickson [friends]
++ Dickson Ee [friends]
++ Esther Potato [tubers]
++ Esther Potato [starchy]
+- Charlie Dickson [school]
+- Charlie Dickson [friends]
+- Esther Potato [tubers]
+- Esther Potato [starchy]
 || Good bye!
 || ===================================================
 || ===================================================

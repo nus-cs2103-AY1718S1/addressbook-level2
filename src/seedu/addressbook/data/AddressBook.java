@@ -1,16 +1,20 @@
 package seedu.addressbook.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.addressbook.data.exception.DuplicateDataException;
+import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 /**
@@ -24,6 +28,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private ArrayList<Tagging> taggings;
 
     /**
      * Creates an empty address book.
@@ -31,6 +36,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        taggings = new ArrayList<>();
     }
 
     /**
@@ -38,7 +44,7 @@ public class AddressBook {
      * Also updates the tag list with any missing tags found in any person.
      *
      * @param persons external changes to this will not affect this address book
-     * @param tags external changes to this will not affect this address book
+     * @param tags    external changes to this will not affect this address book
      */
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
@@ -46,12 +52,35 @@ public class AddressBook {
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
+        this.taggings = new ArrayList<>();
+    }
+
+    /**
+     * Adds tag into Address Book
+     */
+    public void addTag(Person p, Tag t) throws PersonNotFoundException, DuplicateDataException {
+        if (!containsPerson(p)) {
+            throw new PersonNotFoundException();
+        }
+        p.addTag(t);
+        taggings.add(new Tagging(p, t, Tagging.TagOperations.ADD));
+    }
+
+    /**
+     * Removes tag from Address Book
+     */
+    public void removeTag(Person p, Tag t) throws PersonNotFoundException, IllegalValueException {
+        if (!containsPerson(p)) {
+            throw new PersonNotFoundException();
+        }
+        p.removeTag(t);
+        taggings.add(new Tagging(p, t, Tagging.TagOperations.REMOVE));
     }
 
     /**
      * Ensures that every tag in this person:
-     *  - exists in the master list {@link #allTags}
-     *  - points to a Tag object in the master list
+     * - exists in the master list {@link #allTags}
+     * - points to a Tag object in the master list
      */
     private void syncTagsWithMasterList(Person person) {
         final UniqueTagList personTags = person.getTags();
@@ -125,7 +154,16 @@ public class AddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && this.allPersons.equals(((AddressBook) other).allPersons)
-                        && this.allTags.equals(((AddressBook) other).allTags));
+                && this.allPersons.equals(((AddressBook) other).allPersons)
+                && this.allTags.equals(((AddressBook) other).allTags));
+    }
+
+    /**
+     * Prints all tags stored in the AddressBook
+     */
+    public void printTags() {
+        for (Tagging t : taggings) {
+            System.out.println(t);
+        }
     }
 }

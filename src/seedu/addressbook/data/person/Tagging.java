@@ -4,11 +4,11 @@ import seedu.addressbook.data.tag.Tag;
 
 public class Tagging {
 
-    private Person personTagged;
+    private ReadOnlyPerson personTagged;
     private Tag tagTagged;
     private boolean isTagAdded;
 
-    public Tagging(Person person, Tag tag, boolean isItAdded) {
+    public Tagging(ReadOnlyPerson person, Tag tag, boolean isItAdded) {
         personTagged = person;
         tagTagged = tag;
         isTagAdded = isItAdded;

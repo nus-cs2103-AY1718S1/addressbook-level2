@@ -98,6 +98,18 @@ public class UniqueTagList implements Iterable<Tag> {
         }
         this.internalList.addAll(tags.internalList);
     }
+    /**  Adds a tag to the tag list.
+     */
+     public void addTag(Tag tag) {
+        internalList.add(tag);
+     }
+
+     /**
+    *  Removes a tag from the tag list.
+  */
+    public void removeTag(Tag tag) {
+        internalList.remove(tag);
+    }
 
     /**
      * Adds every tag from the argument list that does not yet exist in this list.

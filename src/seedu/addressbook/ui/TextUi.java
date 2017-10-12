@@ -110,8 +110,12 @@ public class TextUi {
     }
 
     public void showTaggings(ArrayList<Tagging> taggingList) {
-        for (Tagging e: taggingList) {
-            showToUser(e.toString());
+        if (taggingList.isEmpty()) {
+           showToUser("No Tags changed.");
+        } else {
+            for (Tagging e : taggingList) {
+                showToUser(e.toString());
+            }
         }
         showToUser(DIVIDER, DIVIDER);
     }

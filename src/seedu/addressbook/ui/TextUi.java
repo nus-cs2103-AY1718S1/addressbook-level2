@@ -14,6 +14,8 @@ import java.util.Optional;
 import java.util.Scanner;
 
 import seedu.addressbook.commands.CommandResult;
+import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.Tagging;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 /**
@@ -104,7 +106,9 @@ public class TextUi {
                 DIVIDER);
     }
 
-    public void showGoodbyeMessage() {
+    public void showGoodbyeMessage(AddressBook addressBook) {
+        ArrayList<Tagging> taggings = addressBook.getAllTaggings();
+        taggings.forEach((T)->showToUser(T.getTagsChanged()));
         showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
     }
 

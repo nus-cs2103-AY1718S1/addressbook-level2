@@ -1,9 +1,6 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -11,6 +8,7 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 /**
@@ -24,6 +22,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private ArrayList<Tagging> taggings;
 
     /**
      * Creates an empty address book.
@@ -31,6 +30,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        taggings = new ArrayList<Tagging>();
     }
 
     /**
@@ -43,6 +43,7 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        taggings = new ArrayList<Tagging>();
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -81,6 +82,9 @@ public class AddressBook {
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
         syncTagsWithMasterList(toAdd);
+        for (Tag tag : toAdd.getTags()) {
+            taggings.add(new Tagging(toAdd, tag, true));
+        }
     }
 
     /**
@@ -97,6 +101,9 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+        for (Tag tag : toRemove.getTags()) {
+            taggings.add(new Tagging(toRemove, tag, false));
+        }
     }
 
     /**
@@ -127,5 +134,27 @@ public class AddressBook {
                 || (other instanceof AddressBook // instanceof handles nulls
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
+    }
+
+    /**
+     * Returns list of strings about taggings activities
+     */
+    private ArrayList<String> getTaggingsStrings() {
+        ArrayList<String> results = new ArrayList<String>();
+        for (Tagging tagging : taggings) {
+            String taggingInString = tagging.toString();
+            results.add(taggingInString);
+        }
+        return results;
+    }
+
+    /*
+     * Prints list of taggings activities
+     */
+    public void showTaggingsActivities() {
+        ArrayList<String> results = getTaggingsStrings();
+        for (String result : results) {
+            System.out.println(result);
+        }
     }
 }

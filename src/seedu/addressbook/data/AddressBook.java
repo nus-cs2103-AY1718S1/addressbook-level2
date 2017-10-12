@@ -93,6 +93,9 @@ public class AddressBook {
      */
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
+        for (Tag tag : toAdd.getTags()) {
+            taggings.add(new Tagging(toAdd, tag, true));
+        }
         syncTagsWithMasterList(toAdd);
     }
 
@@ -110,6 +113,9 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+        for (Tag tag : toRemove.getTags()) {
+            taggings.add(new Tagging(toRemove, tag, false));
+        }
     }
 
     /**

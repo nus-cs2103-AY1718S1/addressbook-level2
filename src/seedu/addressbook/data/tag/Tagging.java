@@ -1,14 +1,14 @@
 package seedu.addressbook.data.tag;
 
-import seedu.addressbook.data.person.Person;
+import seedu.addressbook.data.person.ReadOnlyPerson;
 
 public class Tagging {
 
-    private Person person;
+    private ReadOnlyPerson person;
     private Tag tag;
     private boolean hasBeenAdded;
 
-    public Tagging (Person person, Tag tag, boolean hasBeenAdded) {
+    public Tagging (ReadOnlyPerson person, Tag tag, boolean hasBeenAdded) {
         this.person = person;
         this.tag = tag;
         this.hasBeenAdded = hasBeenAdded;

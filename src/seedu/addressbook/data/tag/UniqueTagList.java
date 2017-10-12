@@ -81,6 +81,20 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
+     *  Adds a tag to the tag list.
+     */
+    public void addTag(Tag tag) {
+        internalList.add(tag);
+    }
+
+    /**
+     *  Removes a tag from the tag list.
+     */
+    public void removeTag(Tag tag) {
+        internalList.remove(tag);
+    }
+
+    /**
      * Returns true if the list contains an equivalent Tag as the given argument.
      */
     public boolean contains(Tag toCheck) {

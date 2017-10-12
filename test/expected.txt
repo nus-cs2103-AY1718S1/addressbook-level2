@@ -311,6 +311,8 @@
 + Esther Potato [starchy]
 - Charlie Dickson [school]
 - Charlie Dickson [friends]
+- Charlie Dickson [school]
+- Charlie Dickson [friends]
 - Esther Potato [tubers]
 - Esther Potato [starchy]
 || Good bye!

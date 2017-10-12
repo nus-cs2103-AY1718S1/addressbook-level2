@@ -1,5 +1,6 @@
 package seedu.addressbook.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -24,6 +25,9 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private final ArrayList<Tagging> taggingList;
+    private final String addOperator = "+";
+    private final String removeOperator = "-";
 
     /**
      * Creates an empty address book.
@@ -31,6 +35,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        taggingList = new ArrayList<>();
     }
 
     /**
@@ -46,6 +51,7 @@ public class AddressBook {
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
+        taggingList = new ArrayList<>();
     }
 
     /**
@@ -98,7 +104,31 @@ public class AddressBook {
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
     }
+    public void addTagToPerson(Person person, Tag tag) throws PersonNotFoundException {
+        if (!containsPerson(person)) {
+            throw new PersonNotFoundException();
+        }
+         else {
+            allPersons.addTag(person, tag);
+            taggingList.add(new Tagging(person, tag, addOperator));
+        }
+    }
 
+    public void removeTagToPerson(Person person, Tag tag) throws PersonNotFoundException {
+        if (!containsPerson(person)) {
+            throw new PersonNotFoundException();
+            }
+        else {
+            allPersons.removeTag(person, tag);
+            taggingList.add(new Tagging(person, tag, removeOperator));
+        }
+    }
+
+     public void printTagging() {
+        for (int i = 0; i < taggingList.size(); i++) {
+            System.out.println(taggingList.get(i).getPrintFormat());
+        }
+     }
     /**
      * Clears all persons and tags from the address book.
      */

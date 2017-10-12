@@ -6,6 +6,9 @@ import static seedu.addressbook.util.TestUtil.getSize;
 import static seedu.addressbook.util.TestUtil.isEmpty;
 import static seedu.addressbook.util.TestUtil.isIdentical;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -20,6 +23,7 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 public class AddressBookTest {
@@ -176,6 +180,14 @@ public class AddressBookTest {
         UniqueTagList tagsToCheck = new UniqueTagList(tagMathematician, tagScientist);
 
         assertTrue(isIdentical(allTags, tagsToCheck));
+    }
+
+    @Test
+    public void assert_taggingsEmptyOnStart() {
+        AddressBook newAddressBook = new AddressBook();
+        ArrayList<Tagging> taggings = newAddressBook.getTaggings();
+        assertTrue(isEmpty(taggings));
+
     }
 
     /**

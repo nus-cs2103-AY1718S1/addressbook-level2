@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.tag.Tagging;
 
 /**
  * Text UI of the application.
@@ -108,6 +109,16 @@ public class TextUi {
         showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
     }
 
+    public void showTaggings(ArrayList<Tagging> taggingList) {
+        if (taggingList.isEmpty()) {
+           showToUser("No Tags changed.");
+        } else {
+            for (Tagging e : taggingList) {
+                showToUser(e.toString());
+            }
+        }
+        showToUser(DIVIDER, DIVIDER);
+    }
 
     public void showInitFailedMessage() {
         showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);

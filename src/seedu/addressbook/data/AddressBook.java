@@ -1,9 +1,6 @@
 package seedu.addressbook.data;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
@@ -11,6 +8,7 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 /**
@@ -24,6 +22,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private ArrayList<Tagging> allTaggings;
 
     /**
      * Creates an empty address book.
@@ -31,6 +30,8 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        allTaggings = new ArrayList<>();
+
     }
 
     /**
@@ -46,6 +47,7 @@ public class AddressBook {
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
+        allTaggings = new ArrayList<>();
     }
 
     /**
@@ -80,6 +82,7 @@ public class AddressBook {
      */
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
+        toAdd.getTags().forEach(tag -> allTaggings.add(new Tagging(toAdd, tag, Tagging.ADD_TAG)));
         syncTagsWithMasterList(toAdd);
     }
 
@@ -96,6 +99,7 @@ public class AddressBook {
      * @throws PersonNotFoundException if no such Person could be found.
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
+        toRemove.getTags().forEach(tag -> allTaggings.add(new Tagging(toRemove, tag, Tagging.REMOVE_TAG)));
         allPersons.remove(toRemove);
     }
 
@@ -127,5 +131,11 @@ public class AddressBook {
                 || (other instanceof AddressBook // instanceof handles nulls
                         && this.allPersons.equals(((AddressBook) other).allPersons)
                         && this.allTags.equals(((AddressBook) other).allTags));
+    }
+
+    public void getAllTaggings() {
+        for (Tagging tagging : allTaggings) {
+            System.out.println(tagging.toString());
+        }
     }
 }

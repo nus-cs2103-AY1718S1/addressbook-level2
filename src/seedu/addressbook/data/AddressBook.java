@@ -93,6 +93,9 @@ public class AddressBook {
      */
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
+
+        // In AddressBook Level 2, the only ways to add and remove tags
+        // are in the add Person and delete Person commands
         for (Tag tag : toAdd.getTags()) {
             taggings.add(new Tagging(toAdd, tag, true));
         }
@@ -113,6 +116,9 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+
+        // In AddressBook Level 2, the only ways to add and remove tags
+        // are in the add Person and delete Person commands
         for (Tag tag : toRemove.getTags()) {
             taggings.add(new Tagging(toRemove, tag, false));
         }

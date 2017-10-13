@@ -6,6 +6,9 @@ import static seedu.addressbook.util.TestUtil.getSize;
 import static seedu.addressbook.util.TestUtil.isEmpty;
 import static seedu.addressbook.util.TestUtil.isIdentical;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -20,6 +23,7 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 public class AddressBookTest {
@@ -45,32 +49,32 @@ public class AddressBookTest {
         tagEconomist     = new Tag("economist");
 
         aliceBetsy     = new Person(new Name("Alice Betsy"),
-                                    new Phone("91235468", false),
-                                    new Email("alice@nushackers.org", false),
-                                    new Address("8 Computing Drive, Singapore", false),
-                                    new UniqueTagList(tagMathematician));
+                new Phone("91235468", false),
+                new Email("alice@nushackers.org", false),
+                new Address("8 Computing Drive, Singapore", false),
+                new UniqueTagList(tagMathematician));
 
         bobChaplin     = new Person(new Name("Bob Chaplin"),
-                                    new Phone("94321500", false),
-                                    new Email("bob@nusgreyhats.org", false),
-                                    new Address("9 Computing Drive", false),
-                                    new UniqueTagList(tagMathematician));
+                new Phone("94321500", false),
+                new Email("bob@nusgreyhats.org", false),
+                new Address("9 Computing Drive", false),
+                new UniqueTagList(tagMathematician));
 
         charlieDouglas = new Person(new Name("Charlie Douglas"),
-                                    new Phone("98751365", false),
-                                    new Email("charlie@nusgdg.org", false),
-                                    new Address("10 Science Drive", false),
-                                    new UniqueTagList(tagScientist));
+                new Phone("98751365", false),
+                new Email("charlie@nusgdg.org", false),
+                new Address("10 Science Drive", false),
+                new UniqueTagList(tagScientist));
 
         davidElliot    = new Person(new Name("David Elliot"),
-                                    new Phone("84512575", false),
-                                    new Email("douglas@nuscomputing.com", false),
-                                    new Address("11 Arts Link", false),
-                                    new UniqueTagList(tagEconomist, tagPrizeWinner));
+                new Phone("84512575", false),
+                new Email("douglas@nuscomputing.com", false),
+                new Address("11 Arts Link", false),
+                new UniqueTagList(tagEconomist, tagPrizeWinner));
 
         emptyAddressBook = new AddressBook();
         defaultAddressBook = new AddressBook(new UniquePersonList(aliceBetsy, bobChaplin),
-                                             new UniqueTagList(tagMathematician, tagScientist));
+                new UniqueTagList(tagMathematician, tagScientist));
     }
 
     @Rule
@@ -176,6 +180,14 @@ public class AddressBookTest {
         UniqueTagList tagsToCheck = new UniqueTagList(tagMathematician, tagScientist);
 
         assertTrue(isIdentical(allTags, tagsToCheck));
+    }
+
+    @Test
+    public void assert_taggingsEmptyOnStart() {
+        AddressBook newAddressBook = new AddressBook();
+        ArrayList<Tagging> taggings = newAddressBook.getTaggings();
+        assertTrue(isEmpty(taggings));
+
     }
 
     /**

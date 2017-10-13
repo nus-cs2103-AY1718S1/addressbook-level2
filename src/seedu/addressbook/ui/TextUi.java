@@ -114,8 +114,7 @@ public class TextUi {
             }
         }
     }
-    public void showGoodbyeMessage() { showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
-    }
+    public void showGoodbyeMessage() { showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER); }
     
     public void showInitFailedMessage() {
         showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);

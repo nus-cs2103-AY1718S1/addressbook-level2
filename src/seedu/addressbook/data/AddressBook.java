@@ -27,6 +27,7 @@ public class AddressBook {
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
     private final ArrayList<Tagging> allTaggings;
+    
     /**
      * Creates an empty address book.
      */

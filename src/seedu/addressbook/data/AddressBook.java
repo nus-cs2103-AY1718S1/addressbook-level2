@@ -1,5 +1,6 @@
 package seedu.addressbook.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -11,7 +12,10 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.tag.UniqueTagList.DuplicateTagException;
+import seedu.addressbook.data.tag.UniqueTagList.TagNotFoundException;
 
 /**
  * Represents the entire address book. Contains the data of the address book.
@@ -24,6 +28,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private final ArrayList<Tagging> taggings;
 
     /**
      * Creates an empty address book.
@@ -31,6 +36,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        taggings = new ArrayList<>();
     }
 
     /**
@@ -46,6 +52,7 @@ public class AddressBook {
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
+        taggings = new ArrayList<>();
     }
 
     /**
@@ -100,6 +107,26 @@ public class AddressBook {
     }
 
     /**
+     * Adds a tag to a person in the list.
+     *
+     * @throws DuplicateTagException if the tag to add is a duplicate of an existing tag in the list.
+     */
+    public void addTagToPerson(Person person, Tag tag) throws DuplicateTagException{
+        person.addTag(tag);
+        taggings.add(new Tagging(person, tag, "+"));
+    }
+
+    /**
+     * Removes the equivalent tag from a person in the list.
+     *
+     * @throws TagNotFoundException if no such tag could be found in the list.
+     */
+    public void removeTagFromPerson(Person person, Tag tag) throws TagNotFoundException {
+        person.removeTag(tag);
+        taggings.add(new Tagging(person, tag, "-"));
+    }
+
+    /**
      * Clears all persons and tags from the address book.
      */
     public void clear() {
@@ -119,6 +146,10 @@ public class AddressBook {
      */
     public UniqueTagList getAllTags() {
         return new UniqueTagList(allTags);
+    }
+
+    public ArrayList<Tagging> getTaggings() {
+        return taggings;
     }
 
     @Override

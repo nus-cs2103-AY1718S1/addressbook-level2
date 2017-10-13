@@ -1,6 +1,9 @@
 package seedu.addressbook.data.person;
 
+import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.tag.UniqueTagList.DuplicateTagException;
+import seedu.addressbook.data.tag.UniqueTagList.TagNotFoundException;
 
 import java.util.Objects;
 
@@ -64,6 +67,24 @@ public class Person implements ReadOnlyPerson {
      */
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);
+    }
+
+    /**
+     * Adds a tag to this person's tags.
+     *
+     * @throws DuplicateTagException if the tag to add is a duplicate of an existing tag in the list.
+     */
+    public void addTag(Tag toAdd) throws DuplicateTagException {
+        tags.add(toAdd);
+    }
+
+    /**
+     * Remove a tag from this person's tags.
+     *
+     * @throws TagNotFoundException if no such tag could be found in the list.
+     */
+    public void removeTag(Tag tag) throws TagNotFoundException {
+        tags.remove(tag);
     }
 
     @Override

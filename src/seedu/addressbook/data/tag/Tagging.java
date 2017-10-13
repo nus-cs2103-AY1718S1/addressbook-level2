@@ -26,4 +26,9 @@ public class Tagging {
         return operation;
     }
 
+    @Override
+    public String toString() {
+        return operation + " " + person.getName() + " " + tag.toString();
+    }
+
 }

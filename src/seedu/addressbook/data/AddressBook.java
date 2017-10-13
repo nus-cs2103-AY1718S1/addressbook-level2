@@ -1,5 +1,6 @@
 package seedu.addressbook.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -11,6 +12,7 @@ import seedu.addressbook.data.person.UniquePersonList;
 import seedu.addressbook.data.person.UniquePersonList.DuplicatePersonException;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 /**
@@ -24,6 +26,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private final ArrayList<Tagging> taggings;
 
     /**
      * Creates an empty address book.
@@ -31,6 +34,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        taggings = new ArrayList<>();
     }
 
     /**
@@ -43,6 +47,7 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        this.taggings = new ArrayList<>();
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -72,6 +77,14 @@ public class AddressBook {
     }
 
     /**
+     * Returns the list of taggings in the AddressBook
+     * @return ArrayList of taggings
+     */
+    public ArrayList<Tagging> getTaggings() {
+        return taggings;
+    }
+
+    /**
      * Adds a person to the address book.
      * Also checks the new person's tags and updates {@link #allTags} with any new tags found,
      * and updates the Tag objects in the person to point to those in {@link #allTags}.
@@ -80,6 +93,12 @@ public class AddressBook {
      */
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         allPersons.add(toAdd);
+
+        // In AddressBook Level 2, the only ways to add and remove tags
+        // are in the add Person and delete Person commands
+        for (Tag tag : toAdd.getTags()) {
+            taggings.add(new Tagging(toAdd, tag, true));
+        }
         syncTagsWithMasterList(toAdd);
     }
 
@@ -97,6 +116,12 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+
+        // In AddressBook Level 2, the only ways to add and remove tags
+        // are in the add Person and delete Person commands
+        for (Tag tag : toRemove.getTags()) {
+            taggings.add(new Tagging(toRemove, tag, false));
+        }
     }
 
     /**
@@ -125,7 +150,7 @@ public class AddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && this.allPersons.equals(((AddressBook) other).allPersons)
-                        && this.allTags.equals(((AddressBook) other).allTags));
+                && this.allPersons.equals(((AddressBook) other).allPersons)
+                && this.allTags.equals(((AddressBook) other).allTags));
     }
 }

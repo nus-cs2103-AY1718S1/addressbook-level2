@@ -300,6 +300,16 @@
 || Enter command: || [Command entered:  exit]
 || Exiting Address Book as requested ...
 || ===================================================
+|| + Betsy Choo [secretive]
+|| + Charlie Dickson [school]
+|| + Charlie Dickson [friends]
+|| + Dickson Ee [friends]
+|| + Esther Potato [tubers]
+|| + Esther Potato [starchy]
+|| - Charlie Dickson [school]
+|| - Charlie Dickson [friends]
+|| - Esther Potato [tubers]
+|| - Esther Potato [starchy]
 || Good bye!
 || ===================================================
 || ===================================================

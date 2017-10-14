@@ -29,6 +29,11 @@ public class UniqueTagList implements Iterable<Tag> {
             super("Operation would result in duplicate tags");
         }
     }
+    public static class NoSuchTagException extends DuplicateDataException {
+        protected NoSuchTagException() {
+            super("No such tag could be found");
+        }
+    }
 
     private final List<Tag> internalList = new ArrayList<>();
 
@@ -116,6 +121,30 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void clear() {
         internalList.clear();
+    }
+
+    /**
+     * Adds a tag to tag list.
+     *
+     * @throws DuplicateTagException if an equivalent tag in the tag list exists.
+     */
+    public void add(Tag toAdd) throws DuplicateTagException{
+        if (contains(toAdd)) {
+            throw new DuplicateTagException();
+        }
+        this.internalList.add(toAdd);
+    }
+
+    /**
+     * Remove a tag from the tag list.
+     *
+     * @throws NoSuchTagException if there is no such tag in tag list.
+     */
+    public void remove(Tag toRemove) throws NoSuchTagException {
+        final boolean tagFound = this.internalList.remove(toRemove);
+        if (!tagFound) {
+            throw new NoSuchTagException();
+        }
     }
 
     /**

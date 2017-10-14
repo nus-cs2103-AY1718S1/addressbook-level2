@@ -1,6 +1,11 @@
 package seedu.addressbook.data.person;
 
+
+import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
+import seedu.addressbook.data.tag.UniqueTagList.DuplicateTagException;
+import seedu.addressbook.data.tag.UniqueTagList.NoSuchTagException;
 
 import java.util.Objects;
 
@@ -16,6 +21,8 @@ public class Person implements ReadOnlyPerson {
     private Address address;
 
     private final UniqueTagList tags;
+    private Tagging addedTags;
+    private Tagging removedTags;
     /**
      * Assumption: Every field must be present and not null.
      */
@@ -25,6 +32,8 @@ public class Person implements ReadOnlyPerson {
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.addedTags = new Tagging(this.name, "+");
+        this.removedTags = new Tagging(this.name, "-");
     }
 
     /**
@@ -57,6 +66,38 @@ public class Person implements ReadOnlyPerson {
     @Override
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
+    }
+
+    /**
+     * Adds a tag to this person.
+     *
+     * @throws DuplicateTagException if an equivalent tag in the given person already exists.
+     */
+    public void addTag(Tag toAdd) throws DuplicateTagException {
+        UniqueTagList currentTags = this.getTags();
+        currentTags.add(toAdd);
+        this.setTags(currentTags);
+        this.addedTags.addTagToList(toAdd);
+    }
+
+    /**
+     * Remove a tag from this person.
+     *
+     * @throws NoSuchTagException if there is no such tag in the given person.
+     */
+    public void removeTag(Tag toRemove) throws NoSuchTagException{
+        UniqueTagList currentTags = this.getTags();
+        currentTags.remove(toRemove);
+        this.setTags(currentTags);
+        this.removedTags.addTagToList(toRemove);
+    }
+
+    public Tagging getTaggings(String addOrRemove) {
+        if (addOrRemove.equals("+")) {
+            return this.addedTags;
+        } else  {
+            return this.removedTags;
+        }
     }
 
     /**

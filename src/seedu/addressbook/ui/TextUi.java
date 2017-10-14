@@ -14,6 +14,8 @@ import java.util.Optional;
 import java.util.Scanner;
 
 import seedu.addressbook.commands.CommandResult;
+import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 /**
@@ -117,6 +119,15 @@ public class TextUi {
     public void showToUser(String... message) {
         for (String m : message) {
             out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
+        }
+    }
+
+    /**
+     * Shows the taggings of every person in address book.
+     */
+    public void showTaggings(AddressBook addressBook) {
+        for (Person p : addressBook.getAllPersons()) {
+            showToUser(p.getTaggings("+").toString(), p.getTaggings("-").toString());
         }
     }
 

@@ -66,6 +66,17 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+### Finding all persons containing a number in their phone number: `pfind`
+Finds persons whose names contain the number specified in order.<br>
+Format `pfind NUMBER`
+
+> The order of the digits matter. `pfind 869` will not match a person with phone number `689`.
+
+#### Search by Email
+Users can search the Address Book with email. Any keywords before @ will result in all emails with that keyword to allow users to search for any email with the search term. 
+
+Example:findemail alice@ or findemail alice@mail where the email domain is not so important. Using @ to confirm the user is searching for email. Spaces is not allowed in this command .
+
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`
@@ -134,3 +145,5 @@ Example:
 >
 > When running the program inside IntelliJ, you can set command line parameters 
   before running the program.
+  
+

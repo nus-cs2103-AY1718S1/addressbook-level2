@@ -15,6 +15,11 @@ public class Address {
     public final String value;
     private boolean isPrivate;
 
+    private Block block;
+    private PostalCode postalCode;
+    private Street street;
+    private Unit unit;
+
     /**
      * Validates given address.
      *
@@ -26,7 +31,23 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+        createAddress(trimmedAddress);
+
         this.value = trimmedAddress;
+    }
+
+    /**
+     * Initialises the following attributes: block, postalCode, street, unit.
+     * @param trimmedAddress is of the format "a/BLOCK, STREET, UNIT, POSTAL_CODE"
+     */
+    private void createAddress(String trimmedAddress) {
+        String [] splitAddressBySlash = trimmedAddress.split("/");
+        String [] splitAddressByComma = splitAddressBySlash[1].split(", ");
+
+        this.block = new Block(splitAddressByComma[0]);
+        this.street = new Street(splitAddressByComma[1]);
+        this.unit = new Unit(splitAddressByComma[2]);
+        this.postalCode = new PostalCode(splitAddressByComma[3]);
     }
 
     /**

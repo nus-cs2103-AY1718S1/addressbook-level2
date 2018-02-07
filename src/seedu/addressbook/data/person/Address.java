@@ -8,8 +8,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String EXAMPLE = "123, some street, #01-01, 123456";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person's address must be entered in the format a/BLOCK, STREET, UNIT, POSTAL_CODE";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
@@ -32,7 +32,6 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         createAddress(trimmedAddress);
-
         this.value = trimmedAddress;
     }
 
@@ -40,10 +39,11 @@ public class Address {
      * Initialises the following attributes: block, postalCode, street, unit.
      * @param trimmedAddress is of the format "a/BLOCK, STREET, UNIT, POSTAL_CODE"
      */
-    private void createAddress(String trimmedAddress) {
-        String [] splitAddressBySlash = trimmedAddress.split("/");
-        String [] splitAddressByComma = splitAddressBySlash[1].split(", ");
-
+    private void createAddress(String trimmedAddress) throws IllegalValueException {
+        String [] splitAddressByComma = trimmedAddress.split(", ");
+        if (splitAddressByComma.length != 4) {
+            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        }
         this.block = new Block(splitAddressByComma[0]);
         this.street = new Street(splitAddressByComma[1]);
         this.unit = new Unit(splitAddressByComma[2]);

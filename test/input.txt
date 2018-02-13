@@ -42,17 +42,23 @@
   # should add correctly and list non private information
   add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
   list
-  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+  add Adam Brown p/111111 e/adam@gmail.com a/111, 111111
   list
-  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
+  add Adam Brown p/111111 e/adam@gmail.com a/alpha street, 111111
   list
-  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
+  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street, #01-23, 123444 t/secretive
   list
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street, 61A, 433221 t/friends t/school
+  list
+  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street, #23-01, Singapore 123455 t/friends
+  list
+  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street, #23-01, 123455 t/friends
+  list
+  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street, #05-55, 123333 t/tubers t/starchy
   list
 
   # should not allow adding duplicate persons
-  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
+  add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street, #05-55, 123333 t/tubers t/starchy
 
 ##########################################################
 # test view/viewall persons command
@@ -77,14 +83,14 @@
   viewall 1
 
   # should show only non private details for view
+  view 2
   view 3
   view 4
-  view 5
 
   # should show all details even private for viewall
+  viewall 2
   viewall 3
   viewall 4
-  viewall 5
 
 ##########################################################
 # test find persons command
@@ -133,7 +139,7 @@
   list
 
   # deletes correct person
-  delete 4
+  delete 3
   list
 
   # listing indexes get updated on next request

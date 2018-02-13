@@ -1,26 +1,16 @@
 package seedu.addressbook.commands;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
 import org.junit.Test;
-
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.util.TestUtil;
 import seedu.addressbook.util.TypicalPersons;
+
+import java.util.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class ViewCommandTest {
     private TypicalPersons td = new TypicalPersons();
@@ -49,7 +39,7 @@ public class ViewCommandTest {
         ReadOnlyPerson stranger = new Person(new Name("me"),
                                              new Phone("123", true),
                                              new Email("some@hey.go", true),
-                                             new Address("nus", false),
+                                             new Address("10, nus, COM1-0217, 117417", false),
                                              new UniqueTagList(Collections.emptySet()));
         List<ReadOnlyPerson> listWithExtraPerson
                 = new ArrayList<ReadOnlyPerson>(listWithAllTypicalPersons);

@@ -1,27 +1,22 @@
 package seedu.addressbook.storage;
 
-import static org.junit.Assert.assertEquals;
-
-import java.nio.file.Paths;
-import java.util.Collections;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
-
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
-import seedu.addressbook.data.person.Email;
-import seedu.addressbook.data.person.Name;
-import seedu.addressbook.data.person.Person;
-import seedu.addressbook.data.person.Phone;
+import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
-import static seedu.addressbook.util.TestUtil.assertTextFilesEqual;
+
+import java.nio.file.Paths;
+import java.util.Collections;
+
+import static org.junit.Assert.assertEquals;
 import static seedu.addressbook.util.TestUtil.assertFileDoesNotExist;
+import static seedu.addressbook.util.TestUtil.assertTextFilesEqual;
 
 public class StorageFileTest {
     private static final String TEST_DATA_FOLDER = "test/data/StorageFileTest";
@@ -112,12 +107,12 @@ public class StorageFileTest {
         ab.addPerson(new Person(new Name("John Doe"),
                                 new Phone("98765432", false),
                                 new Email("johnd@gmail.com", false),
-                                new Address("John street, block 123, #01-01", false),
+                                new Address("123, John street, #01-01, 222222", false),
                                 new UniqueTagList(Collections.emptySet())));
         ab.addPerson(new Person(new Name("Betsy Crowe"),
                                 new Phone("1234567", true),
                                 new Email("betsycrowe@gmail.com", false),
-                                new Address("Newgate Prison", true),
+                                new Address("2, Newgate, Prison, 123123", true),
                                 new UniqueTagList(new Tag("friend"), new Tag("criminal"))));
         return ab;
     }

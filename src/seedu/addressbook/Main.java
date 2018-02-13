@@ -1,9 +1,5 @@
 package seedu.addressbook;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
@@ -15,6 +11,10 @@ import seedu.addressbook.storage.StorageFile.InvalidStorageFilePathException;
 import seedu.addressbook.storage.StorageFile.StorageOperationException;
 import seedu.addressbook.ui.TextUi;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 
 /**
  * Entry point of the Address Book application.
@@ -23,7 +23,7 @@ import seedu.addressbook.ui.TextUi;
 public class Main {
 
     /** Version info of the program. */
-    public static final String VERSION = "AddessBook Level 2 - Version 1.0";
+    public static final String VERSION = "AddressBook Level 2 - Version 1.0";
 
     private TextUi ui;
     private StorageFile storage;
@@ -105,11 +105,15 @@ public class Main {
      * @param command user command
      * @return result of the command
      */
+    //credit to #111, Cho Chih Tun for helping me and explaining
     private CommandResult executeCommand(Command command)  {
-        try {
-            command.setData(addressBook, lastShownList);
-            CommandResult result = command.execute();
+        command.setData(addressBook, lastShownList);
+        CommandResult result = command.execute();
+        try{
             storage.save(addressBook);
+            return result;
+        } catch(StorageOperationException e){
+            ui.showToUser(e.getMessage());
             return result;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());

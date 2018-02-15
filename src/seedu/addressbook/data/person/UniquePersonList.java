@@ -76,7 +76,9 @@ public class UniquePersonList implements Iterable<Person> {
         return Collections.unmodifiableList(internalList);
     }
 
-    public ArrayList<Person> mutableListView() {return new ArrayList(internalList);
+    public ArrayList<Person> mutableListView() {
+        ArrayList<Person> mutableList = new ArrayList<>(internalList);
+        return mutableList;
     }
     /**
      * Checks if the list contains an equivalent person as the given argument.

@@ -2,10 +2,8 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.data.person.Person;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 
 /**
@@ -24,7 +22,6 @@ public class SortCommand extends Command {
     public CommandResult execute() {
         ArrayList<Person> allPersons = new ArrayList<>(addressBook.getAllPersons().mutableListView());
         Collections.sort(allPersons, (Person p1, Person p2) -> p1.getName().toString().compareTo(p2.getName().toString()));
-                //Comparator.comparing(Person::getName));
         return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
     }
 }

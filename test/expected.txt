@@ -260,7 +260,7 @@
 || The person index provided is invalid
 || ===================================================
 || Enter command: || [Command entered:  delete 3]
-s|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
+|| Deleted Person: Charlie Dickson Phone: (private) 333333 Email: charlie.d@nus.edu.sg Address: 333, gamma street Tags: [school][friends]
 || ===================================================
 || Enter command: || [Command entered:  delete 2]
 || Deleted Person: Betsy Choo Phone: (private) 222222 Email: (private) benchoo@nus.edu.sg Address: (private) 222, beta street Tags: [secretive]

@@ -42,11 +42,11 @@
   # should add correctly and list non private information
   add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
   list
-  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
+  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
   list
   add Charlie Dickson pp/333333 e/charlie.d@nus.edu.sg a/333, gamma street t/friends t/school
   list
-  add Dickson Ee p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends
+  add Betsy Choo pp/222222 pe/benchoo@nus.edu.sg pa/222, beta street t/secretive
   list
   add Esther Potato p/555555 e/esther@not.a.real.potato pa/555, epsilon street t/tubers t/starchy
   list
@@ -96,15 +96,22 @@
   find bet
   # does not match if none have keyword
   find 23912039120
-  # matching should be case-sensitive
-  find betsy
 
+  # matching should be case-insensitive
+  find betsy
   # find unique keyword
   find Betsy
   # find multiple with same keyword
   find Dickson
   # find multiple with some keywords
   find Charlie Betsy
+
+##########################################################
+# test sort persons command
+##########################################################
+
+  # should sort all persons by their names and list them
+  sort
 
 ##########################################################
 # test delete person command

@@ -22,11 +22,11 @@ public class FindCommandTest {
 
     @Test
     public void execute() throws IllegalValueException {
-        //same word, same case: matched
+        //same word: matched
         assertFindCommandBehavior(new String[]{"Amy"}, Arrays.asList(td.amy));
 
-        //same word, different case: not matched
-        assertFindCommandBehavior(new String[]{"aMy"}, Collections.emptyList());
+        //same word: matched
+        assertFindCommandBehavior(new String[]{"aMy"}, Arrays.asList(td.amy));
 
         //partial word: not matched
         assertFindCommandBehavior(new String[]{"my"}, Collections.emptyList());
